@@ -7,6 +7,7 @@
 #include <linux/sched.h>
 #include <linux/string.h>
 #include "dispatch.h"
+#include "bench.h"
 #include <asm/fpu/api.h>
 static unsigned int iterations=1024;
 module_param(iterations,uint,0444);
@@ -76,9 +77,10 @@ static int __init n100_probe_init(void)
  ret=0;
 out:
  kfree(work);kfree(decoded);kfree(reference);kfree(packed);kfree(src);
+ if (!ret) ret=n100_bench_register();
  return ret;
 }
-static void __exit n100_probe_exit(void) {}
+static void __exit n100_probe_exit(void) {n100_bench_unregister();}
 module_init(n100_probe_init);
 module_exit(n100_probe_exit);
 MODULE_LICENSE("GPL");

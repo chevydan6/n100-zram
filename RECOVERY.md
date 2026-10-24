@@ -1,30 +1,69 @@
-# Recovery status
+# Recovery state and procedures
 
-The known-good running kernel is the existing stock Fedora 7.0.10 kernel. Earlier
-installation records report that the stock default was preserved; the current
-bootloader default and rollback still require privileged inspection. Installed
-custom 7.2.8-n100v1 and stock 7.2.8 are comparison candidates, not verified
-recovery kernels. Preserve the existing boot entries, initramfs and signing
-material. Never publish signing keys or host credentials.
+## Current physical test result
 
-Remote SSH is verified. Current out-of-band video, serial and power access and
-automatic boot rollback are **not verified**. Historical NanoKVM/SuzyQ access is
-not sufficient evidence of a working present recovery path. No experimental boot
-has been attempted by this branch.
+Authenticated administrator access was verified. The running and default kernel
+were both stock Fedora `7.0.10-201.fc44.x86_64`. No experimental module was loaded
+on the physical N100. Separate ZRAM baseline devices were removed successfully.
 
-Before experimental kernel boots: record current bootloader entries/default,
-verify a known-good entry can boot and restore SSH, preserve logs off-device,
-verify console/power recovery, and test one-shot boot plus automatic fallback
-where supported. Boot an experimental kernel only through that established
-path. Keep persistent journals and capture pstore/previous-boot logs on recovery.
-Detailed tested commands will be added after administrator access and actual
-bootloader configuration have been inspected; no rollback is claimed today.
+Recovery preparation saved the stock BLS entry and grubenv under the private
+`/home/dan/n100-zram-lab/recovery-setup/` directory. It kept the stock kernel as
+the default and added panic/lockup recovery plus EFI pstore logging. The stock
+kernel binary was not changed. The host also holds a copy of that kernel image
+and all source/results outside the target.
 
-Unprivileged codec experiments are isolated in `~/n100-zram-experiment` on the
-test machine. They do not alter the active ZRAM device or boot configuration.
+The controlled reboot did **not** restore SSH within five minutes. Read-only LAN
+discovery did not find the target's pinned SSH identity at a new address. No CCD
+serial device is attached. The cause is unknown; the user has been asked what
+appears on the laptop screen. This does not prove a kernel boot failure: network,
+login or service state must be distinguished through a console.
 
-At the latest checkpoint the controller has no Ethernet route to the previous
-NanoKVM address, and that address did not respond. SSH as the normal N100 user is
-working; sudo and noninteractive PolicyKit both require authentication, and root
-SSH public-key authentication is unavailable. No native recovery procedure is
-claimed verified on the basis of the successful diskless VM tests.
+No further native module load or reboot should run until this test is resolved.
+NanoKVM is optional. A physical console or another working, verified recovery
+route is sufficient. Successful diskless VM tests do not establish physical boot
+recovery.
+
+## Changes prepared on the target
+
+`tools/prepare-recovery.py` recorded the kernel/entry hashes and prior runtime
+policy in `before.json`, copied `stock-entry.conf` and `grubenv`, and created the
+lab-owned `/etc/sysctl.d/99-n100-zram-lab.conf`. Its policy is panic timeout 10,
+panic on oops, NMI watchdog, and panic on hard/soft lockups. The BLS entry gained:
+
+```text
+panic=10 nmi_watchdog=1 efi_pstore.pstore_disable=0 pstore.kmsg_bytes=8192
+```
+
+The EFI pstore backend registered successfully before reboot; post-reboot logging
+has not been inspected. Original installed kernel/module files were preserved.
+Persistent journaling was already present. Runtime NMI monitoring had been enabled
+earlier in this lab session; initial inspection reported it disabled.
+
+## Restore the saved lab configuration
+
+After reaching a console or restoring SSH, inspect the actual running kernel,
+network state and previous-boot journal first. If the lab boot/recovery settings
+need reverting, the helper verifies the saved entry and kernel hashes before
+restoring the saved BLS entry and removing only the unchanged lab policy file:
+
+```sh
+sudo python3 tools/restore-recovery.py --backup /home/dan/n100-zram-lab/recovery-setup
+```
+
+The helper restores the runtime values saved immediately before preparation; the
+saved NMI value is 1 because monitoring had already been enabled in this session.
+It leaves the boot default selection unchanged. It does not overwrite grubenv's
+new runtime state. Keep raw boot IDs, root UUIDs, journals and crash recordings
+outside public Git.
+
+## Required next verification
+
+Confirm a normal stock boot returns to SSH, inspect pstore/journal behavior, then
+test bounded automatic crash recovery. A one-shot alternate-kernel boot also
+needs tested timeout/rollback handling. Preserve the stock entry and installed
+modules, and do not repeatedly boot an unverified experimental kernel.
+
+The syscall codec probe is a separate benchmark-only module. It does not register
+a ZRAM backend or replace the active swap driver. Its new misc interface has
+passed VM validation on the exact 7.0.10 ABI, including all-register state checks;
+physical loading remains pending recovery verification.

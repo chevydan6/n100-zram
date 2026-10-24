@@ -1,0 +1,624 @@
+{
+  "kernel": "7.0.10-201.fc44.x86_64",
+  "kernel_config_sha256": "d29288290a10caff16ff4d40c1ebdc4617a22d08d040c80d95030bc26c481cf3",
+  "zram_module_srcversion": null,
+  "fio": "fio-3.40",
+  "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "recovery_policy": {
+    "panic": "0",
+    "nmi_watchdog": "1",
+    "hardlockup_panic": "0",
+    "softlockup_panic": "0"
+  },
+  "source_sha256": "3dd4f608defc8ad99d37f7ff9fc6b7766a3a8124f36fa7a333b8d2be47285ad5",
+  "scope": "Physical N100 stock-kernel, isolated synthetic ZRAM device, 64 MiB, 50% nominal compression, 4 KiB synchronous direct I/O, CPU 0, three randomized trials per algorithm",
+  "crc32c_full_device_verification": "passed after every trial",
+  "rows": [
+    {
+      "algorithm": "lz4",
+      "trial": 0,
+      "operation": "randread",
+      "iops": 412234.4,
+      "bytes_per_second": 1688512102,
+      "completed_ios": 2061172,
+      "mean_clat_ns": 2129.984364,
+      "clat_stddev_ns": 351.949972,
+      "clat_percentiles_ns": {
+        "1.000000": 1640,
+        "5.000000": 1784,
+        "10.000000": 1848,
+        "20.000000": 1944,
+        "30.000000": 2008,
+        "40.000000": 2064,
+        "50.000000": 2128,
+        "60.000000": 2160,
+        "70.000000": 2224,
+        "80.000000": 2288,
+        "90.000000": 2384,
+        "95.000000": 2448,
+        "99.000000": 2672,
+        "99.500000": 2832,
+        "99.900000": 6688,
+        "99.950000": 7072,
+        "99.990000": 7904
+      },
+      "user_cpu_percent": 19.66,
+      "system_cpu_percent": 80.08,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 32276224
+      },
+      "whole_job_package_uj_per_io": 15.659160904572738,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5390290821,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34041791,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lz4",
+      "trial": 0,
+      "operation": "randwrite",
+      "iops": 223040.4,
+      "bytes_per_second": 913573478,
+      "completed_ios": 1115202,
+      "mean_clat_ns": 3147.964793,
+      "clat_stddev_ns": 496.855852,
+      "clat_percentiles_ns": {
+        "1.000000": 2704,
+        "5.000000": 2768,
+        "10.000000": 2832,
+        "20.000000": 2896,
+        "30.000000": 2960,
+        "40.000000": 2992,
+        "50.000000": 3056,
+        "60.000000": 3120,
+        "70.000000": 3216,
+        "80.000000": 3344,
+        "90.000000": 3536,
+        "95.000000": 3728,
+        "99.000000": 4256,
+        "99.500000": 5024,
+        "99.900000": 7968,
+        "99.950000": 9152,
+        "99.990000": 15424
+      },
+      "user_cpu_percent": 35.74,
+      "system_cpu_percent": 64.04,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 35612762
+      },
+      "whole_job_package_uj_per_io": 31.933911524548915,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5390703016,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34045963,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lz4",
+      "trial": 1,
+      "operation": "randread",
+      "iops": 413067.4,
+      "bytes_per_second": 1691924070,
+      "completed_ios": 2065337,
+      "mean_clat_ns": 2125.299225,
+      "clat_stddev_ns": 571.33012,
+      "clat_percentiles_ns": {
+        "1.000000": 1656,
+        "5.000000": 1784,
+        "10.000000": 1864,
+        "20.000000": 1944,
+        "30.000000": 2008,
+        "40.000000": 2064,
+        "50.000000": 2128,
+        "60.000000": 2160,
+        "70.000000": 2224,
+        "80.000000": 2288,
+        "90.000000": 2352,
+        "95.000000": 2448,
+        "99.000000": 2640,
+        "99.500000": 2800,
+        "99.900000": 6240,
+        "99.950000": 6944,
+        "99.990000": 7712
+      },
+      "user_cpu_percent": 21.46,
+      "system_cpu_percent": 78.26,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 31755046
+      },
+      "whole_job_package_uj_per_io": 15.375237067848976,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5393313936,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34041814,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lz4",
+      "trial": 1,
+      "operation": "randwrite",
+      "iops": 223557.8,
+      "bytes_per_second": 915692748,
+      "completed_ios": 1117789,
+      "mean_clat_ns": 3143.953908,
+      "clat_stddev_ns": 491.287356,
+      "clat_percentiles_ns": {
+        "1.000000": 2704,
+        "5.000000": 2768,
+        "10.000000": 2800,
+        "20.000000": 2864,
+        "30.000000": 2928,
+        "40.000000": 2992,
+        "50.000000": 3056,
+        "60.000000": 3120,
+        "70.000000": 3216,
+        "80.000000": 3344,
+        "90.000000": 3568,
+        "95.000000": 3760,
+        "99.000000": 4320,
+        "99.500000": 5152,
+        "99.900000": 8256,
+        "99.950000": 10560,
+        "99.990000": 14656
+      },
+      "user_cpu_percent": 36.3,
+      "system_cpu_percent": 63.42,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 35905426
+      },
+      "whole_job_package_uj_per_io": 32.121828001528016,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5391162539,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34046036,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lz4",
+      "trial": 2,
+      "operation": "randread",
+      "iops": 416748.8,
+      "bytes_per_second": 1707003084,
+      "completed_ios": 2083744,
+      "mean_clat_ns": 2124.083145,
+      "clat_stddev_ns": 378.014438,
+      "clat_percentiles_ns": {
+        "1.000000": 1640,
+        "5.000000": 1768,
+        "10.000000": 1848,
+        "20.000000": 1944,
+        "30.000000": 2008,
+        "40.000000": 2064,
+        "50.000000": 2128,
+        "60.000000": 2160,
+        "70.000000": 2224,
+        "80.000000": 2288,
+        "90.000000": 2384,
+        "95.000000": 2448,
+        "99.000000": 2704,
+        "99.500000": 3152,
+        "99.900000": 6560,
+        "99.950000": 7008,
+        "99.990000": 7904
+      },
+      "user_cpu_percent": 20.44,
+      "system_cpu_percent": 79.3,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 32016825
+      },
+      "whole_job_package_uj_per_io": 15.365047241887678,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5392837171,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34041814,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lz4",
+      "trial": 2,
+      "operation": "randwrite",
+      "iops": 220640.8,
+      "bytes_per_second": 903744716,
+      "completed_ios": 1103204,
+      "mean_clat_ns": 3147.648258,
+      "clat_stddev_ns": 481.038151,
+      "clat_percentiles_ns": {
+        "1.000000": 2704,
+        "5.000000": 2800,
+        "10.000000": 2832,
+        "20.000000": 2896,
+        "30.000000": 2960,
+        "40.000000": 3024,
+        "50.000000": 3056,
+        "60.000000": 3120,
+        "70.000000": 3216,
+        "80.000000": 3312,
+        "90.000000": 3536,
+        "95.000000": 3696,
+        "99.000000": 4256,
+        "99.500000": 5152,
+        "99.900000": 8384,
+        "99.950000": 10816,
+        "99.990000": 15168
+      },
+      "user_cpu_percent": 36.34,
+      "system_cpu_percent": 63.42,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 35716828
+      },
+      "whole_job_package_uj_per_io": 32.375542510723314,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5391604350,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34045752,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lzo-rle",
+      "trial": 0,
+      "operation": "randread",
+      "iops": 526120.8,
+      "bytes_per_second": 2154990796,
+      "completed_ios": 2630604,
+      "mean_clat_ns": 1628.012393,
+      "clat_stddev_ns": 322.218557,
+      "clat_percentiles_ns": {
+        "1.000000": 1160,
+        "5.000000": 1288,
+        "10.000000": 1368,
+        "20.000000": 1464,
+        "30.000000": 1528,
+        "40.000000": 1576,
+        "50.000000": 1624,
+        "60.000000": 1672,
+        "70.000000": 1720,
+        "80.000000": 1768,
+        "90.000000": 1864,
+        "95.000000": 1944,
+        "99.000000": 2096,
+        "99.500000": 2224,
+        "99.900000": 5600,
+        "99.950000": 6432,
+        "99.990000": 7392
+      },
+      "user_cpu_percent": 26.78,
+      "system_cpu_percent": 72.94,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 33295935
+      },
+      "whole_job_package_uj_per_io": 12.657144518901363,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5393634232,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34582493,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lzo-rle",
+      "trial": 0,
+      "operation": "randwrite",
+      "iops": 255631.6,
+      "bytes_per_second": 1047067033,
+      "completed_ios": 1278158,
+      "mean_clat_ns": 2600.014352,
+      "clat_stddev_ns": 437.850538,
+      "clat_percentiles_ns": {
+        "1.000000": 2192,
+        "5.000000": 2256,
+        "10.000000": 2288,
+        "20.000000": 2352,
+        "30.000000": 2416,
+        "40.000000": 2480,
+        "50.000000": 2512,
+        "60.000000": 2576,
+        "70.000000": 2672,
+        "80.000000": 2768,
+        "90.000000": 2960,
+        "95.000000": 3152,
+        "99.000000": 3600,
+        "99.500000": 4448,
+        "99.900000": 7136,
+        "99.950000": 7776,
+        "99.990000": 13760
+      },
+      "user_cpu_percent": 39.44,
+      "system_cpu_percent": 60.32,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 35596345
+      },
+      "whole_job_package_uj_per_io": 27.849722021847064,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5392299071,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34582831,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lzo-rle",
+      "trial": 1,
+      "operation": "randread",
+      "iops": 518606.2,
+      "bytes_per_second": 2124210995,
+      "completed_ios": 2593031,
+      "mean_clat_ns": 1657.420541,
+      "clat_stddev_ns": 296.968182,
+      "clat_percentiles_ns": {
+        "1.000000": 1192,
+        "5.000000": 1336,
+        "10.000000": 1400,
+        "20.000000": 1496,
+        "30.000000": 1560,
+        "40.000000": 1608,
+        "50.000000": 1656,
+        "60.000000": 1704,
+        "70.000000": 1736,
+        "80.000000": 1800,
+        "90.000000": 1880,
+        "95.000000": 1944,
+        "99.000000": 2096,
+        "99.500000": 2224,
+        "99.900000": 5664,
+        "99.950000": 6432,
+        "99.990000": 7328
+      },
+      "user_cpu_percent": 24.48,
+      "system_cpu_percent": 75.24,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 32453531
+      },
+      "whole_job_package_uj_per_io": 12.515674128076371,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5393988682,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34582493,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lzo-rle",
+      "trial": 1,
+      "operation": "randwrite",
+      "iops": 252934.6,
+      "bytes_per_second": 1036020121,
+      "completed_ios": 1264673,
+      "mean_clat_ns": 2626.133511,
+      "clat_stddev_ns": 472.896071,
+      "clat_percentiles_ns": {
+        "1.000000": 2192,
+        "5.000000": 2256,
+        "10.000000": 2320,
+        "20.000000": 2384,
+        "30.000000": 2416,
+        "40.000000": 2480,
+        "50.000000": 2544,
+        "60.000000": 2608,
+        "70.000000": 2704,
+        "80.000000": 2832,
+        "90.000000": 3024,
+        "95.000000": 3216,
+        "99.000000": 3664,
+        "99.500000": 4576,
+        "99.900000": 7328,
+        "99.950000": 8256,
+        "99.990000": 14016
+      },
+      "user_cpu_percent": 40.7,
+      "system_cpu_percent": 59.02,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 34500277
+      },
+      "whole_job_package_uj_per_io": 27.279998070647512,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5391174980,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34582790,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lzo-rle",
+      "trial": 2,
+      "operation": "randread",
+      "iops": 514645.8,
+      "bytes_per_second": 2107989196,
+      "completed_ios": 2573229,
+      "mean_clat_ns": 1672.041225,
+      "clat_stddev_ns": 337.071221,
+      "clat_percentiles_ns": {
+        "1.000000": 1192,
+        "5.000000": 1320,
+        "10.000000": 1400,
+        "20.000000": 1496,
+        "30.000000": 1560,
+        "40.000000": 1624,
+        "50.000000": 1672,
+        "60.000000": 1704,
+        "70.000000": 1768,
+        "80.000000": 1816,
+        "90.000000": 1912,
+        "95.000000": 1992,
+        "99.000000": 2160,
+        "99.500000": 2320,
+        "99.900000": 6048,
+        "99.950000": 6560,
+        "99.990000": 7520
+      },
+      "user_cpu_percent": 25.38,
+      "system_cpu_percent": 74.34,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 33086769
+      },
+      "whole_job_package_uj_per_io": 12.858074038494047,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5389492957,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34582493,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    },
+    {
+      "algorithm": "lzo-rle",
+      "trial": 2,
+      "operation": "randwrite",
+      "iops": 255403.2,
+      "bytes_per_second": 1046131507,
+      "completed_ios": 1277016,
+      "mean_clat_ns": 2608.842805,
+      "clat_stddev_ns": 492.725946,
+      "clat_percentiles_ns": {
+        "1.000000": 2192,
+        "5.000000": 2256,
+        "10.000000": 2320,
+        "20.000000": 2384,
+        "30.000000": 2416,
+        "40.000000": 2480,
+        "50.000000": 2544,
+        "60.000000": 2608,
+        "70.000000": 2672,
+        "80.000000": 2800,
+        "90.000000": 2992,
+        "95.000000": 3152,
+        "99.000000": 3504,
+        "99.500000": 4128,
+        "99.900000": 7008,
+        "99.950000": 7648,
+        "99.990000": 14016
+      },
+      "user_cpu_percent": 40.98,
+      "system_cpu_percent": 58.78,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 34953280
+      },
+      "whole_job_package_uj_per_io": 27.3710587807827,
+      "energy_scope": "whole package over entire fio process, including startup and background work",
+      "measurement_elapsed_ns": 5390698885,
+      "original_bytes": 67108864,
+      "compressed_bytes": 34582918,
+      "allocated_bytes": 35815424,
+      "same_filled_pages": 0
+    }
+  ],
+  "profiles": {
+    "lz4-trial-0-profile": [
+      {
+        "kernel_symbol": "LZ4_decompress_safe",
+        "self_percent": 39.39
+      },
+      {
+        "kernel_symbol": "zs_obj_read_begin",
+        "self_percent": 14.9
+      },
+      {
+        "kernel_symbol": "__pi_memcpy",
+        "self_percent": 8.74
+      },
+      {
+        "kernel_symbol": "zram_bio_read",
+        "self_percent": 5.39
+      },
+      {
+        "kernel_symbol": "entry_SYSRETQ_unsafe_stack",
+        "self_percent": 3.68
+      },
+      {
+        "kernel_symbol": "selinux_file_permission",
+        "self_percent": 1.52
+      },
+      {
+        "kernel_symbol": "mod_node_page_state",
+        "self_percent": 1.51
+      },
+      {
+        "kernel_symbol": "gup_fast_pte_range",
+        "self_percent": 1.35
+      },
+      {
+        "kernel_symbol": "vfs_read",
+        "self_percent": 1.18
+      },
+      {
+        "kernel_symbol": "bio_iov_iter_get_pages",
+        "self_percent": 1.13
+      }
+    ],
+    "lzo-rle-trial-0-profile": [
+      {
+        "kernel_symbol": "lzo1x_decompress_safe",
+        "self_percent": 18.4
+      },
+      {
+        "kernel_symbol": "zs_obj_read_begin",
+        "self_percent": 15.79
+      },
+      {
+        "kernel_symbol": "__pi_memcpy",
+        "self_percent": 11.18
+      },
+      {
+        "kernel_symbol": "zram_bio_read",
+        "self_percent": 6.55
+      },
+      {
+        "kernel_symbol": "entry_SYSRETQ_unsafe_stack",
+        "self_percent": 5.71
+      },
+      {
+        "kernel_symbol": "__pi_memset",
+        "self_percent": 4.7
+      },
+      {
+        "kernel_symbol": "vfs_read",
+        "self_percent": 2.69
+      },
+      {
+        "kernel_symbol": "fdget",
+        "self_percent": 1.69
+      },
+      {
+        "kernel_symbol": "__bio_release_pages",
+        "self_percent": 1.51
+      },
+      {
+        "kernel_symbol": "selinux_file_permission",
+        "self_percent": 1.35
+      },
+      {
+        "kernel_symbol": "gup_fast_pgd_range",
+        "self_percent": 1.34
+      },
+      {
+        "kernel_symbol": "_raw_spin_lock",
+        "self_percent": 1.18
+      },
+      {
+        "kernel_symbol": "bio_iov_iter_get_pages",
+        "self_percent": 1.16
+      },
+      {
+        "kernel_symbol": "__blkdev_direct_IO_simple",
+        "self_percent": 1.01
+      },
+      {
+        "kernel_symbol": "gup_fast",
+        "self_percent": 1.01
+      },
+      {
+        "kernel_symbol": "arch_exit_to_user_mode_prepare.isra.0",
+        "self_percent": 1.01
+      },
+      {
+        "kernel_symbol": "gup_fast_pte_range",
+        "self_percent": 1.0
+      }
+    ]
+  }
+}

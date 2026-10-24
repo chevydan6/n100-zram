@@ -222,3 +222,52 @@ access and verified physical recovery. Host-VM timing cannot substitute for them
 User-space corpus buffers, alignment and destination reuse also differ from the
 real ZRAM stream and zsmalloc paths. These codec numbers are exploratory; the
 prepared kernel probe and controlled native ZRAM tests remain necessary.
+
+## Native stock-kernel ZRAM I/O baseline after administrator access
+
+Authenticated administrator access enabled a separate dynamically allocated ZRAM
+device. The active swap device was not reset or replaced. The smoke test and six
+full trials passed complete-device CRC32C verification, and the temporary device
+was removed after each run. [Public records](benchmarks/results/native-stock-7.0-io/results.json)
+and [summary](benchmarks/results/native-stock-7.0-io-summary.md) retain every trial.
+Raw perf recordings and host identifiers remain outside Git.
+
+Conditions: physical N100, stock 7.0.10, fio 3.40, 64 MiB synthetic device, 4 KiB
+synchronous direct I/O, one job pinned to CPU 0, nominal 50% buffer compression,
+one-second warmup and five-second measured phases, three randomized trials per
+algorithm. NMI watchdog was enabled. All pages contain checksum headers and mixed
+data; the records include same-filled-page counts to expose bypasses.
+
+| Backend | Random-read IOPS | Random-write IOPS | Read mean completion ns | Write mean completion ns |
+|---|---:|---:|---:|---:|
+| lzo-rle | 518,606 | 255,403 | 1,657 | 2,609 |
+| lz4 | 413,067 | 223,040 | 2,125 | 3,148 |
+
+Values are medians across three trials. On this workload stock LZ4 is slower than
+the installed lzo-rle default; an AVX2 LZ4 implementation must be compared against
+both. No experimental kernel module was loaded for these measurements.
+
+Whole-job package energy was 12.657/27.371 microjoules per read/write I/O for
+lzo-rle and 15.375/32.122 for LZ4. These RAPL measurements span the entire fio
+process and include startup and background package activity; they are not isolated
+codec energy. Actual trial values, CPU use, completion percentiles, allocated
+memory and compression ratios are available in the records.
+
+Kernel-only cycle sampling attributes 39.39% of sampled LZ4 random-read kernel
+cycles to LZ4_decompress_safe, versus 18.40% to lzo1x_decompress_safe in the lzo-rle
+run. zs_obj_read_begin and memcpy also consume material time. These profiles
+identify where to investigate; they do not prove that SIMD wins after FPU costs.
+The full-device workload includes longer repeated regions than earlier synthetic
+short-run experiments, so any later reconsideration of overlap copying must be
+reported as a new workload-specific investigation.
+
+## Syscall-level kernel codec probe
+
+The benchmark-only misc interface preallocates per-file input, compressed storage,
+output and workspace. It compares byte-identical scalar/SIMD compression and both
+decoders, and exposes one-page operations without hot-path allocations. The user
+harness measures clean, SSE-dirty and YMM-dirty state on entry to each syscall,
+checks distinct sentinels in all 16 YMM registers and verifies retained input data.
+This addresses the optimistic state ownership of repeated calls inside one kernel
+entry. The running-kernel ABI passed diskless VM checks (`vm-008.json`); physical
+execution remains pending verified recovery and restored network access.

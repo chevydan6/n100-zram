@@ -100,3 +100,22 @@ regressed mixed-data decoding more than they improved sparse decoding in the
 native paired comparison. The kernel preparation tool deliberately keeps the
 simpler avx2-guard implementation. Further dispatch or overlap expansion should
 wait for native kernel profiles rather than fitting synthetic corpora.
+
+## One-page kernel entry benchmark
+
+`bench.c` registers a root-only benchmark misc device, separate from ZRAM. Each
+open preallocates 128 source pages, compressed storage, output/check buffers and
+LZ4 workspace. Preparation copies a public corpus once and generates scalar
+reference blocks. The ioctl hot path handles one page and allocates nothing.
+Validation compares scalar and SIMD bytes, both decoders and retained source data.
+
+`kernel-call.c` enters with clean, SSE-dirty or YMM-dirty state, randomizes mode and
+codec order, and measures wall time plus user-and-kernel hardware cycles. Distinct
+sentinels check all 16 YMM registers across calls before each measured batch.
+This models repeated user/kernel transitions rather than assuming that an
+in-kernel loop's first-save/later-lazy-save behavior represents every swap fault.
+The scope is codec-plus-syscall measurement; actual ZRAM I/O remains necessary.
+
+The misc interface was compiled and VM-tested against the exact active stock
+7.0.10 ABI. The optional ZRAM backend patch remains separately based on the existing
+7.2.8 source tree. These kernel versions and scopes must not be conflated.

@@ -47,3 +47,15 @@
 - Strengthened VM YMM sentinels so every vector register has a distinct pattern.
 - Rechecked existing administrator routes: sudo and noninteractive PolicyKit both
   require authentication. Physical kernel acceptance remains externally blocked.
+
+## Authenticated native kernel baseline and recovery preparation
+
+- Verified administrator access and installed perf, fio and the exact running
+  kernel-devel package from Fedora's signed archive with signature checking.
+- Added isolated root ZRAM I/O tests, full-device CRC32C verification, package RAPL
+  measurements and kernel-only profiles. Completed three trials for lzo-rle/LZ4.
+- Added a benchmark-only misc interface for per-page calls with dirty user SIMD
+  state; compiled on the exact 7.0.10 ABI and passed diskless VM validation.
+- Added recovery backup/restore and reboot observation tools. The controlled stock
+  reboot did not restore SSH within five minutes; physical screen state is needed
+  before any further native experiment. No experimental module has been loaded.

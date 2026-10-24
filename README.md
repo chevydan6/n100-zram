@@ -55,3 +55,33 @@ Additional validation: `python3 tests/interop.py`, `python3 tools/sanitize.py`.
 `tools/run-native.py` runs bounded tests and three benchmark sessions with atomic
 checkpoints in `build/run`; archive that directory before changing sources.
 Launch it through a systemd user service to survive SSH disconnection.
+
+### Native kernel I/O baseline
+
+Administrator access now permits a dynamically allocated test ZRAM device. The
+harness rejects an existing output directory, checks that its new device is not
+swap, verifies complete-device CRC32C after every trial, and removes its own test
+device. The active swap device is preserved.
+
+```sh
+sudo dnf install --setopt=install_weak_deps=False perf fio
+sudo python3 benchmarks/kernel-io.py --output /fresh/private/lab-results --profile
+python3 benchmarks/summarize-kernel-io.py /fresh/private/lab-results benchmarks/results/local-run
+```
+
+The exact running-kernel development package was obtained from Fedora's
+[signed archive](https://kojipkgs.fedoraproject.org/packages/kernel/7.0.10/201.fc44/data/signed/6d9f90a6/x86_64/kernel-devel-7.0.10-201.fc44.x86_64.rpm)
+and installed with local package signature checking enabled. No kernel package
+was replaced. See BENCHMARKS.md for the actual native baseline and its limitations.
+
+`kernel/bench.c` and `benchmarks/kernel-call.c` add a benchmark-only misc interface
+for one-page scalar/SIMD calls. Build the module with `tools/prepare-kernel.py`
+against exact matching kernel-devel, and build its user harness with:
+
+```sh
+gcc -O2 -Wall -Wextra -Werror -mno-avx -fno-tree-vectorize -Ikernel benchmarks/kernel-call.c -o build/kernel-call
+```
+
+Its physical execution is gated on verified recovery. The current controlled
+stock reboot did not restore SSH; see RECOVERY.md. Source and VM validation do
+not constitute a successful native kernel experiment.

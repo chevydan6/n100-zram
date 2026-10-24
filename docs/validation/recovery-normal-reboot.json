@@ -1,0 +1,12 @@
+{
+  "status": "timeout",
+  "expected_kernel": "7.0.10-201.fc44.x86_64",
+  "elapsed_seconds": 303.54332651395816,
+  "ssh_returned": false,
+  "stock_kernel_binary_modified": false,
+  "stock_boot_default_verified_before_reboot": true,
+  "experimental_module_loaded_on_target": false,
+  "deliberate_panic_triggered": false,
+  "scope": "Controlled stock-kernel reboot after adding recovery/logging settings; network recovery not verified",
+  "cause": "unknown; physical screen/console state requested"
+}

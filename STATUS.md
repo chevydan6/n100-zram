@@ -50,21 +50,32 @@ native test lock. Historical source
 snapshots and all timing data are preserved. Earlier initial exploratory sessions
 did not hold that lock and retain that limitation.
 
-## Actual external dependencies
+## Current native checkpoint and recovery dependency
 
-N100 SSH works as the normal user, but sudo requires authentication and root SSH
-public-key access is unavailable. Noninteractive PolicyKit also reports that
-authentication is required. Administrator access is required to load kernel
-modules, prepare controlled ZRAM devices and install/boot test kernels.
-The previous NanoKVM address is unreachable from the controller, and no current
-physical boot rollback/recovery path is verified. No experimental native boot,
-active swap replacement or unsupported privileged workaround has been attempted.
+Administrator access is now authenticated. Perf, fio and exact signed Fedora
+7.0.10 kernel-devel are installed. An isolated 64 MiB test device completed three
+randomized lzo-rle/LZ4 trials with full CRC32C verification, RAPL package energy
+and kernel profiles. Stock LZ4 trails lzo-rle on this workload. The active swap
+device was preserved, and temporary devices were removed.
 
-After access and recovery are established: compare matched stock/custom kernels,
-measure FPU-inclusive native codec latency and direct ZRAM I/O, then run the
-bounded pressure workload on each candidate. Energy counters and extended native
-stability remain pending. A user-space or host-VM speedup is not acceptance.
+A per-page syscall probe now models clean and dirty user SIMD state. The exact
+running-kernel ABI compiled successfully and passed diskless VM validation with
+all-register sentinels and full retained-input checks. It has not been loaded on
+the physical N100.
 
-No benchmark or build from this checkpoint remains running. The next substantive
-step is native kernel measurement after those access/recovery dependencies are
-resolved; further unprivileged synthetic tuning would not establish acceptance.
+Recovery preparation backed up the stock boot entry and retained the stock
+7.0.10 default. It enabled panic/lockup recovery policy and EFI crash logging.
+The controlled stock reboot then failed to restore SSH within the five-minute
+observation window. LAN discovery found no matching SSH host; no CCD/serial
+recovery device is attached. The reason is not yet known: physical screen state
+is required to distinguish a boot problem from missing network/login access.
+
+The user has been asked for that screen state. NanoKVM is not a blanket
+requirement; a working physical console or another verified recovery mechanism
+is sufficient. No further native module load or reboot is appropriate until this
+recovery test is resolved. Source, host-side results and VM checks are preserved.
+
+Next: restore SSH, inspect the actual boot/kernel/network state, verify recovery,
+then run FPU-inclusive native codec tests and controlled experimental ZRAM I/O.
+Matched custom-kernel comparison, extended native stability and optimized energy
+results remain incomplete. A user-space or host-VM speedup is not acceptance.
