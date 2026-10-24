@@ -12,16 +12,17 @@ the default and added panic/lockup recovery plus EFI pstore logging. The stock
 kernel binary was not changed. The host also holds a copy of that kernel image
 and all source/results outside the target.
 
-The controlled reboot did **not** restore SSH within five minutes. Read-only LAN
-discovery did not find the target's pinned SSH identity at a new address. No CCD
-serial device is attached. The cause is unknown; the user has been asked what
-appears on the laptop screen. This does not prove a kernel boot failure: network,
-login or service state must be distinguished through a console.
+The initial ACPI restart powered the machine off (user confirmed). After manual
+power-on, switching the runtime restart method to PCI and testing a one-shot
+stock 7.2.8 boot restored SSH. The controller observed the new boot in 79.6 seconds,
+including preparation/timer time. The saved default remained stock 7.0.10.
 
-No further native module load or reboot should run until this test is resolved.
-NanoKVM is optional. A physical console or another working, verified recovery
-route is sufficient. Successful diskless VM tests do not establish physical boot
-recovery.
+A subsequent deliberate SysRq panic on stock 7.2.8 returned to saved stock 7.0.10
+in 118.1 seconds, including preparation/timer time. EFI pstore archived sixteen
+records, including the explicit SysRq panic signature. Those records and both
+controller observations are preserved privately outside Git. This establishes
+the tested PCI restart and panic recovery, not recovery from every hardware
+hang or automatic timeout of an unverified kernel boot. No NanoKVM is configured.
 
 ## Changes prepared on the target
 
@@ -34,8 +35,7 @@ panic on oops, NMI watchdog, and panic on hard/soft lockups. The BLS entry gaine
 panic=10 nmi_watchdog=1 efi_pstore.pstore_disable=0 pstore.kmsg_bytes=8192
 ```
 
-The EFI pstore backend registered successfully before reboot; post-reboot logging
-has not been inspected. Original installed kernel/module files were preserved.
+The EFI pstore backend registered and archived the controlled panic after reboot. Original installed kernel/module files were preserved.
 Persistent journaling was already present. Runtime NMI monitoring had been enabled
 earlier in this lab session; initial inspection reported it disabled.
 
@@ -56,14 +56,26 @@ It leaves the boot default selection unchanged. It does not overwrite grubenv's
 new runtime state. Keep raw boot IDs, root UUIDs, journals and crash recordings
 outside public Git.
 
-## Required next verification
+## PCI recovery preparation and remaining limits
 
-Confirm a normal stock boot returns to SSH, inspect pstore/journal behavior, then
-test bounded automatic crash recovery. A one-shot alternate-kernel boot also
-needs tested timeout/rollback handling. Preserve the stock entry and installed
-modules, and do not repeatedly boot an unverified experimental kernel.
+`tools/prepare-pci-recovery.py` saves both stock 7.0.10 and 7.2.8 BLS entries,
+entry/kernel hashes and the default under the private `recovery-pci/` directory.
+It adds `reboot=pci` with the panic/pstore arguments above and verifies that the
+default is unchanged. These later backups are separate from `recovery-setup/`.
+The original restore helper handles only its original single-entry backup;
+inspect both generations before reverting any later PCI entry changes. Do not
+replace live grubenv with an old snapshot. Other kernel entries are untouched.
 
-The syscall codec probe is a separate benchmark-only module. It does not register
-a ZRAM backend or replace the active swap driver. Its new misc interface has
-passed VM validation on the exact 7.0.10 ABI, including all-register state checks;
-physical loading remains pending recovery verification.
+Tuned can disable the NMI watchdog after boot. The native runner explicitly
+re-enables and checks monitoring before loading experimental code. No hardware
+watchdog was exposed; the read-only Chrome EC HANG_DETECT capability query did
+not establish support and did not arm a watchdog. Kernel restart/panic policy
+cannot guarantee recovery from all hardware or firmware hangs.
+
+The separate syscall codec probe does not replace active ZRAM. Its exact 7.0.10
+binary passed the diskless VM and three physical sessions, then unloaded cleanly.
+Place it under a dedicated matching-kernel `extra/n100-zram-lab/` directory and
+run restorecon before loading from a system service: SELinux denies module_load
+from user_home_t. Keep enforcement enabled; do not install autoload rules or
+replace stock modules. Future experimental boot entries require their own tested
+rollback path; successful recovery of stock kernels does not prove that path.

@@ -271,3 +271,13 @@ checks distinct sentinels in all 16 YMM registers and verifies retained input da
 This addresses the optimistic state ownership of repeated calls inside one kernel
 entry. The running-kernel ABI passed diskless VM checks (`vm-008.json`); physical
 execution remains pending verified recovery and restored network access.
+
+## Native kernel codec experiment 001
+
+The exact-ABI AVX2-guard probe completed three physical N100 syscall-inclusive
+sessions on stock 7.0.10. All correctness/state checks passed and cleanup was
+verified. Most timings regress, including every decompression corpus; periodic
+compression alone improves. The initial candidate fails performance acceptance.
+See [all timing rows and repeatability intervals](benchmarks/results/native-kernel-codec-001/summary.md).
+These are codec calls, not an optimized ZRAM deployment. Matched scalar/FPU
+controls are the next experiment; compiler differences remain a confounder.

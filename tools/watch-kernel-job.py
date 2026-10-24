@@ -24,6 +24,7 @@ with a.lock.open('r') as lock:
   if int(props.get('ExecMainStartTimestampMonotonic','0') or 0)>0:started=True
   current=(props.get('ActiveState'),props.get('SubState'))
   if current!=previous:print(result.stdout,flush=True);previous=current
+  if started and props.get('LoadState')=='not-found':raise SystemExit('Observed unit vanished; possible reboot. Inspect boot ID and checkpoint before resuming')
   if started and (props.get('SubState')=='exited' or props.get('ActiveState') in ['failed','inactive']):raise SystemExit(int(props.get('ExecMainStatus','1')))
   time.sleep(2)
  raise SystemExit('Observation deadline reached; inspect persistent unit before resuming')

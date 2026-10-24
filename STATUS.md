@@ -58,24 +58,25 @@ randomized lzo-rle/LZ4 trials with full CRC32C verification, RAPL package energy
 and kernel profiles. Stock LZ4 trails lzo-rle on this workload. The active swap
 device was preserved, and temporary devices were removed.
 
-A per-page syscall probe now models clean and dirty user SIMD state. The exact
-running-kernel ABI compiled successfully and passed diskless VM validation with
-all-register sentinels and full retained-input checks. It has not been loaded on
-the physical N100.
+The exact-ABI syscall codec probe now passed three physical N100 sessions,
+including full retained-input checks, all-YMM preservation and 2,048 malformed
+blocks. The initial AVX2 candidate regressed most syscall-inclusive cases;
+only periodic-page compression improved. It is not selected for routine ZRAM use.
+See BENCHMARKS.md for complete results and scope.
 
-Recovery preparation backed up the stock boot entry and retained the stock
-7.0.10 default. It enabled panic/lockup recovery policy and EFI crash logging.
-The controlled stock reboot then failed to restore SSH within the five-minute
-observation window. LAN discovery found no matching SSH host; no CCD/serial
-recovery device is attached. The reason is not yet known: physical screen state
-is required to distinguish a boot problem from missing network/login access.
+The initial ACPI reboot powered off the machine, as confirmed by the user.
+After manual power-on, a PCI restart returned to stock 7.2.8, and a deliberate
+SysRq panic returned to the saved stock 7.0.10 default. Sixteen EFI crash records
+were archived privately; the panic signature was verified. Both stock entries
+now request reboot=pci, with panic/lockup monitoring. This verifies these tested
+reset/panic cases, not every hardware hang or an untested-kernel boot timeout.
 
-The user has been asked for that screen state. NanoKVM is not a blanket
-requirement; a working physical console or another verified recovery mechanism
-is sufficient. No further native module load or reboot is appropriate until this
-recovery test is resolved. Source, host-side results and VM checks are preserved.
+SELinux remains enforcing. The first module-load attempt was denied because the
+module had user_home_t. The unchanged VM-tested binary loaded from a dedicated
+matching-kernel extra directory with modules_object_t; no policy was weakened.
+The module and benchmark device were removed after successful measurements.
 
-Next: restore SSH, inspect the actual boot/kernel/network state, verify recovery,
-then run FPU-inclusive native codec tests and controlled experimental ZRAM I/O.
-Matched custom-kernel comparison, extended native stability and optimized energy
-results remain incomplete. A user-space or host-VM speedup is not acceptance.
+Next: isolate FPU-transition cost from compiler/code differences with matched
+scalar controls, compare a kernel SSE path, and investigate justified codec
+changes before controlled experimental ZRAM I/O. Extended native stability,
+matched custom-kernel comparison and optimized energy results remain incomplete.

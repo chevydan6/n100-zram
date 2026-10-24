@@ -59,3 +59,15 @@
 - Added recovery backup/restore and reboot observation tools. The controlled stock
   reboot did not restore SSH within five minutes; physical screen state is needed
   before any further native experiment. No experimental module has been loaded.
+
+## Physical recovery and kernel codec checkpoint
+
+- Diagnosed the ACPI reboot powering off; observed PCI stock restart and deliberate
+  panic return to the saved stock kernel, with archived EFI panic records.
+- Preserved both stock BLS entries and default; documented recovery scope.
+- Kept SELinux enforcing and used the normal module-file label after a denied
+  attempt from the home directory.
+- Passed three native exact-ABI codec sessions with dirty user SIMD state and
+  full-register checks; recorded substantial regressions rather than deploying
+  the initial candidate to ZRAM.
+- Made the watcher reject units lost across a reboot and checkpoint cleanup.
