@@ -65,3 +65,9 @@ SIMD entry/exit pair per page, including its overhead, before selecting dispatch
 
 This user-space prototype does not implement kernel state management and must
 not be linked into the running kernel as-is.
+
+Intel's [Optimization Reference Manual, revision 049](https://cdrdv2-public.intel.com/814198/248966-Optimization-Reference-Manual-V1-049.pdf)
+describes Gracemont's native 128-bit vector data paths and splitting of most
+256-bit operations into 128-bit micro-operations. This motivates measuring SSE2
+and AVX2 separately; it does not predict which complete codec wins. The N100
+benchmarks, rather than vector width alone, determine dispatch choices.

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-only
 """Cross-variant byte identity, round trips, canaries and malformed inputs."""
-import ctypes as C, random, pathlib, json
+import ctypes as C, random, pathlib, json, os
 root=pathlib.Path(__file__).resolve().parents[1]
 rng=random.Random(100)
 def codecs():
     result={}
-    for path in sorted((root/'build').glob('*.so')):
+    for path in sorted(pathlib.Path(os.environ.get('BUILD_ROOT',root/'build')).glob('*.so')):
         lib=C.CDLL(str(path)); comp=lib.LZ4_compress_default; dec=lib.LZ4_decompress_safe
         comp.argtypes=[C.c_void_p,C.c_void_p,C.c_int,C.c_int,C.c_void_p]; comp.restype=C.c_int
         dec.argtypes=[C.c_void_p,C.c_void_p,C.c_int,C.c_int]; dec.restype=C.c_int

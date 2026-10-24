@@ -33,3 +33,21 @@ Next: short-match dispatch, independent copy-width experiments, real executable
 page corpus, repeated controlled runs, paired uncertainty estimates, and an
 in-kernel benchmark that accounts for SIMD entry/exit overhead. No kernel or
 end-to-end ZRAM performance improvement is established.
+
+## Kernel integration checkpoint
+
+- Optional default-off `lz4-n100` backend patch generated and compiled, preserving
+  existing lz4 and dictionary/non-default-acceleration paths.
+- Vector code confined to separate objects; dispatch retains kernel no-SIMD flags.
+- Runtime feature/FPU checks and scalar fallback implemented.
+- Diskless KVM correctness test passed; no host disks/network attached.
+- Native kernel-compatible user-space code passed 63,320 guard checks and 9,600
+  independent cross-decoding cases, including four concurrent threads.
+- Three native timing sessions and paired exploratory summaries are recorded.
+- Existing infrastructure also has rebuilt 7.2.11 packages, but its records say
+  generic kernel target flags and no native/kernel tuning validation. These are
+  additional comparison candidates, not evidence of an optimized active kernel.
+
+Physical N100 kernel loading/boot tests and end-to-end ZRAM measurements remain
+blocked on administrator access and verified recovery. VM success does not remove
+those requirements. Continue user-space optimization and offline validation.

@@ -1,0 +1,11 @@
+{
+  "hardware": "Intel N100",
+  "source_generation": "initial seven variants plus kernel-compatible vector code generation",
+  "roundtrip_inputs": 3926,
+  "malformed_differential_inputs": 20000,
+  "guard_checks": 63320,
+  "liblz4_cross_decoding_cases": 9600,
+  "threads": 4,
+  "status": "passed",
+  "scope": "user-space correctness; not kernel stability"
+}

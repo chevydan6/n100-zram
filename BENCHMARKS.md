@@ -37,3 +37,50 @@ in ZRAM, which can bypass compression for same-filled pages.
 Next runs must add real executable pages, paired confidence intervals, thermal
 sampling and repeated sessions. Kernel tests must include SIMD state overhead,
 controlled secondary ZRAM I/O, actual memory pressure and recovery validation.
+
+## Experiment 002: short-match guard and independent copies
+
+Three consecutive native sessions, 21 randomized paired rounds per corpus per
+session, seven variants, same toolchain/governor. Full raw CSVs are
+`benchmarks/results/session-{0,1,2}.csv`; [complete summary](benchmarks/results/experiment-002-summary.md)
+includes every variant and regression. Ratios below 1 mean less wall time.
+`benchmarks/summarize.py` reproduces the paired log-ratio bootstrap. Its intervals
+resample rounds; they do not establish independent reboot/long-term variation.
+Session-level ratios are also reported to expose drift.
+
+The 8-byte scalar-first guard changes AVX2 Bash-page compression from a ratio of
+1.089 (slower) to 0.965 (faster) against scalar. Its three session ratios are
+0.964, 0.969 and 0.964. It still regresses sparse compression (ratio 1.042).
+AVX2 copying improves mixed/sparse decompression but does not improve Bash-page
+decompression reliably. SSE2 remains faster than AVX2 on period-127 decoding.
+None is yet selected for routine deployment.
+
+The Bash corpus is the first 128 pages of `/usr/bin/bash`, full file SHA-256
+`379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b`.
+A user-only perf_event hardware cycle counter opened successfully, so these CSVs
+also record user core cycles per page. A value of -1 means unavailable in other
+environments. Energy remains unmeasured. CPU 0 sampled frequency ranged from
+700 MHz (including gaps) to 3.400 GHz, median 3.400 GHz. Reported thermal zones
+ranged 20–50 C; fixed 20 C is not treated as CPU temperature. Raw private telemetry
+is retained outside Git. Background activity and cache working set remain
+limitations; the test uses a 512 KiB input corpus per class.
+
+An unchanged count-only decoder has small timing differences from scalar due to
+code generation/layout and compiler ISA flags. This negative control cautions
+against treating low single-digit differences as intrinsic-loop improvements.
+
+## Kernel integration correctness checkpoint
+
+The optional `lz4-n100` backend and isolated probe compile against the installed
+7.2.8-n100v1 headers using GCC 16.2.1; the original kernel used GCC 16.1.1.
+Objdump confirms AVX2 comparison/movemask/copy instructions in vector objects.
+A diskless KVM boot of that exact kernel loaded the probe with SIMD enabled,
+then loaded the experimental ZRAM module. Both lz4 and lz4-n100 completed four
+2 MiB write/read/compare passes with identical compressed byte totals.
+See `docs/validation/vm-001.json` for pinned input hashes. This is host-VM
+correctness evidence only, not native N100 timing, stability or boot recovery.
+
+Local ASan/UBSan suites passed for seven intrinsic variants: 3,926 round-trip
+inputs, 20,000 malformed inputs, 55,405 guard checks and 8,400 independent liblz4
+cross-decoding cases across four threads. Native kernel-compatible code generation
+also passed, bringing native guard checks to 63,320 and interoperability to 9,600.
