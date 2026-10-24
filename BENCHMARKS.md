@@ -138,3 +138,87 @@ malformed/truncated blocks with output canaries, nested kernel-FPU fallback,
 concurrent direct ZRAM readback and 2,048 syscall-level YMM state comparisons.
 The final module hash is recorded in `docs/validation/vm-005.json`. Host-VM timing
 is deliberately excluded from N100 performance results.
+
+## Experiment 004: explicit Gracemont compiler scheduling
+
+[Complete 14-variant results](benchmarks/results/experiment-004/summary.md)
+include three additional native timing sessions. GCC accepts `-mtune=gracemont`;
+this adjusts scheduling/cost choices without enabling SIMD in scalar objects.
+The tuned scalar path is essentially unchanged in wall time on Bash pages
+(ratio 1.003; session ratios 0.999, 1.000, 1.011). Tuned AVX2 guards retain sparse
+compression regressions and do not improve Bash decompression. No broad win
+justifies selecting the compiler flag as a validated optimization.
+
+Native validation passed for all 14 variants: 3,926 round-trip inputs, 20,000
+malformed cases, 110,810 guard checks and 16,800 independent cross-decoding cases
+with four threads. Separate `.text` inspection confirmed that tuning changed
+machine code, rather than silently being ignored.
+
+## Replaying historical experiments
+
+`benchmarks/sources/` preserves the actual variant generator and native benchmark
+sources used for each experiment, with SHA-256 checksums. In a fresh isolated
+checkout, copy the desired `experiment-NNN-build.py.txt` to `tools/build.py` and
+`experiment-NNN-native.c.txt` to `benchmarks/native.c`, then follow the README build
+commands. Keep the reference LZ4 and compatibility headers unchanged. Use the
+recorded compiler and physical N100. The initial experiment has no cycle counter;
+subsequent native sources include it.
+
+The deterministic PRNG is shared between corpus generation and order shuffling,
+so changing the variant set/order changes later generated sparse/mixed bytes.
+Paired comparisons within a run use identical pages. Do not compare absolute
+numbers across differently configured experiments as if their inputs were fixed.
+The recorded source snapshots preserve the original generation/shuffle sequence.
+
+## Kernel code footprint
+
+With the same GCC 16.2.1 and 7.2.8 header configuration, `size` reports:
+
+| Optional backend | Text | Data | BSS |
+|---|---:|---:|---:|
+| Disabled | 48,393 | 6,895 | 40 |
+| Enabled | 84,105 | 8,096 | 40 |
+
+This is an object-section footprint, not measured resident memory. The prototype
+adds 35,712 bytes of text and 1,201 bytes of data, mainly from a namespaced codec
+copy. Per-stream allocation follows existing LZ4 and adds no per-page allocation.
+A default-disabled build contains no n100_lz4 symbols. Further code-size reduction
+should follow native evidence that the additional codec earns its cost.
+
+## Experiment 005: bounded overlap broadcasts
+
+[Complete 16-variant results](benchmarks/results/experiment-005/summary.md) include
+three native sessions. New AVX2 paths broadcast a fully initialized 8- or 16-byte
+period only when the overlap distance equals that period, and copy only complete
+32-byte vectors before retaining the original scalar tail. No extra allocation or
+wider overrun is introduced.
+
+Against the existing AVX2 guard, sparse decoding improves by about 2% but mixed
+decoding regresses by 3.9% (three session ratios 1.040, 1.040, 1.038).
+[Direct paired comparison](benchmarks/results/experiment-005/overlap-vs-guard.md)
+shows the tradeoff; the
+[copy-only comparison](benchmarks/results/experiment-005/overlap-vs-copy.md)
+also retains the mixed-data regression. The new broadcasts are therefore retained
+as a rejected research experiment and are **not** selected by prepare-kernel.py.
+The optional kernel backend remains the earlier AVX2-guard prototype, not a
+validated production selection.
+
+All 16 variants passed native round trips, 20,000 malformed inputs, 126,640 guard
+checks and 19,200 independent cross-decoding cases. Local ASan/UBSan passed the
+same suites. A subsequent native preflight also verified byte-identical compressed
+output and every decompressed byte for all 128 pages of each actual timed corpus,
+including Bash executable pages. Its `--validate-only` mode preserves shuffle PRNG
+advancement, so later generated corpora match the original variant sequence.
+Future timing runs perform that preflight automatically. Earlier timing source
+snapshots remain unchanged and explicitly preserve their original methodology.
+
+The current prototype has reached diminishing returns in unprivileged codec
+experiments: SIMD helps selected patterns but retains regressions, and compiler
+tuning/extra copy branches do not establish a universal gain. The next meaningful
+selection requires physical N100 kernel FPU-inclusive timings, controlled ZRAM
+I/O and matched-kernel pressure tests. Those require authenticated administrator
+access and verified physical recovery. Host-VM timing cannot substitute for them.
+
+User-space corpus buffers, alignment and destination reuse also differ from the
+real ZRAM stream and zsmalloc paths. These codec numbers are exploratory; the
+prepared kernel probe and controlled native ZRAM tests remain necessary.

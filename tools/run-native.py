@@ -38,6 +38,7 @@ try:
         run(['python3','tests/guard.py'],'guard.log')
         run(['python3','tests/interop.py'],'interop.log')
         run(['gcc','-O2','-Wall','-Wextra','benchmarks/native.c','-ldl','-o','build/native'],'compile-benchmark.log')
+        run(['./build/native','build','--validate-only'],'corpus-validation.log')
         state['completed'].append('validation');save()
     metadata={'uname':platform.uname()._asdict(),'cpuinfo':Path('/proc/cpuinfo').read_text(),'bash_sha256':hashlib.sha256(Path('/usr/bin/bash').read_bytes()).hexdigest(),'compiler':subprocess.check_output(['gcc','--version'],text=True)}
     (results/'environment-private.json').write_text(json.dumps(metadata,indent=2))

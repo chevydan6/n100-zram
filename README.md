@@ -15,6 +15,7 @@ python3 tools/build.py
 python3 tests/check.py
 python3 tests/guard.py
 gcc -O2 -Wall -Wextra benchmarks/native.c -ldl -o build/native
+./build/native build --validate-only
 ./build/native build > measurements.csv
 ```
 

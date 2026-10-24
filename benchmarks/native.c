@@ -34,7 +34,8 @@ static void fill(int kind) {
  }
 }
 int main(int argc,char **argv) {
- if(argc!=2){fprintf(stderr,"usage: native BUILD_DIRECTORY\n");return 2;}
+ if(argc<2 || argc>3 || (argc==3 && strcmp(argv[2],"--validate-only"))){fprintf(stderr,"usage: native BUILD_DIRECTORY [--validate-only]\n");return 2;}
+ int validate_only=argc==3;
  unsigned a,b,c,d; __cpuid_count(1,0,a,b,c,d);
  if(!(c&bit_OSXSAVE)||!(c&bit_AVX))return 3;
  unsigned lo,hi; __asm__ volatile("xgetbv":"=a"(lo),"=d"(hi):"c"(0));
@@ -46,7 +47,7 @@ int main(int argc,char **argv) {
  struct perf_event_attr attr={.type=PERF_TYPE_HARDWARE,.size=sizeof(attr),.config=PERF_COUNT_HW_CPU_CYCLES,.exclude_kernel=1,.exclude_hv=1};
  cycles_fd=syscall(SYS_perf_event_open,&attr,0,-1,-1,0);
  if(cycles_fd<0)perror("User-only core cycle counter unavailable");
- const char *names[]={"scalar","sse","avx2","avx2-count","avx2-guard","sse-guard","avx2-copy","avx2-guard16","avx2-guard32","scalar-unroll","scalar-gracemont","avx2-guard-gracemont","avx2-guard16-gracemont","sse-guard-gracemont"};
+ const char *names[]={"scalar","sse","avx2","avx2-count","avx2-guard","sse-guard","avx2-copy","avx2-guard16","avx2-guard32","scalar-unroll","scalar-gracemont","avx2-guard-gracemont","avx2-guard16-gracemont","sse-guard-gracemont","avx2-guard-overlap","avx2-copy-overlap"};
  enum {N=sizeof(names)/sizeof(names[0])};struct codec codecs[N];
  for(int i=0;i<N;i++){char path[4096];snprintf(path,sizeof(path),"%s/%s.so",argv[1],names[i]);
   codecs[i]=(struct codec){.name=names[i],.handle=dlopen(path,RTLD_NOW|RTLD_LOCAL)};
@@ -61,8 +62,17 @@ int main(int argc,char **argv) {
  for(int kind=0;kind<5;kind++){
   fill(kind);long total=0;
   for(int p=0;p<PAGES;p++){sizes[p]=codecs[0].compress(input[p],packed[p],SIZE,4352,work);if(sizes[p]<=0)return 8;total+=sizes[p];}
+  for(int j=0;j<N;j++)for(int p=0;p<PAGES;p++){
+   unsigned char check[4352];
+   int got=codecs[j].compress(input[p],check,SIZE,4352,work);
+   if(got!=sizes[p] || memcmp(check,packed[p],got))return 13;
+   got=codecs[j].decompress(check,output,sizes[p],SIZE);
+   if(got!=SIZE || memcmp(output,input[p],SIZE))return 14;
+  }
+  fprintf(stderr,"Corpus round trips passed: %s, %d variants, %d pages\n",kinds[kind],N,PAGES);
   for(int round=-2;round<21;round++){
    int order[N];for(int j=0;j<N;j++)order[j]=j;for(int j=N-1;j>0;j--){int k=random32()%(j+1),tmp=order[j];order[j]=order[k];order[k]=tmp;}
+   if(validate_only)continue;
    for(int j=0;j<N;j++){
     struct codec *codec=&codecs[order[j]];
     uint64_t cstart=cycles(),start=now();

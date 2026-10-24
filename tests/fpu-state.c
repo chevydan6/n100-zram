@@ -30,7 +30,7 @@ int main(int argc,char **argv)
  int fd=open(argv[1],O_RDWR|O_DIRECT);if(fd<0){perror("open");return 3;}
  void *input=NULL,*output=NULL;unsigned char expected[512],actual[512];
  if(posix_memalign(&input,4096,4096)||posix_memalign(&output,4096,4096))return 4;
- for(int i=0;i<512;i++)expected[i]=(unsigned char)(i*37+base);
+ for(int i=0;i<512;i++)expected[i]=(unsigned char)(i*37+(i/32)*17+base);
  for(int page=0;page<128;page++){
   int period=1+(page%127);
   for(int j=0;j<4096;j++)((unsigned char *)input)[j]=(j%period)*31+page+base;

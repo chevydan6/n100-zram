@@ -31,22 +31,30 @@ N100 user-space codec tests and stock lzo-rle pressure baselines also passed.
   bounded cgroup limits and no recorded OOM kills.
 - Source, patches, tests and results are on `feature/n100-avx2-zram`.
 
-## Findings and current experiment
+## Findings and latest experiments
 
 Direct vector match checks regress executable-page compression. Scalar-first
 checks recover that loss, but sparse-page regressions remain. SSE2 can outperform
 AVX2 on some decompression cases. Scalar unrolling is also workload-dependent.
 All results, including regressions, are retained in BENCHMARKS.md.
 
-Experiment 004 is comparing explicit `-mtune=gracemont` scheduling with generic
-scheduling for scalar, SSE2 and AVX2 code. It runs under a persistent systemd
-supervisor holding the existing project's native test lock. Earlier initial
-exploratory sessions did not hold that lock and retain that limitation.
+Experiment 004 completed three native sessions comparing explicit
+`-mtune=gracemont` with generic scheduling across 14 variants. It found no broad
+improvement; all 110,810 guard checks and 16,800 independent cross-decoding cases
+passed. Experiment 005 completed another three sessions across 16 variants.
+Short-overlap broadcasts gained about 2% on sparse decoding but regressed mixed
+decoding by 3.9%; they remain rejected research variants outside the kernel
+candidate. All 126,640 guard checks, 19,200 independent cross-decoding cases and
+full timed-corpus byte comparisons passed. The controllers held the existing
+native test lock. Historical source
+snapshots and all timing data are preserved. Earlier initial exploratory sessions
+did not hold that lock and retain that limitation.
 
 ## Actual external dependencies
 
 N100 SSH works as the normal user, but sudo requires authentication and root SSH
-public-key access is unavailable. Administrator access is required to load kernel
+public-key access is unavailable. Noninteractive PolicyKit also reports that
+authentication is required. Administrator access is required to load kernel
 modules, prepare controlled ZRAM devices and install/boot test kernels.
 The previous NanoKVM address is unreachable from the controller, and no current
 physical boot rollback/recovery path is verified. No experimental native boot,
@@ -56,3 +64,7 @@ After access and recovery are established: compare matched stock/custom kernels,
 measure FPU-inclusive native codec latency and direct ZRAM I/O, then run the
 bounded pressure workload on each candidate. Energy counters and extended native
 stability remain pending. A user-space or host-VM speedup is not acceptance.
+
+No benchmark or build from this checkpoint remains running. The next substantive
+step is native kernel measurement after those access/recovery dependencies are
+resolved; further unprivileged synthetic tuning would not establish acceptance.

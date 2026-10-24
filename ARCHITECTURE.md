@@ -88,3 +88,15 @@ The same kernel and modules also passed with guest AVX2 disabled; the optional
 backend continued using scalar functions. VM success is correctness evidence on
 the host CPU only. Physical N100 stress, interrupts, suspend/resume, long-running
 memory pressure and boot recovery remain pending.
+
+## Rejected short-overlap broadcast experiment
+
+The user-space generator also retains avx2-guard-overlap and avx2-copy-overlap.
+For source distances exactly 8 or 16, an already initialized period can be
+broadcast and reused because both distances divide 32. The loop still writes
+only complete vectors within its logical copy interval, then uses the scalar
+tail. This passed guard/sanitizer/interoperability tests, but extra branches
+regressed mixed-data decoding more than they improved sparse decoding in the
+native paired comparison. The kernel preparation tool deliberately keeps the
+simpler avx2-guard implementation. Further dispatch or overlap expansion should
+wait for native kernel profiles rather than fitting synthetic corpora.

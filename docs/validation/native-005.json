@@ -1,0 +1,15 @@
+{
+  "hardware": "Intel N100",
+  "variants": 16,
+  "roundtrip_inputs": 3926,
+  "malformed_differential_inputs": 20000,
+  "guard_checks": 126640,
+  "independent_cross_decoding_cases": 19200,
+  "threads": 4,
+  "timed_corpora_verified_byte_for_byte": 5,
+  "pages_per_corpus_per_variant": 128,
+  "validation_harness_sha256": "7d20cdf15b142897a868755d8e5f4f8c257e09a57a7110d68cd023d7d46d906f",
+  "native_status": "passed",
+  "local_asan_ubsan_status": "passed",
+  "scope": "user-space codec validation; no native experimental kernel loaded"
+}

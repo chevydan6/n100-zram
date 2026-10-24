@@ -27,3 +27,23 @@
 - Retained longer-guard and scalar-unroll regressions from experiment 003.
 - Started native Gracemont compiler-scheduling comparisons without changing ISA
   support in the scalar baseline.
+
+## Compiler-tuning and reproducibility checkpoint
+
+- Completed 14-variant native Gracemont scheduling comparisons; no universal win.
+- Preserved historical benchmark/generator sources and all raw timing CSVs.
+- Verified the current patch in a diskless SMP VM and its disabled build path.
+- Recorded added code footprint without claiming resident-memory measurements.
+- Native optimized-kernel acceptance remains pending administrator access and
+  verified physical recovery; existing ZRAM and boot defaults remain intact.
+
+## Overlap-copy evaluation and timed-corpus validation
+
+- Completed 16-variant native comparisons and sanitizer/interoperability suites.
+- Rejected short-overlap broadcasts for the kernel candidate after reproducible
+  mixed-data regressions; kept source/results to avoid repeating the experiment.
+- Added full byte-for-byte preflight checks for each timed corpus and a
+  validation-only mode that preserves corpus PRNG advancement.
+- Strengthened VM YMM sentinels so every vector register has a distinct pattern.
+- Rechecked existing administrator routes: sudo and noninteractive PolicyKit both
+  require authentication. Physical kernel acceptance remains externally blocked.
