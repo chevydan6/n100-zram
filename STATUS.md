@@ -1,15 +1,15 @@
 # Current status
 
-Experimental native-kernel LZ4 SIMD code and an optional `lz4-n100` ZRAM backend
-are implemented and compiled. Correctness passed in a diskless SMP VM; physical
-N100 user-space codec tests and stock lzo-rle pressure baselines also passed.
-**No native optimized-kernel ZRAM improvement is established.**
+Native AVX2 LZ4 compression/decompression and a separate scalar repeated-store
+backend are implemented. Physical N100 codec and experimental ZRAM I/O results
+are available, including regressions. **No overall production improvement is
+accepted yet.** Stock modules, lzo-rle configuration and boot default are preserved.
 
 ## Measured target and environment
 
 - Intel N100, four Gracemont cores, approximately 3.7 GiB usable RAM.
-- Fedora, active stock `7.0.10-201.fc44.x86_64`, Xfce desktop.
-- Current ZRAM uses lzo-rle; disk swap is secondary.
+- Fedora, active stock `7.2.8-200.fc44.x86_64`, Xfce desktop; saved default stock 7.0.10.
+- Normal ZRAM configuration uses lzo-rle; controlled module comparisons temporarily drain it with disk swap available.
 - Custom `7.2.8-n100v1.fc44` is installed but not natively boot-validated.
 - Existing infrastructure also rebuilt 7.2.11; its audit records generic target
   flags and no native tuning approval. None is assumed to be an active optimized
@@ -82,8 +82,49 @@ did not help the timed workloads. Long eight-byte repeated stores improve
 half-zero decoding by 48.7% but regress sparse decoding by 8.3%, so a narrower
 match-only path is being tested. All measured versions and unsuccessful results
 are retained. A three-backend stock-7.2.8 module passed diskless VM block I/O and
-register tests; native experimental ZRAM loading is still pending.
+register tests; the first native experimental ZRAM I/O comparison has completed its data checks.
 
 Next: finish the narrower scalar experiment and compare candidate/stock native
 ZRAM I/O on the same driver/compiler build. Extended native stability,
 matched custom-kernel comparison and optimized energy results remain incomplete.
+
+## Native ZRAM checkpoint
+
+Twenty direct-I/O trials (five per backend) completed full CRC32C verification.
+Within the same driver build, AVX2 reduced read throughput by 16.7% versus LZ4;
+scalar long-match decoding increased it by 24.7%, with about 18% lower whole-job
+package energy per I/O. It reaches approximately the same read speed as lzo-rle
+but retains slower writes. The rebuilt driver controls also trail the separate
+installed-stock baseline; that difference is not attributed to a codec change.
+
+The first controller failed at restoration because systemd reactivated primary
+swap after module insertion. Stock was subsequently restored and its live GNU
+build-id note matched the installed signed module. A second attempt stopped
+before experimental loading on a transient device reference; primary stock swap
+was restored. The current repeat uses temporary runtime unit masks, explicit
+drained-device reset, bounded unload retries and build-id verification. It
+completed all twenty trials and verified automated stock restoration. No failed cleanup is reported as a successful run.
+
+A selective first-match hint retains the roughly 49% half-zero codec decode gain
+while removing the measured sparse regression. Three native 7.2.8 sessions passed
+all byte/register checks. Guarded selection tests passed 28,279 cases, and VM
+ZRAM tests passed all three backends with concurrent helpers. The first-match hint did not retain its gain on fio blocks and is rejected for
+selection. The short-offset branch implementation completed forty pressure trials (five
+per corpus/backend), with full byte/register checks, no OOM and verified stock
+restoration. No broad speed/energy improvement is accepted.
+
+The stock 7.2.8 pressure smoke check passed full byte verification, about 569k
+swap-ins / 685k swap-outs, four concurrent CPU/register helpers and zero OOM
+events. The new harness uses normal system log/executable locations with
+SELinux enforcing; bounded hotplug retries handle transient udev probes.
+
+## Latest completed pressure comparison
+
+All forty native trials passed (160 concurrent helper processes; three full
+768 MiB verification passes per trial), with telemetry and cgroup health records.
+The candidates do not establish a reliable broad improvement. Lzo-rle finishes
+faster on these corpora, while LZ4 substantially reduces peak allocated ZRAM
+memory. All raw results and paired descriptive intervals are published.
+Next: match scalar compiler settings, include the pressure word patterns in
+codec controls, profile compression, and test a larger working set relevant to
+the 4 GiB target. Normal lzo-rle swap and installed stock code remain active.

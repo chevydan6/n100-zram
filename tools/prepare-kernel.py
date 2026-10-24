@@ -5,10 +5,10 @@ Run tools/build.py first. No source tree or installed module is modified.
 """
 from pathlib import Path
 import argparse,json,re,shutil
-from codec_experiments import add_runfill,add_rep8,add_matchrep8
+from codec_experiments import add_runfill,add_rep8,add_matchrep8,add_branchrep8
 root=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser(description=__doc__)
-p.add_argument('--variant',choices=['avx2-guard','sse-guard','scalar-control','scalar-fpu','scalar-runfill','scalar-rep8','scalar-matchrep8'],default='avx2-guard')
+p.add_argument('--variant',choices=['avx2-guard','sse-guard','scalar-control','scalar-fpu','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'],default='avx2-guard')
 p.add_argument('--output',type=Path,default=root/'build/kernel')
 a=p.parse_args();dest=a.output;dest.mkdir(parents=True,exist_ok=True)
 for p in (root/'kernel').iterdir():
@@ -16,7 +16,8 @@ for p in (root/'kernel').iterdir():
 symbols=[]
 for name in ['lz4_compress.c','lz4_decompress.c']:
     text=(root/'src/kernel-lz4'/name).read_text()
-    if a.variant=='scalar-matchrep8' and name=='lz4_decompress.c':text=add_matchrep8(text)
+    if a.variant=='scalar-branchrep8' and name=='lz4_decompress.c':text=add_branchrep8(text)
+    if a.variant in ['scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'] and name=='lz4_decompress.c':text=add_matchrep8(text)
     if a.variant=='scalar-runfill' and name=='lz4_decompress.c':text=add_runfill(text)
     symbols+=re.findall(r'EXPORT_SYMBOL\((\w+)\)',text)
     text=re.sub(r'EXPORT_SYMBOL\([^\n]+\);','',text)
@@ -48,8 +49,26 @@ assert '_mm' not in defs
 make=(dest/'Makefile').read_text()
 flags='-msse2 -mno-avx' if a.variant=='sse-guard' else '-mno-sse -mno-mmx -mno-avx' if a.variant.startswith('scalar-') else '-mavx2'
 (dest/'Makefile').write_text(make.replace('-mavx2',flags))
-if a.variant in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8']:
+if a.variant in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8']:
     dispatch=(dest/'dispatch.c').read_text().replace(' kernel_fpu_begin();','').replace(' kernel_fpu_end();','')
     (dest/'dispatch.c').write_text(dispatch)
-(dest/'experiment.json').write_text(json.dumps({'variant':a.variant,'fpu_bracket':a.variant not in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8'],'purpose':'diagnostic probe; optional ZRAM patch remains AVX2-guard'},indent=2)+'\n')
+if a.variant=='scalar-selectrep8':
+    dispatch=(dest/'dispatch.c').read_text()
+    dispatch=dispatch[:dispatch.index('int n100_lz4_compress(')]+"""
+#include "select.h"
+int n100_lz4_compress(const char *src,char *dst,int size,int capacity,void *work)
+{
+ return LZ4_compress_default(src,dst,size,capacity,work);
+}
+EXPORT_SYMBOL_GPL(n100_lz4_compress);
+int n100_lz4_decompress(const char *src,char *dst,int size,int capacity)
+{
+ if (capacity == 4096 && n100_first_long_period(src,size))
+  return n100v_LZ4_decompress_safe(src,dst,size,capacity);
+ return LZ4_decompress_safe(src,dst,size,capacity);
+}
+EXPORT_SYMBOL_GPL(n100_lz4_decompress);
+"""
+    (dest/'dispatch.c').write_text(dispatch)
+(dest/'experiment.json').write_text(json.dumps({'variant':a.variant,'fpu_bracket':a.variant not in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'],'purpose':'diagnostic probe; optional ZRAM patch remains AVX2-guard'},indent=2)+'\n')
 print(dest)

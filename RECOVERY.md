@@ -79,3 +79,44 @@ run restorecon before loading from a system service: SELinux denies module_load
 from user_home_t. Keep enforcement enabled; do not install autoload rules or
 replace stock modules. Future experimental boot entries require their own tested
 rollback path; successful recovery of stock kernels does not prove that path.
+
+## Controlled native module trials
+
+`tools/run-kernel-zram.py` verifies the exact ABI, previously VM-tested module
+hash, recovery policy, unused extra devices, disk-swap headroom and the live
+stock module's GNU build-id note before replacement. Fedora stock 7.2.8 omits
+srcversion, so that field alone cannot identify the running module.
+
+The controller temporarily masks only `dev-zram0.swap` and
+`systemd-zram-setup@zram0.service` under `/run`, drains primary swap, explicitly
+resets the drained device and waits for udev before bounded unload retries.
+Without these masks systemd can automatically reactivate the recreated device.
+Masking/reloading a unit can also remove its ordinary stop/reset command; the
+explicit drained-device reset handles that case. No force-unload is used.
+
+The experimental module is inserted by its explicit lab path without replacing
+or indexing over the installed stock module. At completion the controller removes
+its owned devices, reloads installed stock code, removes its own runtime masks,
+restarts managed swap and checks live build-id, original algorithm and size.
+The masks disappear on reboot as well. A failed controller is retained as failed,
+even if a subsequent recovery succeeds. Inspect /proc/swaps and the checkpoint
+before touching any device; only lab-owned devices may be reset or removed.
+
+Kernel-pressure trials wait/retry bounded EBUSY results from transient udev/blkid
+opens. The nested workload's logs use private `/var/log/n100-zram-lab/` files,
+and compiled helpers use `/usr/local/libexec/n100-zram-lab/`. Passing a writable
+home-directory file descriptor to PID 1 was denied by SELinux; normal locations
+and labels resolved that denial without changing policy or enforcement.
+
+The separate controller service on the development machine holds the project's
+native-validation lock and observes the persistent root job over pinned SSH.
+Use `--timeout-seconds` to cover the root service's bounded maximum runtime. SSH
+failures are retried while the lock is retained. If a running unit vanishes, the
+watcher reports failure rather than treating a reboot as a successful test.
+
+For an interrupted pressure experiment, use a fresh outer controller output and
+`--resume-pressure /previous/output/pressure`. The inner harness verifies its
+kernel, module build-id, binary/helper hashes, script hash and trial settings
+before skipping completed trials. It preserves failed attempts separately.
+Changed inputs require a new experiment. Raw kernel logs, crash records and
+private checkpoints remain outside public Git.

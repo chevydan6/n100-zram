@@ -119,4 +119,33 @@ This keeps `lz4`, `lz4-n100` and `lz4-rep8` available for comparison in one driv
 records generated-source hashes. The long-copy prototype has measured sparse
 regressions and remains experimental. `--decoder scalar-matchrep8` selects the
 subsequent match-only experiment after generating its kernel source directory.
+`scalar-selectrep8` is the unsuccessful first-match selector;
+`scalar-branchrep8` is the later short-offset branch experiment. Each requires
+its corresponding `prepare-kernel.py --variant NAME --output build/kernel-NAME`
+source before backend generation.
 Use `tests/vm.py --algorithms lz4 lz4-n100 lz4-rep8` before physical loading.
+
+### Controlled native pressure comparison
+
+`benchmarks/kernel-pressure.py` allocates its own temporary ZRAM device, uses a
+bounded systemd cgroup and checks every byte in three permuted passes. It tests
+both the original periodic-tail corpus and a mixed corpus including zero tails
+and incompressible pages. Four concurrent helpers check all YMM registers on the
+four physical CPUs before each trial. The cgroup health record must show no OOM.
+
+Compile `benchmarks/pressure.c` and `tests/fpu-state.c` with `-O2 -Wall -Wextra
+-Werror` (also `-mno-avx` for the register helper). Stage the binaries under
+`/usr/local/libexec/n100-zram-lab/` and restore normal labels. Native orchestration
+requires exact-ABI VM validation and the recovery procedure in RECOVERY.md.
+`tools/run-kernel-zram.py --mode pressure --pressure-binary PATH --state-helper PATH
+--benchmark /path/to/kernel-pressure.py --repeats 5` uses the same module/hash/output
+arguments as its I/O mode, temporarily replaces the driver and verifies stock
+restoration. It compares all four backends in one driver build.
+
+Run the controller independently with `systemd-run --user --no-block` and
+`tools/watch-kernel-job.py`, using the existing native-validation lock. The root
+job and watcher must both have bounded timeouts long enough for all trials.
+`benchmarks/summarize-kernel-pressure.py INPUT OUTPUT` exports completed results
+and continuous CPU/thermal telemetry while excluding private swap paths.
+The 768 MiB / 384 MiB cgroup test is real controlled reclaim on the installed
+4 GiB system; it does not claim whole-machine memory exhaustion.

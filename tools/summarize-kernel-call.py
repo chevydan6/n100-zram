@@ -17,7 +17,7 @@ meta={k:checkpoint[k] for k in ['kernel','module_sha256','binary_sha256','before
 for name in ['before','after']:meta[name].pop('time',None)
 (a.output/'metadata.json').write_text(json.dumps(meta,indent=2)+'\n')
 lines=['# Physical N100 syscall-inclusive codec experiment','',
-f'Experimental: stock 7.0.10 versus the {a.label} probe. Each call processes one',
+f"Experimental: stock {checkpoint['kernel']} versus the {a.label} probe. Each call processes one",
 '4 KiB page, including syscall, dispatch and FPU state handling. Three sessions,',
 'nine randomized recorded rounds per corpus/state/session; 4,096 calls per batch.',
 'Warm-up rounds are excluded. Lower times are better. These are codec measurements,',

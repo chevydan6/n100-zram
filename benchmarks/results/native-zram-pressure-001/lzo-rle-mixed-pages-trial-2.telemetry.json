@@ -1,0 +1,296 @@
+[
+  {
+    "elapsed_seconds": 0.005784749984741211,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1699985",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1699969",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1700023",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1785291",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "41000"
+    },
+    "zram_mm_stat": "4096       74    12288        0    12288        0        0        0        0"
+  },
+  {
+    "elapsed_seconds": 0.5130126476287842,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3103797",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3102158",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2906845",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3100068",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "111190016 93880950 95088640        0 95088640        0        0    13568    13568"
+  },
+  {
+    "elapsed_seconds": 1.015152931213379,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3127714",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3200092",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "43000",
+      "/sys/class/thermal/thermal_zone4/temp": "43000"
+    },
+    "zram_mm_stat": "389668864 329246910 332431360        0 332431360        0        0    47682    47682"
+  },
+  {
+    "elapsed_seconds": 1.5173571109771729,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3280970",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3300049",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "43000",
+      "/sys/class/thermal/thermal_zone4/temp": "43000"
+    },
+    "zram_mm_stat": "472231936 399019145 402771968        0 402972672        0        0    57670    74384"
+  },
+  {
+    "elapsed_seconds": 2.0195581912994385,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3256132",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3300021",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "43000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "472813568 399405569 403329024        0 403492864        0        0    57716    99093"
+  },
+  {
+    "elapsed_seconds": 2.521564245223999,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3193435",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3300217",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3300023",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "473313280 399662856 403722240        0 403845120        0        0    57732   124480"
+  },
+  {
+    "elapsed_seconds": 3.0235939025878906,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3218902",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3152753",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2948129",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3294732",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "44000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "473399296 400021990 404058112        0 404975616        0        0    57816   149425"
+  },
+  {
+    "elapsed_seconds": 3.5257315635681152,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3170623",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3199975",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "473534464 400055097 403980288        0 404975616        0        0    57813   174677"
+  },
+  {
+    "elapsed_seconds": 4.027631521224976,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3199852",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3120511",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3200000",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "473358336 399275258 403820544        0 404975616        2        0    57688   199298"
+  },
+  {
+    "elapsed_seconds": 4.529719114303589,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3261254",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3299963",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "473432064 399381427 403886080        0 404975616        0        0    57673   225653"
+  },
+  {
+    "elapsed_seconds": 5.031933069229126,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3299876",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3299973",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "44000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "475123712 401492679 405241856        0 405413888        0        0    58033   250300"
+  },
+  {
+    "elapsed_seconds": 5.533917188644409,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3299963",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "44000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "474923008 401264343 405118976        0 405491712        0        0    57976   276764"
+  },
+  {
+    "elapsed_seconds": 6.03607439994812,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3280847",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3299904",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "42000"
+    },
+    "zram_mm_stat": "474841088 400465087 405487616        0 405774336        0        0    57865   303285"
+  },
+  {
+    "elapsed_seconds": 6.538149356842041,
+    "conditions": {
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3171730",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3199993",
+      "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+      "/sys/class/thermal/thermal_zone2/temp": "30850",
+      "/sys/class/thermal/thermal_zone0/temp": "20000",
+      "/sys/class/thermal/thermal_zone5/temp": "45000",
+      "/sys/class/thermal/thermal_zone3/temp": "36850",
+      "/sys/class/thermal/thermal_zone1/temp": "41850",
+      "/sys/class/thermal/thermal_zone6/temp": "42000",
+      "/sys/class/thermal/thermal_zone4/temp": "41000"
+    },
+    "zram_mm_stat": "475086848 399545962 405028864        0 405782528        1        0    57672   328546"
+  }
+]

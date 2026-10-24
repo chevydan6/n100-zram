@@ -320,3 +320,60 @@ checks before native loading. A three-backend stock-7.2.8 module also passed
 diskless block I/O and twelve concurrent helper/register checks; this is not a
 native ZRAM result. A narrower match-only experiment is in progress to reduce
 short-copy overhead. No production selection or optimized energy claim is made.
+
+## Native ZRAM I/O and actual workload selection
+
+The [installed 7.2.8 baseline](benchmarks/results/native-stock-7.2-io/summary.md)
+completed three trials per algorithm. Two experimental-module comparisons kept
+ordinary LZ4 as an internal control and preserved every fio result:
+[first match-only copy experiment](benchmarks/results/native-zram-compare-001/summary.md)
+and [first-match selective repeat](benchmarks/results/native-zram-compare-003/summary.md).
+Each experimental comparison has five randomized trials per backend and full
+CRC32C verification after each trial. The first controller needed separate stock
+restoration; the repeat passed automated restoration with live build-id checks.
+
+AVX2 read throughput trails its same-module LZ4 control by 16.7% and 17.3% in
+these comparisons. The initial scalar copy path gains 24.7% on reads, with about
+18% lower whole-job package energy per I/O, but the first-match hint loses that
+gain on actual fio blocks. Fio's verification header creates several short
+initial matches before the useful long run. That negative result is retained.
+Default lzo-rle remains the faster overall baseline, especially on writes.
+
+The rebuilt driver controls differ from the installed-stock driver results;
+that difference is not attributed to codec changes. Frequency snapshots around
+fio startup/exit do not establish sustained operating frequency. Cross-run
+thermal/build effects remain a limitation. Within-module controls, ranges,
+compressed/allocated sizes and raw timing rows are available in the result sets.
+
+Kernel read profiles confirm the AVX2 path executes: its namespaced decoder
+accounts for 29.45% of sampled kernel cycles, FPU restoration 10.21%, and XSAVE
+6.86%. Ordinary LZ4 decoding accounts for 44.69% in its control; the initial
+scalar repeated-store decoder accounts for 23.58%. These are profile shares,
+not direct time savings or user-space performance claims.
+
+The later [short-offset branch experiment](benchmarks/results/native-kernel-scalar-branchrep8/summary.md)
+retains a 48.8% half-zero codec gain, with 2.7% sparse and 3.7% mixed codec
+regressions. It removes first-token selection and puts an out-of-line integer
+copy helper inside the existing short-offset path. Its full native ZRAM
+pressure comparison is running; it is not accepted as a general improvement.
+
+## Updated native pressure harness
+
+A [stock 7.2.8 smoke check](benchmarks/results/native-pressure-stock72-smoke/summary.md)
+passed four concurrent physical-CPU register helpers, 768 MiB of mixed memory,
+three complete permuted byte-verification passes, 568,718 swap-ins and 684,720
+swap-outs. Cgroup OOM counters remained zero; owned swap/device cleanup passed.
+This single trial validates the harness, not an optimization claim. The workload
+uses a 384 MiB resident ceiling and 320 MiB reclaim threshold on the actual 4 GiB
+N100. It exercises real reclaim without exhausting the entire machine.
+
+The mixed corpus includes random-plus-periodic tails, random-plus-zero tails,
+longer-period tails and fully random pages. The older periodic-tail corpus is
+also retained. The full comparison uses five trials per corpus/backend with
+package energy, CPU time, swap counters, memory peaks and continuous telemetry.
+
+The [completed forty-trial pressure comparison](benchmarks/results/native-zram-pressure-001/summary.md)
+passed every byte/register/OOM/cleanup check and verified stock restoration.
+Neither candidate establishes a broad speed/energy gain. LZ4's lower memory
+footprint and lzo-rle's lower elapsed time form a measured tradeoff. Paired
+descriptive intervals, all trials and continuous telemetry are preserved.

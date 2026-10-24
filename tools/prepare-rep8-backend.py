@@ -4,7 +4,7 @@
 import argparse,hashlib,json,shutil
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser();p.add_argument('--decoder',choices=['scalar-rep8','scalar-matchrep8'],default='scalar-rep8');p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--decoder',choices=['scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'],default='scalar-rep8');p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
 assert a.source.resolve()!=a.output.resolve() and not a.output.exists()
 a.output.mkdir(parents=True)
 for src in a.source.iterdir():
@@ -33,6 +33,21 @@ CFLAGS_n100r_lz4_decompress.o += -O3 -fno-tree-vectorize -include $(src)/n100r_r
 backend=(a.source/'backend_lz4.c').read_text()
 backend=backend.replace('backend_lz4 =','backend_lz4_rep8 =').replace('"lz4",','"lz4-rep8",').replace('LZ4_decompress_safe(','n100r_LZ4_decompress_safe(')
 backend=backend.replace('#include "backend_lz4.h"','#include "backend_lz4_rep8.h"\nextern int n100r_LZ4_decompress_safe(const char *, char *, int, int);')
+if a.decoder=='scalar-selectrep8':
+ backend=backend.replace('n100r_LZ4_decompress_safe(req->src','n100_select_decompress(req->src')
+ marker='#include "backend_lz4_rep8.h"'
+ helper="""
+#include "select.h"
+extern int n100r_LZ4_decompress_safe(const char *, char *, int, int);
+static int n100_select_decompress(const char *src,char *dst,int size,int capacity)
+{
+ if (capacity == 4096 && n100_first_long_period(src,size))
+  return n100r_LZ4_decompress_safe(src,dst,size,capacity);
+ return LZ4_decompress_safe(src,dst,size,capacity);
+}
+"""
+ backend=backend.replace(marker,marker+helper)
+ shutil.copy2(root/'kernel/select.h',a.output/'select.h')
 (a.output/'backend_lz4_rep8.c').write_text(backend)
 (a.output/'backend_lz4_rep8.h').write_text('// SPDX-License-Identifier: GPL-2.0-only\n#include "zcomp.h"\nextern const struct zcomp_ops backend_lz4_rep8;\n')
 for src,dest in [('lz4_decompress.c','n100r_lz4_decompress.c'),('lz4defs.h','n100r_lz4defs.h'),('rename.h','n100r_rename.h')]:

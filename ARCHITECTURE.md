@@ -141,3 +141,15 @@ The x86-64 FPU API already requests MXCSR initialization without x87 initializat
 removing an imagined x87 init cost would not address the observed overhead. See
 the [upstream FPU API](https://github.com/torvalds/linux/blob/master/arch/x86/include/asm/fpu/api.h)
 and [state-management implementation](https://github.com/torvalds/linux/blob/master/arch/x86/kernel/fpu/core.c).
+
+## Later-match copy placement
+
+The first-match hint was unsuccessful on actual fio blocks: verification metadata
+creates short matches before the long repeated tail. It is retained as a rejected
+experiment. The `scalar-branchrep8` decoder instead expands the existing
+short-offset branch to include offset eight, keeps its normal first-eight-byte
+initialization, and calls an integer-only repeated-store helper for long effective
+eight-byte periods. The helper writes its tail exactly within the requested copy.
+Other offsets keep their original path; no compressed-format change or new
+workspace allocation is introduced. Compiler layout/call effects still cause
+small synthetic regressions, so end-to-end tests remain essential.

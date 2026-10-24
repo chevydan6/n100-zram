@@ -51,3 +51,59 @@ def add_matchrep8(text):
 		}
 '''
     return text.replace(marker,marker+code)
+
+def add_branchrep8(text):
+    marker='/*\n * LZ4_decompress_generic()'
+    assert text.count(marker)==1
+    helper='''static __attribute__((__noinline__)) void n100_repeat8_copy(BYTE *dst,
+						const BYTE *period, BYTE *end)
+{
+	size_t pattern = LZ4_read_ARCH(period);
+	size_t words = (size_t)(end-dst)/8;
+	unsigned int tail = 0;
+	__asm__ volatile ("rep stosq" : "+D"(dst), "+c"(words)
+				  : "a"(pattern) : "memory");
+	while (dst < end) *dst++ = (BYTE)(pattern >> (8*tail++));
+}
+
+'''
+    text=text.replace(marker,helper+marker)
+    old='''		if (unlikely(offset < 8)) {
+			op[0] = match[0];
+			op[1] = match[1];
+			op[2] = match[2];
+			op[3] = match[3];
+			match += inc32table[offset];
+			LZ4_memcpy(op + 4, match, 4);
+			match -= dec64table[offset];
+		} else {
+			LZ4_copy8(op, match);
+			match += 8;
+		}'''
+    new='''		if (unlikely(offset <= 8)) {
+			if (offset == 8) {
+				LZ4_copy8(op, match);
+				match += 8;
+			} else {
+				op[0] = match[0];
+				op[1] = match[1];
+				op[2] = match[2];
+				op[3] = match[3];
+				match += inc32table[offset];
+				LZ4_memcpy(op + 4, match, 4);
+				match -= dec64table[offset];
+			}
+			/* The usual short-offset expansion has initialized eight
+			 * bytes. Effective period eight needs no more source loads.
+			 * Other offsets keep the original hot path and no new test. */
+			if (length >= 128 && match == op && cpy <= oend - LASTLITERALS) {
+				n100_repeat8_copy(op+8, op, cpy);
+				op = cpy;
+				continue;
+			}
+		} else {
+			LZ4_copy8(op, match);
+			match += 8;
+		}'''
+    assert text.count(old)==1
+    return text.replace(old,new)

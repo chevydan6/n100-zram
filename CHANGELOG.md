@@ -81,3 +81,20 @@
   stores (large half-zero gain with sparse regressions); neither is selected.
 - Added a separate default-off scalar ZRAM backend generator and three-backend
   stock-7.2.8 VM validation. Extended the VM harness to verify each named backend.
+
+## Native ZRAM I/O, recovery fixes and controlled pressure
+
+- Published installed-stock 7.2.8 baseline and both five-trial experimental
+  comparisons, including AVX2 regressions and unsuccessful first-match selection.
+- Diagnosed automatic swap reactivation, transient block-device references and
+  inherited-log SELinux denial; kept enforcement and restored signed stock code.
+- Added bounded unload/reset retries, temporary runtime unit masks, live module
+  build-id verification and a persistent controller retaining the native lock.
+- Added byte-verified mixed/periodic pressure workloads, cgroup health counters,
+  resumable trial checkpoints, four physical CPU/register helpers and telemetry.
+- Passed the stock pressure smoke check; full backend pressure trials are running.
+
+- Completed all forty pressure trials with 160 physical-CPU helper processes,
+  no OOM or detected corruption, and verified restoration. Published all timing,
+  energy, CPU, memory and telemetry results, including inconclusive/regressing
+  cases. No candidate is promoted to routine use.
