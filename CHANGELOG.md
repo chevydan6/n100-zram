@@ -71,3 +71,13 @@
   full-register checks; recorded substantial regressions rather than deploying
   the initial candidate to ZRAM.
 - Made the watcher reject units lost across a reboot and checkpoint cleanup.
+
+## Matched SIMD-state controls and scalar copy experiments
+
+- Measured rebuilt scalar, FPU-bracketed scalar and SSE2 in three N100 sessions
+  each. Preserved raw data and all negative SIMD findings.
+- Added isolated variant generation and integer-only long-match experiments.
+- Tested distance-one memset (no useful measured gain), then eight-byte repeated
+  stores (large half-zero gain with sparse regressions); neither is selected.
+- Added a separate default-off scalar ZRAM backend generator and three-backend
+  stock-7.2.8 VM validation. Extended the VM harness to verify each named backend.

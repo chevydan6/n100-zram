@@ -7,8 +7,10 @@ p=argparse.ArgumentParser()
 for name in ['kernel','probe','zram','lz4hc','output']:p.add_argument('--'+name,type=Path,required=True)
 p.add_argument('--probe-only',action='store_true')
 p.add_argument('--lz4',type=Path)
+p.add_argument('--algorithms',nargs='+',default=['lz4','lz4-n100'])
 p.add_argument('--expect-simd',type=int,choices=[0,1],default=1)
 a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
+assert all(name in ['lz4','lz4-n100','lz4-rep8'] for name in a.algorithms)
 mem=dict(line.split(':',1) for line in Path('/proc/meminfo').read_text().splitlines())
 if int(mem['MemAvailable'].split()[0])<2*1024**2:raise SystemExit('Less than 2 GiB memory headroom; defer VM')
 archive=bytearray();ino=0
@@ -72,6 +74,7 @@ done
 echo N100_ZRAM_VM_PASS
 poweroff -f
 '''
+init=init.replace('for algorithm in lz4 lz4-n100;', 'for algorithm in '+' '.join(a.algorithms)+';')
 if a.lz4:init=init.replace('insmod /probe.ko','insmod /lz4.ko || fail\ninsmod /probe.ko')
 init=init.replace('rmmod n100_lz4_probe || fail','''if grep -qw avx2 /proc/cpuinfo; then
  /kernel-call /dev/n100-lz4-bench > /tmp/kernel-call.csv || fail
@@ -84,6 +87,6 @@ initramfs=a.output/'initramfs.cpio';initramfs.write_bytes(archive)
 argv=['qemu-system-x86_64','-no-user-config','-nodefaults','-machine','q35,accel=kvm','-cpu','host' if a.expect_simd else 'host,-avx2','-smp','2','-m','256','-display','none','-monitor','none','-serial','stdio','-nic','none','-no-reboot','-kernel',str(a.kernel),'-initrd',str(initramfs),'-append','console=ttyS0 rdinit=/init panic=1']
 result=subprocess.run(argv,capture_output=True,text=True,timeout=60)
 (a.output/'serial.log').write_text(result.stdout);(a.output/'stderr.log').write_text(result.stderr)
-passed=(not a.expect_simd or 'KERNEL_CODEC_SYSCALL_PASS' in result.stdout) and result.stdout.count('FPU_STATE_PASS')==(8 if a.expect_simd and not a.probe_only else 0) and result.returncode==0 and 'N100_ZRAM_VM_PASS' in result.stdout and f'n100-lz4-probe: simd={a.expect_simd}' in result.stdout and not any(s in result.stdout for s in ['N100_ZRAM_VM_FAIL','Kernel panic','Oops:','BUG: '])
-record={'status':'passed' if passed else 'failed','scope':'diskless VM correctness only; no native N100 performance or recovery claim','exit_code':result.returncode,'probe_only':a.probe_only,'syscall_codec_checked':'KERNEL_CODEC_SYSCALL_PASS' in result.stdout,'expected_simd':a.expect_simd,'user_ymm_state_checks':result.stdout.count('FPU_STATE_PASS'),'inputs':{name:hashlib.sha256(getattr(a,name).read_bytes()).hexdigest() for name in ['kernel','probe','zram','lz4hc']},'initramfs_sha256':hashlib.sha256(archive).hexdigest(),'disks_attached':False,'network_attached':False}
+passed=(not a.expect_simd or 'KERNEL_CODEC_SYSCALL_PASS' in result.stdout) and result.stdout.count('FPU_STATE_PASS')==(4*len(a.algorithms) if a.expect_simd and not a.probe_only else 0) and result.returncode==0 and 'N100_ZRAM_VM_PASS' in result.stdout and f'n100-lz4-probe: simd={a.expect_simd}' in result.stdout and not any(s in result.stdout for s in ['N100_ZRAM_VM_FAIL','Kernel panic','Oops:','BUG: '])
+record={'status':'passed' if passed else 'failed','scope':'diskless VM correctness only; no native N100 performance or recovery claim','exit_code':result.returncode,'probe_only':a.probe_only,'algorithms_checked':[] if a.probe_only else a.algorithms,'syscall_codec_checked':'KERNEL_CODEC_SYSCALL_PASS' in result.stdout,'expected_simd':a.expect_simd,'user_ymm_state_checks':result.stdout.count('FPU_STATE_PASS'),'inputs':{name:hashlib.sha256(getattr(a,name).read_bytes()).hexdigest() for name in ['kernel','probe','zram','lz4hc']},'initramfs_sha256':hashlib.sha256(archive).hexdigest(),'disks_attached':False,'network_attached':False}
 (a.output/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record));raise SystemExit(0 if passed else 1)

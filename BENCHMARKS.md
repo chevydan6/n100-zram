@@ -281,3 +281,42 @@ compression alone improves. The initial candidate fails performance acceptance.
 See [all timing rows and repeatability intervals](benchmarks/results/native-kernel-codec-001/summary.md).
 These are codec calls, not an optimized ZRAM deployment. Matched scalar/FPU
 controls are the next experiment; compiler differences remain a confounder.
+
+## Matched kernel controls
+
+Three physical sessions each compared the rebuilt scalar clone, the same clone
+with normal FPU bracketing, and SSE2-guard against stock on 7.0.10. Full byte and
+register checks passed; all probes unloaded. With YMM-dirty user state, the
+unbracketed scalar clone is close to stock, while FPU-bracketed scalar adds
+approximately 435 ns/page across these corpora. This explains most of the
+initial SIMD decoder loss. SSE2 remains slower than stock on every decoding
+corpus. Tests on different variants are sequential, not interleaved; CPU0 batch
+ordering within each variant is randomized. No energy claim is inferred.
+
+Raw timings and paired session summaries: [scalar control](benchmarks/results/native-kernel-scalar-control/summary.md),
+[scalar plus FPU](benchmarks/results/native-kernel-scalar-fpu/summary.md),
+[SSE2](benchmarks/results/native-kernel-sse-guard/summary.md).
+
+## Scalar long-match investigations
+
+The distance-one memset path passed three native kernel sessions but produced
+no useful timed-corpus gain. Parsing representative compressed pages showed the
+half-zero long run uses offset eight; a fully zero page uses offset one, but
+ZRAM normally bypasses its compressor for same-filled pages.
+[Distance-one results](benchmarks/results/native-kernel-scalar-runfill/summary.md).
+
+A subsequent wild-copy `rep stosq` path for long effective eight-byte periods
+reduced median YMM-dirty half-zero decode time from 805 to 413 ns/page (48.7%).
+However sparse decoding regressed 8.3%, mixed 4.3% and executable 2.3%; it is not
+a broadly accepted improvement. Compression changes in this prototype are code
+generation effects because the transform changes an inlined helper shared by
+both codecs. The separate ZRAM backend retains the stock compressor.
+[All repeated-store results](benchmarks/results/native-kernel-scalar-rep8/summary.md).
+
+The repeated-store source passed ASan/UBSan, 3,926 input round trips, 20,000
+malformed inputs, 142,470 sanitizer guard cases across 18 variants and 21,600
+independent four-thread cross-decoding cases. Kernel probes passed exact-ABI VM
+checks before native loading. A three-backend stock-7.2.8 module also passed
+diskless block I/O and twelve concurrent helper/register checks; this is not a
+native ZRAM result. A narrower match-only experiment is in progress to reduce
+short-copy overhead. No production selection or optimized energy claim is made.

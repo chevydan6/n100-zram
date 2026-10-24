@@ -119,3 +119,25 @@ The scope is codec-plus-syscall measurement; actual ZRAM I/O remains necessary.
 The misc interface was compiled and VM-tested against the exact active stock
 7.0.10 ABI. The optional ZRAM backend patch remains separately based on the existing
 7.2.8 source tree. These kernel versions and scopes must not be conflated.
+
+## Diagnostic kernel variants
+
+`prepare-kernel.py --variant scalar-control|scalar-fpu|sse-guard --output DIR`
+generates isolated benchmark modules from the same source/compiler path. The
+unbracketed scalar clone contains no vector instructions (verified by objdump);
+the bracketed scalar isolates dispatch/state-transition cost. SSE2 uses 128-bit
+integer instructions and keeps normal FPU handling; AVX2 availability is still
+required by this N100-only diagnostic dispatcher. These modes do not change the
+optional backend patch or select a production codec.
+
+A subsequent `scalar-runfill` experiment uses memset for a long distance-one
+match only in the bounded nonpartial decoder after dictionary and length checks.
+The match must leave the required final literal space; short, partial and invalid
+boundary paths retain the reference implementation. The kernel variant has no
+FPU section and no vector object flags. This investigates the long repeated-byte
+copy bottleneck without paying SIMD state cost. It is not yet selected for ZRAM.
+
+The x86-64 FPU API already requests MXCSR initialization without x87 initialization;
+removing an imagined x87 init cost would not address the observed overhead. See
+the [upstream FPU API](https://github.com/torvalds/linux/blob/master/arch/x86/include/asm/fpu/api.h)
+and [state-management implementation](https://github.com/torvalds/linux/blob/master/arch/x86/kernel/fpu/core.c).

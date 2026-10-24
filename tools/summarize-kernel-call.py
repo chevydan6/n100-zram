@@ -3,7 +3,7 @@
 """Export public syscall measurements; exclude private kernel logs and host IDs."""
 import argparse,csv,json,statistics,random,shutil
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--input',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--label',default='AVX2-guard');p.add_argument('--input',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
 assert not a.output.exists(),'Preserve existing results';a.output.mkdir(parents=True)
 checkpoint=json.loads((a.input/'checkpoint.json').read_text());assert checkpoint['status']=='complete'
 rows=[]
@@ -17,7 +17,7 @@ meta={k:checkpoint[k] for k in ['kernel','module_sha256','binary_sha256','before
 for name in ['before','after']:meta[name].pop('time',None)
 (a.output/'metadata.json').write_text(json.dumps(meta,indent=2)+'\n')
 lines=['# Physical N100 syscall-inclusive codec experiment','',
-'Experimental: stock 7.0.10 versus the AVX2-guard probe. Each call processes one',
+f'Experimental: stock 7.0.10 versus the {a.label} probe. Each call processes one',
 '4 KiB page, including syscall, dispatch and FPU state handling. Three sessions,',
 'nine randomized recorded rounds per corpus/state/session; 4,096 calls per batch.',
 'Warm-up rounds are excluded. Lower times are better. These are codec measurements,',
@@ -35,7 +35,7 @@ lines=['# Physical N100 syscall-inclusive codec experiment','',
 'CSV retains all recorded batches, including regressions. No confidence claim',
 'is inferred from this small sample alone. Times are medians of all 27 batches.',
 '',
-'| Corpus | User state | Compress stock / AVX2 ns | Change [session bootstrap 95%] | Decode stock / AVX2 ns | Change [session bootstrap 95%] |',
+'| Corpus | User state | Compress stock / candidate ns | Change [session bootstrap 95%] | Decode stock / candidate ns | Change [session bootstrap 95%] |',
 '|---|---|---:|---:|---:|---:|']
 rng=random.Random(100)
 for corpus in sorted({r['corpus'] for r in rows}):
@@ -54,9 +54,7 @@ for corpus in sorted({r['corpus'] for r in rows}):
    boot=sorted(statistics.mean(rng.choices(ratios,k=len(ratios))) for _ in range(10000))
    effects.append(f'{statistics.mean(ratios):+.1f}% [{boot[249]:+.1f}, {boot[9749]:+.1f}]')
   lines.append(f'| {corpus} | {state} | {times[0]:.1f} / {times[1]:.1f} | {effects[0]} | {times[2]:.1f} / {times[3]:.1f} | {effects[1]} |')
-lines+=['','The initial candidate fails broad native performance acceptance and remains',
-'experimental. Periodic-page compression is the sole consistent winning case in',
-'this corpus set; selective deployment has not been justified. Primary lzo-rle',
-'ZRAM remained active and unchanged throughout this probe.']
+lines+=['','This is an experimental diagnostic comparison, not a production-selection',
+'claim. Primary lzo-rle ZRAM remained active and unchanged throughout this probe.']
 (a.output/'summary.md').write_text('\n'.join(lines)+'\n')
 print(a.output/'summary.md')

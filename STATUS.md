@@ -76,7 +76,14 @@ module had user_home_t. The unchanged VM-tested binary loaded from a dedicated
 matching-kernel extra directory with modules_object_t; no policy was weakened.
 The module and benchmark device were removed after successful measurements.
 
-Next: isolate FPU-transition cost from compiler/code differences with matched
-scalar controls, compare a kernel SSE path, and investigate justified codec
-changes before controlled experimental ZRAM I/O. Extended native stability,
+Matched native controls isolate approximately 435 ns/call of dirty-YMM FPU
+bracketing cost; SSE2 also regresses decoding. A distance-one scalar experiment
+did not help the timed workloads. Long eight-byte repeated stores improve
+half-zero decoding by 48.7% but regress sparse decoding by 8.3%, so a narrower
+match-only path is being tested. All measured versions and unsuccessful results
+are retained. A three-backend stock-7.2.8 module passed diskless VM block I/O and
+register tests; native experimental ZRAM loading is still pending.
+
+Next: finish the narrower scalar experiment and compare candidate/stock native
+ZRAM I/O on the same driver/compiler build. Extended native stability,
 matched custom-kernel comparison and optimized energy results remain incomplete.

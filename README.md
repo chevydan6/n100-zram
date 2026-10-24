@@ -85,3 +85,38 @@ gcc -O2 -Wall -Wextra -Werror -mno-avx -fno-tree-vectorize -Ikernel benchmarks/k
 Its physical execution is gated on verified recovery. The current controlled
 stock reboot did not restore SSH; see RECOVERY.md. Source and VM validation do
 not constitute a successful native kernel experiment.
+
+### Reproduce matched kernel controls
+
+After `tools/build.py`, generate each diagnostic into its own directory:
+
+```sh
+python3 tools/prepare-kernel.py --variant scalar-control --output build/kernel-scalar-control
+python3 tools/prepare-kernel.py --variant scalar-fpu --output build/kernel-scalar-fpu
+python3 tools/prepare-kernel.py --variant sse-guard --output build/kernel-sse-guard
+python3 tools/prepare-kernel.py --variant scalar-rep8 --output build/kernel-scalar-rep8
+```
+
+Build each against the exact target kernel-devel ABI using the external-module
+command above, then run `tests/vm.py --probe-only` with that exact kernel image,
+probe and matching LZ4 dependencies. `kernel-call.c` builds with `-O2 -mno-avx
+-fno-tree-vectorize -Ikernel`; execute it against the loaded probe's root-only
+misc device. `tools/run-kernel-call.py` records three sessions and cleanup, and
+`tools/summarize-kernel-call.py --label NAME` exports the public CSV/summary.
+Keep private kernel logs outside Git. Recovery and SELinux module-file placement
+are documented in RECOVERY.md. These probe modes do not change active ZRAM.
+
+For a separate scalar `lz4-rep8` backend, first generate the normal optional
+AVX2 backend tree, then add the scalar decoder into a fresh output:
+
+```sh
+python3 tools/prepare-rep8-backend.py --source /fresh/avx2-zram-tree --output /fresh/combined-zram-tree
+make -j2 -C /usr/src/kernels/EXACT-RELEASE M=/fresh/combined-zram-tree CONFIG_ZRAM_BACKEND_LZ4_N100=y CONFIG_ZRAM_BACKEND_LZ4_REP8=y 'KCFLAGS=-DCONFIG_ZRAM_BACKEND_LZ4_N100=1 -DCONFIG_ZRAM_BACKEND_LZ4_REP8=1' modules
+```
+
+This keeps `lz4`, `lz4-n100` and `lz4-rep8` available for comparison in one driver;
+`lz4-rep8` retains stock compression and changes only decoding. The manifest
+records generated-source hashes. The long-copy prototype has measured sparse
+regressions and remains experimental. `--decoder scalar-matchrep8` selects the
+subsequent match-only experiment after generating its kernel source directory.
+Use `tests/vm.py --algorithms lz4 lz4-n100 lz4-rep8` before physical loading.

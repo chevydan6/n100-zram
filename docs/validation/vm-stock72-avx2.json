@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "scope": "diskless VM correctness only; no native N100 performance or recovery claim",
+  "exit_code": 0,
+  "probe_only": false,
+  "syscall_codec_checked": true,
+  "expected_simd": 1,
+  "user_ymm_state_checks": 8,
+  "inputs": {
+    "kernel": "2e8f2993295da228471a6e6849469b40be4513303f413029f62e565d44d4fc47",
+    "probe": "7bfca1848631c51ce4628f7718d8279a01c500e77678a47a8ceb307cd25999d9",
+    "zram": "815d9375cc430a9c802a5410231e04eadde00cec36ba92ddf479007a12cb2ea5",
+    "lz4hc": "90c5a519219cb1694ea47a0fc88e0d5cee3b35018ea8b3749d34cb88944a5b07"
+  },
+  "initramfs_sha256": "bda8db393fa96a766c9810bade9a03b8b9a0b4970f905e0c89e2a65704f90adb",
+  "disks_attached": false,
+  "network_attached": false
+}
