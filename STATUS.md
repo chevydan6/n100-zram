@@ -1,53 +1,58 @@
-# Status
+# Current status
 
-## Completed research checkpoint
+Experimental native-kernel LZ4 SIMD code and an optional `lz4-n100` ZRAM backend
+are implemented and compiled. Correctness passed in a diskless SMP VM; physical
+N100 user-space codec tests and stock lzo-rle pressure baselines also passed.
+**No native optimized-kernel ZRAM improvement is established.**
 
-- Dedicated branch `feature/n100-avx2-zram`, isolated from the active build queue.
-- SSH access to the physical Intel N100 verified; CPUID AVX2 and OS YMM support
-  verified by the native benchmark.
-- Existing custom kernel located, preserving the known-good stock default.
-- Trueno-ZRAM and Aprender source inspected, with versions recorded below.
-- Scalar/SSE2/AVX2/count-only variants built locally and on the N100.
-- Native initial correctness suite: 3,926 inputs, cross-variant round trips,
-  byte-identical compressed output, 20,000 malformed-input differential checks.
-- First native exploratory timing data preserved, including regressions.
-- Local and native guard-page suites each passed 31,660 checks.
+## Measured target and environment
 
-## Actual target state
+- Intel N100, four Gracemont cores, approximately 3.7 GiB usable RAM.
+- Fedora, active stock `7.0.10-201.fc44.x86_64`, Xfce desktop.
+- Current ZRAM uses lzo-rle; disk swap is secondary.
+- Custom `7.2.8-n100v1.fc44` is installed but not natively boot-validated.
+- Existing infrastructure also rebuilt 7.2.11; its audit records generic target
+  flags and no native tuning approval. None is assumed to be an active optimized
+  baseline. Preserve existing work and the stock default.
 
-Fedora kernel `7.0.10-201.fc44.x86_64` is active. The installed custom
-`7.2.8-n100v1.fc44` kernel has not been validated as booted. The current desktop
-is Xfce. ZRAM uses lzo-rle, approximately 3.7 GiB logical size, with disk swap as
-a secondary device. These differ from the mission's assumed active custom
-kernel, KDE desktop and LZ4 configuration.
+## Completed and preserved
 
-## Constraints and next actions
+- Inspected Trueno-ZRAM and Aprender; their AVX2 LZ4 wrappers call scalar code.
+- Added explicit SSE2/AVX2 comparisons and bounded copies with format identity.
+- Added default-off kernel integration, feature/FPU checks, scalar fallback and
+  per-stream workspace reuse. Dictionary/non-default acceleration stays scalar.
+- Compiled probe and complete ZRAM module against exact custom kernel headers.
+- Passed diskless SMP VM round trips, direct block I/O, YMM preservation, nested
+  FPU fallback and 2,048 malformed/truncated blocks. AVX2-disabled VM also passed.
+- Native experiment 003: 10 variants, three timing sessions; 79,150 guard checks,
+  20,000 malformed inputs and 12,000 independent cross-decoding cases passed.
+- Local ASan/UBSan passed the same 10-variant suites.
+- Three native 768 MiB pressure sessions passed on current lzo-rle ZRAM with
+  bounded cgroup limits and no recorded OOM kills.
+- Source, patches, tests and results are on `feature/n100-avx2-zram`.
 
-SSH is unprivileged; `sudo -n true` requires authentication. Administrator access
-is needed for module loading, controlled ZRAM devices and kernel installation.
-Recovery/automatic rollback is not yet verified. No experimental boot or active
-swap replacement has occurred. Meanwhile continue bounded native user-space
-experiments, sanitizer/boundary tests, source analysis and integration design.
+## Findings and current experiment
 
-Next: short-match dispatch, independent copy-width experiments, real executable
-page corpus, repeated controlled runs, paired uncertainty estimates, and an
-in-kernel benchmark that accounts for SIMD entry/exit overhead. No kernel or
-end-to-end ZRAM performance improvement is established.
+Direct vector match checks regress executable-page compression. Scalar-first
+checks recover that loss, but sparse-page regressions remain. SSE2 can outperform
+AVX2 on some decompression cases. Scalar unrolling is also workload-dependent.
+All results, including regressions, are retained in BENCHMARKS.md.
 
-## Kernel integration checkpoint
+Experiment 004 is comparing explicit `-mtune=gracemont` scheduling with generic
+scheduling for scalar, SSE2 and AVX2 code. It runs under a persistent systemd
+supervisor holding the existing project's native test lock. Earlier initial
+exploratory sessions did not hold that lock and retain that limitation.
 
-- Optional default-off `lz4-n100` backend patch generated and compiled, preserving
-  existing lz4 and dictionary/non-default-acceleration paths.
-- Vector code confined to separate objects; dispatch retains kernel no-SIMD flags.
-- Runtime feature/FPU checks and scalar fallback implemented.
-- Diskless KVM correctness test passed; no host disks/network attached.
-- Native kernel-compatible user-space code passed 63,320 guard checks and 9,600
-  independent cross-decoding cases, including four concurrent threads.
-- Three native timing sessions and paired exploratory summaries are recorded.
-- Existing infrastructure also has rebuilt 7.2.11 packages, but its records say
-  generic kernel target flags and no native/kernel tuning validation. These are
-  additional comparison candidates, not evidence of an optimized active kernel.
+## Actual external dependencies
 
-Physical N100 kernel loading/boot tests and end-to-end ZRAM measurements remain
-blocked on administrator access and verified recovery. VM success does not remove
-those requirements. Continue user-space optimization and offline validation.
+N100 SSH works as the normal user, but sudo requires authentication and root SSH
+public-key access is unavailable. Administrator access is required to load kernel
+modules, prepare controlled ZRAM devices and install/boot test kernels.
+The previous NanoKVM address is unreachable from the controller, and no current
+physical boot rollback/recovery path is verified. No experimental native boot,
+active swap replacement or unsupported privileged workaround has been attempted.
+
+After access and recovery are established: compare matched stock/custom kernels,
+measure FPU-inclusive native codec latency and direct ZRAM I/O, then run the
+bounded pressure workload on each candidate. Energy counters and extended native
+stability remain pending. A user-space or host-VM speedup is not acceptance.

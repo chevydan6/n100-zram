@@ -84,3 +84,57 @@ Local ASan/UBSan suites passed for seven intrinsic variants: 3,926 round-trip
 inputs, 20,000 malformed inputs, 55,405 guard checks and 8,400 independent liblz4
 cross-decoding cases across four threads. Native kernel-compatible code generation
 also passed, bringing native guard checks to 63,320 and interoperability to 9,600.
+
+## Experiment 003: longer guards and scalar unrolling
+
+[All 10-variant results](benchmarks/results/experiment-003/summary.md) and three raw
+CSV sessions are preserved. This run held the existing project's exclusive native
+suite lock. A 16-byte scalar guard gave Bash compression a paired time ratio of
+0.953, but sparse compression regressed to 1.070. A 32-byte guard gave ratios
+0.963 and 1.042 respectively. Scalar unrolling helped the long-period synthetic
+case (0.710) but regressed Bash compression (1.041). None removes the need to
+measure kernel state overhead and mixed real workloads. Do not select a variant
+solely from its best corpus.
+
+Native correctness for the 10 variants passed 3,926 inputs, 20,000 malformed
+inputs, 79,150 guard checks and 12,000 independent cross-decoding cases. Local
+ASan/UBSan also passed those suites for all 10 variants.
+
+## Active-kernel memory-pressure baseline
+
+[Recorded native results](benchmarks/results/stock-lzorle-pressure.json) contain
+three sessions on stock 7.0.10, current lzo-rle ZRAM. Each session allocates
+768 MiB of anonymous memory, fills each page with a deterministic mix of random
+and repeated words, and verifies every byte through three permuted whole-working-set
+passes. The cgroup resident ceiling is 384 MiB, reclaim threshold 320 MiB,
+swap ceiling 1 GiB and CPU quota one core. The program refuses to run without
+those observed memory limits. This creates controlled swap pressure on the
+installed 4 GB system while bounding the experiment. It does not claim a full
+physical-RAM saturation test or a codec-only measurement.
+
+All three sessions passed with zero recorded OOM kills. Global swap-in counts
+were 567,914–568,146 pages per session and swap-out counts 683,894–684,210 pages.
+ZRAM I/O counters corroborate that these transfers used ZRAM. Verification passes
+took 1.596–1.705 seconds; per-page comparison p50 was 3.812–4.255 microseconds and
+p95 was 5.071–5.286 microseconds. These page-comparison latencies include faults,
+copy/compare, reclaim, scheduling and cgroup throttling; they are not pure swap-in
+or decompression latencies. Global counters may include background activity.
+The resident ceiling also causes additional reclaim of the latency array/code.
+
+`benchmarks/pressure.c`, `tools/run-pressure.py` and `tools/pressure-remote.py`
+reproduce the bounded workload; the controller uses the shared native test lock.
+`benchmarks/summarize-pressure.py` reduces private snapshots to public metrics.
+No ZRAM algorithm, boot setting or installed package was changed.
+
+Configuration SHA-256:
+- Active stock config: `d29288290a10caff16ff4d40c1ebdc4617a22d08d040c80d95030bc26c481cf3`.
+- Installed custom 7.2.8 config: `534ad5c5f743cff0d32a5b178ccfeebe3d7722f1e3303e056fd4792054d62c37`.
+
+## Expanded kernel correctness
+
+The current patch was rebuilt on the Fedora development VM using the exact
+installed custom kernel-devel RPM. Its diskless test passed 2,048 differential
+malformed/truncated blocks with output canaries, nested kernel-FPU fallback,
+concurrent direct ZRAM readback and 2,048 syscall-level YMM state comparisons.
+The final module hash is recorded in `docs/validation/vm-005.json`. Host-VM timing
+is deliberately excluded from N100 performance results.

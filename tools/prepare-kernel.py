@@ -14,7 +14,7 @@ for name in ['lz4_compress.c','lz4_decompress.c']:
     symbols+=re.findall(r'EXPORT_SYMBOL\((\w+)\)',text)
     text=re.sub(r'EXPORT_SYMBOL\([^\n]+\);','',text)
     text=re.sub(r'MODULE_(?:LICENSE|DESCRIPTION|AUTHOR)\([^\n]*\);','',text)
-    (dest/name).write_text(text)
+    (dest/name).write_text(text.rstrip()+"\n")
 (dest/'rename.h').write_text(''.join(f'#define {s} n100v_{s}\n' for s in symbols))
 defs=(root/'build/avx2-guard/lz4defs.h').read_text()
 defs=defs.replace('#include <immintrin.h>','typedef char n100_v32 __attribute__((vector_size(32)));')

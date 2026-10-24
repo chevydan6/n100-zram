@@ -1,8 +1,9 @@
 # Experimental native ZRAM SIMD research for Intel N100
 
 This branch investigates native kernel LZ4 acceleration on Gracemont. It currently
-contains a user-space research harness built from the existing custom kernel's
-LZ4 sources, plus independently written SSE2/AVX2 comparisons and bounded copies.
+contains a user-space research harness, an optional kernel ZRAM backend and a
+namespaced kernel test module built from the existing custom kernel's LZ4 sources,
+plus independently written SSE2/AVX2 comparisons and bounded copies.
 It has **not** yet improved or replaced the running kernel ZRAM backend.
 
 Requirements: x86-64 Linux, Python 3, GCC, glibc development headers. AVX2 and OS
@@ -19,8 +20,8 @@ gcc -O2 -Wall -Wextra benchmarks/native.c -ldl -o build/native
 
 The benchmark verifies CPUID AVX2 and XGETBV, pins to one allowed CPU and shuffles
 variant order. The test scripts currently require AVX2-capable hardware too.
-Do not run this research harness as a kernel module. Kernel installation and
-integration instructions will follow verified recovery and kernel testing.
+Do not run this research harness as a kernel module. Kernel deployment instructions remain pending verified physical recovery and
+native kernel testing. Compile and diskless validation steps are provided below.
 
 See [STATUS](STATUS.md), [BENCHMARKS](BENCHMARKS.md),
 [ARCHITECTURE](ARCHITECTURE.md), [RECOVERY](RECOVERY.md), and [CHANGELOG](CHANGELOG.md).

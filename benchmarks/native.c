@@ -46,7 +46,7 @@ int main(int argc,char **argv) {
  struct perf_event_attr attr={.type=PERF_TYPE_HARDWARE,.size=sizeof(attr),.config=PERF_COUNT_HW_CPU_CYCLES,.exclude_kernel=1,.exclude_hv=1};
  cycles_fd=syscall(SYS_perf_event_open,&attr,0,-1,-1,0);
  if(cycles_fd<0)perror("User-only core cycle counter unavailable");
- const char *names[]={"scalar","sse","avx2","avx2-count","avx2-guard","sse-guard","avx2-copy"};
+ const char *names[]={"scalar","sse","avx2","avx2-count","avx2-guard","sse-guard","avx2-copy","avx2-guard16","avx2-guard32","scalar-unroll","scalar-gracemont","avx2-guard-gracemont","avx2-guard16-gracemont","sse-guard-gracemont"};
  enum {N=sizeof(names)/sizeof(names[0])};struct codec codecs[N];
  for(int i=0;i<N;i++){char path[4096];snprintf(path,sizeof(path),"%s/%s.so",argv[1],names[i]);
   codecs[i]=(struct codec){.name=names[i],.handle=dlopen(path,RTLD_NOW|RTLD_LOCAL)};

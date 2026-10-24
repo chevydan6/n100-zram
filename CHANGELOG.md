@@ -17,3 +17,13 @@
 - Added namespaced kernel probe, scalar fallback and optional ZRAM backend patch.
 - Compiled both modules and passed diskless VM ZRAM readback tests.
 - Fixed patch generation to filter existing build artifacts from source inputs.
+
+## State preservation and controlled native pressure baseline
+
+- Verified all 16 YMM registers across concurrent direct kernel ZRAM I/O in SMP VM.
+- Verified runtime scalar fallback with AVX2 disabled and inside an active FPU section.
+- Added 2,048 in-kernel malformed/truncated differential checks with canaries.
+- Added shared-lock supervision and three bounded native memory-pressure sessions.
+- Retained longer-guard and scalar-unroll regressions from experiment 003.
+- Started native Gracemont compiler-scheduling comparisons without changing ISA
+  support in the scalar baseline.

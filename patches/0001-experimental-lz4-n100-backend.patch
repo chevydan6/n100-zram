@@ -243,7 +243,7 @@
 +EXPORT_SYMBOL_GPL(n100_lz4_decompress);
 --- /dev/null
 +++ b/drivers/block/zram/n100_lz4_compress.c
-@@ -0,0 +1,939 @@
+@@ -0,0 +1,935 @@
 +/*
 + * LZ4 - Fast LZ compression algorithm
 + * Copyright (C) 2011 - 2016, Yann Collet.
@@ -1179,10 +1179,6 @@
 +		return result;
 +	}
 +}
-+
-+
-+
-+
 --- /dev/null
 +++ b/drivers/block/zram/n100_lz4_decompress.c
 @@ -0,0 +1,719 @@
@@ -2124,7 +2120,7 @@
 +
 +    if (pInLimit - pIn >= 8) {
 +        size_t diff = LZ4_read_ARCH(pMatch) ^ LZ4_read_ARCH(pIn);
-+        if (diff) return LZ4_NbCommonBytes(diff);
++        if (diff) return (unsigned)(pIn-pStart) + LZ4_NbCommonBytes(diff);
 +        pIn += 8; pMatch += 8;
 +    }
 +

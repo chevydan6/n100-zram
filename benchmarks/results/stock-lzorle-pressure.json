@@ -1,0 +1,320 @@
+[
+  {
+    "session": "session-0",
+    "kernel": "7.0.10-201.fc44.x86_64",
+    "algorithm": "[lzo-rle] lzo lz4 lz4hc zstd deflate 842",
+    "workload_mib": 768,
+    "resident_limit_mib": 384,
+    "memory_high_mib": 320,
+    "swap_limit_mib": 1024,
+    "cpu_quota_cores": 1,
+    "workload": [
+      {
+        "phase": "start",
+        "major_faults": 6,
+        "minor_faults": 439,
+        "user_us": 1036,
+        "system_us": 9197,
+        "max_rss_kib": 15104
+      },
+      {
+        "phase": "initial_fill",
+        "pages": 196608,
+        "elapsed_ns": 889733855
+      },
+      {
+        "phase": "filled",
+        "major_faults": 15,
+        "minor_faults": 197049,
+        "user_us": 230276,
+        "system_us": 664780,
+        "max_rss_kib": 328396
+      },
+      {
+        "phase": "verify",
+        "pass": 0,
+        "pages": 196608,
+        "elapsed_ns": 1615867612,
+        "page_compare_p50_ns": 4255,
+        "page_compare_p95_ns": 5286,
+        "page_compare_p99_ns": 8705
+      },
+      {
+        "phase": "verified",
+        "major_faults": 173536,
+        "minor_faults": 197818,
+        "user_us": 527943,
+        "system_us": 1993833,
+        "max_rss_kib": 328396
+      },
+      {
+        "phase": "verify",
+        "pass": 1,
+        "pages": 196608,
+        "elapsed_ns": 1692226585,
+        "page_compare_p50_ns": 3854,
+        "page_compare_p95_ns": 5251,
+        "page_compare_p99_ns": 9695
+      },
+      {
+        "phase": "verified",
+        "major_faults": 370572,
+        "minor_faults": 198202,
+        "user_us": 837763,
+        "system_us": 3379450,
+        "max_rss_kib": 328396
+      },
+      {
+        "phase": "verify",
+        "pass": 2,
+        "pages": 196608,
+        "elapsed_ns": 1676424627,
+        "page_compare_p50_ns": 3812,
+        "page_compare_p95_ns": 5172,
+        "page_compare_p99_ns": 9077
+      },
+      {
+        "phase": "verified",
+        "major_faults": 568023,
+        "minor_faults": 198202,
+        "user_us": 1138758,
+        "system_us": 4761153,
+        "max_rss_kib": 328396
+      },
+      {
+        "status": "passed"
+      }
+    ],
+    "vmstat_deltas": {
+      "pswpin": 568024,
+      "pswpout": 684210,
+      "pgmajfault": 568031,
+      "oom_kill": 0
+    },
+    "zram_io_deltas": {
+      "reads": 568024,
+      "read_sectors": 4544192,
+      "writes": 684136,
+      "write_sectors": 5473088
+    },
+    "provenance": {
+      "status": "passed",
+      "returncode": 0,
+      "binary_sha256": "8430a392d5097ac3ca6de4061f8fb5699a4355686a8f348029c2484570c532d5",
+      "source_sha256": "3555dc3cad12003ebe1a41e91e48394956fa37f7260afa568c53c936ac07ad8e",
+      "scope": "active stock kernel lzo-rle baseline; page-compare latency includes swap and cache effects, not pure codec timing"
+    }
+  },
+  {
+    "session": "session-1",
+    "kernel": "7.0.10-201.fc44.x86_64",
+    "algorithm": "[lzo-rle] lzo lz4 lz4hc zstd deflate 842",
+    "workload_mib": 768,
+    "resident_limit_mib": 384,
+    "memory_high_mib": 320,
+    "swap_limit_mib": 1024,
+    "cpu_quota_cores": 1,
+    "workload": [
+      {
+        "phase": "start",
+        "major_faults": 6,
+        "minor_faults": 439,
+        "user_us": 878,
+        "system_us": 6286,
+        "max_rss_kib": 15104
+      },
+      {
+        "phase": "initial_fill",
+        "pages": 196608,
+        "elapsed_ns": 920531705
+      },
+      {
+        "phase": "filled",
+        "major_faults": 16,
+        "minor_faults": 197050,
+        "user_us": 233574,
+        "system_us": 688788,
+        "max_rss_kib": 326608
+      },
+      {
+        "phase": "verify",
+        "pass": 0,
+        "pages": 196608,
+        "elapsed_ns": 1598184586,
+        "page_compare_p50_ns": 4158,
+        "page_compare_p95_ns": 5071,
+        "page_compare_p99_ns": 8602
+      },
+      {
+        "phase": "verified",
+        "major_faults": 173624,
+        "minor_faults": 197820,
+        "user_us": 557993,
+        "system_us": 1973213,
+        "max_rss_kib": 327504
+      },
+      {
+        "phase": "verify",
+        "pass": 1,
+        "pages": 196608,
+        "elapsed_ns": 1695236336,
+        "page_compare_p50_ns": 3843,
+        "page_compare_p95_ns": 5182,
+        "page_compare_p99_ns": 9631
+      },
+      {
+        "phase": "verified",
+        "major_faults": 370696,
+        "minor_faults": 198204,
+        "user_us": 863095,
+        "system_us": 3366533,
+        "max_rss_kib": 327572
+      },
+      {
+        "phase": "verify",
+        "pass": 2,
+        "pages": 196608,
+        "elapsed_ns": 1685575673,
+        "page_compare_p50_ns": 3818,
+        "page_compare_p95_ns": 5136,
+        "page_compare_p99_ns": 9047
+      },
+      {
+        "phase": "verified",
+        "major_faults": 568147,
+        "minor_faults": 198204,
+        "user_us": 1165178,
+        "system_us": 4755725,
+        "max_rss_kib": 327572
+      },
+      {
+        "status": "passed"
+      }
+    ],
+    "vmstat_deltas": {
+      "pswpin": 568146,
+      "pswpout": 684203,
+      "pgmajfault": 568153,
+      "oom_kill": 0
+    },
+    "zram_io_deltas": {
+      "reads": 568146,
+      "read_sectors": 4545168,
+      "writes": 684203,
+      "write_sectors": 5473624
+    },
+    "provenance": {
+      "status": "passed",
+      "returncode": 0,
+      "binary_sha256": "8430a392d5097ac3ca6de4061f8fb5699a4355686a8f348029c2484570c532d5",
+      "source_sha256": "3555dc3cad12003ebe1a41e91e48394956fa37f7260afa568c53c936ac07ad8e",
+      "scope": "active stock kernel lzo-rle baseline; page-compare latency includes swap and cache effects, not pure codec timing"
+    }
+  },
+  {
+    "session": "session-2",
+    "kernel": "7.0.10-201.fc44.x86_64",
+    "algorithm": "[lzo-rle] lzo lz4 lz4hc zstd deflate 842",
+    "workload_mib": 768,
+    "resident_limit_mib": 384,
+    "memory_high_mib": 320,
+    "swap_limit_mib": 1024,
+    "cpu_quota_cores": 1,
+    "workload": [
+      {
+        "phase": "start",
+        "major_faults": 6,
+        "minor_faults": 439,
+        "user_us": 4106,
+        "system_us": 5470,
+        "max_rss_kib": 15104
+      },
+      {
+        "phase": "initial_fill",
+        "pages": 196608,
+        "elapsed_ns": 913939235
+      },
+      {
+        "phase": "filled",
+        "major_faults": 17,
+        "minor_faults": 197050,
+        "user_us": 244302,
+        "system_us": 674192,
+        "max_rss_kib": 326800
+      },
+      {
+        "phase": "verify",
+        "pass": 0,
+        "pages": 196608,
+        "elapsed_ns": 1596177145,
+        "page_compare_p50_ns": 4153,
+        "page_compare_p95_ns": 5092,
+        "page_compare_p99_ns": 8649
+      },
+      {
+        "phase": "verified",
+        "major_faults": 173393,
+        "minor_faults": 197819,
+        "user_us": 534170,
+        "system_us": 1991628,
+        "max_rss_kib": 327824
+      },
+      {
+        "phase": "verify",
+        "pass": 1,
+        "pages": 196608,
+        "elapsed_ns": 1701138160,
+        "page_compare_p50_ns": 3873,
+        "page_compare_p95_ns": 5229,
+        "page_compare_p99_ns": 9619
+      },
+      {
+        "phase": "verified",
+        "major_faults": 370466,
+        "minor_faults": 198203,
+        "user_us": 834982,
+        "system_us": 3395377,
+        "max_rss_kib": 327824
+      },
+      {
+        "phase": "verify",
+        "pass": 2,
+        "pages": 196608,
+        "elapsed_ns": 1704514589,
+        "page_compare_p50_ns": 3859,
+        "page_compare_p95_ns": 5201,
+        "page_compare_p99_ns": 9177
+      },
+      {
+        "phase": "verified",
+        "major_faults": 567915,
+        "minor_faults": 198203,
+        "user_us": 1133731,
+        "system_us": 4806900,
+        "max_rss_kib": 327824
+      },
+      {
+        "status": "passed"
+      }
+    ],
+    "vmstat_deltas": {
+      "pswpin": 567914,
+      "pswpout": 683894,
+      "pgmajfault": 567920,
+      "oom_kill": 0
+    },
+    "zram_io_deltas": {
+      "reads": 567914,
+      "read_sectors": 4543312,
+      "writes": 683894,
+      "write_sectors": 5471152
+    },
+    "provenance": {
+      "status": "passed",
+      "returncode": 0,
+      "binary_sha256": "8430a392d5097ac3ca6de4061f8fb5699a4355686a8f348029c2484570c532d5",
+      "source_sha256": "3555dc3cad12003ebe1a41e91e48394956fa37f7260afa568c53c936ac07ad8e",
+      "scope": "active stock kernel lzo-rle baseline; page-compare latency includes swap and cache effects, not pure codec timing"
+    }
+  }
+]

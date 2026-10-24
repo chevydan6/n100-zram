@@ -5,7 +5,9 @@
 #include <linux/slab.h>
 #include <linux/ktime.h>
 #include <linux/sched.h>
+#include <linux/string.h>
 #include "dispatch.h"
+#include <asm/fpu/api.h>
 static unsigned int iterations=1024;
 module_param(iterations,uint,0444);
 static int __init n100_probe_init(void)
@@ -15,7 +17,7 @@ static int __init n100_probe_init(void)
  u64 start,elapsed;
  if (iterations<1 || iterations>8192)return -EINVAL;
  src=kmalloc(4096,GFP_KERNEL);packed=kmalloc(4352,GFP_KERNEL);
- reference=kmalloc(4352,GFP_KERNEL);decoded=kmalloc(4096,GFP_KERNEL);
+ reference=kmalloc(4352,GFP_KERNEL);decoded=kmalloc(4352,GFP_KERNEL);
  work=kmalloc(LZ4_MEM_COMPRESS,GFP_KERNEL);
  if(!src||!packed||!reference||!decoded||!work)goto out;
  pr_info("n100-lz4-probe: simd=%d, per-page FPU bracketing, iterations=%u\n",n100_lz4_simd_available(),iterations);
@@ -30,6 +32,16 @@ static int __init n100_probe_init(void)
   if(size<=0||size!=refsize||memcmp(packed,reference,size))goto out;
   if(n100_lz4_decompress(packed,decoded,size,4096)!=4096||memcmp(src,decoded,4096))goto out;
   if(LZ4_decompress_safe(packed,decoded,size,4096)!=4096||memcmp(src,decoded,4096))goto out;
+  /* An already active kernel FPU section must choose scalar fallback. */
+  if (n100_lz4_simd_available()) {
+   int nested_comp,nested_dec; bool usable;
+   kernel_fpu_begin();
+   usable=irq_fpu_usable();
+   nested_comp=n100_lz4_compress(src,packed,4096,4352,work);
+   nested_dec=n100_lz4_decompress(packed,decoded,size,4096);
+   kernel_fpu_end();
+   if(usable||nested_comp!=size||nested_dec!=4096||memcmp(src,decoded,4096)){ret=-EINVAL;goto out;}
+  }
   for(n=0;n<4;n++){
    unsigned int i;start=ktime_get_ns();
    for(i=0;i<iterations;i++){
@@ -44,6 +56,23 @@ static int __init n100_probe_init(void)
    pr_info("n100-lz4-probe: pattern=%d path=%d total_ns=%llu pages=%u compressed=%d\n",kind,n,elapsed,iterations,size);
   }
  }
+ /* Differential malformed and truncated blocks, including output bounds. */
+ memcpy(src,packed,size);
+ for(n=0;n<2048;n++){
+  int bytes=1+(n%511),capacity=(n%7)?4096:(n%257),scalar,vector;
+  if((n&3)==0){bytes=n%size;memcpy(packed,src,bytes);}
+  else for(p=0;p<bytes;p++){
+   random^=random<<13;random^=random>>17;random^=random<<5;
+   packed[p]=random;
+  }
+  memset(reference,0xa5,4352);memset(decoded,0xa5,4352);
+  scalar=LZ4_decompress_safe(packed,reference,bytes,capacity);
+  vector=n100_lz4_decompress(packed,decoded,bytes,capacity);
+  if((scalar<0)!=(vector<0) || (scalar>=0 && (scalar!=vector || memcmp(reference,decoded,scalar))) ||
+     memchr_inv(reference+capacity,0xa5,4352-capacity) ||
+     memchr_inv(decoded+capacity,0xa5,4352-capacity)) {ret=-EINVAL;goto out;}
+ }
+ pr_info("n100-lz4-probe: malformed/truncated differential checks passed: 2048\n");
  ret=0;
 out:
  kfree(work);kfree(decoded);kfree(reference);kfree(packed);kfree(src);

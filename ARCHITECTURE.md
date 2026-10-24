@@ -71,3 +71,20 @@ describes Gracemont's native 128-bit vector data paths and splitting of most
 256-bit operations into 128-bit micro-operations. This motivates measuring SSE2
 and AVX2 separately; it does not predict which complete codec wins. The N100
 benchmarks, rather than vector width alone, determine dispatch choices.
+
+## State preservation and unsupported contexts
+
+The kernel probe also enters an outer kernel FPU section before calling each
+wrapper. `irq_fpu_usable()` must then reject nested SIMD use, and both operations
+must still round-trip correctly through scalar fallback. The SMP diskless fixture
+runs four processes doing direct ZRAM writes and reads on disjoint pages. A raw
+syscall helper fills all 16 YMM registers with sentinels, performs pwrite64 or
+pread64, and stores the register contents immediately after returning from the
+kernel. This checks user SIMD state across compression, decompression and task
+switches. The helper has a baseline main function and a separately targeted AVX2
+function, so unsupported CPUs can skip the register test safely.
+
+The same kernel and modules also passed with guest AVX2 disabled; the optional
+backend continued using scalar functions. VM success is correctness evidence on
+the host CPU only. Physical N100 stress, interrupts, suspend/resume, long-running
+memory pressure and boot recovery remain pending.
