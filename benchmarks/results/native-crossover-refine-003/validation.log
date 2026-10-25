@@ -1,0 +1,3 @@
+CPU 0; CPUID AVX2 and OS YMM verified; XCR0=0:207; user-space only
+Cross-variant byte identity and round trips passed: 27 size/corpus combinations, 128 blocks each
+bytes,corpus,round,variant,operation,ns_per_op,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction

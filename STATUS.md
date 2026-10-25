@@ -161,3 +161,9 @@ results before pushing; interruptions retain raw checkpoints outside Git.
 Three matched-control user-space sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-matched-table-user-001/summary.md](benchmarks/results/native-matched-table-user-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+### Native experiment collection
+
+Three native user-space sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-crossover-refine-003/summary.md](benchmarks/results/native-crossover-refine-003/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
