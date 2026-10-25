@@ -262,3 +262,9 @@ malformed inputs, cross-policy decoding, concurrency, vector-edge tests and
 ASan/UBSan passed locally. The next native screen measures 27 variants and
 12 corpora, retaining all previous controls and a new false-positive stress case.
 No policy is selected and no kernel codec is replaced.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-guarded-trial-001/summary.md](benchmarks/results/native-gzram-guarded-trial-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.

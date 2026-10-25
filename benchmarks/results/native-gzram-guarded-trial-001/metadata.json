@@ -1,0 +1,190 @@
+{
+  "variant_names": [
+    "lz4-small-scalar",
+    "gz-avx2-1024",
+    "gz-avx2-4096",
+    "gz-period-avx2-4096",
+    "gz-filter-avx2-1024",
+    "gz-filter-avx2-4096",
+    "gz-fast-scalar-1024",
+    "ghy-trial-scalar-1024",
+    "ghy-trial-scalar-4096",
+    "ghy-trial-avx2-1024",
+    "ghy-trial-avx2-4096",
+    "ghy-sample-scalar-1024",
+    "ghy-sample-scalar-4096",
+    "ghy-sample-avx2-1024",
+    "ghy-sample-avx2-4096",
+    "ghy-recurrence-scalar-1024",
+    "ghy-recurrence-scalar-4096",
+    "ghy-recurrence-avx2-1024",
+    "ghy-recurrence-avx2-4096",
+    "ghy-guard16-scalar-1024",
+    "ghy-guard16-scalar-4096",
+    "ghy-guard16-avx2-1024",
+    "ghy-guard16-avx2-4096",
+    "ghy-guard32-scalar-1024",
+    "ghy-guard32-scalar-4096",
+    "ghy-guard32-avx2-1024",
+    "ghy-guard32-avx2-4096"
+  ],
+  "corpora": [
+    "random",
+    "sparse-words",
+    "zero",
+    "repeat8",
+    "period127",
+    "halfzero",
+    "word-tail64",
+    "repeat32",
+    "bash-elf",
+    "period127-zero-tail",
+    "period509-zero-tail",
+    "zerohead-random"
+  ],
+  "screen": true,
+  "cpu_model": "Intel(R) N100",
+  "runner_sha256": "49d3e38314342b2b09e4b0bbfd4813503da63f6259a1665451fb6ab2683b4bc7",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "binary_sha256": "dfddbae02d028ca181a6c0b5a7baa7001dc845efe0a5e073c68df048069e1f82",
+  "manifest": {
+    "hybrid_candidates": [
+      "trial",
+      "sample",
+      "recurrence",
+      "guard16",
+      "guard32"
+    ],
+    "period_filter_candidate": true,
+    "variable_period_candidate": true,
+    "block_unpack_candidate": true,
+    "fast_scalar_candidate": true,
+    "candidate_extra_flags": {
+      "fast_scalar": [
+        "-DGZRAM_SCALAR_FAST=1"
+      ],
+      "block_unpack": [
+        "-DGZRAM_BLOCK_UNPACK=1"
+      ],
+      "variable_period": [
+        "-DGZRAM_VARIABLE_PERIOD=1",
+        "-DGZRAM_SCALAR_FAST=1"
+      ],
+      "period_filter": [
+        "-DGZRAM_VARIABLE_PERIOD=1",
+        "-DGZRAM_PERIOD_FILTER=1",
+        "-DGZRAM_SCALAR_FAST=1"
+      ],
+      "hybrid_base": [
+        "-DGZRAM_SCALAR_FAST=1",
+        "-Dgzram_encode_scalar=gzram_base_encode_scalar",
+        "-Dgzram_encode_avx2=gzram_base_encode_avx2",
+        "-Dgzram_decode_scalar=gzram_base_decode_scalar",
+        "-Dgzram_decode_avx2=gzram_base_decode_avx2"
+      ],
+      "hybrid_sample": [
+        "-DGZRAM_HYBRID_SAMPLE=1"
+      ],
+      "hybrid_recurrence": [
+        "-DGZRAM_HYBRID_SAMPLE=1",
+        "-DGZRAM_HYBRID_RECURRENCE=1"
+      ],
+      "hybrid_guard16": [
+        "-DGZRAM_HYBRID_GUARD=16"
+      ],
+      "hybrid_guard32": [
+        "-DGZRAM_HYBRID_GUARD=32"
+      ]
+    },
+    "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+    "flags": [
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx"
+    ],
+    "source_sha256": {
+      "gzram/src/gzram.c": "be946a07d73c7d124607031acaddc202965017eb12055c6de9ba57465a092832",
+      "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+      "gzram/src/hybrid.c": "df2a65b93823aa6e747b88ca23663fd51c75c65f1b11b011ffbf3887686b0e9c",
+      "gzram/tools/build.py": "7e02073378b4755ac50ed9706a65842291b42b77e1e253e4ce9f317b39b980fb"
+    },
+    "artifacts": {
+      "libgzram.so": "1c02fb2eb8637b681ebbf769bf258c431b50a36a5e3bd32b6996d14c9e18fdb7",
+      "libgzram-fast.so": "1277bc94c8bd013fd0cba6fe8e8dff1d521130a81c61a7f31c31f76f62852e52",
+      "libgzram-block.so": "cd1afd54d6a46cdf556975592c0c15af0f1af9d4461fbfab167b620526ccc478",
+      "libgzram-period.so": "3f82757e401b3c8ef7fd23f2eda53afbf482e646807a4376e026fca28d5b3bea",
+      "libgzram-filter.so": "5adad04664471dd0cd75c0fde229e84d11d9e39249f1edd38fe9fe34a54f1728",
+      "lz4-small.so": "0457277908bc66cdc7fdd7cda13e04d01a399303ad355ddb1bf112a5c7ff1dcb",
+      "libgzram-hybrid-trial.so": "8c6862fd4388830ad84c22b594a0ea4e77c9646dcd56c209d9c41ed1c67f21a8",
+      "libgzram-hybrid-sample.so": "2fc1476e5a042f0704c3659cb43344603432e7d4e06211e3bbc0855fc5f32436",
+      "libgzram-hybrid-recurrence.so": "13622d47b672ea213dd216a054c543f894c28f30b55e1eb6fbeeccb1fcf32488",
+      "libgzram-hybrid-guard16.so": "7135ff721e4bb1dee2221e12a2229419510737d0da5fccb2b13df33552198d0e",
+      "libgzram-hybrid-guard32.so": "f8ee00a1aa3553f3c4951459e17d4ff5fa5123e40501832cf6eaba6e3a067132"
+    }
+  },
+  "libraries": {
+    "libgzram.so": "1c02fb2eb8637b681ebbf769bf258c431b50a36a5e3bd32b6996d14c9e18fdb7",
+    "libgzram-fast.so": "1277bc94c8bd013fd0cba6fe8e8dff1d521130a81c61a7f31c31f76f62852e52",
+    "libgzram-block.so": "cd1afd54d6a46cdf556975592c0c15af0f1af9d4461fbfab167b620526ccc478",
+    "libgzram-period.so": "3f82757e401b3c8ef7fd23f2eda53afbf482e646807a4376e026fca28d5b3bea",
+    "libgzram-filter.so": "5adad04664471dd0cd75c0fde229e84d11d9e39249f1edd38fe9fe34a54f1728",
+    "lz4-small.so": "0457277908bc66cdc7fdd7cda13e04d01a399303ad355ddb1bf112a5c7ff1dcb",
+    "libgzram-hybrid-trial.so": "8c6862fd4388830ad84c22b594a0ea4e77c9646dcd56c209d9c41ed1c67f21a8",
+    "libgzram-hybrid-sample.so": "2fc1476e5a042f0704c3659cb43344603432e7d4e06211e3bbc0855fc5f32436",
+    "libgzram-hybrid-recurrence.so": "13622d47b672ea213dd216a054c543f894c28f30b55e1eb6fbeeccb1fcf32488",
+    "libgzram-hybrid-guard16.so": "7135ff721e4bb1dee2221e12a2229419510737d0da5fccb2b13df33552198d0e",
+    "libgzram-hybrid-guard32.so": "f8ee00a1aa3553f3c4951459e17d4ff5fa5123e40501832cf6eaba6e3a067132"
+  },
+  "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+  "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3369997",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3227882",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3361959",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "26850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "37000",
+    "/sys/class/thermal/thermal_zone3/temp": "28850",
+    "/sys/class/thermal/thermal_zone1/temp": "32850",
+    "/sys/class/thermal/thermal_zone6/temp": "36000",
+    "/sys/class/thermal/thermal_zone4/temp": "36000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3098606",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3099762",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2988310",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3108413",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "36850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "52000",
+    "/sys/class/thermal/thermal_zone3/temp": "42850",
+    "/sys/class/thermal/thermal_zone1/temp": "47850",
+    "/sys/class/thermal/thermal_zone6/temp": "52000",
+    "/sys/class/thermal/thermal_zone4/temp": "52000"
+  },
+  "all_pmu_batches_fully_scheduled": true,
+  "package_energy_available_all_rows": true
+}
