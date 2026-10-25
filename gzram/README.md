@@ -82,3 +82,12 @@ performance is not yet measured. It retains the faster scalar scanner and tests
 AVX2 encoding with the existing per-group decoder. All libraries together produce
 41 benchmark variants, preserving previous controls and losses. No kernel backend
 or preferred block size is selected.
+
+New whole-page GHY1 hybrid prototypes preserve fast GZRAM and add scalar LZ4
+backreferences/raw fallback. Trial, sampled-density and recurrence-aware policies
+are independent libraries with compatible tagged decoding. See docs/HYBRID.md.
+Correctness and sanitizers pass; no native performance conclusion is accepted yet.
+The initial native --screen cohort contains 19 explicit control/hybrid variants,
+11 corpora including repeated-prefix/zero-tail pages, and two GZRAM block sizes.
+The full 105-variant cohort remains available. Raw CSVs include actual hybrid
+mode counts; unavailable counts for other codecs are -1, not zero.

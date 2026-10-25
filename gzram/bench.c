@@ -17,7 +17,7 @@
 #define BOUND 4352
 #define OPS 32768
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
-static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail"};
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail"};
 static int sizes[PAGES],fds[4]={-1,-1,-1,-1};static uint64_t seed=100,energy_range;
 static uint32_t rnd(void){seed^=seed<<13;seed^=seed>>7;seed^=seed<<17;return (uint32_t)seed;}
 static uint64_t now(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC_RAW,&t);return (uint64_t)t.tv_sec*1000000000+t.tv_nsec;}
@@ -47,6 +47,14 @@ static lz_enc baseline_enc;static lz_dec baseline_dec;static _Alignas(8) unsigne
 static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_enc(input[p],dst,SIZE,BOUND,workspace):v->comp(input[p],SIZE,dst,BOUND,v->log);}
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
 static void fill(int kind){
+ if(kind==10){
+  for(unsigned p=0;p<PAGES;p++){
+   unsigned char pattern[509];uint32_t r=100+p;
+   for(unsigned j=0;j<509;j++){r^=r<<13;r^=r>>17;r^=r<<5;pattern[j]=(unsigned char)r;}
+   for(unsigned i=0;i<SIZE;i++)input[p][i]=i<2048?pattern[i%509]:0;
+  }
+  return;
+ }
  if(kind==9){for(unsigned p=0;p<PAGES;p++)for(unsigned i=0;i<SIZE;i++)input[p][i]=i<2048?(unsigned char)((i%127)*37+p):0;return;}
 
  if(kind==8){FILE*f=fopen("/usr/bin/bash","rb");if(!f||fread(input,1,sizeof(input),f)!=sizeof(input)){fprintf(stderr,"Bash fixture unavailable\n");exit(4);}fclose(f);return;}
@@ -115,16 +123,16 @@ int main(int argc,char **argv){
  setup_perf();if(!read_counter("/sys/class/powercap/intel-rapl:0/max_energy_range_uj",&energy_range))energy_range=0;
  uint64_t initial_energy;if(!energy(&initial_energy))energy_range=0;
  fprintf(stderr,"CPU %d; AVX2 verified; RAPL %s; userspace codec screening, kernel SIMD overhead excluded\n",cpu,energy_range?"available":"unavailable");
- puts("corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page");
+ puts("corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages");
  for(unsigned kind=0;kind<sizeof(corpora)/sizeof(corpora[0]);kind++){
   fill(kind);
   for(int round=-2;round<9;round++){
    int order[105];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=rnd()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}
    if(validate&&round!=-2)continue;
    for(int k=0;k<n;k++){
-    struct codec *v=&variants[order[k]];long total=0;
+    struct codec *v=&variants[order[k]];long total=0;int hybrid=!strncmp(v->name,"ghy-",4),mode_counts[3]={0};
     for(unsigned p=0;p<PAGES;p++){
-     sizes[p]=encode(v,p,packed[p]);if(sizes[p]<=0||sizes[p]>BOUND)return 6;total+=sizes[p];memcpy(expected[p],packed[p],(size_t)sizes[p]);
+     sizes[p]=encode(v,p,packed[p]);if(sizes[p]<=0||sizes[p]>BOUND)return 6;total+=sizes[p];if(hybrid){if(packed[p][6]>2)return 13;mode_counts[packed[p][6]]++;}memcpy(expected[p],packed[p],(size_t)sizes[p]);
      if(decode(v,p)!=SIZE||memcmp(input[p],output,SIZE))return 7;
     }
     if(validate)continue;
@@ -135,7 +143,7 @@ int main(int argc,char **argv){
      if(operation){if(memcmp(output,input[(OPS-1)%PAGES],SIZE))return 9;}
      else for(unsigned p=0;p<PAGES;p++)if(memcmp(packed[p],expected[p],(size_t)sizes[p]))return 10;
      double uj=rapl?(double)((ea+energy_range-eb)%energy_range)/OPS:-1;
-     if(round>=0)printf("%s,%d,%s,%s,%.3f,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f\n",corpora[kind],round,v->name,operation?"decompress":"compress",(double)elapsed/OPS,(double)total/PAGES,counts[0],counts[1],counts[2],counts[3],fraction,uj);
+     if(round>=0)printf("%s,%d,%s,%s,%.3f,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f,%d,%d,%d\n",corpora[kind],round,v->name,operation?"decompress":"compress",(double)elapsed/OPS,(double)total/PAGES,counts[0],counts[1],counts[2],counts[3],fraction,uj,hybrid?mode_counts[0]:-1,hybrid?mode_counts[1]:-1,hybrid?mode_counts[2]:-1);
     }
     fflush(stdout);
    }

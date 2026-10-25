@@ -26,7 +26,9 @@ Policies are separate libraries, with identical decoding semantics:
 * sample: sample up to 64 evenly spaced four-byte words. At least one-eighth
   zero samples selects the GZRAM trial; otherwise go directly to LZ4/raw.
 * recurrence: adds a bounded repeated-nonzero-prefix check to sample selection,
-  routing matching pages to LZ4. This is classification, not proof of repetition.
+  routing matching pages to LZ4. The bounded search covers candidate distances
+  1..1024; a repeated 32-byte prefix routes common fixed repeats to GZRAM early.
+  This is classification, not proof of repetition.
 
 These are hypotheses, not established winners. Zero density alone can select
 GZRAM poorly for a periodic prefix followed by zeros. Tests explicitly include
@@ -47,7 +49,7 @@ Guarded capacities, malformed/mutated inputs, an independent wire oracle,
 cross-policy decoding, four-thread round trips and ASan/UBSan passed locally.
 This is correctness evidence, not N100 performance. The native --screen option
 records 19 explicit variants at 1024/4096-byte GZRAM block sizes, including scalar
-LZ4 and original/filtered/repeated-pattern controls. All ten initial corpora and
+LZ4 and original/filtered/repeated-pattern controls. All eleven corpora, including 127/509-byte repeating prefixes with zero tails, and
 all recorded rounds are retained. Full all-block testing remains available.
 The benchmark reports its own variant/corpus lists into metadata; historic
 exporters still preserve old datasets. No preferred policy is selected yet.

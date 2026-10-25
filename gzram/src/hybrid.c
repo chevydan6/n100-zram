@@ -28,6 +28,9 @@ __attribute__((noinline)) static int lz4_encode(const void *src,void *dst,int n,
 static int select_gzram(const uint8_t *src,size_t n)
 {
 #if defined(GZRAM_HYBRID_SAMPLE)
+#if defined(GZRAM_HYBRID_RECURRENCE)
+ if(n>=64&&!memcmp(src,src+32,32))return 1;
+#endif
  unsigned samples=n/4<64?(unsigned)(n/4):64;
  if(!samples)return 0;
  size_t stride=n/samples;unsigned zero=0;
@@ -37,7 +40,7 @@ static int select_gzram(const uint8_t *src,size_t n)
   * memmem never proves a repeated block; exact codec decoding remains mandatory. */
  if(zero*8>=samples&&n>=16){
   uint64_t first;memcpy(&first,src,8);
-  size_t span=n-1<262?n-1:262;
+  size_t span=n-1<1031?n-1:1031;
   if(first&&memmem(src+1,span,src,8))return 0;
  }
 #endif

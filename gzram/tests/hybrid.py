@@ -34,7 +34,8 @@ for size in list(range(0,65))+[127,128,129,255,256,257,511,512,513,1023,1024,102
 for _ in range(100):
  n=rng.randrange(4097);inputs.append(bytes(0 if rng.randrange(4) else rng.randrange(256) for _ in range(n)))
 pattern=bytes((i*37+11)%256 for i in range(127));period=(pattern*33)[:4096]
-inputs += [period,period[:2048]+bytes(2048),rng.randbytes(2048)+bytes(2048),struct.pack('<I',1)+bytes(4092),Path('/usr/bin/bash').read_bytes()[4096:8192]]
+long_pattern=rng.randbytes(509);long_period=(long_pattern*9)[:4096]
+inputs += [long_period[:2048]+bytes(2048),period,period[:2048]+bytes(2048),rng.randbytes(2048)+bytes(2048),struct.pack('<I',1)+bytes(4092),Path('/usr/bin/bash').read_bytes()[4096:8192]]
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))
@@ -56,9 +57,9 @@ for index,data in enumerate(inputs):
  src.close()
 assert modes=={0,1,2},modes
 if 'recurrence' in a.library.name:
- for data in [period,period[:2048]+bytes(2048)]:
+ for data in [period,period[:2048]+bytes(2048),long_period[:2048]+bytes(2048)]:
   out=C.create_string_buffer(4104);n=encoders[1](data,4096,out,4104,10)
-  assert n<256 and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
+  assert n<(768 if data==long_period[:2048]+bytes(2048) else 256) and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
 
 # Outer/nested length disagreement, reserved modes, short LZ4 and empty-frame cases.
 frames += [b'GHY1'+struct.pack('<HBB',32,1,0)+b'GZR1'+struct.pack('<HBB',64,6,0)+bytes([1]),b'GHY1'+struct.pack('<HBB',4096,2,0)+b'\0',b'GHY1'+struct.pack('<HBB',0,1,0)+b'GZR1'+bytes(4)]
