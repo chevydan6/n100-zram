@@ -403,3 +403,20 @@ confounding and worse executable compression ratio (about +0.24%, +0.81%, +1.95%
 compressed bytes for 8/4/2 KiB arrays). It establishes no ZRAM gain. A second run
 uses byte-identical table14 private controls to isolate this confounder. These
 user-space results exclude kernel FPU overhead and energy was not recorded.
+
+## Native scalar small-table kernel I/O
+
+[Five-trial native comparison](benchmarks/results/native-scalar-small12-io-002/summary.md)
+uses the VM-validated default-off 4 KiB-table kernel backend. Paired random-write
+IOPS improved 8.20% (five-trial bootstrap interval +4.98% to +9.10%); whole-job CPU
+package energy per I/O decreased 9.70% (-11.64% to -6.47%). Reads showed no clear
+change. Every trial and write profile passed full CRC32C verification, and the
+installed stock module/build ID and primary lzo-rle swap were restored.
+
+This is one synthetic 64 MiB / nominal 50%-compressible block-I/O experiment,
+not application responsiveness or broad workload acceptance. Whole-job energy
+includes startup/background activity. LZO remained faster in this fixture.
+Allocated ZRAM memory was unchanged (34.16 MiB median); compressed bytes changed
+slightly. Matching compiler/control variants and memory-pressure tests remain
+necessary before assigning all improvement to the table-size change or accepting
+a new default. Raw CPU counters, sanitized telemetry and all trials are retained.
