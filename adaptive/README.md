@@ -32,3 +32,19 @@ verified recovery path. run-components.py unloads only its own probe afterward.
 These three primitives are not all compression/decompression operations. They do
 not yet establish hash-search, format parsing, global classification, whole-codec
 or end-to-end ZRAM thresholds. No adaptive dispatch policy is selected from them.
+
+## First physical N100 component results
+
+All three sessions and 14,040 rows are retained in
+../benchmarks/results/native-components-001, including user/kernel PMU and direct
+RAPL data. Every PMU group was fully scheduled, every energy row was measured,
+and the owned probe unloaded successfully after validation.
+
+For the YMM-dirty, equal-input 4096-byte fixture (syscall/mutex/loop included):
+scalar vs AVX2 match comparison was approximately 470 vs 768 ns; literal copy
+309 vs 721 ns; repeated-8 copy 316 vs 706 ns. The same scalar body with FPU state
+bracketing added approximately 430 ns. At 16 KiB, AVX2 comparison still lost by
+about 5%; at 32 KiB it won by about 22%; at 64 KiB about 35%. These are specific
+long-equal-comparison fixtures, not a universal crossover. Early mismatches and
+copying require separate analysis; larger diagnostics do not justify page batching.
+No adaptive kernel dispatch is selected from these component results alone.
