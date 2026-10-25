@@ -10,4 +10,6 @@ struct n100_component_config { __u32 length,operation,pattern,reserved; };
 #define N100_COMPONENT_RUN_FPU_SCALAR _IO('Q',83)
 #define N100_COMPONENT_RUN_SSE _IO('Q',84)
 #define N100_COMPONENT_RUN_AVX2 _IO('Q',85)
+/* New command only: reserved is the independent-operation count (1..16). */
+#define N100_COMPONENT_CONFIG_BATCH _IOW('Q',86,struct n100_component_config)
 #endif

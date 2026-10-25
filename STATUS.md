@@ -173,3 +173,13 @@ exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
 Three native experimental sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-components-001/summary.md](benchmarks/results/native-components-001/summary.md). Measurement scope is documented in the report; component and codec results
 establish no end-to-end ZRAM improvement.
+
+## Explicit cost accounting and independent-operation batching
+
+Codec search/dispatch overhead and kernel SIMD state handling are reported as
+separate measurement scopes in adaptive/COST-ACCOUNTING.md. The approximately
+430 ns historical probe delta is not assumed constant or added to userspace
+results as a claimed kernel measurement. A bounded batching probe preserves
+legacy configuration and tests 1/2/4/8/16 independent 4 KiB operations per FPU
+entry. It passed diskless VM bounds/canary/fallback/register validation; native
+measurements are the next step. This does not implement batching in ZRAM.

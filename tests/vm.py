@@ -5,7 +5,7 @@ import argparse,re,stat,subprocess,json,hashlib,random,shutil
 from pathlib import Path
 p=argparse.ArgumentParser()
 for name in ['kernel','probe','zram','lz4hc','output']:p.add_argument('--'+name,type=Path,required=True)
-p.add_argument('--component',type=Path);p.add_argument('--component-only',action='store_true');p.add_argument('--component-helper',type=Path)
+p.add_argument('--component-batches',action='store_true');p.add_argument('--component',type=Path);p.add_argument('--component-only',action='store_true');p.add_argument('--component-helper',type=Path)
 p.add_argument('--probe-only',action='store_true')
 p.add_argument('--lz4',type=Path)
 p.add_argument('--algorithms',nargs='+',default=['lz4','lz4-n100'])
@@ -87,6 +87,7 @@ fi
 rmmod n100_lz4_probe || fail''')
 if a.component:
  component='insmod /component.ko || fail\n/component-helper /dev/n100-component-bench --validate-only || fail\nrmmod n100_component_probe || fail\necho N100_COMPONENT_VM_PASS\n'
+ if a.component_batches:component=component.replace('rmmod n100_component_probe', 'for batch in 1 2 4 8 16; do N100_COMPONENT_BATCH=$batch N100_COMPONENT_PAGE_ONLY=1 /component-helper /dev/n100-component-bench --validate-only || fail; done\nrmmod n100_component_probe')
  if a.component_only:
   init=init[:init.index('insmod /probe.ko')]+component+'echo N100_ZRAM_VM_PASS\npoweroff -f\n'
  else:init=init.replace('insmod /lz4hc.ko',component+'insmod /lz4hc.ko')
@@ -100,6 +101,6 @@ passed=(a.component_only or not a.expect_simd or 'KERNEL_CODEC_SYSCALL_PASS' in 
 record={'status':'passed' if passed else 'failed','scope':'diskless VM correctness only; no native N100 performance or recovery claim','exit_code':result.returncode,'probe_only':a.probe_only,'algorithms_checked':[] if a.probe_only or a.component_only else a.algorithms,'component_checked':bool(a.component),'component_sha256':hashlib.sha256(a.component.read_bytes()).hexdigest() if a.component else None,'syscall_codec_checked':'KERNEL_CODEC_SYSCALL_PASS' in result.stdout,'expected_simd':a.expect_simd,'user_ymm_state_checks':result.stdout.count('FPU_STATE_PASS'),'inputs':{name:hashlib.sha256(getattr(a,name).read_bytes()).hexdigest() for name in ['kernel','probe','zram','lz4hc']},'initramfs_sha256':hashlib.sha256(archive).hexdigest(),'disks_attached':False,'network_attached':False}
 if a.component:
  match=re.search(r'COMPONENT_VALIDATION_PASS configurations=(\d+)',result.stdout)
- record['component_configurations']=int(match[1]) if match else 0
+ record['component_configurations']=sum(int(x) for x in re.findall(r'COMPONENT_VALIDATION_PASS configurations=(\d+)',result.stdout))
  record['component_ymm_sentinel_calls']=record['component_configurations']*4
 (a.output/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record));raise SystemExit(0 if passed else 1)

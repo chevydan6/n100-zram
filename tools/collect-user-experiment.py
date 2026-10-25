@@ -3,7 +3,7 @@
 """Bounded persistent collection of one completed native user-space experiment."""
 import argparse,json,shlex,subprocess,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--host',required=True);p.add_argument('--unit',required=True);p.add_argument('--remote',required=True);p.add_argument('--private',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--publish',action='store_true');p.add_argument('--kind',choices=['small-table','crossover','components'],default='small-table');a=p.parse_args();branch='feature/n100-adaptive-simd-zram' if a.kind in ['crossover','components'] else 'feature/n100-avx2-zram'
+p=argparse.ArgumentParser();p.add_argument('--host',required=True);p.add_argument('--unit',required=True);p.add_argument('--remote',required=True);p.add_argument('--private',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--publish',action='store_true');p.add_argument('--kind',choices=['small-table','crossover','components','component-batches'],default='small-table');a=p.parse_args();branch='feature/n100-adaptive-simd-zram' if a.kind in ['crossover','components','component-batches'] else 'feature/n100-avx2-zram'
 root=Path(__file__).resolve().parents[1]
 def git(*args):return subprocess.check_output(['git',*args],cwd=root,text=True).strip()
 revision=git('rev-parse','HEAD')
@@ -22,18 +22,27 @@ while time.monotonic()<deadline:
  time.sleep(5)
 else:raise SystemExit('Collection deadline reached; remote job was not stopped')
 a.private.mkdir(parents=True,exist_ok=True)
-for name in ['checkpoint.json','validation.log','session-0.csv','session-1.csv','session-2.csv','telemetry.jsonl']:
- subprocess.run(['scp','-q',a.host+':'+a.remote+'/'+name,str(a.private/name)],check=True)
-assert json.loads((a.private/'checkpoint.json').read_text())['status']=='complete'
+subprocess.run(['scp','-q',a.host+':'+a.remote+'/checkpoint.json',str(a.private/'checkpoint.json')],check=True)
+state=json.loads((a.private/'checkpoint.json').read_text());assert state['status']=='complete'
+names=['validation.log','telemetry.jsonl']
+if a.kind=='component-batches':
+ expected={f'batch-{b}-session-{s}' for b in [1,2,4,8,16] for s in range(3)}
+ assert set(state['completed'])==expected
+ names += [name+'.csv' for name in sorted(expected)]
+else:names += ['session-0.csv','session-1.csv','session-2.csv']
+for name in names:subprocess.run(['scp','-q',a.host+':'+a.remote+'/'+name,str(a.private/name)],check=True)
 if a.publish:
  assert git('rev-parse','HEAD')==revision and not git('status','--porcelain'),'Work changed during test; raw results preserved privately'
-subprocess.run(['python3',str(root/('adaptive/summarize-components.py' if a.kind=='components' else 'tools/summarize-crossover.py' if a.kind=='crossover' else 'tools/summarize-small-table-user.py')),'--input',str(a.private),'--output',str(a.output)],cwd=root,check=True)
+subprocess.run(['python3',str(root/('adaptive/summarize-batches.py' if a.kind=='component-batches' else 'adaptive/summarize-components.py' if a.kind=='components' else 'tools/summarize-crossover.py' if a.kind=='crossover' else 'tools/summarize-small-table-user.py')),'--input',str(a.private),'--output',str(a.output)],cwd=root,check=True)
 if a.publish:
  relative=a.output.resolve().relative_to(root)
  status=root/'STATUS.md';status.write_text(status.read_text()+f'\n### Native experiment collection\n\nThree native experimental sessions completed; all raw rows and sanitized\ntelemetry are in [{relative}/summary.md]({relative}/summary.md). Measurement scope is documented in the report; component and codec results\nestablish no end-to-end ZRAM improvement.\n')
  subprocess.run(['git','diff','--check'],cwd=root,check=True)
  subprocess.run(['git','add','--',str(relative),'STATUS.md'],cwd=root,check=True)
- subprocess.run(['git','commit','-m','Preserve real kernel SIMD component and FPU-cost measurements' if a.kind=='components' else 'Preserve refined native scalar SSE2 AVX2 crossover measurements' if a.kind=='crossover' else 'Preserve three matched N100 table-size sessions and all compression-ratio tradeoffs'],cwd=root,check=True)
+ subprocess.run(['git','commit','-m','Preserve real kernel SIMD component and FPU-cost measurements' if a.kind in ['components','component-batches'] else 'Preserve refined native scalar SSE2 AVX2 crossover measurements' if a.kind=='crossover' else 'Preserve three matched N100 table-size sessions and all compression-ratio tradeoffs'],cwd=root,check=True)
  subprocess.run(['python3',str(root/'tools/audit-publication.py')],cwd=root,check=True)
- subprocess.run(['git','push','origin','HEAD:'+branch],cwd=root,check=True)
+ for attempt in range(3):
+  if subprocess.run(['git','push','origin','HEAD:'+branch],cwd=root).returncode==0:break
+  if attempt==2:raise SystemExit('Publication failed; committed results retained locally')
+  time.sleep(5*(attempt+1))
 print('COLLECTION_COMPLETE; all measured data retained; no kernel default changed',flush=True)

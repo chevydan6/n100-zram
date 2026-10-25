@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
 #include <time.h>
 #include <sched.h>
 #include <sys/ioctl.h>
@@ -64,15 +65,24 @@ int main(int argc,char **argv)
  if(!__builtin_cpu_supports("avx2")){fprintf(stderr,"AVX2 required for caller register-state fixture\n");return 77;}
  cpu_set_t allowed,chosen;if(sched_getaffinity(0,sizeof(allowed),&allowed))return 3;CPU_ZERO(&chosen);int cpu=0;for(;cpu<CPU_SETSIZE;cpu++)if(CPU_ISSET(cpu,&allowed))break;if(cpu==CPU_SETSIZE)return 3;CPU_SET(cpu,&chosen);if(sched_setaffinity(0,sizeof(chosen),&chosen))return 3;
  int fd=open(argv[1],O_RDWR);if(fd<0){perror("open component probe");return 4;}
+ const char *batch_test=getenv("N100_COMPONENT_BATCH");
+ if(batch_test){
+  struct n100_component_config bad[]={{4096,0,0,0},{4096,0,0,17},{65536,0,0,2},{15,0,0,1},{4096,3,0,1},{4096,0,4,1}};
+  for(unsigned i=0;i<sizeof(bad)/sizeof(bad[0]);i++){errno=0;if(ioctl(fd,N100_COMPONENT_CONFIG_BATCH,&bad[i])!=-1||errno!=EINVAL){fprintf(stderr,"Invalid batch configuration accepted\n");return 5;}}
+ }
  setup_counters();if(!read_energy_file("/sys/class/powercap/intel-rapl:0/max_energy_range_uj",&energy_range))energy_range=0;uint64_t initial_energy;if(!energy(&initial_energy))energy_range=0;
+ unsigned batch=1;const char *batch_env=getenv("N100_COMPONENT_BATCH");
+ if(batch_env){char *end;unsigned long parsed=strtoul(batch_env,&end,10);if(!*batch_env||*end||parsed<1||parsed>16)return 2;batch=(unsigned)parsed;}
+ int page_only=getenv("N100_COMPONENT_PAGE_ONLY")!=NULL;
  const unsigned sizes[]={16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536};
  const char *operations[]={"match-count","literal-copy","repeat8-copy"},*patterns[]={"equal","early","middle","late"},*variants[]={"scalar","fpu-scalar","sse","avx2"},*states[]={"clean","sse-dirty","ymm-dirty"};
- puts("bytes,operation,pattern,round,state,variant,ns_per_call,kernel_and_user_cycles_per_call,kernel_and_user_instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_call");
+ puts("bytes,operation,pattern,round,state,variant,ns_per_call,kernel_and_user_cycles_per_call,kernel_and_user_instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_call,batch");
  unsigned checked=0;uint32_t random=100;
  for(unsigned len=0;len<13;len++)for(unsigned op=0;op<3;op++)for(unsigned pattern=0;pattern<(op==0?4U:1U);pattern++){
-  struct n100_component_config config={.length=sizes[len],.operation=op,.pattern=pattern};
-  if(ioctl(fd,N100_COMPONENT_CONFIG,&config)||ioctl(fd,N100_COMPONENT_VERIFY)){perror("configure/verify");return 5;}
-  long expected=(op!=0||pattern==0)?sizes[len]:pattern==1?0:pattern==2?sizes[len]/2:sizes[len]-1;expected++;
+  if(sizes[len]>65536/batch||(page_only&&sizes[len]!=4096))continue;
+  struct n100_component_config config={.length=sizes[len],.operation=op,.pattern=pattern,.reserved=batch_env?batch:0};
+  if(ioctl(fd,batch_env?N100_COMPONENT_CONFIG_BATCH:N100_COMPONENT_CONFIG,&config)||ioctl(fd,N100_COMPONENT_VERIFY)){perror("configure/verify");return 5;}
+  long expected=(op!=0||pattern==0)?sizes[len]:pattern==1?0:pattern==2?sizes[len]/2:sizes[len]-1;expected=expected*batch+1;
   for(unsigned variant=0;variant<4;variant++){unsigned long command=N100_COMPONENT_RUN_SCALAR+variant;if(check_state(fd,command)||invoke(fd,command,0)!=expected){fprintf(stderr,"YMM sentinel or result failure\n");return 6;}}
   checked++;
   if(validate)continue;
@@ -88,7 +98,7 @@ int main(int argc,char **argv)
     if(counter_fds[0]>=0&&after[1]>before[1])fraction=(double)(after[2]-before[2])/(after[1]-before[1]);
     double uj=rapl?(double)((ea+energy_range-eb)%energy_range)/OPS:-1;
     if(ioctl(fd,N100_COMPONENT_VERIFY))return 8;
-    if(round>=0)printf("%u,%s,%s,%d,%s,%s,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f\n",sizes[len],operations[op],patterns[pattern],round,states[state],variants[variant],(double)elapsed/OPS,values[0],values[1],values[2],values[3],fraction,uj);
+    if(round>=0)printf("%u,%s,%s,%d,%s,%s,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f,%u\n",sizes[len],operations[op],patterns[pattern],round,states[state],variants[variant],(double)elapsed/OPS,values[0],values[1],values[2],values[3],fraction,uj,batch);
    }
    fflush(stdout);
   }
