@@ -56,3 +56,13 @@ rename list. No failing module was installed. Namespace all public C definitions
 including that unexported helper, and keep a forward prototype for the workspace
 query. The fixed build uses a fresh directory and retains the failed build logs.
 This changes linkage isolation, not the intended scalar compression algorithm.
+
+## Intermediate table experiment
+
+--tag mid --bits 13 appends a separately namespaced lz4-mid backend (8 KiB hash
+array) while retaining existing 4 KiB and original-size control source bytes.
+Enable CONFIG_ZRAM_BACKEND_LZ4_MID alongside SMALL and CONTROL when building the
+isolated module. The four-LZ4-backend module passed exact-ABI diskless validation
+with sixteen concurrent register-state checks. It has not yet demonstrated a
+native advantage. This experiment responds to the 25%-nominal-compressibility
+fixture's read regression; the 4 KiB implementation and all results are preserved.

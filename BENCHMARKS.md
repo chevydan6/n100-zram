@@ -434,3 +434,16 @@ work, frequency and thermal variability; this is not whole-laptop energy or a
 cross-session generality claim. Peak ZRAM memory was essentially unchanged
 versus LZ4, and lower than LZO for these inputs. The installed system has 4 GiB;
 this used bounded memcg reclaim, not whole-machine exhaustion.
+
+### Scalar varied-compressibility regression retained
+
+The repeated 50% fixture retained a positive small-table write result, with a
+slow original-table-control read trial widening uncertainty. The 25% nominal
+fixture also completed and restored stock: small-table paired write IOPS +2.21%
+[+0.40%, +10.36%], read IOPS -3.27% [-5.25%, -1.02%] versus the private original-
+size control. These five-trial intervals describe one session, not workload-wide
+confidence. Do not suppress the read regression or select this as a new default.
+An independently namespaced 8 KiB hash-table backend is now VM-validated for a
+native compromise comparison. Nominal fio percentages are workload settings,
+not guaranteed compressed-size ratios; actual byte/allocation measurements remain
+in the raw results.

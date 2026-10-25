@@ -4,22 +4,25 @@
 import argparse,difflib,hashlib,json,re,shutil
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser();p.add_argument('--control',action='store_true');p.add_argument('--reference',type=Path,required=True);p.add_argument('--lz4-header',type=Path,required=True);p.add_argument('--bits',type=int,choices=[11,12,13,14],default=12);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--tag',choices=['small','control','mid'],default='small');p.add_argument('--control',action='store_true');p.add_argument('--reference',type=Path,required=True);p.add_argument('--lz4-header',type=Path,required=True);p.add_argument('--bits',type=int,choices=[11,12,13,14],default=12);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+if a.control:
+ assert a.tag in ['small','control'];a.tag='control'
 assert not a.output.exists() and a.reference.resolve() not in a.output.resolve().parents
 out=a.output;out.mkdir(parents=True)
 def mapped(text):
- if not a.control:return text
- return text.replace('n100s_', 'n100c_').replace('backend_lz4_small','backend_lz4_control').replace('ZRAM_BACKEND_LZ4_SMALL','ZRAM_BACKEND_LZ4_CONTROL').replace('lz4-small','lz4-control')
+ if a.tag=='small':return text
+ prefix={'control':'n100c_','mid':'n100m_'}[a.tag]
+ return text.replace('n100s_',prefix).replace('backend_lz4_small','backend_lz4_'+a.tag).replace('ZRAM_BACKEND_LZ4_SMALL','ZRAM_BACKEND_LZ4_'+a.tag.upper()).replace('lz4-small','lz4-'+a.tag)
 def write_new(name,text):(out/mapped(name)).write_text(mapped(text))
 for f in a.reference.iterdir():
  if f.is_file() and (f.suffix in ['.c','.h'] or f.name in ['Makefile','Kconfig']) and not f.name.endswith('.mod.c'):shutil.copy2(f,out/f.name)
 # Older single-clone trees did not need to rename this unexported global.
 # Repair that namespace before linking a second clone; codec logic is unchanged.
-if a.control:
+if a.tag!='small':
  existing=out/'n100s_rename.h'
  if existing.exists() and '#define LZ4_resetStream ' not in existing.read_text():
   existing.write_text(existing.read_text()+'#define LZ4_resetStream n100s_LZ4_resetStream\n')
- assert not (out/'backend_lz4_control.c').exists(),'Control already exists in reference'
+ assert not (out/('backend_lz4_'+a.tag+'.c')).exists(),'Backend already exists in reference'
 def change(name,old,new):
  f=out/name;s=f.read_text();assert s.count(old)==1,(name,old);f.write_text(s.replace(old,mapped(new)))
 change('Kconfig','config ZRAM_BACKEND_LZ4HC','''config ZRAM_BACKEND_LZ4_SMALL
