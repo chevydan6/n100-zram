@@ -447,3 +447,14 @@ An independently namespaced 8 KiB hash-table backend is now VM-validated for a
 native compromise comparison. Nominal fio percentages are workload settings,
 not guaranteed compressed-size ratios; actual byte/allocation measurements remain
 in the raw results.
+
+### 8 KiB scalar-table compromise, first native fixture
+
+[Complete five-backend comparison](benchmarks/results/native-scalar-mid8k-25pct-001/summary.md)
+retains all trials. Paired versus the original-size private control, lz4-mid writes
++5.81% [+2.76%, +11.31%], reads +0.69% [-0.28%, +1.40%], write package energy/I/O
+-3.08% [-5.13%, +3.91%]. Read/energy effects are inconclusive, not proof of zero
+regression. Stock LZ4 and the private control also differ; further fixed-input
+controls and broader workloads are warranted. The 4 KiB table writes faster but
+retains a read penalty in this session. All CRC checks and stock restoration
+passed. No production compressor choice is changed.

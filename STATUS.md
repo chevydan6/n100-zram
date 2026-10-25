@@ -203,3 +203,20 @@ remained positive, but a slow original-table-control read trial inflated variabi
 and energy intervals. Preserve it and investigate rather than silently excluding
 it. Next scalar comparison varies nominal compressibility with explicit metadata,
 starting at 25%, to test whether the write advantage generalizes beyond 50%.
+
+### Three-track native checkpoint
+
+The 8 KiB scalar table completed its first 25% nominal fixture, passed CRC checks
+and restored stock. Against the private original-size control, paired write IOPS
+were +5.81% [+2.76%, +11.31%]; reads showed no clear change (+0.69%, interval
+[-0.28%, +1.40%]). Package energy/I/O was inconclusive (-3.08%, interval crossing
+zero). The 4 KiB variant retained a read penalty in this session. No default is
+selected. A 75% fixture is queued after the new-codec candidate comparison.
+
+Adaptive research now includes actual kernel component/state-cost measurements;
+representative 4 KiB SIMD paths lost after roughly 430 ns context/dispatch cost.
+Long comparison crossover outside the normal page does not establish usable ZRAM
+batching. GZRAM v1 has native userspace results, including severe ratio losses on
+unrecognized periodic data; it is not a native kernel backend or general winner.
+A faster scalar GZRAM scanner is being compared with preserved original/AVX2
+paths. All tracks retain separate branches and share the N100 hardware lock.
