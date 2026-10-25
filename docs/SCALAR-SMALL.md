@@ -26,3 +26,10 @@ Disassembly found no explicit SIMD registers in its compression object. See
 benchmarks/results/scalar-small12-validation/summary.json for hashes. VM timing
 is not an N100 performance result. Native I/O, pressure, energy, dictionary
 fallback and broader malformed-input validation remain required before acceptance.
+
+First native I/O attempt stopped before timing because the generic runner checked
+the default algorithm's bracketed sysfs spelling literally. The failure was in
+the runner, not an observed codec corruption; stock build ID, swap algorithm and
+size were restored. Normalize sysfs brackets before membership checks, preserve
+the failed checkpoint, and rerun into a fresh output directory. Extended-metrics
+mode requests native counters and continuous thermal/frequency sampling.
