@@ -16,6 +16,14 @@ for label,relative in sorted(state['completed'].items()):
  row={key:x[key] for key in ['algorithm','corpus','trial','elapsed_ns','package_energy_uj','energy_scope','vmstat_delta','fpu_processes','scope']}
  row.update(initial_fill_ns=next(r['elapsed_ns'] for r in records if r.get('phase')=='initial_fill'),verification=verify,cgroup_health=health,user_cpu_us=usage[-1]['user_us']-usage[0]['user_us'],system_cpu_us=usage[-1]['system_us']-usage[0]['system_us'],peak_rss_kib=usage[-1]['max_rss_kib'],zram_peak_allocated_bytes=int(x['after']['mm_stat'].split()[4]),before_conditions=conditions(x['before']),after_conditions=conditions(x['after']))
  if 'competing_application' in x:row['competing_application']=x['competing_application']
+ if 'pressure_elapsed_ns' in x:row['pressure_elapsed_ns']=x['pressure_elapsed_ns']
+ app_path=folder/'application.jsonl'
+ if app_path.exists():
+  app_records=[json.loads(line) for line in app_path.read_text().splitlines()];start=app_records[0]['started_ns']
+  for record in app_records:
+   for key in ['started_ns','begin_ns','end_ns','ended_ns']:
+    if key in record:record[key]-=start
+  (a.output/(label+'.application.jsonl')).write_text(''.join(json.dumps(r)+'\n' for r in app_records))
  rows.append(row);shutil.copyfile(folder/'workload.jsonl',a.output/(label+'.workload.jsonl'))
  telemetry=[]
  for line in (folder/'telemetry-private.jsonl').read_text().splitlines():
@@ -43,4 +51,11 @@ if any('competing_application' in r for r in rows):
   if 'competing_application' not in r:continue
   app=r['competing_application'];rate=app['completed_batch_bytes']/2**20/(app['overlap_window_ns']/1e9)
   lines.append(f"| {r['corpus']} | {r['algorithm']} | {r['trial']} | {rate:.3f} | {statistics.median(app['batch_elapsed_ns'])/1e6:.3f} | {app['fully_contained_batches']} |")
+if any(r.get('competing_application',{}).get('fixed_window_ns') for r in rows):
+ lines+=['','## Fixed application observation window','','The competing process continues after pressure finishes, through the same fixed window.', 'Total elapsed/energy above includes that window. Pressure completion is separate below.', 'This captures post-pressure CPU availability; scheduler weights and clocks still matter.', '', '| Corpus | Algorithm | Trial | Pressure completion s | Fixed window s | Application MiB/s across window |', '|---|---|---:|---:|---:|---:|']
+ for r in rows:
+  app=r.get('competing_application',{})
+  if not app.get('fixed_window_ns'):continue
+  rate=app['window_completed_batch_bytes']/2**20/(app['fixed_window_ns']/1e9)
+  lines.append(f"| {r['corpus']} | {r['algorithm']} | {r['trial']} | {r['pressure_elapsed_ns']/1e9:.3f} | {app['fixed_window_ns']/1e9:.1f} | {rate:.3f} |")
 (a.output/'summary.md').write_text('\n'.join(lines)+'\n');print('\n'.join(lines[-len(rows)-3:]))

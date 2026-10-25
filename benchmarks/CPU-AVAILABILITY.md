@@ -19,3 +19,20 @@ The probe is bounded to 200 seconds; pressure remains bounded to 180 seconds.
 Cleanup terminates and waits only for the owned process. Startup, exact digest
 checks and graceful SIGTERM termination have been tested locally. No native
 performance inference is made before the queued smoke check completes.
+
+## Fixed observation window
+
+--application-window-seconds 30 (with --competing-sha256) keeps the competitor
+running after pressure completion until the same 30-second window has elapsed.
+This tests a separate hypothesis: faster pressure completion can return CPU time
+afterward even if throughput while both processes are runnable remains similar.
+The first run is a harness smoke check. Pressure must finish inside the chosen
+window; otherwise the attempt fails visibly rather than silently changing scope.
+
+Record pressure completion separately from total elapsed time, fixed-window
+application throughput, actual competitor nice/affinity and package energy over
+the entire observation. Scheduling weights and frequency/background changes
+can affect both measures. Do not compare its total energy/time directly with
+historical pressure-only windows. Retain overlapping throughput as well as the
+fixed-window result. Raw application batches are exported with relative timestamps.
+The normal historical mode remains available without this flag.

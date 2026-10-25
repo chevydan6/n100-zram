@@ -3,8 +3,9 @@
 """Owned-device ZRAM pressure trials with bounded cgroups and resumable checkpoints."""
 import argparse,errno,hashlib,json,os,platform,random,shutil,signal,subprocess,tempfile,threading,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--competing-sha256',action='store_true');p.add_argument('--output',type=Path,required=True);p.add_argument('--binary',type=Path,required=True);p.add_argument('--state-helper',type=Path,required=True);p.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4','lz4-n100','lz4-rep8']);p.add_argument('--corpora',nargs='+',choices=['period-tail','mixed-pages'],default=['period-tail','mixed-pages']);p.add_argument('--repeats',type=int,default=3);p.add_argument('--resume',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--application-window-seconds',type=int,choices=[0,20,30,60],default=0);p.add_argument('--competing-sha256',action='store_true');p.add_argument('--output',type=Path,required=True);p.add_argument('--binary',type=Path,required=True);p.add_argument('--state-helper',type=Path,required=True);p.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4','lz4-n100','lz4-rep8']);p.add_argument('--corpora',nargs='+',choices=['period-tail','mixed-pages'],default=['period-tail','mixed-pages']);p.add_argument('--repeats',type=int,default=3);p.add_argument('--resume',action='store_true');a=p.parse_args()
 assert os.geteuid()==0 and 1<=a.repeats<=5
+assert not a.application_window_seconds or a.competing_sha256
 os.sched_setaffinity(0,{1})  # Keep the sampler off the measured workload CPU.
 assert all(x in ['lzo-rle','lz4','lz4-n100','lz4-rep8','lz4-small','lz4-control','lz4-mid'] for x in a.algorithms)
 def read(name):return Path(name).read_text().strip()
@@ -17,7 +18,7 @@ def write(name,value):
    time.sleep(.25)  # Bounded wait for udev/blkid's transient block-device opens.
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 app_probe=Path(__file__).with_name('app-probe.py')
-inputs={'competing_sha256':a.competing_sha256,'app_probe_sha256':sha(app_probe) if a.competing_sha256 else None,'binary':sha(a.binary),'state_helper':sha(a.state_helper),'script':sha(Path(__file__)),'kernel':platform.release(),'module_note':Path('/sys/module/zram/notes/.note.gnu.build-id').read_bytes().hex(),'algorithms':a.algorithms,'corpora':a.corpora,'repeats':a.repeats}
+inputs={'application_window_seconds':a.application_window_seconds,'competing_sha256':a.competing_sha256,'app_probe_sha256':sha(app_probe) if a.competing_sha256 else None,'binary':sha(a.binary),'state_helper':sha(a.state_helper),'script':sha(Path(__file__)),'kernel':platform.release(),'module_note':Path('/sys/module/zram/notes/.note.gnu.build-id').read_bytes().hex(),'algorithms':a.algorithms,'corpora':a.corpora,'repeats':a.repeats}
 if a.output.exists():
  assert a.resume,'Preserve existing evidence; explicitly resume unchanged inputs'
  state=json.loads((a.output/'checkpoint.json').read_text());assert state['inputs']==inputs
@@ -97,6 +98,12 @@ try:
    (folder/'launcher.log').write_text(launched.stdout+launched.stderr)
    shutil.copyfile(unit_logs/'stdout',folder/'workload.jsonl');shutil.copyfile(unit_logs/'stderr',folder/'stderr.log')
    if launched.returncode:raise RuntimeError('Pressure unit failed: '+launched.stderr)
+   if a.application_window_seconds:
+    deadline_ns=app_start+a.application_window_seconds*1000000000
+    assert app_end<=deadline_ns,'Pressure exceeded fixed observation window; preserve trial as failed'
+    remaining=(deadline_ns-time.monotonic_ns())/1e9
+    if remaining>0:time.sleep(remaining)
+
   finally:
    stop.set();sampler.join(timeout=3)
    if app is not None:
@@ -122,6 +129,12 @@ try:
    batches=[r for r in app_records if r['phase']=='batch' and r['begin_ns']>=app_start and r['end_ns']<=app_end]
    assert len(batches)>=3,'Insufficient overlapping application work'
    result['competing_application']={'name':'Python hashlib SHA256, fixed 1 MiB input, CPU 0','scope':'CPU contention probe; not interactive responsiveness or a general application benchmark','overlap_window_ns':app_end-app_start,'completed_batch_bytes':sum(r['bytes'] for r in batches),'batch_elapsed_ns':[r['end_ns']-r['begin_ns'] for r in batches],'fully_contained_batches':len(batches),'whole_probe_cpu_seconds':app_records[-1]['user_seconds']+app_records[-1]['system_seconds']}
+   if a.application_window_seconds:
+    all_batches=[r for r in app_records if r['phase']=='batch' and r['begin_ns']>=app_start and r['end_ns']<=deadline_ns]
+    assert len(all_batches)>=len(batches) and app_records[-1]['ended_ns']>=deadline_ns
+    result['pressure_elapsed_ns']=app_end-app_start
+    result['competing_application'].update(fixed_window_ns=a.application_window_seconds*1000000000,window_completed_batch_bytes=sum(r['bytes'] for r in all_batches),window_fully_contained_batches=len(all_batches),nice=app_records[0]['nice'],cpu_affinity=app_records[0]['cpu_affinity'])
+    result['energy_scope']='whole package over fixed application window, pressure, service startup and background activity'
   (folder/'result-private.json').write_text(json.dumps(result,indent=2)+'\n')
   run(['swapoff',str(device)]);active_swap=False;write(sys/'reset',1);child=None
   state['completed'][label]=str(folder.relative_to(a.output));save()
