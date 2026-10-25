@@ -3,7 +3,7 @@
 """Generate isolated variants; never modify the reference kernel sources."""
 from pathlib import Path
 import subprocess, shutil, os, shlex, argparse
-p=argparse.ArgumentParser();p.add_argument("--variants",nargs="+",choices=["scalar","avx2-guard"]);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument("--variants",nargs="+",choices=["scalar","sse-guard","avx2-guard"]);a=p.parse_args()
 from codec_experiments import add_runfill,add_rep8,add_matchrep8,add_branchrep8
 root=Path(__file__).resolve().parents[1]
 out=Path(os.environ.get('BUILD_ROOT',root/'build')); out.mkdir(parents=True,exist_ok=True)
