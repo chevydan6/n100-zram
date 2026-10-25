@@ -33,3 +33,19 @@ the runner, not an observed codec corruption; stock build ID, swap algorithm and
 size were restored. Normalize sysfs brackets before membership checks, preserve
 the failed checkpoint, and rerun into a fresh output directory. Extended-metrics
 mode requests native counters and continuous thermal/frequency sampling.
+
+## Same-module causal control
+
+Generate the small-table tree first, then add an independently namespaced original-
+size control without changing any small-table codec bytes:
+
+```
+python3 tools/prepare-small-table-backend.py --reference /fresh/zram-small --lz4-header /path/to/matching/include/linux/lz4.h --bits 14 --control --output /fresh/zram-matched
+make -j1 -C /usr/src/kernels/EXACT_RELEASE M=/fresh/zram-matched CONFIG_ZRAM_BACKEND_LZ4_SMALL=y CONFIG_ZRAM_BACKEND_LZ4_CONTROL=y 'KCFLAGS=-DCONFIG_ZRAM_BACKEND_LZ4_SMALL=1 -DCONFIG_ZRAM_BACKEND_LZ4_CONTROL=1' modules
+```
+
+This retains lz4 and lz4-small and adds lz4-control with a separate private
+namespace, header and workspace. Validate the resulting exact module in the
+VM with all three algorithms before native use. The control is experimental,
+not a default. It separates much of the cloned-API/compiler effect from the
+hash-table-size comparison; actual measurements, not its name, determine validity.

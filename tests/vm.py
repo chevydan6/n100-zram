@@ -10,7 +10,7 @@ p.add_argument('--lz4',type=Path)
 p.add_argument('--algorithms',nargs='+',default=['lz4','lz4-n100'])
 p.add_argument('--expect-simd',type=int,choices=[0,1],default=1)
 a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
-assert all(name in ['lz4','lz4-n100','lz4-rep8','lz4-small'] for name in a.algorithms)
+assert all(name in ['lz4','lz4-n100','lz4-rep8','lz4-small','lz4-control'] for name in a.algorithms)
 mem=dict(line.split(':',1) for line in Path('/proc/meminfo').read_text().splitlines())
 if int(mem['MemAvailable'].split()[0])<2*1024**2:raise SystemExit('Less than 2 GiB memory headroom; defer VM')
 archive=bytearray();ino=0
