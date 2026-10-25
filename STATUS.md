@@ -205,3 +205,9 @@ feature/n100-avx2-zram and adaptive LZ4 on feature/n100-adaptive-simd-zram.
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-user-001/summary.md](benchmarks/results/native-gzram-user-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-fast-scalar-001/summary.md](benchmarks/results/native-gzram-fast-scalar-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
