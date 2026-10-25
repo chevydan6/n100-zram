@@ -244,3 +244,15 @@ controls do not reproduce a consistent smaller-table decoder penalty. Executable
 pages have stream differences, and these userspace controls cannot attribute the
 previous kernel fio regression. The next experiment uses identical fixed pages
 and read-only native ZRAM I/O, with full-device byte/SHA256 verification.
+
+## First fixed-page native read control
+
+Twenty-five shuffled read-only trials (five backends) completed with identical
+64 MiB input hashes, full-device byte/SHA256 verification and stock restoration.
+On this 75% deterministic zero-tail fixture, the 8 KiB candidate measured +0.53%
+read IOPS versus the private 16 KiB control (95% paired bootstrap +0.12 to +3.59%);
+the 4 KiB candidate measured -0.06% (-0.90 to +0.82%). The previous read loss is
+not reproduced on this fixture. This does not establish its mechanism: input
+distribution, encoded streams, cache and code layout remain relevant differences.
+No general read gain or application acceptance is claimed. Full measurements are
+in native-scalar-fixed-read-001; repeat with another fixed data mix next.
