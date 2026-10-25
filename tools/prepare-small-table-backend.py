@@ -13,6 +13,13 @@ def mapped(text):
 def write_new(name,text):(out/mapped(name)).write_text(mapped(text))
 for f in a.reference.iterdir():
  if f.is_file() and (f.suffix in ['.c','.h'] or f.name in ['Makefile','Kconfig']) and not f.name.endswith('.mod.c'):shutil.copy2(f,out/f.name)
+# Older single-clone trees did not need to rename this unexported global.
+# Repair that namespace before linking a second clone; codec logic is unchanged.
+if a.control:
+ existing=out/'n100s_rename.h'
+ if existing.exists() and '#define LZ4_resetStream ' not in existing.read_text():
+  existing.write_text(existing.read_text()+'#define LZ4_resetStream n100s_LZ4_resetStream\n')
+ assert not (out/'backend_lz4_control.c').exists(),'Control already exists in reference'
 def change(name,old,new):
  f=out/name;s=f.read_text();assert s.count(old)==1,(name,old);f.write_text(s.replace(old,mapped(new)))
 change('Kconfig','config ZRAM_BACKEND_LZ4HC','''config ZRAM_BACKEND_LZ4_SMALL
@@ -39,9 +46,9 @@ extern unsigned long n100s_worksize(void);
 extern int n100s_LZ4_compress_fast(const char *, char *, int, int, int, void *);''')
 s=s.replace('vmalloc(LZ4_MEM_COMPRESS)','vmalloc(n100s_worksize())').replace('ret = LZ4_compress_fast(req->src','ret = n100s_LZ4_compress_fast(req->src').replace('backend_lz4 =','backend_lz4_small =').replace('"lz4",','"lz4-small",')
 write_new('backend_lz4_small.c',s);write_new('backend_lz4_small.h','// SPDX-License-Identifier: GPL-2.0-only\n#include "zcomp.h"\nextern const struct zcomp_ops backend_lz4_small;\n')
-s=(root/'src/kernel-lz4/lz4_compress.c').read_text();symbols=re.findall(r'EXPORT_SYMBOL\((\w+)\)',s)
+s=(root/'src/kernel-lz4/lz4_compress.c').read_text();symbols=sorted(set(re.findall(r'EXPORT_SYMBOL\((\w+)\)',s)+re.findall(r'^(?:int|void|size_t)\s+(LZ4_\w+)\s*\(',s,re.M)))
 s=re.sub(r'EXPORT_SYMBOL\([^\n]+\);','',s);s=re.sub(r'MODULE_(?:LICENSE|DESCRIPTION|AUTHOR)\([^\n]*\);','',s)
-s=s.replace('#include "lz4defs.h"','#include "n100s_lz4defs.h"')+'\nunsigned long n100s_worksize(void) { return sizeof(LZ4_stream_t); }\n'
+s=s.replace('#include "lz4defs.h"','#include "n100s_lz4defs.h"')+'\nunsigned long n100s_worksize(void);\nunsigned long n100s_worksize(void) { return sizeof(LZ4_stream_t); }\n'
 write_new('n100s_lz4_compress.c',s);write_new('n100s_rename.h',''.join(f'#define {name} n100s_{name}\n' for name in symbols))
 s=(root/'src/kernel-lz4/lz4defs.h').read_text().replace('#include <linux/lz4.h>','#include "n100s_lz4.h"');write_new('n100s_lz4defs.h',s)
 s=a.lz4_header.read_text();s,count=re.subn(r'(#define LZ4_MEMORY_USAGE\s+)14\b',lambda m:m[1]+str(a.bits),s);assert count==1

@@ -49,3 +49,10 @@ namespace, header and workspace. Validate the resulting exact module in the
 VM with all three algorithms before native use. The control is experimental,
 not a default. It separates much of the cloned-API/compiler effect from the
 hash-table-size comparison; actual measurements, not its name, determine validity.
+
+The first two-clone build caught a link-time collision in LZ4_resetStream, which
+was global but not EXPORT_SYMBOL and therefore escaped the original export-only
+rename list. No failing module was installed. Namespace all public C definitions,
+including that unexported helper, and keep a forward prototype for the workspace
+query. The fixed build uses a fresh directory and retains the failed build logs.
+This changes linkage isolation, not the intended scalar compression algorithm.
