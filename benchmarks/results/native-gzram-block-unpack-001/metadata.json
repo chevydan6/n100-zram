@@ -1,0 +1,88 @@
+{
+  "cpu_model": "Intel(R) N100",
+  "runner_sha256": "37ac4fa2d28b5668bb97fdc5a6af8d714f5eebdcbb7f9a665b452eca5183f2d1",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "binary_sha256": "23f7bcf2dde3ed88e8da718cf16dcb803891535f40ad2cd30b59c1d9d2257712",
+  "manifest": {
+    "block_unpack_candidate": true,
+    "fast_scalar_candidate": true,
+    "candidate_extra_flags": [
+      "-DGZRAM_SCALAR_FAST=1"
+    ],
+    "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+    "flags": [
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx"
+    ],
+    "source_sha256": {
+      "gzram/src/gzram.c": "cf3ed93e9cc6d2874db105560d5eb390471fde9d4e26c52b512c0ee37c371d5c",
+      "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+      "gzram/tools/build.py": "d2f64e68f423252fed5b5439d055b2b104cf313034abf0466567d3501f7da334"
+    },
+    "artifacts": {
+      "libgzram.so": "fe5fd6b6ed070c368a51e68b988ad00929a3c61072b2bdf331b3f0c6adb21ecd",
+      "libgzram-fast.so": "54a477fb87f14236d4283617d4cfb18383654098b97b53f42b24a19c7b1c7697",
+      "libgzram-block.so": "26ad205f1be3dadd2acf2d6a4fb963af82f7117e60fcdf0328e08047399a1ae0",
+      "lz4-small.so": "0604c9a0c04bedea506de7db6eb986d7d20edb0fc21d0f52cfea4f4522bf6b1a"
+    }
+  },
+  "libraries": {
+    "libgzram.so": "fe5fd6b6ed070c368a51e68b988ad00929a3c61072b2bdf331b3f0c6adb21ecd",
+    "libgzram-fast.so": "54a477fb87f14236d4283617d4cfb18383654098b97b53f42b24a19c7b1c7697",
+    "libgzram-block.so": "26ad205f1be3dadd2acf2d6a4fb963af82f7117e60fcdf0328e08047399a1ae0",
+    "lz4-small.so": "0604c9a0c04bedea506de7db6eb986d7d20edb0fc21d0f52cfea4f4522bf6b1a"
+  },
+  "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+  "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3358019",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3357396",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2985460",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3073936",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "35850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "47000",
+    "/sys/class/thermal/thermal_zone3/temp": "38850",
+    "/sys/class/thermal/thermal_zone1/temp": "39850",
+    "/sys/class/thermal/thermal_zone6/temp": "47000",
+    "/sys/class/thermal/thermal_zone4/temp": "49000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3083377",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3082527",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3072045",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2949439",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "39850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "60000",
+    "/sys/class/thermal/thermal_zone3/temp": "46850",
+    "/sys/class/thermal/thermal_zone1/temp": "50850",
+    "/sys/class/thermal/thermal_zone6/temp": "60000",
+    "/sys/class/thermal/thermal_zone4/temp": "60000"
+  },
+  "all_pmu_batches_fully_scheduled": true,
+  "package_energy_available_all_rows": true
+}

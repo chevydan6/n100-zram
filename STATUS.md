@@ -222,3 +222,9 @@ losses prevent accepting it as a general ZRAM compressor; no kernel backend or
 adaptive threshold is selected. See gzram/README.md and the complete
 native-gzram-fast-scalar-001 dataset. Existing scalar LZ4 work remains independent
 and active on its original development branch.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-block-unpack-001/summary.md](benchmarks/results/native-gzram-block-unpack-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
