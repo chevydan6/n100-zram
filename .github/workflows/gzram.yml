@@ -16,6 +16,7 @@ jobs:
       - run: python3 gzram/tools/build.py
       - run: python3 gzram/tests/check.py
       - run: python3 gzram/tests/check.py --library build/gzram/libgzram-fast.so
+      - run: python3 gzram/tests/check.py --library build/gzram/libgzram-block.so
       - name: Address and undefined-behavior sanitizers
         run: |
           EXTRA_CFLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' python3 gzram/tools/build.py --output build/gzram-asan
@@ -24,6 +25,7 @@ jobs:
           export UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1
           python3 gzram/tests/check.py --library build/gzram-asan/libgzram.so
           python3 gzram/tests/check.py --library build/gzram-asan/libgzram-fast.so
+          python3 gzram/tests/check.py --library build/gzram-asan/libgzram-block.so
       - name: Validate native benchmark fixture
         run: |
           gcc -O2 -Wall -Wextra -Werror gzram/bench.c -ldl -o build/gzram/benchmark

@@ -62,3 +62,13 @@ The original reference, candidate, AVX2 paths and all eight block sizes remain
 available. No kernel integration or hybrid threshold is accepted from these data.
 The next experiments should address decoder call overhead and ratio failures,
 while preserving the original format and scalar reference.
+
+A second isolated candidate, libgzram-block.so, moves the MASK32 unpack loop
+inside one AVX2-targeted function per internal block. Original per-group AVX2
+and both scalar implementations remain available. The payload bounds are
+validated before the block call, and the format is unchanged. Guarded tests and
+ASan/UBSan pass. Local disassembly confirms inlining of the per-group function,
+but bounded temporary-buffer memcpy still emits vzeroupper within the loop.
+This candidate tests call overhead; it does not eliminate every SIMD transition.
+With all candidate libraries present the benchmark records 33 variants. N100
+performance remains unmeasured for this candidate until its dedicated run finishes.

@@ -99,6 +99,17 @@ AVX static void unpack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
  __m256i absent=_mm256_cmpeq_epi32(_mm256_and_si256(bits,_mm256_set1_epi32((int)mask)),_mm256_setzero_si256());
  _mm256_storeu_si256((__m256i *)dst,_mm256_andnot_si256(absent,_mm256_permutevar8x32_epi32(v,indices)));
 }
+#if defined(GZRAM_BLOCK_UNPACK)
+/* One AVX2 call per validated MASK32 block rather than per 32-byte group.
+ * The caller has checked the total payload and output lengths first. */
+AVX static void unpack_block_avx2(const uint8_t *src,uint8_t *dst,const uint8_t *masks,size_t groups)
+{
+ for(size_t group=0;group<groups;group++) {
+  unsigned mask=masks[group];
+  unpack_avx2(src,dst+group*32,mask);src+=gz_count[mask]*4U;
+ }
+}
+#endif
 static void repeat_scalar(uint8_t *dst,const uint8_t *pattern,size_t n,unsigned period)
 {
  for(size_t at=0;at<n;at+=period)memcpy(dst+at,pattern,period);
@@ -173,6 +184,10 @@ static int decode(const void *input,size_t size,void *output,size_t cap,pack_fn 
    size_t groups=len/32;if(groups>size-pos)return -1;const uint8_t *masks=src+pos;pos+=groups;size_t needed=0;
    for(size_t group=0;group<groups;group++)needed+=gz_count[masks[group]]*4U;
    if(needed>size-pos)return -1;
+#if defined(GZRAM_BLOCK_UNPACK)
+   if(unpack==unpack_avx2){unpack_block_avx2(src+pos,dst+offset,masks,groups);pos+=needed;}
+   else
+#endif
    for(size_t group=0;group<groups;group++){unsigned mask=masks[group];unpack(src+pos,dst+offset+group*32,mask);pos+=gz_count[mask]*4U;}
   } else {
    if(mode==REPEAT4)period=4;else if(mode==REPEAT8)period=8;else if(mode==REPEAT16)period=16;else if(mode==REPEAT32)period=32;else return -1;
