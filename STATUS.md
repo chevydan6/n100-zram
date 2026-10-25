@@ -161,3 +161,19 @@ results before pushing; interruptions retain raw checkpoints outside Git.
 Three matched-control user-space sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-matched-table-user-001/summary.md](benchmarks/results/native-matched-table-user-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+### Scalar kernel integration and adaptive branch
+
+The independent scalar small-table backend compiled for the running 7.2.8 ABI
+and passed diskless kernel validation with eight concurrent YMM-state checks.
+Its compressor object contains no explicit SIMD registers. Native I/O comparison
+is in progress with CPU counters, package energy, thermal/frequency telemetry,
+full CRC verification and automatic stock-module restoration. The first attempt
+stopped before timing on a bracketed-algorithm parser error and restored stock;
+the corrected attempt preserves separate evidence.
+
+Adaptive size sweeps live on feature/n100-adaptive-simd-zram. The first physical
+N100 three-session scalar/SSE2/AVX2 sweep completed all nine requested sizes.
+All PMU groups were fully scheduled. Whole-codec winners vary by data/direction;
+no universal threshold, component threshold or native hybrid policy is accepted.
+Scalar work continues independently; no adaptive SIMD changes were merged here.

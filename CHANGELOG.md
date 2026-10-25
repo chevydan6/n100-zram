@@ -116,3 +116,11 @@ arrays, retaining standard LZ4 block compatibility and the baseline decoder.
 The benchmark permits changed compressed encodings only in this explicit mode,
 checks independent baseline decoding and preserves measured compressed sizes.
 No performance or compression-ratio improvement is claimed before native runs.
+
+### Native scalar backend / adaptive SIMD investigation
+
+Added reproducible default-off scalar small-table kernel patch and isolated build
+manifest; exact-ABI diskless validation passed. Corrected default-algorithm parsing
+in the native runner and retained the failed attempt with verified restoration.
+A separate adaptive branch records the initial native scalar/SSE2/AVX2 size sweep
+and PMU counters. Further refinement and kernel-context costs remain experimental.
