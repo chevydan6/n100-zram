@@ -1,0 +1,51 @@
+{
+  "scope": "Physical N100 whole-codec size sweep; kernel FPU costs, component thresholds and energy excluded",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "binary_sha256": "e22611cb37fa4021a1d6d3b34d460a65291ecb4699f0216ee3c06c3493a93793",
+  "libraries": {
+    "scalar.so": "3862d401e7712b45eaa3c14467ad3e25fc36b3f7f35c5c9791b6bee3878f9211",
+    "sse.so": "880188082ad4366929890baa31622ccfae18d768538eaeac5174889e176a2969",
+    "avx2.so": "a38d1f1c44a731862e76968b65aab1c1e249dd5f2f677e2805cc0d88259236f8"
+  },
+  "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "completed": [
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3399989",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3382120",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "24850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "34000",
+    "/sys/class/thermal/thermal_zone3/temp": "26850",
+    "/sys/class/thermal/thermal_zone1/temp": "29850",
+    "/sys/class/thermal/thermal_zone6/temp": "32000",
+    "/sys/class/thermal/thermal_zone4/temp": "32000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3390765",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3102136",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3407062",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "24850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "37000",
+    "/sys/class/thermal/thermal_zone3/temp": "27850",
+    "/sys/class/thermal/thermal_zone1/temp": "32850",
+    "/sys/class/thermal/thermal_zone6/temp": "35000",
+    "/sys/class/thermal/thermal_zone4/temp": "35000"
+  },
+  "pmu_all_batches_fully_scheduled": true
+}

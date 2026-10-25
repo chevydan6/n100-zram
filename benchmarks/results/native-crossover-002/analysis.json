@@ -1,0 +1,610 @@
+{
+  "screening_winners": [
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 107.164,
+        "sse": 105.98,
+        "avx2": 105.735
+      }
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 7.382,
+        "sse": 7.683,
+        "avx2": 7.972
+      }
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 106.718,
+        "sse": 105.926,
+        "avx2": 105.677
+      }
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 7.381,
+        "sse": 7.69,
+        "avx2": 7.97
+      }
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 106.802,
+        "sse": 106.12,
+        "avx2": 105.715
+      }
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 7.382,
+        "sse": 7.69,
+        "avx2": 7.972
+      }
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 124.714,
+        "sse": 124.078,
+        "avx2": 122.973
+      }
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 7.386,
+        "sse": 7.454,
+        "avx2": 7.97
+      }
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 124.154,
+        "sse": 123.954,
+        "avx2": 122.544
+      }
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 7.381,
+        "sse": 7.439,
+        "avx2": 7.97
+      }
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 115.06,
+        "sse": 114.496,
+        "avx2": 114.012
+      }
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 17.108,
+        "sse": 17.46,
+        "avx2": 17.556
+      }
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 161.628,
+        "sse": 162.012,
+        "avx2": 156.423
+      }
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 7.51,
+        "sse": 7.507,
+        "avx2": 7.972
+      }
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 154.998,
+        "sse": 154.95,
+        "avx2": 149.569
+      }
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 20.676,
+        "sse": 18.946,
+        "avx2": 18.672
+      }
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 117.607,
+        "sse": 115.667,
+        "avx2": 114.27
+      }
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 31.258,
+        "sse": 31.188,
+        "avx2": 31.699
+      }
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 211.695,
+        "sse": 211.746,
+        "avx2": 202.705
+      }
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 8.45,
+        "sse": 7.989,
+        "avx2": 8.579
+      }
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 210.129,
+        "sse": 210.719,
+        "avx2": 201.119
+      }
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 30.042,
+        "sse": 29.88,
+        "avx2": 31.957
+      }
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 125.464,
+        "sse": 121.556,
+        "avx2": 119.825
+      }
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 59.008,
+        "sse": 59.377,
+        "avx2": 59.924
+      }
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 287.679,
+        "sse": 289.048,
+        "avx2": 272.717
+      }
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 9.26,
+        "sse": 9.03,
+        "avx2": 9.314
+      }
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 315.897,
+        "sse": 319.019,
+        "avx2": 300.124
+      }
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 49.165,
+        "sse": 47.018,
+        "avx2": 47.964
+      }
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 140.677,
+        "sse": 126.415,
+        "avx2": 124.137
+      }
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 116.099,
+        "sse": 115.405,
+        "avx2": 115.217
+      }
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 384.08,
+        "sse": 385.767,
+        "avx2": 358.061
+      }
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 22.155,
+        "sse": 22.08,
+        "avx2": 22.701
+      }
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 558.516,
+        "sse": 562.005,
+        "avx2": 529.905
+      }
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 93.041,
+        "sse": 92.225,
+        "avx2": 91.41
+      }
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 175.204,
+        "sse": 136.026,
+        "avx2": 130.958
+      }
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 227.587,
+        "sse": 226.597,
+        "avx2": 227.368
+      }
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 518.794,
+        "sse": 521.609,
+        "avx2": 482.561
+      }
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 33.454,
+        "sse": 33.494,
+        "avx2": 34.475
+      }
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 1064.669,
+        "sse": 1079.274,
+        "avx2": 1010.444
+      }
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 185.161,
+        "sse": 190.54,
+        "avx2": 185.105
+      }
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 234.061,
+        "sse": 158.46,
+        "avx2": 145.144
+      }
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 452.447,
+        "sse": 451.307,
+        "avx2": 452.605
+      }
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 712.939,
+        "sse": 717.195,
+        "avx2": 658.035
+      }
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 55.931,
+        "sse": 56.01,
+        "avx2": 56.318
+      }
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 2106.719,
+        "sse": 2167.545,
+        "avx2": 2031.113
+      }
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 368.807,
+        "sse": 375.556,
+        "avx2": 359.924
+      }
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 352.167,
+        "sse": 222.255,
+        "avx2": 173.66
+      }
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 902.242,
+        "sse": 900.681,
+        "avx2": 902.448
+      }
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 1029.654,
+        "sse": 1036.988,
+        "avx2": 946.336
+      }
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 113.639,
+        "sse": 113.62,
+        "avx2": 114.341
+      }
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 4193.402,
+        "sse": 4301.902,
+        "avx2": 4053.429
+      }
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 758.013,
+        "sse": 774.387,
+        "avx2": 740.507
+      }
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2",
+      "medians_ns": {
+        "scalar": 589.388,
+        "sse": 321.806,
+        "avx2": 244.644
+      }
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved",
+      "medians_ns": {
+        "scalar": 1811.935,
+        "sse": 1814.635,
+        "avx2": 1812.581
+      }
+    }
+  ],
+  "suggested_refinement_sizes": [
+    40,
+    48,
+    56,
+    320,
+    384,
+    448,
+    1280,
+    1536,
+    1792
+  ],
+  "kernel_policy_selected": false
+}
