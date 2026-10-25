@@ -17,6 +17,7 @@
 #define BOUND 4352
 #define OPS 32768
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail"};
 static int sizes[PAGES],fds[4]={-1,-1,-1,-1};static uint64_t seed=100,energy_range;
 static uint32_t rnd(void){seed^=seed<<13;seed^=seed>>7;seed^=seed<<17;return (uint32_t)seed;}
 static uint64_t now(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC_RAW,&t);return (uint64_t)t.tv_sec*1000000000+t.tv_nsec;}
@@ -46,6 +47,8 @@ static lz_enc baseline_enc;static lz_dec baseline_dec;static _Alignas(8) unsigne
 static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_enc(input[p],dst,SIZE,BOUND,workspace):v->comp(input[p],SIZE,dst,BOUND,v->log);}
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
 static void fill(int kind){
+ if(kind==9){for(unsigned p=0;p<PAGES;p++)for(unsigned i=0;i<SIZE;i++)input[p][i]=i<2048?(unsigned char)((i%127)*37+p):0;return;}
+
  if(kind==8){FILE*f=fopen("/usr/bin/bash","rb");if(!f||fread(input,1,sizeof(input),f)!=sizeof(input)){fprintf(stderr,"Bash fixture unavailable\n");exit(4);}fclose(f);return;}
  for(unsigned p=0;p<PAGES;p++)for(unsigned i=0;i<SIZE;i++){
   if(kind==0)input[p][i]=(unsigned char)rnd();
@@ -60,11 +63,11 @@ static void fill(int kind){
 }
 int main(int argc,char **argv){
  if(argc!=2&&argc!=3)return 2;
- int validate=argc==3&&!strcmp(argv[2],"--validate-only");if(argc==3&&!validate)return 2;
+ int validate=argc==3&&!strcmp(argv[2],"--validate-only");int list_variants=argc==3&&!strcmp(argv[2],"--list-variants"),list_corpora=argc==3&&!strcmp(argv[2],"--list-corpora");if(argc==3&&!validate&&!list_variants&&!list_corpora)return 2;
  cpu_set_t allowed,chosen;if(sched_getaffinity(0,sizeof(allowed),&allowed))return 3;CPU_ZERO(&chosen);int cpu=0;for(;cpu<CPU_SETSIZE;cpu++)if(CPU_ISSET(cpu,&allowed))break;if(cpu==CPU_SETSIZE)return 3;CPU_SET(cpu,&chosen);if(sched_setaffinity(0,sizeof(chosen),&chosen))return 3;
  char path[4096];snprintf(path,sizeof(path),"%s/libgzram.so",argv[1]);void *gz=dlopen(path,RTLD_NOW|RTLD_LOCAL);snprintf(path,sizeof(path),"%s/lz4-small.so",argv[1]);void *lz=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!gz||!lz){fprintf(stderr,"%s\n",dlerror());return 4;}
  baseline_enc=(lz_enc)dlsym(lz,"LZ4_compress_default");baseline_dec=(lz_dec)dlsym(lz,"LZ4_decompress_safe");int (*available)(void)=dlsym(gz,"gzram_avx2_available");if(!baseline_enc||!baseline_dec||!available||!available()){fprintf(stderr,"Native AVX2 support required for comparisons\n");return 5;}
- struct codec variants[57]={0};strcpy(variants[0].name,"lz4-small-scalar");variants[0].lz4=1;
+ struct codec variants[105]={0};strcpy(variants[0].name,"lz4-small-scalar");variants[0].lz4=1;
  int n=1;for(int isa=0;isa<2;isa++)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-%s-%u",isa?"avx2":"scalar",1U<<log);v->comp=(gz_enc)dlsym(gz,isa?"gzram_encode_avx2":"gzram_encode_scalar");v->dec=(gz_dec)dlsym(gz,isa?"gzram_decode_avx2":"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
  }
@@ -88,15 +91,35 @@ int main(int argc,char **argv){
  if(fast)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-fast-scalar-%u",1U<<log);v->comp=(gz_enc)dlsym(fast,"gzram_encode_scalar");v->dec=(gz_dec)dlsym(fast,"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
  }
+ const char *policies[]={"trial","sample","recurrence"};
+ for(unsigned policy=0;policy<3;policy++){
+  snprintf(path,sizeof(path),"%s/libgzram-hybrid-%s.so",argv[1],policies[policy]);
+  if(access(path,R_OK))continue;
+  void *h=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!h){fprintf(stderr,"%s\n",dlerror());return 5;}
+  for(unsigned isa=0;isa<2;isa++)for(unsigned log=5;log<=12;log++){
+   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"ghy-%s-%s-%u",policies[policy],isa?"avx2":"scalar",1U<<log);
+   v->comp=(gz_enc)dlsym(h,isa?"gzram_encode_avx2":"gzram_encode_scalar");v->dec=(gz_dec)dlsym(h,isa?"gzram_decode_avx2":"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
+  }
+ }
+ if(getenv("GZRAM_HYBRID_SCREEN")){
+  int kept=0;
+  for(int i=0;i<n;i++){
+   const char *name=variants[i].name;
+   int keep=(!strncmp(name,"ghy-",4)&&(variants[i].log==10||variants[i].log==12))||!strcmp(name,"lz4-small-scalar")||!strcmp(name,"gz-avx2-1024")||!strcmp(name,"gz-avx2-4096")||!strcmp(name,"gz-fast-scalar-1024")||!strcmp(name,"gz-filter-avx2-1024")||!strcmp(name,"gz-filter-avx2-4096")||!strcmp(name,"gz-period-avx2-4096");
+   if(keep)variants[kept++]=variants[i];
+  }
+  n=kept;
+ }
+ if(list_variants){for(int i=0;i<n;i++)puts(variants[i].name);return 0;}
+ if(list_corpora){for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)puts(corpora[i]);return 0;}
  setup_perf();if(!read_counter("/sys/class/powercap/intel-rapl:0/max_energy_range_uj",&energy_range))energy_range=0;
  uint64_t initial_energy;if(!energy(&initial_energy))energy_range=0;
  fprintf(stderr,"CPU %d; AVX2 verified; RAPL %s; userspace codec screening, kernel SIMD overhead excluded\n",cpu,energy_range?"available":"unavailable");
  puts("corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page");
- const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf"};
- for(int kind=0;kind<9;kind++){
+ for(unsigned kind=0;kind<sizeof(corpora)/sizeof(corpora[0]);kind++){
   fill(kind);
   for(int round=-2;round<9;round++){
-   int order[57];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=rnd()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}
+   int order[105];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=rnd()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}
    if(validate&&round!=-2)continue;
    for(int k=0;k<n;k++){
     struct codec *v=&variants[order[k]];long total=0;

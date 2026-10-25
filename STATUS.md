@@ -240,3 +240,14 @@ exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-filter-001/summary.md](benchmarks/results/native-gzram-filter-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+## GZRAM hybrid development resumed
+
+Three independent GHY1 policies now combine the preserved fast GZRAM path,
+private scalar LZ4 backreferences and raw fallback: trial, sampled zero density,
+and sampled density with repeated-prefix classification. The original GZR1/GZR2
+paths and all losses remain available. Guarded capacities, independent decoding,
+malformed/mutated frames, cross-policy decoding, concurrency and ASan/UBSan passed.
+The next physical N100 experiment measures the complete policy/format costs,
+including a mixed repeated-prefix/zero-tail corpus that defeats zero density
+alone. No performance improvement or kernel integration is claimed before that run.
