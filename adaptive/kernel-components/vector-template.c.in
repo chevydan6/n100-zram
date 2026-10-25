@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/* Generated width-specialized leaf. Caller owns the kernel FPU context. */
+#include <linux/string.h>
+#include <linux/unaligned.h>
+#include "private.h"
+typedef char bytes __attribute__((vector_size(WIDTH)));
+typedef u64 words __attribute__((vector_size(WIDTH)));
+unsigned n100_component_ISA_count(const u8 *a,const u8 *b,unsigned n)
+{
+ unsigned at=0;
+ if(n>=8){u64 diff=get_unaligned_le64(a)^get_unaligned_le64(b);if(diff)return __builtin_ctzll(diff)/8;at=8;}
+ while(n-at>=WIDTH){bytes x,y;__builtin_memcpy(&x,a+at,WIDTH);__builtin_memcpy(&y,b+at,WIDTH);unsigned equal=(unsigned)MOVEMASK(x==y);if(equal!=ALL_MASK)return at+__builtin_ctz((~equal)&ALL_MASK);at+=WIDTH;}
+ return at+n100_component_scalar_count(a+at,b+at,n-at);
+}
+void n100_component_ISA_copy(u8 *dst,const u8 *src,unsigned n)
+{
+ unsigned at=0;for(;n-at>=WIDTH;at+=WIDTH){bytes v;__builtin_memcpy(&v,src+at,WIDTH);__builtin_memcpy(dst+at,&v,WIDTH);}
+ n100_component_scalar_copy(dst+at,src+at,n-at);
+}
+void n100_component_ISA_repeat(u8 *dst,const u8 *src,unsigned n)
+{
+ u64 value=get_unaligned_le64(src);words v=WORDS_INIT;
+ unsigned at=0;for(;n-at>=WIDTH;at+=WIDTH)__builtin_memcpy(dst+at,&v,WIDTH);
+ n100_component_scalar_repeat(dst+at,src,n-at);
+}

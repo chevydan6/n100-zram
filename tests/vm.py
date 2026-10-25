@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-only
 """Diskless correctness-only kernel smoke test. Never attaches host disks/network."""
-import argparse,stat,subprocess,json,hashlib,random,shutil
+import argparse,re,stat,subprocess,json,hashlib,random,shutil
 from pathlib import Path
 p=argparse.ArgumentParser()
 for name in ['kernel','probe','zram','lz4hc','output']:p.add_argument('--'+name,type=Path,required=True)
+p.add_argument('--component',type=Path);p.add_argument('--component-only',action='store_true');p.add_argument('--component-helper',type=Path)
 p.add_argument('--probe-only',action='store_true')
 p.add_argument('--lz4',type=Path)
 p.add_argument('--algorithms',nargs='+',default=['lz4','lz4-n100'])
@@ -24,6 +25,9 @@ for name in ['bin','dev','proc','sys','tmp','usr','usr/bin']:add(name,mode=stat.
 add('dev/console',mode=stat.S_IFCHR|0o600,rmaj=5,rmin=1)
 add('bin/busybox',Path('/usr/bin/busybox').read_bytes(),mode=stat.S_IFREG|0o755)
 if a.lz4:add('lz4.ko',a.lz4.read_bytes())
+if a.component:
+ assert a.component_helper
+ add('component.ko',a.component.read_bytes());add('component-helper',a.component_helper.read_bytes(),mode=stat.S_IFREG|0o755)
 add('probe.ko',a.probe.read_bytes());add('zram.ko',a.zram.read_bytes());add('lz4hc.ko',a.lz4hc.read_bytes())
 rng=random.Random(100);corpus=bytearray()
 for i in range(512):
@@ -81,12 +85,21 @@ init=init.replace('rmmod n100_lz4_probe || fail','''if grep -qw avx2 /proc/cpuin
  echo KERNEL_CODEC_SYSCALL_PASS
 fi
 rmmod n100_lz4_probe || fail''')
+if a.component:
+ component='insmod /component.ko || fail\n/component-helper /dev/n100-component-bench --validate-only || fail\nrmmod n100_component_probe || fail\necho N100_COMPONENT_VM_PASS\n'
+ if a.component_only:
+  init=init[:init.index('insmod /probe.ko')]+component+'echo N100_ZRAM_VM_PASS\npoweroff -f\n'
+ else:init=init.replace('insmod /lz4hc.ko',component+'insmod /lz4hc.ko')
 if a.probe_only:init=init.replace('insmod /lz4hc.ko','echo N100_ZRAM_VM_PASS\npoweroff -f\ninsmod /lz4hc.ko')
 add('init',init.encode(),mode=stat.S_IFREG|0o755);add('TRAILER!!!')
 initramfs=a.output/'initramfs.cpio';initramfs.write_bytes(archive)
 argv=['qemu-system-x86_64','-no-user-config','-nodefaults','-machine','q35,accel=kvm','-cpu','host' if a.expect_simd else 'host,-avx2','-smp','2','-m','256','-display','none','-monitor','none','-serial','stdio','-nic','none','-no-reboot','-kernel',str(a.kernel),'-initrd',str(initramfs),'-append','console=ttyS0 rdinit=/init panic=1']
 result=subprocess.run(argv,capture_output=True,text=True,timeout=60)
 (a.output/'serial.log').write_text(result.stdout);(a.output/'stderr.log').write_text(result.stderr)
-passed=(not a.expect_simd or 'KERNEL_CODEC_SYSCALL_PASS' in result.stdout) and result.stdout.count('FPU_STATE_PASS')==(4*len(a.algorithms) if a.expect_simd and not a.probe_only else 0) and result.returncode==0 and 'N100_ZRAM_VM_PASS' in result.stdout and f'n100-lz4-probe: simd={a.expect_simd}' in result.stdout and not any(s in result.stdout for s in ['N100_ZRAM_VM_FAIL','Kernel panic','Oops:','BUG: '])
-record={'status':'passed' if passed else 'failed','scope':'diskless VM correctness only; no native N100 performance or recovery claim','exit_code':result.returncode,'probe_only':a.probe_only,'algorithms_checked':[] if a.probe_only else a.algorithms,'syscall_codec_checked':'KERNEL_CODEC_SYSCALL_PASS' in result.stdout,'expected_simd':a.expect_simd,'user_ymm_state_checks':result.stdout.count('FPU_STATE_PASS'),'inputs':{name:hashlib.sha256(getattr(a,name).read_bytes()).hexdigest() for name in ['kernel','probe','zram','lz4hc']},'initramfs_sha256':hashlib.sha256(archive).hexdigest(),'disks_attached':False,'network_attached':False}
+passed=(a.component_only or not a.expect_simd or 'KERNEL_CODEC_SYSCALL_PASS' in result.stdout) and result.stdout.count('FPU_STATE_PASS')==(4*len(a.algorithms) if a.expect_simd and not a.probe_only and not a.component_only else 0) and result.returncode==0 and 'N100_ZRAM_VM_PASS' in result.stdout and (a.component_only or f'n100-lz4-probe: simd={a.expect_simd}' in result.stdout) and (not a.component or 'N100_COMPONENT_VM_PASS' in result.stdout) and not any(s in result.stdout for s in ['N100_ZRAM_VM_FAIL','Kernel panic','Oops:','BUG: '])
+record={'status':'passed' if passed else 'failed','scope':'diskless VM correctness only; no native N100 performance or recovery claim','exit_code':result.returncode,'probe_only':a.probe_only,'algorithms_checked':[] if a.probe_only or a.component_only else a.algorithms,'component_checked':bool(a.component),'component_sha256':hashlib.sha256(a.component.read_bytes()).hexdigest() if a.component else None,'syscall_codec_checked':'KERNEL_CODEC_SYSCALL_PASS' in result.stdout,'expected_simd':a.expect_simd,'user_ymm_state_checks':result.stdout.count('FPU_STATE_PASS'),'inputs':{name:hashlib.sha256(getattr(a,name).read_bytes()).hexdigest() for name in ['kernel','probe','zram','lz4hc']},'initramfs_sha256':hashlib.sha256(archive).hexdigest(),'disks_attached':False,'network_attached':False}
+if a.component:
+ match=re.search(r'COMPONENT_VALIDATION_PASS configurations=(\d+)',result.stdout)
+ record['component_configurations']=int(match[1]) if match else 0
+ record['component_ymm_sentinel_calls']=record['component_configurations']*4
 (a.output/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record));raise SystemExit(0 if passed else 1)
