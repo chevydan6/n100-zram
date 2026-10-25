@@ -1,0 +1,6 @@
+{
+  "module_sha256": "4e0981dbe4365b18a82a50101adad48f5c76208f422f942c6acae5780381e752",
+  "scalar_object_sha256": "02b18048cf14a264d27473e10a1c9c9103afb76cd061ee7824b98f253fa68d85",
+  "explicit_simd_registers_in_scalar_object": false,
+  "vm": "passed; lz4 and lz4-small, eight concurrent YMM-state checks; diskless correctness only"
+}

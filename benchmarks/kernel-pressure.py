@@ -6,7 +6,7 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--binary',type=Path,required=True);p.add_argument('--state-helper',type=Path,required=True);p.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4','lz4-n100','lz4-rep8']);p.add_argument('--corpora',nargs='+',choices=['period-tail','mixed-pages'],default=['period-tail','mixed-pages']);p.add_argument('--repeats',type=int,default=3);p.add_argument('--resume',action='store_true');a=p.parse_args()
 assert os.geteuid()==0 and 1<=a.repeats<=5
 os.sched_setaffinity(0,{1})  # Keep the sampler off the measured workload CPU.
-assert all(x in ['lzo-rle','lz4','lz4-n100','lz4-rep8'] for x in a.algorithms)
+assert all(x in ['lzo-rle','lz4','lz4-n100','lz4-rep8','lz4-small'] for x in a.algorithms)
 def read(name):return Path(name).read_text().strip()
 def run(args,**kwargs):return subprocess.run(args,check=True,**kwargs)
 def write(name,value):
