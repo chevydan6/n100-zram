@@ -268,3 +268,13 @@ No policy is selected and no kernel codec is replaced.
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-guarded-trial-001/summary.md](benchmarks/results/native-gzram-guarded-trial-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+## Guarded hybrid screen completed
+
+All three N100 sessions completed. The guarded policies protect the sparse
+encoding path and recover mixed-prefix ratios, but still add half-zero search
+cost; AVX2 filtering beats SSE filtering on that tested path. Neither is an
+overall winner. Both pooled and paired timing estimates, codec selection counts
+and every regression are published in native-gzram-guarded-trial-001 contrasts.
+Local prototypes now investigate fused prefix scans and independent sparse/repeat
+decoder selection before the next native experiment.

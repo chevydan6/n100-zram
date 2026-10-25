@@ -44,3 +44,19 @@ variants. Twelve corpora include the previous eleven and a zero-header/random
 page that can expose classifier false positives. The full 137-variant matrix
 remains available. No native guarded-trial performance is claimed before testing.
 Kernel SIMD state costs remain excluded; no kernel integration is performed.
+
+## Completed physical N100 screen
+
+All three sessions completed, with fully scheduled PMU groups and measured
+package RAPL; native validation and all timed byte checks passed. At 1024-byte
+GZRAM blocks, pooled half-zero encode medians were about 452.8 ns for guard16
+and 430.1 ns for guard32, versus about 352 ns for original GZRAM in that cohort.
+Sparse-word encoding stayed close to original, while mixed-prefix pages used
+LZ4 and recovered their ratio. Guarding still pays an extra GZRAM pass before
+LZ4 on those mixed pages and on rejected near-raw inputs. No overall preferred
+policy is selected. Both absolute and paired estimates, all codec mode counts
+and regressions remain in native-gzram-guarded-trial-001/hybrid-contrasts.*.
+
+The next tests investigate sharing prefix detection with the existing vector
+scan and selecting sparse-word versus repeat decoders independently. These
+are separate performance hypotheses; existing guard16/guard32 source is retained.
