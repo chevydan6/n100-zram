@@ -25,3 +25,12 @@ jobs:
           cp build/scalar.so build/avx2-guard.so build/small-table/
           N100_SMALL_TABLE_EXPERIMENT=1 build/native build/small-table --validate-only
       - run: python3 tools/audit-publication.py
+      - name: Validate matched adaptive codecs and size harness
+        run: |
+          python3 tools/prepare-crossover.py
+          BUILD_ROOT="$PWD/build/crossover" python3 tests/check.py
+          BUILD_ROOT="$PWD/build/crossover" python3 tests/guard.py
+          BUILD_ROOT="$PWD/build/crossover" python3 tests/interop.py
+          gcc -O2 -Wall -Wextra -Werror benchmarks/crossover.c -ldl -o build/crossover/benchmark
+          build/crossover/benchmark build/crossover --validate-only
+          N100_CROSSOVER_SIZES=40,48,56,320,384,448,1280,1536,1792 build/crossover/benchmark build/crossover --validate-only
