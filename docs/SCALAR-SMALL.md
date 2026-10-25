@@ -66,3 +66,11 @@ isolated module. The four-LZ4-backend module passed exact-ABI diskless validatio
 with sixteen concurrent register-state checks. It has not yet demonstrated a
 native advantage. This experiment responds to the 25%-nominal-compressibility
 fixture's read regression; the 4 KiB implementation and all results are preserved.
+
+For unattended finite queues, watch-kernel-job.py can write an explicit remote
+--ready-file only after acquiring the shared native lock. A pre-authorized root
+oneshot waits for that unique marker before beginning. --after runs a collector
+while retaining the same lock, so remote result transfer cannot overlap the next
+performance job. Neither option is enabled by default. Use unique units/markers,
+refuse stale markers and preserve failed checkpoints. These are finite supervised
+jobs; they do not imply an agent can keep writing code after its runtime ends.
