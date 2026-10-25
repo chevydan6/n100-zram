@@ -251,3 +251,9 @@ malformed/mutated frames, cross-policy decoding, concurrency and ASan/UBSan pass
 The next physical N100 experiment measures the complete policy/format costs,
 including a mixed repeated-prefix/zero-tail corpus that defeats zero density
 alone. No performance improvement or kernel integration is claimed before that run.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-hybrid-screen-001/summary.md](benchmarks/results/native-gzram-hybrid-screen-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
