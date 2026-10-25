@@ -20,6 +20,18 @@ for path in sorted(a.input.glob('*-verify.json')):
  data=json.loads(path.read_text());assert all(j['error']==0 and j['read']['io_bytes']==64*1024*1024 for j in data['jobs'])
 for path in sorted(a.input.glob('*-profile.txt')):
  profiles[path.stem]=[{'kernel_symbol':m.group(2),'self_percent':float(m.group(1))} for line in path.read_text().splitlines() if (m:=re.match(r'\s+(\d+\.\d+)%\s+\[k\]\s+(\S+)',line))]
+# Extended counters retain unavailable/not-counted indications. Strip wall-clock
+# comment headers; do not turn missing measurements into numeric zeros.
+for path in sorted(a.input.glob('*.counters.csv')):
+ lines=[line for line in path.read_text().splitlines() if line.strip() and not line.startswith('#')]
+ (a.output/path.name).write_text('\n'.join(lines)+'\n')
+for path in sorted(a.input.glob('*.telemetry-private.jsonl')):
+ samples=[json.loads(line) for line in path.read_text().splitlines()]
+ if not samples:continue
+ start=samples[0]['time'];public=[]
+ for sample in samples:
+  row=conditions(sample);row['elapsed_seconds']=round(sample['time']-start,3);public.append(row)
+ (a.output/path.name.replace('-private','')).write_text(''.join(json.dumps(row)+'\n' for row in public))
 metadata={'kernel':env['kernel'],'kernel_config_sha256':env['kernel_config_sha256'],'zram_module_srcversion':env['zram_module_srcversion'],'fio':env['fio'],'compiler':env['compiler'],'recovery_policy':env['recovery_policy'],'source_sha256':checkpoint['source_sha256'],'scope':'Physical N100, isolated synthetic ZRAM device, 64 MiB, 50% nominal compression, 4 KiB synchronous direct I/O, CPU 0','trials_per_algorithm':{name:len({r['trial'] for r in rows if r['algorithm']==name}) for name in sorted({r['algorithm'] for r in rows})},'before_conditions':conditions(env['before']),'crc32c_full_device_verification':'passed after every trial','rows':rows,'profiles':profiles}
 (a.output/'results.json').write_text(json.dumps(metadata,indent=2)+'\n')
 print('| Algorithm | Operation | Median IOPS | Mean completion latency (ns) | Whole-job package energy (uJ/IO) | IOPS range |')
