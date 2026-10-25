@@ -183,3 +183,9 @@ results as a claimed kernel measurement. A bounded batching probe preserves
 legacy configuration and tests 1/2/4/8/16 independent 4 KiB operations per FPU
 entry. It passed diskless VM bounds/canary/fallback/register validation; native
 measurements are the next step. This does not implement batching in ZRAM.
+
+### Native experiment collection
+
+Three native experimental sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-component-batches-001/summary.md](benchmarks/results/native-component-batches-001/summary.md). Measurement scope is documented in the report; component and codec results
+establish no end-to-end ZRAM improvement.

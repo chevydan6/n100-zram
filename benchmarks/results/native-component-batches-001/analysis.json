@@ -1,0 +1,3426 @@
+{
+  "scope": "Physical N100 kernel component experiment; syscall/dispatch/mutex/loop and kernel FPU handling included; normal ZRAM unchanged",
+  "rows": [
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 412.51399999999995,
+      "medians_ns_per_independent_operation": {
+        "scalar": 303.855,
+        "fpu-scalar": 715.873,
+        "sse": 723.381,
+        "avx2": 700.637
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 303.855,
+        "fpu-scalar": 715.873,
+        "sse": 723.381,
+        "avx2": 700.637
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 138.54854782189784,
+          "bootstrap_95_percent": [
+            129.364921298799,
+            138.66763477945182
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 130.87438553834767,
+          "bootstrap_95_percent": [
+            123.66836425213563,
+            131.18276720016695
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.162,
+      "medians_ns_per_independent_operation": {
+        "scalar": 304.255,
+        "fpu-scalar": 716.436,
+        "sse": 723.989,
+        "avx2": 698.918
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 304.255,
+        "fpu-scalar": 716.436,
+        "sse": 723.989,
+        "avx2": 698.918
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 137.88620237480978,
+          "bootstrap_95_percent": [
+            129.38516948882906,
+            139.436698786746
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 130.03267243419492,
+          "bootstrap_95_percent": [
+            121.26508333254135,
+            131.67427706714258
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 427.897,
+      "medians_ns_per_independent_operation": {
+        "scalar": 307.597,
+        "fpu-scalar": 736.033,
+        "sse": 745.444,
+        "avx2": 720.225
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 307.597,
+        "fpu-scalar": 736.033,
+        "sse": 745.444,
+        "avx2": 720.225
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 142.59293050414473,
+          "bootstrap_95_percent": [
+            135.82856622278348,
+            143.3311658755446
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 134.3784469715457,
+          "bootstrap_95_percent": [
+            126.9503971321912,
+            135.1158435162993
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.966,
+      "medians_ns_per_independent_operation": {
+        "scalar": 212.131,
+        "fpu-scalar": 626.853,
+        "sse": 625.956,
+        "avx2": 627.153
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 212.131,
+        "fpu-scalar": 626.853,
+        "sse": 625.956,
+        "avx2": 627.153
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.07992702622437,
+          "bootstrap_95_percent": [
+            193.93648279449462,
+            197.64576070465475
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.32175872456173,
+          "bootstrap_95_percent": [
+            194.21886948240515,
+            197.74121252206683
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 413.9100000000001,
+      "medians_ns_per_independent_operation": {
+        "scalar": 212.54,
+        "fpu-scalar": 627.062,
+        "sse": 626.165,
+        "avx2": 628.733
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 212.54,
+        "fpu-scalar": 627.062,
+        "sse": 626.165,
+        "avx2": 628.733
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 194.80013534216187,
+          "bootstrap_95_percent": [
+            194.61042627270163,
+            195.73229002072122
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.6392327983862,
+          "bootstrap_95_percent": [
+            195.40574305601214,
+            197.74002751681974
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 431.967,
+      "medians_ns_per_independent_operation": {
+        "scalar": 215.275,
+        "fpu-scalar": 647.697,
+        "sse": 646.723,
+        "avx2": 648.259
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 215.275,
+        "fpu-scalar": 647.697,
+        "sse": 646.723,
+        "avx2": 648.259
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 200.46738741584934,
+          "bootstrap_95_percent": [
+            199.82551223959902,
+            201.16497154054306
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 200.51170032300797,
+          "bootstrap_95_percent": [
+            200.3828043897375,
+            203.63033529466702
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 419.24700000000007,
+      "medians_ns_per_independent_operation": {
+        "scalar": 476.774,
+        "fpu-scalar": 894.085,
+        "sse": 833.941,
+        "avx2": 764.279
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 476.774,
+        "fpu-scalar": 894.085,
+        "sse": 833.941,
+        "avx2": 764.279
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 76.678756161127,
+          "bootstrap_95_percent": [
+            71.47747150641604,
+            77.47276847722786
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 60.68404547649726,
+          "bootstrap_95_percent": [
+            59.338261600286216,
+            61.508409197438766
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 416.219,
+      "medians_ns_per_independent_operation": {
+        "scalar": 472.054,
+        "fpu-scalar": 887.033,
+        "sse": 834.782,
+        "avx2": 755.555
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 472.054,
+        "fpu-scalar": 887.033,
+        "sse": 834.782,
+        "avx2": 755.555
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 76.21796665055993,
+          "bootstrap_95_percent": [
+            75.91267773866856,
+            81.14386043237116
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 60.96313538795928,
+          "bootstrap_95_percent": [
+            60.66890652340622,
+            61.17211760257941
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 440.67400000000004,
+      "medians_ns_per_independent_operation": {
+        "scalar": 481.037,
+        "fpu-scalar": 912.205,
+        "sse": 858.646,
+        "avx2": 781.542
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 481.037,
+        "fpu-scalar": 912.205,
+        "sse": 858.646,
+        "avx2": 781.542
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 79.41079671738758,
+          "bootstrap_95_percent": [
+            78.78948033352984,
+            80.60481780141131
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 63.249014650424364,
+          "bootstrap_95_percent": [
+            60.83455624322083,
+            63.54001875115636
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 417.01399999999995,
+      "medians_ns_per_independent_operation": {
+        "scalar": 469.271,
+        "fpu-scalar": 884.025,
+        "sse": 821.228,
+        "avx2": 750.243
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 469.271,
+        "fpu-scalar": 884.025,
+        "sse": 821.228,
+        "avx2": 750.243
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 75.32018308956181,
+          "bootstrap_95_percent": [
+            74.7379552867627,
+            75.529090593015
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 60.05422213085265,
+          "bootstrap_95_percent": [
+            59.84123228755629,
+            60.23985868130932
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 416.25,
+      "medians_ns_per_independent_operation": {
+        "scalar": 468.856,
+        "fpu-scalar": 884.495,
+        "sse": 821.895,
+        "avx2": 751.376
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 468.856,
+        "fpu-scalar": 884.495,
+        "sse": 821.895,
+        "avx2": 751.376
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 75.2201892312986,
+          "bootstrap_95_percent": [
+            74.99359488957592,
+            75.80717627243519
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 59.87720484715471,
+          "bootstrap_95_percent": [
+            59.769007016561496,
+            60.1053481667416
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 435.06399999999996,
+      "medians_ns_per_independent_operation": {
+        "scalar": 471.552,
+        "fpu-scalar": 905.415,
+        "sse": 843.085,
+        "avx2": 771.655
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 471.552,
+        "fpu-scalar": 905.415,
+        "sse": 843.085,
+        "avx2": 771.655
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 78.49116936075397,
+          "bootstrap_95_percent": [
+            78.44131211819014,
+            78.93286917928162
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 63.271549893842895,
+          "bootstrap_95_percent": [
+            63.23187339288132,
+            63.57899505487061
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 415.30499999999995,
+      "medians_ns_per_independent_operation": {
+        "scalar": 341.372,
+        "fpu-scalar": 756.88,
+        "sse": 730.12,
+        "avx2": 686.211
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 341.372,
+        "fpu-scalar": 756.88,
+        "sse": 730.12,
+        "avx2": 686.211
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.78671621756284,
+          "bootstrap_95_percent": [
+            113.6437179445919,
+            116.29683115541307
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 101.03306027603041,
+          "bootstrap_95_percent": [
+            100.94618187783415,
+            103.79449008785664
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 415.281,
+      "medians_ns_per_independent_operation": {
+        "scalar": 341.834,
+        "fpu-scalar": 758.173,
+        "sse": 730.677,
+        "avx2": 686.362
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 341.834,
+        "fpu-scalar": 758.173,
+        "sse": 730.677,
+        "avx2": 686.362
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.94898072203472,
+          "bootstrap_95_percent": [
+            113.4357179848032,
+            114.48514790594699
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 100.48636539113956,
+          "bootstrap_95_percent": [
+            100.18139081847504,
+            100.52868697691166
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 432.75399999999996,
+      "medians_ns_per_independent_operation": {
+        "scalar": 344.849,
+        "fpu-scalar": 777.68,
+        "sse": 751.739,
+        "avx2": 706.683
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 344.849,
+        "fpu-scalar": 777.68,
+        "sse": 751.739,
+        "avx2": 706.683
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 117.72323759791124,
+          "bootstrap_95_percent": [
+            117.343154216017,
+            119.7012146312602
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 104.75930597446026,
+          "bootstrap_95_percent": [
+            104.3523142271404,
+            106.83075638244813
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.664,
+      "medians_ns_per_independent_operation": {
+        "scalar": 311.678,
+        "fpu-scalar": 722.234,
+        "sse": 690.319,
+        "avx2": 683.996
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 311.678,
+        "fpu-scalar": 722.234,
+        "sse": 690.319,
+        "avx2": 683.996
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 122.37951554231734,
+          "bootstrap_95_percent": [
+            120.67634396555862,
+            122.59927219096171
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 119.55941793360618,
+          "bootstrap_95_percent": [
+            118.78797210513818,
+            122.2103777211395
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 410.8229999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 311.691,
+        "fpu-scalar": 723.558,
+        "sse": 691.16,
+        "avx2": 685.387
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 311.691,
+        "fpu-scalar": 723.558,
+        "sse": 691.16,
+        "avx2": 685.387
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 121.46664002938694,
+          "bootstrap_95_percent": [
+            120.61160452437348,
+            122.14164931318727
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 119.45208834124936,
+          "bootstrap_95_percent": [
+            118.89034482095778,
+            120.73078786362137
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 1,
+      "matched_fpu_control_delta_ns_per_ioctl": 429.896,
+      "medians_ns_per_independent_operation": {
+        "scalar": 314.86,
+        "fpu-scalar": 743.395,
+        "sse": 709.508,
+        "avx2": 705.166
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 314.86,
+        "fpu-scalar": 743.395,
+        "sse": 709.508,
+        "avx2": 705.166
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 125.37246693939683,
+          "bootstrap_95_percent": [
+            125.35955684301472,
+            126.89237800194584
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 123.46922683891476,
+          "bootstrap_95_percent": [
+            123.00677220979877,
+            125.28739310768601
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 412.074,
+      "medians_ns_per_independent_operation": {
+        "scalar": 197.0305,
+        "fpu-scalar": 402.931,
+        "sse": 417.271,
+        "avx2": 391.749
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 394.061,
+        "fpu-scalar": 805.862,
+        "sse": 834.542,
+        "avx2": 783.498
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 111.50504909014506,
+          "bootstrap_95_percent": [
+            110.3183066568747,
+            113.28457992914008
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 98.06660211895152,
+          "bootstrap_95_percent": [
+            97.61998752053384,
+            99.79285608600044
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 410.425,
+      "medians_ns_per_independent_operation": {
+        "scalar": 197.277,
+        "fpu-scalar": 402.12,
+        "sse": 417.7785,
+        "avx2": 391.2955
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 394.554,
+        "fpu-scalar": 804.24,
+        "sse": 835.557,
+        "avx2": 782.591
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 111.34708151823065,
+          "bootstrap_95_percent": [
+            110.84632168001698,
+            112.78656403079074
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 98.19998181799818,
+          "bootstrap_95_percent": [
+            96.90169214304463,
+            99.15993546187008
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 428.79699999999997,
+      "medians_ns_per_independent_operation": {
+        "scalar": 199.018,
+        "fpu-scalar": 413.65,
+        "sse": 428.1825,
+        "avx2": 401.774
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 398.036,
+        "fpu-scalar": 827.3,
+        "sse": 856.365,
+        "avx2": 803.548
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.73194418679277,
+          "bootstrap_95_percent": [
+            113.5280395492825,
+            115.53561244255954
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 101.34152850059009,
+          "bootstrap_95_percent": [
+            100.3750294558563,
+            102.46946769140321
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 413.81100000000004,
+      "medians_ns_per_independent_operation": {
+        "scalar": 108.2545,
+        "fpu-scalar": 315.264,
+        "sse": 315.4505,
+        "avx2": 315.627
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 216.509,
+        "fpu-scalar": 630.528,
+        "sse": 630.901,
+        "avx2": 631.254
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.0446275858552,
+          "bootstrap_95_percent": [
+            189.56902567115944,
+            192.83394272351012
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.53937416580158,
+          "bootstrap_95_percent": [
+            189.42120533254987,
+            193.10462852041832
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 413.93899999999996,
+      "medians_ns_per_independent_operation": {
+        "scalar": 108.4345,
+        "fpu-scalar": 315.488,
+        "sse": 315.603,
+        "avx2": 315.6865
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.869,
+        "fpu-scalar": 630.976,
+        "sse": 631.206,
+        "avx2": 631.373
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.17087584837714,
+          "bootstrap_95_percent": [
+            190.32618902944262,
+            192.2455064867718
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.50330126216554,
+          "bootstrap_95_percent": [
+            190.79444564622062,
+            191.55120238397748
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 431.901,
+      "medians_ns_per_independent_operation": {
+        "scalar": 109.8495,
+        "fpu-scalar": 325.9135,
+        "sse": 326.0365,
+        "avx2": 325.496
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.699,
+        "fpu-scalar": 651.827,
+        "sse": 652.073,
+        "avx2": 650.992
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.68546574449363,
+          "bootstrap_95_percent": [
+            196.39805472229796,
+            197.36201391394914
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.4233158927404,
+          "bootstrap_95_percent": [
+            196.23302791546618,
+            196.84240305903612
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 412.5799999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 370.302,
+        "fpu-scalar": 574.466,
+        "sse": 522.278,
+        "avx2": 451.5815
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 740.604,
+        "fpu-scalar": 1148.932,
+        "sse": 1044.556,
+        "avx2": 903.163
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 41.33245255494542,
+          "bootstrap_95_percent": [
+            40.332802723616965,
+            41.80156176456824
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 21.96227983496051,
+          "bootstrap_95_percent": [
+            21.278661678396627,
+            22.16506337475743
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 408.096,
+      "medians_ns_per_independent_operation": {
+        "scalar": 368.6745,
+        "fpu-scalar": 574.39,
+        "sse": 520.493,
+        "avx2": 449.706
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 737.349,
+        "fpu-scalar": 1148.78,
+        "sse": 1040.986,
+        "avx2": 899.412
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 41.258718161850936,
+          "bootstrap_95_percent": [
+            40.38023820980412,
+            41.922481755586546
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 22.154903110107217,
+          "bootstrap_95_percent": [
+            22.07463352067862,
+            22.64952128604014
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 428.948,
+      "medians_ns_per_independent_operation": {
+        "scalar": 367.5765,
+        "fpu-scalar": 584.8735,
+        "sse": 528.084,
+        "avx2": 457.7485
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 735.153,
+        "fpu-scalar": 1169.747,
+        "sse": 1056.168,
+        "avx2": 915.497
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 43.92255720875906,
+          "bootstrap_95_percent": [
+            43.31289601574835,
+            43.94032571572901
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 24.785254164747062,
+          "bootstrap_95_percent": [
+            24.77200482297488,
+            25.4315355487573
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 397.52699999999993,
+      "medians_ns_per_independent_operation": {
+        "scalar": 378.963,
+        "fpu-scalar": 577.201,
+        "sse": 512.1245,
+        "avx2": 445.9265
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 757.926,
+        "fpu-scalar": 1154.402,
+        "sse": 1024.249,
+        "avx2": 891.853
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 36.13757082036033,
+          "bootstrap_95_percent": [
+            34.74052967517536,
+            37.03894224444153
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 17.530847008818682,
+          "bootstrap_95_percent": [
+            17.012871785364304,
+            19.03616294253878
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 404.683,
+      "medians_ns_per_independent_operation": {
+        "scalar": 375.1905,
+        "fpu-scalar": 577.729,
+        "sse": 512.445,
+        "avx2": 444.797
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 750.381,
+        "fpu-scalar": 1155.458,
+        "sse": 1024.89,
+        "avx2": 889.594
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 36.719517197242894,
+          "bootstrap_95_percent": [
+            36.58261603105623,
+            38.31633883436394
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 18.457423628796565,
+          "bootstrap_95_percent": [
+            17.2704234744915,
+            20.327305899755356
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 422.60299999999995,
+      "medians_ns_per_independent_operation": {
+        "scalar": 376.159,
+        "fpu-scalar": 587.563,
+        "sse": 522.408,
+        "avx2": 457.0755
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 752.318,
+        "fpu-scalar": 1175.126,
+        "sse": 1044.816,
+        "avx2": 914.151
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 39.475633199915535,
+          "bootstrap_95_percent": [
+            38.85404842101345,
+            41.5952872262531
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 20.974466421869042,
+          "bootstrap_95_percent": [
+            20.33623211637878,
+            23.40118484989684
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 416.7610000000001,
+      "medians_ns_per_independent_operation": {
+        "scalar": 241.319,
+        "fpu-scalar": 449.4605,
+        "sse": 422.5435,
+        "avx2": 370.466
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 482.638,
+        "fpu-scalar": 898.921,
+        "sse": 845.087,
+        "avx2": 740.932
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 75.64324911200615,
+          "bootstrap_95_percent": [
+            74.85030188257038,
+            76.08366505692334
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 54.00434181961713,
+          "bootstrap_95_percent": [
+            51.78504608387009,
+            54.00668022677833
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 418.327,
+      "medians_ns_per_independent_operation": {
+        "scalar": 240.816,
+        "fpu-scalar": 450.5875,
+        "sse": 422.399,
+        "avx2": 370.8425
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 481.632,
+        "fpu-scalar": 901.175,
+        "sse": 844.798,
+        "avx2": 741.685
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 74.50543153278852,
+          "bootstrap_95_percent": [
+            74.3144298131811,
+            75.84988648668988
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 53.8584935064935,
+          "bootstrap_95_percent": [
+            47.88212013659769,
+            54.007558296476255
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 435.36500000000007,
+      "medians_ns_per_independent_operation": {
+        "scalar": 242.489,
+        "fpu-scalar": 460.3845,
+        "sse": 432.9455,
+        "avx2": 381.698
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 484.978,
+        "fpu-scalar": 920.769,
+        "sse": 865.891,
+        "avx2": 763.396
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 78.22656848210359,
+          "bootstrap_95_percent": [
+            77.76089546014752,
+            78.71994815230671
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 57.744336382550124,
+          "bootstrap_95_percent": [
+            56.99970478882079,
+            66.13761614095166
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.96099999999996,
+      "medians_ns_per_independent_operation": {
+        "scalar": 207.7975,
+        "fpu-scalar": 413.138,
+        "sse": 404.91,
+        "avx2": 400.827
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 415.595,
+        "fpu-scalar": 826.276,
+        "sse": 809.82,
+        "avx2": 801.654
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 94.66944414453894,
+          "bootstrap_95_percent": [
+            92.87818971051851,
+            96.80645582917418
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 92.6329211374681,
+          "bootstrap_95_percent": [
+            89.9283517555733,
+            95.59716562385607
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.727,
+      "medians_ns_per_independent_operation": {
+        "scalar": 207.8955,
+        "fpu-scalar": 413.5815,
+        "sse": 405.663,
+        "avx2": 401.0525
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 415.791,
+        "fpu-scalar": 827.163,
+        "sse": 811.326,
+        "avx2": 802.105
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 95.25497084836441,
+          "bootstrap_95_percent": [
+            93.46082754105937,
+            97.82998414237693
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 91.01507204634531,
+          "bootstrap_95_percent": [
+            90.74107488698506,
+            91.22227272836594
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 2,
+      "matched_fpu_control_delta_ns_per_ioctl": 431.236,
+      "medians_ns_per_independent_operation": {
+        "scalar": 208.5005,
+        "fpu-scalar": 423.5045,
+        "sse": 416.2025,
+        "avx2": 411.6615
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 417.001,
+        "fpu-scalar": 847.009,
+        "sse": 832.405,
+        "avx2": 823.323
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 100.08937734585417,
+          "bootstrap_95_percent": [
+            99.39095280243046,
+            101.21242075043808
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 98.21706946184521,
+          "bootstrap_95_percent": [
+            94.41474331842892,
+            100.44997557897184
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.04099999999994,
+      "medians_ns_per_independent_operation": {
+        "scalar": 150.0085,
+        "fpu-scalar": 253.6885,
+        "sse": 271.7575,
+        "avx2": 246.2565
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 600.034,
+        "fpu-scalar": 1014.754,
+        "sse": 1087.03,
+        "avx2": 985.026
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 82.78336039317216,
+          "bootstrap_95_percent": [
+            77.09040414641626,
+            82.81486763526162
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 63.920779499448365,
+          "bootstrap_95_percent": [
+            60.822663200555425,
+            65.96476620360225
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 415.93000000000006,
+      "medians_ns_per_independent_operation": {
+        "scalar": 150.16675,
+        "fpu-scalar": 254.335,
+        "sse": 272.37375,
+        "avx2": 247.15125
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 600.667,
+        "fpu-scalar": 1017.34,
+        "sse": 1089.495,
+        "avx2": 988.605
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 80.43608188896674,
+          "bootstrap_95_percent": [
+            77.92809106278351,
+            82.8012496931257
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 64.78564886925015,
+          "bootstrap_95_percent": [
+            61.652193825101385,
+            65.48776591272176
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 435.03600000000006,
+      "medians_ns_per_independent_operation": {
+        "scalar": 152.5005,
+        "fpu-scalar": 260.1735,
+        "sse": 278.18375,
+        "avx2": 253.60025
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 610.002,
+        "fpu-scalar": 1040.694,
+        "sse": 1112.735,
+        "avx2": 1014.401
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 83.46228176272616,
+          "bootstrap_95_percent": [
+            79.57618538004576,
+            85.87158239551258
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 66.30101093696076,
+          "bootstrap_95_percent": [
+            63.080381203184665,
+            69.60803851789828
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.265,
+      "medians_ns_per_independent_operation": {
+        "scalar": 56.0695,
+        "fpu-scalar": 159.62975,
+        "sse": 159.65725,
+        "avx2": 159.44675
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 224.278,
+        "fpu-scalar": 638.519,
+        "sse": 638.629,
+        "avx2": 637.787
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 184.15210129382436,
+          "bootstrap_95_percent": [
+            178.84143179763194,
+            185.12805860740448
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 184.37341156956992,
+          "bootstrap_95_percent": [
+            178.4536910215841,
+            185.93717812071756
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.018,
+      "medians_ns_per_independent_operation": {
+        "scalar": 56.0275,
+        "fpu-scalar": 160.32325,
+        "sse": 159.87825,
+        "avx2": 160.73625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 224.11,
+        "fpu-scalar": 641.293,
+        "sse": 639.513,
+        "avx2": 642.945
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 184.92260936218278,
+          "bootstrap_95_percent": [
+            178.95614402613066,
+            185.4675800398628
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 186.00757147598924,
+          "bootstrap_95_percent": [
+            180.52807725493957,
+            186.69943883277222
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 431.13800000000003,
+      "medians_ns_per_independent_operation": {
+        "scalar": 56.763,
+        "fpu-scalar": 165.24025,
+        "sse": 165.19275,
+        "avx2": 165.0595
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 227.052,
+        "fpu-scalar": 660.961,
+        "sse": 660.771,
+        "avx2": 660.238
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 189.73068343313724,
+          "bootstrap_95_percent": [
+            182.0906861607162,
+            192.20959050298544
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.00306042352025,
+          "bootstrap_95_percent": [
+            183.4289475360411,
+            191.4150013045766
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 415.89699999999993,
+      "medians_ns_per_independent_operation": {
+        "scalar": 315.069,
+        "fpu-scalar": 419.37525,
+        "sse": 370.284,
+        "avx2": 324.426
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1260.276,
+        "fpu-scalar": 1677.501,
+        "sse": 1481.136,
+        "avx2": 1297.704
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.04900995429357,
+          "bootstrap_95_percent": [
+            17.027399271781963,
+            17.703887179896928
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 2.6716057506927404,
+          "bootstrap_95_percent": [
+            1.300049157192018,
+            3.132329743643436
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.3710000000001,
+      "medians_ns_per_independent_operation": {
+        "scalar": 313.8275,
+        "fpu-scalar": 417.507,
+        "sse": 370.2065,
+        "avx2": 321.76775
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1255.31,
+        "fpu-scalar": 1670.028,
+        "sse": 1480.826,
+        "avx2": 1287.071
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.15788265293994,
+          "bootstrap_95_percent": [
+            17.05885093891244,
+            17.329119400115367
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 2.722184376373238,
+          "bootstrap_95_percent": [
+            1.088823511453807,
+            3.0070062275798337
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 434.07299999999987,
+      "medians_ns_per_independent_operation": {
+        "scalar": 313.2775,
+        "fpu-scalar": 424.63975,
+        "sse": 372.88825,
+        "avx2": 327.5635
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1253.11,
+        "fpu-scalar": 1698.559,
+        "sse": 1491.553,
+        "avx2": 1310.254
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 18.76077372141158,
+          "bootstrap_95_percent": [
+            18.72070215364785,
+            18.766575864821668
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 4.257828165481592,
+          "bootstrap_95_percent": [
+            2.933621901210959,
+            4.51062794956949
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 412.92999999999984,
+      "medians_ns_per_independent_operation": {
+        "scalar": 323.40425,
+        "fpu-scalar": 425.91375,
+        "sse": 365.57375,
+        "avx2": 321.30375
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1293.617,
+        "fpu-scalar": 1703.655,
+        "sse": 1462.295,
+        "avx2": 1285.215
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 13.066201285548583,
+          "bootstrap_95_percent": [
+            12.692467845453459,
+            13.270182644893037
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -0.8547700377199652,
+          "bootstrap_95_percent": [
+            -2.122237787026826,
+            -0.27174355977077624
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 412.86400000000003,
+      "medians_ns_per_independent_operation": {
+        "scalar": 322.53,
+        "fpu-scalar": 425.77125,
+        "sse": 365.7705,
+        "avx2": 321.22325
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1290.12,
+        "fpu-scalar": 1703.085,
+        "sse": 1463.082,
+        "avx2": 1284.893
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 13.138906495364843,
+          "bootstrap_95_percent": [
+            12.924967255714437,
+            13.388437441846035
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -0.8277568083151499,
+          "bootstrap_95_percent": [
+            -2.1829006118736505,
+            -0.35016069389982585
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 431.59900000000016,
+      "medians_ns_per_independent_operation": {
+        "scalar": 323.71375,
+        "fpu-scalar": 431.49625,
+        "sse": 370.97325,
+        "avx2": 326.16075
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1294.855,
+        "fpu-scalar": 1725.985,
+        "sse": 1483.893,
+        "avx2": 1304.643
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 14.635626642789724,
+          "bootstrap_95_percent": [
+            14.397243443650343,
+            14.657800158786971
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 0.7234082480538362,
+          "bootstrap_95_percent": [
+            -0.5533945977777344,
+            0.8570167375693494
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 416.318,
+      "medians_ns_per_independent_operation": {
+        "scalar": 188.33875,
+        "fpu-scalar": 293.147,
+        "sse": 268.76875,
+        "avx2": 235.75125
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 753.355,
+        "fpu-scalar": 1172.588,
+        "sse": 1075.075,
+        "avx2": 943.005
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 42.23571459099069,
+          "bootstrap_95_percent": [
+            41.5627065622157,
+            42.7897305708838
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 24.076780515709917,
+          "bootstrap_95_percent": [
+            23.02726512242772,
+            25.3971331000016
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 415.8750000000001,
+      "medians_ns_per_independent_operation": {
+        "scalar": 188.83275,
+        "fpu-scalar": 293.4145,
+        "sse": 268.35125,
+        "avx2": 236.23625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 755.331,
+        "fpu-scalar": 1173.658,
+        "sse": 1073.405,
+        "avx2": 944.945
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 41.78668022531493,
+          "bootstrap_95_percent": [
+            40.939359090897185,
+            42.747247188618175
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 24.458415739069682,
+          "bootstrap_95_percent": [
+            23.05266418752816,
+            25.39844523418362
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 432.87200000000007,
+      "medians_ns_per_independent_operation": {
+        "scalar": 188.89,
+        "fpu-scalar": 298.57875,
+        "sse": 274.34825,
+        "avx2": 241.1355
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 755.56,
+        "fpu-scalar": 1194.315,
+        "sse": 1097.393,
+        "avx2": 964.542
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 43.97147985058603,
+          "bootstrap_95_percent": [
+            43.63855075116696,
+            45.74213181815168
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 26.137382823224865,
+          "bootstrap_95_percent": [
+            25.126488952834425,
+            27.994953025536738
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 409.707,
+      "medians_ns_per_independent_operation": {
+        "scalar": 155.03625,
+        "fpu-scalar": 257.4135,
+        "sse": 255.49675,
+        "avx2": 255.3905
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 620.145,
+        "fpu-scalar": 1029.654,
+        "sse": 1021.987,
+        "avx2": 1021.562
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 64.56326105296097,
+          "bootstrap_95_percent": [
+            61.390954225719256,
+            67.75614739216951
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 63.46078266239965,
+          "bootstrap_95_percent": [
+            60.94140443267768,
+            69.40707137704491
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 409.37700000000007,
+      "medians_ns_per_independent_operation": {
+        "scalar": 155.01725,
+        "fpu-scalar": 256.89725,
+        "sse": 255.6845,
+        "avx2": 253.65575
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 620.069,
+        "fpu-scalar": 1027.589,
+        "sse": 1022.738,
+        "avx2": 1014.623
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 64.78599881482727,
+          "bootstrap_95_percent": [
+            64.30458056864441,
+            65.05438030739334
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 64.57176278457881,
+          "bootstrap_95_percent": [
+            61.49885237499484,
+            64.59313398992694
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 4,
+      "matched_fpu_control_delta_ns_per_ioctl": 423.5389999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 156.5015,
+        "fpu-scalar": 262.17875,
+        "sse": 259.45775,
+        "avx2": 259.93875
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 626.006,
+        "fpu-scalar": 1048.715,
+        "sse": 1037.831,
+        "avx2": 1039.755
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 66.71564931005366,
+          "bootstrap_95_percent": [
+            65.32622843077876,
+            66.79826676150786
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 66.5927548279831,
+          "bootstrap_95_percent": [
+            65.45569118693105,
+            70.56149232830968
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 425.366,
+      "medians_ns_per_independent_operation": {
+        "scalar": 170.21,
+        "fpu-scalar": 223.416,
+        "sse": 226.97825,
+        "avx2": 222.038
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1361.68,
+        "fpu-scalar": 1787.328,
+        "sse": 1815.826,
+        "avx2": 1776.304
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 33.39971631913436,
+          "bootstrap_95_percent": [
+            33.202824495257246,
+            33.528662007184565
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 30.66887961929381,
+          "bootstrap_95_percent": [
+            30.200914633253163,
+            30.782270345420738
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 424.173,
+      "medians_ns_per_independent_operation": {
+        "scalar": 170.25925,
+        "fpu-scalar": 223.42125,
+        "sse": 227.2135,
+        "avx2": 222.194375
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1362.074,
+        "fpu-scalar": 1787.37,
+        "sse": 1817.708,
+        "avx2": 1777.555
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 33.57512146917128,
+          "bootstrap_95_percent": [
+            33.19033658445818,
+            33.74824683139879
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 30.50355560711091,
+          "bootstrap_95_percent": [
+            30.375454373634668,
+            30.73115239336439
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 449.2289999999998,
+      "medians_ns_per_independent_operation": {
+        "scalar": 170.576,
+        "fpu-scalar": 226.76525,
+        "sse": 230.313625,
+        "avx2": 225.50175
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1364.608,
+        "fpu-scalar": 1814.122,
+        "sse": 1842.509,
+        "avx2": 1804.014
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 34.858639572706984,
+          "bootstrap_95_percent": [
+            34.785738978601735,
+            35.19699848121742
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 32.18397208456734,
+          "bootstrap_95_percent": [
+            32.034670044113156,
+            32.2983730506492
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.2099999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 29.188375,
+        "fpu-scalar": 80.7995,
+        "sse": 80.98775,
+        "avx2": 81.1615
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 233.507,
+        "fpu-scalar": 646.396,
+        "sse": 647.902,
+        "avx2": 649.292
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.7668641134411,
+          "bootstrap_95_percent": [
+            176.9166987220584,
+            181.3070339511421
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 179.33728217014334,
+          "bootstrap_95_percent": [
+            176.92662529311013,
+            181.76875553172098
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 413.979,
+      "medians_ns_per_independent_operation": {
+        "scalar": 29.086875,
+        "fpu-scalar": 80.794875,
+        "sse": 81.069875,
+        "avx2": 81.192875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 232.695,
+        "fpu-scalar": 646.359,
+        "sse": 648.559,
+        "avx2": 649.543
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 178.8277830801111,
+          "bootstrap_95_percent": [
+            177.29716015618285,
+            183.53050731860864
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 178.30202018038088,
+          "bootstrap_95_percent": [
+            178.14253707916387,
+            183.05615305248065
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 433.994,
+      "medians_ns_per_independent_operation": {
+        "scalar": 29.570875,
+        "fpu-scalar": 83.69,
+        "sse": 83.574375,
+        "avx2": 83.678125
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 236.567,
+        "fpu-scalar": 669.52,
+        "sse": 668.595,
+        "avx2": 669.425
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 183.24078876880296,
+          "bootstrap_95_percent": [
+            182.90353794213715,
+            187.5995085272002
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 183.7559638012123,
+          "bootstrap_95_percent": [
+            182.27149260383646,
+            187.99657548979957
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.21000000000004,
+      "medians_ns_per_independent_operation": {
+        "scalar": 288.416875,
+        "fpu-scalar": 340.207875,
+        "sse": 286.635875,
+        "avx2": 223.41625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2307.335,
+        "fpu-scalar": 2721.663,
+        "sse": 2293.087,
+        "avx2": 1787.33
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.6466832965748459,
+          "bootstrap_95_percent": [
+            -0.6653300493380199,
+            -0.568387262922665
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -22.556596109395656,
+          "bootstrap_95_percent": [
+            -22.852901724283647,
+            -22.508748607859985
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 405.67999999999984,
+      "medians_ns_per_independent_operation": {
+        "scalar": 288.481875,
+        "fpu-scalar": 339.716375,
+        "sse": 286.629875,
+        "avx2": 223.344875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2307.855,
+        "fpu-scalar": 2717.731,
+        "sse": 2293.039,
+        "avx2": 1786.759
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.7150000455165562,
+          "bootstrap_95_percent": [
+            -0.71616284385283,
+            -0.5762835327121296
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -22.545079882553587,
+          "bootstrap_95_percent": [
+            -22.904057660649578,
+            -22.471183421916862
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 427.44500000000016,
+      "medians_ns_per_independent_operation": {
+        "scalar": 288.7265,
+        "fpu-scalar": 342.53775,
+        "sse": 289.402125,
+        "avx2": 225.772625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2309.812,
+        "fpu-scalar": 2740.302,
+        "sse": 2315.217,
+        "avx2": 1806.181
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 0.27328948285920696,
+          "bootstrap_95_percent": [
+            0.07357708032806887,
+            0.2965205912747848
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -21.84121988114205,
+          "bootstrap_95_percent": [
+            -22.148177473752984,
+            -21.821988413846594
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 409.35400000000027,
+      "medians_ns_per_independent_operation": {
+        "scalar": 294.165625,
+        "fpu-scalar": 345.27875,
+        "sse": 286.151125,
+        "avx2": 222.924
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2353.325,
+        "fpu-scalar": 2762.23,
+        "sse": 2289.209,
+        "avx2": 1783.392
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -2.7753212043532427,
+          "bootstrap_95_percent": [
+            -2.795703586394338,
+            -2.5482913312821376
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -24.229062719290983,
+          "bootstrap_95_percent": [
+            -24.424361897456258,
+            -23.997874359655114
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 417.4210000000003,
+      "medians_ns_per_independent_operation": {
+        "scalar": 293.684625,
+        "fpu-scalar": 345.398375,
+        "sse": 286.099625,
+        "avx2": 222.954625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2349.477,
+        "fpu-scalar": 2763.187,
+        "sse": 2288.797,
+        "avx2": 1783.637
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -2.407003771477634,
+          "bootstrap_95_percent": [
+            -2.7803652593365147,
+            -2.2873831635953135
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -24.192676220506016,
+          "bootstrap_95_percent": [
+            -24.276551760242803,
+            -23.873577579160198
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 424.7660000000001,
+      "medians_ns_per_independent_operation": {
+        "scalar": 294.87075,
+        "fpu-scalar": 347.484125,
+        "sse": 288.90075,
+        "avx2": 225.304
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2358.966,
+        "fpu-scalar": 2779.873,
+        "sse": 2311.206,
+        "avx2": 1802.432
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -1.8164657162034414,
+          "bootstrap_95_percent": [
+            -2.1265131178502816,
+            -1.6325877111367126
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -23.452849691704547,
+          "bootstrap_95_percent": [
+            -23.896362591248444,
+            -23.409701375969718
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 413.3349999999998,
+      "medians_ns_per_independent_operation": {
+        "scalar": 164.930375,
+        "fpu-scalar": 216.693375,
+        "sse": 193.3475,
+        "avx2": 152.948
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1319.443,
+        "fpu-scalar": 1733.547,
+        "sse": 1546.78,
+        "avx2": 1223.584
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.260179032867562,
+          "bootstrap_95_percent": [
+            17.043242581033535,
+            17.854436210331404
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -7.35695070456126,
+          "bootstrap_95_percent": [
+            -7.465618559934395,
+            -7.307687071434099
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.297,
+      "medians_ns_per_independent_operation": {
+        "scalar": 165.08725,
+        "fpu-scalar": 217.315625,
+        "sse": 193.4075,
+        "avx2": 153.021375
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1320.698,
+        "fpu-scalar": 1738.525,
+        "sse": 1547.26,
+        "avx2": 1224.171
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.254244466921563,
+          "bootstrap_95_percent": [
+            17.18108686810236,
+            17.811293598641154
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -7.357315028095779,
+          "bootstrap_95_percent": [
+            -7.616507573644304,
+            -7.262681103170221
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 430.33899999999994,
+      "medians_ns_per_independent_operation": {
+        "scalar": 165.5925,
+        "fpu-scalar": 219.165125,
+        "sse": 196.044125,
+        "avx2": 155.478875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1324.74,
+        "fpu-scalar": 1753.321,
+        "sse": 1568.353,
+        "avx2": 1243.831
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 18.444600449899617,
+          "bootstrap_95_percent": [
+            18.426587207984003,
+            19.18868864605814
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -6.179397142003151,
+          "bootstrap_95_percent": [
+            -6.401956249557427,
+            -6.06783217838972
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 404.0600000000002,
+      "medians_ns_per_independent_operation": {
+        "scalar": 135.702375,
+        "fpu-scalar": 186.09875,
+        "sse": 194.200875,
+        "avx2": 190.936
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1085.619,
+        "fpu-scalar": 1488.79,
+        "sse": 1553.607,
+        "avx2": 1527.488
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 39.95638520909009,
+          "bootstrap_95_percent": [
+            38.06010131192485,
+            45.93022118150449
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 43.155275563094285,
+          "bootstrap_95_percent": [
+            36.33256552790045,
+            44.971880580843894
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 396.05399999999986,
+      "medians_ns_per_independent_operation": {
+        "scalar": 135.431375,
+        "fpu-scalar": 185.566125,
+        "sse": 191.44425,
+        "avx2": 192.943375
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1083.451,
+        "fpu-scalar": 1484.529,
+        "sse": 1531.554,
+        "avx2": 1543.547
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 42.79609672553668,
+          "bootstrap_95_percent": [
+            39.52318111419642,
+            44.97330157969122
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 41.90742790062962,
+          "bootstrap_95_percent": [
+            40.69674549498434,
+            44.809317634115445
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 8,
+      "matched_fpu_control_delta_ns_per_ioctl": 409.47799999999984,
+      "medians_ns_per_independent_operation": {
+        "scalar": 135.796125,
+        "fpu-scalar": 186.31625,
+        "sse": 196.427375,
+        "avx2": 194.2665
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1086.369,
+        "fpu-scalar": 1490.53,
+        "sse": 1571.419,
+        "avx2": 1554.132
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 44.66391409015378,
+          "bootstrap_95_percent": [
+            37.063776173429574,
+            47.60304424298567
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 43.919164930588806,
+          "bootstrap_95_percent": [
+            40.72012098998796,
+            45.25963102503858
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 423.5419999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 160.377625,
+        "fpu-scalar": 186.7651875,
+        "sse": 188.148625,
+        "avx2": 188.8009375
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2566.042,
+        "fpu-scalar": 2988.243,
+        "sse": 3010.378,
+        "avx2": 3020.815
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.25859687068281,
+          "bootstrap_95_percent": [
+            14.57817136274464,
+            17.447632654000223
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 17.839216627396226,
+          "bootstrap_95_percent": [
+            14.144223620491081,
+            17.907978651889
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 424.71299999999974,
+      "medians_ns_per_independent_operation": {
+        "scalar": 160.2369375,
+        "fpu-scalar": 186.850875,
+        "sse": 187.857,
+        "avx2": 188.7663125
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2563.791,
+        "fpu-scalar": 2989.614,
+        "sse": 3005.712,
+        "avx2": 3020.261
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.402569692831715,
+          "bootstrap_95_percent": [
+            14.496359079172748,
+            17.43872628043168
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 17.868102531899655,
+          "bootstrap_95_percent": [
+            13.916607512979095,
+            17.911788264367566
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 444.86400000000003,
+      "medians_ns_per_independent_operation": {
+        "scalar": 160.6165,
+        "fpu-scalar": 188.4030625,
+        "sse": 189.3823125,
+        "avx2": 190.205375
+      },
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2569.864,
+        "fpu-scalar": 3014.449,
+        "sse": 3030.117,
+        "avx2": 3043.286
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.668541062328625,
+          "bootstrap_95_percent": [
+            15.77661846300864,
+            18.183491422114173
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 18.49274951988855,
+          "bootstrap_95_percent": [
+            14.948472069962126,
+            18.621999059262563
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.13300000000004,
+      "medians_ns_per_independent_operation": {
+        "scalar": 15.716,
+        "fpu-scalar": 41.6656875,
+        "sse": 41.756,
+        "avx2": 41.967875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 251.456,
+        "fpu-scalar": 666.651,
+        "sse": 668.096,
+        "avx2": 671.486
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 165.9202186358367,
+          "bootstrap_95_percent": [
+            163.7932117917822,
+            167.58059368017877
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 167.38708662170185,
+          "bootstrap_95_percent": [
+            164.07080482216116,
+            167.62745494077248
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 414.22900000000004,
+      "medians_ns_per_independent_operation": {
+        "scalar": 15.77075,
+        "fpu-scalar": 41.652375,
+        "sse": 41.8630625,
+        "avx2": 42.036
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 252.332,
+        "fpu-scalar": 666.438,
+        "sse": 669.809,
+        "avx2": 672.576
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 165.85208058805785,
+          "bootstrap_95_percent": [
+            162.18944464473256,
+            168.3025533068593
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 167.20013369835104,
+          "bootstrap_95_percent": [
+            163.3595050222231,
+            167.32041410162518
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 432.804,
+      "medians_ns_per_independent_operation": {
+        "scalar": 15.95525,
+        "fpu-scalar": 42.9289375,
+        "sse": 43.1496875,
+        "avx2": 43.26575
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 255.284,
+        "fpu-scalar": 686.863,
+        "sse": 690.395,
+        "avx2": 692.252
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 170.89135671896116,
+          "bootstrap_95_percent": [
+            168.68160177268834,
+            171.37614678899084
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 172.11106062267905,
+          "bootstrap_95_percent": [
+            168.22623401249982,
+            172.34592883632672
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 412.9920000000002,
+      "medians_ns_per_independent_operation": {
+        "scalar": 270.8636875,
+        "fpu-scalar": 296.6985,
+        "sse": 246.6015,
+        "avx2": 178.5421875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 4333.819,
+        "fpu-scalar": 4747.176,
+        "sse": 3945.624,
+        "avx2": 2856.675
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -9.012962372529909,
+          "bootstrap_95_percent": [
+            -9.150830908383645,
+            -8.93948925845166
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -34.02893898101529,
+          "bootstrap_95_percent": [
+            -34.29116248682678,
+            -33.800211776264774
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 411.84699999999975,
+      "medians_ns_per_independent_operation": {
+        "scalar": 270.7705625,
+        "fpu-scalar": 296.6915625,
+        "sse": 246.612125,
+        "avx2": 178.5001875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 4332.329,
+        "fpu-scalar": 4747.065,
+        "sse": 3945.794,
+        "avx2": 2856.003
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -9.000983371247562,
+          "bootstrap_95_percent": [
+            -9.055456570053021,
+            -8.873308380917633
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -34.03081153742822,
+          "bootstrap_95_percent": [
+            -34.24469157313928,
+            -33.85497672565049
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 433.1859999999997,
+      "medians_ns_per_independent_operation": {
+        "scalar": 270.959875,
+        "fpu-scalar": 297.9890625,
+        "sse": 247.7675,
+        "avx2": 180.1800625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 4335.358,
+        "fpu-scalar": 4767.825,
+        "sse": 3964.28,
+        "avx2": 2882.881
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -8.62880515477842,
+          "bootstrap_95_percent": [
+            -8.649709852512299,
+            -8.385453160261102
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -33.471686610905394,
+          "bootstrap_95_percent": [
+            -33.68025890027404,
+            -33.34689547208109
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 418.96900000000005,
+      "medians_ns_per_independent_operation": {
+        "scalar": 275.8043125,
+        "fpu-scalar": 301.7615,
+        "sse": 246.1728125,
+        "avx2": 178.4083125
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 4412.869,
+        "fpu-scalar": 4828.184,
+        "sse": 3938.765,
+        "avx2": 2854.533
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.517024791133544,
+          "bootstrap_95_percent": [
+            -10.884806706459804,
+            -10.022163701549424
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.284961590697414,
+          "bootstrap_95_percent": [
+            -35.5335823990348,
+            -33.87140881306272
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 432.28899999999976,
+      "medians_ns_per_independent_operation": {
+        "scalar": 275.3635,
+        "fpu-scalar": 301.829875,
+        "sse": 246.1299375,
+        "avx2": 178.3365
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 4405.816,
+        "fpu-scalar": 4829.278,
+        "sse": 3938.079,
+        "avx2": 2853.384
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.489843483107164,
+          "bootstrap_95_percent": [
+            -11.05248563409641,
+            -9.892807209034714
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.17923386922478,
+          "bootstrap_95_percent": [
+            -35.23596990886592,
+            -35.140638742521524
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 447.9520000000002,
+      "medians_ns_per_independent_operation": {
+        "scalar": 276.12625,
+        "fpu-scalar": 304.1950625,
+        "sse": 247.6351875,
+        "avx2": 180.3911875
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 4418.02,
+        "fpu-scalar": 4867.121,
+        "sse": 3962.163,
+        "avx2": 2886.259
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.231641334645447,
+          "bootstrap_95_percent": [
+            -10.341446547982214,
+            -9.531362950935861
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -34.60267269048126,
+          "bootstrap_95_percent": [
+            -34.73298210765837,
+            -34.11647494834747
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 420.36900000000014,
+      "medians_ns_per_independent_operation": {
+        "scalar": 148.7541875,
+        "fpu-scalar": 174.8901875,
+        "sse": 152.4121875,
+        "avx2": 112.603375
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2380.067,
+        "fpu-scalar": 2798.243,
+        "sse": 2438.595,
+        "avx2": 1801.654
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 2.3985126701116855,
+          "bootstrap_95_percent": [
+            2.3407329401853305,
+            2.7008039439937237
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -24.2997051390059,
+          "bootstrap_95_percent": [
+            -24.822673883767486,
+            -24.109101332975257
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 420.6399999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 148.54525,
+        "fpu-scalar": 174.864,
+        "sse": 152.574,
+        "avx2": 112.252625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2376.724,
+        "fpu-scalar": 2797.824,
+        "sse": 2441.184,
+        "avx2": 1796.042
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 2.5673400850301675,
+          "bootstrap_95_percent": [
+            2.46668311684477,
+            2.765622375538168
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -24.403587942211104,
+          "bootstrap_95_percent": [
+            -24.788506843816403,
+            -24.103310184395877
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 436.6289999999999,
+      "medians_ns_per_independent_operation": {
+        "scalar": 148.864875,
+        "fpu-scalar": 176.068375,
+        "sse": 153.693125,
+        "avx2": 113.621625
+      },
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2381.838,
+        "fpu-scalar": 2817.094,
+        "sse": 2459.09,
+        "avx2": 1817.946
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 3.0904148707257884,
+          "bootstrap_95_percent": [
+            3.0305488606070963,
+            3.2222947690390358
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -23.52152658304859,
+          "bootstrap_95_percent": [
+            -24.082120005750042,
+            -23.32987384627787
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 364.2930000000001,
+      "medians_ns_per_independent_operation": {
+        "scalar": 132.616375,
+        "fpu-scalar": 156.4078125,
+        "sse": 162.471875,
+        "avx2": 159.8090625
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2121.862,
+        "fpu-scalar": 2502.525,
+        "sse": 2599.55,
+        "avx2": 2556.945
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 22.72022647669083,
+          "bootstrap_95_percent": [
+            21.351534097770465,
+            24.615532699234844
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 20.504773637493855,
+          "bootstrap_95_percent": [
+            17.875221779581075,
+            23.76164511874741
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 425.53600000000006,
+      "medians_ns_per_independent_operation": {
+        "scalar": 131.5931875,
+        "fpu-scalar": 156.97525,
+        "sse": 162.0143125,
+        "avx2": 158.8311875
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2105.491,
+        "fpu-scalar": 2511.604,
+        "sse": 2592.229,
+        "avx2": 2541.299
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 21.773971011987236,
+          "bootstrap_95_percent": [
+            21.332291820606475,
+            24.66462202208102
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 22.092556406537135,
+          "bootstrap_95_percent": [
+            19.68555802758867,
+            27.145073735843205
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "batch": 16,
+      "matched_fpu_control_delta_ns_per_ioctl": 401.98900000000003,
+      "medians_ns_per_independent_operation": {
+        "scalar": 132.573375,
+        "fpu-scalar": 157.906875,
+        "sse": 163.004625,
+        "avx2": 159.7311875
+      },
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2121.174,
+        "fpu-scalar": 2526.51,
+        "sse": 2608.074,
+        "avx2": 2555.699
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 21.808226237335717,
+          "bootstrap_95_percent": [
+            21.771376497396556,
+            25.526306389625518
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 20.949444774519144,
+          "bootstrap_95_percent": [
+            19.536035393782637,
+            23.57959783791297
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    }
+  ],
+  "kernel_hybrid_selected": false
+}
