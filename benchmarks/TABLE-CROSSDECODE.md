@@ -39,3 +39,21 @@ stream versus decoder effects in userspace. Retain all cells and sessions,
 including absent/unscheduled counters. RAPL is CPU package energy over the batch
 and bookkeeping/background work, not laptop power. Further kernel identical-page
 controls are required before attributing the earlier fio read regression.
+
+## Kernel follow-up: identical read-only fixture
+
+The existing native module runner now accepts --identical-read-fixture. This
+opt-in mode writes deterministic SHAKE256-derived pages with the requested
+percentage of zero-tail bytes, using aligned direct I/O. It runs read-only fio
+trials, verifies every byte of the complete device after each trial and read
+profile, and records a common SHA256. It does not use fio write verification
+headers. All algorithms and trials must have identical fixture hashes for export.
+The normal historical read/write/CRC32C mode remains the default.
+
+Use the previously VM-validated module and existing rollback runner with the
+new flag; --compress-percentage means zero-tail percentage for this control,
+not fio's nominal compression setting. Keep hardware-lock ownership through
+stock restoration and collection. tests/fixed-pages.py checks generation,
+complete verification and deliberate corruption detection on a temporary file;
+aligned O_DIRECT also passed a local file check. These are harness checks,
+not N100 kernel performance results.

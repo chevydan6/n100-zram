@@ -234,3 +234,13 @@ available; normal lzo-rle swap remains restored. Next: distinguish input/encoded
 stream differences from decoder/code-layout effects using identical page corpora,
 then evaluate competing application CPU availability under controlled pressure.
 Full data: benchmarks/results/native-scalar-mid8k-75pct-001/summary.md.
+
+## Identical-page scalar attribution
+
+Three physical N100 cross-decoding sessions completed and were published in
+native-scalar-crossdecode-001. All nine encoder/decoder combinations and six
+corpora are retained; PMU batches were fully scheduled. Deterministic zero-tail
+controls do not reproduce a consistent smaller-table decoder penalty. Executable
+pages have stream differences, and these userspace controls cannot attribute the
+previous kernel fio regression. The next experiment uses identical fixed pages
+and read-only native ZRAM I/O, with full-device byte/SHA256 verification.

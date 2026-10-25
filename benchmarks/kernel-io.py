@@ -4,6 +4,7 @@
 from pathlib import Path
 import argparse,subprocess,os,json,time,random,hashlib,platform,errno,threading
 parser=argparse.ArgumentParser()
+parser.add_argument('--identical-read-fixture',action='store_true')
 parser.add_argument('--compress-percentage',type=int,choices=[0,25,50,75,100],default=50)
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4'])
@@ -43,7 +44,7 @@ def write(path,value):
 index=None;owned=False
 try:
  save(source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),kernel=platform.release(),started=time.time())
- metadata={'compress_percentage':a.compress_percentage,'size_mib':a.size_mib,'kernel':platform.release(),'compiler':subprocess.check_output(['gcc','--version'],text=True),'fio':subprocess.check_output(['fio','--version'],text=True).strip(),'before':snapshot(),'recovery_policy':{name:read('/proc/sys/kernel/'+name) for name in ['panic','nmi_watchdog','hardlockup_panic','softlockup_panic']},'primary_swap':Path('/proc/swaps').read_text(),'zram_module_srcversion':read('/sys/module/zram/srcversion') if Path('/sys/module/zram/srcversion').exists() else None,'kernel_config_sha256':hashlib.sha256(Path('/boot/config-'+platform.release()).read_bytes()).hexdigest()}
+ metadata={'identical_read_fixture':a.identical_read_fixture,'compress_percentage':a.compress_percentage,'size_mib':a.size_mib,'kernel':platform.release(),'compiler':subprocess.check_output(['gcc','--version'],text=True),'fio':subprocess.check_output(['fio','--version'],text=True).strip(),'before':snapshot(),'recovery_policy':{name:read('/proc/sys/kernel/'+name) for name in ['panic','nmi_watchdog','hardlockup_panic','softlockup_panic']},'primary_swap':Path('/proc/swaps').read_text(),'zram_module_srcversion':read('/sys/module/zram/srcversion') if Path('/sys/module/zram/srcversion').exists() else None,'kernel_config_sha256':hashlib.sha256(Path('/boot/config-'+platform.release()).read_bytes()).hexdigest()}
  (a.output/'environment-private.json').write_text(json.dumps(metadata,indent=2)+'\n')
  index=int(read('/sys/class/zram-control/hot_add'))
  sys=Path('/sys/block')/f'zram{index}';device=Path('/dev')/f'zram{index}'
@@ -88,16 +89,26 @@ try:
  for trial,algorithm in order:
   label=f'{algorithm}-trial-{trial}'
   write(sys/'reset',1);write(sys/'comp_algorithm',algorithm);write(sys/'disksize',a.size_mib*1024*1024)
-  fio(label+'-fill',['--rw=write','--verify=crc32c','--do_verify=0','--end_fsync=1'])
-  for operation in ['randread','randwrite']:
+  if a.identical_read_fixture:
+   from fixed_pages import transfer
+   fixture_sha=transfer(device,a.size_mib*1024*1024,a.compress_percentage)
+   (a.output/(label+'-fixture.json')).write_text(json.dumps({'sha256':fixture_sha,'bytes':a.size_mib*1024*1024,'zero_percentage':a.compress_percentage})+'\n')
+  else:fio(label+'-fill',['--rw=write','--verify=crc32c','--do_verify=0','--end_fsync=1'])
+  for operation in (['randread'] if a.identical_read_fixture else ['randread','randwrite']):
    extra=['--verify=crc32c','--do_verify=0'] if operation=='randwrite' else ['--readonly']
    fio(label+'-'+operation+'-warm',['--rw='+operation,'--time_based=1','--runtime=1']+extra)
    fio(label+'-'+operation,['--rw='+operation,'--time_based=1','--runtime='+str(a.seconds)]+extra,measure=True)
-  fio(label+'-verify',['--rw=read','--verify=crc32c','--verify_only=1'])
+  if a.identical_read_fixture:
+   assert transfer(device,a.size_mib*1024*1024,a.compress_percentage,verify=True)==fixture_sha
+   (a.output/(label+'-fixture-verify.json')).write_text(json.dumps({'sha256':fixture_sha,'status':'passed'})+'\n')
+  else:fio(label+'-verify',['--rw=read','--verify=crc32c','--verify_only=1'])
   if a.profile and trial==0:
    fio(label+'-profile',['--rw=randread','--time_based=1','--runtime=3','--readonly'],profile=True)
    report=subprocess.check_output(['perf','report','--stdio','--no-children','--sort','symbol','--percent-limit','1','-i',str(a.output/(label+'-profile.perf.data'))],text=True,stderr=subprocess.STDOUT)
    (a.output/(label+'-profile.txt')).write_text(report)
+  if a.profile and trial==0 and a.identical_read_fixture:
+   assert transfer(device,a.size_mib*1024*1024,a.compress_percentage,verify=True)==fixture_sha
+  if a.profile and trial==0 and not a.identical_read_fixture:
    fio(label+'-write-profile',['--rw=randwrite','--time_based=1','--runtime=3','--verify=crc32c','--do_verify=0'],profile=True)
    report=subprocess.check_output(['perf','report','--stdio','--no-children','--sort','symbol','--percent-limit','1','-i',str(a.output/(label+'-write-profile.perf.data'))],text=True,stderr=subprocess.STDOUT)
    (a.output/(label+'-write-profile.txt')).write_text(report)
