@@ -195,3 +195,14 @@ establish no end-to-end ZRAM improvement.
 Three native experimental sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-component-refinement-001/summary.md](benchmarks/results/native-component-refinement-001/summary.md). Measurement scope is documented in the report; component and codec results
 establish no end-to-end ZRAM improvement.
+
+## Kernel SIMD amortization measured separately
+
+Both native independent-operation experiments completed and unloaded the probe.
+Matched FPU-control deltas for dirty-YMM equal comparisons remained roughly
+430 ns per entry, about 27 ns per operation when shared across sixteen. AVX2
+comparison time crossed scalar at five independent full 4 KiB comparisons in
+the refined probe; copies still lost at sixteen. This demonstrates context-cost
+amortization, not a native ZRAM batching implementation or a universal threshold.
+Codec tuning costs and end-to-end pressure results remain separate. Full data
+are in native-component-batches-001 and native-component-refinement-001.

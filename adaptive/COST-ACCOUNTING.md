@@ -73,3 +73,13 @@ Literal and repeat-eight copies still lost to scalar at sixteen operations
 primitive profitable. The next refinement tests counts 4/5/6/7/8 in the same
 validated module, with scalar and FPU-scalar controls retained. Neither result
 constitutes a whole-codec or native ZRAM batching improvement.
+
+The refined 4/5/6/7/8-operation experiment completed with all checks, fully
+scheduled PMU groups, measured package energy and successful probe unload.
+For YMM-dirty equal comparisons, AVX2 was +4.44% slower at four operations
+(95% session interval +4.34 to +4.56%), then -3.46% faster at five (-3.79 to
+-3.46%), -13.11% at six, -18.08% at seven and -21.58% at eight. Thus five
+independent full-page equal comparisons crossed over in this specific matched
+probe. Early mismatches, copying, complete codec operations and actual swap
+latency are separate questions. Do not turn five operations into a universal
+kernel dispatch policy. All raw results remain in native-component-refinement-001.
