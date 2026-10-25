@@ -7,12 +7,13 @@ p=argparse.ArgumentParser();p.add_argument('--input',type=Path,required=True);p.
 s=json.loads((a.input/'checkpoint.json').read_text());assert s['status']=='complete' and len(s['completed'])==3
 assert not a.output.exists();a.output.mkdir(parents=True);rows=[]
 for session in s['completed']:
- path=a.input/(session+'.csv');data=list(csv.DictReader(path.open()));assert len(data)==1458
- assert len({(r['bytes'],r['corpus'],r['round'],r['variant'],r['operation']) for r in data})==1458
+ path=a.input/(session+'.csv');data=list(csv.DictReader(path.open()));assert len(data)==len(s.get("sizes",[16,32,64,128,256,512,1024,2048,4096]))*162
+ assert len({(r['bytes'],r['corpus'],r['round'],r['variant'],r['operation']) for r in data})==len(s.get('sizes',[16,32,64,128,256,512,1024,2048,4096]))*162
  for r in data:r['session']=session;rows.append(r)
  shutil.copy2(path,a.output/path.name)
 metadata={k:s[k] for k in ['scope','kernel','binary_sha256','libraries','compiler','completed']}
 for name in ['before','after']:metadata[name]={k:v for k,v in s[name].items() if k!='time'}
+metadata['sizes']=s.get('sizes',[16,32,64,128,256,512,1024,2048,4096])
 metadata['pmu_all_batches_fully_scheduled']=all(float(r['pmu_running_fraction'])>=.99 for r in rows)
 (a.output/'metadata.json').write_text(json.dumps(metadata,indent=2)+'\n');shutil.copy2(a.input/'validation.log',a.output/'validation.log')
 samples=[json.loads(line) for line in (a.input/'telemetry.jsonl').read_text().splitlines()]

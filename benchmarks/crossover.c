@@ -54,8 +54,11 @@ int main(int argc,char **argv){
  struct codec codecs[3]={{.name="scalar"},{.name="sse"},{.name="avx2"}};
  for(int i=0;i<3;i++){char path[4096];snprintf(path,sizeof(path),"%s/%s.so",argv[1],codecs[i].name);void *lib=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!lib){fprintf(stderr,"%s\n",dlerror());return 5;}codecs[i].comp=(comp_fn)dlsym(lib,"LZ4_compress_default");codecs[i].dec=(dec_fn)dlsym(lib,"LZ4_decompress_safe");codecs[i].work=calloc(1,32768);if(!codecs[i].comp||!codecs[i].dec||!codecs[i].work)return 6;}
  puts("bytes,corpus,round,variant,operation,ns_per_op,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction");
- const int lengths[]={16,32,64,128,256,512,1024,2048,4096};const char *corpora[]={"random","moderate","periodic"};
- for(int l=0;l<9;l++)for(int kind=0;kind<3;kind++){
+ int lengths[64]={16,32,64,128,256,512,1024,2048,4096},nlengths=9;
+ const char *requested=getenv("N100_CROSSOVER_SIZES");
+ if(requested){char *copy=strdup(requested),*save=NULL;if(!copy)return 6;nlengths=0;for(char *token=strtok_r(copy,",",&save);token;token=strtok_r(NULL,",",&save)){char *end;long size=strtol(token,&end,10);if(*end||size<16||size>4096||nlengths==64)return 2;for(int j=0;j<nlengths;j++)if(lengths[j]==size)return 2;lengths[nlengths++]=(int)size;}free(copy);if(!nlengths)return 2;}
+ const char *corpora[]={"random","moderate","periodic"};
+ for(int l=0;l<nlengths;l++)for(int kind=0;kind<3;kind++){
   int len=lengths[l];long total=0;
   for(int p=0;p<PAGES;p++){
    for(int j=0;j<len;j++)data[p][j]=kind==0?rnd():kind==1?(j%64<32?rnd():(unsigned)(j%7)):(unsigned)(j%7+p);
@@ -77,7 +80,7 @@ int main(int argc,char **argv){
    fflush(stdout);
   }
  }
- fprintf(stderr,"Cross-variant byte identity and round trips passed: 27 size/corpus combinations, 128 blocks each\n");
+ fprintf(stderr,"Cross-variant byte identity and round trips passed: %d size/corpus combinations, 128 blocks each\n",nlengths*3);
  for(int i=0;i<3;i++)free(codecs[i].work);
  return 0;
 }

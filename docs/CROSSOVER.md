@@ -31,3 +31,13 @@ python3 tools/prepare-crossover.py;
 gcc -O2 -Wall -Wextra -Werror benchmarks/crossover.c -ldl -o build/crossover/benchmark.
 Run tools/run-crossover.py with explicit --directory and a fresh private --output
 on the physical N100 under the shared native hardware lock.
+
+The first native three-session sweep is retained in benchmarks/results/native-crossover-002.
+All recorded PMU groups reported >=99% scheduled time. The exporter applies an
+all-session 2% paired-win screening rule, separately by workload and direction.
+Suggested refinement lengths: 40, 48, 56, 320, 384, 448, 1280, 1536, 1792 bytes.
+Use tools/run-crossover.py --sizes to collect these points. Some wins can come
+from compiler code layout rather than executed SIMD instructions; profiles and
+assembly inspection are required. "Scalar" here means scalar codec translation
+units; shared userspace libc memcpy/memset may themselves use SIMD. These
+measurements cannot predict kernel memory primitives or state-management cost.
