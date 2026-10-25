@@ -35,5 +35,9 @@ if a.publish:
  subprocess.run(['git','add','--',str(relative),'STATUS.md'],cwd=root,check=True)
  subprocess.run(['git','commit','-m','Preserve first native GZRAM format comparison including all block sizes and ratio regressions' if a.kind=='gzram' else 'Preserve three matched N100 table-size sessions and all compression-ratio tradeoffs'],cwd=root,check=True)
  subprocess.run(['python3',str(root/'tools/audit-publication.py')],cwd=root,check=True)
- subprocess.run(['git','push','origin','HEAD:'+branch],cwd=root,check=True)
+ for attempt in range(3):
+  pushed=subprocess.run(['git','push','origin','HEAD:'+branch],cwd=root)
+  if pushed.returncode==0:break
+  if attempt==2:raise SystemExit('Push failed after three attempts; committed results retained locally')
+  time.sleep(5*(attempt+1))
 print('COLLECTION_COMPLETE; all measured data retained; no kernel default changed',flush=True)
