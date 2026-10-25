@@ -189,3 +189,9 @@ measurements are the next step. This does not implement batching in ZRAM.
 Three native experimental sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-component-batches-001/summary.md](benchmarks/results/native-component-batches-001/summary.md). Measurement scope is documented in the report; component and codec results
 establish no end-to-end ZRAM improvement.
+
+### Native experiment collection
+
+Three native experimental sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-component-refinement-001/summary.md](benchmarks/results/native-component-refinement-001/summary.md). Measurement scope is documented in the report; component and codec results
+establish no end-to-end ZRAM improvement.
