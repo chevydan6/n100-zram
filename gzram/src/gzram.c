@@ -147,6 +147,23 @@ static unsigned variable_period(const uint8_t *src,size_t n,size_t best)
   if(load64(src)==load64(src+period)&&!memcmp(src,src+period,n-period))return period;
  return 0;
 }
+#if defined(GZRAM_PERIOD_FILTER)
+AVX static unsigned variable_period_avx2(const uint8_t *src,size_t n,size_t best)
+{
+ if(n<16||best<=3)return 0;
+ unsigned limit=n-8<255?(unsigned)(n-8):255;
+ if(best-3<limit)limit=(unsigned)(best-3);
+ __m256i first=_mm256_set1_epi8((char)src[0]);unsigned at=1;
+ for(;at<=limit&&limit-at+1>=32;at+=32){
+  unsigned mask=(unsigned)_mm256_movemask_epi8(_mm256_cmpeq_epi8(first,_mm256_loadu_si256((const __m256i *)(src+at))));
+  while(mask){unsigned period=at+(unsigned)__builtin_ctz(mask);mask&=mask-1;
+   if(load64(src)==load64(src+period)&&!memcmp(src,src+period,n-period))return period;
+  }
+ }
+ for(;at<=limit;at++)if(src[at]==src[0]&&load64(src)==load64(src+at)&&!memcmp(src,src+at,n-at))return at;
+ return 0;
+}
+#endif
 int gzram_variable_period_available(void){return 1;}
 #endif
 static int encode(const void *input,size_t n,void *output,size_t cap,unsigned log,scan_fn scan,pack_fn pack)
@@ -168,7 +185,11 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
    }
   }
 #if defined(GZRAM_VARIABLE_PERIOD)
+#if defined(GZRAM_PERIOD_FILTER)
+  unsigned arbitrary=mode==RAW?(scan==scan_avx2?variable_period_avx2(src+offset,len,needed):variable_period(src+offset,len,needed)):0;
+#else
   unsigned arbitrary=variable_period(src+offset,len,needed);
+#endif
   if(arbitrary){mode=7;period=arbitrary;needed=period+2;}
 #endif
   if(needed>cap-pos)return raw_page(src,n,dst,cap,log);

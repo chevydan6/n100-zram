@@ -64,7 +64,7 @@ int main(int argc,char **argv){
  cpu_set_t allowed,chosen;if(sched_getaffinity(0,sizeof(allowed),&allowed))return 3;CPU_ZERO(&chosen);int cpu=0;for(;cpu<CPU_SETSIZE;cpu++)if(CPU_ISSET(cpu,&allowed))break;if(cpu==CPU_SETSIZE)return 3;CPU_SET(cpu,&chosen);if(sched_setaffinity(0,sizeof(chosen),&chosen))return 3;
  char path[4096];snprintf(path,sizeof(path),"%s/libgzram.so",argv[1]);void *gz=dlopen(path,RTLD_NOW|RTLD_LOCAL);snprintf(path,sizeof(path),"%s/lz4-small.so",argv[1]);void *lz=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!gz||!lz){fprintf(stderr,"%s\n",dlerror());return 4;}
  baseline_enc=(lz_enc)dlsym(lz,"LZ4_compress_default");baseline_dec=(lz_dec)dlsym(lz,"LZ4_decompress_safe");int (*available)(void)=dlsym(gz,"gzram_avx2_available");if(!baseline_enc||!baseline_dec||!available||!available()){fprintf(stderr,"Native AVX2 support required for comparisons\n");return 5;}
- struct codec variants[41]={0};strcpy(variants[0].name,"lz4-small-scalar");variants[0].lz4=1;
+ struct codec variants[57]={0};strcpy(variants[0].name,"lz4-small-scalar");variants[0].lz4=1;
  int n=1;for(int isa=0;isa<2;isa++)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-%s-%u",isa?"avx2":"scalar",1U<<log);v->comp=(gz_enc)dlsym(gz,isa?"gzram_encode_avx2":"gzram_encode_scalar");v->dec=(gz_dec)dlsym(gz,isa?"gzram_decode_avx2":"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
  }
@@ -80,6 +80,11 @@ int main(int argc,char **argv){
  if(periodlib)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-period-avx2-%u",1U<<log);v->comp=(gz_enc)dlsym(periodlib,"gzram_encode_avx2");v->dec=(gz_dec)dlsym(periodlib,"gzram_decode_avx2");if(!v->comp||!v->dec)return 5;
  }
+ snprintf(path,sizeof(path),"%s/libgzram-filter.so",argv[1]);void *filterlib=NULL;
+ if(access(path,R_OK)==0){filterlib=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!filterlib){fprintf(stderr,"%s\n",dlerror());return 5;}}
+ if(filterlib)for(unsigned isa=0;isa<2;isa++)for(unsigned log=5;log<=12;log++){
+  struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-filter-%s-%u",isa?"avx2":"scalar",1U<<log);v->comp=(gz_enc)dlsym(filterlib,isa?"gzram_encode_avx2":"gzram_encode_scalar");v->dec=(gz_dec)dlsym(filterlib,isa?"gzram_decode_avx2":"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
+ }
  if(fast)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-fast-scalar-%u",1U<<log);v->comp=(gz_enc)dlsym(fast,"gzram_encode_scalar");v->dec=(gz_dec)dlsym(fast,"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
  }
@@ -91,7 +96,7 @@ int main(int argc,char **argv){
  for(int kind=0;kind<9;kind++){
   fill(kind);
   for(int round=-2;round<9;round++){
-   int order[41];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=rnd()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}
+   int order[57];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=rnd()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}
    if(validate&&round!=-2)continue;
    for(int k=0;k<n;k++){
     struct codec *v=&variants[order[k]];long total=0;

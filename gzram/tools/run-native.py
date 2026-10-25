@@ -35,7 +35,7 @@ try:
   if label in state['completed']:continue
   attempt=state['attempts'].get(label,0);state['attempts'][label]=attempt+1;temporary=a.output/f'{label}.attempt-{attempt}.csv.tmp';save(current=label)
   with temporary.open('w') as out,(a.output/f'{label}.attempt-{attempt}.stderr').open('w') as err:subprocess.run(['taskset','-c','0',str(a.directory/'benchmark'),str(a.directory)],stdout=out,stderr=err,check=True)
-  rows=list(csv.DictReader(temporary.open()));expected_variants=17+8*bool(inputs['manifest'].get('fast_scalar_candidate'))+8*bool(inputs['manifest'].get('block_unpack_candidate'))+8*bool(inputs['manifest'].get('variable_period_candidate'))
+  rows=list(csv.DictReader(temporary.open()));expected_variants=17+8*bool(inputs['manifest'].get('fast_scalar_candidate'))+8*bool(inputs['manifest'].get('block_unpack_candidate'))+8*bool(inputs['manifest'].get('variable_period_candidate'))+16*bool(inputs['manifest'].get('period_filter_candidate'))
   assert len(rows)==expected_variants*162 and len({(r['corpus'],r['round'],r['variant'],r['operation']) for r in rows})==expected_variants*162
   assert len({r['variant'] for r in rows})==expected_variants and len({r['corpus'] for r in rows})==9
   temporary.replace(a.output/(label+'.csv'));state['completed'].append(label);save()

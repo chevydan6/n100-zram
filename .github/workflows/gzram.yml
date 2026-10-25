@@ -18,6 +18,7 @@ jobs:
       - run: python3 gzram/tests/check.py --library build/gzram/libgzram-fast.so
       - run: python3 gzram/tests/check.py --library build/gzram/libgzram-block.so
       - run: python3 gzram/tests/check.py --library build/gzram/libgzram-period.so
+      - run: python3 gzram/tests/check.py --library build/gzram/libgzram-filter.so
       - name: Address and undefined-behavior sanitizers
         run: |
           EXTRA_CFLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' python3 gzram/tools/build.py --output build/gzram-asan
@@ -28,6 +29,7 @@ jobs:
           python3 gzram/tests/check.py --library build/gzram-asan/libgzram-fast.so
           python3 gzram/tests/check.py --library build/gzram-asan/libgzram-block.so
           python3 gzram/tests/check.py --library build/gzram-asan/libgzram-period.so
+          python3 gzram/tests/check.py --library build/gzram-asan/libgzram-filter.so
       - name: Validate native benchmark fixture
         run: |
           gcc -O2 -Wall -Wextra -Werror gzram/bench.c -ldl -o build/gzram/benchmark

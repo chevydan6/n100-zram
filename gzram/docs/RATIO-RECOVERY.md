@@ -36,3 +36,14 @@ This remains a block-local repeated-pattern mode, not arbitrary LZ matching.
 Further candidates should compare a simple literal/distance/length representation
 with a versioned whole-page LZ4 fallback. Each needs independent bounds/overlap
 and malformed-input tests before measurement. No kernel integration is justified.
+
+The filtered prototype is libgzram-filter.so. It preserves GZR2 decoding but
+searches for arbitrary periods only after RAW is selected. The AVX2 search
+compares 32 candidate first bytes per vector, extracts VPMOVMSKB positions,
+checks an eight-byte prefix and proves the whole remaining block with memcmp.
+Every vector load is inside the input bound; scalar tails cover short ranges.
+Local disassembly confirms VPCMPEQB/VPMOVMSKB. The scalar search remains an
+independent candidate in the same suite. Both encoders pass byte-identical
+format/round-trip tests, guarded buffers, malformed/mutated frames and concurrency.
+The comparison retains all 57 paths, including original fast paths and naive
+period search. No native speed or energy improvement is claimed before testing.
