@@ -377,3 +377,18 @@ passed every byte/register/OOM/cleanup check and verified stock restoration.
 Neither candidate establishes a broad speed/energy gain. LZ4's lower memory
 footprint and lzo-rle's lower elapsed time form a measured tradeoff. Paired
 descriptive intervals, all trials and continuous telemetry are preserved.
+
+## Workspace reuse screening after repository separation
+
+[Complete physical N100 screening](benchmarks/results/native-reuse-user-001/summary.md)
+retains 8,064 timed rows over three sessions. Epoch reuse reduces periodic-page
+compression time, but regresses executable and mixed data by roughly 48–62%
+against fixed-page controls and incompressible pages by roughly 9–13%. This
+tradeoff rejects unconditional integration. Small periodic gains do not establish
+ZRAM gains. These are user-space tests with kernel FPU overhead excluded. No
+energy measurement was captured in this run. All trial rows and sanitized
+frequency/thermal telemetry are retained, including negative results.
+
+The kernel's LZ4 directory adds -O3 even when global kernel configuration uses
+-O2. The native-kernel-v2-*-O2 results are alternative optimization experiments,
+not evidence that stock LZ4 itself was built at -O2.

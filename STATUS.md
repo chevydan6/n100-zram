@@ -128,3 +128,21 @@ memory. All raw results and paired descriptive intervals are published.
 Next: match scalar compiler settings, include the pressure word patterns in
 codec controls, profile compression, and test a larger working set relevant to
 the 4 GiB target. Normal lzo-rle swap and installed stock code remain active.
+
+## Independent repository checkpoint
+
+ZRAM history was extracted into chevydan6/n100-zram; subsequent development
+is independent of fedora-gracemont. Eight prior commits plus the migration
+checkpoint preserve source, measurements, regressions and authorship.
+Latest O2 controls and initialized-workspace reuse prototypes are experimental.
+Correction: the kernel LZ4 Makefile explicitly selects -O3 even when global
+kernel configuration selects -O2. O2 probes are alternative-codegen experiments,
+not stock-matched optimization controls. No broad native gain is established.
+
+### Latest experiment: initialized workspace epochs
+
+Three physical N100 sessions completed, all eight variants/corpora validated.
+Large regressions on mixed/executable pages reject unconditional table-epoch
+reuse. Keep prototypes and all measurements; investigate lookup/code generation
+or another compression bottleneck before any kernel integration. No experimental
+backend is the production default.

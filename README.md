@@ -4,13 +4,15 @@ This branch investigates native kernel LZ4 acceleration on Gracemont. It current
 contains a user-space research harness, an optional kernel ZRAM backend and a
 namespaced kernel test module built from the existing custom kernel's LZ4 sources,
 plus independently written SSE2/AVX2 comparisons and bounded copies.
-It has **not** yet improved or replaced the running kernel ZRAM backend.
+Native experimental backends have been tested and restored to stock afterward.
+No broad end-to-end performance improvement has been established; see BENCHMARKS.md.
 
 Requirements: x86-64 Linux, Python 3, GCC, glibc development headers. AVX2 and OS
 YMM state support are required for the full suite. No external Python packages.
 
 ```sh
-cd zram
+git clone https://github.com/chevydan6/n100-zram.git
+cd n100-zram
 python3 tools/build.py
 python3 tests/check.py
 python3 tests/guard.py
@@ -21,8 +23,8 @@ gcc -O2 -Wall -Wextra benchmarks/native.c -ldl -o build/native
 
 The benchmark verifies CPUID AVX2 and XGETBV, pins to one allowed CPU and shuffles
 variant order. The test scripts currently require AVX2-capable hardware too.
-Do not run this research harness as a kernel module. Kernel deployment instructions remain pending verified physical recovery and
-native kernel testing. Compile and diskless validation steps are provided below.
+The user-space harness does not manage kernel SIMD state. Use only the separate
+kernel integration for kernel tests. Compile and diskless validation steps are below.
 
 See [STATUS](STATUS.md), [BENCHMARKS](BENCHMARKS.md),
 [ARCHITECTURE](ARCHITECTURE.md), [RECOVERY](RECOVERY.md), and [CHANGELOG](CHANGELOG.md).
@@ -31,8 +33,9 @@ are excluded from publication. All performance conclusions must use the N100.
 
 ### Kernel compile and isolated validation
 
-These are experimental instructions; deployment is pending native recovery and
-administrator access. Use the exact existing custom kernel source and headers.
+These are experimental instructions. PCI reboot and panic recovery were tested
+on the dedicated N100; arbitrary hangs are not recoverable without an external
+mechanism. Use source and headers matching the test kernel exactly.
 
 ```sh
 python3 tools/build.py
@@ -82,9 +85,8 @@ against exact matching kernel-devel, and build its user harness with:
 gcc -O2 -Wall -Wextra -Werror -mno-avx -fno-tree-vectorize -Ikernel benchmarks/kernel-call.c -o build/kernel-call
 ```
 
-Its physical execution is gated on verified recovery. The current controlled
-stock reboot did not restore SSH; see RECOVERY.md. Source and VM validation do
-not constitute a successful native kernel experiment.
+Native syscall and swap tests are recorded in BENCHMARKS.md, including regressions.
+Recovery limitations and the subsequently verified PCI reset are in RECOVERY.md.
 
 ### Reproduce matched kernel controls
 
@@ -149,3 +151,27 @@ job and watcher must both have bounded timeouts long enough for all trials.
 and continuous CPU/thermal telemetry while excluding private swap paths.
 The 768 MiB / 384 MiB cgroup test is real controlled reclaim on the installed
 4 GiB system; it does not claim whole-machine memory exhaustion.
+
+## Independent project
+
+This repository contains the extracted ZRAM development history from
+`chevydan6/fedora-gracemont`. No checkout, script, artifact, issue tracker or CI
+workflow from that repository is required. See [migration](docs/MIGRATION.md),
+[licensing](docs/LICENSING.md), and [release policy](docs/RELEASES.md).
+
+Install GCC, Python 3, libc headers and the liblz4 runtime for interoperability
+tests (`sudo dnf install gcc python3 glibc-devel lz4-libs` on Fedora). Native
+kernel tests additionally require exact matching kernel-devel, make, perf, fio,
+root access, and a verified recovery path. Configure SSH hosts and private output
+directories explicitly; no host credentials ship with the project.
+
+For workspace-reuse experiments, after the ordinary build:
+
+```sh
+python3 tools/prepare-reuse.py
+python3 tests/reuse.py
+```
+
+These prototypes expose a private initialized-workspace API for 4 KiB pages.
+They have not been integrated into ZRAM. User-space measurements exclude kernel
+FPU costs and cannot establish native swap improvements.

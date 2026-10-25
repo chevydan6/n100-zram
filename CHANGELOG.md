@@ -98,3 +98,13 @@
   no OOM or detected corruption, and verified restoration. Published all timing,
   energy, CPU, memory and telemetry results, including inconclusive/regressing
   cases. No candidate is promoted to routine use.
+
+## Independent repository checkpoint
+
+ZRAM history was extracted into chevydan6/n100-zram; subsequent development
+is independent of fedora-gracemont. Eight prior commits plus the migration
+checkpoint preserve source, measurements, regressions and authorship.
+Latest O2 controls and initialized-workspace reuse prototypes are experimental.
+Correction: the kernel LZ4 Makefile explicitly selects -O3 even when global
+kernel configuration selects -O2. O2 probes are alternative-codegen experiments,
+not stock-matched optimization controls. No broad native gain is established.
