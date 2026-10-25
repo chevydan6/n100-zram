@@ -1,0 +1,2927 @@
+{
+  "scope": "Instrumented source-path coverage only; trace builds alter code generation, libc SIMD is not counted; no performance or kernel threshold claim",
+  "libraries": {
+    "scalar": "34d75cb983b7290199665cc8ba3cd5d4151bbf6abe8d4becb0bde539cba2bf5b",
+    "sse": "98f0e7641aea02686f6ca54381058dc40cd1b3ddbb270f9cf00e853291e559bf",
+    "avx2": "ca6920ab98a1a7fd35e3672f43010a384d4a52dc73bca0060e81a455ff6dedc9"
+  },
+  "rows": [
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 128,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 128,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 256
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 256
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 128
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 128
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 256,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 128,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 256
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 256
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 128
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 128
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 256,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 128,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 129,
+      "copy_vector_iterations": 510
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 638
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 128,
+      "copy_vector_iterations": 254
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 254
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 768,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 384,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 640,
+      "copy_vector_iterations": 1024
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 1151
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 384,
+      "copy_vector_iterations": 512
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 512
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1792,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 896,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 894,
+      "copy_vector_iterations": 1276
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 1402
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 512,
+      "copy_vector_iterations": 636
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 636
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 2304,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1152,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1151,
+      "copy_vector_iterations": 1531
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 1660
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 640,
+      "copy_vector_iterations": 763
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 763
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 2816,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1408,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1286,
+      "copy_vector_iterations": 1790
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 1920
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 768,
+      "copy_vector_iterations": 894
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 894
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 3328,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1664,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1429,
+      "copy_vector_iterations": 2047
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 2174
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 896,
+      "copy_vector_iterations": 1023
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 1023
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 3840,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 1920,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 3095,
+      "copy_vector_iterations": 4079
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 4401
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 2160,
+      "copy_vector_iterations": 2031
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 2031
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 7936,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 3968,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 4028,
+      "copy_vector_iterations": 5099
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 5493
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 3047,
+      "copy_vector_iterations": 2539
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 2539
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 9984,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 4992,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 4894,
+      "copy_vector_iterations": 6123
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 6489
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 3914,
+      "copy_vector_iterations": 3051
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 3051
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 12032,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 6016,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 5859,
+      "copy_vector_iterations": 7130
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 7554
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 4806,
+      "copy_vector_iterations": 3546
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 3546
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 14080,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 7040,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 6631,
+      "copy_vector_iterations": 8151
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 8643
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 5482,
+      "copy_vector_iterations": 4055
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 4055
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 16128,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 8064,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 12849,
+      "copy_vector_iterations": 16259
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 16890
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 11508,
+      "copy_vector_iterations": 8067
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 8067
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "variant": "scalar",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 32512,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "variant": "sse",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "compress",
+      "blocks": 128,
+      "match_vector_iterations": 16256,
+      "copy_vector_iterations": 0
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "variant": "avx2",
+      "operation": "decompress",
+      "blocks": 128,
+      "match_vector_iterations": 0,
+      "copy_vector_iterations": 0
+    }
+  ],
+  "execution": "Executed on physical Intel N100; trace counters only, no timing or performance conclusions"
+}

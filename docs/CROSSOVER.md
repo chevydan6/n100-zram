@@ -56,3 +56,11 @@ for byte identity, independent decoding and path coverage. Trace builds change
 code generation and are not timing binaries. Libc SIMD is not counted. Coverage
 can distinguish explicit vector-loop execution from an AVX2-labelled codec that
 wins due to other compiler/runtime effects; it does not establish profitability.
+
+Native instrumented coverage is in benchmarks/results/native-crossover-path-coverage-001.json.
+For the generated 4 KiB random blocks, the AVX2-labelled codec executed zero
+explicit match/copy vector iterations in both directions. Its user-space timing
+advantage on random blocks therefore cannot be credited to those vector loops.
+Compiler layout and shared libc paths require separate accounting. Moderately
+compressible and periodic blocks do execute explicit vector paths. Instrumented
+builds are correctness/coverage diagnostics and cannot supply performance numbers.
