@@ -1,0 +1,7026 @@
+{
+  "scope": "Physical N100 kernel component experiment; syscall/dispatch/mutex/loop and kernel FPU handling included; normal ZRAM unchanged",
+  "rows": [
+    {
+      "bytes": 16,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 219.784,
+        "fpu-scalar": 632.744,
+        "sse": 634.611,
+        "avx2": 633.114
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 189.4216503342797,
+          "bootstrap_95_percent": [
+            183.69336459784026,
+            195.05449234111083
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 189.6959428519095,
+          "bootstrap_95_percent": [
+            182.2468620550036,
+            194.93605108422904
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 219.642,
+        "fpu-scalar": 633.277,
+        "sse": 634.288,
+        "avx2": 633.56
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.2094728107134,
+          "bootstrap_95_percent": [
+            184.6365840782398,
+            196.46643772636003
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.0490099441131,
+          "bootstrap_95_percent": [
+            184.98197013215938,
+            197.18788845369045
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 224.011,
+        "fpu-scalar": 654.061,
+        "sse": 656.364,
+        "avx2": 654.205
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.30484217292897,
+          "bootstrap_95_percent": [
+            191.92354791250037,
+            203.45777757229712
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.38078244189677,
+          "bootstrap_95_percent": [
+            192.159237148781,
+            201.08601678263486
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 211.984,
+        "fpu-scalar": 639.917,
+        "sse": 636.832,
+        "avx2": 638.017
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 199.51228832787984,
+          "bootstrap_95_percent": [
+            187.9025721387658,
+            203.95973281002338
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 200.80703530424665,
+          "bootstrap_95_percent": [
+            188.69105515328363,
+            200.8225577788561
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 217.135,
+        "fpu-scalar": 639.337,
+        "sse": 634.41,
+        "avx2": 634.581
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.4024307774968,
+          "bootstrap_95_percent": [
+            183.26963168867266,
+            196.26150005943182
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.4075188666142,
+          "bootstrap_95_percent": [
+            187.07702998877426,
+            195.3688390585091
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 220.562,
+        "fpu-scalar": 657.96,
+        "sse": 658.527,
+        "avx2": 658.746
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 199.3046011387556,
+          "bootstrap_95_percent": [
+            190.13973821629793,
+            202.15528482545358
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 200.5780508759478,
+          "bootstrap_95_percent": [
+            187.53209136989005,
+            200.87775772798574
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 221.137,
+        "fpu-scalar": 635.859,
+        "sse": 638.037,
+        "avx2": 638.634
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.5405267971015,
+          "bootstrap_95_percent": [
+            183.79531971736597,
+            194.49211529776568
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.81585600350124,
+          "bootstrap_95_percent": [
+            186.96238078657123,
+            199.49156914706498
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 219.849,
+        "fpu-scalar": 636.523,
+        "sse": 639.232,
+        "avx2": 641.728
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 185.06049470644012,
+          "bootstrap_95_percent": [
+            185.00196948159822,
+            195.45738007036616
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.5603622469598,
+          "bootstrap_95_percent": [
+            187.66290692840232,
+            194.38244973264293
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 223.379,
+        "fpu-scalar": 658.184,
+        "sse": 659.66,
+        "avx2": 658.313
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 201.18608353193403,
+          "bootstrap_95_percent": [
+            188.73845772663117,
+            206.5678538489487
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 201.7348123307107,
+          "bootstrap_95_percent": [
+            186.7178929095419,
+            203.64647713226205
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 212.927,
+        "fpu-scalar": 632.967,
+        "sse": 629.347,
+        "avx2": 631.394
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.95590085822948,
+          "bootstrap_95_percent": [
+            188.20240500937905,
+            197.33222393914184
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.95907589826214,
+          "bootstrap_95_percent": [
+            188.1022718004948,
+            197.7964550848497
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.262,
+        "fpu-scalar": 632.567,
+        "sse": 632.595,
+        "avx2": 631.085
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.21755093358982,
+          "bootstrap_95_percent": [
+            188.23769784695293,
+            196.67604036202943
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.44945670675048,
+          "bootstrap_95_percent": [
+            187.11259228317428,
+            196.3926424473464
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 215.914,
+        "fpu-scalar": 653.001,
+        "sse": 651.039,
+        "avx2": 653.043
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 202.702175669276,
+          "bootstrap_95_percent": [
+            195.06620378939385,
+            203.3010493090718
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 201.79309320184603,
+          "bootstrap_95_percent": [
+            196.21268648279542,
+            205.44506752278573
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 218.922,
+        "fpu-scalar": 632.089,
+        "sse": 631.57,
+        "avx2": 631.565
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.0524807749187,
+          "bootstrap_95_percent": [
+            187.68527206639277,
+            196.42023899848255
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.56684412895592,
+          "bootstrap_95_percent": [
+            188.56301557688417,
+            196.09161608497726
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 217.951,
+        "fpu-scalar": 636.072,
+        "sse": 632.007,
+        "avx2": 633.938
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.65490650765605,
+          "bootstrap_95_percent": [
+            187.5883664443155,
+            199.08896545799885
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.5518440812721,
+          "bootstrap_95_percent": [
+            187.53978508177607,
+            197.93979249983295
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.326,
+        "fpu-scalar": 653.336,
+        "sse": 653.141,
+        "avx2": 654.062
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.6906522710486,
+          "bootstrap_95_percent": [
+            192.1417712308179,
+            202.87493252424474
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 198.5310055280821,
+          "bootstrap_95_percent": [
+            194.37716999305604,
+            201.1487929282098
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 232.811,
+        "fpu-scalar": 644.066,
+        "sse": 645.918,
+        "avx2": 641.665
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.2948823698886,
+          "bootstrap_95_percent": [
+            175.98464520607084,
+            179.63977147263455
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 177.30960282398698,
+          "bootstrap_95_percent": [
+            175.24031759240592,
+            180.65903457216183
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 230.67,
+        "fpu-scalar": 645.73,
+        "sse": 645.35,
+        "avx2": 646.848
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 181.03620361128753,
+          "bootstrap_95_percent": [
+            179.6600728045289,
+            181.13762983532223
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 179.4872127237611,
+          "bootstrap_95_percent": [
+            176.862323440381,
+            180.59104729432858
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 233.581,
+        "fpu-scalar": 667.377,
+        "sse": 667.392,
+        "avx2": 666.212
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 186.35327795482945,
+          "bootstrap_95_percent": [
+            184.8220947284468,
+            186.4997371244406
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 185.391160874132,
+          "bootstrap_95_percent": [
+            184.6111296920425,
+            186.45789930555554
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 220.324,
+        "fpu-scalar": 632.803,
+        "sse": 633.665,
+        "avx2": 632.158
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.54295485945957,
+          "bootstrap_95_percent": [
+            187.57465463721022,
+            195.80005915409643
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 187.12400384845787,
+          "bootstrap_95_percent": [
+            186.70698285429546,
+            194.97587216943933
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 219.106,
+        "fpu-scalar": 634.188,
+        "sse": 632.983,
+        "avx2": 632.117
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.2669495027411,
+          "bootstrap_95_percent": [
+            186.46769169832385,
+            195.72188749366518
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 188.78900679329874,
+          "bootstrap_95_percent": [
+            184.51602435539775,
+            195.1704465483753
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 223.393,
+        "fpu-scalar": 654.66,
+        "sse": 653.753,
+        "avx2": 653.721
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.45375096258886,
+          "bootstrap_95_percent": [
+            190.77526120868887,
+            200.14773768047243
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.5164127504456,
+          "bootstrap_95_percent": [
+            191.76283485356595,
+            199.36675364599873
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 215.253,
+        "fpu-scalar": 631.18,
+        "sse": 632.251,
+        "avx2": 630.03
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.34970771043692,
+          "bootstrap_95_percent": [
+            187.62150771531506,
+            196.9679920278073
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.02213674141592,
+          "bootstrap_95_percent": [
+            188.1988534656606,
+            197.4309704428095
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 215.742,
+        "fpu-scalar": 632.531,
+        "sse": 630.18,
+        "avx2": 632.058
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.83379562956412,
+          "bootstrap_95_percent": [
+            190.5473451508577,
+            197.98265793664842
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.84674286879698,
+          "bootstrap_95_percent": [
+            187.58773164331694,
+            198.4500645408042
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 218.992,
+        "fpu-scalar": 652.11,
+        "sse": 653.089,
+        "avx2": 652.752
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.85102181358803,
+          "bootstrap_95_percent": [
+            194.8173268788532,
+            203.188568252787
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 197.604022064733,
+          "bootstrap_95_percent": [
+            195.07316345488817,
+            204.5815155505363
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 219.831,
+        "fpu-scalar": 631.774,
+        "sse": 634.111,
+        "avx2": 633.385
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.1811042682047,
+          "bootstrap_95_percent": [
+            186.69482433760356,
+            197.87740875272902
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 194.57156030383612,
+          "bootstrap_95_percent": [
+            187.61061545303554,
+            197.86600355124318
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 220.166,
+        "fpu-scalar": 633.124,
+        "sse": 635.184,
+        "avx2": 635.081
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.42140309589612,
+          "bootstrap_95_percent": [
+            185.7466691754249,
+            197.02364316122473
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 189.1608745684695,
+          "bootstrap_95_percent": [
+            187.34356477752945,
+            197.1846018257234
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 223.038,
+        "fpu-scalar": 654.686,
+        "sse": 656.567,
+        "avx2": 655.25
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.947085700736,
+          "bootstrap_95_percent": [
+            192.57695029188042,
+            201.7223463086607
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.3576566193988,
+          "bootstrap_95_percent": [
+            190.95834070405093,
+            202.14279476329224
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 218.09,
+        "fpu-scalar": 633.013,
+        "sse": 632.141,
+        "avx2": 631.845
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.9852813058829,
+          "bootstrap_95_percent": [
+            188.36758187471108,
+            197.3273731612696
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 189.79158918412605,
+          "bootstrap_95_percent": [
+            187.9192460290346,
+            196.79030700176133
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 217.371,
+        "fpu-scalar": 632.505,
+        "sse": 633.116,
+        "avx2": 633.868
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.93439327233165,
+          "bootstrap_95_percent": [
+            190.29675267268803,
+            198.20822331195777
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.43445997856202,
+          "bootstrap_95_percent": [
+            188.7877811900366,
+            197.93921849658656
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 220.072,
+        "fpu-scalar": 653.989,
+        "sse": 652.356,
+        "avx2": 653.824
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.27971902017288,
+          "bootstrap_95_percent": [
+            195.28137786830584,
+            201.99204303485376
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 198.95803314121036,
+          "bootstrap_95_percent": [
+            194.9645799160012,
+            201.96776121633232
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 213.172,
+        "fpu-scalar": 633.118,
+        "sse": 635.926,
+        "avx2": 632.61
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.42516163946567,
+          "bootstrap_95_percent": [
+            185.17628276994,
+            198.7488041772504
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.44523668611257,
+          "bootstrap_95_percent": [
+            184.6542956312726,
+            198.19756090659575
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 213.0,
+        "fpu-scalar": 632.488,
+        "sse": 633.072,
+        "avx2": 634.21
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.23843820897773,
+          "bootstrap_95_percent": [
+            190.3729200963252,
+            197.43753582469625
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.9172314905218,
+          "bootstrap_95_percent": [
+            188.54119898595485,
+            197.6846674998355
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 216.032,
+        "fpu-scalar": 652.238,
+        "sse": 656.927,
+        "avx2": 653.454
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 203.1587912901792,
+          "bootstrap_95_percent": [
+            191.2814259743715,
+            205.05144819755355
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 202.46028366167968,
+          "bootstrap_95_percent": [
+            192.66084334678314,
+            203.99448260331044
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 233.367,
+        "fpu-scalar": 642.787,
+        "sse": 643.98,
+        "avx2": 643.849
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 175.96836220061513,
+          "bootstrap_95_percent": [
+            173.76280131521077,
+            180.95938101043535
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 175.48820770863287,
+          "bootstrap_95_percent": [
+            175.10909672962546,
+            180.90131871323157
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 232.281,
+        "fpu-scalar": 643.926,
+        "sse": 644.738,
+        "avx2": 644.287
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.4953612219682,
+          "bootstrap_95_percent": [
+            177.19120816959708,
+            179.98667677595512
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 178.4408171311275,
+          "bootstrap_95_percent": [
+            177.3739565440135,
+            179.80699278633347
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 233.889,
+        "fpu-scalar": 664.322,
+        "sse": 664.529,
+        "avx2": 664.9
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 183.12190825562556,
+          "bootstrap_95_percent": [
+            179.42288982823405,
+            185.46206884611559
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 182.63473818646233,
+          "bootstrap_95_percent": [
+            179.9223362855609,
+            185.30538398611475
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 220.87,
+        "fpu-scalar": 633.431,
+        "sse": 633.839,
+        "avx2": 633.08
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 186.80825958702064,
+          "bootstrap_95_percent": [
+            186.4938528295064,
+            195.07730203308543
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 186.48526487072866,
+          "bootstrap_95_percent": [
+            186.253905011998,
+            194.00526731876639
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 219.074,
+        "fpu-scalar": 633.287,
+        "sse": 633.809,
+        "avx2": 634.352
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 189.04251531445993,
+          "bootstrap_95_percent": [
+            186.7212303817961,
+            195.75742228349816
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 189.63500917498192,
+          "bootstrap_95_percent": [
+            186.50042721590142,
+            194.79788856304987
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 223.872,
+        "fpu-scalar": 654.136,
+        "sse": 654.702,
+        "avx2": 653.484
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 193.16550773636158,
+          "bootstrap_95_percent": [
+            191.9913276548018,
+            200.55296950610293
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.91898435615434,
+          "bootstrap_95_percent": [
+            191.42358016644718,
+            200.1816618593299
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 217.114,
+        "fpu-scalar": 630.205,
+        "sse": 633.255,
+        "avx2": 630.833
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.18156716311142,
+          "bootstrap_95_percent": [
+            191.20795739867006,
+            198.49745819244126
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.88349014522345,
+          "bootstrap_95_percent": [
+            190.55381044059803,
+            198.33421558388298
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.139,
+        "fpu-scalar": 630.848,
+        "sse": 631.378,
+        "avx2": 633.354
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.36631460901376,
+          "bootstrap_95_percent": [
+            190.66294300870953,
+            198.1277812032483
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.8659910691562,
+          "bootstrap_95_percent": [
+            191.43709382382409,
+            199.14012950199563
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.017,
+        "fpu-scalar": 653.235,
+        "sse": 651.357,
+        "avx2": 650.63
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.26322614226294,
+          "bootstrap_95_percent": [
+            192.7863588798755,
+            203.95823020531313
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.91074208851367,
+          "bootstrap_95_percent": [
+            192.95629153288195,
+            203.1300334385155
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 217.258,
+        "fpu-scalar": 632.809,
+        "sse": 633.651,
+        "avx2": 634.681
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.7043330970551,
+          "bootstrap_95_percent": [
+            190.31101939968232,
+            196.42798081693402
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.1323955849727,
+          "bootstrap_95_percent": [
+            188.10700957362945,
+            196.9166504667934
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 217.379,
+        "fpu-scalar": 632.123,
+        "sse": 636.013,
+        "avx2": 632.307
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.1827118951596,
+          "bootstrap_95_percent": [
+            190.4650403212822,
+            197.5104735065205
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.87768367689614,
+          "bootstrap_95_percent": [
+            188.95045898163167,
+            195.12901962079985
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 221.617,
+        "fpu-scalar": 654.168,
+        "sse": 654.656,
+        "avx2": 653.283
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.16237472757055,
+          "bootstrap_95_percent": [
+            191.03436400323199,
+            199.80363552159312
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.00489583380335,
+          "bootstrap_95_percent": [
+            188.93755491485163,
+            199.21454208637255
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 213.903,
+        "fpu-scalar": 633.912,
+        "sse": 633.994,
+        "avx2": 635.465
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.85211185211185,
+          "bootstrap_95_percent": [
+            191.01663401989572,
+            197.64570065954445
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.30855182369538,
+          "bootstrap_95_percent": [
+            189.6974933613206,
+            197.69685563286572
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 218.819,
+        "fpu-scalar": 635.524,
+        "sse": 632.821,
+        "avx2": 634.642
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 187.6199489491812,
+          "bootstrap_95_percent": [
+            186.79914675843597,
+            197.6067365234052
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 189.86218098925747,
+          "bootstrap_95_percent": [
+            187.31959878770382,
+            196.93828795799132
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 224.146,
+        "fpu-scalar": 657.416,
+        "sse": 656.239,
+        "avx2": 654.417
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.77301401764925,
+          "bootstrap_95_percent": [
+            189.354580833326,
+            203.19086964829137
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.79132985833863,
+          "bootstrap_95_percent": [
+            188.94180844677928,
+            201.76578408555613
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 214.388,
+        "fpu-scalar": 633.79,
+        "sse": 635.389,
+        "avx2": 635.015
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.30762915834845,
+          "bootstrap_95_percent": [
+            182.75200697769628,
+            196.60317685099957
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.79995190244682,
+          "bootstrap_95_percent": [
+            184.51512130867405,
+            198.32289550891446
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 217.366,
+        "fpu-scalar": 636.125,
+        "sse": 636.585,
+        "avx2": 634.592
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 194.51789414860175,
+          "bootstrap_95_percent": [
+            185.55320459597718,
+            201.00254796448064
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.2563331586255,
+          "bootstrap_95_percent": [
+            191.14128322933092,
+            196.24335420884336
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 221.488,
+        "fpu-scalar": 653.982,
+        "sse": 655.8,
+        "avx2": 656.582
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.782881848274,
+          "bootstrap_95_percent": [
+            195.48093198677674,
+            202.64216181959674
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.75581526267197,
+          "bootstrap_95_percent": [
+            194.4493030394974,
+            202.5634095537216
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 232.866,
+        "fpu-scalar": 642.478,
+        "sse": 644.448,
+        "avx2": 644.967
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 175.42156623879563,
+          "bootstrap_95_percent": [
+            174.6184292108683,
+            180.21089908224712
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 175.67544474255342,
+          "bootstrap_95_percent": [
+            174.4307227124863,
+            180.95524828368247
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 231.913,
+        "fpu-scalar": 642.068,
+        "sse": 644.458,
+        "avx2": 645.15
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.70715742541384,
+          "bootstrap_95_percent": [
+            175.00275692412094,
+            180.01580468552172
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 178.31859361053498,
+          "bootstrap_95_percent": [
+            175.77495383028986,
+            179.36470526619007
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 64,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 236.891,
+        "fpu-scalar": 664.039,
+        "sse": 665.353,
+        "avx2": 665.642
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 180.46984335744511,
+          "bootstrap_95_percent": [
+            177.59432593538332,
+            185.68991292883945
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 184.59840179660688,
+          "bootstrap_95_percent": [
+            180.19134649366387,
+            185.2876211183876
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 227.789,
+        "fpu-scalar": 638.921,
+        "sse": 636.601,
+        "avx2": 634.839
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.54016077437763,
+          "bootstrap_95_percent": [
+            176.62794456777084,
+            179.27862503025898
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 177.67495357545803,
+          "bootstrap_95_percent": [
+            177.0382982391862,
+            179.15695808530657
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 231.098,
+        "fpu-scalar": 641.29,
+        "sse": 637.631,
+        "avx2": 635.199
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.58903402121751,
+          "bootstrap_95_percent": [
+            174.7433876713808,
+            181.15932427956272
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 177.5059714660756,
+          "bootstrap_95_percent": [
+            173.39479650221313,
+            180.8128394189589
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 233.66,
+        "fpu-scalar": 660.394,
+        "sse": 658.477,
+        "avx2": 655.736
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 184.25446919870714,
+          "bootstrap_95_percent": [
+            180.5528467802642,
+            185.00053461069652
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 182.65252443170885,
+          "bootstrap_95_percent": [
+            179.26030942142552,
+            183.95663486556808
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 211.85,
+        "fpu-scalar": 631.502,
+        "sse": 631.337,
+        "avx2": 629.93
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.26929431201322,
+          "bootstrap_95_percent": [
+            191.29918534445216,
+            197.7287388838183
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 197.80328479884548,
+          "bootstrap_95_percent": [
+            191.15981827267353,
+            198.36224876753886
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.554,
+        "fpu-scalar": 633.666,
+        "sse": 631.136,
+        "avx2": 631.845
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 194.31194704642724,
+          "bootstrap_95_percent": [
+            190.9465322558453,
+            198.16992152026995
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.48540156149915,
+          "bootstrap_95_percent": [
+            190.94561498454397,
+            196.9436530622922
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 215.904,
+        "fpu-scalar": 653.479,
+        "sse": 650.972,
+        "avx2": 652.439
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 201.2019230769231,
+          "bootstrap_95_percent": [
+            191.60524233344302,
+            202.90000282238717
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 202.18939899214465,
+          "bootstrap_95_percent": [
+            192.79113579343039,
+            202.8062085254752
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 219.758,
+        "fpu-scalar": 636.062,
+        "sse": 634.942,
+        "avx2": 635.379
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.8764004040808,
+          "bootstrap_95_percent": [
+            185.19274123345463,
+            194.59646482941827
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 188.8991527043384,
+          "bootstrap_95_percent": [
+            184.8811410459588,
+            194.94344955382005
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 220.268,
+        "fpu-scalar": 634.077,
+        "sse": 636.547,
+        "avx2": 635.063
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 189.30074406315688,
+          "bootstrap_95_percent": [
+            186.0466880575501,
+            195.0411763612366
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 188.39038455396943,
+          "bootstrap_95_percent": [
+            185.87826133542868,
+            192.2247282785249
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 221.957,
+        "fpu-scalar": 656.995,
+        "sse": 657.27,
+        "avx2": 656.365
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 194.65229913241967,
+          "bootstrap_95_percent": [
+            192.60689545345963,
+            198.7513313011862
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.57953853319475,
+          "bootstrap_95_percent": [
+            192.34909531885728,
+            198.25294428246752
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 219.902,
+        "fpu-scalar": 636.092,
+        "sse": 637.447,
+        "avx2": 634.412
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.7233677905865,
+          "bootstrap_95_percent": [
+            188.0860831100528,
+            195.3371545738385
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.06675603702834,
+          "bootstrap_95_percent": [
+            186.64790056072405,
+            192.37198220501463
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 220.085,
+        "fpu-scalar": 636.881,
+        "sse": 636.553,
+        "avx2": 633.316
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 189.23052457005247,
+          "bootstrap_95_percent": [
+            184.4924340894068,
+            195.13583283838955
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 187.26673785128472,
+          "bootstrap_95_percent": [
+            184.30108964502975,
+            194.41776710684277
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 221.03,
+        "fpu-scalar": 658.661,
+        "sse": 656.271,
+        "avx2": 657.626
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.19404605709633,
+          "bootstrap_95_percent": [
+            189.9475554936056,
+            200.8078751782415
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.59688357640226,
+          "bootstrap_95_percent": [
+            188.6116144544726,
+            198.18240979647203
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 213.212,
+        "fpu-scalar": 633.601,
+        "sse": 638.082,
+        "avx2": 636.495
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.96368931582782,
+          "bootstrap_95_percent": [
+            186.37490563256333,
+            198.3852093447315
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.43188377140334,
+          "bootstrap_95_percent": [
+            185.62386091555587,
+            196.83925572143042
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 218.174,
+        "fpu-scalar": 633.845,
+        "sse": 638.132,
+        "avx2": 635.458
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.22730481175572,
+          "bootstrap_95_percent": [
+            190.30131358060441,
+            197.8459699019483
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.38663105990867,
+          "bootstrap_95_percent": [
+            189.07804174820023,
+            196.59196286934133
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 217.763,
+        "fpu-scalar": 654.539,
+        "sse": 658.324,
+        "avx2": 657.413
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 201.770273186905,
+          "bootstrap_95_percent": [
+            195.32706546636126,
+            202.0355632235084
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 202.66298682512635,
+          "bootstrap_95_percent": [
+            194.8689291174349,
+            202.72409811205256
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 238.701,
+        "fpu-scalar": 649.408,
+        "sse": 648.869,
+        "avx2": 646.523
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 171.83338151076035,
+          "bootstrap_95_percent": [
+            171.4372341804708,
+            174.58795821979248
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 172.4131429433355,
+          "bootstrap_95_percent": [
+            169.50457291631898,
+            174.18435954902395
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 237.679,
+        "fpu-scalar": 648.981,
+        "sse": 646.931,
+        "avx2": 647.73
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 171.40600315955763,
+          "bootstrap_95_percent": [
+            171.01420158465075,
+            173.73689734144034
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 171.47394615413472,
+          "bootstrap_95_percent": [
+            171.01798209314575,
+            172.54301650463674
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 128,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 241.884,
+        "fpu-scalar": 670.488,
+        "sse": 668.371,
+        "avx2": 666.867
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.6667579158682,
+          "bootstrap_95_percent": [
+            175.49372998877934,
+            179.03668882134863
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 178.38690568716996,
+          "bootstrap_95_percent": [
+            175.22848297213622,
+            178.41170056338495
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 234.064,
+        "fpu-scalar": 641.337,
+        "sse": 638.219,
+        "avx2": 635.11
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 172.8908472165786,
+          "bootstrap_95_percent": [
+            171.9686397022735,
+            176.19371757447232
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 172.15642591620468,
+          "bootstrap_95_percent": [
+            170.2750406338887,
+            175.2176246514733
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 232.84,
+        "fpu-scalar": 642.397,
+        "sse": 637.97,
+        "avx2": 636.767
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 173.10346900997712,
+          "bootstrap_95_percent": [
+            170.54527935900197,
+            176.92468765268373
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 172.74952757258205,
+          "bootstrap_95_percent": [
+            169.709378737359,
+            175.71723322675342
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 234.202,
+        "fpu-scalar": 664.932,
+        "sse": 660.152,
+        "avx2": 655.895
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 182.1560020836714,
+          "bootstrap_95_percent": [
+            179.0246553935266,
+            183.20742731073324
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 180.15132236274673,
+          "bootstrap_95_percent": [
+            177.52677093537815,
+            181.6495352510162
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 211.928,
+        "fpu-scalar": 629.981,
+        "sse": 630.529,
+        "avx2": 633.402
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.145722624129,
+          "bootstrap_95_percent": [
+            188.74783454810827,
+            197.42246388098303
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 197.69338600739138,
+          "bootstrap_95_percent": [
+            189.8179100799351,
+            198.56252743268254
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.775,
+        "fpu-scalar": 630.913,
+        "sse": 630.996,
+        "avx2": 632.383
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.8513869718359,
+          "bootstrap_95_percent": [
+            188.29076227801366,
+            196.06406583329772
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.68360238755812,
+          "bootstrap_95_percent": [
+            186.08790065371306,
+            195.99945029167714
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.805,
+        "fpu-scalar": 650.375,
+        "sse": 652.698,
+        "avx2": 652.669
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.31337572654556,
+          "bootstrap_95_percent": [
+            190.59086855558598,
+            202.8951215398167
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.95093378221605,
+          "bootstrap_95_percent": [
+            192.117446611122,
+            203.6983809864862
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 225.227,
+        "fpu-scalar": 640.116,
+        "sse": 640.2,
+        "avx2": 637.529
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 183.15751133774256,
+          "bootstrap_95_percent": [
+            177.12150080609698,
+            188.34893898183887
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 182.12167918519273,
+          "bootstrap_95_percent": [
+            175.00472638526054,
+            184.5095691097386
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 227.164,
+        "fpu-scalar": 639.792,
+        "sse": 638.836,
+        "avx2": 638.877
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 181.35746170256573,
+          "bootstrap_95_percent": [
+            180.46961666461235,
+            187.22500755876658
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 182.09487418781146,
+          "bootstrap_95_percent": [
+            180.2780807695846,
+            185.8130112514849
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 227.495,
+        "fpu-scalar": 660.688,
+        "sse": 661.176,
+        "avx2": 660.206
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.821924469416,
+          "bootstrap_95_percent": [
+            184.44786106017204,
+            192.7367581607331
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.6499627994422,
+          "bootstrap_95_percent": [
+            184.40577369883488,
+            191.2848130345656
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 228.624,
+        "fpu-scalar": 643.961,
+        "sse": 642.965,
+        "avx2": 640.62
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 180.6016167139045,
+          "bootstrap_95_percent": [
+            179.24924846196868,
+            189.55077788950874
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 179.71334116506466,
+          "bootstrap_95_percent": [
+            179.18720288031315,
+            186.80206927403353
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 226.896,
+        "fpu-scalar": 644.186,
+        "sse": 642.042,
+        "avx2": 639.139
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 183.29340128400293,
+          "bootstrap_95_percent": [
+            182.86809410520752,
+            189.52247801064175
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 181.02493013840296,
+          "bootstrap_95_percent": [
+            179.866091316463,
+            217.3421916691658
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 231.766,
+        "fpu-scalar": 664.614,
+        "sse": 663.387,
+        "avx2": 662.203
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 190.23594884263932,
+          "bootstrap_95_percent": [
+            184.70963756177926,
+            193.4220412300552
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 188.94253135890034,
+          "bootstrap_95_percent": [
+            184.670596512905,
+            190.04058986453748
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 220.484,
+        "fpu-scalar": 635.991,
+        "sse": 636.112,
+        "avx2": 637.427
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.42773171749423,
+          "bootstrap_95_percent": [
+            186.89832007867471,
+            195.33410702051205
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 186.32307837387566,
+          "bootstrap_95_percent": [
+            186.25244486105981,
+            193.78009387658074
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 221.283,
+        "fpu-scalar": 635.204,
+        "sse": 639.687,
+        "avx2": 635.309
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 187.57344578161596,
+          "bootstrap_95_percent": [
+            187.22125622916144,
+            196.08018004557172
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.60395993907787,
+          "bootstrap_95_percent": [
+            187.53711587307262,
+            194.31100818049381
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 224.015,
+        "fpu-scalar": 659.038,
+        "sse": 660.002,
+        "avx2": 656.452
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.4998408649773,
+          "bootstrap_95_percent": [
+            193.49277023844436,
+            201.0729692688356
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.4854027248247,
+          "bootstrap_95_percent": [
+            192.400062495815,
+            200.00183963869497
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 241.163,
+        "fpu-scalar": 651.41,
+        "sse": 648.417,
+        "avx2": 647.581
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 168.68839276091626,
+          "bootstrap_95_percent": [
+            167.08344625391115,
+            173.02775245404624
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 168.99118808872683,
+          "bootstrap_95_percent": [
+            168.11760609502332,
+            171.79438439085382
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 240.387,
+        "fpu-scalar": 652.02,
+        "sse": 649.78,
+        "avx2": 646.945
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 169.9303873467552,
+          "bootstrap_95_percent": [
+            169.33718512246446,
+            172.7309661856194
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 169.35516482972338,
+          "bootstrap_95_percent": [
+            168.03109538293234,
+            171.62714532344876
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 256,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 244.155,
+        "fpu-scalar": 672.81,
+        "sse": 669.061,
+        "avx2": 668.278
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 175.29054065113837,
+          "bootstrap_95_percent": [
+            174.57175968582743,
+            178.20081355535393
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 175.11662673301797,
+          "bootstrap_95_percent": [
+            174.0623837306763,
+            176.0024709599596
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 238.045,
+        "fpu-scalar": 648.595,
+        "sse": 643.482,
+        "avx2": 637.638
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 171.48025653079043,
+          "bootstrap_95_percent": [
+            167.69488243199254,
+            173.84947822433352
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 170.4175340809885,
+          "bootstrap_95_percent": [
+            166.60067387983176,
+            172.18720480893083
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 237.243,
+        "fpu-scalar": 646.089,
+        "sse": 645.593,
+        "avx2": 640.389
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 171.72371248237428,
+          "bootstrap_95_percent": [
+            169.15072353801958,
+            173.08443320244572
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 169.23308069847417,
+          "bootstrap_95_percent": [
+            168.9264288364608,
+            171.11385514627653
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 241.55,
+        "fpu-scalar": 667.801,
+        "sse": 663.966,
+        "avx2": 661.658
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 175.26930242185884,
+          "bootstrap_95_percent": [
+            174.63162366021533,
+            179.50026855912742
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 173.83822984053728,
+          "bootstrap_95_percent": [
+            172.71951976816396,
+            177.01979724843198
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 216.358,
+        "fpu-scalar": 634.377,
+        "sse": 633.032,
+        "avx2": 634.298
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 193.96129753394032,
+          "bootstrap_95_percent": [
+            186.41673211634765,
+            198.30679127019016
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.55204706936215,
+          "bootstrap_95_percent": [
+            188.4442346019222,
+            198.83428777305826
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.721,
+        "fpu-scalar": 634.987,
+        "sse": 634.19,
+        "avx2": 634.578
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 193.31726392836575,
+          "bootstrap_95_percent": [
+            191.35107589328757,
+            194.51448098812452
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.1433124844095,
+          "bootstrap_95_percent": [
+            190.8827971848186,
+            196.0310106514107
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.56,
+        "fpu-scalar": 655.873,
+        "sse": 654.437,
+        "avx2": 653.119
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 198.65784982156387,
+          "bootstrap_95_percent": [
+            192.4047861598127,
+            208.74321624842463
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 197.157343263693,
+          "bootstrap_95_percent": [
+            191.4465548685557,
+            206.16858943053634
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 243.022,
+        "fpu-scalar": 657.278,
+        "sse": 652.366,
+        "avx2": 645.584
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 167.79674876525038,
+          "bootstrap_95_percent": [
+            167.49657040346122,
+            174.54988659728258
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 165.29934664127651,
+          "bootstrap_95_percent": [
+            165.11496985887518,
+            170.82307056404608
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 238.518,
+        "fpu-scalar": 657.826,
+        "sse": 651.408,
+        "avx2": 645.881
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 173.47795927689847,
+          "bootstrap_95_percent": [
+            168.64996277206217,
+            174.21787674150812
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 170.5531540524308,
+          "bootstrap_95_percent": [
+            166.27189969436068,
+            170.79783613370117
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 242.254,
+        "fpu-scalar": 678.122,
+        "sse": 673.067,
+        "avx2": 666.449
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 177.95758123696177,
+          "bootstrap_95_percent": [
+            170.09128763613072,
+            179.00513652338472
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 174.4429400546534,
+          "bootstrap_95_percent": [
+            166.40574951953874,
+            175.86188200161828
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 242.27,
+        "fpu-scalar": 658.085,
+        "sse": 650.527,
+        "avx2": 645.276
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 169.5339910017749,
+          "bootstrap_95_percent": [
+            167.45279156225945,
+            174.0607332136869
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 166.11811628824861,
+          "bootstrap_95_percent": [
+            164.87250036849605,
+            171.20904117844273
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 239.741,
+        "fpu-scalar": 657.379,
+        "sse": 652.604,
+        "avx2": 644.085
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 173.87694900969234,
+          "bootstrap_95_percent": [
+            168.18301007071628,
+            174.32370045023106
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 171.03497682258742,
+          "bootstrap_95_percent": [
+            164.63758220876815,
+            171.47197796376736
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 240.33,
+        "fpu-scalar": 679.054,
+        "sse": 672.95,
+        "avx2": 663.472
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 179.89732572227985,
+          "bootstrap_95_percent": [
+            174.07106466998727,
+            180.5862028675869
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 175.21910924026866,
+          "bootstrap_95_percent": [
+            171.5208987923697,
+            176.61685310217834
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 227.566,
+        "fpu-scalar": 640.506,
+        "sse": 642.717,
+        "avx2": 637.549
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 181.31512503567743,
+          "bootstrap_95_percent": [
+            180.1306933281056,
+            189.24713176891223
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 179.50045261594437,
+          "bootstrap_95_percent": [
+            178.81516896664132,
+            186.67420968070422
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 224.683,
+        "fpu-scalar": 643.143,
+        "sse": 642.359,
+        "avx2": 637.991
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 185.56766644561446,
+          "bootstrap_95_percent": [
+            181.4561947541299,
+            188.11945095171683
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 183.95161182643994,
+          "bootstrap_95_percent": [
+            179.2827469562299,
+            185.49006571943235
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 230.906,
+        "fpu-scalar": 663.349,
+        "sse": 665.587,
+        "avx2": 660.637
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 188.03938115330521,
+          "bootstrap_95_percent": [
+            187.3209283454405,
+            192.83380430943132
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 185.71878750205047,
+          "bootstrap_95_percent": [
+            185.09124316922131,
+            190.54088661250447
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 245.494,
+        "fpu-scalar": 657.354,
+        "sse": 652.347,
+        "avx2": 650.922
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 165.64023954054002,
+          "bootstrap_95_percent": [
+            164.61756477759994,
+            169.1011398066657
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 165.69849654611946,
+          "bootstrap_95_percent": [
+            163.00303843294438,
+            167.40251924713107
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 245.71,
+        "fpu-scalar": 657.832,
+        "sse": 652.765,
+        "avx2": 651.411
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 165.22948596119326,
+          "bootstrap_95_percent": [
+            164.4395152346192,
+            167.01009710176544
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 165.73529471211955,
+          "bootstrap_95_percent": [
+            165.11375198404622,
+            167.49316996440103
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 512,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 249.256,
+        "fpu-scalar": 678.347,
+        "sse": 674.1,
+        "avx2": 673.306
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 171.8268942068149,
+          "bootstrap_95_percent": [
+            166.69422300954633,
+            172.40471342475607
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 170.14955652392666,
+          "bootstrap_95_percent": [
+            167.63153232949512,
+            172.96118211777016
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 246.019,
+        "fpu-scalar": 657.495,
+        "sse": 653.381,
+        "avx2": 645.153
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 164.59501095443846,
+          "bootstrap_95_percent": [
+            163.50301393060906,
+            167.4788975232679
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 164.13488389108159,
+          "bootstrap_95_percent": [
+            160.12660524565047,
+            164.40985434037705
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 247.433,
+        "fpu-scalar": 655.622,
+        "sse": 651.493,
+        "avx2": 646.295
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 163.0371698204209,
+          "bootstrap_95_percent": [
+            162.79178056896959,
+            167.25261540231585
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 161.4905000121225,
+          "bootstrap_95_percent": [
+            160.2327420449026,
+            164.82869423008967
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 248.789,
+        "fpu-scalar": 678.368,
+        "sse": 673.697,
+        "avx2": 667.604
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 168.06228456149825,
+          "bootstrap_95_percent": [
+            167.83888637140564,
+            172.69697855275763
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 166.39716345886302,
+          "bootstrap_95_percent": [
+            164.6777588811056,
+            168.95142305132077
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 216.59,
+        "fpu-scalar": 629.758,
+        "sse": 630.434,
+        "avx2": 632.427
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.1822942689539,
+          "bootstrap_95_percent": [
+            189.07057150515897,
+            199.088058456316
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.76226519592007,
+          "bootstrap_95_percent": [
+            190.68955166862222,
+            198.80234638425637
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 212.584,
+        "fpu-scalar": 631.066,
+        "sse": 632.304,
+        "avx2": 631.284
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.5051730288976,
+          "bootstrap_95_percent": [
+            186.35659616865178,
+            198.6076092274113
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.93713543822676,
+          "bootstrap_95_percent": [
+            187.36153253928717,
+            197.96975436179986
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.395,
+        "fpu-scalar": 650.518,
+        "sse": 651.229,
+        "avx2": 650.766
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.27368966034035,
+          "bootstrap_95_percent": [
+            193.970089694803,
+            202.089199234148
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.57248025577795,
+          "bootstrap_95_percent": [
+            195.43461450786,
+            201.98531998217763
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 283.056,
+        "fpu-scalar": 692.684,
+        "sse": 673.361,
+        "avx2": 659.531
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 137.81406059064932,
+          "bootstrap_95_percent": [
+            136.0499984327602,
+            142.50592470647828
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 133.0037165790515,
+          "bootstrap_95_percent": [
+            130.20140772962674,
+            136.44951788266368
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 279.976,
+        "fpu-scalar": 695.75,
+        "sse": 672.33,
+        "avx2": 659.29
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 139.05574681874748,
+          "bootstrap_95_percent": [
+            137.76449639463334,
+            141.72911637411545
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 134.00255736205958,
+          "bootstrap_95_percent": [
+            132.8188854216251,
+            136.84939961237367
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 285.529,
+        "fpu-scalar": 716.379,
+        "sse": 695.949,
+        "avx2": 680.827
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 143.21289866187593,
+          "bootstrap_95_percent": [
+            142.08159108525115,
+            146.01041473735202
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 137.6069721164304,
+          "bootstrap_95_percent": [
+            136.4496009890194,
+            140.91951730328117
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 281.562,
+        "fpu-scalar": 695.907,
+        "sse": 673.21,
+        "avx2": 657.745
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 139.67522827207694,
+          "bootstrap_95_percent": [
+            138.10243962069748,
+            141.87193541165678
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 133.7693715331389,
+          "bootstrap_95_percent": [
+            131.4694845714806,
+            136.41742522756832
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 281.275,
+        "fpu-scalar": 696.279,
+        "sse": 673.523,
+        "avx2": 659.031
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 140.18202826415433,
+          "bootstrap_95_percent": [
+            137.6787219113504,
+            142.02290971407953
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 135.15847480223982,
+          "bootstrap_95_percent": [
+            132.9782314798146,
+            135.97507707191693
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 285.08,
+        "fpu-scalar": 715.375,
+        "sse": 696.463,
+        "avx2": 676.894
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 143.21410234468595,
+          "bootstrap_95_percent": [
+            139.69844230755993,
+            147.73117172756906
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 136.49170150589356,
+          "bootstrap_95_percent": [
+            134.73901940404323,
+            140.71709532094593
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 238.008,
+        "fpu-scalar": 659.229,
+        "sse": 659.972,
+        "avx2": 648.003
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 175.27818053073477,
+          "bootstrap_95_percent": [
+            168.21631568186467,
+            181.9761565429948
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 170.04206426813232,
+          "bootstrap_95_percent": [
+            164.94786342261293,
+            174.67911142038105
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 242.31,
+        "fpu-scalar": 660.363,
+        "sse": 656.774,
+        "avx2": 649.292
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 170.11620258715197,
+          "bootstrap_95_percent": [
+            168.66892803138663,
+            174.4176618638199
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 168.44038670764849,
+          "bootstrap_95_percent": [
+            165.35289550042913,
+            169.8643047987714
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 243.314,
+        "fpu-scalar": 679.947,
+        "sse": 676.605,
+        "avx2": 669.41
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 179.8166737964805,
+          "bootstrap_95_percent": [
+            172.1326298107642,
+            183.4769069915447
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 176.5837531616917,
+          "bootstrap_95_percent": [
+            168.87796723235132,
+            178.43893584434736
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 254.243,
+        "fpu-scalar": 667.754,
+        "sse": 656.071,
+        "avx2": 655.784
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 157.55872117885684,
+          "bootstrap_95_percent": [
+            157.3216266462529,
+            160.82347475750703
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 158.27813276258027,
+          "bootstrap_95_percent": [
+            157.77396736208937,
+            160.7961259157491
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 255.588,
+        "fpu-scalar": 664.686,
+        "sse": 656.619,
+        "avx2": 656.848
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 158.900400467081,
+          "bootstrap_95_percent": [
+            156.09025200234422,
+            160.53239027551632
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 157.38356282474274,
+          "bootstrap_95_percent": [
+            156.06173080679818,
+            160.03625899971584
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 1024,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 257.336,
+        "fpu-scalar": 687.477,
+        "sse": 676.591,
+        "avx2": 675.084
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 163.39206465376296,
+          "bootstrap_95_percent": [
+            161.85389333722298,
+            165.18245217931727
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 162.85501287373236,
+          "bootstrap_95_percent": [
+            161.93561286204786,
+            164.6615623831362
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 267.316,
+        "fpu-scalar": 676.748,
+        "sse": 677.533,
+        "avx2": 659.679
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 153.67492214148,
+          "bootstrap_95_percent": [
+            153.3139234245374,
+            157.35643500374422
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 147.08675751392363,
+          "bootstrap_95_percent": [
+            145.71978783318679,
+            149.3052702065166
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 266.792,
+        "fpu-scalar": 676.351,
+        "sse": 679.536,
+        "avx2": 660.564
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 154.71303487360944,
+          "bootstrap_95_percent": [
+            153.250190091393,
+            156.6723361833118
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 149.08111663857255,
+          "bootstrap_95_percent": [
+            148.90626405589376,
+            149.49764986842305
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 269.774,
+        "fpu-scalar": 697.526,
+        "sse": 702.163,
+        "avx2": 681.717
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 159.98624270530547,
+          "bootstrap_95_percent": [
+            159.88420885292084,
+            162.28670681745237
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 152.69929644813806,
+          "bootstrap_95_percent": [
+            152.41176100884698,
+            155.39345961737823
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 216.107,
+        "fpu-scalar": 629.446,
+        "sse": 630.557,
+        "avx2": 631.51
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.0370869044413,
+          "bootstrap_95_percent": [
+            189.27286542105696,
+            196.0352046077737
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 193.36400694566964,
+          "bootstrap_95_percent": [
+            190.12725277316719,
+            197.7467211352397
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 215.338,
+        "fpu-scalar": 630.526,
+        "sse": 633.402,
+        "avx2": 631.134
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 198.1484047611084,
+          "bootstrap_95_percent": [
+            190.864283330209,
+            198.61395287439777
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.45190793629843,
+          "bootstrap_95_percent": [
+            190.31653353938728,
+            198.10148660336694
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 215.079,
+        "fpu-scalar": 652.623,
+        "sse": 652.179,
+        "avx2": 650.539
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 202.8450011391163,
+          "bootstrap_95_percent": [
+            195.59093554455757,
+            203.6670231762649
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 202.2199286920623,
+          "bootstrap_95_percent": [
+            193.6054354250035,
+            202.38331031853414
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 341.482,
+        "fpu-scalar": 755.054,
+        "sse": 728.024,
+        "avx2": 686.871
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.74209668148603,
+          "bootstrap_95_percent": [
+            112.20611296688179,
+            114.41272326657948
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 101.55249725844145,
+          "bootstrap_95_percent": [
+            100.90009735508958,
+            102.26506409971266
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 339.997,
+        "fpu-scalar": 755.132,
+        "sse": 725.513,
+        "avx2": 686.399
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.10609949598654,
+          "bootstrap_95_percent": [
+            113.04718080935925,
+            114.26765396424057
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 101.18144875337292,
+          "bootstrap_95_percent": [
+            100.8770650550681,
+            101.8895852267177
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 345.993,
+        "fpu-scalar": 776.646,
+        "sse": 747.417,
+        "avx2": 706.407
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 115.67524766209294,
+          "bootstrap_95_percent": [
+            113.89855877717174,
+            118.80678492539465
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 104.24754258837706,
+          "bootstrap_95_percent": [
+            101.93771822749595,
+            106.48577626496886
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 348.3,
+        "fpu-scalar": 762.787,
+        "sse": 728.139,
+        "avx2": 685.318
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 108.72656310445912,
+          "bootstrap_95_percent": [
+            108.59190452931617,
+            111.03602290352299
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 96.62402720405323,
+          "bootstrap_95_percent": [
+            96.58947598240732,
+            98.53466834854501
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 348.014,
+        "fpu-scalar": 762.006,
+        "sse": 727.441,
+        "avx2": 686.835
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 108.45183279485116,
+          "bootstrap_95_percent": [
+            108.44558074091867,
+            111.51890158266772
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 96.9834760376808,
+          "bootstrap_95_percent": [
+            96.21155299601413,
+            98.95027672666059
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 351.777,
+        "fpu-scalar": 781.362,
+        "sse": 747.079,
+        "avx2": 707.19
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 111.77365205797992,
+          "bootstrap_95_percent": [
+            111.44744487253976,
+            115.12118869905285
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 102.81080582011649,
+          "bootstrap_95_percent": [
+            100.93500911034519,
+            103.03911136487503
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 282.4,
+        "fpu-scalar": 693.958,
+        "sse": 677.28,
+        "avx2": 660.658
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 139.51589756673152,
+          "bootstrap_95_percent": [
+            137.41132645145058,
+            143.5368774983044
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 133.12195534625332,
+          "bootstrap_95_percent": [
+            131.7211928907402,
+            136.33779240082546
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 282.811,
+        "fpu-scalar": 694.544,
+        "sse": 676.885,
+        "avx2": 660.379
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 139.43799922916722,
+          "bootstrap_95_percent": [
+            137.2440220830667,
+            143.6705101390634
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 133.51390151019586,
+          "bootstrap_95_percent": [
+            131.27502089080488,
+            136.77766347212446
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 283.723,
+        "fpu-scalar": 716.129,
+        "sse": 698.991,
+        "avx2": 679.391
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 145.45736510610698,
+          "bootstrap_95_percent": [
+            142.888189996552,
+            148.34947434578908
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 140.5719663192621,
+          "bootstrap_95_percent": [
+            138.09543711536253,
+            140.90542929652966
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 274.413,
+        "fpu-scalar": 683.231,
+        "sse": 666.188,
+        "avx2": 664.478
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 142.03041494518664,
+          "bootstrap_95_percent": [
+            139.42176761912884,
+            145.7554699274636
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 140.50623762233113,
+          "bootstrap_95_percent": [
+            140.1332066030219,
+            145.17483505775766
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 276.167,
+        "fpu-scalar": 684.42,
+        "sse": 666.036,
+        "avx2": 666.986
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 141.31710332710304,
+          "bootstrap_95_percent": [
+            137.84559372403203,
+            146.19211789859952
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 141.26647663970599,
+          "bootstrap_95_percent": [
+            138.31953071083504,
+            144.80841623343085
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 2048,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 277.68,
+        "fpu-scalar": 705.645,
+        "sse": 686.803,
+        "avx2": 685.289
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 148.161077980083,
+          "bootstrap_95_percent": [
+            147.39664361855372,
+            151.1365764971627
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 146.61516853932585,
+          "bootstrap_95_percent": [
+            145.75149414466458,
+            149.8542145741415
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 304.315,
+        "fpu-scalar": 714.985,
+        "sse": 722.946,
+        "avx2": 699.979
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 137.10727371309335,
+          "bootstrap_95_percent": [
+            135.2934718024232,
+            140.3710917272736
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 129.62152365436265,
+          "bootstrap_95_percent": [
+            128.46205016921127,
+            132.7251302696189
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 307.027,
+        "fpu-scalar": 714.203,
+        "sse": 725.205,
+        "avx2": 702.196
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 136.1936952249601,
+          "bootstrap_95_percent": [
+            135.76362990877024,
+            140.15102977882782
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 128.70822435811834,
+          "bootstrap_95_percent": [
+            128.61581158944594,
+            132.14804136508792
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 308.844,
+        "fpu-scalar": 736.172,
+        "sse": 743.842,
+        "avx2": 721.116
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 140.6307558083174,
+          "bootstrap_95_percent": [
+            139.35712599003108,
+            144.7657042083745
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 134.37980618234923,
+          "bootstrap_95_percent": [
+            131.97074422255835,
+            136.76677105653533
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 214.262,
+        "fpu-scalar": 632.708,
+        "sse": 630.965,
+        "avx2": 633.355
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 195.76807871336098,
+          "bootstrap_95_percent": [
+            192.4089610030423,
+            198.76897982681285
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 193.05941143808997,
+          "bootstrap_95_percent": [
+            192.66571402231028,
+            199.2627188203501
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 212.415,
+        "fpu-scalar": 632.365,
+        "sse": 632.381,
+        "avx2": 631.472
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 198.17856554386458,
+          "bootstrap_95_percent": [
+            191.93183761967947,
+            200.63104593116296
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.19000541393032,
+          "bootstrap_95_percent": [
+            193.64837938670502,
+            198.544434193607
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.271,
+        "fpu-scalar": 652.7,
+        "sse": 651.968,
+        "avx2": 653.704
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 202.53587137450367,
+          "bootstrap_95_percent": [
+            196.77473390649266,
+            203.38818471923034
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 200.5855767520557,
+          "bootstrap_95_percent": [
+            197.63599932755702,
+            203.77050337702678
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 468.687,
+        "fpu-scalar": 878.865,
+        "sse": 817.99,
+        "avx2": 747.302
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 74.79485666498277,
+          "bootstrap_95_percent": [
+            74.40947734003794,
+            78.0617300350833
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 59.52382973846082,
+          "bootstrap_95_percent": [
+            59.42429478576665,
+            62.048200654307514
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 464.358,
+        "fpu-scalar": 878.723,
+        "sse": 819.711,
+        "avx2": 746.442
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 76.85363448029324,
+          "bootstrap_95_percent": [
+            76.35410110276683,
+            77.36077244408999
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 61.7934869217285,
+          "bootstrap_95_percent": [
+            60.70103341734925,
+            62.174906898347594
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 469.985,
+        "fpu-scalar": 898.376,
+        "sse": 838.806,
+        "avx2": 768.089
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 78.4898025558552,
+          "bootstrap_95_percent": [
+            77.62277247688895,
+            81.7107004325048
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 64.08572153182857,
+          "bootstrap_95_percent": [
+            63.043335208397465,
+            66.01421984671325
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 470.99,
+        "fpu-scalar": 884.742,
+        "sse": 820.395,
+        "avx2": 748.445
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 74.01080391071133,
+          "bootstrap_95_percent": [
+            73.42448884265058,
+            76.25101678064652
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 58.508885538971114,
+          "bootstrap_95_percent": [
+            57.96216615963829,
+            60.93733188150687
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 474.143,
+        "fpu-scalar": 885.568,
+        "sse": 820.526,
+        "avx2": 749.513
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 73.01714485728081,
+          "bootstrap_95_percent": [
+            73.01447414252561,
+            75.89115230368171
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 57.849088233493305,
+          "bootstrap_95_percent": [
+            57.343432631946655,
+            60.4806055035207
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 474.045,
+        "fpu-scalar": 905.947,
+        "sse": 840.075,
+        "avx2": 769.759
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 76.62584775706947,
+          "bootstrap_95_percent": [
+            75.12387167930608,
+            79.07873614554666
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 61.966058074655365,
+          "bootstrap_95_percent": [
+            61.2765728075231,
+            63.845376398768394
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 342.99,
+        "fpu-scalar": 755.495,
+        "sse": 730.12,
+        "avx2": 691.187
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.8975209497207,
+          "bootstrap_95_percent": [
+            111.69726572159173,
+            115.0854978995326
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 101.90906997688715,
+          "bootstrap_95_percent": [
+            100.23332877537308,
+            102.81312535655482
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 339.655,
+        "fpu-scalar": 756.126,
+        "sse": 730.536,
+        "avx2": 691.127
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 112.9743970423417,
+          "bootstrap_95_percent": [
+            112.06137103401015,
+            115.03299847199196
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 102.39947276026551,
+          "bootstrap_95_percent": [
+            100.41554383682572,
+            102.58125554924824
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 347.171,
+        "fpu-scalar": 776.901,
+        "sse": 750.383,
+        "avx2": 712.235
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 116.21060501495286,
+          "bootstrap_95_percent": [
+            115.07585599027573,
+            120.12263458999558
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 105.06826311491437,
+          "bootstrap_95_percent": [
+            103.88569321746344,
+            106.80709989731554
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 312.947,
+        "fpu-scalar": 724.44,
+        "sse": 688.674,
+        "avx2": 685.083
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 122.77195903059206,
+          "bootstrap_95_percent": [
+            119.1967866373,
+            122.93340184593772
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 121.39554623848139,
+          "bootstrap_95_percent": [
+            117.8816504767846,
+            121.78904685133615
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 312.92,
+        "fpu-scalar": 724.282,
+        "sse": 690.293,
+        "avx2": 685.557
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 119.7249683183677,
+          "bootstrap_95_percent": [
+            119.13761155649678,
+            124.007094279585
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 120.42376378779917,
+          "bootstrap_95_percent": [
+            118.12149461394652,
+            121.91499905453078
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 4096,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 315.612,
+        "fpu-scalar": 745.085,
+        "sse": 708.951,
+        "avx2": 706.015
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 126.88008853055099,
+          "bootstrap_95_percent": [
+            123.35147852853608,
+            128.1814538803105
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 125.47241549750959,
+          "bootstrap_95_percent": [
+            122.42591559593707,
+            126.29092365224017
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 379.677,
+        "fpu-scalar": 790.263,
+        "sse": 803.256,
+        "avx2": 759.748
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 110.83944193598553,
+          "bootstrap_95_percent": [
+            105.91299877326846,
+            113.14666610057951
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 99.0526304733697,
+          "bootstrap_95_percent": [
+            94.55402454481133,
+            101.94168298705723
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 383.296,
+        "fpu-scalar": 789.344,
+        "sse": 802.623,
+        "avx2": 760.836
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 109.40030681248957,
+          "bootstrap_95_percent": [
+            104.09800049495202,
+            109.5747054330508
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 98.38057523968322,
+          "bootstrap_95_percent": [
+            92.63329304494263,
+            99.33912778526381
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 385.188,
+        "fpu-scalar": 812.252,
+        "sse": 824.193,
+        "avx2": 780.563
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 113.6886943608582,
+          "bootstrap_95_percent": [
+            108.95704326148481,
+            113.74196403008771
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 102.29509903438228,
+          "bootstrap_95_percent": [
+            97.06326434383057,
+            102.68829766244014
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 212.674,
+        "fpu-scalar": 628.879,
+        "sse": 630.545,
+        "avx2": 627.768
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.42798837657634,
+          "bootstrap_95_percent": [
+            186.85986843592465,
+            198.72055551292877
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 195.1989586857637,
+          "bootstrap_95_percent": [
+            187.24366979783173,
+            197.65001576849937
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.061,
+        "fpu-scalar": 632.221,
+        "sse": 630.698,
+        "avx2": 630.241
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.2872192535597,
+          "bootstrap_95_percent": [
+            190.29979681820066,
+            198.65713139188261
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.74163660405353,
+          "bootstrap_95_percent": [
+            189.93076883997398,
+            198.48546849127348
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.016,
+        "fpu-scalar": 650.198,
+        "sse": 649.818,
+        "avx2": 648.913
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 196.6172290931984,
+          "bootstrap_95_percent": [
+            193.175516880339,
+            203.44491295846976
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 197.43475107094466,
+          "bootstrap_95_percent": [
+            193.03531547562875,
+            203.55409897908658
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 707.635,
+        "fpu-scalar": 1120.551,
+        "sse": 1008.667,
+        "avx2": 868.334
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 42.37074097852496,
+          "bootstrap_95_percent": [
+            42.03615660281219,
+            42.90320196063937
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 22.79416131887899,
+          "bootstrap_95_percent": [
+            22.446487349231624,
+            22.922525634591075
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 708.667,
+        "fpu-scalar": 1122.593,
+        "sse": 1011.546,
+        "avx2": 867.556
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 42.546043477398385,
+          "bootstrap_95_percent": [
+            42.418383188399275,
+            42.852555632279945
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 22.63381906864492,
+          "bootstrap_95_percent": [
+            22.590103015460848,
+            22.7450102444789
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 709.976,
+        "fpu-scalar": 1141.719,
+        "sse": 1029.692,
+        "avx2": 886.898
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 44.540813231553585,
+          "bootstrap_95_percent": [
+            44.267830140952924,
+            44.64193155824985
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 25.13150253747296,
+          "bootstrap_95_percent": [
+            24.878288949299645,
+            25.28423524629959
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 708.808,
+        "fpu-scalar": 1123.622,
+        "sse": 1007.628,
+        "avx2": 869.576
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 42.113378009152534,
+          "bootstrap_95_percent": [
+            41.46394233453561,
+            42.30365469938428
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 22.485637859617835,
+          "bootstrap_95_percent": [
+            21.37999575660796,
+            23.17988655561216
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 709.57,
+        "fpu-scalar": 1123.234,
+        "sse": 1008.45,
+        "avx2": 869.841
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 42.28376136964083,
+          "bootstrap_95_percent": [
+            41.63063326781806,
+            42.41541274720786
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 21.902992192743852,
+          "bootstrap_95_percent": [
+            21.6603281326162,
+            22.634739319053065
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 713.14,
+        "fpu-scalar": 1144.951,
+        "sse": 1029.248,
+        "avx2": 891.424
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 44.53933278563051,
+          "bootstrap_95_percent": [
+            43.87548287388729,
+            44.571021062368054
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 25.033769081650515,
+          "bootstrap_95_percent": [
+            24.58916649843017,
+            25.49641813760035
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 467.361,
+        "fpu-scalar": 879.772,
+        "sse": 834.546,
+        "avx2": 767.384
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 78.50357995736977,
+          "bootstrap_95_percent": [
+            77.55585230404003,
+            79.81542763520989
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 63.808476306797715,
+          "bootstrap_95_percent": [
+            63.31213701301457,
+            65.31045125654462
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 468.779,
+        "fpu-scalar": 881.381,
+        "sse": 835.315,
+        "avx2": 768.222
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 77.75680489616296,
+          "bootstrap_95_percent": [
+            76.03864876701255,
+            79.32183342828733
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 63.106833305314325,
+          "bootstrap_95_percent": [
+            61.894822348628374,
+            66.37011444612395
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 471.731,
+        "fpu-scalar": 901.118,
+        "sse": 856.07,
+        "avx2": 786.973
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 81.17982100987975,
+          "bootstrap_95_percent": [
+            80.16154286483939,
+            81.95355886240714
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 67.26874285981236,
+          "bootstrap_95_percent": [
+            66.21131894403665,
+            68.42458498261024
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 387.4,
+        "fpu-scalar": 798.826,
+        "sse": 788.085,
+        "avx2": 789.399
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 103.08008742808835,
+          "bootstrap_95_percent": [
+            102.02230158526247,
+            107.01704277463917
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 104.06866288074342,
+          "bootstrap_95_percent": [
+            101.06549163690555,
+            108.03738464067378
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 388.658,
+        "fpu-scalar": 799.44,
+        "sse": 781.249,
+        "avx2": 791.175
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 101.90579187077917,
+          "bootstrap_95_percent": [
+            99.37837767951801,
+            103.7867207837941
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 103.236943437618,
+          "bootstrap_95_percent": [
+            102.58562489815026,
+            106.73931432032498
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 8192,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 390.964,
+        "fpu-scalar": 819.969,
+        "sse": 804.699,
+        "avx2": 808.693
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 105.05124376334605,
+          "bootstrap_95_percent": [
+            103.39570906784257,
+            110.17359897471746
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 106.40468176098055,
+          "bootstrap_95_percent": [
+            106.10312126471496,
+            108.36444469776856
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 550.799,
+        "fpu-scalar": 965.911,
+        "sse": 999.299,
+        "avx2": 926.376
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 81.80436567089473,
+          "bootstrap_95_percent": [
+            79.37275189959429,
+            82.0291802544396
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 66.52363909596029,
+          "bootstrap_95_percent": [
+            66.5219694115463,
+            68.05586510531798
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 550.172,
+        "fpu-scalar": 962.277,
+        "sse": 1002.414,
+        "avx2": 920.367
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 82.45091989152111,
+          "bootstrap_95_percent": [
+            80.36375738713535,
+            83.80953082500177
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 68.3436480025217,
+          "bootstrap_95_percent": [
+            65.57383537369684,
+            69.12530857307031
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 554.909,
+        "fpu-scalar": 990.982,
+        "sse": 1022.451,
+        "avx2": 952.148
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 84.2727599354351,
+          "bootstrap_95_percent": [
+            83.44546923617567,
+            85.57110510952886
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 69.8196538317045,
+          "bootstrap_95_percent": [
+            69.33826750842114,
+            72.57366029435175
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 213.951,
+        "fpu-scalar": 628.807,
+        "sse": 631.13,
+        "avx2": 628.414
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 193.1661043968266,
+          "bootstrap_95_percent": [
+            189.7273042969678,
+            198.78191423065496
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.31802847186177,
+          "bootstrap_95_percent": [
+            190.49768793522563,
+            199.3000719597026
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 212.084,
+        "fpu-scalar": 629.467,
+        "sse": 630.96,
+        "avx2": 631.041
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.70790338607353,
+          "bootstrap_95_percent": [
+            186.04624919314432,
+            197.710812696856
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 197.4657742045584,
+          "bootstrap_95_percent": [
+            185.47388947318532,
+            198.1841894060995
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 217.76,
+        "fpu-scalar": 651.929,
+        "sse": 652.14,
+        "avx2": 649.712
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 200.09735488611312,
+          "bootstrap_95_percent": [
+            193.83422954688697,
+            203.16568144422206
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 198.3614988978692,
+          "bootstrap_95_percent": [
+            193.6138638202388,
+            202.95922066793167
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1199.79,
+        "fpu-scalar": 1615.807,
+        "sse": 1422.599,
+        "avx2": 1249.107
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 18.321414476675834,
+          "bootstrap_95_percent": [
+            18.096916577494817,
+            18.814162406198133
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 3.5668209948196195,
+          "bootstrap_95_percent": [
+            3.04847321875521,
+            4.830574263898391
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1200.171,
+        "fpu-scalar": 1615.877,
+        "sse": 1422.428,
+        "avx2": 1250.0
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 18.155919300724154,
+          "bootstrap_95_percent": [
+            17.930052328277135,
+            18.92337128017443
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 3.5058936745174574,
+          "bootstrap_95_percent": [
+            2.901828701484388,
+            4.711739784087299
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1203.767,
+        "fpu-scalar": 1637.779,
+        "sse": 1444.622,
+        "avx2": 1272.487
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 19.833489371281978,
+          "bootstrap_95_percent": [
+            19.250844792218725,
+            20.427392746139873
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 5.147409476093223,
+          "bootstrap_95_percent": [
+            4.503018627699817,
+            6.430049763674606
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1208.694,
+        "fpu-scalar": 1624.335,
+        "sse": 1422.344,
+        "avx2": 1248.812
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.770654240071295,
+          "bootstrap_95_percent": [
+            17.200781808773268,
+            18.181087858901023
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 2.936630347819613,
+          "bootstrap_95_percent": [
+            2.284697367571953,
+            4.205272816794237
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1208.938,
+        "fpu-scalar": 1624.54,
+        "sse": 1421.429,
+        "avx2": 1249.978
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.57666646263083,
+          "bootstrap_95_percent": [
+            17.380206482116733,
+            18.118377270501917
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 3.2423809090833977,
+          "bootstrap_95_percent": [
+            2.51300689552163,
+            4.113708518018
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1210.173,
+        "fpu-scalar": 1646.018,
+        "sse": 1444.6,
+        "avx2": 1271.286
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 19.563365670479293,
+          "bootstrap_95_percent": [
+            18.783817585802876,
+            19.94599119299474
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 4.519214312984632,
+          "bootstrap_95_percent": [
+            4.026055083539171,
+            5.928215702060147
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 709.827,
+        "fpu-scalar": 1121.084,
+        "sse": 1023.525,
+        "avx2": 888.337
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 44.054158793378505,
+          "bootstrap_95_percent": [
+            43.73038188520035,
+            44.40015231372132
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 25.333537542381592,
+          "bootstrap_95_percent": [
+            24.48662372703354,
+            25.63434186854343
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 707.64,
+        "fpu-scalar": 1121.868,
+        "sse": 1022.893,
+        "avx2": 885.421
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 44.2014314196759,
+          "bootstrap_95_percent": [
+            44.036109485047234,
+            44.82811545184533
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 25.27349488367785,
+          "bootstrap_95_percent": [
+            24.912369723934514,
+            25.277286575622647
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 710.142,
+        "fpu-scalar": 1141.324,
+        "sse": 1040.9,
+        "avx2": 906.221
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 46.66763654031945,
+          "bootstrap_95_percent": [
+            46.33972019889274,
+            46.88416815995207
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 27.41331677004668,
+          "bootstrap_95_percent": [
+            27.295010830681534,
+            27.84202804503004
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 550.295,
+        "fpu-scalar": 956.059,
+        "sse": 967.608,
+        "avx2": 974.284
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 73.58364436521643,
+          "bootstrap_95_percent": [
+            71.71777901016374,
+            77.4205448047765
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 79.4368520740062,
+          "bootstrap_95_percent": [
+            77.74110128008572,
+            79.59229465880561
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 548.378,
+        "fpu-scalar": 956.719,
+        "sse": 976.766,
+        "avx2": 966.463
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 77.84012135249311,
+          "bootstrap_95_percent": [
+            77.51806235844619,
+            78.21357236005878
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 75.67147098397098,
+          "bootstrap_95_percent": [
+            75.29219019864767,
+            76.65770489583501
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 16384,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 554.01,
+        "fpu-scalar": 976.066,
+        "sse": 1010.167,
+        "avx2": 990.532
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 79.41261473320611,
+          "bootstrap_95_percent": [
+            78.95088601612146,
+            82.33732243100307
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 77.864367762429,
+          "bootstrap_95_percent": [
+            77.61121781358817,
+            81.04456598256348
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1330.024,
+        "fpu-scalar": 1733.84,
+        "sse": 1734.436,
+        "avx2": 1718.085
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 30.727658462412077,
+          "bootstrap_95_percent": [
+            30.271573280548235,
+            30.785886320573685
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 29.273832718158598,
+          "bootstrap_95_percent": [
+            29.02527535971089,
+            29.579526945148714
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1330.998,
+        "fpu-scalar": 1734.211,
+        "sse": 1734.779,
+        "avx2": 1718.366
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 30.3720198537103,
+          "bootstrap_95_percent": [
+            30.2760829407128,
+            30.573904498012006
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 29.210723895315425,
+          "bootstrap_95_percent": [
+            29.126567430214735,
+            29.290046191250397
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1330.255,
+        "fpu-scalar": 1758.873,
+        "sse": 1759.558,
+        "avx2": 1744.025
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 32.013110268332,
+          "bootstrap_95_percent": [
+            31.957435647645084,
+            33.61492962997199
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 30.901819575945954,
+          "bootstrap_95_percent": [
+            30.692420098167794,
+            32.397036381463586
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 214.584,
+        "fpu-scalar": 628.945,
+        "sse": 630.182,
+        "avx2": 628.589
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 194.231349049315,
+          "bootstrap_95_percent": [
+            187.29132350472148,
+            194.96270482065236
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.861036437926,
+          "bootstrap_95_percent": [
+            187.6770261869433,
+            194.09284489419036
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 216.218,
+        "fpu-scalar": 628.857,
+        "sse": 630.685,
+        "avx2": 628.653
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 192.79847191260671,
+          "bootstrap_95_percent": [
+            187.56423059464367,
+            196.80399179949677
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 190.8615125708526,
+          "bootstrap_95_percent": [
+            186.98048116205172,
+            197.60374883561772
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.266,
+        "fpu-scalar": 650.294,
+        "sse": 651.377,
+        "avx2": 649.171
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 197.07159340709458,
+          "bootstrap_95_percent": [
+            195.74077755887726,
+            203.00494626055263
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 196.00348435233917,
+          "bootstrap_95_percent": [
+            194.9477020602219,
+            201.7827922198669
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2218.418,
+        "fpu-scalar": 2627.534,
+        "sse": 2199.415,
+        "avx2": 1703.707
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.7961868147027484,
+          "bootstrap_95_percent": [
+            -0.8926752310119523,
+            -0.7726453063579775
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -23.263910640911867,
+          "bootstrap_95_percent": [
+            -23.85219743069642,
+            -22.992646110877214
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2218.374,
+        "fpu-scalar": 2627.8,
+        "sse": 2199.656,
+        "avx2": 1704.283
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.8240085281118859,
+          "bootstrap_95_percent": [
+            -0.8851731580266531,
+            -0.8147110863686802
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -23.234666051048237,
+          "bootstrap_95_percent": [
+            -23.837727247316142,
+            -22.94883226285689
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2221.605,
+        "fpu-scalar": 2649.054,
+        "sse": 2219.276,
+        "avx2": 1724.083
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.0940427304969238,
+          "bootstrap_95_percent": [
+            -0.11762322754894639,
+            -0.023471312514899978
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -22.454659254839594,
+          "bootstrap_95_percent": [
+            -23.037456191358586,
+            -22.23063725799389
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2226.907,
+        "fpu-scalar": 2635.57,
+        "sse": 2198.807,
+        "avx2": 1703.946
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -1.2414015983769455,
+          "bootstrap_95_percent": [
+            -1.3236744956120927,
+            -1.2031160097813576
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -23.493738628907266,
+          "bootstrap_95_percent": [
+            -24.16886413264241,
+            -23.223982307249702
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2226.214,
+        "fpu-scalar": 2637.004,
+        "sse": 2199.234,
+        "avx2": 1706.498
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -1.2059310026334313,
+          "bootstrap_95_percent": [
+            -1.3072174263323522,
+            -1.178926089157739
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -23.462335665735225,
+          "bootstrap_95_percent": [
+            -24.1491704397758,
+            -23.26003628507388
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2229.044,
+        "fpu-scalar": 2656.704,
+        "sse": 2219.985,
+        "avx2": 1725.034
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.4281460839284823,
+          "bootstrap_95_percent": [
+            -0.46484867549044795,
+            -0.3829656793994385
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -22.54484340672046,
+          "bootstrap_95_percent": [
+            -23.436084851228024,
+            -22.505659679018674
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1202.525,
+        "fpu-scalar": 1617.437,
+        "sse": 1449.373,
+        "avx2": 1274.479
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 20.603048199466322,
+          "bootstrap_95_percent": [
+            20.474974200635152,
+            20.850490735003113
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 5.755272707055958,
+          "bootstrap_95_percent": [
+            5.49103484118576,
+            6.863675805132674
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1200.881,
+        "fpu-scalar": 1618.445,
+        "sse": 1450.71,
+        "avx2": 1275.395
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 20.52959260635967,
+          "bootstrap_95_percent": [
+            20.34070222365827,
+            20.57495828381013
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 5.844631687620172,
+          "bootstrap_95_percent": [
+            5.569267213966045,
+            6.798721533892826
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1205.889,
+        "fpu-scalar": 1639.864,
+        "sse": 1475.682,
+        "avx2": 1297.354
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 22.333516054550607,
+          "bootstrap_95_percent": [
+            22.115846012701603,
+            22.369331282035997
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 7.382542558483518,
+          "bootstrap_95_percent": [
+            6.964044219529297,
+            8.31751138557053
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 883.257,
+        "fpu-scalar": 1319.938,
+        "sse": 1394.823,
+        "avx2": 1406.357
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 55.65518056559793,
+          "bootstrap_95_percent": [
+            54.37696442689355,
+            58.24905549063435
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 55.82130112866144,
+          "bootstrap_95_percent": [
+            51.07838622571308,
+            63.27408292923209
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 896.501,
+        "fpu-scalar": 1345.163,
+        "sse": 1385.149,
+        "avx2": 1366.749
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 52.20888621127904,
+          "bootstrap_95_percent": [
+            44.608094924366505,
+            58.14209455906101
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 50.7918226930274,
+          "bootstrap_95_percent": [
+            47.45524477565692,
+            55.789437309220766
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 32768,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 896.249,
+        "fpu-scalar": 1369.022,
+        "sse": 1384.843,
+        "avx2": 1394.085
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 54.39989053080612,
+          "bootstrap_95_percent": [
+            49.115371515304496,
+            55.622795290724
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 55.134963224702595,
+          "bootstrap_95_percent": [
+            50.9249716440499,
+            58.790659913211975
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2458.331,
+        "fpu-scalar": 2875.661,
+        "sse": 2864.554,
+        "avx2": 2863.032
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 16.658265707993003,
+          "bootstrap_95_percent": [
+            16.475211841437964,
+            16.748598947822725
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 16.496634053809565,
+          "bootstrap_95_percent": [
+            16.48263992980883,
+            16.56266646683857
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2461.253,
+        "fpu-scalar": 2877.788,
+        "sse": 2866.48,
+        "avx2": 2863.083
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 16.548960214459598,
+          "bootstrap_95_percent": [
+            16.227138471387615,
+            16.640288053640727
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 16.311407238508167,
+          "bootstrap_95_percent": [
+            15.693910991411109,
+            16.429651672837476
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "literal-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2463.431,
+        "fpu-scalar": 2901.209,
+        "sse": 2890.582,
+        "avx2": 2887.191
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 17.431092432879392,
+          "bootstrap_95_percent": [
+            16.965954394109772,
+            17.469813360623256
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 17.180065408678445,
+          "bootstrap_95_percent": [
+            16.886690115513826,
+            17.427939684097527
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 216.984,
+        "fpu-scalar": 631.275,
+        "sse": 629.992,
+        "avx2": 630.36
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 191.82842974597202,
+          "bootstrap_95_percent": [
+            187.6325281950596,
+            197.63648182313523
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 191.31226265531097,
+          "bootstrap_95_percent": [
+            189.79635633076114,
+            196.9051642654599
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 214.856,
+        "fpu-scalar": 631.27,
+        "sse": 631.551,
+        "avx2": 630.576
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 193.3052553629695,
+          "bootstrap_95_percent": [
+            190.61231223249715,
+            196.54199045253833
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 192.57412910452592,
+          "bootstrap_95_percent": [
+            188.9607830557872,
+            195.75276177438062
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "early",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 219.184,
+        "fpu-scalar": 649.776,
+        "sse": 652.592,
+        "avx2": 651.705
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 198.50132638084906,
+          "bootstrap_95_percent": [
+            196.2218540348209,
+            201.90771298439483
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 198.4720600043799,
+          "bootstrap_95_percent": [
+            195.40203348091006,
+            202.86302518632985
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 4147.698,
+        "fpu-scalar": 4563.606,
+        "sse": 3706.522,
+        "avx2": 2674.511
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.604770869690539,
+          "bootstrap_95_percent": [
+            -10.922178835894659,
+            -10.599665166111228
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.78537250808678,
+          "bootstrap_95_percent": [
+            -35.82311290095797,
+            -35.49704300835405
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 4147.175,
+        "fpu-scalar": 4563.679,
+        "sse": 3706.041,
+        "avx2": 2671.771
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.616857259214296,
+          "bootstrap_95_percent": [
+            -10.620042364970693,
+            -10.60588517378892
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.55945816024268,
+          "bootstrap_95_percent": [
+            -35.8804576497427,
+            -35.466523414537946
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 4150.398,
+        "fpu-scalar": 4583.445,
+        "sse": 3728.469,
+        "avx2": 2692.483
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.17198930748313,
+          "bootstrap_95_percent": [
+            -10.239250726126492,
+            -10.168762637803708
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.15872312040439,
+          "bootstrap_95_percent": [
+            -35.51095220363615,
+            -35.07460276605734
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 4152.748,
+        "fpu-scalar": 4569.282,
+        "sse": 3705.303,
+        "avx2": 2671.46
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.775502419720118,
+          "bootstrap_95_percent": [
+            -10.798126927037222,
+            -10.771383682936975
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.69504434905907,
+          "bootstrap_95_percent": [
+            -36.000922453707595,
+            -35.586926026935416
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 4153.243,
+        "fpu-scalar": 4569.974,
+        "sse": 3705.49,
+        "avx2": 2672.222
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.790730530162417,
+          "bootstrap_95_percent": [
+            -10.83541704886174,
+            -10.739972329155412
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.68576836204447,
+          "bootstrap_95_percent": [
+            -36.001250036716215,
+            -35.552653863962455
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "late",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 4156.867,
+        "fpu-scalar": 4590.541,
+        "sse": 3726.486,
+        "avx2": 2690.158
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -10.366940204814368,
+          "bootstrap_95_percent": [
+            -10.389457311531702,
+            -10.3216640107194
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        },
+        "avx2": {
+          "median_paired_percent": -35.29488899181349,
+          "bootstrap_95_percent": [
+            -35.59838096656479,
+            -35.14585009373802
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 2219.667,
+        "fpu-scalar": 2629.071,
+        "sse": 2208.375,
+        "avx2": 1723.613
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.4598891722535803,
+          "bootstrap_95_percent": [
+            -0.5483744084124109,
+            -0.4576291109943176
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -22.476865943138304,
+          "bootstrap_95_percent": [
+            -22.976326162856175,
+            -22.15895895498664
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 2219.344,
+        "fpu-scalar": 2628.881,
+        "sse": 2207.727,
+        "avx2": 1721.472
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": -0.5534249760394405,
+          "bootstrap_95_percent": [
+            -0.5636498797910616,
+            -0.5012127203896988
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -22.53515988316448,
+          "bootstrap_95_percent": [
+            -23.031481959616475,
+            -22.192598830502163
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "match-count",
+      "pattern": "middle",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 2222.424,
+        "fpu-scalar": 2650.077,
+        "sse": 2228.757,
+        "avx2": 1739.625
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 0.2562683868181814,
+          "bootstrap_95_percent": [
+            0.21965026062376047,
+            0.3221388832578942
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": -21.753532625916726,
+          "bootstrap_95_percent": [
+            -22.274498474238456,
+            -21.421785626809974
+          ],
+          "every_session_beats_scalar_by_2_percent": true
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "clean",
+      "medians_ns": {
+        "scalar": 1767.904,
+        "fpu-scalar": 2233.547,
+        "sse": 2276.077,
+        "avx2": 2276.73
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 29.15989728302013,
+          "bootstrap_95_percent": [
+            27.76977178385629,
+            31.079930870598417
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 28.476900086272483,
+          "bootstrap_95_percent": [
+            26.360641325430034,
+            30.233100502349487
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "sse-dirty",
+      "medians_ns": {
+        "scalar": 1775.858,
+        "fpu-scalar": 2247.073,
+        "sse": 2310.49,
+        "avx2": 2265.207
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 30.362829430950768,
+          "bootstrap_95_percent": [
+            25.919373793812063,
+            32.61213307240705
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 26.268429119895842,
+          "bootstrap_95_percent": [
+            25.15758582830021,
+            32.753485477408994
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    },
+    {
+      "bytes": 65536,
+      "operation": "repeat8-copy",
+      "pattern": "equal",
+      "state": "ymm-dirty",
+      "medians_ns": {
+        "scalar": 1785.951,
+        "fpu-scalar": 2290.413,
+        "sse": 2319.021,
+        "avx2": 2331.336
+      },
+      "effects_vs_scalar": {
+        "sse": {
+          "median_paired_percent": 29.957876783853532,
+          "bootstrap_95_percent": [
+            28.38662537533012,
+            30.26446587137912
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        },
+        "avx2": {
+          "median_paired_percent": 29.3306452315222,
+          "bootstrap_95_percent": [
+            26.763182496912496,
+            36.63891114593849
+          ],
+          "every_session_beats_scalar_by_2_percent": false
+        }
+      }
+    }
+  ],
+  "kernel_hybrid_selected": false
+}

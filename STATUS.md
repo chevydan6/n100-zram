@@ -167,3 +167,9 @@ exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
 Three native user-space sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-crossover-refine-003/summary.md](benchmarks/results/native-crossover-refine-003/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+### Native experiment collection
+
+Three native experimental sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-components-001/summary.md](benchmarks/results/native-components-001/summary.md). Measurement scope is documented in the report; component and codec results
+establish no end-to-end ZRAM improvement.
