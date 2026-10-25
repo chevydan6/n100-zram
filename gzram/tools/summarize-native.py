@@ -7,7 +7,8 @@ p=argparse.ArgumentParser();p.add_argument('--input',type=Path,required=True);p.
 state=json.loads((a.input/'checkpoint.json').read_text());assert state['status']=='complete' and set(state['completed'])=={'validation','session-0','session-1','session-2'}
 assert not a.output.exists();a.output.mkdir(parents=True);rows=[]
 for session in ['session-0','session-1','session-2']:
- path=a.input/(session+'.csv');data=list(csv.DictReader(path.open()));assert len(data)==2754 and len({(r['corpus'],r['round'],r['variant'],r['operation']) for r in data})==2754
+ path=a.input/(session+'.csv');data=list(csv.DictReader(path.open()));expected_variants=25 if state['inputs']['manifest'].get('fast_scalar_candidate') else 17
+ assert len(data)==expected_variants*162 and len({(r['corpus'],r['round'],r['variant'],r['operation']) for r in data})==expected_variants*162
  for r in data:
   assert all(math.isfinite(float(r[k])) for k in ['ns_per_page','compressed_bytes','cycles','instructions','package_uj_per_page']);r['session']=session;rows.append(r)
  shutil.copy2(path,a.output/path.name)
@@ -23,7 +24,7 @@ if samples:
 (a.output/'telemetry.jsonl').write_text(''.join(json.dumps(s)+'\n' for s in samples))
 lines=['# GZRAM-AVX2 first native userspace comparison','',state['inputs']['scope']+'.',
 'Three sessions, nine randomized recorded rounds, two warm-ups, 128 pages/corpus,',
-'32,768 calls per batch. All sixteen format/block-size variants and scalar LZ4',
+'32,768 calls per batch. All recorded format/block-size variants and scalar LZ4',
 'are retained, including losses. No preferred compressor or block size is selected.',
 '',
 'Package energy is direct RAPL over each complete batch, including counter/timer',
@@ -45,6 +46,7 @@ lines=['# GZRAM-AVX2 first native userspace comparison','',state['inputs']['scop
 '| Corpus | Variant | Bytes/page | Compress ns [change vs LZ4, 95% session interval] | Decode ns [change, interval] | Package uJ/page comp / dec |',
 '|---|---|---:|---:|---:|---:|'];rng=random.Random(100)
 variants=['lz4-small-scalar']+[f'gz-{isa}-{1<<log}' for isa in ['scalar','avx2'] for log in range(5,13)]
+if state['inputs']['manifest'].get('fast_scalar_candidate'):variants += [f'gz-fast-scalar-{1<<log}' for log in range(5,13)]
 for corpus in sorted({r['corpus'] for r in rows}):
  for variant in variants:
   group=[r for r in rows if r['corpus']==corpus and r['variant']==variant];cells=[];energies=[]

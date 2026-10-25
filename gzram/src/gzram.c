@@ -15,6 +15,25 @@ typedef void (*pack_fn)(const uint8_t *,uint8_t *,unsigned);
 typedef void (*repeat_fn)(uint8_t *,const uint8_t *,size_t,unsigned);
 static uint32_t load32(const void *p) { uint32_t v;memcpy(&v,p,4);return v; }
 static uint64_t load64(const void *p) { uint64_t v;memcpy(&v,p,8);return v; }
+#if defined(GZRAM_SCALAR_FAST)
+/* One prefix-derived repeat candidate is sufficient: a shorter repeated prefix
+ * also defines every longer candidate in the recognized power-of-two family. */
+static void scan_scalar(const uint8_t *src,size_t n,struct scan *s)
+{
+ uint64_t prefix[4];for(unsigned i=0;i<4;i++)prefix[i]=load64(src+i*8);
+ unsigned period=32;
+ if(prefix[0]==prefix[1]&&prefix[0]==prefix[2]&&prefix[0]==prefix[3])period=8;
+ else if(prefix[0]==prefix[2]&&prefix[1]==prefix[3])period=16;
+ int repeated=period<n;
+ for(size_t at=32;repeated&&at<n;at+=8)if(load64(src+at)!=prefix[(at&(period-1))/8])repeated=0;
+ if(repeated){s->nonzero=prefix[0]||prefix[1]||prefix[2]||prefix[3]?1:0;s->repeated=period==8?((uint32_t)prefix[0]==(uint32_t)(prefix[0]>>32)?1:2):period==16?4:8;return;}
+ s->nonzero=0;s->repeated=0;
+ for(size_t group=0;group<n/32;group++){
+  unsigned mask=0;for(unsigned lane=0;lane<8;lane++)mask|=(unsigned)(load32(src+group*32+lane*4)!=0)<<lane;
+  s->masks[group]=(uint8_t)mask;s->nonzero+=gz_count[mask];
+ }
+}
+#else
 static void scan_scalar(const uint8_t *src,size_t n,struct scan *s)
 {
  s->nonzero=0;s->repeated=15;
@@ -31,6 +50,7 @@ static void scan_scalar(const uint8_t *src,size_t n,struct scan *s)
   s->masks[group]=(uint8_t)mask;s->nonzero+=gz_count[mask];
  }
 }
+#endif
 AVX static void scan_avx2(const uint8_t *src,size_t n,struct scan *s)
 {
  __m256i zero=_mm256_setzero_si256();

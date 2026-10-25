@@ -17,9 +17,10 @@ for name in ['encode','decode']:
 cc=os.environ.get('CC','gcc');extra=shlex.split(os.environ.get('EXTRA_CFLAGS',''))
 flags=['-O3','-g','-fPIC','-Wall','-Wextra','-Werror','-fno-tree-vectorize','-fno-strict-aliasing','-mno-sse','-mno-mmx','-mno-avx']
 cmd=[cc,*flags,*extra,'-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram.so')];subprocess.run(cmd,check=True)
+subprocess.run([cc,*flags,*extra,'-DGZRAM_SCALAR_FAST=1','-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram-fast.so')],check=True)
 # Matched optimized scalar LZ4 reference, built from this repository's source.
 base=a.output/'lz4-small';private=base/'include/linux';private.mkdir(parents=True,exist_ok=True)
 (private/'lz4.h').write_text((root/'include/linux/lz4.h').read_text().replace('#define LZ4_MEMORY_USAGE 14','#define LZ4_MEMORY_USAGE 12'))
 subprocess.run([cc,*flags,*extra,'-I'+str(base/'include'),'-I'+str(root/'include'),'-shared','-Wl,-Bsymbolic-functions',str(root/'src/kernel-lz4/lz4_compress.c'),str(root/'src/kernel-lz4/lz4_decompress.c'),'-o',str(a.output/'lz4-small.so')],check=True)
-manifest={'compiler':subprocess.check_output([cc,'--version'],text=True).splitlines()[0],'flags':flags+extra,'source_sha256':{str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in [root/'gzram/src/gzram.c',root/'gzram/src/gzram.h',Path(__file__).resolve()]},'artifacts':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in a.output.glob('*.so')}}
+manifest={'fast_scalar_candidate':True,'candidate_extra_flags':['-DGZRAM_SCALAR_FAST=1'],'compiler':subprocess.check_output([cc,'--version'],text=True).splitlines()[0],'flags':flags+extra,'source_sha256':{str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in [root/'gzram/src/gzram.c',root/'gzram/src/gzram.h',Path(__file__).resolve()]},'artifacts':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in a.output.glob('*.so')}}
 (a.output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(a.output)

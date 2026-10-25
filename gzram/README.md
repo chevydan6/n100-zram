@@ -30,3 +30,17 @@ includes counter/timer bookkeeping and background work, not just instructions.
 Initial local correctness and ASan/UBSan passed: 31,296 cross-path round trips,
 62,528 guarded-capacity cases, 40,000 malformed/mutated decode cases and 4,000
 four-thread round trips. These are correctness results, not N100 speed claims.
+
+First physical N100 results are in ../../benchmarks/results/native-gzram-user-001.
+All initial block sizes and regressions are retained. Selected patterns compress
+and decode quickly, but period-127 pages expanded from about 153 LZ4 bytes to a
+4104-byte GZRAM raw frame. Word-tail and executable data also lose ratio. Fast raw
+copying is not evidence of a successful general compressor. No kernel backend or
+preferred adaptive policy has been selected.
+
+A separate libgzram-fast.so preserves the original scalar reference and tests a
+prefix-derived repeat candidate plus branchless sparse-word masks. It keeps format
+bytes identical and has not yet demonstrated a native improvement. When this
+candidate library is present, the benchmark includes all 25 paths (original scalar,
+AVX2, faster scalar across eight block sizes, and optimized scalar LZ4). The runner
+records a source fingerprint and checks the N100 CPU model before performance runs.
