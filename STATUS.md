@@ -256,3 +256,17 @@ not reproduced on this fixture. This does not establish its mechanism: input
 distribution, encoded streams, cache and code layout remain relevant differences.
 No general read gain or application acceptance is claimed. Full measurements are
 in native-scalar-fixed-read-001; repeat with another fixed data mix next.
+
+## Second fixed-input control and CPU-availability work
+
+The 25% zero-tail native read-only replication completed verification and stock
+restoration. The 8 KiB/control read change was +1.37% (95% paired bootstrap
+-2.14 to +1.85%); the 4 KiB result was +0.44% (-1.61 to +1.88%). The prior
+read loss is not reproduced here, but these intervals do not establish a gain.
+All data remain in native-scalar-fixed-read-25-001.
+
+An opt-in competing SHA256 workload now measures CPU contention during the
+existing bounded pressure tests. It uses checked 1 MiB hashes on CPU0 outside
+the pressure memcg, records batch latency and fully overlapping throughput, and
+preserves the original pressure path. This is not an interactive responsiveness
+benchmark. Native harness smoke validation is required before repeated inference.

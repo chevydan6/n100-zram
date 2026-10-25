@@ -15,6 +15,7 @@ for label,relative in sorted(state['completed'].items()):
  usage=[r for r in records if r.get('phase') in ['start','verified']]
  row={key:x[key] for key in ['algorithm','corpus','trial','elapsed_ns','package_energy_uj','energy_scope','vmstat_delta','fpu_processes','scope']}
  row.update(initial_fill_ns=next(r['elapsed_ns'] for r in records if r.get('phase')=='initial_fill'),verification=verify,cgroup_health=health,user_cpu_us=usage[-1]['user_us']-usage[0]['user_us'],system_cpu_us=usage[-1]['system_us']-usage[0]['system_us'],peak_rss_kib=usage[-1]['max_rss_kib'],zram_peak_allocated_bytes=int(x['after']['mm_stat'].split()[4]),before_conditions=conditions(x['before']),after_conditions=conditions(x['after']))
+ if 'competing_application' in x:row['competing_application']=x['competing_application']
  rows.append(row);shutil.copyfile(folder/'workload.jsonl',a.output/(label+'.workload.jsonl'))
  telemetry=[]
  for line in (folder/'telemetry-private.jsonl').read_text().splitlines():
@@ -36,4 +37,10 @@ for corpus in sorted({r['corpus'] for r in rows}):
   med=lambda key:statistics.median(r[key] for r in group)
   energy=statistics.median(sum(r['package_energy_uj'].values())/1e6 for r in group)
   lines.append(f'| {corpus} | {algorithm} | {len(group)} | {med("elapsed_ns")/1e9:.3f} | {energy:.3f} | {med("system_cpu_us")/1e6:.3f} | {med("zram_peak_allocated_bytes")/2**20:.2f} |')
+if any('competing_application' in r for r in rows):
+ lines+=['','## Competing SHA256 workload','','Pinned to CPU0 outside the pressure memcg; fixed 1 MiB hashes, 16 per batch.', 'Only batches fully inside the pressure launcher window contribute throughput.', 'This is a controlled CPU-contention probe, not interactive responsiveness.', 'Package energy covers both workloads, startup and background activity.','', '| Corpus | Algorithm | Trial | Application MiB/s | Median 16-hash batch ms | Overlapping batches |', '|---|---|---:|---:|---:|---:|']
+ for r in rows:
+  if 'competing_application' not in r:continue
+  app=r['competing_application'];rate=app['completed_batch_bytes']/2**20/(app['overlap_window_ns']/1e9)
+  lines.append(f"| {r['corpus']} | {r['algorithm']} | {r['trial']} | {rate:.3f} | {statistics.median(app['batch_elapsed_ns'])/1e6:.3f} | {app['fully_contained_batches']} |")
 (a.output/'summary.md').write_text('\n'.join(lines)+'\n');print('\n'.join(lines[-len(rows)-3:]))
