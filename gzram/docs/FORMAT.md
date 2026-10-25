@@ -46,3 +46,28 @@ requires independent state/context handling and evidence of profitability.
 Decoder returns the decoded size or -1. Failure may modify a bounded prefix;
 callers must discard failed output. Unknown modes/flags/version, bad lengths,
 truncation, trailing bytes and insufficient output capacity are rejected.
+
+## Isolated GZR2 repeated-pattern candidate
+
+Only libgzram-period.so emits this extension. Original libraries retain GZR1.
+GZR2 keeps the header and previous modes, adding control 7: uint16 little-endian
+period (1..255), then that many pattern bytes. Expand to the block length,
+including a partial final repetition. Period must not exceed block length;
+truncated patterns, zero/oversized periods and trailing bytes are rejected.
+A GZR1 frame cannot use control 7. The candidate decoder reads both versions;
+old decoders reject GZR2. No persistent kernel pages use either format.
+
+The encoder searches at most 255 candidate distances, using an eight-byte prefix
+filter followed by a full bounded comparison. It selects this mode only if its
+period plus two-byte length beats the previously selected payload. The first
+use of control 7 changes the frame magic to GZR2; raw fallback remains GZR1.
+This is a bounded block-local dictionary experiment, with no shared state or
+cross-page matching. Original pattern detection and all historical results stay
+available. It is not a general LZ matcher and does not fix every ratio failure.
+
+The exact period-127 regression fixture uses 138 bytes at a 4096-byte internal
+block (8 header + 1 control + 2 period + 127 pattern). This is a format/correctness
+result; latency, CPU cycles, package energy and broader ratio tradeoffs require
+physical N100 measurements. Smaller blocks may repeat the pattern metadata and
+remain inferior to LZ4. Pattern expansion currently uses bounded scalar/libc
+copies; the AVX2 label does not mean every decoder operation is vectorized.

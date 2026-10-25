@@ -9,8 +9,9 @@ p=argparse.ArgumentParser();p.add_argument('--library',type=Path,default=root/'b
 lib=C.CDLL(str(a.library));encoders=[lib.gzram_encode_scalar,lib.gzram_encode_avx2];decoders=[lib.gzram_decode_scalar,lib.gzram_decode_avx2]
 for f in encoders:f.argtypes=[C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t,C.c_uint];f.restype=C.c_int
 for f in decoders:f.argtypes=[C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t];f.restype=C.c_int
+variable_period=hasattr(lib,'gzram_variable_period_available')
 def oracle(frame):
- if len(frame)<8 or len(frame)>4104 or frame[:4]!=b'GZR1':raise ValueError()
+ if len(frame)<8 or len(frame)>4104 or frame[:4] not in ([b'GZR1',b'GZR2'] if variable_period else [b'GZR1']):raise ValueError()
  n,log,raw=struct.unpack('<HBB',frame[4:8])
  if n>4096 or not 5<=log<=12 or raw>1:raise ValueError()
  if raw:
@@ -34,6 +35,11 @@ def oracle(frame):
       if pos+4>len(frame):raise ValueError()
       output.extend(frame[pos:pos+4]);pos+=4
      else:output.extend(bytes(4))
+  elif mode==7 and variable_period and frame[:4]==b'GZR2':
+   if pos+2>len(frame):raise ValueError()
+   period=int.from_bytes(frame[pos:pos+2],'little');pos+=2
+   if not 1<=period<=255 or period>length or pos+period>len(frame):raise ValueError()
+   pattern=frame[pos:pos+period];output.extend((pattern*((length+period-1)//period))[:length]);pos+=period
   else:
    period={2:4,3:8,5:16,6:32}.get(mode)
    if period is None or period>length or length%period or pos+period>len(frame):raise ValueError()
@@ -52,6 +58,9 @@ for size in list(range(0,130))+[255,256,257,511,512,513,1023,1024,1025,2047,2048
 for _ in range(400):
  size=rng.randrange(4097);inputs.append(bytes(0 if rng.randrange(4) else rng.randrange(256) for _ in range(size)))
 inputs.extend([struct.pack('<I',1)+bytes(4092),rng.randbytes(2048)+bytes(2048)])
+if variable_period:
+ for period in [1,3,7,31,63,127,129,251,255]:
+  pattern=bytes((i*37+11)%256 for i in range(period));inputs.append((pattern*((4096+period-1)//period))[:4096])
 roundtrips=0;capacity_cases=0;frames=[]
 for index,data in enumerate(inputs):
  source=Guard(len(data));C.memmove(source.ptr,data,len(data))
@@ -76,6 +85,14 @@ for period,mode in [(4,2),(8,3),(16,5),(32,6)]:
  for size in [period,period*3,period*5]:
   if size>4096:continue
   block=256;frames.append(b'GZR1'+struct.pack('<HBB',size,8,0)+bytes([mode])+bytes(range(period)))
+if variable_period:
+ pattern=bytes((i*37+11)%256 for i in range(127));data=(pattern*33)[:4096]
+ frame=encode(data,12,encoders[0]);assert frame[:4]==b'GZR2' and len(frame)==138 and oracle(frame)==data
+ for period in [1,3,127,255]:
+  size=period+11
+  frames.append(b'GZR2'+struct.pack('<HBB',size,12,0)+bytes([7])+struct.pack('<H',period)+bytes(i%256 for i in range(period)))
+ for period in [0,256,4096]:
+  frames.append(b'GZR2'+struct.pack('<HBB',4096,12,0)+bytes([7])+struct.pack('<H',period)+bytes(period))
 malformed=0
 for i in range(20000):
  if i%3:

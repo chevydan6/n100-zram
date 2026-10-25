@@ -136,6 +136,19 @@ static int raw_page(const uint8_t *src,size_t n,uint8_t *dst,size_t cap,unsigned
  if(n)memcpy(dst+HEADER,src,n);
  header(dst,n,log,1);return (int)(n+HEADER);
 }
+#if defined(GZRAM_VARIABLE_PERIOD)
+/* Bounded independent block dictionary: prove a complete repeated pattern.
+ * Prefix filtering avoids long comparisons for most rejected distances. */
+static unsigned variable_period(const uint8_t *src,size_t n,size_t best)
+{
+ if(n<16||best<=3)return 0;
+ unsigned limit=n-8<255?(unsigned)(n-8):255;
+ for(unsigned period=1;period<=limit&&period+2<best;period++)
+  if(load64(src)==load64(src+period)&&!memcmp(src,src+period,n-period))return period;
+ return 0;
+}
+int gzram_variable_period_available(void){return 1;}
+#endif
 static int encode(const void *input,size_t n,void *output,size_t cap,unsigned log,scan_fn scan,pack_fn pack)
 {
  if(n>MAX_PAGE||log<5||log>12||!output||(!input&&n)||cap<HEADER)return 0;
@@ -154,9 +167,16 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
     if(mode==RAW&&len/32+s.nonzero*4U<len){mode=MASK32;needed=len/32+s.nonzero*4U;}
    }
   }
+#if defined(GZRAM_VARIABLE_PERIOD)
+  unsigned arbitrary=variable_period(src+offset,len,needed);
+  if(arbitrary){mode=7;period=arbitrary;needed=period+2;}
+#endif
   if(needed>cap-pos)return raw_page(src,n,dst,cap,log);
   dst[HEADER+chunk]=(uint8_t)mode;
   if(mode==RAW){memcpy(dst+pos,src+offset,len);pos+=len;}
+#if defined(GZRAM_VARIABLE_PERIOD)
+  else if(mode==7){dst[3]='2';dst[pos++]=(uint8_t)period;dst[pos++]=(uint8_t)(period>>8);memcpy(dst+pos,src+offset,period);pos+=period;}
+#endif
   else if(mode==MASK32) {
    size_t groups=len/32;memcpy(dst+pos,s.masks,groups);pos+=groups;
    for(size_t group=0;group<groups;group++){unsigned mask=s.masks[group];pack(src+offset+group*32,dst+pos,mask);pos+=gz_count[mask]*4U;}
@@ -169,7 +189,11 @@ static int decode(const void *input,size_t size,void *output,size_t cap,pack_fn 
 {
  if(!input||size<HEADER||size>MAX_PAGE+HEADER)return -1;
  const uint8_t *src=input;uint8_t *dst=output;
+#if defined(GZRAM_VARIABLE_PERIOD)
+ if((memcmp(src,"GZR1",4)&&memcmp(src,"GZR2",4))||src[6]<5||src[6]>12||src[7]>1)return -1;
+#else
  if(memcmp(src,"GZR1",4)||src[6]<5||src[6]>12||src[7]>1)return -1;
+#endif
  size_t n=(size_t)src[4]+((size_t)src[5]<<8);if(n>MAX_PAGE||n>cap||(!output&&n))return -1;
  if(src[7]){if(size!=n+HEADER)return -1;if(n)memcpy(dst,src+HEADER,n);return (int)n;}
  size_t block=(size_t)1<<src[6],chunks=(n+block-1)/block,pos=HEADER+chunks;
@@ -179,6 +203,15 @@ static int decode(const void *input,size_t size,void *output,size_t cap,pack_fn 
   unsigned mode=src[HEADER+chunk],period=0;
   if(mode==RAW){if(len>size-pos)return -1;memcpy(dst+offset,src+pos,len);pos+=len;}
   else if(mode==ZERO)memset(dst+offset,0,len);
+#if defined(GZRAM_VARIABLE_PERIOD)
+  else if(mode==7){
+   if(src[3]!='2'||size-pos<2)return -1;
+   unsigned period=(unsigned)src[pos]|((unsigned)src[pos+1]<<8);pos+=2;
+   if(!period||period>255||period>len||period>size-pos)return -1;
+   for(size_t at=0;at<len;){size_t count=len-at<period?len-at:period;memcpy(dst+offset+at,src+pos,count);at+=count;}
+   pos+=period;
+  }
+#endif
   else if(mode==MASK32) {
    if(len%32)return -1;
    size_t groups=len/32;if(groups>size-pos)return -1;const uint8_t *masks=src+pos;pos+=groups;size_t needed=0;

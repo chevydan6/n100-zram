@@ -72,3 +72,13 @@ but bounded temporary-buffer memcpy still emits vzeroupper within the loop.
 This candidate tests call overhead; it does not eliminate every SIMD transition.
 With all candidate libraries present the benchmark records 33 variants. N100
 performance remains unmeasured for this candidate until its dedicated run finishes.
+
+The isolated libgzram-period.so candidate adds an explicit GZR2 version and a
+bounded block-local repeated-pattern mode (periods 1..255). Original GZR1 paths
+remain available; the candidate decoder reads both versions. See docs/FORMAT.md
+for compatibility and rejection rules. The period-127 regression fixture shrinks
+to 138 bytes at the 4096-byte block size in correctness tests; physical N100
+performance is not yet measured. It retains the faster scalar scanner and tests
+AVX2 encoding with the existing per-group decoder. All libraries together produce
+41 benchmark variants, preserving previous controls and losses. No kernel backend
+or preferred block size is selected.
