@@ -251,3 +251,14 @@ malformed/mutated frames, cross-policy decoding, concurrency and ASan/UBSan pass
 The next physical N100 experiment measures the complete policy/format costs,
 including a mixed repeated-prefix/zero-tail corpus that defeats zero density
 alone. No performance improvement or kernel integration is claimed before that run.
+
+## Guarded GHY1 trial experiment
+
+This isolated feature/n100-gzram-guarded-trial branch preserves the completed
+first hybrid screen on the original GZRAM branch. guard16/guard32 accept the
+best GZRAM ratios directly and use bounded nonzero-anchor SSE/AVX2 prefix filters
+only for middling ratios. Scalar variants remain separate. Format bounds,
+malformed inputs, cross-policy decoding, concurrency, vector-edge tests and
+ASan/UBSan passed locally. The next native screen measures 27 variants and
+12 corpora, retaining all previous controls and a new false-positive stress case.
+No policy is selected and no kernel codec is replaced.

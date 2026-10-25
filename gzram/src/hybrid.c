@@ -25,6 +25,46 @@ __attribute__((noinline)) static int lz4_encode(const void *src,void *dst,int n,
  LZ4_stream_t work;
  return LZ4_compress_default(src,dst,n,cap,&work);
 }
+#if defined(GZRAM_HYBRID_GUARD)
+#include <immintrin.h>
+static uint64_t hybrid_load64(const uint8_t *p){uint64_t v;memcpy(&v,p,8);return v;}
+static int prefix_scalar(const uint8_t *src,unsigned at,unsigned limit,uint64_t key,unsigned anchor)
+{
+ uint8_t target=(uint8_t)(key>>(anchor*8));
+ for(;at<=limit;at++)if(src[at+anchor]==target&&hybrid_load64(src+at)==key)return 1;
+ return 0;
+}
+#if GZRAM_HYBRID_GUARD == 16
+__attribute__((target("sse2")))
+static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned anchor)
+{
+ __m128i target=_mm_set1_epi8((char)(key>>(anchor*8)));unsigned at=1;
+ for(;at<=limit&&limit-at+1>=16;at+=16){
+  unsigned mask=(unsigned)_mm_movemask_epi8(_mm_cmpeq_epi8(target,_mm_loadu_si128((const __m128i *)(src+at+anchor))));
+  while(mask){unsigned candidate=at+(unsigned)__builtin_ctz(mask);mask&=mask-1;if(hybrid_load64(src+candidate)==key)return 1;}
+ }
+ return prefix_scalar(src,at,limit,key,anchor);
+}
+#else
+__attribute__((target("avx2")))
+static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned anchor)
+{
+ __m256i target=_mm256_set1_epi8((char)(key>>(anchor*8)));unsigned at=1;
+ for(;at<=limit&&limit-at+1>=32;at+=32){
+  unsigned mask=(unsigned)_mm256_movemask_epi8(_mm256_cmpeq_epi8(target,_mm256_loadu_si256((const __m256i *)(src+at+anchor))));
+  while(mask){unsigned candidate=at+(unsigned)__builtin_ctz(mask);mask&=mask-1;if(hybrid_load64(src+candidate)==key)return 1;}
+ }
+ return prefix_scalar(src,at,limit,key,anchor);
+}
+#endif
+static int prefix_recurrence(const uint8_t *src,size_t n,encode_fn gz)
+{
+ uint64_t key=hybrid_load64(src);if(!key)return 0;
+ unsigned anchor=(unsigned)__builtin_ctzll(key)/8,limit=n-8<1024?(unsigned)(n-8):1024;
+ if(gz==gzram_base_encode_avx2&&gzram_avx2_available())return prefix_vector(src,limit,key,anchor);
+ return prefix_scalar(src,1,limit,key,anchor);
+}
+#endif
 static int select_gzram(const uint8_t *src,size_t n)
 {
 #if defined(GZRAM_HYBRID_SAMPLE)
@@ -57,7 +97,12 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
  if(select_gzram(src,n)){
   int packed=gz(src,n,dst+HEADER,cap-HEADER,log);
   /* Threshold includes nested GZRAM framing. Exact decoding is still mandatory. */
-  if(packed>0&&(size_t)packed<=n*3/4){header(dst,n,1);return packed+HEADER;}
+  int accept=packed>0&&(size_t)packed<=n*3/4;
+#if defined(GZRAM_HYBRID_GUARD)
+  /* Protect the best sparse/zero/repeat path; inspect only middling ratios. */
+  if(accept&&n>=16&&(size_t)packed>n/4&&prefix_recurrence(src,n,gz))accept=0;
+#endif
+  if(accept){header(dst,n,1);return packed+HEADER;}
  }
  size_t room=cap-HEADER;if(room>LZ4_COMPRESSBOUND(PAGE))room=LZ4_COMPRESSBOUND(PAGE);
  int packed=lz4_encode(src,dst+HEADER,(int)n,(int)room);

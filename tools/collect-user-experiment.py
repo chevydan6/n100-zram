@@ -3,7 +3,10 @@
 """Bounded persistent collection of one completed native user-space experiment."""
 import argparse,json,shlex,subprocess,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--host',required=True);p.add_argument('--unit',required=True);p.add_argument('--remote',required=True);p.add_argument('--private',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--publish',action='store_true');p.add_argument('--kind',choices=['small-table','gzram'],default='small-table');a=p.parse_args();branch='feature/n100-gzram-avx2' if a.kind=='gzram' else 'feature/n100-avx2-zram'
+p=argparse.ArgumentParser();p.add_argument('--branch',choices=['feature/n100-gzram-avx2','feature/n100-gzram-guarded-trial']);p.add_argument('--host',required=True);p.add_argument('--unit',required=True);p.add_argument('--remote',required=True);p.add_argument('--private',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--publish',action='store_true');p.add_argument('--kind',choices=['small-table','gzram'],default='small-table');a=p.parse_args();branch='feature/n100-gzram-avx2' if a.kind=='gzram' else 'feature/n100-avx2-zram'
+if a.branch:
+ assert a.kind=='gzram'
+ branch=a.branch
 root=Path(__file__).resolve().parents[1]
 def git(*args):return subprocess.check_output(['git',*args],cwd=root,text=True).strip()
 revision=git('rev-parse','HEAD')

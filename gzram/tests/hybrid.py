@@ -36,6 +36,11 @@ for _ in range(100):
 pattern=bytes((i*37+11)%256 for i in range(127));period=(pattern*33)[:4096]
 long_pattern=rng.randbytes(509);long_period=(long_pattern*9)[:4096]
 inputs += [long_period[:2048]+bytes(2048),period,period[:2048]+bytes(2048),rng.randbytes(2048)+bytes(2048),struct.pack('<I',1)+bytes(4092),Path('/usr/bin/bash').read_bytes()[4096:8192]]
+# Exercise nonzero anchors at every byte position and short/odd guarded tails.
+for length in [32,63,64,65,96,127,128,129,1023,1024,1025,4095,4096]:
+ for anchor in range(8):
+  data=bytearray(length);data[8:max(8,length//3)]=rng.randbytes(max(0,length//3-8));data[anchor]=0x5a;inputs.append(bytes(data))
+edge_pattern=bytearray(rng.randbytes(1024));edge_pattern[:8]=bytes(7)+b'Z';edge_mixed=bytes(edge_pattern)*2+bytes(2048);inputs.append(edge_mixed)
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))
@@ -56,11 +61,14 @@ for index,data in enumerate(inputs):
    packed.close()
  src.close()
 assert modes=={0,1,2},modes
-if 'recurrence' in a.library.name:
+if 'recurrence' in a.library.name or 'guard' in a.library.name:
  for data in [period,period[:2048]+bytes(2048),long_period[:2048]+bytes(2048)]:
   out=C.create_string_buffer(4104);n=encoders[1](data,4096,out,4104,10)
   assert n<(768 if data==long_period[:2048]+bytes(2048) else 256) and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
 
+if 'recurrence' in a.library.name or 'guard' in a.library.name:
+ out=C.create_string_buffer(4104);n=encoders[1](edge_mixed,4096,out,4104,10)
+ assert 0<n<2048 and out.raw[6]==2,'Last prefix-search candidate was missed'
 # Outer/nested length disagreement, reserved modes, short LZ4 and empty-frame cases.
 frames += [b'GHY1'+struct.pack('<HBB',32,1,0)+b'GZR1'+struct.pack('<HBB',64,6,0)+bytes([1]),b'GHY1'+struct.pack('<HBB',4096,2,0)+b'\0',b'GHY1'+struct.pack('<HBB',0,1,0)+b'GZR1'+bytes(4)]
 malformed=0
