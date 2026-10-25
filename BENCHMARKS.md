@@ -392,3 +392,14 @@ frequency/thermal telemetry are retained, including negative results.
 The kernel's LZ4 directory adds -O3 even when global kernel configuration uses
 -O2. The native-kernel-v2-*-O2 results are alternative optimization experiments,
 not evidence that stock LZ4 itself was built at -O2.
+
+## Smaller full-reset hash tables
+
+[Three-session native screening](benchmarks/results/native-small-table-user-001/summary.md)
+compares 8/4/2 KiB hash arrays with original scalar and AVX2-guard implementations.
+All 8,064 batches, compressed sizes and sanitized telemetry are retained. This
+screening suggests lower compression cost but has private-API/code-generation
+confounding and worse executable compression ratio (about +0.24%, +0.81%, +1.95%
+compressed bytes for 8/4/2 KiB arrays). It establishes no ZRAM gain. A second run
+uses byte-identical table14 private controls to isolate this confounder. These
+user-space results exclude kernel FPU overhead and energy was not recorded.

@@ -1,0 +1,10 @@
+CPUID AVX2 verified, XCR0=0:207, pinned CPU 0
+Corpus round trips passed: random, 8 variants, 128 pages
+Corpus round trips passed: sparse, 8 variants, 128 pages
+Corpus round trips passed: period127, 8 variants, 128 pages
+Corpus round trips passed: mixed, 8 variants, 128 pages
+Corpus round trips passed: bash-elf, 8 variants, 128 pages
+Corpus round trips passed: halfzero, 8 variants, 128 pages
+Corpus round trips passed: word-tail64, 8 variants, 128 pages
+Corpus round trips passed: word-tail508, 8 variants, 128 pages
+corpus,round,variant,operation,ns_per_page,compressed_bytes_per_page,user_core_cycles_per_page

@@ -14,7 +14,9 @@ for path in sorted(a.directory.glob('table*.so')):
  lib.n100_reuse_compress.argtypes=[C.c_void_p,C.c_void_p,C.c_int,C.c_int,C.c_void_p];lib.n100_reuse_decompress.argtypes=[C.c_void_p,C.c_void_p,C.c_int,C.c_int]
  assert lib.n100_reuse_worksize()==(1<<int(path.stem[5:7]))+32
  libs.append((path.stem,lib))
-assert len(libs)==6
+assert len(libs)==8
+reference=C.CDLL(str(root/"build/scalar.so")).LZ4_compress_default
+reference.argtypes=[C.c_void_p,C.c_void_p,C.c_int,C.c_int,C.c_void_p]
 inputs=[data+bytes(4096-len(data)) for data in pages()]
 rng=random.Random(201);inputs += [rng.randbytes(4096) for _ in range(128)]
 count=0
@@ -26,6 +28,10 @@ for name,lib in libs:
    packed=Guard(cap);out=Guard(4096)
    size=lib.n100_reuse_compress(source.ptr,packed.ptr,4096,cap,work.ptr)
    assert 0<=size<=cap,(name,'size',cap,size)
+   if name.startswith("table14"):
+    expected=C.create_string_buffer(4352);reference_work=C.create_string_buffer(32768)
+    n=reference(source.ptr,expected,4096,cap,reference_work)
+    assert n==size and (not n or C.string_at(packed.ptr,n)==expected.raw[:n]),(name,"matched control identity")
    if cap==4352:assert size>0
    if size:
     for decode in [independent,lib.n100_reuse_decompress]:

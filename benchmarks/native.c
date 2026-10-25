@@ -64,6 +64,7 @@ int main(int argc,char **argv) {
  const char *reuse_names[]={"scalar","avx2-guard","reset4k-scalar","reset4k-avx2","reuse-scalar","reuse-avx2","reuse32-scalar","reuse32-avx2"};
  const char *table_names[]={"scalar","avx2-guard","table13-scalar","table13-avx2","table12-scalar","table12-avx2","table11-scalar","table11-avx2"};
  int table=getenv("N100_SMALL_TABLE_EXPERIMENT")!=NULL;
+ if(table && getenv("N100_TABLE_MATCHED")){table_names[0]="table14-scalar";table_names[1]="table14-avx2";}
  int reuse=table || getenv("N100_REUSE_EXPERIMENT")!=NULL;
  const char **names=table?table_names:reuse?reuse_names:ordinary_names;
  int N=reuse?8:sizeof(ordinary_names)/sizeof(ordinary_names[0]);struct codec codecs[N];

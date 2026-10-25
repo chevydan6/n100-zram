@@ -5,7 +5,7 @@ import argparse,os,shlex,shutil,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=root/'build/small-table');a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
-for bits in [13,12,11]:
+for bits in [14,13,12,11]:
  for kind,base,flags in [('scalar','scalar',['-mno-sse','-mno-mmx','-mno-avx']),('avx2','avx2-guard',['-mavx2'])]:
   name=f'table{bits}-{kind}';dest=a.output/name;dest.mkdir(exist_ok=True)
   for filename in ['lz4_compress.c','lz4_decompress.c','lz4defs.h']:shutil.copy2(root/'build'/base/filename,dest/filename)

@@ -3,11 +3,12 @@
 """Three physical-CPU smaller-table sessions; retain ratio and all regressions."""
 import argparse,csv,hashlib,json,os,platform,subprocess,threading,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--directory',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--directory',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--matched',action='store_true');a=p.parse_args()
 assert not a.output.exists();a.output.mkdir(parents=True)
 os.sched_setaffinity(0,{1});env=dict(os.environ,N100_SMALL_TABLE_EXPERIMENT='1')
+if a.matched:env['N100_TABLE_MATCHED']='1'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
-state={'status':'running','completed':[],'scope':'Physical N100 smaller-table user-space screening only; kernel FPU overhead and ZRAM I/O excluded','kernel':platform.release(),'binary_sha256':sha(a.directory/'native'),'libraries':{x.name:sha(x) for x in a.directory.glob('*.so')},'bash_sha256':sha(Path('/usr/bin/bash')),'started':time.time()}
+state={'status':'running','completed':[],'scope':'Physical N100 smaller-table user-space screening only; kernel FPU overhead and ZRAM I/O excluded','matched_table14_controls':a.matched,'kernel':platform.release(),'binary_sha256':sha(a.directory/'native'),'libraries':{x.name:sha(x) for x in a.directory.glob('*.so')},'bash_sha256':sha(Path('/usr/bin/bash')),'started':time.time()}
 def save(**values):
  state.update(values);tmp=a.output/'checkpoint.tmp';tmp.write_text(json.dumps(state,indent=2)+'\n');tmp.replace(a.output/'checkpoint.json')
 def snapshot():

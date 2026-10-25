@@ -146,3 +146,12 @@ Large regressions on mixed/executable pages reject unconditional table-epoch
 reuse. Keep prototypes and all measurements; investigate lookup/code generation
 or another compression bottleneck before any kernel integration. No experimental
 backend is the production default.
+
+### Smaller-table follow-up
+
+Initial three-session native screening is preserved with every ratio tradeoff.
+Matched private-API table14 controls and eight codec variants passed 64,864 guarded
+capacity cases and 32,000 concurrent independent decodes. A bounded follow-up
+will compare all table sizes with these controls before any kernel integration.
+A persistent collector preserves completed sessions and audits the committed
+results before pushing; interruptions retain raw checkpoints outside Git.

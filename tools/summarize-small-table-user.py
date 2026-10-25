@@ -11,6 +11,7 @@ for session in s['completed']:
  for r in data:r['session']=session;rows.append(r)
  shutil.copy2(path,a.output/path.name)
 meta={k:s[k] for k in ['scope','kernel','binary_sha256','libraries','bash_sha256','completed']}
+meta['matched_table14_controls']=s.get('matched_table14_controls',False)
 for name in ['before','after']:meta[name]={k:v for k,v in s[name].items() if k!='time'}
 (a.output/'metadata.json').write_text(json.dumps(meta,indent=2)+'\n');shutil.copy2(a.input/'validation.log',a.output/'validation.log')
 samples=[json.loads(line) for line in (a.input/'telemetry.jsonl').read_text().splitlines()]
@@ -37,9 +38,9 @@ lines=['# Physical N100 smaller-table screening','',s['scope']+'.',
 '|---|---|---:|---:|---:|---:|---:|']
 rng=random.Random(100)
 for corpus in sorted({r['corpus'] for r in rows}):
- for variant in ['scalar','table13-scalar','table12-scalar','table11-scalar','avx2-guard','table13-avx2','table12-avx2','table11-avx2']:
+ for variant in (['table14-scalar','table13-scalar','table12-scalar','table11-scalar','table14-avx2','table13-avx2','table12-avx2','table11-avx2'] if s.get('matched_table14_controls') else ['scalar','table13-scalar','table12-scalar','table11-scalar','avx2-guard','table13-avx2','table12-avx2','table11-avx2']):
   group=[r for r in rows if r['corpus']==corpus and r['variant']==variant and r['operation']=='compress']
-  control='avx2-guard' if 'avx2' in variant else 'scalar';ratios=[]
+  control=('table14-avx2' if 'avx2' in variant else 'table14-scalar') if s.get('matched_table14_controls') else ('avx2-guard' if 'avx2' in variant else 'scalar');ratios=[]
   controls=[r for r in rows if r['corpus']==corpus and r['variant']==control and r['operation']=='compress']
   for session in s['completed']:
    base={r['round']:float(r['ns_per_page']) for r in controls if r['session']==session}
@@ -47,4 +48,6 @@ for corpus in sorted({r['corpus'] for r in rows}):
   boot=sorted(100*(statistics.median(rng.choices(ratios,k=3))-1) for _ in range(10000))
   size=statistics.median(float(r['compressed_bytes_per_page']) for r in group);base_size=statistics.median(float(r['compressed_bytes_per_page']) for r in controls)
   lines.append(f"| {corpus} | {variant} | {statistics.median(float(r['ns_per_page']) for r in group):.1f} | {100*(statistics.median(ratios)-1):+.1f}% [{boot[250]:+.1f}, {boot[9749]:+.1f}] | {size:.1f} | {100*(size/base_size-1):+.2f}% | {statistics.median(float(r['user_core_cycles_per_page']) for r in group):.1f} |")
+if s.get('matched_table14_controls'):
+ lines=[line.replace('Controls are full baseline scalar/AVX2-guard APIs; candidates have a specialized 4 KiB private API.','Controls use 16 KiB hash arrays and the same specialized 4 KiB private API as candidates.').replace('API/code-generation differences are a confounder. Matched table14 private controls are required','Private table14 controls were byte-identity checked against the baseline kernel encoder.').replace('before attributing gains exclusively to table size. No kernel integration or ZRAM gain is established.','Results remain user-space only. No kernel integration or ZRAM gain is established.') for line in lines]
 (a.output/'summary.md').write_text('\n'.join(lines)+'\n');print(a.output/'summary.md')
