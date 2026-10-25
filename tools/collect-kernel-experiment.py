@@ -42,5 +42,9 @@ if a.publish:
  subprocess.run(['git','diff','--check'],cwd=root,check=True);subprocess.run(['git','add','--',str(relative)],cwd=root,check=True)
  subprocess.run(['git','commit','-m','Preserve native scalar small-table pressure trials and verified restoration' if a.mode=='pressure' else 'Preserve native scalar small-table I/O trials, energy, counters and verified stock restoration'],cwd=root,check=True)
  subprocess.run(['python3',str(root/'tools/audit-publication.py')],cwd=root,check=True)
- subprocess.run(['git','push','origin','HEAD:feature/n100-avx2-zram'],cwd=root,check=True)
+ for attempt in range(3):
+  pushed=subprocess.run(['git','push','origin','HEAD:feature/n100-avx2-zram'],cwd=root)
+  if pushed.returncode==0:break
+  if attempt==2:raise SystemExit('Push failed after three attempts; committed results retained locally')
+  time.sleep(5*(attempt+1))
 print('NATIVE_'+a.mode.upper()+'_COLLECTION_COMPLETE; stock restored and all trials retained',flush=True)
