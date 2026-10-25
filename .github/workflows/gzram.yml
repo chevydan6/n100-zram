@@ -28,6 +28,12 @@ jobs:
         run: |
           python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-guard16.so
           python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-guard32.so
+      - name: Fused scan and independent decoder modes
+        run: |
+          python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-fused.so --other-libraries build/gzram/libgzram-hybrid-guard32.so build/gzram/libgzram-hybrid-guard32mixed.so
+          python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-guard32mixed.so
+      - name: Scalar word-at-a-time classifier
+        run: python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-wordguard.so --same-encoding-libraries build/gzram/libgzram-hybrid-guard32.so
       - name: Address and undefined-behavior sanitizers
         run: |
           EXTRA_CFLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' python3 gzram/tools/build.py --output build/gzram-asan
@@ -44,6 +50,9 @@ jobs:
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-recurrence.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-guard16.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-guard32.so
+          python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-fused.so
+          python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-guard32mixed.so
+          python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-wordguard.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-guard32.so
       - name: Validate native benchmark fixture
         run: |
           gcc -O2 -Wall -Wextra -Werror gzram/bench.c -ldl -o build/gzram/benchmark

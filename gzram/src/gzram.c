@@ -9,7 +9,11 @@
 #define HEADER 8
 #define AVX __attribute__((target("avx2")))
 enum { RAW, ZERO, REPEAT4, REPEAT8, MASK32, REPEAT16, REPEAT32 };
-struct scan { uint8_t masks[MAX_PAGE/32]; unsigned nonzero, repeated; };
+struct scan { uint8_t masks[MAX_PAGE/32]; unsigned nonzero, repeated;
+#if defined(GZRAM_EMBED_PREFIX)
+ const uint8_t *page;uint64_t key;size_t offset;unsigned anchor,limit,hint;
+#endif
+};
 typedef void (*scan_fn)(const uint8_t *,size_t,struct scan *);
 typedef void (*pack_fn)(const uint8_t *,uint8_t *,unsigned);
 typedef void (*repeat_fn)(uint8_t *,const uint8_t *,size_t,unsigned);
@@ -59,10 +63,21 @@ AVX static void scan_avx2(const uint8_t *src,size_t n,struct scan *s)
  __m256i p16=_mm256_broadcastsi128_si256(_mm_loadu_si128((const __m128i *)src));
  __m256i p32=_mm256_loadu_si256((const __m256i *)src);
  __m256i d4=zero,d8=zero,d16=zero,d32=zero;s->nonzero=0;
+#if defined(GZRAM_EMBED_PREFIX)
+ __m256i anchor_value=_mm256_set1_epi8((char)(s->key>>(s->anchor*8)));
+#endif
  for(size_t group=0;group<n/32;group++) {
   __m256i v=_mm256_loadu_si256((const __m256i *)(src+group*32));
   unsigned mask=(unsigned)_mm256_movemask_ps(_mm256_castsi256_ps(_mm256_cmpeq_epi32(v,zero)))^255U;
   s->masks[group]=(uint8_t)mask;s->nonzero+=gz_count[mask];
+#if defined(GZRAM_EMBED_PREFIX)
+  if(s->key&&!s->hint&&s->offset+group*32<=s->limit+s->anchor){
+   unsigned matches=(unsigned)_mm256_movemask_epi8(_mm256_cmpeq_epi8(v,anchor_value));
+   while(matches){unsigned at=(unsigned)(s->offset+group*32)+(unsigned)__builtin_ctz(matches);matches&=matches-1;
+    if(at>s->anchor){unsigned candidate=at-s->anchor;if(candidate<=s->limit&&load64(s->page+candidate)==s->key){s->hint=1;break;}}
+   }
+  }
+#endif
   d4=_mm256_or_si256(d4,_mm256_xor_si256(v,p4));
   d8=_mm256_or_si256(d8,_mm256_xor_si256(v,p8));
   d16=_mm256_or_si256(d16,_mm256_xor_si256(v,p16));
@@ -166,15 +181,29 @@ AVX static unsigned variable_period_avx2(const uint8_t *src,size_t n,size_t best
 #endif
 int gzram_variable_period_available(void){return 1;}
 #endif
-static int encode(const void *input,size_t n,void *output,size_t cap,unsigned log,scan_fn scan,pack_fn pack)
+#if defined(GZRAM_EMBED_PREFIX)
+#define PREFIX_ARGUMENT ,unsigned *hint
+#define PREFIX_NONE ,NULL
+#else
+#define PREFIX_ARGUMENT
+#define PREFIX_NONE
+#endif
+static int encode(const void *input,size_t n,void *output,size_t cap,unsigned log,scan_fn scan,pack_fn pack PREFIX_ARGUMENT)
 {
  if(n>MAX_PAGE||log<5||log>12||!output||(!input&&n)||cap<HEADER)return 0;
  const uint8_t *src=input;uint8_t *dst=output;size_t block=(size_t)1<<log,chunks=(n+block-1)/block,pos=HEADER+chunks;
+#if defined(GZRAM_EMBED_PREFIX)
+ uint64_t prefix_key=0;unsigned prefix_anchor=0,prefix_limit=0,prefix_seen=0;
+ if(hint){*hint=0;if(n>=16){prefix_key=load64(src);if(prefix_key){prefix_anchor=(unsigned)__builtin_ctzll(prefix_key)/8;prefix_limit=n-8<1024?(unsigned)(n-8):1024;}}}
+#endif
  if(pos>cap)return raw_page(src,n,dst,cap,log);
  header(dst,n,log,0);
  for(size_t chunk=0,offset=0;chunk<chunks;chunk++,offset+=block) {
   size_t len=n-offset;if(len>block)len=block;
   struct scan s;unsigned mode=RAW,period=0;size_t needed=len;
+#if defined(GZRAM_EMBED_PREFIX)
+  s.page=src;s.key=prefix_key;s.offset=offset;s.anchor=prefix_anchor;s.limit=prefix_limit;s.hint=prefix_seen;
+#endif
   if(len%32==0) {
    scan(src+offset,len,&s);
    if(!s.nonzero){mode=ZERO;needed=0;}
@@ -184,6 +213,15 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
     if(mode==RAW&&len/32+s.nonzero*4U<len){mode=MASK32;needed=len/32+s.nonzero*4U;}
    }
   }
+#if defined(GZRAM_EMBED_PREFIX)
+  /* A final partial block is not visited by the vector scan. */
+  if(len%32&&prefix_key&&!s.hint){
+   unsigned begin=offset?(unsigned)offset:1,end=(unsigned)(offset+len-1);if(end>prefix_limit)end=prefix_limit;
+   uint8_t anchor_byte=(uint8_t)(prefix_key>>(prefix_anchor*8));
+   for(unsigned at=begin;at<=end;at++)if(src[at+prefix_anchor]==anchor_byte&&load64(src+at)==prefix_key){s.hint=1;break;}
+  }
+  prefix_seen=s.hint;if(hint)*hint=prefix_seen;
+#endif
 #if defined(GZRAM_VARIABLE_PERIOD)
 #if defined(GZRAM_PERIOD_FILTER)
   unsigned arbitrary=mode==RAW?(scan==scan_avx2?variable_period_avx2(src+offset,len,needed):variable_period(src+offset,len,needed)):0;
@@ -251,7 +289,22 @@ static int decode(const void *input,size_t size,void *output,size_t cap,pack_fn 
  }
  return pos==size?(int)n:-1;
 }
-int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,scan_scalar,pack_scalar);}
-int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_avx2):gzram_encode_scalar(s,n,d,cap,log);}
+int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,scan_scalar,pack_scalar PREFIX_NONE);}
+int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_avx2 PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);}
 int gzram_decode_scalar(const void *s,size_t n,void *d,size_t cap){return decode(s,n,d,cap,unpack_scalar,repeat_scalar);}
 int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap){return gzram_avx2_available()?decode(s,n,d,cap,unpack_avx2,repeat_avx2):gzram_decode_scalar(s,n,d,cap);}
+
+#if defined(GZRAM_EMBED_PREFIX)
+int gzram_encode_hint_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log,unsigned *hint)
+{
+ if(!gzram_avx2_available()){if(hint)*hint=0;return 0;}
+ return encode(s,n,d,cap,log,scan_avx2,pack_avx2,hint);
+}
+#endif
+
+#if defined(GZRAM_MIXED_DECODE)
+int gzram_decode_mixed(const void *s,size_t n,void *d,size_t cap)
+{
+ return gzram_avx2_available()?decode(s,n,d,cap,unpack_scalar,repeat_avx2):decode(s,n,d,cap,unpack_scalar,repeat_scalar);
+}
+#endif

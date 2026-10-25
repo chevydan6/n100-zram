@@ -153,3 +153,14 @@ eight-byte periods. The helper writes its tail exactly within the requested copy
 Other offsets keep their original path; no compressed-format change or new
 workspace allocation is introduced. Compiler layout/call effects still cause
 small synthetic regressions, so end-to-end tests remain essential.
+
+## Experimental GHY1 userspace hybrids
+
+GZRAM research now preserves original GZR1/GZR2 codecs while testing an explicit
+GHY1 container for raw, nested GZR1 and scalar LZ4 payloads. Trial, sampled and
+prefix-guarded policies are separate builds. Fused detection reuses existing
+AVX2 loads; a separate decoder policy chooses scalar sparse unpacking and AVX2
+repeat expansion through existing mode dispatch. See gzram/docs/HYBRID.md,
+GUARDED-TRIAL.md and FUSED-PREFIX.md. These prototypes do not register a kernel
+compressor. LZ4's userspace stack workspace must become per-stream storage in
+any future kernel port, with independent SIMD context and concurrency validation.

@@ -12,6 +12,12 @@ int gzram_base_encode_scalar(const void *,size_t,void *,size_t,unsigned);
 int gzram_base_encode_avx2(const void *,size_t,void *,size_t,unsigned);
 int gzram_base_decode_scalar(const void *,size_t,void *,size_t);
 int gzram_base_decode_avx2(const void *,size_t,void *,size_t);
+#if defined(GZRAM_HYBRID_FUSED_HINT)
+int gzram_fused_encode_hint_avx2(const void *,size_t,void *,size_t,unsigned,unsigned *);
+#endif
+#if defined(GZRAM_HYBRID_MIXED_DECODE)
+int gzram_mixed_decode(const void *,size_t,void *,size_t);
+#endif
 typedef int (*encode_fn)(const void *,size_t,void *,size_t,unsigned);
 typedef int (*decode_fn)(const void *,size_t,void *,size_t);
 static void header(uint8_t *dst,size_t n,unsigned mode)
@@ -31,6 +37,17 @@ static uint64_t hybrid_load64(const uint8_t *p){uint64_t v;memcpy(&v,p,8);return
 static int prefix_scalar(const uint8_t *src,unsigned at,unsigned limit,uint64_t key,unsigned anchor)
 {
  uint8_t target=(uint8_t)(key>>(anchor*8));
+#if GZRAM_HYBRID_GUARD == 8
+ const uint64_t ones=UINT64_C(0x0101010101010101),high=UINT64_C(0x8080808080808080),repeated=ones*target;
+ for(;at<=limit&&limit-at+1>=8;at+=8){
+  uint64_t difference=hybrid_load64(src+at+anchor)^repeated;
+  uint64_t matches=(difference-ones)&~difference&high;
+  while(matches){unsigned candidate=at+(unsigned)__builtin_ctzll(matches)/8;matches&=matches-1;
+   /* Borrow propagation may add candidate bits; the complete key decides. */
+   if(hybrid_load64(src+candidate)==key)return 1;
+  }
+ }
+#endif
  for(;at<=limit;at++)if(src[at+anchor]==target&&hybrid_load64(src+at)==key)return 1;
  return 0;
 }
@@ -45,7 +62,7 @@ static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned
  }
  return prefix_scalar(src,at,limit,key,anchor);
 }
-#else
+#elif GZRAM_HYBRID_GUARD == 32
 __attribute__((target("avx2")))
 static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned anchor)
 {
@@ -61,7 +78,11 @@ static int prefix_recurrence(const uint8_t *src,size_t n,encode_fn gz)
 {
  uint64_t key=hybrid_load64(src);if(!key)return 0;
  unsigned anchor=(unsigned)__builtin_ctzll(key)/8,limit=n-8<1024?(unsigned)(n-8):1024;
+#if GZRAM_HYBRID_GUARD != 8
  if(gz==gzram_base_encode_avx2&&gzram_avx2_available())return prefix_vector(src,limit,key,anchor);
+#else
+ (void)gz;
+#endif
  return prefix_scalar(src,1,limit,key,anchor);
 }
 #endif
@@ -95,12 +116,21 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
  const uint8_t *src=input;uint8_t *dst=output;
  if(!n){header(dst,0,0);return HEADER;}
  if(select_gzram(src,n)){
+#if defined(GZRAM_HYBRID_FUSED_HINT)
+  unsigned recurrence=0;int fused=gz==gzram_base_encode_avx2&&gzram_avx2_available();
+  int packed=fused?gzram_fused_encode_hint_avx2(src,n,dst+HEADER,cap-HEADER,log,&recurrence):gz(src,n,dst+HEADER,cap-HEADER,log);
+#else
   int packed=gz(src,n,dst+HEADER,cap-HEADER,log);
+#endif
   /* Threshold includes nested GZRAM framing. Exact decoding is still mandatory. */
   int accept=packed>0&&(size_t)packed<=n*3/4;
 #if defined(GZRAM_HYBRID_GUARD)
   /* Protect the best sparse/zero/repeat path; inspect only middling ratios. */
+#if defined(GZRAM_HYBRID_FUSED_HINT)
+  if(accept&&n>=16&&(size_t)packed>n/4&&(fused?(recurrence!=0):prefix_recurrence(src,n,gz)))accept=0;
+#else
   if(accept&&n>=16&&(size_t)packed>n/4&&prefix_recurrence(src,n,gz))accept=0;
+#endif
 #endif
   if(accept){header(dst,n,1);return packed+HEADER;}
  }
@@ -126,4 +156,10 @@ static int decode(const void *input,size_t size,void *output,size_t cap,decode_f
 int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,gzram_base_encode_scalar);}
 int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,gzram_base_encode_avx2);}
 int gzram_decode_scalar(const void *s,size_t n,void *d,size_t cap){return decode(s,n,d,cap,gzram_base_decode_scalar);}
-int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap){return decode(s,n,d,cap,gzram_base_decode_avx2);}
+int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap){
+#if defined(GZRAM_HYBRID_MIXED_DECODE)
+ return decode(s,n,d,cap,gzram_mixed_decode);
+#else
+ return decode(s,n,d,cap,gzram_base_decode_avx2);
+#endif
+}

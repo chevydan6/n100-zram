@@ -91,3 +91,9 @@ The initial native --screen cohort contains 19 explicit control/hybrid variants,
 11 corpora including repeated-prefix/zero-tail pages, and two GZRAM block sizes.
 The full 105-variant cohort remains available. Raw CSVs include actual hybrid
 mode counts; unavailable counts for other codecs are -1, not zero.
+
+The guarded-trial branch now includes fused-prefix encoding and independent
+sparse/repeat decoder dispatch prototypes. See docs/FUSED-PREFIX.md. Normal,
+cross-policy and sanitizer checks passed locally. The new screen retains the
+prior cohort and adds these candidates (40 variants / 12 corpora); full testing
+has 185 variants. Native timing and energy for these additions remain pending.

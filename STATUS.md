@@ -278,3 +278,33 @@ overall winner. Both pooled and paired timing estimates, codec selection counts
 and every regression are published in native-gzram-guarded-trial-001 contrasts.
 Local prototypes now investigate fused prefix scans and independent sparse/repeat
 decoder selection before the next native experiment.
+
+## Fused-prefix and mixed-decoder candidates validated locally
+
+The fused prototype reuses AVX2 scan loads to record bounded prefix hints, with
+caller-owned state and partial-block checks. guard32mixed retains encoding while
+using scalar sparse unpacking and AVX2 repeat expansion. Both passed guarded,
+cross-policy, malformed-input, concurrency and sanitizer checks. The preserved
+fast GZRAM and guard32 controls retain identical local .text hashes. The next
+N100 experiment measures all 40 selected variants and 12 corpora; no performance
+claim is accepted before that run. Neither candidate replaces kernel ZRAM.
+
+## Integer-only classifier added to the next GZRAM cohort
+
+wordguard checks eight anchor candidates per 64-bit integer load and confirms
+complete keys. It preserves the guard32 encoding policy while avoiding SIMD in
+the classifier itself. Exact cross-implementation output, bounds, all-anchor,
+partial-block, concurrency, malformed-input and sanitizer checks passed locally.
+This keeps scalar optimization active alongside fused AVX2 scanning and mixed
+mode decoding. The next N100 screen has 40 variants and 12 corpora, including both fast-scalar block-size controls.
+
+## Continued GZRAM test queue
+
+The next finite queue runs a 40-variant screen for fused scanning, independent
+decoder dispatch and integer word-at-a-time classification. A guarded follow-up
+covers all eight internal processing lengths with 81 explicit variants, only
+when the preceding screen and artifact fingerprints validate. Data, kernel
+SIMD costs and preferred-policy acceptance remain separate. GitHub hosted
+workflows currently report disabled_manually; their setting was left unchanged.
+Local/native automated tests provide the stated validation; no hosted CI pass
+is claimed.

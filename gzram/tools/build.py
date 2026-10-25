@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-only
-import argparse,hashlib,json,os,shlex,shutil,subprocess
+"""Build preserved codecs and isolated hybrids with recorded compiler definitions."""
+import argparse,hashlib,json,os,shlex,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=root/'build/gzram');a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
@@ -16,19 +17,57 @@ for name in ['encode','decode']:
 (a.output/'tables.h').write_text('\n'.join(lines)+'\n')
 cc=os.environ.get('CC','gcc');extra=shlex.split(os.environ.get('EXTRA_CFLAGS',''))
 flags=['-O3','-g','-fPIC','-Wall','-Wextra','-Werror','-fno-tree-vectorize','-fno-strict-aliasing','-mno-sse','-mno-mmx','-mno-avx']
-cmd=[cc,*flags,*extra,'-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram.so')];subprocess.run(cmd,check=True)
-subprocess.run([cc,*flags,*extra,'-DGZRAM_SCALAR_FAST=1','-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram-fast.so')],check=True)
-subprocess.run([cc,*flags,*extra,'-DGZRAM_BLOCK_UNPACK=1','-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram-block.so')],check=True)
-subprocess.run([cc,*flags,*extra,'-DGZRAM_VARIABLE_PERIOD=1','-DGZRAM_SCALAR_FAST=1','-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram-period.so')],check=True)
-subprocess.run([cc,*flags,*extra,'-DGZRAM_VARIABLE_PERIOD=1','-DGZRAM_PERIOD_FILTER=1','-DGZRAM_SCALAR_FAST=1','-I'+str(a.output),'-shared',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'libgzram-filter.so')],check=True)
-# Matched optimized scalar LZ4 reference, built from this repository's source.
+def compile_files(sources,output,defines=(),includes=(),shared=True,bind=False):
+ command=[cc,*flags,*extra,*defines,*('-I'+str(i) for i in includes)]
+ command+=['-shared'] if shared else ['-c']
+ if bind:command+=['-Wl,-Bsymbolic-functions']
+ subprocess.run([*command,*map(str,sources),'-o',str(output)],check=True)
+base_variants={
+ 'libgzram.so':[],
+ 'libgzram-fast.so':['-DGZRAM_SCALAR_FAST=1'],
+ 'libgzram-block.so':['-DGZRAM_BLOCK_UNPACK=1'],
+ 'libgzram-period.so':['-DGZRAM_VARIABLE_PERIOD=1','-DGZRAM_SCALAR_FAST=1'],
+ 'libgzram-filter.so':['-DGZRAM_VARIABLE_PERIOD=1','-DGZRAM_PERIOD_FILTER=1','-DGZRAM_SCALAR_FAST=1'],
+}
+for name,defines in base_variants.items():compile_files([root/'gzram/src/gzram.c'],a.output/name,defines,[a.output])
+# Matched private scalar LZ4: source and attribution remain unchanged.
 base=a.output/'lz4-small';private=base/'include/linux';private.mkdir(parents=True,exist_ok=True)
-(private/'lz4.h').write_text((root/'include/linux/lz4.h').read_text().replace('#define LZ4_MEMORY_USAGE 14','#define LZ4_MEMORY_USAGE 12'))
-subprocess.run([cc,*flags,*extra,'-I'+str(base/'include'),'-I'+str(root/'include'),'-shared','-Wl,-Bsymbolic-functions',str(root/'src/kernel-lz4/lz4_compress.c'),str(root/'src/kernel-lz4/lz4_decompress.c'),'-o',str(a.output/'lz4-small.so')],check=True)
-# Versioned hybrid containers bind the original fast GZRAM and private scalar LZ4.
-renames=['-Dgzram_encode_scalar=gzram_base_encode_scalar','-Dgzram_encode_avx2=gzram_base_encode_avx2','-Dgzram_decode_scalar=gzram_base_decode_scalar','-Dgzram_decode_avx2=gzram_base_decode_avx2']
-subprocess.run([cc,*flags,*extra,'-DGZRAM_SCALAR_FAST=1',*renames,'-I'+str(a.output),'-c',str(root/'gzram/src/gzram.c'),'-o',str(a.output/'hybrid-base.o')],check=True)
-for policy,defines in [('trial',[]),('sample',['-DGZRAM_HYBRID_SAMPLE=1']),('recurrence',['-DGZRAM_HYBRID_SAMPLE=1','-DGZRAM_HYBRID_RECURRENCE=1']),('guard16',['-DGZRAM_HYBRID_GUARD=16']),('guard32',['-DGZRAM_HYBRID_GUARD=32'])]:
- subprocess.run([cc,*flags,*extra,*defines,'-I'+str(base/'include'),'-I'+str(root/'include'),'-I'+str(root/'gzram/src'),'-shared','-Wl,-Bsymbolic-functions',str(root/'gzram/src/hybrid.c'),str(a.output/'hybrid-base.o'),str(root/'src/kernel-lz4/lz4_compress.c'),str(root/'src/kernel-lz4/lz4_decompress.c'),'-o',str(a.output/f'libgzram-hybrid-{policy}.so')],check=True)
-manifest={'hybrid_candidates':['trial','sample','recurrence','guard16','guard32'],'period_filter_candidate':True,'variable_period_candidate':True,'block_unpack_candidate':True,'fast_scalar_candidate':True,'candidate_extra_flags':{'fast_scalar':['-DGZRAM_SCALAR_FAST=1'],'block_unpack':['-DGZRAM_BLOCK_UNPACK=1'],'variable_period':['-DGZRAM_VARIABLE_PERIOD=1','-DGZRAM_SCALAR_FAST=1'],'period_filter':['-DGZRAM_VARIABLE_PERIOD=1','-DGZRAM_PERIOD_FILTER=1','-DGZRAM_SCALAR_FAST=1'],'hybrid_base':['-DGZRAM_SCALAR_FAST=1',*renames],'hybrid_sample':['-DGZRAM_HYBRID_SAMPLE=1'],'hybrid_recurrence':['-DGZRAM_HYBRID_SAMPLE=1','-DGZRAM_HYBRID_RECURRENCE=1'],'hybrid_guard16':['-DGZRAM_HYBRID_GUARD=16'],'hybrid_guard32':['-DGZRAM_HYBRID_GUARD=32']},'compiler':subprocess.check_output([cc,'--version'],text=True).splitlines()[0],'flags':flags+extra,'source_sha256':{str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in [root/'gzram/src/gzram.c',root/'gzram/src/gzram.h',root/'gzram/src/hybrid.c',Path(__file__).resolve()]},'artifacts':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in a.output.glob('*.so')}}
+header=(root/'include/linux/lz4.h').read_text();assert header.count('#define LZ4_MEMORY_USAGE 14')==1
+(private/'lz4.h').write_text(header.replace('#define LZ4_MEMORY_USAGE 14','#define LZ4_MEMORY_USAGE 12'))
+lz4_sources=[root/'src/kernel-lz4/lz4_compress.c',root/'src/kernel-lz4/lz4_decompress.c']
+lz4_includes=[base/'include',root/'include']
+compile_files(lz4_sources,a.output/'lz4-small.so',includes=lz4_includes,bind=True)
+public_names=['encode_scalar','encode_avx2','decode_scalar','decode_avx2']
+def rename(prefix):return [f'-Dgzram_{name}=gzram_{prefix}_{name}' for name in public_names]
+core_objects={
+ 'base':['-DGZRAM_SCALAR_FAST=1',*rename('base')],
+ 'fused':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_EMBED_PREFIX=1',*rename('fused'),'-Dgzram_avx2_available=gzram_fused_avx2_available','-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2'],
+ 'mixed':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1',*rename('mixed'),'-Dgzram_avx2_available=gzram_mixed_avx2_available','-Dgzram_decode_mixed=gzram_mixed_decode'],
+}
+for name,defines in core_objects.items():compile_files([root/'gzram/src/gzram.c'],a.output/f'hybrid-{name}.o',defines,[a.output],shared=False)
+policies={
+ 'trial':[],
+ 'sample':['-DGZRAM_HYBRID_SAMPLE=1'],
+ 'recurrence':['-DGZRAM_HYBRID_SAMPLE=1','-DGZRAM_HYBRID_RECURRENCE=1'],
+ 'guard16':['-DGZRAM_HYBRID_GUARD=16'],
+ 'guard32':['-DGZRAM_HYBRID_GUARD=32'],
+ 'fused':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_FUSED_HINT=1'],
+ 'guard32mixed':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'wordguard':['-DGZRAM_HYBRID_GUARD=8'],
+}
+additional={'fused':'fused','guard32mixed':'mixed'}
+for policy,defines in policies.items():
+ sources=[root/'gzram/src/hybrid.c',a.output/'hybrid-base.o']
+ if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
+ compile_files([*sources,*lz4_sources],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+source_files=[root/'gzram/src/gzram.c',root/'gzram/src/gzram.h',root/'gzram/src/hybrid.c',Path(__file__).resolve(),*lz4_sources,root/'src/kernel-lz4/lz4defs.h',root/'include/linux/lz4.h']
+manifest={
+ 'hybrid_candidates':list(policies),'period_filter_candidate':True,'variable_period_candidate':True,'block_unpack_candidate':True,'fast_scalar_candidate':True,
+ 'candidate_extra_flags':{'base_variants':base_variants,'core_objects':core_objects,'hybrid_policies':policies},
+ 'compiler':subprocess.check_output([cc,'--version'],text=True).splitlines()[0],'flags':flags+extra,
+ 'source_sha256':{str(f.relative_to(root)):sha(f) for f in source_files},
+ 'generated_tables_sha256':sha(a.output/'tables.h'),
+ 'artifacts':{f.name:sha(f) for f in a.output.glob('*.so')},
+}
 (a.output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(a.output)

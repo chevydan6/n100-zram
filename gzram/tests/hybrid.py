@@ -6,12 +6,16 @@ from pathlib import Path
 root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'tests'))
 from guard_buffers import Guard
 from wire import decode as gz_decode_wire
-p=argparse.ArgumentParser();p.add_argument('--library',type=Path,required=True);p.add_argument('--other-libraries',type=Path,nargs='*',default=[]);a=p.parse_args();lib=C.CDLL(str(a.library))
+p=argparse.ArgumentParser();p.add_argument('--library',type=Path,required=True);p.add_argument('--same-encoding-libraries',type=Path,nargs='*',default=[]);p.add_argument('--other-libraries',type=Path,nargs='*',default=[]);a=p.parse_args();lib=C.CDLL(str(a.library))
 encoders=[lib.gzram_encode_scalar,lib.gzram_encode_avx2];decoders=[lib.gzram_decode_scalar,lib.gzram_decode_avx2]
 for other in a.other_libraries:
  h=C.CDLL(str(other));decoders += [h.gzram_decode_scalar,h.gzram_decode_avx2]
 for f in encoders:f.argtypes=[C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t,C.c_uint];f.restype=C.c_int
 for f in decoders:f.argtypes=[C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t];f.restype=C.c_int
+comparison_encoders=[]
+for other in a.same_encoding_libraries:
+ h=C.CDLL(str(other))
+ for f in [h.gzram_encode_scalar,h.gzram_encode_avx2]:f.argtypes=[C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t,C.c_uint];f.restype=C.c_int;comparison_encoders.append(f)
 lz4=C.CDLL('liblz4.so.1').LZ4_decompress_safe;lz4.argtypes=[C.c_void_p,C.c_void_p,C.c_int,C.c_int];lz4.restype=C.c_int
 def oracle(frame):
  if len(frame)<8 or len(frame)>4136 or frame[:4]!=b'GHY1':raise ValueError()
@@ -40,6 +44,9 @@ inputs += [long_period[:2048]+bytes(2048),period,period[:2048]+bytes(2048),rng.r
 for length in [32,63,64,65,96,127,128,129,1023,1024,1025,4095,4096]:
  for anchor in range(8):
   data=bytearray(length);data[8:max(8,length//3)]=rng.randbytes(max(0,length//3-8));data[anchor]=0x5a;inputs.append(bytes(data))
+partial=bytearray(1024)
+for at in range(0,1024,32):partial[at:at+12]=bytes([17])*4+bytes([34])*4+bytes([51])*4
+partial[:8]=b'ABCDEFGH';partial_edge=bytes(partial)+bytes(partial[:8]);inputs.append(partial_edge)
 edge_pattern=bytearray(rng.randbytes(1024));edge_pattern[:8]=bytes(7)+b'Z';edge_mixed=bytes(edge_pattern)*2+bytes(2048);inputs.append(edge_mixed)
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
@@ -51,6 +58,8 @@ for index,data in enumerate(inputs):
    frame=C.string_at(packed.ptr,n);assert oracle(frame)==data;modes.add(frame[6])
    if reference is None:reference=frame
    else:assert frame==reference,'scalar/AVX2 selection differs'
+   for compare in comparison_encoders:
+    match=C.create_string_buffer(len(data)+8);m=compare(src.ptr,len(data),match,len(data)+8,log);assert m==n and match.raw[:m]==frame,'Equivalent guard policies differ'
    if index%23==0:frames.append(frame)
    for decode in decoders:
     out=Guard(len(data));got=decode(packed.ptr,n,out.ptr,len(data));assert got==len(data) and C.string_at(out.ptr,len(data))==data;out.close();roundtrips+=1
@@ -61,14 +70,16 @@ for index,data in enumerate(inputs):
    packed.close()
  src.close()
 assert modes=={0,1,2},modes
-if 'recurrence' in a.library.name or 'guard' in a.library.name:
+if 'recurrence' in a.library.name or 'guard' in a.library.name or 'fused' in a.library.name:
  for data in [period,period[:2048]+bytes(2048),long_period[:2048]+bytes(2048)]:
   out=C.create_string_buffer(4104);n=encoders[1](data,4096,out,4104,10)
   assert n<(768 if data==long_period[:2048]+bytes(2048) else 256) and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
 
-if 'recurrence' in a.library.name or 'guard' in a.library.name:
+if 'recurrence' in a.library.name or 'guard' in a.library.name or 'fused' in a.library.name:
  out=C.create_string_buffer(4104);n=encoders[1](edge_mixed,4096,out,4104,10)
  assert 0<n<2048 and out.raw[6]==2,'Last prefix-search candidate was missed'
+ out=C.create_string_buffer(len(partial_edge)+8);n=encoders[1](partial_edge,len(partial_edge),out,len(out),10)
+ assert n>0 and out.raw[6]==2,'Partial-block prefix-search candidate was missed'
 # Outer/nested length disagreement, reserved modes, short LZ4 and empty-frame cases.
 frames += [b'GHY1'+struct.pack('<HBB',32,1,0)+b'GZR1'+struct.pack('<HBB',64,6,0)+bytes([1]),b'GHY1'+struct.pack('<HBB',4096,2,0)+b'\0',b'GHY1'+struct.pack('<HBB',0,1,0)+b'GZR1'+bytes(4)]
 malformed=0

@@ -132,3 +132,13 @@ independent scalar/AVX2 encoders/decoders, guarded Python-oracle tests, sanitize
 CI, native comparison fixture and resumable sessions. No kernel deployment or
 performance improvement is claimed. Upstream projects are research references;
 no upstream code or generated shuffle tables were copied into the new codec.
+
+## 2026-10-25 — GZRAM hybrid ratio recovery iterations
+
+- Preserved the original codecs and added versioned GHY1 GZRAM/LZ4/raw policies.
+- Published 19-variant and 27-variant three-session N100 screens, including
+  mixed-pattern ratio failures, classifier overhead and all codec-mode counts.
+- Reported both absolute pooled and paired timing estimates.
+- Validated fused-prefix and independent sparse/repeat decoder prototypes with
+  normal, guarded, concurrent, malformed-input and sanitizer checks.
+- Kept userspace codec costs separate from kernel SIMD state measurements.
