@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 """Root-only, isolated ZRAM I/O baseline. Never resets an existing device."""
 from pathlib import Path
-import argparse,subprocess,os,json,time,random,hashlib,platform
+import argparse,subprocess,os,json,time,random,hashlib,platform,errno,threading
 parser=argparse.ArgumentParser()
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4'])
@@ -10,6 +10,8 @@ parser.add_argument('--seconds',type=int,default=5)
 parser.add_argument('--repeats',type=int,default=3)
 parser.add_argument('--size-mib',type=int,default=64)
 parser.add_argument('--profile',action='store_true')
+parser.add_argument('--counters',action='store_true')
+parser.add_argument('--telemetry',action='store_true')
 a=parser.parse_args()
 if os.geteuid()!=0:raise SystemExit('Root is required for a separate test device')
 if not (1<=a.seconds<=30 and 1<=a.repeats<=10 and 4<=a.size_mib<=256):raise SystemExit('Outside bounded experiment limits')
@@ -31,7 +33,12 @@ for energy in Path('/sys/class/powercap').glob('intel-rapl:*/energy_uj'):
  if energy.parent.name.count(':')!=1:continue
  rapl.append((energy,int(read(energy.parent/'max_energy_range_uj'))))
 def energy():return {str(path):int(read(path)) for path,_ in rapl}
-def write(path,value):Path(path).write_text(str(value))
+def write(path,value):
+ for attempt in range(40):
+  try:Path(path).write_text(str(value));return
+  except OSError as error:
+   if error.errno!=errno.EBUSY or attempt==39:raise
+   time.sleep(.25)
 index=None;owned=False
 try:
  save(source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),kernel=platform.release(),started=time.time())
@@ -46,6 +53,7 @@ try:
   if device.exists():break
   time.sleep(.05)
  assert device.exists()
+ subprocess.run(['udevadm','settle','--timeout=10'],check=True)
  available=read(sys/'comp_algorithm').replace('[','').replace(']','').split()
  assert all(algorithm in available for algorithm in a.algorithms),(a.algorithms,available)
  save(device=str(device))
@@ -53,9 +61,20 @@ try:
  def fio(label,options,measure=False,profile=False):
   command=base+options
   if profile:command=['perf','record','-q','-g','-F','199','-e','cycles:k','-o',str(a.output/(label+'.perf.data')),'--']+command
-  before=snapshot();ebefore=energy();start=time.monotonic_ns()
-  with (a.output/(label+'.json')).open('w') as output,(a.output/(label+'.stderr')).open('w') as error:
-   subprocess.run(command,stdout=output,stderr=error,check=True)
+  if measure and a.counters:
+   command=['perf','stat','-a','-C','0','-x,','--no-big-num','-e','cycles,instructions,msr/aperf/,msr/mperf/','-o',str(a.output/(label+'.counters.csv')),'--']+command
+  before=snapshot();ebefore=energy();start=time.monotonic_ns();stop=threading.Event()
+  def sample():
+   with (a.output/(label+'.telemetry-private.jsonl')).open('w',buffering=1) as log:
+    while not stop.is_set():log.write(json.dumps(snapshot())+'\n');stop.wait(.5)
+  sampler=None
+  if measure and a.telemetry:sampler=threading.Thread(target=sample,daemon=True);sampler.start()
+  try:
+   with (a.output/(label+'.json')).open('w') as output,(a.output/(label+'.stderr')).open('w') as error:
+    subprocess.run(command,stdout=output,stderr=error,check=True)
+  finally:
+   stop.set()
+   if sampler:sampler.join(timeout=3)
   elapsed=time.monotonic_ns()-start;eafter=energy();after=snapshot()
   data=json.loads((a.output/(label+'.json')).read_text());assert all(job['error']==0 for job in data['jobs'])
   if measure:
@@ -78,6 +97,10 @@ try:
    fio(label+'-profile',['--rw=randread','--time_based=1','--runtime=3','--readonly'],profile=True)
    report=subprocess.check_output(['perf','report','--stdio','--no-children','--sort','symbol','--percent-limit','1','-i',str(a.output/(label+'-profile.perf.data'))],text=True,stderr=subprocess.STDOUT)
    (a.output/(label+'-profile.txt')).write_text(report)
+   fio(label+'-write-profile',['--rw=randwrite','--time_based=1','--runtime=3','--verify=crc32c','--do_verify=0'],profile=True)
+   report=subprocess.check_output(['perf','report','--stdio','--no-children','--sort','symbol','--percent-limit','1','-i',str(a.output/(label+'-write-profile.perf.data'))],text=True,stderr=subprocess.STDOUT)
+   (a.output/(label+'-write-profile.txt')).write_text(report)
+   fio(label+'-profile-verify',['--rw=read','--verify=crc32c','--verify_only=1'])
  save(status='complete',finished=time.time())
 except BaseException as error:
  save(status='failed',error=repr(error),finished=time.time());raise

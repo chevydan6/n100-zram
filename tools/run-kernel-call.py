@@ -42,7 +42,11 @@ try:
   with (a.output/(label+'.csv.tmp')).open('w') as output,(a.output/(label+'.stderr')).open('w') as error:
    subprocess.run([str(a.binary),'/dev/n100-lz4-bench'],stdout=output,stderr=error,check=True)
   rows=list(csv.DictReader((a.output/(label+'.csv.tmp')).open()))
-  assert len(rows)==648 and len({r['corpus'] for r in rows})==6 and len({r['state'] for r in rows})==3
+  corpora={r['corpus'] for r in rows}
+  assert len(corpora) in [6,8] and len(rows)==len(corpora)*108
+  assert {r['state'] for r in rows}=={'clean','sse-dirty','ymm-dirty'}
+  assert {int(r['operation']) for r in rows}==set(range(4)) and {int(r['round']) for r in rows}==set(range(9))
+  assert len({(r['corpus'],r['round'],r['state'],r['operation']) for r in rows})==len(rows)
   (a.output/(label+'.csv.tmp')).replace(a.output/(label+'.csv'))
   state['completed'].append(label);save()
  save(status='unloading',after=metadata(),current=None)

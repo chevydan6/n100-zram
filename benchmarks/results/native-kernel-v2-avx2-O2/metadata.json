@@ -1,0 +1,36 @@
+{
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "module_sha256": "33a5d4d9b311fcbdc80785590cc50a47da96b6f4cdccdf4efdabecc0e10dab6c",
+  "binary_sha256": "2ec59cdc5aea28639ecad51f984cab6c85fd6609bfb558acc72c36d9814f1541",
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3305772",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2901851",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3244979",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2914525",
+    "/sys/class/thermal/thermal_zone2/temp": "26850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "40000",
+    "/sys/class/thermal/thermal_zone3/temp": "30850",
+    "/sys/class/thermal/thermal_zone1/temp": "35850",
+    "/sys/class/thermal/thermal_zone6/temp": "39000",
+    "/sys/class/thermal/thermal_zone4/temp": "39000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3399977",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3394182",
+    "/sys/class/thermal/thermal_zone2/temp": "27850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "42000",
+    "/sys/class/thermal/thermal_zone3/temp": "32850",
+    "/sys/class/thermal/thermal_zone1/temp": "37850",
+    "/sys/class/thermal/thermal_zone6/temp": "40000",
+    "/sys/class/thermal/thermal_zone4/temp": "40000"
+  },
+  "completed": [
+    "session-0",
+    "session-1",
+    "session-2"
+  ]
+}

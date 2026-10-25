@@ -9,6 +9,7 @@ from codec_experiments import add_runfill,add_rep8,add_matchrep8,add_branchrep8
 root=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--variant',choices=['avx2-guard','sse-guard','scalar-control','scalar-fpu','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'],default='avx2-guard')
+p.add_argument('--optimization',choices=['O2','O3'],default='O3')
 p.add_argument('--output',type=Path,default=root/'build/kernel')
 a=p.parse_args();dest=a.output;dest.mkdir(parents=True,exist_ok=True)
 for p in (root/'kernel').iterdir():
@@ -48,7 +49,7 @@ assert '_mm' not in defs
 (dest/'lz4defs.h').write_text(defs)
 make=(dest/'Makefile').read_text()
 flags='-msse2 -mno-avx' if a.variant=='sse-guard' else '-mno-sse -mno-mmx -mno-avx' if a.variant.startswith('scalar-') else '-mavx2'
-(dest/'Makefile').write_text(make.replace('-mavx2',flags))
+(dest/'Makefile').write_text(make.replace('-mavx2',flags).replace('-O3','-'+a.optimization))
 if a.variant in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8']:
     dispatch=(dest/'dispatch.c').read_text().replace(' kernel_fpu_begin();','').replace(' kernel_fpu_end();','')
     (dest/'dispatch.c').write_text(dispatch)
@@ -70,5 +71,5 @@ int n100_lz4_decompress(const char *src,char *dst,int size,int capacity)
 EXPORT_SYMBOL_GPL(n100_lz4_decompress);
 """
     (dest/'dispatch.c').write_text(dispatch)
-(dest/'experiment.json').write_text(json.dumps({'variant':a.variant,'fpu_bracket':a.variant not in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'],'purpose':'diagnostic probe; optional ZRAM patch remains AVX2-guard'},indent=2)+'\n')
+(dest/'experiment.json').write_text(json.dumps({'variant':a.variant,'optimization':a.optimization,'fpu_bracket':a.variant not in ['scalar-control','scalar-runfill','scalar-rep8','scalar-matchrep8','scalar-selectrep8','scalar-branchrep8'],'purpose':'diagnostic probe; optional ZRAM patch remains AVX2-guard'},indent=2)+'\n')
 print(dest)

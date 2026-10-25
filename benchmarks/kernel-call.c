@@ -48,6 +48,15 @@ static int check_state(int fd,unsigned long command)
 }
 static void fill(unsigned char *input,int kind)
 {
+ if(kind>=6){
+  for(unsigned p=0;p<N100_BENCH_PAGES;p++){
+   unsigned page=(p*1543U)%(196608U);uint32_t r=page+100;
+   uint32_t *words=(uint32_t *)(input+p*BLOCK);
+   for(int i=0;i<512;i++){r^=r<<13;r^=r>>17;r^=r<<5;words[i]=r;}
+   for(int i=512;i<1024;i++)words[i]=(i%(kind==6?16:127))*37+page;
+  }
+  return;
+ }
  if(kind==4){FILE*f=fopen("/usr/bin/bash","rb");if(!f||fread(input,1,N100_BENCH_PAGES*BLOCK,f)!=N100_BENCH_PAGES*BLOCK){perror("corpus");exit(3);}fclose(f);return;}
  for(int p=0;p<N100_BENCH_PAGES;p++)for(int i=0;i<BLOCK;i++){
   uint32_t value;
@@ -69,11 +78,11 @@ int main(int argc,char **argv)
  unsigned char *input=malloc(bytes),*mirror=malloc(bytes);if(!input||!mirror)return 6;
  struct perf_event_attr attr={.type=PERF_TYPE_HARDWARE,.size=sizeof(attr),.config=PERF_COUNT_HW_CPU_CYCLES,.exclude_hv=1};
  int counter=syscall(SYS_perf_event_open,&attr,0,-1,-1,0);if(counter<0)perror("cycles counter");
- const char *names[]={"random","sparse","period127","mixed","bash-elf","halfzero"};
+ const char *names[]={"random","sparse","period127","mixed","bash-elf","halfzero","word-tail64","word-tail508"};
  const char *states[]={"clean","sse-dirty","ymm-dirty"};
  unsigned long commands[]={N100_BENCH_COMP_SCALAR,N100_BENCH_COMP_SIMD,N100_BENCH_DEC_SCALAR,N100_BENCH_DEC_SIMD};
  puts("corpus,round,state,operation,ns_per_page,core_cycles_per_page");
- for(int kind=0;kind<6;kind++){
+ for(int kind=0;kind<8;kind++){
   fill(input,kind);
   if(write(fd,input,bytes)!=(ssize_t)bytes || ioctl(fd,N100_BENCH_VALIDATE)<0){perror("prepare/validate");return 7;}
   for(int round=-1;round<9;round++){

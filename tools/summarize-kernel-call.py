@@ -8,10 +8,10 @@ assert not a.output.exists(),'Preserve existing results';a.output.mkdir(parents=
 checkpoint=json.loads((a.input/'checkpoint.json').read_text());assert checkpoint['status']=='complete'
 rows=[]
 for f in sorted(a.input.glob('session-*.csv')):
- data=list(csv.DictReader(f.open()));assert len(data)==648
+ data=list(csv.DictReader(f.open()));assert len({r['corpus'] for r in data}) in [6,8] and len(data)==108*len({r['corpus'] for r in data})
  for row in data:row['session']=f.stem;rows.append(row)
  shutil.copy2(f,a.output/f.name)
-assert len(rows)==1944
+assert len(rows)==324*len({r['corpus'] for r in rows})
 meta={k:checkpoint[k] for k in ['kernel','module_sha256','binary_sha256','before','after','completed']}
 # Do not publish wall-clock timestamps or raw kernel messages.
 for name in ['before','after']:meta[name].pop('time',None)
