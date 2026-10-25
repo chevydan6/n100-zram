@@ -56,3 +56,20 @@ python3 adaptive/run-components.py --module /absolute/probe.ko --validated-sha25
 Run only under the shared native benchmark lock and preserve the exact module
 hash, helper hash and complete row matrix. No batching performance claim is
 accepted before measurements on the physical N100.
+
+## First physical N100 batching result
+
+native-component-batches-001 completed all 15 session/configuration batches.
+All PMU groups were fully scheduled, RAPL was available, checks passed and the
+probe was unloaded. For YMM-dirty equal 4 KiB comparisons, AVX2 was 63.2% slower
+than scalar at one operation per entry, 4.3% slower at four, 21.8% faster at eight
+and 33.5% faster at sixteen. The matched FPU-scalar delta was approximately
+429–441 ns per ioctl for these comparisons; division over sixteen operations
+reduces its effective share to about 27 ns per operation. This demonstrates
+amortization in this probe, not removal of required state protection.
+
+Literal and repeat-eight copies still lost to scalar at sixteen operations
+(about 18.5% and 20.9% respectively). More batching does not make every vector
+primitive profitable. The next refinement tests counts 4/5/6/7/8 in the same
+validated module, with scalar and FPU-scalar controls retained. Neither result
+constitutes a whole-codec or native ZRAM batching improvement.

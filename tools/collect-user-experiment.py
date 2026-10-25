@@ -26,7 +26,8 @@ subprocess.run(['scp','-q',a.host+':'+a.remote+'/checkpoint.json',str(a.private/
 state=json.loads((a.private/'checkpoint.json').read_text());assert state['status']=='complete'
 names=['validation.log','telemetry.jsonl']
 if a.kind=='component-batches':
- expected={f'batch-{b}-session-{s}' for b in [1,2,4,8,16] for s in range(3)}
+ assert state['batches'] and len(state['batches'])==len(set(state['batches'])) and all(type(b) is int and 1<=b<=16 for b in state['batches'])
+ expected={f'batch-{b}-session-{s}' for b in state['batches'] for s in range(3)}
  assert set(state['completed'])==expected
  names += [name+'.csv' for name in sorted(expected)]
 else:names += ['session-0.csv','session-1.csv','session-2.csv']

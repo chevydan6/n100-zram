@@ -5,7 +5,7 @@ import argparse,re,stat,subprocess,json,hashlib,random,shutil
 from pathlib import Path
 p=argparse.ArgumentParser()
 for name in ['kernel','probe','zram','lz4hc','output']:p.add_argument('--'+name,type=Path,required=True)
-p.add_argument('--component-batches',action='store_true');p.add_argument('--component',type=Path);p.add_argument('--component-only',action='store_true');p.add_argument('--component-helper',type=Path)
+p.add_argument('--component-batch-counts',nargs='+',type=int,choices=range(1,17),default=[1,2,4,8,16]);p.add_argument('--component-batches',action='store_true');p.add_argument('--component',type=Path);p.add_argument('--component-only',action='store_true');p.add_argument('--component-helper',type=Path)
 p.add_argument('--probe-only',action='store_true')
 p.add_argument('--lz4',type=Path)
 p.add_argument('--algorithms',nargs='+',default=['lz4','lz4-n100'])
@@ -87,7 +87,7 @@ fi
 rmmod n100_lz4_probe || fail''')
 if a.component:
  component='insmod /component.ko || fail\n/component-helper /dev/n100-component-bench --validate-only || fail\nrmmod n100_component_probe || fail\necho N100_COMPONENT_VM_PASS\n'
- if a.component_batches:component=component.replace('rmmod n100_component_probe', 'for batch in 1 2 4 8 16; do N100_COMPONENT_BATCH=$batch N100_COMPONENT_PAGE_ONLY=1 /component-helper /dev/n100-component-bench --validate-only || fail; done\nrmmod n100_component_probe')
+ if a.component_batches:component=component.replace('rmmod n100_component_probe', 'for batch in '+' '.join(map(str,a.component_batch_counts))+'; do N100_COMPONENT_BATCH=$batch N100_COMPONENT_PAGE_ONLY=1 /component-helper /dev/n100-component-bench --validate-only || fail; done\nrmmod n100_component_probe')
  if a.component_only:
   init=init[:init.index('insmod /probe.ko')]+component+'echo N100_ZRAM_VM_PASS\npoweroff -f\n'
  else:init=init.replace('insmod /lz4hc.ko',component+'insmod /lz4hc.ko')

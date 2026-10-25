@@ -4,7 +4,7 @@
 import argparse,csv,json,random,shutil,statistics
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--input',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
-s=json.loads((a.input/'checkpoint.json').read_text());assert s['status']=='complete' and s['probe_unloaded'] is True and len(s['completed'])==15 and s['batches']==[1,2,4,8,16] and s['page_only']
+s=json.loads((a.input/'checkpoint.json').read_text());assert s['status']=='complete' and s['probe_unloaded'] is True and len(s['completed'])==3*len(s['batches']) and len(s['batches'])==len(set(s['batches'])) and all(type(b) is int and 1<=b<=16 for b in s['batches']) and s['page_only']
 assert not a.output.exists();a.output.mkdir(parents=True);rows=[]
 for session in s['completed']:
  path=a.input/(session+'.csv');data=list(csv.DictReader(path.open()));assert len(data)==360 and len({(r['bytes'],r['operation'],r['pattern'],r['round'],r['state'],r['variant']) for r in data})==360
@@ -22,7 +22,7 @@ if samples:
 (a.output/'telemetry.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in samples))
 lines=['# Physical N100 independent-operation SIMD amortization experiment','',s['scope']+'.',
 'Three sessions per operation count; five shuffled recorded rounds plus one warm-up; 2,048 ioctl calls per timing batch.',
-'Independent 4 KiB operations, counts 1/2/4/8/16; six operation/pattern configurations and three caller-state fixtures.',
+'Independent 4 KiB operations, counts '+str(s['batches'])+'; six operation/pattern configurations and three caller-state fixtures.',
 'All sixteen YMM sentinels checked before every batch; kernel verification and canaries',
 'checked after each batch; nested kernel-FPU sections selected scalar fallback.',
 'Probe unloaded successfully. No ZRAM compressor or boot default was replaced.',

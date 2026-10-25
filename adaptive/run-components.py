@@ -3,7 +3,7 @@
 """Root-only bounded kernel component experiment; no ZRAM registration or replacement."""
 import argparse,csv,hashlib,json,os,platform,random,signal,subprocess,threading,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--batches',nargs='+',type=int,choices=[1,2,4,8,16]);p.add_argument('--page-only',action='store_true');p.add_argument('--module',type=Path,required=True);p.add_argument('--validated-sha256',required=True);p.add_argument('--helper',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--batches',nargs='+',type=int,choices=range(1,17));p.add_argument('--page-only',action='store_true');p.add_argument('--module',type=Path,required=True);p.add_argument('--validated-sha256',required=True);p.add_argument('--helper',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
 assert os.geteuid()==0 and not a.output.exists();os.sched_setaffinity(0,{1})
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def out(args):return subprocess.check_output(args,text=True).strip()
