@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-only
 """Hold the project native lock while observing a persistent root test service."""
-import argparse,fcntl,subprocess,time
+import argparse,fcntl,subprocess,time,shlex
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--host',required=True);p.add_argument('--unit',required=True);p.add_argument('--lock',type=Path,required=True);p.add_argument('--timeout-seconds',type=int,default=1200);a=p.parse_args();assert 60<=a.timeout_seconds<=7200
+p=argparse.ArgumentParser();p.add_argument('--host',required=True);p.add_argument('--unit',required=True);p.add_argument('--lock',type=Path,required=True);p.add_argument('--timeout-seconds',type=int,default=1200);p.add_argument('--ready-file',type=Path);p.add_argument('--after',nargs=argparse.REMAINDER);a=p.parse_args();assert 60<=a.timeout_seconds<=7200
 with a.lock.open('r') as lock:
  deadline=time.monotonic()+a.timeout_seconds
  while True:
@@ -11,7 +11,13 @@ with a.lock.open('r') as lock:
   except BlockingIOError:
    if time.monotonic()>deadline:raise SystemExit('Native lock stayed busy until deadline')
    time.sleep(2)
- print('LOCK_ACQUIRED',flush=True);started=False;previous=None
+ print('LOCK_ACQUIRED',flush=True)
+ if a.ready_file:
+  assert a.ready_file.is_absolute()
+  for command in [['mkdir','-p',str(a.ready_file.parent)],['touch','--',str(a.ready_file)]]:
+   subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=10',a.host,shlex.join(command)],check=True)
+  print('READY_TRIGGER_WRITTEN',flush=True)
+ started=False;previous=None
  deadline=time.monotonic()+a.timeout_seconds
  failures=0
  while time.monotonic()<deadline:
@@ -25,6 +31,10 @@ with a.lock.open('r') as lock:
   current=(props.get('ActiveState'),props.get('SubState'))
   if current!=previous:print(result.stdout,flush=True);previous=current
   if started and props.get('LoadState')=='not-found':raise SystemExit('Observed unit vanished; possible reboot. Inspect boot ID and checkpoint before resuming')
-  if started and (props.get('SubState')=='exited' or props.get('ActiveState') in ['failed','inactive']):raise SystemExit(int(props.get('ExecMainStatus','1')))
+  if started and (props.get('SubState')=='exited' or props.get('ActiveState') in ['failed','inactive']):
+   status=int(props.get('ExecMainStatus','1'))
+   if status==0 and a.after:
+    print('COLLECTING_UNDER_HARDWARE_LOCK',flush=True);subprocess.run(a.after,check=True)
+   raise SystemExit(status)
   time.sleep(2)
  raise SystemExit('Observation deadline reached; inspect persistent unit before resuming')
