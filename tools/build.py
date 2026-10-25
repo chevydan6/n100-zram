@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: GPL-2.0-only
 """Generate isolated variants; never modify the reference kernel sources."""
 from pathlib import Path
-import subprocess, shutil, os, shlex
+import subprocess, shutil, os, shlex, argparse
+p=argparse.ArgumentParser();p.add_argument("--variants",nargs="+",choices=["scalar","avx2-guard"]);a=p.parse_args()
 from codec_experiments import add_runfill,add_rep8,add_matchrep8,add_branchrep8
 root=Path(__file__).resolve().parents[1]
 out=Path(os.environ.get('BUILD_ROOT',root/'build')); out.mkdir(parents=True,exist_ok=True)
 for name,width,copy in [('scalar',0,False),('scalar-runfill',0,False),('scalar-rep8',0,False),('scalar-matchrep8',0,False),('scalar-branchrep8',0,False),('sse',16,True),('avx2',32,True),('avx2-count',32,False),('avx2-guard',32,True),('sse-guard',16,True),('avx2-copy',32,True),('avx2-guard16',32,True),('avx2-guard32',32,True),('scalar-unroll',0,False),('scalar-gracemont',0,False),('avx2-guard-gracemont',32,True),('avx2-guard16-gracemont',32,True),('sse-guard-gracemont',16,True),('avx2-guard-overlap',32,True),('avx2-copy-overlap',32,True)]:
+    if a.variants and name not in a.variants: continue
     dest=out/name; dest.mkdir(exist_ok=True)
     for f in (root/'src/kernel-lz4').iterdir(): shutil.copy2(f,dest/f.name)
     if name=='scalar-runfill':

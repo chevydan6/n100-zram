@@ -108,3 +108,11 @@ Latest O2 controls and initialized-workspace reuse prototypes are experimental.
 Correction: the kernel LZ4 Makefile explicitly selects -O3 even when global
 kernel configuration selects -O2. O2 probes are alternative-codegen experiments,
 not stock-matched optimization controls. No broad native gain is established.
+
+### Smaller-table experiment preparation
+
+Added private 4 KiB full-reset compression variants with 8, 4 and 2 KiB hash
+arrays, retaining standard LZ4 block compatibility and the baseline decoder.
+The benchmark permits changed compressed encodings only in this explicit mode,
+checks independent baseline decoding and preserves measured compressed sizes.
+No performance or compression-ratio improvement is claimed before native runs.

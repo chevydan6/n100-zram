@@ -62,9 +62,12 @@ int main(int argc,char **argv) {
  if(cycles_fd<0)perror("User-only core cycle counter unavailable");
  const char *ordinary_names[]={"scalar","sse","avx2","avx2-count","avx2-guard","sse-guard","avx2-copy","avx2-guard16","avx2-guard32","scalar-unroll","scalar-gracemont","avx2-guard-gracemont","avx2-guard16-gracemont","sse-guard-gracemont","avx2-guard-overlap","avx2-copy-overlap"};
  const char *reuse_names[]={"scalar","avx2-guard","reset4k-scalar","reset4k-avx2","reuse-scalar","reuse-avx2","reuse32-scalar","reuse32-avx2"};
- int reuse=getenv("N100_REUSE_EXPERIMENT")!=NULL;
- const char **names=reuse?reuse_names:ordinary_names;
+ const char *table_names[]={"scalar","avx2-guard","table13-scalar","table13-avx2","table12-scalar","table12-avx2","table11-scalar","table11-avx2"};
+ int table=getenv("N100_SMALL_TABLE_EXPERIMENT")!=NULL;
+ int reuse=table || getenv("N100_REUSE_EXPERIMENT")!=NULL;
+ const char **names=table?table_names:reuse?reuse_names:ordinary_names;
  int N=reuse?8:sizeof(ordinary_names)/sizeof(ordinary_names[0]);struct codec codecs[N];
+ int variant_sizes[N][PAGES];long variant_total[N];
  void *shared_work=calloc(1,32768);if(!shared_work)return 7;
  for(int i=0;i<N;i++){char path[4096];snprintf(path,sizeof(path),"%s/%s.so",argv[1],names[i]);
   codecs[i]=(struct codec){.name=names[i],.handle=dlopen(path,RTLD_NOW|RTLD_LOCAL)};
@@ -89,16 +92,26 @@ int main(int argc,char **argv) {
   for(int j=0;j<N;j++)for(int p=0;p<PAGES;p++){
    unsigned char check[4352];
    int got=codecs[j].compress(input[p],check,SIZE,4352,codecs[j].work);
-   if(got!=sizes[p] || memcmp(check,packed[p],got))return 13;
-   got=codecs[j].decompress(check,output,sizes[p],SIZE);
+   if(got<=0 || (!table && (got!=sizes[p] || memcmp(check,packed[p],got))))return 13;
+   variant_sizes[j][p]=got;
+   int decoded=codecs[0].decompress(check,output,got,SIZE);
+   if(decoded!=SIZE || memcmp(output,input[p],SIZE))return 17;
+   got=codecs[j].decompress(check,output,got,SIZE);
    if(got!=SIZE || memcmp(output,input[p],SIZE))return 14;
   }
+  for(int j=0;j<N;j++){variant_total[j]=0;for(int p=0;p<PAGES;p++)variant_total[j]+=variant_sizes[j][p];}
   fprintf(stderr,"Corpus round trips passed: %s, %d variants, %d pages\n",kinds[kind],N,PAGES);
   for(int round=-2;round<21;round++){
    int order[N];for(int j=0;j<N;j++)order[j]=j;for(int j=N-1;j>0;j--){int k=random32()%(j+1),tmp=order[j];order[j]=order[k];order[k]=tmp;}
    if(validate_only)continue;
    for(int j=0;j<N;j++){
     struct codec *codec=&codecs[order[j]];
+    if(table)for(int p=0;p<PAGES;p++) {
+     sizes[p]=variant_sizes[order[j]][p];
+     int got=codec->compress(input[p],expected_packed[p],SIZE,4352,codec->work);
+     if(got!=sizes[p])return 18;
+    }
+    if(table)total=variant_total[order[j]];
     uint64_t cstart=cycles(),start=now();
     for(int n=0;n<OPS;n++){int p=n%PAGES;int got=codec->compress(input[p],packed[p],SIZE,4352,codec->work);if(got!=sizes[p])return 9;}
     uint64_t comp=now()-start,cc=cycles()-cstart;
