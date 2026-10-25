@@ -1,0 +1,12 @@
+{"corpus":"period-tail-v1"}
+{"phase":"start","major_faults":0,"minor_faults":444,"user_us":2031,"system_us":4051,"max_rss_kib":21688}
+{"phase":"initial_fill","pages":196608,"elapsed_ns":1967603110}
+{"phase":"filled","major_faults":9,"minor_faults":197054,"user_us":332323,"system_us":665577,"max_rss_kib":328536}
+{"phase":"verify","pass":0,"pages":196608,"elapsed_ns":3403783458,"page_compare_p50_ns":3917,"page_compare_p95_ns":5192,"page_compare_p99_ns":19412}
+{"phase":"verified","major_faults":173155,"minor_faults":198287,"user_us":739446,"system_us":1978003,"max_rss_kib":328536}
+{"phase":"verify","pass":1,"pages":196608,"elapsed_ns":3674709822,"page_compare_p50_ns":3635,"page_compare_p95_ns":5341,"page_compare_p99_ns":417973}
+{"phase":"verified","major_faults":370282,"minor_faults":198670,"user_us":1129188,"system_us":3440568,"max_rss_kib":328536}
+{"phase":"verify","pass":2,"pages":196608,"elapsed_ns":3601118632,"page_compare_p50_ns":3585,"page_compare_p95_ns":5305,"page_compare_p99_ns":414667}
+{"phase":"verified","major_faults":567746,"minor_faults":198670,"user_us":1485044,"system_us":4904122,"max_rss_kib":328536}
+{"phase":"cgroup_health","memory_events":{"low":0,"high":5819,"max":0,"oom":0,"oom_kill":0,"oom_group_kill":0,"sock_throttled":0},"memory.peak":335806464,"memory.swap.peak":483778560}
+{"status":"passed"}
