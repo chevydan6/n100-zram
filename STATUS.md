@@ -283,3 +283,14 @@ established. Period-tail whole-job package energy fell 3.19% (-3.24 to -1.97%);
 mixed-page energy is inconclusive. Retain all trials and frequency/background
 variability. This is controlled CPU contention, not interactive responsiveness.
 See native-scalar-app-pressure-003/analysis.md and its complete raw results.
+
+## Fixed observation-window analysis completed
+
+The 20 repeated fixed-30-second trials passed data/register checks and stock
+restoration. The 8 KiB candidate reduced pressure completion by 3.74% on mixed
+pages (95% paired bootstrap -6.04 to -1.53%) and 2.54% on period-tail (-2.94 to
+-0.89%). Application-throughput changes remain inconclusive: +2.08% (-0.10 to
++4.44%) and +0.68% (-0.14 to +1.06%). Package energy also has no clear reduction.
+These are fixed-window controlled-contention results, not general responsiveness
+or whole-laptop energy. Reproducible analysis and every raw trial remain in
+native-scalar-app-window-002. GZRAM hybrid research continues on its own branches.

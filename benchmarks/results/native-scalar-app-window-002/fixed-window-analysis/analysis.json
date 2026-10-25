@@ -1,0 +1,72 @@
+{
+  "scope": "physical N100 fixed-window CPU contention",
+  "window_ns": 30000000000,
+  "rows": [
+    {
+      "corpus": "mixed-pages",
+      "metric": "pressure completion",
+      "paired_change_percent": -3.743254179248734,
+      "bootstrap_95_percent": [
+        -6.044641152745466,
+        -1.5324698039945739
+      ],
+      "baseline_median": 14551430785,
+      "candidate_median": 14006733744
+    },
+    {
+      "corpus": "mixed-pages",
+      "metric": "application throughput",
+      "paired_change_percent": 2.082610204789992,
+      "bootstrap_95_percent": [
+        -0.10351966873707319,
+        4.435906391896616
+      ],
+      "baseline_median": 1.6111719765333334,
+      "candidate_median": 1.6447264085333333
+    },
+    {
+      "corpus": "mixed-pages",
+      "metric": "package energy",
+      "paired_change_percent": 2.0362959251960744,
+      "bootstrap_95_percent": [
+        -0.17366765737238943,
+        6.499053592098369
+      ],
+      "baseline_median": 180224087,
+      "candidate_median": 183815325
+    },
+    {
+      "corpus": "period-tail",
+      "metric": "pressure completion",
+      "paired_change_percent": -2.54264255450547,
+      "bootstrap_95_percent": [
+        -2.9418075212293338,
+        -0.8905976545051097
+      ],
+      "baseline_median": 13909067846,
+      "candidate_median": 13560219780
+    },
+    {
+      "corpus": "period-tail",
+      "metric": "application throughput",
+      "paired_change_percent": 0.6835269993164861,
+      "bootstrap_95_percent": [
+        -0.13633265167007913,
+        1.0572987721691796
+      ],
+      "baseline_median": 1.6363378005333333,
+      "candidate_median": 1.6475226112
+    },
+    {
+      "corpus": "period-tail",
+      "metric": "package energy",
+      "paired_change_percent": 0.00541719060811463,
+      "bootstrap_95_percent": [
+        -0.122293327472911,
+        0.3377470774424518
+      ],
+      "baseline_median": 180300930,
+      "candidate_median": 180324367
+    }
+  ]
+}
