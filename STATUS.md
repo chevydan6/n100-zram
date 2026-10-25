@@ -257,3 +257,20 @@ alone. No performance improvement or kernel integration is claimed before that r
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-hybrid-screen-001/summary.md](benchmarks/results/native-gzram-hybrid-screen-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+## First native GHY1 screen completed
+
+Three physical N100 sessions completed all 19 selected variants and 11 corpora,
+with guard/cross-policy/native byte checks; PMU groups were fully scheduled and
+package energy measured. The trial hybrid retains the half-zero AVX2 fast path
+within about +0.74% encoding time while adding eight framing bytes. Its simple
+acceptance rule still misses the excellent LZ4 ratio on mixed repeated-prefix
+pages. Recurrence classification fixes those ratios but costs about +67.9% on
+half-zero encoding versus original GZRAM. No policy is preferred overall.
+All cases and losses are preserved in native-gzram-hybrid-screen-001, with
+hybrid-contrasts.md/json and the reproducible analysis helper.
+
+Development continues in the isolated feature/n100-gzram-guarded-trial branch:
+accept strongly compressed pages directly, then use scalar/SSE/AVX2 anchored
+prefix checks only for middling ratios. This leaves the completed first screen
+unchanged. It remains userspace codec research; kernel SIMD costs are separate.
