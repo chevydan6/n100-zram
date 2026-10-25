@@ -1,0 +1,709 @@
+{
+  "scope": "Combined user-space whole-codec screening; not kernel/component crossover thresholds",
+  "libraries": {
+    "scalar.so": "3862d401e7712b45eaa3c14467ad3e25fc36b3f7f35c5c9791b6bee3878f9211",
+    "sse.so": "880188082ad4366929890baa31622ccfae18d768538eaeac5174889e176a2969",
+    "avx2.so": "a38d1f1c44a731862e76968b65aab1c1e249dd5f2f677e2805cc0d88259236f8"
+  },
+  "points": [
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 16,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 16,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 16,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 32,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 32,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 32,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 40,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 40,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 40,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 48,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 48,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 48,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 56,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 56,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 56,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 64,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 64,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 64,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 128,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 128,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 128,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 256,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 256,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 256,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 320,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 320,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 320,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 384,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 384,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 384,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 448,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 448,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 448,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 512,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 512,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 512,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1024,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1024,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1024,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1280,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1280,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1280,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1536,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1536,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1536,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1792,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1792,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 1792,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 2048,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 2048,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 2048,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 4096,
+      "corpus": "moderate",
+      "operation": "decompress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 4096,
+      "corpus": "periodic",
+      "operation": "decompress",
+      "winner": "unresolved"
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "operation": "compress",
+      "winner": "avx2"
+    },
+    {
+      "bytes": 4096,
+      "corpus": "random",
+      "operation": "decompress",
+      "winner": "unresolved"
+    }
+  ],
+  "screening_transitions": [
+    {
+      "corpus": "moderate",
+      "operation": "compress",
+      "lower_bytes": 56,
+      "upper_bytes": 64,
+      "lower_screening_winner": "unresolved",
+      "upper_screening_winner": "avx2"
+    },
+    {
+      "corpus": "moderate",
+      "operation": "decompress",
+      "lower_bytes": 48,
+      "upper_bytes": 56,
+      "lower_screening_winner": "unresolved",
+      "upper_screening_winner": "avx2"
+    },
+    {
+      "corpus": "moderate",
+      "operation": "decompress",
+      "lower_bytes": 56,
+      "upper_bytes": 64,
+      "lower_screening_winner": "avx2",
+      "upper_screening_winner": "unresolved"
+    },
+    {
+      "corpus": "moderate",
+      "operation": "decompress",
+      "lower_bytes": 1536,
+      "upper_bytes": 1792,
+      "lower_screening_winner": "unresolved",
+      "upper_screening_winner": "avx2"
+    },
+    {
+      "corpus": "periodic",
+      "operation": "compress",
+      "lower_bytes": 384,
+      "upper_bytes": 448,
+      "lower_screening_winner": "unresolved",
+      "upper_screening_winner": "avx2"
+    },
+    {
+      "corpus": "random",
+      "operation": "compress",
+      "lower_bytes": 56,
+      "upper_bytes": 64,
+      "lower_screening_winner": "unresolved",
+      "upper_screening_winner": "avx2"
+    }
+  ],
+  "kernel_policy_selected": false
+}

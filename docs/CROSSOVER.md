@@ -41,3 +41,11 @@ from compiler code layout rather than executed SIMD instructions; profiles and
 assembly inspection are required. "Scalar" here means scalar codec translation
 units; shared userspace libc memcpy/memset may themselves use SIMD. These
 measurements cannot predict kernel memory primitives or state-management cost.
+
+Refined native sessions are retained in benchmarks/results/native-crossover-refine-003.
+Use tools/combine-crossover.py to combine initial/refined points only when all
+three codec library hashes match. Combined nearest-neighbor screening transitions
+are in benchmarks/results/crossover-combined-screening.json. An unresolved-to-AVX2
+transition does not prove an architectural SIMD threshold: code layout and libc
+paths can differ even when the explicit vector loop does not execute. Native
+kernel-context and component measurements remain required before hybrid selection.
