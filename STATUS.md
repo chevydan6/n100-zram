@@ -220,3 +220,17 @@ batching. GZRAM v1 has native userspace results, including severe ratio losses o
 unrecognized periodic data; it is not a native kernel backend or general winner.
 A faster scalar GZRAM scanner is being compared with preserved original/AVX2
 paths. All tracks retain separate branches and share the N100 hardware lock.
+
+## Scalar 75% fixture follow-up
+
+Five shuffled trials per backend completed on the physical N100, with all CRC32C
+checks and verified stock restoration. Relative to the private 16 KiB control,
+the 8 KiB table improved write IOPS by 6.75% (95% paired bootstrap 4.67 to 11.76%)
+but reduced read IOPS by 1.08% (-2.13 to -0.36%). Whole-job package energy per
+write I/O fell 6.12% (-10.51 to -3.71%). The 4 KiB table retained a larger write
+gain and larger read loss. These synthetic results reject a regression-free
+claim for either smaller table. Existing scalar source and all experiments remain
+available; normal lzo-rle swap remains restored. Next: distinguish input/encoded
+stream differences from decoder/code-layout effects using identical page corpora,
+then evaluate competing application CPU availability under controlled pressure.
+Full data: benchmarks/results/native-scalar-mid8k-75pct-001/summary.md.
