@@ -175,3 +175,15 @@ python3 tests/reuse.py
 These prototypes expose a private initialized-workspace API for 4 KiB pages.
 They have not been integrated into ZRAM. User-space measurements exclude kernel
 FPU costs and cannot establish native swap improvements.
+
+Smaller full-reset hash-table experiments (different compressed bytes are
+permitted, standard LZ4 compatibility is required):
+
+```sh
+python3 tools/prepare-small-table.py
+python3 tests/small-table.py
+```
+
+The 8, 4 and 2 KiB arrays are private-ABI prototypes; changing hash-table size
+can affect compression ratio. Compare retained compressed-size measurements
+and fixed-page controls before considering any native kernel integration.

@@ -32,3 +32,21 @@ not a guarantee against every possible secret encoding.
 Existing negative results, failed experiments, complete published CSVs and
 recovery reports remain in history. Private raw diagnostic artifacts remain
 outside Git and should be exported only through a reviewed sanitizer.
+
+## Verification checkpoint
+
+The public GitHub main branch was cloned into a separate verification directory.
+All nine historical trees matched the recorded originals, and the initial
+independent main/feature CI runs passed. The standalone local checkout passed
+3,926 round-trip inputs, 20,000 malformed inputs across 20 variants, 158,300
+guard-page checks and 24,000 independent four-thread interoperability cases.
+The six workspace-reuse variants passed 443,568 guarded byte-identity cases,
+70,000 warm calls per variant and 24,000 independent concurrent decodes.
+
+The final historical audit at publication covered 461 unique file blobs with
+no flagged findings. The repository is public and has independent main and
+feature/n100-avx2-zram branches, issues, milestones and a correctness workflow.
+Private raw lab artifacts and the pre-extraction Git bundle remain preserved
+outside the repository. Existing Fedora build and dispatch services were still
+running after migration; no stop, restart or configuration operation was applied
+to them. The old Fedora ZRAM branch is retained for provenance, not active work.

@@ -16,3 +16,10 @@ jobs:
       - run: python3 tests/guard.py
       - run: python3 tests/interop.py
       - run: python3 tools/prepare-reuse.py && python3 tests/reuse.py
+      - run: python3 tools/prepare-small-table.py && python3 tests/small-table.py
+      - name: Check benchmark validation modes
+        run: |
+          gcc -O2 -Wall -Wextra -Werror benchmarks/native.c -ldl -o build/native
+          cp build/scalar.so build/avx2-guard.so build/small-table/
+          N100_SMALL_TABLE_EXPERIMENT=1 build/native build/small-table --validate-only
+      - run: python3 tools/audit-publication.py
