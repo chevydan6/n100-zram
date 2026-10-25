@@ -4,6 +4,7 @@
 from pathlib import Path
 import argparse,subprocess,os,json,time,random,hashlib,platform,errno,threading
 parser=argparse.ArgumentParser()
+parser.add_argument('--compress-percentage',type=int,choices=[0,25,50,75,100],default=50)
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4'])
 parser.add_argument('--seconds',type=int,default=5)
@@ -42,7 +43,7 @@ def write(path,value):
 index=None;owned=False
 try:
  save(source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),kernel=platform.release(),started=time.time())
- metadata={'kernel':platform.release(),'compiler':subprocess.check_output(['gcc','--version'],text=True),'fio':subprocess.check_output(['fio','--version'],text=True).strip(),'before':snapshot(),'recovery_policy':{name:read('/proc/sys/kernel/'+name) for name in ['panic','nmi_watchdog','hardlockup_panic','softlockup_panic']},'primary_swap':Path('/proc/swaps').read_text(),'zram_module_srcversion':read('/sys/module/zram/srcversion') if Path('/sys/module/zram/srcversion').exists() else None,'kernel_config_sha256':hashlib.sha256(Path('/boot/config-'+platform.release()).read_bytes()).hexdigest()}
+ metadata={'compress_percentage':a.compress_percentage,'size_mib':a.size_mib,'kernel':platform.release(),'compiler':subprocess.check_output(['gcc','--version'],text=True),'fio':subprocess.check_output(['fio','--version'],text=True).strip(),'before':snapshot(),'recovery_policy':{name:read('/proc/sys/kernel/'+name) for name in ['panic','nmi_watchdog','hardlockup_panic','softlockup_panic']},'primary_swap':Path('/proc/swaps').read_text(),'zram_module_srcversion':read('/sys/module/zram/srcversion') if Path('/sys/module/zram/srcversion').exists() else None,'kernel_config_sha256':hashlib.sha256(Path('/boot/config-'+platform.release()).read_bytes()).hexdigest()}
  (a.output/'environment-private.json').write_text(json.dumps(metadata,indent=2)+'\n')
  index=int(read('/sys/class/zram-control/hot_add'))
  sys=Path('/sys/block')/f'zram{index}';device=Path('/dev')/f'zram{index}'
@@ -57,7 +58,7 @@ try:
  available=read(sys/'comp_algorithm').replace('[','').replace(']','').split()
  assert all(algorithm in available for algorithm in a.algorithms),(a.algorithms,available)
  save(device=str(device))
- base=['fio','--name=n100-zram','--filename='+str(device),'--size='+str(a.size_mib)+'M','--bs=4k','--ioengine=psync','--direct=1','--numjobs=1','--thread=1','--cpus_allowed=0','--randseed=100','--randrepeat=1','--group_reporting=1','--eta=never','--output-format=json','--buffer_compress_percentage=50','--buffer_compress_chunk=4096','--refill_buffers=1']
+ base=['fio','--name=n100-zram','--filename='+str(device),'--size='+str(a.size_mib)+'M','--bs=4k','--ioengine=psync','--direct=1','--numjobs=1','--thread=1','--cpus_allowed=0','--randseed=100','--randrepeat=1','--group_reporting=1','--eta=never','--output-format=json','--buffer_compress_percentage='+str(a.compress_percentage),'--buffer_compress_chunk=4096','--refill_buffers=1']
  def fio(label,options,measure=False,profile=False):
   command=base+options
   if profile:command=['perf','record','-q','-g','-F','199','-e','cycles:k','-o',str(a.output/(label+'.perf.data')),'--']+command

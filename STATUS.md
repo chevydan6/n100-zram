@@ -189,3 +189,17 @@ intervals include zero; system CPU time was about 2% lower and package energy wa
 lower in this one experiment. See retained raw rows and paired-analysis.json.
 Do not treat these as general application responsiveness or production acceptance.
 A matched original-table-size kernel build is the next causal control.
+
+### Consolidated mission continuation
+
+Continue in independent chevydan6/n100-zram; the Fedora project remains separate.
+Track A retains feature/n100-avx2-zram for scalar continuity. Track B's AVX2 LZ4
+and crossover research remains on feature/n100-adaptive-simd-zram. Track C starts
+on feature/n100-gzram-avx2 with independent userspace format research; no native
+integration or performance claim is implied. All N100 benchmarks share one lock.
+
+The second matched scalar session completed and restored stock. Its write gain
+remained positive, but a slow original-table-control read trial inflated variability
+and energy intervals. Preserve it and investigate rather than silently excluding
+it. Next scalar comparison varies nominal compressibility with explicit metadata,
+starting at 25%, to test whether the write advantage generalizes beyond 50%.

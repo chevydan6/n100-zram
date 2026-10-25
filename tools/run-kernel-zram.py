@@ -3,7 +3,7 @@
 """Bounded native ZRAM comparison, restoring the installed stock module and swap."""
 from pathlib import Path
 import argparse,hashlib,json,lzma,os,platform,signal,subprocess,tempfile,time
-p=argparse.ArgumentParser();p.add_argument('--extended-metrics',action='store_true');p.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4','lz4-n100','lz4-rep8']);p.add_argument('--resume-pressure',type=Path);p.add_argument('--mode',choices=['io','pressure'],default='io');p.add_argument('--pressure-binary',type=Path);p.add_argument('--state-helper',type=Path);p.add_argument('--repeats',type=int,default=3);p.add_argument('--module',type=Path,required=True);p.add_argument('--validated-sha256',required=True);p.add_argument('--benchmark',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--compress-percentage',type=int,choices=[0,25,50,75,100],default=50);p.add_argument('--extended-metrics',action='store_true');p.add_argument('--algorithms',nargs='+',default=['lzo-rle','lz4','lz4-n100','lz4-rep8']);p.add_argument('--resume-pressure',type=Path);p.add_argument('--mode',choices=['io','pressure'],default='io');p.add_argument('--pressure-binary',type=Path);p.add_argument('--state-helper',type=Path);p.add_argument('--repeats',type=int,default=3);p.add_argument('--module',type=Path,required=True);p.add_argument('--validated-sha256',required=True);p.add_argument('--benchmark',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
 if os.geteuid()!=0:raise SystemExit('Root required')
 def out(args):return subprocess.check_output(args,text=True).strip()
 def run(args):subprocess.run(args,check=True)
@@ -78,7 +78,7 @@ try:
  assert all(name in available for name in a.algorithms),(a.algorithms,available)
  save(phase='benchmarking')
  if a.mode=='io':
-  run(['/usr/bin/python3',str(a.benchmark),'--output',str(a.output/'io'),'--algorithms',*a.algorithms,'--repeats','5','--seconds','5','--size-mib','64','--profile',*(['--counters','--telemetry'] if a.extended_metrics else [])])
+  run(['/usr/bin/python3',str(a.benchmark),'--output',str(a.output/'io'),'--algorithms',*a.algorithms,'--repeats','5','--seconds','5','--size-mib','64','--compress-percentage',str(a.compress_percentage),'--profile',*(['--counters','--telemetry'] if a.extended_metrics else [])])
   result=a.output/'io/checkpoint.json'
  else:
   pressure_output=a.resume_pressure or a.output/'pressure'

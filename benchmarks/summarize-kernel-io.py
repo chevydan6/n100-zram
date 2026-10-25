@@ -17,7 +17,7 @@ for path in sorted(a.input.glob('*-rand*.metrics.json')):
  # fio JSON refers only to the newly allocated synthetic device.
  (a.output/(label+'.fio.json')).write_text(json.dumps(data,indent=2)+'\n')
 for path in sorted(a.input.glob('*-verify.json')):
- data=json.loads(path.read_text());assert all(j['error']==0 and j['read']['io_bytes']==64*1024*1024 for j in data['jobs'])
+ data=json.loads(path.read_text());assert all(j['error']==0 and j['read']['io_bytes']==env.get('size_mib',64)*1024*1024 for j in data['jobs'])
 for path in sorted(a.input.glob('*-profile.txt')):
  profiles[path.stem]=[{'kernel_symbol':m.group(2),'self_percent':float(m.group(1))} for line in path.read_text().splitlines() if (m:=re.match(r'\s+(\d+\.\d+)%\s+\[k\]\s+(\S+)',line))]
 # Extended counters retain unavailable/not-counted indications. Strip wall-clock
@@ -32,7 +32,7 @@ for path in sorted(a.input.glob('*.telemetry-private.jsonl')):
  for sample in samples:
   row=conditions(sample);row['elapsed_seconds']=round(sample['time']-start,3);public.append(row)
  (a.output/path.name.replace('-private','')).write_text(''.join(json.dumps(row)+'\n' for row in public))
-metadata={'kernel':env['kernel'],'kernel_config_sha256':env['kernel_config_sha256'],'zram_module_srcversion':env['zram_module_srcversion'],'fio':env['fio'],'compiler':env['compiler'],'recovery_policy':env['recovery_policy'],'source_sha256':checkpoint['source_sha256'],'scope':'Physical N100, isolated synthetic ZRAM device, 64 MiB, 50% nominal compression, 4 KiB synchronous direct I/O, CPU 0','trials_per_algorithm':{name:len({r['trial'] for r in rows if r['algorithm']==name}) for name in sorted({r['algorithm'] for r in rows})},'before_conditions':conditions(env['before']),'crc32c_full_device_verification':'passed after every trial','rows':rows,'profiles':profiles}
+metadata={'kernel':env['kernel'],'kernel_config_sha256':env['kernel_config_sha256'],'zram_module_srcversion':env['zram_module_srcversion'],'fio':env['fio'],'compiler':env['compiler'],'recovery_policy':env['recovery_policy'],'source_sha256':checkpoint['source_sha256'],'compress_percentage':env.get('compress_percentage',50),'size_mib':env.get('size_mib',64),'scope':f"Physical N100, isolated synthetic ZRAM device, {env.get('size_mib',64)} MiB, {env.get('compress_percentage',50)}% nominal compression, 4 KiB synchronous direct I/O, CPU 0",'trials_per_algorithm':{name:len({r['trial'] for r in rows if r['algorithm']==name}) for name in sorted({r['algorithm'] for r in rows})},'before_conditions':conditions(env['before']),'crc32c_full_device_verification':'passed after every trial','rows':rows,'profiles':profiles}
 (a.output/'results.json').write_text(json.dumps(metadata,indent=2)+'\n')
 print('| Algorithm | Operation | Median IOPS | Mean completion latency (ns) | Whole-job package energy (uJ/IO) | IOPS range |')
 print('|---|---|---:|---:|---:|---:|')
