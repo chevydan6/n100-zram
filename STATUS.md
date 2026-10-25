@@ -177,3 +177,15 @@ N100 three-session scalar/SSE2/AVX2 sweep completed all nine requested sizes.
 All PMU groups were fully scheduled. Whole-codec winners vary by data/direction;
 no universal threshold, component threshold or native hybrid policy is accepted.
 Scalar work continues independently; no adaptive SIMD changes were merged here.
+
+### Completed native scalar checkpoint
+
+Five shuffled I/O trials per backend passed full CRC32C verification and stock
+restoration. Small-table writes improved 8.20% by paired IOPS ratios and whole-job
+package energy/I/O decreased 9.70%; reads showed no clear improvement. Thirty
+subsequent controlled-reclaim trials passed every byte check, 120 concurrent
+register/helper runs and stock restoration. Paired whole-workload elapsed-time
+intervals include zero; system CPU time was about 2% lower and package energy was
+lower in this one experiment. See retained raw rows and paired-analysis.json.
+Do not treat these as general application responsiveness or production acceptance.
+A matched original-table-size kernel build is the next causal control.

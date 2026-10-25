@@ -1,0 +1,59 @@
+{
+  "scope": "five paired trial ratios, 10,000 seeded bootstrap resamples; one controlled reclaim experiment, not general workload proof",
+  "scalar_small_vs_lz4": [
+    {
+      "corpus": "mixed-pages",
+      "metric": "elapsed_ns",
+      "paired_median_percent": -1.2235953861356452,
+      "bootstrap_95_percent": [
+        -4.405639624248947,
+        0.913336315803881
+      ]
+    },
+    {
+      "corpus": "mixed-pages",
+      "metric": "system_cpu_us",
+      "paired_median_percent": -2.138267976207653,
+      "bootstrap_95_percent": [
+        -5.737035575331606,
+        -0.8438982718402821
+      ]
+    },
+    {
+      "corpus": "mixed-pages",
+      "metric": "package_energy_uj",
+      "paired_median_percent": -9.868933402905778,
+      "bootstrap_95_percent": [
+        -10.81881762805208,
+        -0.8425273170001746
+      ]
+    },
+    {
+      "corpus": "period-tail",
+      "metric": "elapsed_ns",
+      "paired_median_percent": -0.3481514745718006,
+      "bootstrap_95_percent": [
+        -1.6111595069264517,
+        0.7930651206303097
+      ]
+    },
+    {
+      "corpus": "period-tail",
+      "metric": "system_cpu_us",
+      "paired_median_percent": -2.0657086055737794,
+      "bootstrap_95_percent": [
+        -2.521378150513054,
+        -0.5110694784448366
+      ]
+    },
+    {
+      "corpus": "period-tail",
+      "metric": "package_energy_uj",
+      "paired_median_percent": -8.038850942904963,
+      "bootstrap_95_percent": [
+        -11.63220888752331,
+        -2.490504060899912
+      ]
+    }
+  ]
+}

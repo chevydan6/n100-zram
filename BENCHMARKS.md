@@ -420,3 +420,17 @@ Allocated ZRAM memory was unchanged (34.16 MiB median); compressed bytes changed
 slightly. Matching compiler/control variants and memory-pressure tests remain
 necessary before assigning all improvement to the table-size change or accepting
 a new default. Raw CPU counters, sanitized telemetry and all trials are retained.
+
+### Scalar small-table controlled reclaim
+
+[Thirty-trial pressure results](benchmarks/results/native-scalar-small12-pressure-001/summary.md)
+and [paired analysis](benchmarks/results/native-scalar-small12-pressure-001/paired-analysis.json)
+retain five trials × two corpora × three backends. All byte checks, 120 register
+helper processes and stock restoration passed. Whole-workload elapsed-time
+intervals include zero, so no reclaim-speed improvement is accepted. Paired system
+CPU time was about 2% lower; package energy was lower in this one shuffled run
+(roughly 8–10% paired medians). Power remains CPU-package scope with background
+work, frequency and thermal variability; this is not whole-laptop energy or a
+cross-session generality claim. Peak ZRAM memory was essentially unchanged
+versus LZ4, and lower than LZO for these inputs. The installed system has 4 GiB;
+this used bounded memcg reclaim, not whole-machine exhaustion.
