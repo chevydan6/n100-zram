@@ -308,3 +308,9 @@ SIMD costs and preferred-policy acceptance remain separate. GitHub hosted
 workflows currently report disabled_manually; their setting was left unchanged.
 Local/native automated tests provide the stated validation; no hosted CI pass
 is claimed.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-fused-scalar-001/summary.md](benchmarks/results/native-gzram-fused-scalar-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
