@@ -155,3 +155,9 @@ capacity cases and 32,000 concurrent independent decodes. A bounded follow-up
 will compare all table sizes with these controls before any kernel integration.
 A persistent collector preserves completed sessions and audits the committed
 results before pushing; interruptions retain raw checkpoints outside Git.
+
+### Native experiment collection
+
+Three matched-control user-space sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-matched-table-user-001/summary.md](benchmarks/results/native-matched-table-user-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
