@@ -124,3 +124,11 @@ manifest; exact-ABI diskless validation passed. Corrected default-algorithm pars
 in the native runner and retained the failed attempt with verified restoration.
 A separate adaptive branch records the initial native scalar/SSE2/AVX2 size sweep
 and PMU counters. Further refinement and kernel-context costs remain experimental.
+
+## GZRAM-AVX2 prototype checkpoint
+
+Added versioned userspace format, raw framing, eight internal block sizes,
+independent scalar/AVX2 encoders/decoders, guarded Python-oracle tests, sanitizer
+CI, native comparison fixture and resumable sessions. No kernel deployment or
+performance improvement is claimed. Upstream projects are research references;
+no upstream code or generated shuffle tables were copied into the new codec.

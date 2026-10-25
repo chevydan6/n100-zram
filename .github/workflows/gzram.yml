@@ -1,0 +1,28 @@
+name: GZRAM experimental correctness
+on:
+  push:
+    paths: ['gzram/**', '.github/workflows/gzram.yml']
+  pull_request:
+    paths: ['gzram/**', '.github/workflows/gzram.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bounds-and-format:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 gzram/tools/build.py
+      - run: python3 gzram/tests/check.py
+      - name: Address and undefined-behavior sanitizers
+        run: |
+          EXTRA_CFLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' python3 gzram/tools/build.py --output build/gzram-asan
+          export LD_PRELOAD="$(gcc -print-file-name=libasan.so)"
+          export ASAN_OPTIONS=detect_leaks=0:abort_on_error=1
+          export UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1
+          python3 gzram/tests/check.py --library build/gzram-asan/libgzram.so
+      - name: Validate native benchmark fixture
+        run: |
+          gcc -O2 -Wall -Wextra -Werror gzram/bench.c -ldl -o build/gzram/benchmark
+          if grep -qw avx2 /proc/cpuinfo; then build/gzram/benchmark build/gzram --validate-only; fi

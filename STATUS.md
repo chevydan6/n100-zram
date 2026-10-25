@@ -189,3 +189,13 @@ intervals include zero; system CPU time was about 2% lower and package energy wa
 lower in this one experiment. See retained raw rows and paired-analysis.json.
 Do not treat these as general application responsiveness or production acceptance.
 A matched original-table-size kernel build is the next causal control.
+
+## GZRAM-AVX2 research branch
+
+This branch preserves the existing scalar history and adds an independent
+userspace format prototype under gzram/. Feature-gated AVX2 and scalar references
+share one explicit format; mask shuffle tables are generated independently.
+Guarded oracle-based correctness, malformed frames and concurrency tests passed,
+including ASan/UBSan. Native performance, ratio/energy comparisons and kernel
+integration have not yet been established. Scalar development continues on
+feature/n100-avx2-zram and adaptive LZ4 on feature/n100-adaptive-simd-zram.
