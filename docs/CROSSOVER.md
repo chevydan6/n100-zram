@@ -49,3 +49,10 @@ are in benchmarks/results/crossover-combined-screening.json. An unresolved-to-AV
 transition does not prove an architectural SIMD threshold: code layout and libc
 paths can differ even when the explicit vector loop does not execute. Native
 kernel-context and component measurements remain required before hybrid selection.
+
+Instrumented diagnostic builds (`prepare-crossover.py --trace`) count explicit
+vector iterations in match comparison and bounded copies. Run trace-crossover.py
+for byte identity, independent decoding and path coverage. Trace builds change
+code generation and are not timing binaries. Libc SIMD is not counted. Coverage
+can distinguish explicit vector-loop execution from an AVX2-labelled codec that
+wins due to other compiler/runtime effects; it does not establish profitability.
