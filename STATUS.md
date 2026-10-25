@@ -199,3 +199,9 @@ Guarded oracle-based correctness, malformed frames and concurrency tests passed,
 including ASan/UBSan. Native performance, ratio/energy comparisons and kernel
 integration have not yet been established. Scalar development continues on
 feature/n100-avx2-zram and adaptive LZ4 on feature/n100-adaptive-simd-zram.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-user-001/summary.md](benchmarks/results/native-gzram-user-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.

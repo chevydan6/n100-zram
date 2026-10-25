@@ -1,0 +1,11 @@
+CPU 0; AVX2 verified; RAPL available; userspace codec screening, kernel SIMD overhead excluded
+Validated random: 128 pages, 17 variants
+Validated sparse-words: 128 pages, 17 variants
+Validated zero: 128 pages, 17 variants
+Validated repeat8: 128 pages, 17 variants
+Validated period127: 128 pages, 17 variants
+Validated halfzero: 128 pages, 17 variants
+Validated word-tail64: 128 pages, 17 variants
+Validated repeat32: 128 pages, 17 variants
+Validated bash-elf: 128 pages, 17 variants
+corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page

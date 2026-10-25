@@ -1,0 +1,77 @@
+{
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "binary_sha256": "7e005388da62a04b88b36ea8775b1cf1f1ccdbbcc73a46cc93223a7068ce132d",
+  "manifest": {
+    "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+    "flags": [
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx"
+    ],
+    "source_sha256": {
+      "gzram/src/gzram.c": "35658643274e96a3aca50f4ef2b30a21fdb044b2144e96e291f92f74fb344be0",
+      "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+      "gzram/tools/build.py": "100f70f01cbdaea58f0ec54601791f085068a736c0e30dae561dc771ce0a61da"
+    },
+    "artifacts": {
+      "libgzram.so": "28d4a861d699ea528e387aafcd82d8de4b9012e4acf110724323733e838924f6",
+      "lz4-small.so": "73da8bc1945357576e398e5c12c443231e6ee4ed7c5f9a20d2c6bbb263e1420c"
+    }
+  },
+  "libraries": {
+    "libgzram.so": "28d4a861d699ea528e387aafcd82d8de4b9012e4acf110724323733e838924f6",
+    "lz4-small.so": "73da8bc1945357576e398e5c12c443231e6ee4ed7c5f9a20d2c6bbb263e1420c"
+  },
+  "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+  "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3400318",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3400030",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3375493",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3069976",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "28850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "40000",
+    "/sys/class/thermal/thermal_zone3/temp": "30850",
+    "/sys/class/thermal/thermal_zone1/temp": "32850",
+    "/sys/class/thermal/thermal_zone6/temp": "39000",
+    "/sys/class/thermal/thermal_zone4/temp": "39000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3179647",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3179569",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3126159",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3100089",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "35850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "53000",
+    "/sys/class/thermal/thermal_zone3/temp": "42850",
+    "/sys/class/thermal/thermal_zone1/temp": "47850",
+    "/sys/class/thermal/thermal_zone6/temp": "53000",
+    "/sys/class/thermal/thermal_zone4/temp": "53000"
+  },
+  "all_pmu_batches_fully_scheduled": true,
+  "package_energy_available_all_rows": true
+}
