@@ -270,3 +270,16 @@ existing bounded pressure tests. It uses checked 1 MiB hashes on CPU0 outside
 the pressure memcg, records batch latency and fully overlapping throughput, and
 preserves the original pressure path. This is not an interactive responsiveness
 benchmark. Native harness smoke validation is required before repeated inference.
+
+## Repeated CPU-contention comparison
+
+Twenty pressure trials completed (five per corpus/backend), with every-byte
+checks, register helpers, no OOM and verified stock restoration. Relative to
+matched 16 KiB controls, the 8 KiB candidate reduced pressure elapsed time by
+4.92% on mixed pages (95% paired bootstrap -5.53 to -1.47%) and 2.73% on
+period-tail (-3.06 to -2.10%). Competing SHA256 throughput intervals include
+zero on both corpora: useful application CPU-capacity improvement is not yet
+established. Period-tail whole-job package energy fell 3.19% (-3.24 to -1.97%);
+mixed-page energy is inconclusive. Retain all trials and frequency/background
+variability. This is controlled CPU contention, not interactive responsiveness.
+See native-scalar-app-pressure-003/analysis.md and its complete raw results.
