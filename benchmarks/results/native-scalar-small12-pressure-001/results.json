@@ -1,0 +1,3025 @@
+{
+  "inputs": {
+    "binary": "1b96b7bd4b5f38f6367e22b7f0e37ddf3aee7349f756ee89478fcf2aefe1da7c",
+    "state_helper": "7e831ea546e2b85e67e916c7bd49d6934c84f866a5ecb063ae304c0625522812",
+    "script": "7bf2765d13ad80fd282f8680e70a0c314839fd82c93fe55b3f6a45a6d4cedbc0",
+    "kernel": "7.2.8-200.fc44.x86_64",
+    "module_note": "040000001400000003000000474e55008486beda16df8a65fc3ce5e708c9119a4b85bdc7",
+    "algorithms": [
+      "lzo-rle",
+      "lz4",
+      "lz4-small"
+    ],
+    "corpora": [
+      "period-tail",
+      "mixed-pages"
+    ],
+    "repeats": 5
+  },
+  "scope": "Physical N100; controlled memcg reclaim, 768 MiB working set, 384 MiB resident ceiling, 320 MiB high threshold, 1 GiB swap ceiling, CPU0, dedicated 1 GiB logical ZRAM device with priority 200",
+  "verification": "every byte in three full permuted passes; four concurrent CPU/register helpers before every trial; no OOM",
+  "rows": [
+    {
+      "algorithm": "lz4",
+      "corpus": "mixed-pages",
+      "trial": 0,
+      "elapsed_ns": 7136637693,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 45319464
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568886,
+        "pswpout": 684934,
+        "pgmajfault": 568886
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1073145259,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1757889509,
+          "page_compare_p50_ns": 3871,
+          "page_compare_p95_ns": 4702,
+          "page_compare_p99_ns": 8655
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1996187671,
+          "page_compare_p50_ns": 3802,
+          "page_compare_p95_ns": 5243,
+          "page_compare_p99_ns": 22311
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 2066610337,
+          "page_compare_p50_ns": 3745,
+          "page_compare_p95_ns": 5511,
+          "page_compare_p99_ns": 21411
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5904,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 491929600
+      },
+      "user_cpu_us": 1688311,
+      "system_cpu_us": 5120163,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 322351104,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2942832",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3343871",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2923343",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2910396",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3149208",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3182568",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3099011",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3182702",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "mixed-pages",
+      "trial": 1,
+      "elapsed_ns": 6872907740,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 46711978
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568768,
+        "pswpout": 684725,
+        "pgmajfault": 568768
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1060435893,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1759548627,
+          "page_compare_p50_ns": 3885,
+          "page_compare_p95_ns": 4768,
+          "page_compare_p99_ns": 8998
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1927889713,
+          "page_compare_p50_ns": 3675,
+          "page_compare_p95_ns": 5149,
+          "page_compare_p99_ns": 21350
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1880350400,
+          "page_compare_p50_ns": 3633,
+          "page_compare_p95_ns": 4905,
+          "page_compare_p99_ns": 20247
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5879,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 485740544
+      },
+      "user_cpu_us": 1677877,
+      "system_cpu_us": 4975382,
+      "peak_rss_kib": 328400,
+      "zram_peak_allocated_bytes": 322449408,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2463325",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2667567",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2493052",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2469917",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "43000",
+        "/sys/class/thermal/thermal_zone3/temp": "34850",
+        "/sys/class/thermal/thermal_zone1/temp": "38850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899041",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3083304",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3083338",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2898113",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "44000",
+        "/sys/class/thermal/thermal_zone3/temp": "34850",
+        "/sys/class/thermal/thermal_zone1/temp": "38850",
+        "/sys/class/thermal/thermal_zone6/temp": "41000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "mixed-pages",
+      "trial": 2,
+      "elapsed_ns": 6814658109,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 46028020
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568667,
+        "pswpout": 684677,
+        "pgmajfault": 568667
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1053597541,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1766163968,
+          "page_compare_p50_ns": 3890,
+          "page_compare_p95_ns": 4969,
+          "page_compare_p99_ns": 9331
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1895773087,
+          "page_compare_p50_ns": 3633,
+          "page_compare_p95_ns": 5004,
+          "page_compare_p99_ns": 21617
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1871582554,
+          "page_compare_p50_ns": 3618,
+          "page_compare_p95_ns": 4946,
+          "page_compare_p99_ns": 20289
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5879,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 487321600
+      },
+      "user_cpu_us": 1676815,
+      "system_cpu_us": 4935192,
+      "peak_rss_kib": 328404,
+      "zram_peak_allocated_bytes": 322179072,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2900838",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3345664",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2938588",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2916939",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "43000",
+        "/sys/class/thermal/thermal_zone3/temp": "35850",
+        "/sys/class/thermal/thermal_zone1/temp": "40850",
+        "/sys/class/thermal/thermal_zone6/temp": "41000",
+        "/sys/class/thermal/thermal_zone4/temp": "40000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2901611",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3085217",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2906336",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3085226",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "36850",
+        "/sys/class/thermal/thermal_zone1/temp": "40850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "mixed-pages",
+      "trial": 3,
+      "elapsed_ns": 6844187176,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 46507328
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568621,
+        "pswpout": 684634,
+        "pgmajfault": 568621
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1059729726,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1759466350,
+          "page_compare_p50_ns": 3878,
+          "page_compare_p95_ns": 4816,
+          "page_compare_p99_ns": 9036
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1921136622,
+          "page_compare_p50_ns": 3669,
+          "page_compare_p95_ns": 5145,
+          "page_compare_p99_ns": 21554
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1867419339,
+          "page_compare_p50_ns": 3618,
+          "page_compare_p95_ns": 4805,
+          "page_compare_p99_ns": 20362
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5881,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 484827136
+      },
+      "user_cpu_us": 1623530,
+      "system_cpu_us": 5009687,
+      "peak_rss_kib": 328396,
+      "zram_peak_allocated_bytes": 322211840,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3088812",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3088776",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2899840",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3088985",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "43000",
+        "/sys/class/thermal/thermal_zone3/temp": "33850",
+        "/sys/class/thermal/thermal_zone1/temp": "36850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2891777",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2989297",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2898897",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2989380",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "42000",
+        "/sys/class/thermal/thermal_zone3/temp": "33850",
+        "/sys/class/thermal/thermal_zone1/temp": "37850",
+        "/sys/class/thermal/thermal_zone6/temp": "39000",
+        "/sys/class/thermal/thermal_zone4/temp": "39000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "mixed-pages",
+      "trial": 4,
+      "elapsed_ns": 7204834827,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 42951367
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568680,
+        "pswpout": 684588,
+        "pgmajfault": 568680
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1168295001,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1819034501,
+          "page_compare_p50_ns": 3996,
+          "page_compare_p95_ns": 4778,
+          "page_compare_p99_ns": 7699
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1979966444,
+          "page_compare_p50_ns": 3789,
+          "page_compare_p95_ns": 5032,
+          "page_compare_p99_ns": 22190
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 2001228149,
+          "page_compare_p50_ns": 3857,
+          "page_compare_p95_ns": 5258,
+          "page_compare_p99_ns": 21629
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5881,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 486338560
+      },
+      "user_cpu_us": 1750981,
+      "system_cpu_us": 5242481,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 322269184,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2200036",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2199937",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2199929",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2200004",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2907184",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2940894",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3126851",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2901188",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "period-tail",
+      "trial": 0,
+      "elapsed_ns": 6716024317,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 41938980
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568689,
+        "pswpout": 684591,
+        "pgmajfault": 568689
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1005711266,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1703261944,
+          "page_compare_p50_ns": 3733,
+          "page_compare_p95_ns": 4664,
+          "page_compare_p99_ns": 8915
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1891225049,
+          "page_compare_p50_ns": 3577,
+          "page_compare_p95_ns": 4917,
+          "page_compare_p99_ns": 22247
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1893695831,
+          "page_compare_p50_ns": 3591,
+          "page_compare_p95_ns": 4954,
+          "page_compare_p99_ns": 21674
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5882,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 483475456
+      },
+      "user_cpu_us": 1538727,
+      "system_cpu_us": 4971708,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 255221760,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2900033",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2974877",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2975777",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900455",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2900902",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2899954",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2899891",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2892094",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "period-tail",
+      "trial": 1,
+      "elapsed_ns": 6518309603,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 44093942
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568767,
+        "pswpout": 684716,
+        "pgmajfault": 568767
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1001875593,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1683734519,
+          "page_compare_p50_ns": 3703,
+          "page_compare_p95_ns": 4733,
+          "page_compare_p99_ns": 9207
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1812881585,
+          "page_compare_p50_ns": 3458,
+          "page_compare_p95_ns": 4709,
+          "page_compare_p99_ns": 20872
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1807128927,
+          "page_compare_p50_ns": 3456,
+          "page_compare_p95_ns": 4895,
+          "page_compare_p99_ns": 20133
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5867,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 484769792
+      },
+      "user_cpu_us": 1474050,
+      "system_cpu_us": 4856828,
+      "peak_rss_kib": 328532,
+      "zram_peak_allocated_bytes": 255107072,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2900061",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3159437",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2899880",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2913975",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "39000",
+        "/sys/class/thermal/thermal_zone3/temp": "32850",
+        "/sys/class/thermal/thermal_zone1/temp": "34850",
+        "/sys/class/thermal/thermal_zone6/temp": "36000",
+        "/sys/class/thermal/thermal_zone4/temp": "36000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3099969",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3110386",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3099925",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "41000",
+        "/sys/class/thermal/thermal_zone3/temp": "33850",
+        "/sys/class/thermal/thermal_zone1/temp": "36850",
+        "/sys/class/thermal/thermal_zone6/temp": "39000",
+        "/sys/class/thermal/thermal_zone4/temp": "39000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "period-tail",
+      "trial": 2,
+      "elapsed_ns": 6766449351,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 41446732
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568690,
+        "pswpout": 684645,
+        "pgmajfault": 568690
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1015231769,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1727167555,
+          "page_compare_p50_ns": 3757,
+          "page_compare_p95_ns": 4479,
+          "page_compare_p99_ns": 8158
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1952654242,
+          "page_compare_p50_ns": 3693,
+          "page_compare_p95_ns": 5047,
+          "page_compare_p99_ns": 22372
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1842807453,
+          "page_compare_p50_ns": 3531,
+          "page_compare_p95_ns": 4704,
+          "page_compare_p99_ns": 20729
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5893,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488067072
+      },
+      "user_cpu_us": 1595145,
+      "system_cpu_us": 4956678,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 254935040,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2902061",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3210787",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3213050",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2899874",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "47000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2898587",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2899983",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900052",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2916296",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "49000",
+        "/sys/class/thermal/thermal_zone3/temp": "40850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "46000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "period-tail",
+      "trial": 3,
+      "elapsed_ns": 6496692928,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 43511119
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568710,
+        "pswpout": 684634,
+        "pgmajfault": 568710
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1012101443,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1670126124,
+          "page_compare_p50_ns": 3690,
+          "page_compare_p95_ns": 4544,
+          "page_compare_p99_ns": 8836
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1825727685,
+          "page_compare_p50_ns": 3462,
+          "page_compare_p95_ns": 4864,
+          "page_compare_p99_ns": 21084
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1783203546,
+          "page_compare_p50_ns": 3433,
+          "page_compare_p95_ns": 4735,
+          "page_compare_p99_ns": 19998
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5886,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 486617088
+      },
+      "user_cpu_us": 1527946,
+      "system_cpu_us": 4787321,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 255082496,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3036145",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3030673",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2573281",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2464396",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "37000",
+        "/sys/class/thermal/thermal_zone3/temp": "32850",
+        "/sys/class/thermal/thermal_zone1/temp": "32850",
+        "/sys/class/thermal/thermal_zone6/temp": "36000",
+        "/sys/class/thermal/thermal_zone4/temp": "36000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2889655",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3077121",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2903962",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3077039",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "40000",
+        "/sys/class/thermal/thermal_zone3/temp": "32850",
+        "/sys/class/thermal/thermal_zone1/temp": "34850",
+        "/sys/class/thermal/thermal_zone6/temp": "39000",
+        "/sys/class/thermal/thermal_zone4/temp": "39000"
+      }
+    },
+    {
+      "algorithm": "lz4",
+      "corpus": "period-tail",
+      "trial": 4,
+      "elapsed_ns": 6565369053,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 44799995
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568707,
+        "pswpout": 684672,
+        "pgmajfault": 568707
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1027221105,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1701025192,
+          "page_compare_p50_ns": 3716,
+          "page_compare_p95_ns": 4766,
+          "page_compare_p99_ns": 9212
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1838202781,
+          "page_compare_p50_ns": 3492,
+          "page_compare_p95_ns": 4868,
+          "page_compare_p99_ns": 20941
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1790601697,
+          "page_compare_p50_ns": 3455,
+          "page_compare_p95_ns": 4588,
+          "page_compare_p99_ns": 19963
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5890,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 486551552
+      },
+      "user_cpu_us": 1509472,
+      "system_cpu_us": 4873310,
+      "peak_rss_kib": 328396,
+      "zram_peak_allocated_bytes": 255070208,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2236698",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2538477",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2091292",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2241872",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "44000",
+        "/sys/class/thermal/thermal_zone3/temp": "36850",
+        "/sys/class/thermal/thermal_zone1/temp": "40850",
+        "/sys/class/thermal/thermal_zone6/temp": "41000",
+        "/sys/class/thermal/thermal_zone4/temp": "39000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2919453",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3082764",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2901853",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3082980",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "36850",
+        "/sys/class/thermal/thermal_zone1/temp": "41850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "mixed-pages",
+      "trial": 0,
+      "elapsed_ns": 6896441746,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 42515333
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568722,
+        "pswpout": 684719,
+        "pgmajfault": 568722
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1033827801,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1814531985,
+          "page_compare_p50_ns": 4106,
+          "page_compare_p95_ns": 5042,
+          "page_compare_p99_ns": 9358
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1923615342,
+          "page_compare_p50_ns": 3818,
+          "page_compare_p95_ns": 5169,
+          "page_compare_p99_ns": 22448
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1873665185,
+          "page_compare_p50_ns": 3750,
+          "page_compare_p95_ns": 5034,
+          "page_compare_p99_ns": 21448
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5869,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 486051840
+      },
+      "user_cpu_us": 1717909,
+      "system_cpu_us": 4948530,
+      "peak_rss_kib": 328408,
+      "zram_peak_allocated_bytes": 322228224,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899754",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3323427",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2908693",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2912049",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899993",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2899998",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900041",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900072",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "49000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "49000",
+        "/sys/class/thermal/thermal_zone4/temp": "49000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "mixed-pages",
+      "trial": 1,
+      "elapsed_ns": 6788811158,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 42102004
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568718,
+        "pswpout": 684748,
+        "pgmajfault": 568718
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1027406822,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1761462669,
+          "page_compare_p50_ns": 3994,
+          "page_compare_p95_ns": 4961,
+          "page_compare_p99_ns": 9279
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1921552297,
+          "page_compare_p50_ns": 3802,
+          "page_compare_p95_ns": 5154,
+          "page_compare_p99_ns": 22029
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1843470033,
+          "page_compare_p50_ns": 3705,
+          "page_compare_p95_ns": 4891,
+          "page_compare_p99_ns": 20978
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5878,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488632320
+      },
+      "user_cpu_us": 1711121,
+      "system_cpu_us": 4868995,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 322260992,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1837347",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2317261",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1882084",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1862872",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "47000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2887976",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3088430",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2905532",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3088521",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "47000",
+        "/sys/class/thermal/thermal_zone4/temp": "47000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "mixed-pages",
+      "trial": 2,
+      "elapsed_ns": 6871765251,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 41163591
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568784,
+        "pswpout": 684750,
+        "pgmajfault": 568784
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1083591916,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1754726698,
+          "page_compare_p50_ns": 3997,
+          "page_compare_p95_ns": 4794,
+          "page_compare_p99_ns": 8279
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1939938477,
+          "page_compare_p50_ns": 3841,
+          "page_compare_p95_ns": 5247,
+          "page_compare_p99_ns": 22640
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1858504901,
+          "page_compare_p50_ns": 3721,
+          "page_compare_p95_ns": 4873,
+          "page_compare_p99_ns": 21307
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5898,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488779776
+      },
+      "user_cpu_us": 1769864,
+      "system_cpu_us": 4893544,
+      "peak_rss_kib": 328476,
+      "zram_peak_allocated_bytes": 322400256,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2441430",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2552452",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2431423",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2439176",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2893008",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3082919",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2907971",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3083054",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "mixed-pages",
+      "trial": 3,
+      "elapsed_ns": 6906697623,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 41475785
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568761,
+        "pswpout": 684814,
+        "pgmajfault": 568761
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1062502164,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1814202601,
+          "page_compare_p50_ns": 4091,
+          "page_compare_p95_ns": 5188,
+          "page_compare_p99_ns": 9747
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1919528628,
+          "page_compare_p50_ns": 3794,
+          "page_compare_p95_ns": 4971,
+          "page_compare_p99_ns": 22353
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1854606075,
+          "page_compare_p50_ns": 3707,
+          "page_compare_p95_ns": 4938,
+          "page_compare_p99_ns": 21276
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5897,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 489869312
+      },
+      "user_cpu_us": 1763480,
+      "system_cpu_us": 4913375,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 322224128,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2931798",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2908389",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900313",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900097",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "41850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2896795",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3084720",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3084698",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2908547",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "42000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "mixed-pages",
+      "trial": 4,
+      "elapsed_ns": 6887415769,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 42589490
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568801,
+        "pswpout": 684709,
+        "pgmajfault": 568801
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1044118185,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1797671797,
+          "page_compare_p50_ns": 4058,
+          "page_compare_p95_ns": 5038,
+          "page_compare_p99_ns": 9615
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1909373578,
+          "page_compare_p50_ns": 3778,
+          "page_compare_p95_ns": 5052,
+          "page_compare_p99_ns": 21689
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1894159063,
+          "page_compare_p50_ns": 3781,
+          "page_compare_p95_ns": 5028,
+          "page_compare_p99_ns": 21657
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5894,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488058880
+      },
+      "user_cpu_us": 1730699,
+      "system_cpu_us": 4941718,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 322207744,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2903045",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2954383",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900155",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2904468",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2900081",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2899993",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2899337",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900025",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "47000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "period-tail",
+      "trial": 0,
+      "elapsed_ns": 6649720089,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 40894488
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568721,
+        "pswpout": 684665,
+        "pgmajfault": 568721
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1009453749,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1700011663,
+          "page_compare_p50_ns": 3847,
+          "page_compare_p95_ns": 4755,
+          "page_compare_p99_ns": 7815
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1898809051,
+          "page_compare_p50_ns": 3738,
+          "page_compare_p95_ns": 5297,
+          "page_compare_p99_ns": 22770
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1814884142,
+          "page_compare_p50_ns": 3618,
+          "page_compare_p95_ns": 4839,
+          "page_compare_p99_ns": 20625
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5894,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 490921984
+      },
+      "user_cpu_us": 1581631,
+      "system_cpu_us": 4869007,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 254971904,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2922422",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3190115",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2899966",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2899874",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "40850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899684",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3071344",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3071294",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2979619",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "40850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "47000",
+        "/sys/class/thermal/thermal_zone4/temp": "47000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "period-tail",
+      "trial": 1,
+      "elapsed_ns": 6495616012,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 39764120
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568693,
+        "pswpout": 684610,
+        "pgmajfault": 568694
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 994791158,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1657279030,
+          "page_compare_p50_ns": 3768,
+          "page_compare_p95_ns": 4545,
+          "page_compare_p99_ns": 8393
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1831927020,
+          "page_compare_p50_ns": 3604,
+          "page_compare_p95_ns": 4948,
+          "page_compare_p99_ns": 22216
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1780034358,
+          "page_compare_p50_ns": 3534,
+          "page_compare_p95_ns": 4771,
+          "page_compare_p99_ns": 20852
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5895,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488775680
+      },
+      "user_cpu_us": 1556690,
+      "system_cpu_us": 4734369,
+      "peak_rss_kib": 328396,
+      "zram_peak_allocated_bytes": 254914560,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2929258",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3078825",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900006",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900050",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2895665",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3084388",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2896884",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3084396",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "period-tail",
+      "trial": 2,
+      "elapsed_ns": 6657431059,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 39691183
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568734,
+        "pswpout": 684723,
+        "pgmajfault": 568734
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1071089725,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1706474132,
+          "page_compare_p50_ns": 3896,
+          "page_compare_p95_ns": 4728,
+          "page_compare_p99_ns": 8599
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1863637804,
+          "page_compare_p50_ns": 3679,
+          "page_compare_p95_ns": 5136,
+          "page_compare_p99_ns": 22359
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1778316735,
+          "page_compare_p50_ns": 3565,
+          "page_compare_p95_ns": 4725,
+          "page_compare_p99_ns": 20570
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5881,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 482635776
+      },
+      "user_cpu_us": 1596519,
+      "system_cpu_us": 4844060,
+      "peak_rss_kib": 328476,
+      "zram_peak_allocated_bytes": 255094784,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2306414",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2587213",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2323215",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1900078",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899993",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2900054",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2904069",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2905025",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "47000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "period-tail",
+      "trial": 3,
+      "elapsed_ns": 6502741689,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 40013325
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568706,
+        "pswpout": 684692,
+        "pgmajfault": 568706
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 966570821,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1711696840,
+          "page_compare_p50_ns": 3880,
+          "page_compare_p95_ns": 4943,
+          "page_compare_p99_ns": 9102
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1811415326,
+          "page_compare_p50_ns": 3582,
+          "page_compare_p95_ns": 4759,
+          "page_compare_p99_ns": 21485
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1795015352,
+          "page_compare_p50_ns": 3580,
+          "page_compare_p95_ns": 4839,
+          "page_compare_p99_ns": 21106
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5868,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 485326848
+      },
+      "user_cpu_us": 1592231,
+      "system_cpu_us": 4721070,
+      "peak_rss_kib": 328536,
+      "zram_peak_allocated_bytes": 255029248,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899983",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2900007",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900019",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900171",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "47000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "47000",
+        "/sys/class/thermal/thermal_zone4/temp": "47000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3100022",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3099302",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3099957",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    },
+    {
+      "algorithm": "lz4-small",
+      "corpus": "period-tail",
+      "trial": 4,
+      "elapsed_ns": 6617436705,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 39588766
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568626,
+        "pswpout": 684620,
+        "pgmajfault": 568626
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1022878826,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1697723106,
+          "page_compare_p50_ns": 3866,
+          "page_compare_p95_ns": 4771,
+          "page_compare_p99_ns": 9070
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1839637042,
+          "page_compare_p50_ns": 3618,
+          "page_compare_p95_ns": 5040,
+          "page_compare_p99_ns": 21770
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1835993480,
+          "page_compare_p50_ns": 3662,
+          "page_compare_p95_ns": 5176,
+          "page_compare_p99_ns": 21492
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5885,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 485847040
+      },
+      "user_cpu_us": 1574698,
+      "system_cpu_us": 4848404,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 255152128,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1903248",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1903049",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1904452",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1903965",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "47000",
+        "/sys/class/thermal/thermal_zone4/temp": "47000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3079886",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3079839",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900360",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2983131",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "47000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "mixed-pages",
+      "trial": 0,
+      "elapsed_ns": 6727327047,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 44351999
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568938,
+        "pswpout": 684860,
+        "pgmajfault": 568938
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1047577877,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1715538530,
+          "page_compare_p50_ns": 3814,
+          "page_compare_p95_ns": 4490,
+          "page_compare_p99_ns": 8591
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1880320944,
+          "page_compare_p50_ns": 3604,
+          "page_compare_p95_ns": 5033,
+          "page_compare_p99_ns": 21177
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1834985732,
+          "page_compare_p50_ns": 3575,
+          "page_compare_p95_ns": 4588,
+          "page_compare_p99_ns": 20055
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5903,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 489648128
+      },
+      "user_cpu_us": 1654736,
+      "system_cpu_us": 4849604,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 405549056,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1695939",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1697593",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1696849",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1696620",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "44000",
+        "/sys/class/thermal/thermal_zone3/temp": "34850",
+        "/sys/class/thermal/thermal_zone1/temp": "38850",
+        "/sys/class/thermal/thermal_zone6/temp": "42000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2898859",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2901964",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2918816",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2899973",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "43000",
+        "/sys/class/thermal/thermal_zone3/temp": "35850",
+        "/sys/class/thermal/thermal_zone1/temp": "39850",
+        "/sys/class/thermal/thermal_zone6/temp": "41000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "mixed-pages",
+      "trial": 1,
+      "elapsed_ns": 6789154010,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 45840580
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568764,
+        "pswpout": 684740,
+        "pgmajfault": 568764
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1055116184,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1749697004,
+          "page_compare_p50_ns": 3852,
+          "page_compare_p95_ns": 4915,
+          "page_compare_p99_ns": 9564
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1891943021,
+          "page_compare_p50_ns": 3612,
+          "page_compare_p95_ns": 5057,
+          "page_compare_p99_ns": 21705
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1850938292,
+          "page_compare_p50_ns": 3581,
+          "page_compare_p95_ns": 4879,
+          "page_compare_p99_ns": 20203
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5889,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 489783296
+      },
+      "user_cpu_us": 1645103,
+      "system_cpu_us": 4926379,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 405991424,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1801192",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1801164",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1844636",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1801043",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "41000",
+        "/sys/class/thermal/thermal_zone3/temp": "33850",
+        "/sys/class/thermal/thermal_zone1/temp": "37850",
+        "/sys/class/thermal/thermal_zone6/temp": "40000",
+        "/sys/class/thermal/thermal_zone4/temp": "40000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2903595",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2900028",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2895715",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900041",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "42000",
+        "/sys/class/thermal/thermal_zone3/temp": "34850",
+        "/sys/class/thermal/thermal_zone1/temp": "38850",
+        "/sys/class/thermal/thermal_zone6/temp": "40000",
+        "/sys/class/thermal/thermal_zone4/temp": "40000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "mixed-pages",
+      "trial": 2,
+      "elapsed_ns": 6940279480,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 42785657
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568672,
+        "pswpout": 684632,
+        "pgmajfault": 568672
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1052309319,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1786186655,
+          "page_compare_p50_ns": 3952,
+          "page_compare_p95_ns": 4953,
+          "page_compare_p99_ns": 9509
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1930568680,
+          "page_compare_p50_ns": 3693,
+          "page_compare_p95_ns": 4964,
+          "page_compare_p99_ns": 21896
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1914721865,
+          "page_compare_p50_ns": 3694,
+          "page_compare_p95_ns": 4904,
+          "page_compare_p99_ns": 21419
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5878,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 484855808
+      },
+      "user_cpu_us": 1747892,
+      "system_cpu_us": 4964414,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 405946368,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3116739",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3114876",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2899938",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900144",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2901506",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3079923",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2882822",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3079830",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "47000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "mixed-pages",
+      "trial": 3,
+      "elapsed_ns": 6933808011,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 41914322
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568922,
+        "pswpout": 684926,
+        "pgmajfault": 568922
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1069114122,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1766553448,
+          "page_compare_p50_ns": 3930,
+          "page_compare_p95_ns": 4576,
+          "page_compare_p99_ns": 8796
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1926852066,
+          "page_compare_p50_ns": 3686,
+          "page_compare_p95_ns": 4963,
+          "page_compare_p99_ns": 21886
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1921292902,
+          "page_compare_p50_ns": 3710,
+          "page_compare_p95_ns": 5005,
+          "page_compare_p99_ns": 21406
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5915,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 491864064
+      },
+      "user_cpu_us": 1762942,
+      "system_cpu_us": 4946832,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 405585920,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1400019",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1399967",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1400020",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1400022",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "47000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2967233",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3091984",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3091934",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2896030",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "32850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "38850",
+        "/sys/class/thermal/thermal_zone1/temp": "43850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "mixed-pages",
+      "trial": 4,
+      "elapsed_ns": 7008915064,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 42419081
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568750,
+        "pswpout": 684781,
+        "pgmajfault": 568750
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1092042431,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1794572576,
+          "page_compare_p50_ns": 3969,
+          "page_compare_p95_ns": 4716,
+          "page_compare_p99_ns": 8906
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1956677658,
+          "page_compare_p50_ns": 3732,
+          "page_compare_p95_ns": 5028,
+          "page_compare_p99_ns": 22326
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1913400274,
+          "page_compare_p50_ns": 3702,
+          "page_compare_p95_ns": 4849,
+          "page_compare_p99_ns": 21107
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5898,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 484331520
+      },
+      "user_cpu_us": 1683103,
+      "system_cpu_us": 5098875,
+      "peak_rss_kib": 328664,
+      "zram_peak_allocated_bytes": 405983232,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2282680",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2420738",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2297022",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2292607",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "36850",
+        "/sys/class/thermal/thermal_zone1/temp": "41850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "44000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2902754",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3002192",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3002200",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2893121",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "36850",
+        "/sys/class/thermal/thermal_zone1/temp": "41850",
+        "/sys/class/thermal/thermal_zone6/temp": "42000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "period-tail",
+      "trial": 0,
+      "elapsed_ns": 6867174425,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 40877276
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568692,
+        "pswpout": 684635,
+        "pgmajfault": 568692
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1108775042,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1730668587,
+          "page_compare_p50_ns": 4037,
+          "page_compare_p95_ns": 4979,
+          "page_compare_p99_ns": 8553
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1903232167,
+          "page_compare_p50_ns": 3869,
+          "page_compare_p95_ns": 5377,
+          "page_compare_p99_ns": 23010
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1891224124,
+          "page_compare_p50_ns": 3884,
+          "page_compare_p95_ns": 5443,
+          "page_compare_p99_ns": 22053
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5889,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 485089280
+      },
+      "user_cpu_us": 1611534,
+      "system_cpu_us": 5047973,
+      "peak_rss_kib": 328520,
+      "zram_peak_allocated_bytes": 417456128,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2096561",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2072681",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2072724",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2072907",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2897432",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3088514",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2929241",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3088822",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "46000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "42850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "period-tail",
+      "trial": 1,
+      "elapsed_ns": 6453125950,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 43452098
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568794,
+        "pswpout": 684807,
+        "pgmajfault": 568794
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 985582454,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1664460621,
+          "page_compare_p50_ns": 3909,
+          "page_compare_p95_ns": 4985,
+          "page_compare_p99_ns": 9370
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1809014414,
+          "page_compare_p50_ns": 3682,
+          "page_compare_p95_ns": 5123,
+          "page_compare_p99_ns": 21847
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1765848705,
+          "page_compare_p50_ns": 3651,
+          "page_compare_p95_ns": 4957,
+          "page_compare_p99_ns": 20782
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5905,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488742912
+      },
+      "user_cpu_us": 1479918,
+      "system_cpu_us": 4769578,
+      "peak_rss_kib": 328392,
+      "zram_peak_allocated_bytes": 417566720,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2689000",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3004340",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2684919",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2692029",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "35850",
+        "/sys/class/thermal/thermal_zone1/temp": "39850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3076196",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3076152",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2920688",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2907047",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "30850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "43000",
+        "/sys/class/thermal/thermal_zone3/temp": "35850",
+        "/sys/class/thermal/thermal_zone1/temp": "40850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "period-tail",
+      "trial": 2,
+      "elapsed_ns": 6605019163,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 41636978
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568737,
+        "pswpout": 684680,
+        "pgmajfault": 568737
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1013420565,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1659450979,
+          "page_compare_p50_ns": 3916,
+          "page_compare_p95_ns": 4744,
+          "page_compare_p99_ns": 8054
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1872138504,
+          "page_compare_p50_ns": 3821,
+          "page_compare_p95_ns": 5341,
+          "page_compare_p99_ns": 22776
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1825124840,
+          "page_compare_p50_ns": 3771,
+          "page_compare_p95_ns": 5060,
+          "page_compare_p99_ns": 21446
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5895,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 485576704
+      },
+      "user_cpu_us": 1638520,
+      "system_cpu_us": 4757715,
+      "peak_rss_kib": 328404,
+      "zram_peak_allocated_bytes": 417460224,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899979",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2946268",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900869",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2900036",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "44000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2882339",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2900082",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2900034",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2904572",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "period-tail",
+      "trial": 3,
+      "elapsed_ns": 6696495557,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 39887776
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568801,
+        "pswpout": 684752,
+        "pgmajfault": 568801
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1064858161,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1709171361,
+          "page_compare_p50_ns": 4010,
+          "page_compare_p95_ns": 4896,
+          "page_compare_p99_ns": 9012
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1844526722,
+          "page_compare_p50_ns": 3767,
+          "page_compare_p95_ns": 5118,
+          "page_compare_p99_ns": 21998
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1841245752,
+          "page_compare_p50_ns": 3792,
+          "page_compare_p95_ns": 5175,
+          "page_compare_p99_ns": 21154
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5891,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 489017344
+      },
+      "user_cpu_us": 1568126,
+      "system_cpu_us": 4915053,
+      "peak_rss_kib": 328604,
+      "zram_peak_allocated_bytes": 417525760,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1699954",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1699993",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1699986",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1700005",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "44000",
+        "/sys/class/thermal/thermal_zone3/temp": "36850",
+        "/sys/class/thermal/thermal_zone1/temp": "41850",
+        "/sys/class/thermal/thermal_zone6/temp": "42000",
+        "/sys/class/thermal/thermal_zone4/temp": "41000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2899844",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3092907",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2954605",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3093022",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "31850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "45000",
+        "/sys/class/thermal/thermal_zone3/temp": "37850",
+        "/sys/class/thermal/thermal_zone1/temp": "41850",
+        "/sys/class/thermal/thermal_zone6/temp": "43000",
+        "/sys/class/thermal/thermal_zone4/temp": "43000"
+      }
+    },
+    {
+      "algorithm": "lzo-rle",
+      "corpus": "period-tail",
+      "trial": 4,
+      "elapsed_ns": 6775915245,
+      "package_energy_uj": {
+        "/sys/class/powercap/intel-rapl:0/energy_uj": 40154927
+      },
+      "energy_scope": "whole package over workload including systemd startup and background activity",
+      "vmstat_delta": {
+        "pswpin": 568726,
+        "pswpout": 684673,
+        "pgmajfault": 568726
+      },
+      "fpu_processes": 4,
+      "scope": "768 MiB working set, 384 MiB memcg maximum, actual installed 4 GiB N100; controlled reclaim, not whole-machine OOM",
+      "initial_fill_ns": 1086410979,
+      "verification": [
+        {
+          "phase": "verify",
+          "pass": 0,
+          "pages": 196608,
+          "elapsed_ns": 1699574437,
+          "page_compare_p50_ns": 3977,
+          "page_compare_p95_ns": 4781,
+          "page_compare_p99_ns": 9094
+        },
+        {
+          "phase": "verify",
+          "pass": 1,
+          "pages": 196608,
+          "elapsed_ns": 1875972032,
+          "page_compare_p50_ns": 3820,
+          "page_compare_p95_ns": 5310,
+          "page_compare_p99_ns": 22456
+        },
+        {
+          "phase": "verify",
+          "pass": 2,
+          "pages": 196608,
+          "elapsed_ns": 1869818876,
+          "page_compare_p50_ns": 3840,
+          "page_compare_p95_ns": 5391,
+          "page_compare_p99_ns": 21858
+        }
+      ],
+      "cgroup_health": {
+        "phase": "cgroup_health",
+        "memory_events": {
+          "low": 0,
+          "high": 5888,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0,
+          "sock_throttled": 0
+        },
+        "memory.peak": 335806464,
+        "memory.swap.peak": 488013824
+      },
+      "user_cpu_us": 1607973,
+      "system_cpu_us": 4947701,
+      "peak_rss_kib": 328652,
+      "zram_peak_allocated_bytes": 417366016,
+      "before_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "2718732",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "2835677",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "2709155",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2709642",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "49000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "49000",
+        "/sys/class/thermal/thermal_zone4/temp": "48000"
+      },
+      "after_conditions": {
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3097859",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3097724",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3075654",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3007943",
+        "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+        "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+        "/sys/class/thermal/thermal_zone2/temp": "33850",
+        "/sys/class/thermal/thermal_zone0/temp": "20000",
+        "/sys/class/thermal/thermal_zone5/temp": "48000",
+        "/sys/class/thermal/thermal_zone3/temp": "39850",
+        "/sys/class/thermal/thermal_zone1/temp": "44850",
+        "/sys/class/thermal/thermal_zone6/temp": "45000",
+        "/sys/class/thermal/thermal_zone4/temp": "45000"
+      }
+    }
+  ],
+  "attempt_counts": {
+    "lz4-period-tail-trial-3": 1,
+    "lz4-period-tail-trial-1": 1,
+    "lz4-mixed-pages-trial-3": 1,
+    "lzo-rle-mixed-pages-trial-1": 1,
+    "lz4-mixed-pages-trial-1": 1,
+    "lzo-rle-mixed-pages-trial-0": 1,
+    "lzo-rle-period-tail-trial-1": 1,
+    "lz4-mixed-pages-trial-2": 1,
+    "lz4-period-tail-trial-4": 1,
+    "lzo-rle-mixed-pages-trial-4": 1,
+    "lzo-rle-period-tail-trial-3": 1,
+    "lz4-small-mixed-pages-trial-3": 1,
+    "lz4-small-period-tail-trial-1": 1,
+    "lzo-rle-period-tail-trial-0": 1,
+    "lz4-small-mixed-pages-trial-4": 1,
+    "lz4-mixed-pages-trial-4": 1,
+    "lz4-period-tail-trial-0": 1,
+    "lzo-rle-mixed-pages-trial-3": 1,
+    "lz4-small-mixed-pages-trial-2": 1,
+    "lz4-mixed-pages-trial-0": 1,
+    "lz4-small-period-tail-trial-2": 1,
+    "lzo-rle-mixed-pages-trial-2": 1,
+    "lz4-small-mixed-pages-trial-1": 1,
+    "lzo-rle-period-tail-trial-2": 1,
+    "lz4-small-period-tail-trial-3": 1,
+    "lz4-small-mixed-pages-trial-0": 1,
+    "lzo-rle-period-tail-trial-4": 1,
+    "lz4-small-period-tail-trial-4": 1,
+    "lz4-period-tail-trial-2": 1,
+    "lz4-small-period-tail-trial-0": 1
+  }
+}
