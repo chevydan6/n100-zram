@@ -845,7 +845,7 @@
 +#endif
 --- /dev/null
 +++ b/drivers/block/zram/n100s_lz4_compress.c
-@@ -0,0 +1,941 @@
+@@ -0,0 +1,942 @@
 +/*
 + * LZ4 - Fast LZ compression algorithm
 + * Copyright (C) 2011 - 2016, Yann Collet.
@@ -1786,6 +1786,7 @@
 +
 +
 +
++unsigned long n100s_worksize(void);
 +unsigned long n100s_worksize(void) { return sizeof(LZ4_stream_t); }
 --- /dev/null
 +++ b/drivers/block/zram/n100s_lz4defs.h
@@ -2039,13 +2040,14 @@
 +#endif
 --- /dev/null
 +++ b/drivers/block/zram/n100s_rename.h
-@@ -0,0 +1,6 @@
-+#define LZ4_compress_fast n100s_LZ4_compress_fast
+@@ -0,0 +1,7 @@
 +#define LZ4_compress_default n100s_LZ4_compress_default
 +#define LZ4_compress_destSize n100s_LZ4_compress_destSize
-+#define LZ4_loadDict n100s_LZ4_loadDict
-+#define LZ4_saveDict n100s_LZ4_saveDict
++#define LZ4_compress_fast n100s_LZ4_compress_fast
 +#define LZ4_compress_fast_continue n100s_LZ4_compress_fast_continue
++#define LZ4_loadDict n100s_LZ4_loadDict
++#define LZ4_resetStream n100s_LZ4_resetStream
++#define LZ4_saveDict n100s_LZ4_saveDict
 --- a/drivers/block/zram/zcomp.c
 +++ b/drivers/block/zram/zcomp.c
 @@ -15,12 +15,16 @@
