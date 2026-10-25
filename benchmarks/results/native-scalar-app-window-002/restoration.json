@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "experimental_sha256": "eee869ae2bb81f686b66d361c2c4ac9cb309b06ab0203c8abf5494c7ddfd7f93",
+  "stock_sha256": "4060ae602083d0a8fc608dce3f4b3fcaf64bbb89b71203a18860b61487bd4941",
+  "stock_build_note": "040000001400000003000000474e55001229ec61776381c3c95f4f1d7ed5fc09ea2a33f8",
+  "stock_restored": true,
+  "primary_disksize": 3924819968,
+  "primary_algorithm": "lzo-rle"
+}
