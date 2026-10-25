@@ -6,6 +6,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9642.314,
+      "decode_ns_median": 1717.062,
+      "original_gzram_encode_ns_median": 587.536,
+      "pooled_encode_change_vs_original_gzram_percent": 1541.144372429945,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -67,6 +71,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9604.202,
+      "decode_ns_median": 1684.593,
+      "original_gzram_encode_ns_median": 597.381,
+      "pooled_encode_change_vs_original_gzram_percent": 1507.7180225015525,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -128,6 +136,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9590.734,
+      "decode_ns_median": 1715.297,
+      "original_gzram_encode_ns_median": 770.973,
+      "pooled_encode_change_vs_original_gzram_percent": 1143.977934376431,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -189,6 +201,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9629.765,
+      "decode_ns_median": 1685.315,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -239,6 +255,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9667.222,
+      "decode_ns_median": 1728.309,
+      "original_gzram_encode_ns_median": 587.536,
+      "pooled_encode_change_vs_original_gzram_percent": 1545.3837722284252,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -300,6 +320,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9690.451,
+      "decode_ns_median": 1727.241,
+      "original_gzram_encode_ns_median": 597.381,
+      "pooled_encode_change_vs_original_gzram_percent": 1522.1558770700774,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -361,6 +385,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9639.048,
+      "decode_ns_median": 1715.991,
+      "original_gzram_encode_ns_median": 770.973,
+      "pooled_encode_change_vs_original_gzram_percent": 1150.2445610935793,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -422,6 +450,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 9528.094,
+      "decode_ns_median": 1702.996,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -472,6 +504,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 10125.813,
+      "decode_ns_median": 1696.562,
+      "original_gzram_encode_ns_median": 587.536,
+      "pooled_encode_change_vs_original_gzram_percent": 1623.4370319435748,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -533,6 +569,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 10161.541,
+      "decode_ns_median": 1722.044,
+      "original_gzram_encode_ns_median": 597.381,
+      "pooled_encode_change_vs_original_gzram_percent": 1601.015097567549,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -594,6 +634,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 10437.301,
+      "decode_ns_median": 1725.266,
+      "original_gzram_encode_ns_median": 770.973,
+      "pooled_encode_change_vs_original_gzram_percent": 1253.782947003332,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -655,6 +699,10 @@
       "corpus": "bash-elf",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 3250.602,
+      "encode_ns_median": 10382.227,
+      "decode_ns_median": 1726.279,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0024671544642234,
       "mode_counts": [
         [
@@ -705,6 +753,10 @@
       "corpus": "halfzero",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 558.206,
+      "decode_ns_median": 91.485,
+      "original_gzram_encode_ns_median": 333.054,
+      "pooled_encode_change_vs_original_gzram_percent": 67.60225068607495,
       "bytes_ratio_vs_lz4": 0.9932756964457252,
       "mode_counts": [
         [
@@ -766,6 +818,10 @@
       "corpus": "halfzero",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 767.969,
+      "decode_ns_median": 944.411,
+      "original_gzram_encode_ns_median": 571.467,
+      "pooled_encode_change_vs_original_gzram_percent": 34.38553757259826,
       "bytes_ratio_vs_lz4": 1.053314121037464,
       "mode_counts": [
         [
@@ -827,6 +883,10 @@
       "corpus": "halfzero",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 712.864,
+      "decode_ns_median": 89.974,
+      "original_gzram_encode_ns_median": 481.438,
+      "pooled_encode_change_vs_original_gzram_percent": 48.06974106738564,
       "bytes_ratio_vs_lz4": 0.9932756964457252,
       "mode_counts": [
         [
@@ -888,6 +948,10 @@
       "corpus": "halfzero",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 1220.098,
+      "decode_ns_median": 473.014,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.053314121037464,
       "mode_counts": [
         [
@@ -938,6 +1002,10 @@
       "corpus": "halfzero",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 389.899,
+      "decode_ns_median": 92.505,
+      "original_gzram_encode_ns_median": 333.054,
+      "pooled_encode_change_vs_original_gzram_percent": 17.067802818762125,
       "bytes_ratio_vs_lz4": 0.9932756964457252,
       "mode_counts": [
         [
@@ -999,6 +1067,10 @@
       "corpus": "halfzero",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 609.44,
+      "decode_ns_median": 943.929,
+      "original_gzram_encode_ns_median": 571.467,
+      "pooled_encode_change_vs_original_gzram_percent": 6.644828135307912,
       "bytes_ratio_vs_lz4": 1.053314121037464,
       "mode_counts": [
         [
@@ -1060,6 +1132,10 @@
       "corpus": "halfzero",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 538.865,
+      "decode_ns_median": 87.851,
+      "original_gzram_encode_ns_median": 481.438,
+      "pooled_encode_change_vs_original_gzram_percent": 11.928223364171497,
       "bytes_ratio_vs_lz4": 0.9932756964457252,
       "mode_counts": [
         [
@@ -1121,6 +1197,10 @@
       "corpus": "halfzero",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 1058.298,
+      "decode_ns_median": 473.646,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.053314121037464,
       "mode_counts": [
         [
@@ -1171,6 +1251,10 @@
       "corpus": "halfzero",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 345.06,
+      "decode_ns_median": 92.327,
+      "original_gzram_encode_ns_median": 333.054,
+      "pooled_encode_change_vs_original_gzram_percent": 3.6048208398638204,
       "bytes_ratio_vs_lz4": 0.9932756964457252,
       "mode_counts": [
         [
@@ -1232,6 +1316,10 @@
       "corpus": "halfzero",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 553.583,
+      "decode_ns_median": 946.234,
+      "original_gzram_encode_ns_median": 571.467,
+      "pooled_encode_change_vs_original_gzram_percent": -3.129489541828312,
       "bytes_ratio_vs_lz4": 1.053314121037464,
       "mode_counts": [
         [
@@ -1293,6 +1381,10 @@
       "corpus": "halfzero",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 487.504,
+      "decode_ns_median": 87.902,
+      "original_gzram_encode_ns_median": 481.438,
+      "pooled_encode_change_vs_original_gzram_percent": 1.2599753239254108,
       "bytes_ratio_vs_lz4": 0.9932756964457252,
       "mode_counts": [
         [
@@ -1354,6 +1446,10 @@
       "corpus": "halfzero",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 998.723,
+      "decode_ns_median": 473.555,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.053314121037464,
       "mode_counts": [
         [
@@ -1404,6 +1500,10 @@
       "corpus": "period127",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 799.994,
+      "decode_ns_median": 241.21,
+      "original_gzram_encode_ns_median": 506.131,
+      "pooled_encode_change_vs_original_gzram_percent": 58.06066018481382,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1465,6 +1565,10 @@
       "corpus": "period127",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 798.398,
+      "decode_ns_median": 241.534,
+      "original_gzram_encode_ns_median": 526.502,
+      "pooled_encode_change_vs_original_gzram_percent": 51.64196907134257,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1526,6 +1630,10 @@
       "corpus": "period127",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 800.52,
+      "decode_ns_median": 241.415,
+      "original_gzram_encode_ns_median": 711.622,
+      "pooled_encode_change_vs_original_gzram_percent": 12.492306308686363,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1587,6 +1695,10 @@
       "corpus": "period127",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 800.749,
+      "decode_ns_median": 241.305,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1637,6 +1749,10 @@
       "corpus": "period127",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 800.219,
+      "decode_ns_median": 241.467,
+      "original_gzram_encode_ns_median": 506.131,
+      "pooled_encode_change_vs_original_gzram_percent": 58.10511507890253,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1698,6 +1814,10 @@
       "corpus": "period127",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 801.064,
+      "decode_ns_median": 241.762,
+      "original_gzram_encode_ns_median": 526.502,
+      "pooled_encode_change_vs_original_gzram_percent": 52.14832992087399,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1759,6 +1879,10 @@
       "corpus": "period127",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 800.086,
+      "decode_ns_median": 241.35,
+      "original_gzram_encode_ns_median": 711.622,
+      "pooled_encode_change_vs_original_gzram_percent": 12.431318874346232,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1820,6 +1944,10 @@
       "corpus": "period127",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 799.23,
+      "decode_ns_median": 241.295,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1870,6 +1998,10 @@
       "corpus": "period127",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 1233.982,
+      "decode_ns_median": 241.568,
+      "original_gzram_encode_ns_median": 506.131,
+      "pooled_encode_change_vs_original_gzram_percent": 143.80684052152506,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1931,6 +2063,10 @@
       "corpus": "period127",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 1263.538,
+      "decode_ns_median": 241.73,
+      "original_gzram_encode_ns_median": 526.502,
+      "pooled_encode_change_vs_original_gzram_percent": 139.98731248884147,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -1992,6 +2128,10 @@
       "corpus": "period127",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 1443.721,
+      "decode_ns_median": 241.64,
+      "original_gzram_encode_ns_median": 711.622,
+      "pooled_encode_change_vs_original_gzram_percent": 102.87751081332507,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -2053,6 +2193,10 @@
       "corpus": "period127",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 161.0,
+      "encode_ns_median": 1460.089,
+      "decode_ns_median": 241.264,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0522875816993464,
       "mode_counts": [
         [
@@ -2103,6 +2247,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 165.0,
+      "encode_ns_median": 832.95,
+      "decode_ns_median": 678.599,
+      "original_gzram_encode_ns_median": 332.137,
+      "pooled_encode_change_vs_original_gzram_percent": 150.78506760764384,
       "bytes_ratio_vs_lz4": 1.0509554140127388,
       "mode_counts": [
         [
@@ -2164,6 +2312,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 165.0,
+      "encode_ns_median": 833.763,
+      "decode_ns_median": 689.617,
+      "original_gzram_encode_ns_median": 566.258,
+      "pooled_encode_change_vs_original_gzram_percent": 47.24083368358591,
       "bytes_ratio_vs_lz4": 1.0509554140127388,
       "mode_counts": [
         [
@@ -2225,6 +2377,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 165.0,
+      "encode_ns_median": 832.88,
+      "decode_ns_median": 688.631,
+      "original_gzram_encode_ns_median": 480.583,
+      "pooled_encode_change_vs_original_gzram_percent": 73.30617187873894,
       "bytes_ratio_vs_lz4": 1.0509554140127388,
       "mode_counts": [
         [
@@ -2286,6 +2442,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 165.0,
+      "encode_ns_median": 833.069,
+      "decode_ns_median": 680.362,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0509554140127388,
       "mode_counts": [
         [
@@ -2336,6 +2496,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 387.513,
+      "decode_ns_median": 89.45,
+      "original_gzram_encode_ns_median": 332.137,
+      "pooled_encode_change_vs_original_gzram_percent": 16.672638098134197,
       "bytes_ratio_vs_lz4": 13.171974522292993,
       "mode_counts": [
         [
@@ -2397,6 +2561,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 601.938,
+      "decode_ns_median": 941.608,
+      "original_gzram_encode_ns_median": 566.258,
+      "pooled_encode_change_vs_original_gzram_percent": 6.3010147318006915,
       "bytes_ratio_vs_lz4": 13.968152866242038,
       "mode_counts": [
         [
@@ -2458,6 +2626,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 535.874,
+      "decode_ns_median": 86.902,
+      "original_gzram_encode_ns_median": 480.583,
+      "pooled_encode_change_vs_original_gzram_percent": 11.504984570823362,
       "bytes_ratio_vs_lz4": 13.171974522292993,
       "mode_counts": [
         [
@@ -2519,6 +2691,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 1053.694,
+      "decode_ns_median": 472.713,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 13.968152866242038,
       "mode_counts": [
         [
@@ -2569,6 +2745,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 334.588,
+      "decode_ns_median": 89.486,
+      "original_gzram_encode_ns_median": 332.137,
+      "pooled_encode_change_vs_original_gzram_percent": 0.7379484971562933,
       "bytes_ratio_vs_lz4": 13.171974522292993,
       "mode_counts": [
         [
@@ -2630,6 +2810,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 541.59,
+      "decode_ns_median": 941.945,
+      "original_gzram_encode_ns_median": 566.258,
+      "pooled_encode_change_vs_original_gzram_percent": -4.356318144732619,
       "bytes_ratio_vs_lz4": 13.968152866242038,
       "mode_counts": [
         [
@@ -2691,6 +2875,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 485.699,
+      "decode_ns_median": 87.449,
+      "original_gzram_encode_ns_median": 480.583,
+      "pooled_encode_change_vs_original_gzram_percent": 1.0645403603539938,
       "bytes_ratio_vs_lz4": 13.171974522292993,
       "mode_counts": [
         [
@@ -2752,6 +2940,10 @@
       "corpus": "period127-zero-tail",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 994.547,
+      "decode_ns_median": 472.425,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 13.968152866242038,
       "mode_counts": [
         [
@@ -2802,6 +2994,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 545.992,
+      "encode_ns_median": 1032.768,
+      "decode_ns_median": 691.856,
+      "original_gzram_encode_ns_median": 332.38,
+      "pooled_encode_change_vs_original_gzram_percent": 210.71905650159457,
       "bytes_ratio_vs_lz4": 1.0148701095927077,
       "mode_counts": [
         [
@@ -2863,6 +3059,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 545.992,
+      "encode_ns_median": 1032.514,
+      "decode_ns_median": 691.9,
+      "original_gzram_encode_ns_median": 566.921,
+      "pooled_encode_change_vs_original_gzram_percent": 82.12661023317179,
       "bytes_ratio_vs_lz4": 1.0148701095927077,
       "mode_counts": [
         [
@@ -2924,6 +3124,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 545.992,
+      "encode_ns_median": 1031.866,
+      "decode_ns_median": 691.616,
+      "original_gzram_encode_ns_median": 480.751,
+      "pooled_encode_change_vs_original_gzram_percent": 114.63626700724494,
       "bytes_ratio_vs_lz4": 1.0148701095927077,
       "mode_counts": [
         [
@@ -2985,6 +3189,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 545.992,
+      "encode_ns_median": 1031.108,
+      "decode_ns_median": 691.895,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0148701095927077,
       "mode_counts": [
         [
@@ -3035,6 +3243,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 388.311,
+      "decode_ns_median": 90.202,
+      "original_gzram_encode_ns_median": 332.38,
+      "pooled_encode_change_vs_original_gzram_percent": 16.827426439617298,
       "bytes_ratio_vs_lz4": 3.8439233297149404,
       "mode_counts": [
         [
@@ -3096,6 +3308,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 603.959,
+      "decode_ns_median": 941.915,
+      "original_gzram_encode_ns_median": 566.921,
+      "pooled_encode_change_vs_original_gzram_percent": 6.533185399729402,
       "bytes_ratio_vs_lz4": 4.076268792100998,
       "mode_counts": [
         [
@@ -3157,6 +3373,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 536.495,
+      "decode_ns_median": 87.08,
+      "original_gzram_encode_ns_median": 480.751,
+      "pooled_encode_change_vs_original_gzram_percent": 11.595191689668871,
       "bytes_ratio_vs_lz4": 3.8439233297149404,
       "mode_counts": [
         [
@@ -3218,6 +3438,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 1053.715,
+      "decode_ns_median": 472.599,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 4.076268792100998,
       "mode_counts": [
         [
@@ -3268,6 +3492,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 334.521,
+      "decode_ns_median": 91.61,
+      "original_gzram_encode_ns_median": 332.38,
+      "pooled_encode_change_vs_original_gzram_percent": 0.6441422468259184,
       "bytes_ratio_vs_lz4": 3.8439233297149404,
       "mode_counts": [
         [
@@ -3329,6 +3557,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 541.735,
+      "decode_ns_median": 942.859,
+      "original_gzram_encode_ns_median": 566.921,
+      "pooled_encode_change_vs_original_gzram_percent": -4.442594294443147,
       "bytes_ratio_vs_lz4": 4.076268792100998,
       "mode_counts": [
         [
@@ -3390,6 +3622,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 2068.0,
+      "encode_ns_median": 485.089,
+      "decode_ns_median": 88.0,
+      "original_gzram_encode_ns_median": 480.751,
+      "pooled_encode_change_vs_original_gzram_percent": 0.9023382166651883,
       "bytes_ratio_vs_lz4": 3.8439233297149404,
       "mode_counts": [
         [
@@ -3451,6 +3687,10 @@
       "corpus": "period509-zero-tail",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 2193.0,
+      "encode_ns_median": 995.001,
+      "decode_ns_median": 472.454,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 4.076268792100998,
       "mode_counts": [
         [
@@ -3501,6 +3741,10 @@
       "corpus": "random",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1288.267,
+      "decode_ns_median": 112.809,
+      "original_gzram_encode_ns_median": 506.361,
+      "pooled_encode_change_vs_original_gzram_percent": 154.4167106076495,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3562,6 +3806,10 @@
       "corpus": "random",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1288.294,
+      "decode_ns_median": 112.678,
+      "original_gzram_encode_ns_median": 526.319,
+      "pooled_encode_change_vs_original_gzram_percent": 144.77436687636208,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3623,6 +3871,10 @@
       "corpus": "random",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1288.115,
+      "decode_ns_median": 113.025,
+      "original_gzram_encode_ns_median": 711.653,
+      "pooled_encode_change_vs_original_gzram_percent": 81.00324174843638,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3684,6 +3936,10 @@
       "corpus": "random",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1287.531,
+      "decode_ns_median": 112.729,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3734,6 +3990,10 @@
       "corpus": "random",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1287.989,
+      "decode_ns_median": 112.508,
+      "original_gzram_encode_ns_median": 506.361,
+      "pooled_encode_change_vs_original_gzram_percent": 154.36180906507414,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3795,6 +4055,10 @@
       "corpus": "random",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1287.214,
+      "decode_ns_median": 112.729,
+      "original_gzram_encode_ns_median": 526.319,
+      "pooled_encode_change_vs_original_gzram_percent": 144.56916812807444,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3856,6 +4120,10 @@
       "corpus": "random",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1286.282,
+      "decode_ns_median": 112.663,
+      "original_gzram_encode_ns_median": 711.653,
+      "pooled_encode_change_vs_original_gzram_percent": 80.74567239932944,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3917,6 +4185,10 @@
       "corpus": "random",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1286.976,
+      "decode_ns_median": 112.69,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -3967,6 +4239,10 @@
       "corpus": "random",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1699.091,
+      "decode_ns_median": 112.183,
+      "original_gzram_encode_ns_median": 506.361,
+      "pooled_encode_change_vs_original_gzram_percent": 235.54934128023288,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -4028,6 +4304,10 @@
       "corpus": "random",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1721.621,
+      "decode_ns_median": 112.565,
+      "original_gzram_encode_ns_median": 526.319,
+      "pooled_encode_change_vs_original_gzram_percent": 227.10599465343267,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -4089,6 +4369,10 @@
       "corpus": "random",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1904.237,
+      "decode_ns_median": 112.674,
+      "original_gzram_encode_ns_median": 711.653,
+      "pooled_encode_change_vs_original_gzram_percent": 167.5794242418707,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -4150,6 +4434,10 @@
       "corpus": "random",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 4104.0,
+      "encode_ns_median": 1917.209,
+      "decode_ns_median": 112.717,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.997569275644142,
       "mode_counts": [
         [
@@ -4200,6 +4488,10 @@
       "corpus": "repeat32",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 148.0,
+      "encode_ns_median": 334.512,
+      "decode_ns_median": 82.968,
+      "original_gzram_encode_ns_median": 330.033,
+      "pooled_encode_change_vs_original_gzram_percent": 1.3571370135713634,
       "bytes_ratio_vs_lz4": 2.5517241379310347,
       "mode_counts": [
         [
@@ -4261,6 +4553,10 @@
       "corpus": "repeat32",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 49.0,
+      "encode_ns_median": 296.577,
+      "decode_ns_median": 59.745,
+      "original_gzram_encode_ns_median": 292.701,
+      "pooled_encode_change_vs_original_gzram_percent": 1.32421822952431,
       "bytes_ratio_vs_lz4": 0.8448275862068966,
       "mode_counts": [
         [
@@ -4322,6 +4618,10 @@
       "corpus": "repeat32",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 148.0,
+      "encode_ns_median": 443.795,
+      "decode_ns_median": 203.434,
+      "original_gzram_encode_ns_median": 440.346,
+      "pooled_encode_change_vs_original_gzram_percent": 0.7832477188392861,
       "bytes_ratio_vs_lz4": 2.5517241379310347,
       "mode_counts": [
         [
@@ -4383,6 +4683,10 @@
       "corpus": "repeat32",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 49.0,
+      "encode_ns_median": 409.04,
+      "decode_ns_median": 181.288,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.8448275862068966,
       "mode_counts": [
         [
@@ -4433,6 +4737,10 @@
       "corpus": "repeat32",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 66.0,
+      "encode_ns_median": 701.856,
+      "decode_ns_median": 274.813,
+      "original_gzram_encode_ns_median": 330.033,
+      "pooled_encode_change_vs_original_gzram_percent": 112.6623701266237,
       "bytes_ratio_vs_lz4": 1.1379310344827587,
       "mode_counts": [
         [
@@ -4494,6 +4802,10 @@
       "corpus": "repeat32",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 66.0,
+      "encode_ns_median": 703.063,
+      "decode_ns_median": 274.729,
+      "original_gzram_encode_ns_median": 292.701,
+      "pooled_encode_change_vs_original_gzram_percent": 140.1983594179726,
       "bytes_ratio_vs_lz4": 1.1379310344827587,
       "mode_counts": [
         [
@@ -4555,6 +4867,10 @@
       "corpus": "repeat32",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 66.0,
+      "encode_ns_median": 702.404,
+      "decode_ns_median": 275.562,
+      "original_gzram_encode_ns_median": 440.346,
+      "pooled_encode_change_vs_original_gzram_percent": 59.51183841797132,
       "bytes_ratio_vs_lz4": 1.1379310344827587,
       "mode_counts": [
         [
@@ -4616,6 +4932,10 @@
       "corpus": "repeat32",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 66.0,
+      "encode_ns_median": 698.072,
+      "decode_ns_median": 275.832,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.1379310344827587,
       "mode_counts": [
         [
@@ -4666,6 +4986,10 @@
       "corpus": "repeat32",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 148.0,
+      "encode_ns_median": 335.512,
+      "decode_ns_median": 83.473,
+      "original_gzram_encode_ns_median": 330.033,
+      "pooled_encode_change_vs_original_gzram_percent": 1.6601370166013707,
       "bytes_ratio_vs_lz4": 2.5517241379310347,
       "mode_counts": [
         [
@@ -4727,6 +5051,10 @@
       "corpus": "repeat32",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 49.0,
+      "encode_ns_median": 295.68,
+      "decode_ns_median": 60.425,
+      "original_gzram_encode_ns_median": 292.701,
+      "pooled_encode_change_vs_original_gzram_percent": 1.0177621531870296,
       "bytes_ratio_vs_lz4": 0.8448275862068966,
       "mode_counts": [
         [
@@ -4788,6 +5116,10 @@
       "corpus": "repeat32",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 148.0,
+      "encode_ns_median": 443.21,
+      "decode_ns_median": 204.401,
+      "original_gzram_encode_ns_median": 440.346,
+      "pooled_encode_change_vs_original_gzram_percent": 0.65039764185435,
       "bytes_ratio_vs_lz4": 2.5517241379310347,
       "mode_counts": [
         [
@@ -4849,6 +5181,10 @@
       "corpus": "repeat32",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 49.0,
+      "encode_ns_median": 408.177,
+      "decode_ns_median": 181.473,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.8448275862068966,
       "mode_counts": [
         [
@@ -4899,6 +5235,10 @@
       "corpus": "repeat8",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 52.0,
+      "encode_ns_median": 311.978,
+      "decode_ns_median": 81.997,
+      "original_gzram_encode_ns_median": 308.09,
+      "pooled_encode_change_vs_original_gzram_percent": 1.2619689051900584,
       "bytes_ratio_vs_lz4": 1.5757575757575757,
       "mode_counts": [
         [
@@ -4960,6 +5300,10 @@
       "corpus": "repeat8",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 25.0,
+      "encode_ns_median": 295.917,
+      "decode_ns_median": 57.747,
+      "original_gzram_encode_ns_median": 291.702,
+      "pooled_encode_change_vs_original_gzram_percent": 1.4449678096139174,
       "bytes_ratio_vs_lz4": 0.7575757575757576,
       "mode_counts": [
         [
@@ -5021,6 +5365,10 @@
       "corpus": "repeat8",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 52.0,
+      "encode_ns_median": 402.1,
+      "decode_ns_median": 867.081,
+      "original_gzram_encode_ns_median": 398.054,
+      "pooled_encode_change_vs_original_gzram_percent": 1.0164450049490847,
       "bytes_ratio_vs_lz4": 1.5757575757575757,
       "mode_counts": [
         [
@@ -5082,6 +5430,10 @@
       "corpus": "repeat8",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 25.0,
+      "encode_ns_median": 366.104,
+      "decode_ns_median": 824.228,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.7575757575757576,
       "mode_counts": [
         [
@@ -5132,6 +5484,10 @@
       "corpus": "repeat8",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 41.0,
+      "encode_ns_median": 665.403,
+      "decode_ns_median": 310.859,
+      "original_gzram_encode_ns_median": 308.09,
+      "pooled_encode_change_vs_original_gzram_percent": 115.9768249537473,
       "bytes_ratio_vs_lz4": 1.2424242424242424,
       "mode_counts": [
         [
@@ -5193,6 +5549,10 @@
       "corpus": "repeat8",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 41.0,
+      "encode_ns_median": 665.622,
+      "decode_ns_median": 310.449,
+      "original_gzram_encode_ns_median": 291.702,
+      "pooled_encode_change_vs_original_gzram_percent": 128.1856140856079,
       "bytes_ratio_vs_lz4": 1.2424242424242424,
       "mode_counts": [
         [
@@ -5254,6 +5614,10 @@
       "corpus": "repeat8",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 41.0,
+      "encode_ns_median": 647.617,
+      "decode_ns_median": 238.878,
+      "original_gzram_encode_ns_median": 398.054,
+      "pooled_encode_change_vs_original_gzram_percent": 62.695764896220105,
       "bytes_ratio_vs_lz4": 1.2424242424242424,
       "mode_counts": [
         [
@@ -5315,6 +5679,10 @@
       "corpus": "repeat8",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 41.0,
+      "encode_ns_median": 653.323,
+      "decode_ns_median": 246.481,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.2424242424242424,
       "mode_counts": [
         [
@@ -5365,6 +5733,10 @@
       "corpus": "repeat8",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 52.0,
+      "encode_ns_median": 311.841,
+      "decode_ns_median": 82.46,
+      "original_gzram_encode_ns_median": 308.09,
+      "pooled_encode_change_vs_original_gzram_percent": 1.2175013794670564,
       "bytes_ratio_vs_lz4": 1.5757575757575757,
       "mode_counts": [
         [
@@ -5426,6 +5798,10 @@
       "corpus": "repeat8",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 25.0,
+      "encode_ns_median": 295.149,
+      "decode_ns_median": 57.981,
+      "original_gzram_encode_ns_median": 291.702,
+      "pooled_encode_change_vs_original_gzram_percent": 1.1816854186807113,
       "bytes_ratio_vs_lz4": 0.7575757575757576,
       "mode_counts": [
         [
@@ -5487,6 +5863,10 @@
       "corpus": "repeat8",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 52.0,
+      "encode_ns_median": 401.187,
+      "decode_ns_median": 855.645,
+      "original_gzram_encode_ns_median": 398.054,
+      "pooled_encode_change_vs_original_gzram_percent": 0.7870791400161892,
       "bytes_ratio_vs_lz4": 1.5757575757575757,
       "mode_counts": [
         [
@@ -5548,6 +5928,10 @@
       "corpus": "repeat8",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 25.0,
+      "encode_ns_median": 364.035,
+      "decode_ns_median": 813.218,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.7575757575757576,
       "mode_counts": [
         [
@@ -5598,6 +5982,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 664.75,
+      "encode_ns_median": 2086.919,
+      "decode_ns_median": 1560.283,
+      "original_gzram_encode_ns_median": 1444.1,
+      "pooled_encode_change_vs_original_gzram_percent": 44.51346859635758,
       "bytes_ratio_vs_lz4": 0.610496966112482,
       "mode_counts": [
         [
@@ -5659,6 +6047,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 661.75,
+      "encode_ns_median": 2022.714,
+      "decode_ns_median": 1528.706,
+      "original_gzram_encode_ns_median": 1374.741,
+      "pooled_encode_change_vs_original_gzram_percent": 47.13418745785569,
       "bytes_ratio_vs_lz4": 0.6077418086873787,
       "mode_counts": [
         [
@@ -5720,6 +6112,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 664.75,
+      "encode_ns_median": 2581.756,
+      "decode_ns_median": 1366.31,
+      "original_gzram_encode_ns_median": 1916.906,
+      "pooled_encode_change_vs_original_gzram_percent": 34.68349517399392,
       "bytes_ratio_vs_lz4": 0.610496966112482,
       "mode_counts": [
         [
@@ -5781,6 +6177,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 661.75,
+      "encode_ns_median": 2492.822,
+      "decode_ns_median": 1281.236,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.6077418086873787,
       "mode_counts": [
         [
@@ -5831,6 +6231,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 664.75,
+      "encode_ns_median": 1465.859,
+      "decode_ns_median": 1560.182,
+      "original_gzram_encode_ns_median": 1444.1,
+      "pooled_encode_change_vs_original_gzram_percent": 1.5067516099993128,
       "bytes_ratio_vs_lz4": 0.610496966112482,
       "mode_counts": [
         [
@@ -5892,6 +6296,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 661.75,
+      "encode_ns_median": 1412.098,
+      "decode_ns_median": 1536.492,
+      "original_gzram_encode_ns_median": 1374.741,
+      "pooled_encode_change_vs_original_gzram_percent": 2.7173845837143107,
       "bytes_ratio_vs_lz4": 0.6077418086873787,
       "mode_counts": [
         [
@@ -5953,6 +6361,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 664.75,
+      "encode_ns_median": 1967.976,
+      "decode_ns_median": 1373.279,
+      "original_gzram_encode_ns_median": 1916.906,
+      "pooled_encode_change_vs_original_gzram_percent": 2.6641890630004994,
       "bytes_ratio_vs_lz4": 0.610496966112482,
       "mode_counts": [
         [
@@ -6014,6 +6426,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 661.75,
+      "encode_ns_median": 1869.865,
+      "decode_ns_median": 1280.499,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.6077418086873787,
       "mode_counts": [
         [
@@ -6064,6 +6480,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 664.75,
+      "encode_ns_median": 1431.58,
+      "decode_ns_median": 1568.054,
+      "original_gzram_encode_ns_median": 1444.1,
+      "pooled_encode_change_vs_original_gzram_percent": -0.8669759711931291,
       "bytes_ratio_vs_lz4": 0.610496966112482,
       "mode_counts": [
         [
@@ -6125,6 +6545,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 661.75,
+      "encode_ns_median": 1363.013,
+      "decode_ns_median": 1513.85,
+      "original_gzram_encode_ns_median": 1374.741,
+      "pooled_encode_change_vs_original_gzram_percent": -0.8531061487218383,
       "bytes_ratio_vs_lz4": 0.6077418086873787,
       "mode_counts": [
         [
@@ -6186,6 +6610,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 664.75,
+      "encode_ns_median": 1923.211,
+      "decode_ns_median": 1357.299,
+      "original_gzram_encode_ns_median": 1916.906,
+      "pooled_encode_change_vs_original_gzram_percent": 0.3289154502098768,
       "bytes_ratio_vs_lz4": 0.610496966112482,
       "mode_counts": [
         [
@@ -6247,6 +6675,10 @@
       "corpus": "sparse-words",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 661.75,
+      "encode_ns_median": 1818.282,
+      "decode_ns_median": 1284.209,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.6077418086873787,
       "mode_counts": [
         [
@@ -6297,6 +6729,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1184.724,
+      "decode_ns_median": 250.224,
+      "original_gzram_encode_ns_median": 507.746,
+      "pooled_encode_change_vs_original_gzram_percent": 133.33005085219773,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6358,6 +6794,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1184.425,
+      "decode_ns_median": 250.51,
+      "original_gzram_encode_ns_median": 526.336,
+      "pooled_encode_change_vs_original_gzram_percent": 125.03210876702333,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6419,6 +6859,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1186.68,
+      "decode_ns_median": 249.851,
+      "original_gzram_encode_ns_median": 713.173,
+      "pooled_encode_change_vs_original_gzram_percent": 66.39440921066839,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6480,6 +6924,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1186.992,
+      "decode_ns_median": 250.796,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6530,6 +6978,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1183.877,
+      "decode_ns_median": 250.935,
+      "original_gzram_encode_ns_median": 507.746,
+      "pooled_encode_change_vs_original_gzram_percent": 133.16323516088752,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6591,6 +7043,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1180.286,
+      "decode_ns_median": 250.817,
+      "original_gzram_encode_ns_median": 526.336,
+      "pooled_encode_change_vs_original_gzram_percent": 124.24572896400781,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6652,6 +7108,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1183.239,
+      "decode_ns_median": 250.603,
+      "original_gzram_encode_ns_median": 713.173,
+      "pooled_encode_change_vs_original_gzram_percent": 65.91191758521424,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6713,6 +7173,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1182.716,
+      "decode_ns_median": 250.856,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6763,6 +7227,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1607.738,
+      "decode_ns_median": 250.916,
+      "original_gzram_encode_ns_median": 507.746,
+      "pooled_encode_change_vs_original_gzram_percent": 216.64217935739524,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6824,6 +7292,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1626.375,
+      "decode_ns_median": 250.784,
+      "original_gzram_encode_ns_median": 526.336,
+      "pooled_encode_change_vs_original_gzram_percent": 208.99938442363813,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6885,6 +7357,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1813.405,
+      "decode_ns_median": 251.29,
+      "original_gzram_encode_ns_median": 713.173,
+      "pooled_encode_change_vs_original_gzram_percent": 154.27280617746325,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6946,6 +7422,10 @@
       "corpus": "word-tail64",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 2146.0,
+      "encode_ns_median": 1824.105,
+      "decode_ns_median": 250.71,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 1.0037418147801684,
       "mode_counts": [
         [
@@ -6996,6 +7476,10 @@
       "corpus": "zero",
       "variant": "ghy-recurrence-avx2-1024",
       "bytes_per_page": 20.0,
+      "encode_ns_median": 314.684,
+      "decode_ns_median": 57.34,
+      "original_gzram_encode_ns_median": 299.187,
+      "pooled_encode_change_vs_original_gzram_percent": 5.179703663595014,
       "bytes_ratio_vs_lz4": 0.7692307692307693,
       "mode_counts": [
         [
@@ -7057,6 +7541,10 @@
       "corpus": "zero",
       "variant": "ghy-recurrence-avx2-4096",
       "bytes_per_page": 17.0,
+      "encode_ns_median": 288.795,
+      "decode_ns_median": 107.315,
+      "original_gzram_encode_ns_median": 283.478,
+      "pooled_encode_change_vs_original_gzram_percent": 1.8756305603962131,
       "bytes_ratio_vs_lz4": 0.6538461538461539,
       "mode_counts": [
         [
@@ -7118,6 +7606,10 @@
       "corpus": "zero",
       "variant": "ghy-recurrence-scalar-1024",
       "bytes_per_page": 20.0,
+      "encode_ns_median": 391.965,
+      "decode_ns_median": 53.657,
+      "original_gzram_encode_ns_median": 378.619,
+      "pooled_encode_change_vs_original_gzram_percent": 3.524915548348062,
       "bytes_ratio_vs_lz4": 0.7692307692307693,
       "mode_counts": [
         [
@@ -7179,6 +7671,10 @@
       "corpus": "zero",
       "variant": "ghy-recurrence-scalar-4096",
       "bytes_per_page": 17.0,
+      "encode_ns_median": 363.406,
+      "decode_ns_median": 107.163,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.6538461538461539,
       "mode_counts": [
         [
@@ -7229,6 +7725,10 @@
       "corpus": "zero",
       "variant": "ghy-sample-avx2-1024",
       "bytes_per_page": 20.0,
+      "encode_ns_median": 345.654,
+      "decode_ns_median": 57.616,
+      "original_gzram_encode_ns_median": 299.187,
+      "pooled_encode_change_vs_original_gzram_percent": 15.531089251872565,
       "bytes_ratio_vs_lz4": 0.7692307692307693,
       "mode_counts": [
         [
@@ -7290,6 +7790,10 @@
       "corpus": "zero",
       "variant": "ghy-sample-avx2-4096",
       "bytes_per_page": 17.0,
+      "encode_ns_median": 332.779,
+      "decode_ns_median": 106.846,
+      "original_gzram_encode_ns_median": 283.478,
+      "pooled_encode_change_vs_original_gzram_percent": 17.391473059637775,
       "bytes_ratio_vs_lz4": 0.6538461538461539,
       "mode_counts": [
         [
@@ -7351,6 +7855,10 @@
       "corpus": "zero",
       "variant": "ghy-sample-scalar-1024",
       "bytes_per_page": 20.0,
+      "encode_ns_median": 414.46,
+      "decode_ns_median": 53.803,
+      "original_gzram_encode_ns_median": 378.619,
+      "pooled_encode_change_vs_original_gzram_percent": 9.466244430416836,
       "bytes_ratio_vs_lz4": 0.7692307692307693,
       "mode_counts": [
         [
@@ -7412,6 +7920,10 @@
       "corpus": "zero",
       "variant": "ghy-sample-scalar-4096",
       "bytes_per_page": 17.0,
+      "encode_ns_median": 383.402,
+      "decode_ns_median": 104.354,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.6538461538461539,
       "mode_counts": [
         [
@@ -7462,6 +7974,10 @@
       "corpus": "zero",
       "variant": "ghy-trial-avx2-1024",
       "bytes_per_page": 20.0,
+      "encode_ns_median": 298.085,
+      "decode_ns_median": 57.341,
+      "original_gzram_encode_ns_median": 299.187,
+      "pooled_encode_change_vs_original_gzram_percent": -0.36833151173013556,
       "bytes_ratio_vs_lz4": 0.7692307692307693,
       "mode_counts": [
         [
@@ -7523,6 +8039,10 @@
       "corpus": "zero",
       "variant": "ghy-trial-avx2-4096",
       "bytes_per_page": 17.0,
+      "encode_ns_median": 292.621,
+      "decode_ns_median": 108.302,
+      "original_gzram_encode_ns_median": 283.478,
+      "pooled_encode_change_vs_original_gzram_percent": 3.225294379105237,
       "bytes_ratio_vs_lz4": 0.6538461538461539,
       "mode_counts": [
         [
@@ -7584,6 +8104,10 @@
       "corpus": "zero",
       "variant": "ghy-trial-scalar-1024",
       "bytes_per_page": 20.0,
+      "encode_ns_median": 378.962,
+      "decode_ns_median": 53.903,
+      "original_gzram_encode_ns_median": 378.619,
+      "pooled_encode_change_vs_original_gzram_percent": 0.09059238971100836,
       "bytes_ratio_vs_lz4": 0.7692307692307693,
       "mode_counts": [
         [
@@ -7645,6 +8169,10 @@
       "corpus": "zero",
       "variant": "ghy-trial-scalar-4096",
       "bytes_per_page": 17.0,
+      "encode_ns_median": 359.25,
+      "decode_ns_median": 104.865,
+      "original_gzram_encode_ns_median": null,
+      "pooled_encode_change_vs_original_gzram_percent": null,
       "bytes_ratio_vs_lz4": 0.6538461538461539,
       "mode_counts": [
         [

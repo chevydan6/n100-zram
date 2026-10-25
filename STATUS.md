@@ -263,7 +263,9 @@ exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
 Three physical N100 sessions completed all 19 selected variants and 11 corpora,
 with guard/cross-policy/native byte checks; PMU groups were fully scheduled and
 package energy measured. The trial hybrid retains the half-zero AVX2 fast path
-within about +0.74% encoding time while adding eight framing bytes. Its simple
+at +0.74% by the median paired-session-ratio estimator; pooled medians are
+345.1 versus 333.1 ns/page (+3.6%). Both estimators and all raw timing rows
+are retained. The hybrid adds eight framing bytes. Its simple
 acceptance rule still misses the excellent LZ4 ratio on mixed repeated-prefix
 pages. Recurrence classification fixes those ratios but costs about +67.9% on
 half-zero encoding versus original GZRAM. No policy is preferred overall.
