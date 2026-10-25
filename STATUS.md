@@ -234,3 +234,9 @@ exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-period-001/summary.md](benchmarks/results/native-gzram-period-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-filter-001/summary.md](benchmarks/results/native-gzram-filter-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.

@@ -1,0 +1,103 @@
+{
+  "cpu_model": "Intel(R) N100",
+  "runner_sha256": "7b331b52e7a2a196a70e2c5edd24f30b08b2494218a30615906d208ea5bb4698",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "binary_sha256": "51162fdfc550a3859f9eb25e097bc708c561115cbfd01264f8a956f7552eb637",
+  "manifest": {
+    "period_filter_candidate": true,
+    "variable_period_candidate": true,
+    "block_unpack_candidate": true,
+    "fast_scalar_candidate": true,
+    "candidate_extra_flags": {
+      "fast_scalar": [
+        "-DGZRAM_SCALAR_FAST=1"
+      ],
+      "block_unpack": [
+        "-DGZRAM_BLOCK_UNPACK=1"
+      ],
+      "variable_period": [
+        "-DGZRAM_VARIABLE_PERIOD=1",
+        "-DGZRAM_SCALAR_FAST=1"
+      ]
+    },
+    "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+    "flags": [
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx"
+    ],
+    "source_sha256": {
+      "gzram/src/gzram.c": "be946a07d73c7d124607031acaddc202965017eb12055c6de9ba57465a092832",
+      "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+      "gzram/tools/build.py": "6e8b393a943f0f41a0de8a7e48c24fe9e16bdc2ceda05a16adf12d4beeb6a942"
+    },
+    "artifacts": {
+      "libgzram.so": "950afc0973bb9ffbc211890ca5300cff51d03647717e68df3e6049d4fe125258",
+      "libgzram-fast.so": "27411de8bd76b88bc1773fdec80d22c9e4be02a1413fb5921b58bcf3e91b3cbb",
+      "libgzram-block.so": "7c2f86b1fb0df34cdf4789f31fc42a1f7eeb3c3641d21563c1bc70bc1dc26cb0",
+      "libgzram-period.so": "30709edfadd84588da74bf4fa4235a9c3f8fb241d057b4ec0e3c38c9d17443f6",
+      "libgzram-filter.so": "4bb4cac913bdd309a73e651763540e23412c9b261b18cc9310f74b489c638479",
+      "lz4-small.so": "f15fd169f2b5c05cb92716528b92b07921586ca45021d7f6fcfce6d5ccff4a47"
+    }
+  },
+  "libraries": {
+    "libgzram.so": "950afc0973bb9ffbc211890ca5300cff51d03647717e68df3e6049d4fe125258",
+    "libgzram-fast.so": "27411de8bd76b88bc1773fdec80d22c9e4be02a1413fb5921b58bcf3e91b3cbb",
+    "libgzram-block.so": "7c2f86b1fb0df34cdf4789f31fc42a1f7eeb3c3641d21563c1bc70bc1dc26cb0",
+    "libgzram-period.so": "30709edfadd84588da74bf4fa4235a9c3f8fb241d057b4ec0e3c38c9d17443f6",
+    "libgzram-filter.so": "4bb4cac913bdd309a73e651763540e23412c9b261b18cc9310f74b489c638479",
+    "lz4-small.so": "f15fd169f2b5c05cb92716528b92b07921586ca45021d7f6fcfce6d5ccff4a47"
+  },
+  "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+  "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3399940",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "31850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "43000",
+    "/sys/class/thermal/thermal_zone3/temp": "34850",
+    "/sys/class/thermal/thermal_zone1/temp": "37850",
+    "/sys/class/thermal/thermal_zone6/temp": "43000",
+    "/sys/class/thermal/thermal_zone4/temp": "43000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3100053",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3048130",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3099993",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "40850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "59000",
+    "/sys/class/thermal/thermal_zone3/temp": "47850",
+    "/sys/class/thermal/thermal_zone1/temp": "51850",
+    "/sys/class/thermal/thermal_zone6/temp": "59000",
+    "/sys/class/thermal/thermal_zone4/temp": "59000"
+  },
+  "all_pmu_batches_fully_scheduled": true,
+  "package_energy_available_all_rows": true
+}
