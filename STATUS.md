@@ -228,3 +228,9 @@ and active on its original development branch.
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-block-unpack-001/summary.md](benchmarks/results/native-gzram-block-unpack-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+### Native experiment collection
+
+Three native user-space screening sessions completed; all raw rows and sanitized
+telemetry are in [benchmarks/results/native-gzram-period-001/summary.md](benchmarks/results/native-gzram-period-001/summary.md). These measurements
+exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
