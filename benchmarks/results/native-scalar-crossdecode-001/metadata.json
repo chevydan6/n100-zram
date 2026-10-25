@@ -1,0 +1,56 @@
+{
+  "status": "complete",
+  "scope": "Physical N100 warm-cache userspace cross-decoder attribution; not kernel ZRAM acceptance",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "cpu_model": "Intel(R) N100",
+  "runner_sha256": "e02456fbd8a398b744e11c96c8db9ded34acb6164664d921a7c6a0c82f677d08",
+  "files_sha256": {
+    "table12-scalar.so": "0a5d2eaf0f40b1144b7644a2f206a5b8d7851926ee5e45b7c00cba9d72e1363e",
+    "table13-scalar.so": "782bf127ddde4c73a41327bbf5adc719ca74482b0ef0f273ec5f98f9a47367e5",
+    "table14-scalar.so": "531243152e88a1f5652e18d05c6787b5adcf1b4feaf038ad8d21df6eacb16ef4",
+    "table-crossdecode.c": "547a7aab52eac9f834e22972178e2f00347f6296f6eb8dfc0e5f0add13d64c1a",
+    "run-table-crossdecode.py": "e02456fbd8a398b744e11c96c8db9ded34acb6164664d921a7c6a0c82f677d08",
+    "benchmark": "b62538aa1eece2a0068efd84a15fcd3703eaaaf114f0202936a7e1672e08c379"
+  },
+  "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+  "completed": [
+    0,
+    1,
+    2
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3084774",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3084768",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3084653",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "2881597",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "27850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "36000",
+    "/sys/class/thermal/thermal_zone3/temp": "29850",
+    "/sys/class/thermal/thermal_zone1/temp": "28850",
+    "/sys/class/thermal/thermal_zone6/temp": "36000",
+    "/sys/class/thermal/thermal_zone4/temp": "36000"
+  },
+  "current": null,
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "1399760",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "1400035",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "1399995",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "1377807",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "27850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "41000",
+    "/sys/class/thermal/thermal_zone3/temp": "32850",
+    "/sys/class/thermal/thermal_zone1/temp": "36850",
+    "/sys/class/thermal/thermal_zone6/temp": "39000",
+    "/sys/class/thermal/thermal_zone4/temp": "37000"
+  }
+}
