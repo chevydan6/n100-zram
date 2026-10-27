@@ -1,5 +1,9 @@
 # Benchmarks
 
+For the latest additive GZRAM development and benchmark safety repair, see
+[the Astra checkpoint](docs/GZRAM-ASTRA-20261028.md). It does not supersede
+[SOL's measured results](docs/GZRAM-20261028.md) or establish a new speed gain.
+
 ## Initial N100 exploratory user-space run
 
 Raw data: `benchmarks/results/n100-initial.csv`. These are codec timings, **not

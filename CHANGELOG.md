@@ -1,5 +1,15 @@
 # Changelog
 
+## Additive GZRAM continuation, 2026-10-28
+
+- Preserve SOL's latest checkpoint and all prior codec text and result files.
+- Add isolated outlined-classifier and sparse bit-scan decoder experiments.
+- Repair full-registry shuffle capacity and validate the benchmark with sanitizers.
+- Add exhaustive mask/truncation cases, density/mixed corpora and thread CPU accounting.
+- Retain normal/ASan/UBSan validation and 114,688 independently checked size records.
+- Keep timing and kernel trials pending access to the existing native test lock
+  and verification of the intended target's changed environment and recovery.
+
 ## Initial research and native harness
 
 - Located existing custom kernel and actual active Fedora configuration.

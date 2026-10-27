@@ -1,5 +1,11 @@
 # Current status
 
+The additive [Astra continuation](docs/GZRAM-ASTRA-20261028.md) investigates
+scalar classifier outlining and sparse bit-scan decoding, and repairs a
+full-registry benchmark shuffle overflow. New candidate performance remains
+unmeasured; original controller/lock access and the changed local environment
+must be resolved before a native timing cohort.
+
 For the latest GZRAM experiments, measured gains, regressions and reproduction
 commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).
 The entries below also retain historical experiment states; later completion

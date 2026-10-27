@@ -91,10 +91,21 @@ static void pack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
 }
 static void unpack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
+#if defined(GZRAM_CTZ_UNPACK)
+ /* Integer-only alternative: clear the group, then visit present words.
+  * Avoid eight data-dependent branches for sparse groups. Dense masks pay
+  * extra stores/bit scans; measure that cost instead of guessing a cutoff. */
+ memset(dst,0,32);
+ while(mask){
+  unsigned lane=(unsigned)__builtin_ctz(mask);mask&=mask-1;
+  memcpy(dst+lane*4,src,4);src+=4;
+ }
+#else
  for(unsigned lane=0;lane<8;lane++) {
   if(mask&(1U<<lane)){memcpy(dst+lane*4,src,4);src+=4;}
   else memset(dst+lane*4,0,4);
  }
+#endif
 }
 AVX static void pack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
 {

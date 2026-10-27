@@ -38,6 +38,11 @@ jobs:
         run: python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-wordmixed.so --same-encoding-libraries build/gzram/libgzram-hybrid-guard32.so build/gzram/libgzram-hybrid-wordguard.so --other-libraries build/gzram/libgzram-hybrid-guard32mixed.so
       - name: Independent vector tail
         run: python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-splittail.so --same-encoding-libraries build/gzram/libgzram-hybrid-wordmixed.so build/gzram/libgzram-hybrid-guard32.so --other-libraries build/gzram/libgzram-hybrid-guard32mixed.so
+      - name: Outlined scanner and sparse bit-scan decoder
+        run: |
+          for policy in outlinetail ctzunpack; do
+            python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-$policy.so --same-encoding-libraries build/gzram/libgzram-hybrid-wordmixed.so build/gzram/libgzram-hybrid-splittail.so --other-libraries build/gzram/libgzram-hybrid-guard32mixed.so
+          done
       - name: Address and undefined-behavior sanitizers
         run: |
           EXTRA_CFLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' python3 gzram/tools/build.py --output build/gzram-asan
@@ -59,7 +64,16 @@ jobs:
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-wordguard.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-guard32.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-wordmixed.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-guard32.so build/gzram-asan/libgzram-hybrid-wordguard.so --other-libraries build/gzram-asan/libgzram-hybrid-guard32mixed.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-splittail.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so build/gzram-asan/libgzram-hybrid-guard32.so --other-libraries build/gzram-asan/libgzram-hybrid-guard32mixed.so
+          for policy in outlinetail ctzunpack; do
+            python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-$policy.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so build/gzram-asan/libgzram-hybrid-splittail.so --other-libraries build/gzram-asan/libgzram-hybrid-guard32mixed.so
+          done
       - name: Validate native benchmark fixture
         run: |
           gcc -O2 -Wall -Wextra -Werror gzram/bench.c -ldl -o build/gzram/benchmark
           if grep -qw avx2 /proc/cpuinfo; then build/gzram/benchmark build/gzram --validate-only; fi
+      - name: Sanitize the complete benchmark registry and shuffle
+        run: |
+          gcc -O1 -g -Wall -Wextra -Werror -fsanitize=address,undefined -fno-omit-frame-pointer gzram/bench.c -ldl -o build/gzram-asan/benchmark
+          if grep -qw avx2 /proc/cpuinfo; then
+            ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1 build/gzram-asan/benchmark build/gzram-asan --validate-only
+          fi

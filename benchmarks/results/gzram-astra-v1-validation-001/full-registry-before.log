@@ -1,0 +1,2 @@
+CPU 0; AVX2 verified; RAPL unavailable; userspace codec screening, kernel SIMD overhead excluded
+build/astra-audit/bench-e119f82.c:150:44: runtime error: index 185 out of bounds for type 'int [185]'

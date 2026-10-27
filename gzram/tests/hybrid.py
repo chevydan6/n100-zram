@@ -70,16 +70,35 @@ for index,data in enumerate(inputs):
    packed.close()
  src.close()
 assert modes=={0,1,2},modes
-if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail']):
+if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack']):
  for data in [period,period[:2048]+bytes(2048),long_period[:2048]+bytes(2048)]:
   out=C.create_string_buffer(4104);n=encoders[1](data,4096,out,4104,10)
   assert n<(768 if data==long_period[:2048]+bytes(2048) else 256) and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
 
-if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail']):
+if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack']):
  out=C.create_string_buffer(4104);n=encoders[1](edge_mixed,4096,out,4104,10)
  assert 0<n<2048 and out.raw[6]==2,'Last prefix-search candidate was missed'
  out=C.create_string_buffer(len(partial_edge)+8);n=encoders[1](partial_edge,len(partial_edge),out,len(out),10)
  assert n>0 and out.raw[6]==2,'Partial-block prefix-search candidate was missed'
+# Exhaust every sparse-group mask independently of encoder selection. In
+# particular, the encoder normally avoids dense MASK32 groups. Check those
+# legal decoder inputs too, including exact boundaries and every truncation.
+mask_checks=0
+for mask in range(256):
+ words=[struct.pack('<I',0x10203040+lane) for lane in range(8)]
+ expected=b''.join(words[lane] if mask&(1<<lane) else bytes(4) for lane in range(8))
+ nested=b'GZR1'+struct.pack('<HBB',32,5,0)+bytes([4,mask])+b''.join(words[lane] for lane in range(8) if mask&(1<<lane))
+ frame=b'GHY1'+struct.pack('<HBB',32,1,0)+nested
+ assert oracle(frame)==expected
+ for length in range(len(frame)+1):
+  src=Guard(length);C.memmove(src.ptr,frame,length)
+  for decode in decoders:
+   for cap in [31,32]:
+    out=Guard(cap);got=decode(src.ptr,length,out.ptr,cap)
+    if length==len(frame) and cap==32:assert got==32 and C.string_at(out.ptr,32)==expected
+    else:assert got==-1
+    out.close();mask_checks+=1
+  src.close()
 # Outer/nested length disagreement, reserved modes, short LZ4 and empty-frame cases.
 frames += [b'GHY1'+struct.pack('<HBB',32,1,0)+b'GZR1'+struct.pack('<HBB',64,6,0)+bytes([1]),b'GHY1'+struct.pack('<HBB',4096,2,0)+b'\0',b'GHY1'+struct.pack('<HBB',0,1,0)+b'GZR1'+bytes(4)]
 malformed=0
@@ -107,4 +126,4 @@ def worker(seed):
   assert randomizer.choice(decoders)(packed,n,out,len(data))==len(data) and out.raw[:len(data)]==data
  return 1000
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:concurrent=sum(pool.map(worker,range(4)))
-print(json.dumps({'status':'passed','roundtrips':roundtrips,'guarded_capacity_cases':capacity,'malformed_or_mutated_decode_cases':malformed,'four_thread_roundtrips':concurrent,'modes_checked':sorted(modes)}))
+print(json.dumps({'status':'passed','roundtrips':roundtrips,'guarded_capacity_cases':capacity,'exhaustive_mask_decode_checks':mask_checks,'malformed_or_mutated_decode_cases':malformed,'four_thread_roundtrips':concurrent,'modes_checked':sorted(modes)}))

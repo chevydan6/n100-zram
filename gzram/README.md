@@ -1,5 +1,8 @@
 # GZRAM-AVX2
 
+Additive continuation: [outlined classifier and sparse bit-scan decoder](../docs/GZRAM-ASTRA-20261028.md).
+These prototypes preserve the format and controls; native performance is pending.
+
 Latest results: [2026-10-28 measured status](../docs/GZRAM-20261028.md), including
 the clean wordmixed replication and the vector-tail scalar/AVX2 tradeoff. The
 chronological notes below retain earlier experiment states; their pending native

@@ -15,7 +15,10 @@ int gzram_base_decode_avx2(const void *,size_t,void *,size_t);
 #if defined(GZRAM_HYBRID_FUSED_HINT)
 int gzram_fused_encode_hint_avx2(const void *,size_t,void *,size_t,unsigned,unsigned *);
 #endif
-#if defined(GZRAM_HYBRID_MIXED_DECODE)
+#if defined(GZRAM_HYBRID_CTZ_DECODE)
+int gzram_ctz_decode_scalar(const void *,size_t,void *,size_t);
+int gzram_ctz_decode(const void *,size_t,void *,size_t);
+#elif defined(GZRAM_HYBRID_MIXED_DECODE)
 int gzram_mixed_decode(const void *,size_t,void *,size_t);
 #endif
 typedef int (*encode_fn)(const void *,size_t,void *,size_t,unsigned);
@@ -34,6 +37,12 @@ __attribute__((noinline)) static int lz4_encode(const void *src,void *dst,int n,
 #if defined(GZRAM_HYBRID_GUARD)
 #include <immintrin.h>
 static uint64_t hybrid_load64(const uint8_t *p){uint64_t v;memcpy(&v,p,8);return v;}
+#if defined(GZRAM_HYBRID_OUTLINE_WORD)
+/* Splitting the vector tail leaves this with one caller, allowing GCC to
+ * inline/specialize it. Keep a separately compiled scalar scanner as a causal
+ * experiment; its call cost is included in whole-codec measurements. */
+__attribute__((noipa))
+#endif
 static int prefix_scalar(const uint8_t *src,unsigned at,unsigned limit,uint64_t key,unsigned anchor)
 {
  uint8_t target=(uint8_t)(key>>(anchor*8));
@@ -167,9 +176,17 @@ static int decode(const void *input,size_t size,void *output,size_t cap,decode_f
 }
 int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,gzram_base_encode_scalar);}
 int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,gzram_base_encode_avx2);}
-int gzram_decode_scalar(const void *s,size_t n,void *d,size_t cap){return decode(s,n,d,cap,gzram_base_decode_scalar);}
+int gzram_decode_scalar(const void *s,size_t n,void *d,size_t cap){
+#if defined(GZRAM_HYBRID_CTZ_DECODE)
+ return decode(s,n,d,cap,gzram_ctz_decode_scalar);
+#else
+ return decode(s,n,d,cap,gzram_base_decode_scalar);
+#endif
+}
 int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap){
-#if defined(GZRAM_HYBRID_MIXED_DECODE)
+#if defined(GZRAM_HYBRID_CTZ_DECODE)
+ return decode(s,n,d,cap,gzram_ctz_decode);
+#elif defined(GZRAM_HYBRID_MIXED_DECODE)
  return decode(s,n,d,cap,gzram_mixed_decode);
 #else
  return decode(s,n,d,cap,gzram_base_decode_avx2);

@@ -43,6 +43,7 @@ core_objects={
  'base':['-DGZRAM_SCALAR_FAST=1',*rename('base')],
  'fused':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_EMBED_PREFIX=1',*rename('fused'),'-Dgzram_avx2_available=gzram_fused_avx2_available','-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2'],
  'mixed':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1',*rename('mixed'),'-Dgzram_avx2_available=gzram_mixed_avx2_available','-Dgzram_decode_mixed=gzram_mixed_decode'],
+ 'ctz':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_CTZ_UNPACK=1',*rename('ctz'),'-Dgzram_avx2_available=gzram_ctz_avx2_available','-Dgzram_decode_mixed=gzram_ctz_decode'],
 }
 for name,defines in core_objects.items():compile_files([root/'gzram/src/gzram.c'],a.output/f'hybrid-{name}.o',defines,[a.output],shared=False)
 policies={
@@ -56,8 +57,10 @@ policies={
  'wordguard':['-DGZRAM_HYBRID_GUARD=8'],
  'wordmixed':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
  'splittail':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_SPLIT_TAIL=1'],
+ 'outlinetail':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_SPLIT_TAIL=1','-DGZRAM_HYBRID_OUTLINE_WORD=1'],
+ 'ctzunpack':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_CTZ_DECODE=1'],
 }
-additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed'}
+additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz'}
 for policy,defines in policies.items():
  sources=[root/'gzram/src/hybrid.c',a.output/'hybrid-base.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
