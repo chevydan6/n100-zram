@@ -3,8 +3,10 @@
 The additive [Astra continuation](docs/GZRAM-ASTRA-20261028.md) investigates
 scalar classifier outlining and sparse bit-scan decoding, and repairs a
 full-registry benchmark shuffle overflow. New candidate performance remains
-unmeasured; original controller/lock access and the changed local environment
-must be resolved before a native timing cohort.
+unaccepted. The user confirmed this is the same Lenovo 14e previously reached
+over SSH. A locally locked, sleep-inhibited cohort is now running under the
+current 800 MHz cap with 15 matched variants and sixteen corpora. No conclusion
+is claimed before the three sessions finish; zstd ZRAM and boot settings remain.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction
 commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).

@@ -24,7 +24,10 @@ if samples:
  start=samples[0]['time']
  for row in samples:row['elapsed_seconds']=round(row.pop('time')-start,3)
 (a.output/'telemetry.jsonl').write_text(''.join(json.dumps(s)+'\n' for s in samples))
-lines=['# GZRAM-AVX2 first native userspace comparison','',state['inputs']['scope']+'.',
+cpu_accounting=all('cpu_ns_per_page' in r and 'cpu_utilization_percent' in r for r in rows)
+if cpu_accounting:
+ assert all(math.isfinite(float(r[k])) and float(r[k])>0 for r in rows for k in ['cpu_ns_per_page','cpu_utilization_percent'])
+lines=['# GZRAM native userspace comparison','',state['inputs']['scope']+'.',
 'Three sessions, nine randomized recorded rounds, two warm-ups, 128 pages/corpus,',
 '32,768 calls per batch. The recorded variant list and corpus list are in metadata.',
 'If screen=true this is a selected 1024/4096-byte cohort, not every block size.',
@@ -49,6 +52,9 @@ lines=['# GZRAM-AVX2 first native userspace comparison','',state['inputs']['scop
 '',
 '| Corpus | Variant | Bytes/page | Compress ns [change vs LZ4, 95% session interval] | Decode ns [change, interval] | Package uJ/page comp / dec |',
 '|---|---|---:|---:|---:|---:|'];rng=random.Random(100)
+if cpu_accounting:
+ lines[-2]+=' Thread CPU ns/page comp / dec | Thread occupancy % comp / dec |'
+ lines[-1]+='---:|---:|'
 variants=['lz4-small-scalar']+[f'gz-{isa}-{1<<log}' for isa in ['scalar','avx2'] for log in range(5,13)]
 if state['inputs']['manifest'].get('fast_scalar_candidate'):variants += [f'gz-fast-scalar-{1<<log}' for log in range(5,13)]
 if state['inputs']['manifest'].get('block_unpack_candidate'):variants += [f'gz-block-avx2-{1<<log}' for log in range(5,13)]
@@ -57,11 +63,18 @@ if state['inputs']['manifest'].get('period_filter_candidate'):variants += [f'gz-
 if 'variant_names' in state['inputs']:variants=state['inputs']['variant_names']
 for corpus in sorted({r['corpus'] for r in rows}):
  for variant in variants:
-  group=[r for r in rows if r['corpus']==corpus and r['variant']==variant];cells=[];energies=[]
+  group=[r for r in rows if r['corpus']==corpus and r['variant']==variant];cells=[];energies=[];cpu_times=[];occupancy=[]
   for op in ['compress','decompress']:
    selected=[r for r in group if r['operation']==op];base={(r['session'],r['round']):float(r['ns_per_page']) for r in rows if r['corpus']==corpus and r['variant']=='lz4-small-scalar' and r['operation']==op}
    ratios=[statistics.median(float(r['ns_per_page'])/base[(session,r['round'])] for r in selected if r['session']==session) for session in ['session-0','session-1','session-2']]
    draws=sorted(100*(statistics.median(rng.choices(ratios,k=3))-1) for _ in range(10000));cells.append(f"{statistics.median(float(r['ns_per_page']) for r in selected):.1f} [{100*(statistics.median(ratios)-1):+.1f}% {draws[250]:+.1f}..{draws[9749]:+.1f}]")
    energies.append(f"{statistics.median(float(r['package_uj_per_page']) for r in selected):.3f}" if all(float(r['package_uj_per_page'])>=0 for r in selected) else 'NA')
+   if cpu_accounting:
+    cpu_times.append(f"{statistics.median(float(r['cpu_ns_per_page']) for r in selected):.1f}")
+    occupancy.append(f"{statistics.median(float(r['cpu_utilization_percent']) for r in selected):.2f}")
   lines.append(f"| {corpus} | {variant} | {statistics.median(float(r['compressed_bytes']) for r in group):.1f} | {' | '.join(cells)} | {' / '.join(energies)} |")
+  if cpu_accounting:lines[-1]+=f" {' / '.join(cpu_times)} | {' / '.join(occupancy)} |"
+if cpu_accounting:lines+=['','Thread CPU time brackets each timed loop and includes clock boundaries. Occupancy',
+ 'is thread CPU time divided by loop wall time, not whole-machine CPU use. Small',
+ 'values above 100% can occur from these clock boundaries; values are not clamped.']
 (a.output/'summary.md').write_text('\n'.join(lines)+'\n');print(a.output/'summary.md')

@@ -4,6 +4,12 @@ Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
 This is a prototype development checkpoint, not a new measured performance win.
 The latest accepted measurement record remains [SOL's report](GZRAM-20261028.md).
 
+Update: the user confirmed that this workspace is on the same Lenovo 14e that
+SOL previously accessed over SSH. Local execution has resumed; a changed
+kernel, desktop or ZRAM setting is not evidence of a different physical target.
+The first local timed cohort is running with matched controls. No result is
+accepted until its three sessions and telemetry have been reviewed.
+
 ## Starting evidence and preservation
 
 All five remote branch heads were checked before editing. The newest was
@@ -43,6 +49,34 @@ the existing controller/lock has been requested. Do not create a substitute
 lock and assume it excludes SOL's jobs. No native timing cohort, module load,
 swap reset, reboot or boot-policy change has been performed in this continuation.
 Correctness tests and builds here are not performance evidence.
+
+The preceding paragraph records the initial access block, now resolved by the
+user's machine identification and instruction to use this computer. The old
+exclusive lock was on the external controller and is not present locally. No
+other native lab process or service was active on the target. Local GZRAM
+execution now acquires `~/.cache/n100-zram/native-validation.lock` with exclusive,
+nonblocking flock before validating artifacts or creating experiment output.
+It never unlinks that inode. Held-lock rejection was tested; an existing remote
+controller can additionally retain its original lock when used again. This does
+not claim that a new local inode locks an unavailable controller's old file.
+
+`n100-gzram-astra-local-001.service` is bounded to two hours and holds a sleep/idle
+inhibitor for the runner lifetime. It runs at nice 5, with codecs on CPU0 and the
+runner/telemetry on CPU1. The existing 700–800 MHz powersave limits, battery
+operation, active zstd ZRAM and boot settings are preserved. The cohort selects
+15 variants at 1024-byte internal blocks: scalar LZ4, fast scalar/AVX2 GZRAM,
+and scalar/AVX2 guard32, guard32mixed, wordmixed, splittail, outlinetail and
+ctzunpack. All sixteen corpora, three sessions, two warmups and nine recorded
+rounds per direction are included. This is an initial matched screen, not a
+claim that 1024-byte blocks are universally optimal.
+
+Package RAPL is currently unreadable to the unprivileged runner. It records
+missing values as -1, not zero. Battery current/voltage/charge/status, frequency
+limits, CPU/memory pressure and load are retained as system telemetry; they are
+not substituted for per-codec package energy. Thread CPU accounting is included
+alongside wall time. New analysis supports both this schema and historical CSVs;
+synthetic known-ratio fixtures verified CPU changes, absolute medians and missing
+energy handling. Historical absolute timing is not used as this cohort's control.
 
 ## Additive candidates
 

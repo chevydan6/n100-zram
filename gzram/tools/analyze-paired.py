@@ -43,6 +43,13 @@ def main():
         assert len(seen) == len(variants) * len(corpora) * 18
     expected = {(s, r) for s in range(3) for r in range(9)}
     assert all(set(rows) == expected for rows in groups.values())
+    cpu_present = ['cpu_ns_per_page' in row for rows in groups.values() for row in rows.values()]
+    assert all(cpu_present) or not any(cpu_present), 'Mixed CPU accounting schemas'
+    metrics = ['ns_per_page', 'compressed_bytes', 'package_uj_per_page']
+    if all(cpu_present):
+        metrics.append('cpu_ns_per_page')
+        assert all(math.isfinite(float(row['cpu_ns_per_page'])) and float(row['cpu_ns_per_page']) > 0
+                   for rows in groups.values() for row in rows.values())
     contrasts = set()
     for variant in variants:
         if not variant.startswith('ghy-'):
@@ -66,7 +73,7 @@ def main():
                 selected = groups[corpus, candidate, operation]
                 baseline = groups[corpus, control, operation]
                 effects = {}
-                for metric in ('ns_per_page', 'compressed_bytes', 'package_uj_per_page'):
+                for metric in metrics:
                     if any(float(baseline[k][metric]) <= 0 or float(selected[k][metric]) < 0 for k in expected):
                         effects[metric] = None
                         continue
@@ -74,7 +81,9 @@ def main():
                                 float(baseline[s, r][metric]) for r in range(9)) - 1)
                                 for s in range(3)]
                     effects[metric] = {'median_change_percent': statistics.median(sessions),
-                                       'session_changes_percent': sessions}
+                                       'session_changes_percent': sessions,
+                                       'candidate_median': statistics.median(float(selected[k][metric]) for k in expected),
+                                       'control_median': statistics.median(float(baseline[k][metric]) for k in expected)}
                 results.append(dict(candidate=candidate, control=control, kind=kind,
                                     corpus=corpus, operation=operation, effects=effects))
     assert not args.output.exists()
@@ -87,6 +96,9 @@ def main():
     lines = ['# Direct GZRAM policy and block comparisons', '', scope, '',
              '| Corpus | Operation | Candidate | Control | Time change, % (session range) | Bytes change, % | Package energy change, % |',
              '|---|---|---|---|---:|---:|---:|']
+    if 'cpu_ns_per_page' in metrics:
+        lines[-2] += ' Thread CPU time change, % |'
+        lines[-1] += '---:|'
     for row in results:
         values = row['effects']
         timing = values['ns_per_page']
@@ -97,6 +109,8 @@ def main():
         lines.append(f"| {row['corpus']} | {row['operation']} | {row['candidate']} | {row['control']} | "
                      f"{value('ns_per_page')} ({min(changes):+.2f}..{max(changes):+.2f}) | "
                      f"{value('compressed_bytes')} | {value('package_uj_per_page')} |")
+        if 'cpu_ns_per_page' in metrics:
+            lines[-1] += f" {value('cpu_ns_per_page')} |"
     (args.output / 'paired.md').write_text('\n'.join(lines) + '\n')
     print(f'{len(results)} direct comparisons retained in {args.output}')
 
