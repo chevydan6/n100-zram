@@ -367,7 +367,7 @@
     "gzram/tests/hybrid.py": "4335fe59ceeac73ba1a4761325c70f9ef105829e03eb9aee689421cd4aac96c7",
     "gzram/tests/wire.py": "d4875560f81dcd27e51f30af31c93123ce5ad658e89f0411aa945a339d4ce7bf",
     "gzram/tools/audit-codegen.py": "cb902e0254840d7467a909ca1a9ed023bbb01524a6f20f07ee6c8acd93569082",
-    "gzram/tools/measure-sizes.py": "b89a9e76a7d65bf45d7b29d2c9393ff913dec4720a4473d2087dae097bfd3946",
+    "gzram/tools/measure-sizes.py": "63dede071f3f0c0ca171f69ec8ae5c3f8f297f5a7a0854ad4310fc2a130b14a2",
     "gzram/tools/summarize-sizes.py": "9dd4bf67da88b7f5861b50e31b999494a476fb2d6a490f5660fa8778a851d55d"
   },
   "normal_and_sanitizer_registry_roundtrips_each": 509952,

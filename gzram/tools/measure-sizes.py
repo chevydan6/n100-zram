@@ -79,7 +79,7 @@ def main():
 
     hashes = {}
     with (args.output / 'sizes.csv').open('w') as output:
-        writer = csv.writer(output)
+        writer = csv.writer(output, lineterminator='\n')
         writer.writerow(['corpus', 'variant', 'page', 'compressed_bytes', 'hybrid_mode'])
         for corpus in corpora:
             data = fixture('--dump-corpus=' + corpus)
