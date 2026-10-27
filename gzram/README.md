@@ -1,5 +1,10 @@
 # GZRAM-AVX2
 
+Latest results: [2026-10-28 measured status](../docs/GZRAM-20261028.md), including
+the clean wordmixed replication and the vector-tail scalar/AVX2 tradeoff. The
+chronological notes below retain earlier experiment states; their pending native
+measurements have been superseded where the latest report records completion.
+
 An independent userspace research codec in the N100 ZRAM project. It explores
 vector-friendly sparse words and short repeated patterns, separate control/data,
 internal block sizes from 32 to 4096 bytes, and explicit raw framing. It is not
@@ -97,3 +102,11 @@ sparse/repeat decoder dispatch prototypes. See docs/FUSED-PREFIX.md. Normal,
 cross-policy and sanitizer checks passed locally. The new screen retains the
 prior cohort and adds these candidates (40 variants / 12 corpora); full testing
 has 185 variants. Native timing and energy for these additions remain pending.
+
+The additive `splittail` candidate separates the vector classifier's byte tail
+from the integer word-at-a-time scanner, retaining wordmixed's scalar encoding
+and mixed decoding policy. This tests a possible AVX2 encoding overhead without
+changing format selection. Guarded exact-encoding, independent decoding and
+sanitizer checks passed; native performance is measured separately with the
+preceding controls and all twelve corpora. No improvement is inferred from
+code generation or validation.

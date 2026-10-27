@@ -1,0 +1,288 @@
+{
+  "corpus_sha256": {
+    "random": "afe347bc9bb4211d9017c8da16c8abd205760d60cf6249f33fb522dad1de19bf",
+    "sparse-words": "5ae927d019eef21f56b2d41449b12b29af78f802887651f537416750cae669b6",
+    "zero": "07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541",
+    "repeat8": "2f261c5524a407c2ac9b23c6a0f8b6f905e4487a8285866cfb8eb4b6941db29e",
+    "period127": "e8e6d1c5c1a86cc08099e73a555badb0941ec01f06ceed8dadc01c567ed78578",
+    "halfzero": "d82200466a866f32e7c0271bbfcc8053499061ba20434c4a12ba7c49bf4aa407",
+    "word-tail64": "07a5e37eb8ae87bb9c90bb2b075076ec0392b9136d62e54126bf514ac1da2ddb",
+    "repeat32": "e0e16303bc5f4dcc87756a049307c3d5275681791efbd7381f7fe5a8358482cf",
+    "bash-elf": "87f31251262577584a4209d6a1ceaf1ee78ee059ffe2228061a560d61ce74732",
+    "period127-zero-tail": "f5cb4365c0387637a838889be61aac971a3507a3ee77b63f96c1c11f6b13a9dc",
+    "period509-zero-tail": "d274c3d2e08d369f877f22623291911f6b20a7f119bd20ecbb0ad17db3dab3cd",
+    "zerohead-random": "ffe6eda91dd16714952d5426d23c30769dc0fba3379c04a9e8e41833fdb915e4"
+  },
+  "order_seeds": [
+    100,
+    101,
+    102
+  ],
+  "selected_variants": null,
+  "variant_names": [
+    "lz4-small-scalar",
+    "gz-avx2-1024",
+    "gz-avx2-4096",
+    "gz-period-avx2-4096",
+    "gz-filter-avx2-1024",
+    "gz-filter-avx2-4096",
+    "gz-fast-scalar-1024",
+    "gz-fast-scalar-4096",
+    "ghy-trial-scalar-1024",
+    "ghy-trial-scalar-4096",
+    "ghy-trial-avx2-1024",
+    "ghy-trial-avx2-4096",
+    "ghy-sample-scalar-1024",
+    "ghy-sample-scalar-4096",
+    "ghy-sample-avx2-1024",
+    "ghy-sample-avx2-4096",
+    "ghy-recurrence-scalar-1024",
+    "ghy-recurrence-scalar-4096",
+    "ghy-recurrence-avx2-1024",
+    "ghy-recurrence-avx2-4096",
+    "ghy-guard16-scalar-1024",
+    "ghy-guard16-scalar-4096",
+    "ghy-guard16-avx2-1024",
+    "ghy-guard16-avx2-4096",
+    "ghy-guard32-scalar-1024",
+    "ghy-guard32-scalar-4096",
+    "ghy-guard32-avx2-1024",
+    "ghy-guard32-avx2-4096",
+    "ghy-fused-scalar-1024",
+    "ghy-fused-scalar-4096",
+    "ghy-fused-avx2-1024",
+    "ghy-fused-avx2-4096",
+    "ghy-guard32mixed-scalar-1024",
+    "ghy-guard32mixed-scalar-4096",
+    "ghy-guard32mixed-avx2-1024",
+    "ghy-guard32mixed-avx2-4096",
+    "ghy-wordguard-scalar-1024",
+    "ghy-wordguard-scalar-4096",
+    "ghy-wordguard-avx2-1024",
+    "ghy-wordguard-avx2-4096",
+    "ghy-wordmixed-scalar-1024",
+    "ghy-wordmixed-scalar-4096",
+    "ghy-wordmixed-avx2-1024",
+    "ghy-wordmixed-avx2-4096"
+  ],
+  "corpora": [
+    "random",
+    "sparse-words",
+    "zero",
+    "repeat8",
+    "period127",
+    "halfzero",
+    "word-tail64",
+    "repeat32",
+    "bash-elf",
+    "period127-zero-tail",
+    "period509-zero-tail",
+    "zerohead-random"
+  ],
+  "screen": true,
+  "cpu_model": "Intel(R) N100",
+  "runner_sha256": "4dd69ea0cb6e7a2ab2881b3ded1e9455e11a76cf7e44c6d0ba082172b9354ed4",
+  "kernel": "7.2.8-200.fc44.x86_64",
+  "binary_sha256": "94eeb7c3ffc10bbdcb7f690ff65dd0c44e9a47f21de201da78b889231e86fd56",
+  "manifest": {
+    "hybrid_candidates": [
+      "trial",
+      "sample",
+      "recurrence",
+      "guard16",
+      "guard32",
+      "fused",
+      "guard32mixed",
+      "wordguard",
+      "wordmixed"
+    ],
+    "period_filter_candidate": true,
+    "variable_period_candidate": true,
+    "block_unpack_candidate": true,
+    "fast_scalar_candidate": true,
+    "candidate_extra_flags": {
+      "base_variants": {
+        "libgzram.so": [],
+        "libgzram-fast.so": [
+          "-DGZRAM_SCALAR_FAST=1"
+        ],
+        "libgzram-block.so": [
+          "-DGZRAM_BLOCK_UNPACK=1"
+        ],
+        "libgzram-period.so": [
+          "-DGZRAM_VARIABLE_PERIOD=1",
+          "-DGZRAM_SCALAR_FAST=1"
+        ],
+        "libgzram-filter.so": [
+          "-DGZRAM_VARIABLE_PERIOD=1",
+          "-DGZRAM_PERIOD_FILTER=1",
+          "-DGZRAM_SCALAR_FAST=1"
+        ]
+      },
+      "core_objects": {
+        "base": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-Dgzram_encode_scalar=gzram_base_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_base_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_base_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_base_decode_avx2"
+        ],
+        "fused": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_EMBED_PREFIX=1",
+          "-Dgzram_encode_scalar=gzram_fused_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_fused_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_fused_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_fused_decode_avx2",
+          "-Dgzram_avx2_available=gzram_fused_avx2_available",
+          "-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2"
+        ],
+        "mixed": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_MIXED_DECODE=1",
+          "-Dgzram_encode_scalar=gzram_mixed_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_mixed_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_mixed_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_mixed_decode_avx2",
+          "-Dgzram_avx2_available=gzram_mixed_avx2_available",
+          "-Dgzram_decode_mixed=gzram_mixed_decode"
+        ]
+      },
+      "hybrid_policies": {
+        "trial": [],
+        "sample": [
+          "-DGZRAM_HYBRID_SAMPLE=1"
+        ],
+        "recurrence": [
+          "-DGZRAM_HYBRID_SAMPLE=1",
+          "-DGZRAM_HYBRID_RECURRENCE=1"
+        ],
+        "guard16": [
+          "-DGZRAM_HYBRID_GUARD=16"
+        ],
+        "guard32": [
+          "-DGZRAM_HYBRID_GUARD=32"
+        ],
+        "fused": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_FUSED_HINT=1"
+        ],
+        "guard32mixed": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1"
+        ],
+        "wordguard": [
+          "-DGZRAM_HYBRID_GUARD=8"
+        ],
+        "wordmixed": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1"
+        ]
+      }
+    },
+    "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+    "flags": [
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx"
+    ],
+    "source_sha256": {
+      "gzram/src/gzram.c": "5b73753f853740b19913a74faefd90f31730124637180fb7042aca39383cca45",
+      "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+      "gzram/src/hybrid.c": "a524bbfbe0a0f9e2d17a0fa9b0491228d2ffddd31852777b4abd05d3cce70ea6",
+      "gzram/tools/build.py": "d3ecc1e3a3c2510272e53339f0130d2b49eb288ceeca6d62d34a4edbf402ce18",
+      "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+      "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+      "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+      "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57"
+    },
+    "generated_tables_sha256": "5c79f271f5475e08ff661ecb154f0a3f3be5c93829862488e05a284e0742880c",
+    "artifacts": {
+      "libgzram.so": "72497d2d4e145437d92c62755e678bd992eacfb4d0a2b38d52bbe5fa374d9f95",
+      "libgzram-fast.so": "e64c5881f4842e12998a83b792d8583917726b7db1594177d4e958b8af70a362",
+      "libgzram-block.so": "7428877801eef9b5378ab270b9a8aaa485df79972ff533b3a087ee31a475f5d7",
+      "libgzram-period.so": "067632837927d2db73eaea81d1e71a5b48f3adebc427083181f4a12e005f50cc",
+      "libgzram-filter.so": "ce643bdabe4a12fb79a31065ced270c490547b6ad2c116c8b42f920b05388601",
+      "lz4-small.so": "8162f15e4b163b4b5ca4d13593d155b8ec30a1b4af9e48dbf7bfb99ef1bec4fa",
+      "libgzram-hybrid-trial.so": "95c6a24e9b4b0819ee95a2739f8384922a012688a110d10d592d48ac573f3a58",
+      "libgzram-hybrid-sample.so": "482ed8447a51c1bd71f5a9cabcb2dd5b0f16d84d9bb47eefd56f1f5361adc274",
+      "libgzram-hybrid-recurrence.so": "dc46132c8517173f947dec34c9cdffccca5397504f7fe1cfd9c1f9efeb467229",
+      "libgzram-hybrid-guard16.so": "efb1affcd01c7ca68f5e999d009fa39c51206c64944a17ca27cf633bfbaba589",
+      "libgzram-hybrid-guard32.so": "3c0834f933f1f29ca59f54a0345563d8c82bc92f013852f9c8a91d66f6c1ad4e",
+      "libgzram-hybrid-fused.so": "5945e878b02df0db66a7a8bc8e08b693a0493c951404589baed28d3840fcfc76",
+      "libgzram-hybrid-guard32mixed.so": "4bb11d27fd29987649192f9a4cc9ff79998036bad0ae31e8f86f6273e288de2a",
+      "libgzram-hybrid-wordguard.so": "11986f678d828e304236a34ac4cabaf513cf5be7f75da9131ef9d460e5ddafb6",
+      "libgzram-hybrid-wordmixed.so": "8699b9817324620342cd938477587183b7d4f0f04a8553781a3dae16297f9f90"
+    }
+  },
+  "libraries": {
+    "libgzram.so": "72497d2d4e145437d92c62755e678bd992eacfb4d0a2b38d52bbe5fa374d9f95",
+    "libgzram-fast.so": "e64c5881f4842e12998a83b792d8583917726b7db1594177d4e958b8af70a362",
+    "libgzram-block.so": "7428877801eef9b5378ab270b9a8aaa485df79972ff533b3a087ee31a475f5d7",
+    "libgzram-period.so": "067632837927d2db73eaea81d1e71a5b48f3adebc427083181f4a12e005f50cc",
+    "libgzram-filter.so": "ce643bdabe4a12fb79a31065ced270c490547b6ad2c116c8b42f920b05388601",
+    "lz4-small.so": "8162f15e4b163b4b5ca4d13593d155b8ec30a1b4af9e48dbf7bfb99ef1bec4fa",
+    "libgzram-hybrid-trial.so": "95c6a24e9b4b0819ee95a2739f8384922a012688a110d10d592d48ac573f3a58",
+    "libgzram-hybrid-sample.so": "482ed8447a51c1bd71f5a9cabcb2dd5b0f16d84d9bb47eefd56f1f5361adc274",
+    "libgzram-hybrid-recurrence.so": "dc46132c8517173f947dec34c9cdffccca5397504f7fe1cfd9c1f9efeb467229",
+    "libgzram-hybrid-guard16.so": "efb1affcd01c7ca68f5e999d009fa39c51206c64944a17ca27cf633bfbaba589",
+    "libgzram-hybrid-guard32.so": "3c0834f933f1f29ca59f54a0345563d8c82bc92f013852f9c8a91d66f6c1ad4e",
+    "libgzram-hybrid-fused.so": "5945e878b02df0db66a7a8bc8e08b693a0493c951404589baed28d3840fcfc76",
+    "libgzram-hybrid-guard32mixed.so": "4bb11d27fd29987649192f9a4cc9ff79998036bad0ae31e8f86f6273e288de2a",
+    "libgzram-hybrid-wordguard.so": "11986f678d828e304236a34ac4cabaf513cf5be7f75da9131ef9d460e5ddafb6",
+    "libgzram-hybrid-wordmixed.so": "8699b9817324620342cd938477587183b7d4f0f04a8553781a3dae16297f9f90"
+  },
+  "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+  "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "before": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "3086184",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3395958",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "3055799",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "3396643",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "22850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "31000",
+    "/sys/class/thermal/thermal_zone3/temp": "24850",
+    "/sys/class/thermal/thermal_zone1/temp": "24850",
+    "/sys/class/thermal/thermal_zone6/temp": "31000",
+    "/sys/class/thermal/thermal_zone4/temp": "31000"
+  },
+  "after": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "3195401",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/class/thermal/thermal_zone2/temp": "36850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "52000",
+    "/sys/class/thermal/thermal_zone3/temp": "42850",
+    "/sys/class/thermal/thermal_zone1/temp": "47850",
+    "/sys/class/thermal/thermal_zone6/temp": "52000",
+    "/sys/class/thermal/thermal_zone4/temp": "52000"
+  },
+  "all_pmu_batches_fully_scheduled": true,
+  "package_energy_available_all_rows": true
+}

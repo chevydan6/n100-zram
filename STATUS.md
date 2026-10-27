@@ -1,5 +1,10 @@
 # Current status
 
+For the latest GZRAM experiments, measured gains, regressions and reproduction
+commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).
+The entries below also retain historical experiment states; later completion
+entries and the linked report supersede their earlier pending-work notes.
+
 Native AVX2 LZ4 compression/decompression and a separate scalar repeated-store
 backend are implemented. Physical N100 codec and experimental ZRAM I/O results
 are available, including regressions. **No overall production improvement is
@@ -320,3 +325,96 @@ exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
 Three native user-space screening sessions completed; all raw rows and sanitized
 telemetry are in [benchmarks/results/native-gzram-block-sweep-001/summary.md](benchmarks/results/native-gzram-block-sweep-001/summary.md). These measurements
 exclude kernel FPU cost and establish no end-to-end ZRAM improvement.
+
+## Controller crash recovery, 2026-10-26
+
+Both latest cohorts were already complete and committed. Recovery verified all
+private/committed CSVs and current source fingerprints, then added complete
+direct policy and block comparisons. See [recovery findings](docs/RECOVERY-20261026.md).
+The N100 endpoint is unreachable; remote service state is unknown. No new native
+run was launched and the separate GPU campaign was untouched.
+
+## Independent classifier/decoder candidate, 2026-10-26
+
+N100 connectivity recovered; kernel 7.2.8, stock ZRAM build-id and lzo-rle
+verified. Both preceding GZRAM native services exited successfully. The additive
+wordmixed policy uses integer word filtering in the scalar classifier, preserves
+AVX2 filtering and selects mixed sparse/repeat decoding. All fourteen existing
+codec .text sections match the previous local build. Original controls remain.
+Normal and ASan/UBSan checks each passed 29,312 cross-path round trips, 29,264
+guarded-capacity cases, 80,000 malformed/mutated decodes and 4,000 concurrent
+round trips. Native fixture validation passed 44 variants across all 12 corpora.
+These establish correctness only; no wordmixed timing result exists yet.
+The isolated native cohort and bounded lock-holding collector are staged; root
+service launch requires sudo authentication on the target for PMU/RAPL access.
+
+## Wordmixed screening collected
+
+All three sessions completed: 44 variants, 12 corpora, 28,512 timing rows.
+Results and 1,632 direct comparisons are in native-gzram-wordmixed-001.
+All PMU fractions were 1.0. A 32,279-second telemetry gap and suspend journal
+confirm interruption during session-1. All rows remain; clean replication is
+required before acceptance, especially for energy. At 1024-byte blocks,
+preliminary paired medians versus matching guard32 are -43.25% scalar half-zero
+encode time, +1.68% AVX2 half-zero encode time, and -12.66% AVX2 sparse-word
+decode time, with unchanged sizes in these contrasts. No production policy or
+end-to-end kernel gain is accepted. Collection completed, the lock was released,
+and the temporary target sleep inhibitor exited automatically.
+
+## Clean wordmixed replication started
+
+A separate gzram-wordmixed-repeat-001 cohort is running on the N100 with
+identical benchmark fingerprints, 44 variants and all twelve corpora. Validation
+passed and session-0 started. A sleep/idle inhibitor encloses the entire native
+service and exits with it; the controller holds the exclusive benchmark lock
+through collection. The collector rejects telemetry gaps of ten seconds or more.
+The suspend-affected original remains intact. No repeat timing result is claimed
+until all three sessions complete and the recorded measurements are reviewed.
+
+## Clean wordmixed replication completed
+
+All three repeat sessions completed and were collected in
+benchmarks/results/native-gzram-wordmixed-repeat-001: 44 variants, twelve corpora,
+28,512 timing rows and 1,632 direct comparisons. Maximum telemetry gap was
+0.505 seconds; all PMU batches were fully scheduled and energy was available.
+The sleep inhibitor exited and the benchmark lock was released. At 1024-byte
+blocks, paired median changes versus matching guard32 were -43.14% scalar
+half-zero encoding time, -13.11% AVX2 sparse-word decoding time, and +2.73% AVX2
+half-zero encoding time. Encoded sizes were unchanged in these comparisons.
+This reproduces the path-specific benefits and remaining AVX2 encoding loss in
+a continuous run. All other cases and regressions remain in paired.md/json.
+These are warm-cache userspace results; no general codec or kernel gain is
+accepted, and no production default was changed.
+
+## Vector-tail attribution experiment started
+
+Direct paired analysis of the clean cohort found wordmixed AVX2 half-zero
+encoding +1.92% relative to guard32mixed at 1024-byte blocks. The wordmixed
+vector classifier tail-calls the integer scanner even after a full vector scan;
+this is a code-generation hypothesis, not a measured causal attribution.
+The additive splittail policy keeps the scalar word scanner and mixed decoder
+while providing an independent byte tail to the vector classifier. Normal and
+ASan/UBSan validation each passed 29,312 round trips, 29,264 guarded capacity
+cases, 80,000 malformed/mutated decodes and 4,000 concurrent round trips.
+Physical N100 correctness passed and all 15 prior codec .text hashes match.
+A new 48-variant native screen retains all 44 preceding controls and identical
+twelve corpus hashes. Validation passed and session-0 started with sleep/idle
+inhibited from the start and exclusive locking through collection. The analyzer
+now supports explicit matched policy controls for guard32, guard32mixed and
+wordmixed. Original data and source paths remain preserved. No splittail
+performance result or kernel acceptance is claimed before completion.
+
+## Vector-tail experiment completed
+
+Three sessions completed and were collected in native-gzram-splittail-001:
+48 variants, twelve corpora, 31,104 timing rows and 3,552 direct comparisons.
+Maximum telemetry gap was 0.504 seconds; PMU batches were fully scheduled and
+energy was available. At 1024-byte blocks, splitting the vector tail reduced
+AVX2 half-zero encoding time 1.77% versus wordmixed, putting it within +0.02%
+of guard32mixed (-0.69% versus guard32). Sparse-word AVX2 decoding remained
+12.90% faster than guard32. However scalar half-zero encoding was 10.30%
+slower than wordmixed, leaving a 37.18% gain versus guard32. Encoded sizes in
+these comparisons were unchanged. This is a tradeoff, not acceptance of an
+overall replacement. Preserve both policies and investigate scalar code
+generation/layout before combining the best paths or attempting kernel work.
+All regressions and direct session estimates remain in the result files.

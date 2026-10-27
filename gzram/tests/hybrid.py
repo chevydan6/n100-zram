@@ -70,12 +70,12 @@ for index,data in enumerate(inputs):
    packed.close()
  src.close()
 assert modes=={0,1,2},modes
-if 'recurrence' in a.library.name or 'guard' in a.library.name or 'fused' in a.library.name:
+if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail']):
  for data in [period,period[:2048]+bytes(2048),long_period[:2048]+bytes(2048)]:
   out=C.create_string_buffer(4104);n=encoders[1](data,4096,out,4104,10)
   assert n<(768 if data==long_period[:2048]+bytes(2048) else 256) and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
 
-if 'recurrence' in a.library.name or 'guard' in a.library.name or 'fused' in a.library.name:
+if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail']):
  out=C.create_string_buffer(4104);n=encoders[1](edge_mixed,4096,out,4104,10)
  assert 0<n<2048 and out.raw[6]==2,'Last prefix-search candidate was missed'
  out=C.create_string_buffer(len(partial_edge)+8);n=encoders[1](partial_edge,len(partial_edge),out,len(out),10)

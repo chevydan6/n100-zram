@@ -37,7 +37,7 @@ static uint64_t hybrid_load64(const uint8_t *p){uint64_t v;memcpy(&v,p,8);return
 static int prefix_scalar(const uint8_t *src,unsigned at,unsigned limit,uint64_t key,unsigned anchor)
 {
  uint8_t target=(uint8_t)(key>>(anchor*8));
-#if GZRAM_HYBRID_GUARD == 8
+#if GZRAM_HYBRID_GUARD == 8 || defined(GZRAM_HYBRID_WORD_SCALAR)
  const uint64_t ones=UINT64_C(0x0101010101010101),high=UINT64_C(0x8080808080808080),repeated=ones*target;
  for(;at<=limit&&limit-at+1>=8;at+=8){
   uint64_t difference=hybrid_load64(src+at+anchor)^repeated;
@@ -51,6 +51,18 @@ static int prefix_scalar(const uint8_t *src,unsigned at,unsigned limit,uint64_t 
  for(;at<=limit;at++)if(src[at+anchor]==target&&hybrid_load64(src+at)==key)return 1;
  return 0;
 }
+#if defined(GZRAM_HYBRID_SPLIT_TAIL)
+/* Keep the vector classifier's short tail independent of the integer scanner.
+ * At a complete vector boundary this exits without setting up a word scan. */
+static int prefix_vector_tail(const uint8_t *src,unsigned at,unsigned limit,uint64_t key,unsigned anchor)
+{
+ uint8_t target=(uint8_t)(key>>(anchor*8));
+ for(;at<=limit;at++)if(src[at+anchor]==target&&hybrid_load64(src+at)==key)return 1;
+ return 0;
+}
+#else
+#define prefix_vector_tail prefix_scalar
+#endif
 #if GZRAM_HYBRID_GUARD == 16
 __attribute__((target("sse2")))
 static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned anchor)
@@ -60,7 +72,7 @@ static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned
   unsigned mask=(unsigned)_mm_movemask_epi8(_mm_cmpeq_epi8(target,_mm_loadu_si128((const __m128i *)(src+at+anchor))));
   while(mask){unsigned candidate=at+(unsigned)__builtin_ctz(mask);mask&=mask-1;if(hybrid_load64(src+candidate)==key)return 1;}
  }
- return prefix_scalar(src,at,limit,key,anchor);
+ return prefix_vector_tail(src,at,limit,key,anchor);
 }
 #elif GZRAM_HYBRID_GUARD == 32
 __attribute__((target("avx2")))
@@ -71,7 +83,7 @@ static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned
   unsigned mask=(unsigned)_mm256_movemask_epi8(_mm256_cmpeq_epi8(target,_mm256_loadu_si256((const __m256i *)(src+at+anchor))));
   while(mask){unsigned candidate=at+(unsigned)__builtin_ctz(mask);mask&=mask-1;if(hybrid_load64(src+candidate)==key)return 1;}
  }
- return prefix_scalar(src,at,limit,key,anchor);
+ return prefix_vector_tail(src,at,limit,key,anchor);
 }
 #endif
 static int prefix_recurrence(const uint8_t *src,size_t n,encode_fn gz)

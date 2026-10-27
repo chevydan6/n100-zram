@@ -54,8 +54,10 @@ policies={
  'fused':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_FUSED_HINT=1'],
  'guard32mixed':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_MIXED_DECODE=1'],
  'wordguard':['-DGZRAM_HYBRID_GUARD=8'],
+ 'wordmixed':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'splittail':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_SPLIT_TAIL=1'],
 }
-additional={'fused':'fused','guard32mixed':'mixed'}
+additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed'}
 for policy,defines in policies.items():
  sources=[root/'gzram/src/hybrid.c',a.output/'hybrid-base.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')

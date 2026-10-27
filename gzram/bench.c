@@ -89,7 +89,7 @@ int main(int argc,char **argv){
  cpu_set_t allowed,chosen;if(sched_getaffinity(0,sizeof(allowed),&allowed))return 3;CPU_ZERO(&chosen);int cpu=0;for(;cpu<CPU_SETSIZE;cpu++)if(CPU_ISSET(cpu,&allowed))break;if(cpu==CPU_SETSIZE)return 3;CPU_SET(cpu,&chosen);if(sched_setaffinity(0,sizeof(chosen),&chosen))return 3;
  char path[4096];snprintf(path,sizeof(path),"%s/libgzram.so",argv[1]);void *gz=dlopen(path,RTLD_NOW|RTLD_LOCAL);snprintf(path,sizeof(path),"%s/lz4-small.so",argv[1]);void *lz=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!gz||!lz){fprintf(stderr,"%s\n",dlerror());return 4;}
  baseline_enc=(lz_enc)dlsym(lz,"LZ4_compress_default");baseline_dec=(lz_dec)dlsym(lz,"LZ4_decompress_safe");int (*available)(void)=dlsym(gz,"gzram_avx2_available");if(!baseline_enc||!baseline_dec||!available||!available()){fprintf(stderr,"Native AVX2 support required for comparisons\n");return 5;}
- struct codec variants[185]={0};strcpy(variants[0].name,"lz4-small-scalar");variants[0].lz4=1;
+ struct codec variants[217]={0};strcpy(variants[0].name,"lz4-small-scalar");variants[0].lz4=1;
  int n=1;for(int isa=0;isa<2;isa++)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-%s-%u",isa?"avx2":"scalar",1U<<log);v->comp=(gz_enc)dlsym(gz,isa?"gzram_encode_avx2":"gzram_encode_scalar");v->dec=(gz_dec)dlsym(gz,isa?"gzram_decode_avx2":"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
  }
@@ -113,8 +113,8 @@ int main(int argc,char **argv){
  if(fast)for(unsigned log=5;log<=12;log++){
   struct codec *v=&variants[n++];v->log=log;snprintf(v->name,sizeof(v->name),"gz-fast-scalar-%u",1U<<log);v->comp=(gz_enc)dlsym(fast,"gzram_encode_scalar");v->dec=(gz_dec)dlsym(fast,"gzram_decode_scalar");if(!v->comp||!v->dec)return 5;
  }
- const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard"};
- for(unsigned policy=0;policy<8;policy++){
+ const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail"};
+ for(unsigned policy=0;policy<sizeof(policies)/sizeof(policies[0]);policy++){
   snprintf(path,sizeof(path),"%s/libgzram-hybrid-%s.so",argv[1],policies[policy]);
   if(access(path,R_OK))continue;
   void *h=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!h){fprintf(stderr,"%s\n",dlerror());return 5;}
