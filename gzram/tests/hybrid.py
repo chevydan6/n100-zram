@@ -71,7 +71,7 @@ for population in range(9):
 # Block selection must preserve the frame on both sides of every tested
 # aggregate cutoff, at every supported internal block length.
 block_selection_pages=0
-if any(name in a.library.name for name in ['blockpick','blockdirect']):
+if any(name in a.library.name for name in ['blockpick','blockdirect','bitdirectblock']):
  for block_log in range(5,13):
   block=1<<block_log;groups=block//32
   for cutoff in [2,3,4]:
@@ -101,7 +101,7 @@ if 'bitdirectsample' in a.library.name:
 # Every group can be the lone repeat-breaking word. Vary mask positions across
 # pipeline lanes, supported block lengths, and the final partial pipeline.
 scan_pipeline_pages=0
-if any(name in a.library.name for name in ['bitdirectpipe','bitdirectavxbits']):
+if any(name in a.library.name for name in ['bitdirectpipe','bitdirectavxbits','bitdirectblock']):
  for length in [32,64,96,128,160,224,256,288,992,1024,1056,4064,4096]:
   for group in range(length//32):
    data=bytearray((b'ABCDEFGH'*(length//8)))

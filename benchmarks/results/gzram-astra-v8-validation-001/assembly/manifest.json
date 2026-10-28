@@ -1,0 +1,62 @@
+{
+  "bitpackbase": {
+    "object_sha256": "da64de3e7de43da3549312fc1728574246377e97e7eec7cd3d735d5068571d81",
+    "symbols": [
+      "00000000000001b0 000000000000010a t scan_avx2"
+    ]
+  },
+  "blockdirect2base": {
+    "object_sha256": "2ea6f1c27d06b78657642b49babfeb656be6cf77f3f5f6b41afc195f7a771aef",
+    "symbols": [
+      "00000000000003b0 00000000000000e5 t pack_block_avx2",
+      "00000000000001b0 000000000000010a t scan_avx2"
+    ]
+  },
+  "blockdirect3base": {
+    "object_sha256": "fc18c26ba8e984a50b021df84abb7da6766949addd4ffb22720a03af4874cf3f",
+    "symbols": [
+      "00000000000003b0 00000000000000e5 t pack_block_avx2",
+      "00000000000001b0 000000000000010a t scan_avx2"
+    ]
+  },
+  "pipe4base": {
+    "object_sha256": "a2a6fb6214c487117324eb801bf311b66b847f5766dbf8e83215e4579b2b14b7",
+    "symbols": [
+      "00000000000001b0 0000000000000299 t scan_avx2"
+    ]
+  },
+  "avxbits4base": {
+    "object_sha256": "081d4cfd91f918424baa29a9b17b3ffac73b2974433855f4d027c058d80bdbf2",
+    "symbols": [
+      "00000000000001b0 000000000000028a t scan_avx2"
+    ]
+  },
+  "block2pipe4base": {
+    "object_sha256": "c0de6c20dccd7ada4f64294ddc3906f7b93a3c6b2a6dc59b6dbbedf3010fdcd9",
+    "symbols": [
+      "0000000000000550 00000000000000e5 t pack_block_avx2",
+      "00000000000001b0 0000000000000299 t scan_avx2"
+    ]
+  },
+  "block2avxbits4base": {
+    "object_sha256": "49e3b7eab951db734bfac2fc56368798e5a9680c09b60207576d4d4678a06a8c",
+    "symbols": [
+      "0000000000000530 00000000000000e5 t pack_block_avx2",
+      "00000000000001b0 000000000000028a t scan_avx2"
+    ]
+  },
+  "block3pipe4base": {
+    "object_sha256": "208fca9b1bc920b9fbae1178f9f221305cf88739880aec3c9cc7f81466e98bb4",
+    "symbols": [
+      "0000000000000550 00000000000000e5 t pack_block_avx2",
+      "00000000000001b0 0000000000000299 t scan_avx2"
+    ]
+  },
+  "block3avxbits4base": {
+    "object_sha256": "9fbbc372237647fd168c9483587bd4546ce363d3b7c4b45f06628ff8cd13ec97",
+    "symbols": [
+      "0000000000000530 00000000000000e5 t pack_block_avx2",
+      "00000000000001b0 000000000000028a t scan_avx2"
+    ]
+  }
+}

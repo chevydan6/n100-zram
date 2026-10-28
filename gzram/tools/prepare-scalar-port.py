@@ -26,6 +26,33 @@ assert not a.output.exists()
 source = (root / 'gzram/src/gzram.c').read_text()
 header = (root / 'gzram/src/gzram.h').read_text()
 
+# Keep the original scanner branch for the strict helper-removal audit below.
+# These experimental vector functions are never part of a scalar port. Parse
+# directive nesting rather than matching the first inner #else/#endif.
+marker = '#if defined(GZRAM_SCAN_PIPE)\n'
+assert source.count(marker) == 1
+start = source.index(marker)
+depth, alternate, finish = 0, None, None
+for directive in re.finditer(r'^#\s*(if|ifdef|ifndef|else|elif|endif)\b[^\n]*\n', source[start:], re.M):
+    kind = directive[1]
+    if kind in ['if', 'ifdef', 'ifndef']:
+        depth += 1
+    elif kind == 'else' and depth == 1:
+        assert alternate is None
+        alternate = start + directive.end()
+    elif kind == 'elif' and depth == 1:
+        raise AssertionError('Unexpected scanner experiment branch')
+    elif kind == 'endif':
+        depth -= 1
+        if depth == 0:
+            finish = start + directive.start()
+            after = start + directive.end()
+            break
+assert alternate is not None and finish is not None
+removed_scan_branch = source[start:alternate]
+assert all(name in removed_scan_branch for name in ['scan_xor(', 'scan_or(', 'scan_avx2('])
+source = source[:start] + source[alternate:finish] + source[after:]
+
 
 def replace_function(text, name, replacement=''):
     pattern = rf'^(?:AVX\s+)?(?:static\s+)?(?:int|void|unsigned|size_t)\s+{re.escape(name)}\([^)]*\)\s*\{{'
@@ -79,7 +106,7 @@ if a.pack == 'ctz':
 unsupported = ['GZRAM_EMBED_PREFIX', 'GZRAM_VARIABLE_PERIOD', 'GZRAM_PERIOD_FILTER',
                'GZRAM_MIXED_ENCODE', 'GZRAM_MIXED_DECODE', 'GZRAM_BLOCK_UNPACK',
                'GZRAM_SELECT_PACK', 'GZRAM_CTZ_UNPACK_FULL', 'GZRAM_BLOCK_PACK_LIMIT',
-               'GZRAM_BLOCK_PACK_DIRECT']
+               'GZRAM_BLOCK_PACK_DIRECT', 'GZRAM_SCAN_PIPE', 'GZRAM_SCAN_AVX_BITS']
 prologue = '/* SPDX-License-Identifier: GPL-2.0-only */\n'
 prologue += '/* Generated scalar component port; no GHY1, SIMD or ZRAM registration. */\n'
 prologue += '#if ' + ' || '.join('defined(' + name + ')' for name in unsupported) + '\n#error Unsupported scalar component configuration\n#endif\n'
@@ -99,6 +126,7 @@ manifest = dict(scope='Unbuilt isolated scalar GZR1 component; no kernel integra
                 source_sha256={name: hashlib.sha256((root / name).read_bytes()).hexdigest()
                                for name in ['gzram/src/gzram.c', 'gzram/src/gzram.h', 'gzram/tools/prepare-scalar-port.py']},
                 prefix=a.prefix, flags=flags, removed_vector_helpers=vector_helpers,
+                removed_scan_experiment_sha256=hashlib.sha256(removed_scan_branch.encode()).hexdigest(),
                 generated_sha256={name: hashlib.sha256((a.output / name).read_bytes()).hexdigest()
                                   for name in ['core.c', 'gzram.h', 'tables.h']})
 (a.output / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')

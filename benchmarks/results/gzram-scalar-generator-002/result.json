@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "generator_sha256": "d22e1c4875b1200a4d944abf3e1c2b261f7b9d26edaa18d75a05f4e93a965976",
+  "scalar_text_comparisons": {
+    "control": {
+      "previous": "3f12b51dfc837cb60c563d8e1033d291cce4cf0ebfe16aa5871c4e4cce45699a",
+      "current": "3f12b51dfc837cb60c563d8e1033d291cce4cf0ebfe16aa5871c4e4cce45699a"
+    },
+    "ctz": {
+      "previous": "55bc1108babcbee6c9904fed1eeca46624836b2fd6dc1bfdf52036b2dacdfd9a",
+      "current": "55bc1108babcbee6c9904fed1eeca46624836b2fd6dc1bfdf52036b2dacdfd9a"
+    },
+    "bitpack": {
+      "previous": "68c30b8d8b4e552c0f0a06815476061d93fab3cec168264b03f35c28a35df808",
+      "current": "68c30b8d8b4e552c0f0a06815476061d93fab3cec168264b03f35c28a35df808"
+    }
+  },
+  "steps": 12,
+  "scope": "Generator maintenance only: previous scalar component code remains identical; not combined SIMD kernel integration"
+}

@@ -1,0 +1,30 @@
+{
+  "command": [
+    "gcc",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-DOPS=8192",
+    "-DSHARED_DECODE=2",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+    "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+    "gzram/bench-isolated.c",
+    "-ldl",
+    "-o",
+    "/home/dan/n100-zram/build/astra-v8-isolated-asan-aliases/benchmark"
+  ],
+  "source_hashes": {
+    "gzram/bench-isolated.c": "306763ae3827598d84b7f9e8f6c6eb98aba2ad86b1cd602c239dc568a8ee3c63",
+    "gzram/bench.c": "8ffe2ce6cdbb3d828c25afb3a5408df1e7f66d049476a7d71eb09bf071797776"
+  },
+  "binary_sha256": "abde9827a4533df894f2dc364ec931455b201c5dab57f4cce15d56439ae6be59",
+  "calls_per_batch": 8192,
+  "shared_decode": 2,
+  "operation_order": "random permutation of all (variant, operation) tasks each round",
+  "setup": "All frames prepared before timing; restore immutable frames into common addresses; no encoder invoked immediately before timed decode setup",
+  "maximum_frame_banks": 64
+}

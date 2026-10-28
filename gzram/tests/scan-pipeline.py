@@ -19,7 +19,8 @@ a = p.parse_args()
 handles = []
 encoders = []
 for policy in ['bitdirect', 'bitdirectpipe1', 'bitdirectpipe2', 'bitdirectpipe4',
-               'bitdirectavxbits2', 'bitdirectavxbits4']:
+               'bitdirectavxbits2', 'bitdirectavxbits4',
+               'bitdirectblock2', 'bitdirectblock2pipe4', 'bitdirectblock2avxbits4', 'bitdirectblock3', 'bitdirectblock3pipe4', 'bitdirectblock3avxbits4']:
     lib = C.CDLL(str(a.directory / f'libgzram-hybrid-{policy}.so'))
     assert lib.gzram_avx2_available(), 'This test requires actual AVX2 execution'
     handles.append(lib)

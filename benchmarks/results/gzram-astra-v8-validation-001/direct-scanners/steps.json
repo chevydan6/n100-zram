@@ -1,0 +1,22 @@
+[
+  {
+    "command": [
+      "python3",
+      "/home/dan/n100-zram/gzram/tests/scan-pipeline.py",
+      "--directory",
+      "/home/dan/n100-zram/build/astra-v8"
+    ],
+    "status": 0,
+    "elapsed_seconds": 107.26083540916443
+  },
+  {
+    "command": [
+      "python3",
+      "/home/dan/n100-zram/gzram/tests/scan-pipeline.py",
+      "--directory",
+      "/home/dan/n100-zram/build/astra-v8-asan"
+    ],
+    "status": 0,
+    "elapsed_seconds": 142.5191445350647
+  }
+]

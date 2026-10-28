@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "variants": [
+    "lz4-small-scalar",
+    "ghy-wordmixed-scalar-1024",
+    "ghy-wordmixed-avx2-1024",
+    "ghy-bitdirect-scalar-1024",
+    "ghy-bitdirect-avx2-1024",
+    "ghy-blockdirect2-avx2-1024",
+    "ghy-blockdirect3-avx2-1024",
+    "ghy-bitdirectpipe4-avx2-1024",
+    "ghy-bitdirectavxbits4-avx2-1024",
+    "ghy-bitdirectblock2-avx2-1024",
+    "ghy-bitdirectblock2pipe4-avx2-1024",
+    "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "ghy-bitdirectblock3-avx2-1024",
+    "ghy-bitdirectblock3pipe4-avx2-1024",
+    "ghy-bitdirectblock3avxbits4-avx2-1024",
+    "ghy-bitdirectblock2-scalar-1024",
+    "ghy-bitdirectblock3-scalar-1024"
+  ],
+  "source_hashes": {
+    "gzram/bench-isolated.c": "306763ae3827598d84b7f9e8f6c6eb98aba2ad86b1cd602c239dc568a8ee3c63",
+    "gzram/bench.c": "8ffe2ce6cdbb3d828c25afb3a5408df1e7f66d049476a7d71eb09bf071797776"
+  },
+  "steps": 24
+}

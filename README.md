@@ -8,7 +8,7 @@ Native experimental backends have been tested and restored to stock afterward.
 No broad end-to-end performance improvement has been established; see BENCHMARKS.md.
 
 Experimental GZRAM development is in [`gzram/`](gzram/). The
-[latest local N100 checkpoint](docs/GZRAM-ASTRA-20261028.md) records measured
+[latest local N100 checkpoint](docs/GZRAM-ASTRA-20261029.md) records measured
 scalar/SIMD tradeoffs, raw results and correctness gates; [SOL's baseline](docs/GZRAM-20261028.md)
 remains intact. GZRAM is a prototype and is not the laptop's active ZRAM codec.
 

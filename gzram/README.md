@@ -1,3 +1,5 @@
+Latest development: [2026-10-29 composition and decoder-isolation checkpoint](../docs/GZRAM-ASTRA-20261029.md). Six combined candidates pass correctness; fresh physical timings are pending.
+
 # GZRAM-AVX2
 
 Latest continuation: [measured scalar/SIMD paths and independent AVX/AVX2 scan
