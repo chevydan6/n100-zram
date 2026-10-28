@@ -1,14 +1,15 @@
-# GZRAM continuation: outlined classification and sparse decoding
+# GZRAM continuation: local N100 word-path experiments
 
 Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
-This is a prototype development checkpoint, not a new measured performance win.
-The latest accepted measurement record remains [SOL's report](GZRAM-20261028.md).
+This prototype now has a completed local userspace cohort with repeatable sparse
+decode gains and retained regressions. It does not establish kernel, battery or
+production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
 
 Update: the user confirmed that this workspace is on the same Lenovo 14e that
 SOL previously accessed over SSH. Local execution has resumed; a changed
 kernel, desktop or ZRAM setting is not evidence of a different physical target.
-The first local timed cohort is running with matched controls. No result is
-accepted until its three sessions and telemetry have been reviewed.
+The first local timed cohort completed all three sessions and its artifact,
+telemetry and preserved-system-state audit passed. Results are below.
 
 ## Starting evidence and preservation
 
@@ -179,8 +180,8 @@ not new compression-ratio gains:
 
 The full report retains zero, short repeats, incompressible and all other cases.
 Framing is charged, but ZRAM allocation classes, zero-page bypass and raw-page
-handling are excluded. CPU use, speed, package energy, battery energy and
-responsiveness of the additions are still unmeasured. A preliminary size export
+handling are excluded. At that size-only checkpoint, CPU use, speed, energy and responsiveness were
+unmeasured. The later local timing results below supersede that timing status. A preliminary size export
 stopped because its independent oracle did not enable the preserved GZR2 mode;
 that failed attempt is retained privately and the corrected fresh export passed.
 
@@ -196,23 +197,102 @@ python3 gzram/tools/summarize-sizes.py --input build/astra-size-reproduce
 ```
 
 The size exporter uses the local Bash fixture; compare its recorded hash before
-comparing executable or mixed-page results across hosts. CPU-time collection is
-implemented for the next timed cohort, not populated with synthetic values here.
+comparing executable or mixed-page results across hosts. Size records are not
+timing measurements; the later cohort records actual thread CPU time separately.
 
-## Next controlled experiment and kernel decision
+## Completed local cohort 001
 
-First acquire the original exclusive lock and inspect live jobs, ownership,
-kernel, CPU settings, swap, source fingerprints and recovery records. Confirm
-whether the intended test target is the earlier lab or this differently
-configured laptop. Preserve its actual baseline. Run a fresh matched cohort
-with both candidates, wordmixed, splittail, guard32/mixed, fast GZRAM and scalar
-LZ4 controls across all twelve existing corpora plus the new 25%, 50% and 75%
-nonzero-word and interleaved mixed-page corpora. All twelve original corpus
-hashes are unchanged; all sixteen are independent of variant selection and
-shuffle seed. Use three sessions,
-nine shuffled recorded rounds and separate encode/decode timing, bytes, CPU,
-PMU scheduling fractions and available package energy. Retain every regression.
-An expanded density sweep is needed before selecting any sparse/dense cutoff.
+[All raw rows and LZ4 comparisons](../benchmarks/results/native-gzram-astra-local-001/summary.md),
+[direct paired comparisons](../benchmarks/results/native-gzram-astra-local-001/paired.md),
+and [audit](../benchmarks/results/native-gzram-astra-local-001/audit.json) retain
+15 variants, sixteen corpora, three sessions and 12,960 timing rows. Each session
+uses two warmups and nine shuffled recorded rounds, 128 pages per corpus, and
+32,768 calls per direction per batch. Frozen codec/benchmark/runner sources are
+identified by commit `50dee85` and the published provenance and hashes. Later
+source edits were not used by this cohort. All initial sixteen corpus hashes
+match the size-only checkpoint.
+
+The physical N100 remained at its existing powersave 700–800 MHz limits, on
+battery, under kernel 7.2.11 and GCC 16.2.1. Maximum telemetry gap was 0.908 s;
+all user-only PMU groups were fully scheduled. Median thread CPU/wall occupancy
+was 99.137%, but 494/12,960 rows were below 95% and 273 below 90%, mostly in the
+first session. The minimum was 14.698%. No interrupted row was deleted. CPU time
+and cycle changes corroborate the large decode improvements; tiny wall-time
+changes on other paths should not be treated as established wins.
+
+The scalar ctzunpack decoder improved these whole-codec decode times versus the
+matched scalar wordmixed control, without changing any compressed bytes:
+
+| Corpus | Wordmixed ns/page | ctzunpack ns/page | Paired wall change | Three session changes | Thread CPU change |
+|---|---:|---:|---:|---|---:|
+| Sparse words | 5738.7 | 3660.6 | -36.44% | -36.58 / -36.44 / -36.28% | -36.43% |
+| 25% nonzero words | 9300.8 | 4518.6 | -51.50% | -51.63 / -51.50 / -51.29% | -51.47% |
+| 50% nonzero words | 14023.5 | 5291.7 | -62.24% | -62.21 / -62.25 / -62.24% | -62.25% |
+| Mixed pages | 3903.3 | 3338.4 | -13.82% | -14.71 / -13.78 / -13.82% | -13.80% |
+
+Absolute values are pooled medians; percentages are median paired session
+changes, so a ratio of the displayed medians need not equal the displayed change.
+The AVX2 entry, which also uses scalar sparse unpacking, improved by 29.45%,
+46.81%, 58.24% and 10.59% respectively. Its absolute sparse decode remained
+slower than the scalar entry (4062.3 versus 3660.6 ns/page). The entry label
+is not evidence that vector work improves that operation. On words50 the
+scalar candidate executed 23.56% more instructions but 78.18% fewer branch
+misses and 62.25% fewer cycles. Instruction count alone would mis-rank it.
+
+Compared with matched scalar LZ4, the scalar ctzunpack candidate compressed
+sparse words in 8116.7 versus 16924.0 ns (-52.26% paired), decoded in 3660.6
+versus 7838.6 ns (-53.41%), and used 660.844 versus 1081.359 bytes (-38.89%).
+On mixed pages those values were 15859.1 versus 16396.2 ns compression (-3.24%),
+3338.4 versus 4427.6 ns decoding (-24.71%), and 2049.070 versus 2157.406 bytes
+(-5.02%). Compression and size gains here are inherited from wordmixed; the
+new change is sparse decoding. The complete report retains every LZ4 contrast.
+
+The remaining losses rule out general replacement. Scalar ctzunpack executable
+compression was 42809.2 versus LZ4's 39535.2 ns (+8.27%), with eight extra bytes.
+Period127 compression was 6003.8 versus 3110.3 ns (+92.91%), with 161 versus 153
+bytes. The words75 case took 47186.1 versus 36461.4 ns (+29.37%), with slightly
+larger output. Repeat32 still used 148 versus 58 bytes (+155.17%) at 1024-byte
+internal blocks. Zero/same-filled pages and raw fallback timings are not native
+ZRAM wins. ctzunpack retains small non-sparse changes and regressions in the
+paired files; it supplies no general encoding improvement.
+
+Outlinetail reduced scalar half-zero encoding by 4.93% relative to splittail
+(2924.8 versus 3086.9 ns), but remained 5.69% slower than wordmixed (2791.3 ns).
+Its AVX2 half-zero change versus wordmixed was -0.38%, with one session positive.
+This does not justify selecting the outlined classifier. Preserve it as a
+negative/partial attribution experiment; no best-of-path combination is accepted.
+
+Package energy was unavailable for all rows in this first cohort. Battery
+current/voltage integration estimates 20.19 kJ (5.61 Wh) for the whole 3601.9 s
+experiment, including validation, warmups, desktop/background work and telemetry.
+The gauge is uncalibrated and this is not a per-codec or comparative energy
+measurement. There is no energy-efficiency conclusion from cohort 001.
+
+The timing service exited successfully and released its lock/inhibitor. The
+next validation job then acquired the same lock. The original ZRAM module build
+ID, active zstd algorithm, disk size and CPU policy match preflight; no swap,
+module, boot or power-policy restoration operation was needed. No application
+responsiveness or memory-pressure result is implied by codec timing.
+
+## Follow-up candidates and kernel decision
+
+[Five isolated word-path candidates](../gzram/docs/WORD-PATHS.md) investigate
+integer repeat expansion, sparse packing, mixed AVX2-scan/scalar-pack encoding,
+and consolidation of identical repeated blocks. Consolidation reuses GZR1's
+existing 4096-byte block representation; old decoders remain applicable. New
+normal/sanitizer tests and an independent per-page size audit are queued before
+any timing. A fresh 21-variant, seventeen-corpus cohort includes repeat16,
+matched wordmixed/ctzunpack/LZ4 controls and 1024/4096-byte repeat contrasts.
+Its 8192-call measurement batches are explicitly recorded, not assumed equivalent
+to historical absolute timing. Small effects and short-batch energy need longer
+matched confirmation.
+
+A read-only RAPL descriptor handoff passed a live access check: real/effective/
+saved UID and GID were all 1000, effective capabilities were zero, and the child
+read the counter successfully after privilege was dropped. It changes no sysfs
+permissions. The next codec run can measure package energy as the normal user;
+authentication and validation are outside its timing. This is access evidence,
+not yet a candidate energy measurement.
 
 Kernel integration is conditional on whole-codec profitability. It requires
 bounded per-stream workspace, kernel-safe copies, explicit scalar fallback,
@@ -221,7 +301,7 @@ and dirty register states. Follow isolated correctness, exact-ABI VM tests and
 only then controlled native trials with current recovery verification. Lzo-rle
 and matched LZ4 must be compared on real reclaim and response latency, memory
 including allocator overhead, CPU, package energy and stability. The current
-machine's zstd is an additional baseline to preserve if it becomes the target.
+machine's zstd is an additional baseline to preserve in any future native trial.
 
 Batching is not implemented or accepted. The upstream
 [FPU API documentation](https://docs.kernel.org/core-api/floating-point.html)

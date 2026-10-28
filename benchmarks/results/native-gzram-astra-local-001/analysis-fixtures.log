@@ -1,0 +1,3 @@
+Passed analysis fixture: cpu=False, fully_scheduled=True
+Passed analysis fixture: cpu=True, fully_scheduled=True
+Passed analysis fixture: cpu=True, fully_scheduled=False

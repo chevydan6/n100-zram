@@ -152,3 +152,14 @@ no upstream code or generated shuffle tables were copied into the new codec.
 - Validated fused-prefix and independent sparse/repeat decoder prototypes with
   normal, guarded, concurrent, malformed-input and sanitizer checks.
 - Kept userspace codec costs separate from kernel SIMD state measurements.
+
+## 2026-10-28 — Astra local matched codec results
+
+- Published three physical-N100 sessions, all 12,960 rows and 1,472 direct
+  contrasts, with thread CPU time, user PMUs and continuous system telemetry.
+- Confirmed substantial sparse-decode gains at identical bytes; retained the
+  outlined-classifier regression and every LZ4 speed/size loss.
+- Audited frozen artifact hashes and unchanged live zstd ZRAM/CPU policy.
+- Preserved missing package energy and whole-experiment battery scope explicitly.
+- Added known-ratio analysis fixtures and local cohort auditing; no kernel
+  deployment, application responsiveness or production acceptance is claimed.

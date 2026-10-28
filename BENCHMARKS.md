@@ -438,3 +438,18 @@ work, frequency and thermal variability; this is not whole-laptop energy or a
 cross-session generality claim. Peak ZRAM memory was essentially unchanged
 versus LZ4, and lower than LZO for these inputs. The installed system has 4 GiB;
 this used bounded memcg reclaim, not whole-machine exhaustion.
+
+## Astra local N100 codec cohort 001
+
+[Complete results](benchmarks/results/native-gzram-astra-local-001/summary.md)
+and [paired contrasts](benchmarks/results/native-gzram-astra-local-001/paired.md)
+retain all 12,960 rows from three sessions, 15 variants and sixteen corpora.
+At the existing 800 MHz cap, scalar ctzunpack decode improved 36.44%, 51.50%,
+62.24% and 13.82% versus wordmixed on sparse words, words25, words50 and mixed
+pages, respectively, with identical compressed bytes. CPU time/cycles corroborate
+the gains. Outlinetail remained 5.69% slower on scalar half-zero encoding.
+Executable, repeating-pattern and words75 losses versus LZ4 remain; no general
+replacement or kernel gain is accepted. Package energy is missing in this cohort.
+Battery integration covers the whole experiment and is not a codec comparison.
+The [dated report](docs/GZRAM-ASTRA-20261028.md) gives absolute values, controls,
+scheduling outliers, recovery limitations and the next experiments.

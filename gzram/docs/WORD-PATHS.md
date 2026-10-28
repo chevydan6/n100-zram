@@ -1,0 +1,75 @@
+# Integer word paths and repeat consolidation
+
+These additive GHY1 prototypes continue the Astra sparse-decoder experiment.
+They retain the previous libraries and SOL's controls. Candidate names describe
+the tested implementation, not a policy selected for routine use. Performance
+and validation status belongs in the dated report, not in the hypotheses below.
+
+| Candidate | Change from wordmixed | Question |
+|---|---|---|
+| wordrepeat | Expand a fixed repeat pattern into four integer words, then store bounded groups | Can scalar stores replace repeated short memcpy calls profitably? |
+| ctzrepeat | wordrepeat plus ctzunpack's sparse decoder | Do the two independent decode changes retain their benefits together? |
+| bitpack | Iterate set mask bits when packing scalar sparse groups; copy full masks directly | Does removing absent-lane branches improve scalar encoding? |
+| mixpack | bitpack, also using scalar packing after the AVX2 scan | Is scalar packing cheaper than vector permutation plus a bounded temporary copy? |
+| repeatmerge | Consolidate a page whose encoded blocks all repeat the same fixed pattern | Can existing per-block proofs recover the short-repeat ratio without another whole-page scan? |
+
+The repeat-store decoder handles every legal GZR1 repeat length, including
+noncanonical short blocks which the encoder would not produce. It initializes
+only a bounded 32-byte local pattern, then writes complete 32-byte and eight-byte
+groups and a possible four-byte tail. It does not overread the compressed pattern.
+The AVX2 entry retains the previous mixed decoder's vector repeat helper. Thus
+scalar and AVX2 labels remain distinct measured paths; neither is assumed better.
+ZRAM normally bypasses compression for same-filled pages, so repeat4/repeat8
+microbenchmarks cannot establish an actual ZRAM gain. The repeat16 and repeat32
+fixtures exercise patterns beyond a single repeated machine word.
+
+Bit-scan packing visits present words in increasing lane order, preserving exact
+wire bytes. Empty masks produce no stores; full masks use a contiguous 32-byte
+copy. No sparse/dense crossover is assumed. The new 25%, 50%, and 75% nonzero-word
+fixtures deliberately include cases where the hybrid rejects GZRAM and pays for
+both the trial and LZ4 fallback.
+
+Repeat consolidation consumes only a successful frame made by the preserved
+base encoder. Every block must have the same fixed-repeat tag; comparing each
+block's bounded pattern with the first proves that their patterns also match.
+Different patterns with identical tags must remain separate. Raw, zero and
+mixed-tag frames retain the original result. The successful replacement is
+smaller than its existing frame and fits the same output buffer. If that
+original encoding cannot fit, the normal fallback still applies: this is not
+a guarantee that the encoder succeeds with capacity equal to the smallest
+possible representation.
+
+Consolidation uses **the existing GZR1 format**, nested in GHY1, and records a
+4096-byte internal block size in the frame. The requested block size controls
+the initial scan but may differ from the final stored block size. Old decoders
+already read that header and can decode the consolidated page. There is no new
+version, cross-page dictionary, shared mutable state, queue or batch. Pages stay
+independently recoverable. Processing block size is not the OS memory page size.
+
+Correctness must cover cross-decoding in both directions, exact identity for
+the first four candidates, partial final blocks, different patterns under equal
+tags, exhaustive sparse masks, short repeat lengths, every truncation, guarded
+capacities, malformed frames, concurrency and ASan/UBSan. These checks establish
+bounds and compatibility, not kernel readiness.
+
+The follow-up timing screen uses fresh matched controls and records the actual
+calls per batch. Shortening a timing batch is an experimental-harness choice,
+not a kernel batching optimization. Compare within that cohort, retain every
+regression, and check sensitivity before treating small effects as stable.
+
+## Package-energy access
+
+`tools/with-rapl.py` opens only the package energy counter read-only. When started
+through pkexec it restores the authenticating user's supplementary groups,
+permanently drops real/effective/saved UIDs and GIDs, verifies zero effective
+capabilities, and then executes the requested user command. The follow-up runner support is under validation; cohort 001 did not use it.
+The updated runner preserves only that explicitly verified descriptor into
+benchmark children. Sysfs access
+modes and the laptop's power settings remain unchanged. The codec never needs
+root. Failure to obtain access remains a missing metric, not zero energy.
+
+RAPL covers the CPU package over the entire timed batch, including measurement
+bookkeeping and background work. It is not codec-only energy or laptop battery
+energy. The battery telemetry is system context and cannot be assigned to short,
+interleaved codec batches. Authentication and descriptor checks occur outside
+timing. The original direct-sysfs path remains available for existing runners.

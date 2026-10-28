@@ -50,6 +50,13 @@ def main():
         metrics.append('cpu_ns_per_page')
         assert all(math.isfinite(float(row['cpu_ns_per_page'])) and float(row['cpu_ns_per_page']) > 0
                    for rows in groups.values() for row in rows.values())
+    pmu_metrics = ('cycles', 'instructions', 'branch_misses', 'cache_misses')
+    for metric in pmu_metrics:
+        present = [metric in row for rows in groups.values() for row in rows.values()]
+        assert all(present) or not any(present), f'Mixed {metric} schemas'
+        if all(present):
+            metrics.append(metric)
+            assert all(math.isfinite(float(row[metric])) for rows in groups.values() for row in rows.values())
     contrasts = set()
     for variant in variants:
         if not variant.startswith('ghy-'):
@@ -74,6 +81,10 @@ def main():
                 baseline = groups[corpus, control, operation]
                 effects = {}
                 for metric in metrics:
+                    if metric in pmu_metrics and any(float(rows[k].get('pmu_running_fraction', -1)) < .99
+                                                    for rows in (baseline, selected) for k in expected):
+                        effects[metric] = None
+                        continue
                     if any(float(baseline[k][metric]) <= 0 or float(selected[k][metric]) < 0 for k in expected):
                         effects[metric] = None
                         continue
@@ -91,7 +102,8 @@ def main():
     scope = ('Physical N100 warm-cache userspace screening. Nine paired rounds per session; '
              'median of three session changes. Session ranges are descriptive, not confidence '
              'intervals. Negative changes mean less time/space/energy. Comparisons across block '
-             'sizes can change encoding choices and ratios. No policy or kernel gain accepted.')
+             'sizes can change encoding choices and ratios. PMU effects in JSON require fully '
+             'scheduled user-only groups. No policy or kernel gain accepted.')
     (args.output / 'paired.json').write_text(json.dumps(dict(scope=scope, rows=results), indent=2) + '\n')
     lines = ['# Direct GZRAM policy and block comparisons', '', scope, '',
              '| Corpus | Operation | Candidate | Control | Time change, % (session range) | Bytes change, % | Package energy change, % |',

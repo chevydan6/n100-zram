@@ -1,12 +1,13 @@
 # Current status
 
-The additive [Astra continuation](docs/GZRAM-ASTRA-20261028.md) investigates
-scalar classifier outlining and sparse bit-scan decoding, and repairs a
-full-registry benchmark shuffle overflow. New candidate performance remains
-unaccepted. The user confirmed this is the same Lenovo 14e previously reached
-over SSH. A locally locked, sleep-inhibited cohort is now running under the
-current 800 MHz cap with 15 matched variants and sixteen corpora. No conclusion
-is claimed before the three sessions finish; zstd ZRAM and boot settings remain.
+The [Astra continuation](docs/GZRAM-ASTRA-20261028.md) completed three matched
+sessions on this physical Lenovo 14e: 12,960 rows across sixteen corpora. Scalar
+bit-scan sparse decoding improved 36–62% on the sparse/density fixtures and
+13.82% on mixed pages versus wordmixed, with unchanged bytes. Classifier outlining
+remained 5.69% slower on scalar half-zero encoding. LZ4 still wins several other
+cases; no overall kernel or energy improvement is accepted. Current zstd ZRAM,
+boot settings and the 800 MHz cap were preserved. Five further candidates are
+under correctness/size validation before a matched energy-capable cohort.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction
 commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).

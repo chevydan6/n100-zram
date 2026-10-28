@@ -29,7 +29,7 @@ if cpu_accounting:
  assert all(math.isfinite(float(r[k])) and float(r[k])>0 for r in rows for k in ['cpu_ns_per_page','cpu_utilization_percent'])
 lines=['# GZRAM native userspace comparison','',state['inputs']['scope']+'.',
 'Three sessions, nine randomized recorded rounds, two warm-ups, 128 pages/corpus,',
-'32,768 calls per batch. The recorded variant list and corpus list are in metadata.',
+f"{state['inputs'].get('calls_per_batch',32768):,} calls per batch. The recorded variant list and corpus list are in metadata.",
 'If screen=true this is a selected 1024/4096-byte cohort, not every block size.',
 'All recorded variants and scalar LZ4',
 'are retained, including losses. No preferred compressor or block size is selected.',
