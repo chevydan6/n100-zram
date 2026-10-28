@@ -25,13 +25,18 @@ def main():
         group[page] = int(row['compressed_bytes'])
     assert len(groups) == len(corpora) * len(variants)
     assert all(set(group) == set(range(metadata['pages_per_corpus'])) for group in groups.values())
-    equivalent = [policy for policy in ('outlinetail', 'ctzunpack', 'wordrepeat', 'ctzrepeat', 'bitpack', 'mixpack')
+    equivalent = [policy for policy in ('outlinetail', 'ctzunpack', 'wordrepeat', 'ctzrepeat', 'bitpack', 'mixpack',
+                                       'ctzfull', 'bitctz', 'bitfull', 'select2', 'select3', 'select4')
                   if f'ghy-{policy}-scalar-1024' in variants]
     for corpus in corpora:
         for policy in equivalent:
             for isa in ('scalar', 'avx2'):
                 for block in (1024, 4096):
                     assert groups[corpus, f'ghy-{policy}-{isa}-{block}'] == groups[corpus, f'ghy-wordmixed-{isa}-{block}']
+        if 'ghy-repeatmergefast-scalar-1024' in variants:
+            for isa in ('scalar', 'avx2'):
+                for block in (1024, 4096):
+                    assert groups[corpus, f'ghy-repeatmergefast-{isa}-{block}'] == groups[corpus, f'ghy-repeatmerge-{isa}-{block}']
     lines = ['# GZRAM candidate size-only checkpoint', '', metadata['scope'] + '.', '',
              f'{len(variants)} variants, {len(corpora)} corpora, 128 pages per corpus. '
              'One deterministic encoding per page; these are not repeated timing samples.',
@@ -41,6 +46,8 @@ def main():
              'Other policies may change sizes; every result is retained. No speed or energy claim follows.', '',
              'The existing twelve inputs are preserved; words25/50/75 vary nonzero-word density',
              'and mixed-pages interleaves executable, sparse, random and periodic-prefix pages.',
+             'When present, clusters25/50/75 place random full 32-byte groups among zero groups;',
+             'these test spatial clustering separately from random per-word density.',
              'All bytes include the codec framing. ZRAM zero/same-page bypass, allocator rounding',
              'and raw-page handling are excluded. No whole-system memory saving is inferred.', '',
              '| Corpus | Variant | Mean bytes | Min..max bytes | Size change vs LZ4 |',

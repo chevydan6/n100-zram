@@ -7,6 +7,7 @@ root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'tests'))
 from guard_buffers import Guard
 from wire import decode as gz_decode_wire
 p=argparse.ArgumentParser();p.add_argument('--library',type=Path,required=True);p.add_argument('--same-encoding-libraries',type=Path,nargs='*',default=[]);p.add_argument('--other-libraries',type=Path,nargs='*',default=[]);a=p.parse_args();lib=C.CDLL(str(a.library))
+guarded=any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge','ctzfull','bitctz','bitfull','select2','select3','select4'])
 encoders=[lib.gzram_encode_scalar,lib.gzram_encode_avx2];decoders=[lib.gzram_decode_scalar,lib.gzram_decode_avx2]
 for other in a.other_libraries:
  h=C.CDLL(str(other));decoders += [h.gzram_decode_scalar,h.gzram_decode_avx2]
@@ -57,6 +58,16 @@ for repeat_period in [4,8,16,32]:
  for log in range(5,12):
   block=1<<log
   inputs.append(b''.join((pattern if chunk%2==0 else different)*(block//repeat_period) for chunk in range(4096//block)))
+# Exercise every packing population with rotating lanes, including full masks
+# inside an otherwise sparse block. Changing word values prevents repeat mode
+# from bypassing the packing path being checked.
+for population in range(9):
+ data=bytearray(4096)
+ for group in range(1,128,2):
+  mask=(1<<population)-1;rotation=group%8;mask=((mask<<rotation)|(mask>>(8-rotation)))&255
+  for lane in range(8):
+   if mask&(1<<lane):data[group*32+lane*4:group*32+lane*4+4]=struct.pack('<I',0x10203040+group*97+lane)
+ inputs.append(bytes(data))
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))
@@ -79,12 +90,12 @@ for index,data in enumerate(inputs):
    packed.close()
  src.close()
 assert modes=={0,1,2},modes
-if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge']):
+if guarded:
  for data in [period,period[:2048]+bytes(2048),long_period[:2048]+bytes(2048)]:
   out=C.create_string_buffer(4104);n=encoders[1](data,4096,out,4104,10)
   assert n<(768 if data==long_period[:2048]+bytes(2048) else 256) and out.raw[6]==2,'Repeated-prefix ratio recovery failed'
 
-if any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge']):
+if guarded:
  out=C.create_string_buffer(4104);n=encoders[1](edge_mixed,4096,out,4104,10)
  assert 0<n<2048 and out.raw[6]==2,'Last prefix-search candidate was missed'
  out=C.create_string_buffer(len(partial_edge)+8);n=encoders[1](partial_edge,len(partial_edge),out,len(out),10)

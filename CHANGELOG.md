@@ -176,3 +176,13 @@ no upstream code or generated shuffle tables were copied into the new codec.
   rejected launch caused by an inhibitor closing that descriptor.
 - Prepared and userspace-validated an isolated scalar GZR1 component adapter;
   no kernel build, VM execution, native module load or ZRAM replacement is claimed.
+
+## Clustered-mask candidates, 2026-10-28
+
+- Add full-mask decoding, separate-object encoder/decoder composition, three
+  scalar/vector packing cutoffs, and earlier repeat-consolidation rejection.
+- Preserve all prior library text, corpus hashes and size records.
+- Pass normal/sanitizer, independent decoding, boundary, mutation and concurrency
+  checks; retain the interrupted validation and its verified resumption.
+- Record the measured half-zero regression from globally increasing block size.
+- Keep performance acceptance pending the next matched physical N100 cohort.

@@ -102,6 +102,11 @@ static void unpack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
  /* Integer-only alternative: clear the group, then visit present words.
   * Avoid eight data-dependent branches for sparse groups. Dense masks pay
   * extra stores/bit scans; measure that cost instead of guessing a cutoff. */
+#if defined(GZRAM_CTZ_UNPACK_FULL)
+ /* A full mask overwrites every byte. Measure this extra branch on sparse
+  * masks as well as its benefit on clustered full/zero groups. */
+ if(mask==255){memcpy(dst,src,32);return;}
+#endif
  memset(dst,0,32);
  while(mask){
   unsigned lane=(unsigned)__builtin_ctz(mask);mask&=mask-1;
@@ -114,7 +119,7 @@ static void unpack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
  }
 #endif
 }
-#if !defined(GZRAM_MIXED_ENCODE) || defined(GZRAM_EMBED_PREFIX)
+#if !defined(GZRAM_MIXED_ENCODE) || defined(GZRAM_EMBED_PREFIX) || defined(GZRAM_SELECT_PACK)
 AVX static void pack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
  if(!mask)return;
@@ -123,6 +128,16 @@ AVX static void pack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
  __m256i indices=_mm256_loadu_si256((const __m256i *)gz_encode_indices[mask]);
  uint32_t tmp[8];_mm256_storeu_si256((__m256i *)tmp,_mm256_permutevar8x32_epi32(v,indices));
  memcpy(dst,tmp,gz_count[mask]*4U);
+}
+#endif
+#if defined(GZRAM_SELECT_PACK)
+_Static_assert(GZRAM_SELECT_PACK>=0&&GZRAM_SELECT_PACK<=8,"Invalid packing experiment cutoff");
+static void pack_selected(const uint8_t *src,uint8_t *dst,unsigned mask)
+{
+ /* The entry point has already established AVX2 availability. Compare
+  * multiple cutoffs in whole-codec runs; this is not an accepted crossover. */
+ if(gz_count[mask]<=GZRAM_SELECT_PACK)pack_scalar(src,dst,mask);
+ else pack_avx2(src,dst,mask);
 }
 #endif
 AVX static void unpack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
@@ -326,7 +341,9 @@ static int decode(const void *input,size_t size,void *output,size_t cap,pack_fn 
 }
 int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,scan_scalar,pack_scalar PREFIX_NONE);}
 int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){
-#if defined(GZRAM_MIXED_ENCODE)
+#if defined(GZRAM_SELECT_PACK)
+ return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_selected PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);
+#elif defined(GZRAM_MIXED_ENCODE)
  return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_scalar PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);
 #else
  return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_avx2 PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);

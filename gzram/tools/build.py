@@ -36,16 +36,27 @@ header=(root/'include/linux/lz4.h').read_text();assert header.count('#define LZ4
 (private/'lz4.h').write_text(header.replace('#define LZ4_MEMORY_USAGE 14','#define LZ4_MEMORY_USAGE 12'))
 lz4_sources=[root/'src/kernel-lz4/lz4_compress.c',root/'src/kernel-lz4/lz4_decompress.c']
 lz4_includes=[base/'include',root/'include']
-compile_files(lz4_sources,a.output/'lz4-small.so',includes=lz4_includes,bind=True)
+# These sources do not use any GZRAM policy definitions. Compile their identical
+# PIC objects once per build, keeping link order and private symbol binding.
+# The codegen audit must still prove that all preserved library .text is equal.
+lz4_objects=[]
+for source in lz4_sources:
+ obj=a.output/('private-'+source.stem+'.o')
+ compile_files([source],obj,includes=lz4_includes,shared=False);lz4_objects.append(obj)
+compile_files(lz4_objects,a.output/'lz4-small.so',includes=lz4_includes,bind=True)
 public_names=['encode_scalar','encode_avx2','decode_scalar','decode_avx2']
 def rename(prefix):return [f'-Dgzram_{name}=gzram_{prefix}_{name}' for name in public_names]
 core_objects={
  'base':['-DGZRAM_SCALAR_FAST=1',*rename('base')],
  'bitpackbase':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1',*rename('base')],
  'mixpackbase':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_MIXED_ENCODE=1',*rename('base')],
+ 'select2base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_SELECT_PACK=2',*rename('base')],
+ 'select3base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_SELECT_PACK=3',*rename('base')],
+ 'select4base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_SELECT_PACK=4',*rename('base')],
  'fused':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_EMBED_PREFIX=1',*rename('fused'),'-Dgzram_avx2_available=gzram_fused_avx2_available','-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2'],
  'mixed':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1',*rename('mixed'),'-Dgzram_avx2_available=gzram_mixed_avx2_available','-Dgzram_decode_mixed=gzram_mixed_decode'],
  'ctz':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_CTZ_UNPACK=1',*rename('ctz'),'-Dgzram_avx2_available=gzram_ctz_avx2_available','-Dgzram_decode_mixed=gzram_ctz_decode'],
+ 'ctzfull':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_CTZ_UNPACK=1','-DGZRAM_CTZ_UNPACK_FULL=1',*rename('ctzfull'),'-Dgzram_avx2_available=gzram_ctzfull_avx2_available','-Dgzram_decode_mixed=gzram_ctzfull_decode'],
  'repeat':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_WORD_REPEAT=1',*rename('repeat'),'-Dgzram_avx2_available=gzram_repeat_avx2_available','-Dgzram_decode_mixed=gzram_repeat_decode'],
  'ctzrepeat':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_WORD_REPEAT=1','-DGZRAM_CTZ_UNPACK=1',*rename('repeat'),'-Dgzram_avx2_available=gzram_repeat_avx2_available','-Dgzram_decode_mixed=gzram_repeat_decode'],
 }
@@ -68,19 +79,27 @@ policies={
  'bitpack':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
  'mixpack':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
  'repeatmerge':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_MERGE_REPEAT=1'],
+ 'ctzfull':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_CTZFULL_DECODE=1'],
+ 'bitctz':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_CTZ_DECODE=1'],
+ 'bitfull':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_CTZFULL_DECODE=1'],
+ 'select2':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'select3':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'select4':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'repeatmergefast':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_MERGE_REPEAT=1','-DGZRAM_HYBRID_MERGE_REPEAT_FAST=1'],
 }
-additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz','wordrepeat':'repeat','ctzrepeat':'ctzrepeat','bitpack':'mixed','mixpack':'mixed','repeatmerge':'mixed'}
+additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz','wordrepeat':'repeat','ctzrepeat':'ctzrepeat','bitpack':'mixed','mixpack':'mixed','repeatmerge':'mixed','ctzfull':'ctzfull','bitctz':'ctz','bitfull':'ctzfull','select2':'mixed','select3':'mixed','select4':'mixed','repeatmergefast':'mixed'}
 for policy,defines in policies.items():
- base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase'}.get(policy,'base')
+ base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base'}.get(policy,'base')
  sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
- compile_files([*sources,*lz4_sources],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)
+ compile_files([*sources,*lz4_objects],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 source_files=[root/'gzram/src/gzram.c',root/'gzram/src/gzram.h',root/'gzram/src/hybrid.c',Path(__file__).resolve(),*lz4_sources,root/'src/kernel-lz4/lz4defs.h',root/'include/linux/lz4.h']
 manifest={
  'hybrid_candidates':list(policies),'period_filter_candidate':True,'variable_period_candidate':True,'block_unpack_candidate':True,'fast_scalar_candidate':True,
  'candidate_extra_flags':{'base_variants':base_variants,'core_objects':core_objects,'hybrid_policies':policies},
  'compiler':subprocess.check_output([cc,'--version'],text=True).splitlines()[0],'flags':flags+extra,
+ 'lz4_pic_objects_reused':True,
  'source_sha256':{str(f.relative_to(root)):sha(f) for f in source_files},
  'generated_tables_sha256':sha(a.output/'tables.h'),
  'artifacts':{f.name:sha(f) for f in a.output.glob('*.so')},

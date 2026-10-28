@@ -79,3 +79,27 @@ inherited descriptors, so place it outside `pkexec ... with-rapl.py`, before the
 counter is opened, or use a separate bounded inhibitor. The first attempted
 cohort-002 launch caught this mismatch and produced no timing data. The corrected
 nice/taskset/subprocess chain was checked before the successful run.
+
+## Third candidate set: clustered masks and composition
+
+`ctzfull` adds a contiguous-copy shortcut for mask 255 before the sparse decoder
+clears its destination. The extra branch can cost time on ordinary sparse data;
+clustered full/zero groups test whether it earns that cost. `bitctz` links the
+bitpack encoder with the preserved ctzunpack decoder object; `bitfull` pairs it
+with ctzfull. This isolates composition from the repeat-loop code-generation
+regression observed in ctzrepeat.
+
+`select2`, `select3`, and `select4` retain the AVX2 scan and choose integer packing
+for masks with at most two, three, or four present words, respectively. Denser
+masks use the original vector packer. These are whole-codec crossover experiments;
+no population cutoff is accepted from instruction counts or synthetic intuition.
+
+`repeatmergefast` retains repeatmerge's exact output but rejects nonrepeat frames
+earlier and compares/copies bounded patterns with integer-width operations.
+The old helper already used a shift for its power-of-two division: this change
+must not be described as removing a runtime division. Both helpers and their
+measured overheads remain available as controls.
+
+The appended clustered corpora retain all preceding corpus hashes. Normal and
+sanitizer results and all size records are in the third validation checkpoint.
+Native timing and energy remain separate acceptance gates.

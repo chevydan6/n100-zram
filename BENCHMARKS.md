@@ -467,3 +467,9 @@ sparse decoding 4–6%. Repeat consolidation reduces repeat32 from 148 to 49 byt
 versus LZ4's 58, but can slow scalar encoding/decoding. All regressions remain.
 Short-batch energy needs longer confirmation; no battery, kernel, allocator or
 application improvement is inferred. See the [dated analysis](docs/GZRAM-ASTRA-20261028.md).
+
+## Third Astra correctness checkpoint
+
+[Clustered-mask validation](benchmarks/results/gzram-astra-v3-validation-001/summary.md)
+and [all per-page sizes](benchmarks/results/gzram-astra-v3-sizes-001/summary.md)
+cover seven additive candidates and 20 corpora. Native timing remains pending.

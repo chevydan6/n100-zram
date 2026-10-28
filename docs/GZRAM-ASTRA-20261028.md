@@ -352,6 +352,16 @@ ratio alone does not establish a better complete codec. Both 1024 and 4096
 controls, both ISAs, all operations and every other corpus remain in the
 [3434 direct comparisons](../benchmarks/results/native-gzram-astra-local-002/paired.md).
 
+A global switch to 4096-byte blocks is particularly harmful on half-zero pages.
+Against wordmixed's 1024-byte blocks, scalar compression takes 84.07% longer
+and decompression 442.10% longer; AVX2 takes 47.39% and 420.14% longer,
+respectively. Framed output grows from 2068 to 2193 bytes (+6.04%). A single
+page-wide sparse block replaces the smaller blocks' separate raw and zero
+regions. Conversely, 4096-byte repeat16/repeat32 frames save 60.71%/66.89%
+and improve AVX2 decoding 23.56%/28.45%. These measured opposing effects
+motivate selective repeat consolidation while retaining smaller blocks for
+mixed pages; they do not establish a universal block size.
+
 Short-batch energy remains a limitation. For example, unchanged AVX2 repeat
 handling in ctzrepeat has roughly -1% repeat16 time but +38% paired package
 energy versus ctzunpack; that is not evidence of an intrinsic 38% energy penalty.
@@ -368,6 +378,16 @@ successful run used a separate bounded sleep/idle inhibitor. The runner verified
 the descriptor's exact sysfs target and read-only mode. No permissions, power
 settings, swap, modules or boot configuration were changed. Postflight hashes
 match the original ZRAM module, algorithm, size and CPU policy.
+
+## Third candidate correctness checkpoint
+
+[Seven new policies](../gzram/docs/WORD-PATHS.md) passed normal and ASan/UBSan
+checks, including 1,128,960 full-registry round trips per build across 20 corpora.
+The [raw validation record](../benchmarks/results/gzram-astra-v3-validation-001/summary.md)
+preserves the host-shutdown interruption and successful hash-checked resumption.
+All 23 preceding library text sections, 17 corpus hashes and 165,376 preceding
+size records are unchanged. The expanded size screen has 266,240 records.
+No third-cohort speed, energy, cutoff or overall improvement is accepted yet.
 
 ## Next experiments and kernel decision
 

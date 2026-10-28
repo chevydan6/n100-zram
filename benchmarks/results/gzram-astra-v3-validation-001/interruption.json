@@ -1,0 +1,7 @@
+{
+  "cause_observed": "systemd stopped service during host shutdown; remaining tests incomplete",
+  "previous_boot": "f261aaaee9f549ffb122188f38f0957e",
+  "current_boot": "37da6798-9932-4998-b4a1-8b5362ded254",
+  "completed_steps": 10,
+  "journal": "Oct 28 10:56:45 fedora systemd[1551]: Started n100-gzram-astra-validate-v3.service - [systemd-run] /usr/bin/flock -n /home/dan/.cache/n100-zram/native-validation.lock /usr/bin/systemd-inhibit --what=sleep:idle --mode=block \"--why=GZRAM clustered-mask correctness checks\" /usr/bin/python3 /home/dan/n100-zram/build/astra-audit/validate-v3.py.\nOct 28 11:03:37 fedora systemd[1551]: Stopping n100-gzram-astra-validate-v3.service - [systemd-run] /usr/bin/flock -n /home/dan/.cache/n100-zram/native-validation.lock /usr/bin/systemd-inhibit --what=sleep:idle --mode=block \"--why=GZRAM clustered-mask correctness checks\" /usr/bin/python3 /home/dan/n100-zram/build/astra-audit/validate-v3.py...\nOct 28 11:03:37 fedora systemd[1551]: Stopped n100-gzram-astra-validate-v3.service - [systemd-run] /usr/bin/flock -n /home/dan/.cache/n100-zram/native-validation.lock /usr/bin/systemd-inhibit --what=sleep:idle --mode=block \"--why=GZRAM clustered-mask correctness checks\" /usr/bin/python3 /home/dan/n100-zram/build/astra-audit/validate-v3.py.\nOct 28 11:03:37 fedora systemd[1551]: n100-gzram-astra-validate-v3.service: Consumed 6min 4.197s CPU time over 6min 52.109s wall clock time, 148M memory peak, 13.5M memory swap peak.\n"
+}

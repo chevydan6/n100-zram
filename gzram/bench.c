@@ -20,8 +20,8 @@
 #endif
 _Static_assert(OPS>0&&OPS%PAGES==0,"Batch calls must be positive and a multiple of the corpus page count");
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
-static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16"};
-static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge"};
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75"};
+static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast"};
 /* 57 base entries plus two ISAs at eight block sizes per hybrid policy.
  * Keep the shuffled indices and codec registry at the same capacity. */
 enum { CODEC_CAPACITY=57+16*(sizeof(policies)/sizeof(policies[0])) };
@@ -63,6 +63,14 @@ static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_e
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
 static void fill(int kind){
  seed=100+(unsigned)kind;
+ if(kind>=17&&kind<=19){
+  unsigned present=(unsigned)kind-16;
+  for(unsigned p=0;p<PAGES;p++)for(unsigned at=0;at<SIZE;at+=32){
+   int full=rnd()%4<present;
+   for(unsigned lane=0;lane<8;lane++){uint32_t word=full?(rnd()|1U):0;memcpy(input[p]+at+lane*4,&word,4);}
+  }
+  return;
+ }
  if(kind==16){for(unsigned p=0;p<PAGES;p++)for(unsigned i=0;i<SIZE;i++)input[p][i]=(unsigned char)(i%16+p*37);return;}
  if(kind>=12&&kind<=14){
   unsigned present=(unsigned)kind-11;
