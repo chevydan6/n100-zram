@@ -1,10 +1,11 @@
 # GZRAM-AVX2
 
-Latest continuation: [measured scalar/SIMD word paths, repeat consolidation and
-package energy](../docs/GZRAM-ASTRA-20261028.md). Two physical-N100 cohorts retain
-all gains and regressions; no kernel or production improvement is accepted.
-The full registry has 329 variants and seventeen corpora. Original formats,
-controls, failed experiments and SOL's results remain available.
+Latest continuation: [measured scalar/SIMD paths and independent AVX/AVX2 scan
+scheduling](../docs/GZRAM-ASTRA-20261028.md). The latest two physical-N100 cohorts
+reproduce compression gains on sparse, clustered and repeated data, retain all
+regressions, and establish no native ZRAM or production improvement. The registry
+now has 681 variants and 26 corpora. Original formats, controls, failed experiments
+and SOL's results remain available. See the [scheduling findings](../benchmarks/results/native-gzram-astra-local-007-timing/findings.md).
 
 [SOL's 2026-10-28 checkpoint](../docs/GZRAM-20261028.md) records the preceding
 wordmixed and vector-tail experiments. The chronological notes below retain

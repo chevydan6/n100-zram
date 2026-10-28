@@ -1,0 +1,168 @@
+{
+  "scope": "Exact linked function bytes and virtual offsets; does not prove matching runtime mappings or microarchitectural state",
+  "functions": {
+    "bitdirect": {
+      "gzram_ctz_decode": {
+        "address": 26048,
+        "size": 2352,
+        "sha256": "04f75e56b1a6d81ec2745e3a23a425d948690ed2ba1561ab41b7f6df7d752ab5"
+      },
+      "gzram_ctz_decode_avx2": {
+        "address": 24976,
+        "size": 1058,
+        "sha256": "2a62452e844e32922073a86a1f0246aeac4b3f8252d94736e8a3534eeb764351"
+      },
+      "gzram_ctz_decode_scalar": {
+        "address": 23504,
+        "size": 1458,
+        "sha256": "abf1552d3bdc58c18b04adbf0b9af41f3f37f04bf27a656dc32268387f2f7f65"
+      },
+      "gzram_decode_avx2": {
+        "address": 9616,
+        "size": 865,
+        "sha256": "2f1d8027199c5b8e964cf59f45e9b49687d863655d6b9d3a0163f9e00fc6f989"
+      },
+      "gzram_decode_scalar": {
+        "address": 8752,
+        "size": 852,
+        "sha256": "9be998776cc42421b7fe830247a4d6cc63935ac815864d884a930660bae2d020"
+      }
+    },
+    "bitdirectpipe1": {
+      "gzram_ctz_decode": {
+        "address": 26048,
+        "size": 2352,
+        "sha256": "04f75e56b1a6d81ec2745e3a23a425d948690ed2ba1561ab41b7f6df7d752ab5"
+      },
+      "gzram_ctz_decode_avx2": {
+        "address": 24976,
+        "size": 1058,
+        "sha256": "2a62452e844e32922073a86a1f0246aeac4b3f8252d94736e8a3534eeb764351"
+      },
+      "gzram_ctz_decode_scalar": {
+        "address": 23504,
+        "size": 1458,
+        "sha256": "abf1552d3bdc58c18b04adbf0b9af41f3f37f04bf27a656dc32268387f2f7f65"
+      },
+      "gzram_decode_avx2": {
+        "address": 9616,
+        "size": 865,
+        "sha256": "2f1d8027199c5b8e964cf59f45e9b49687d863655d6b9d3a0163f9e00fc6f989"
+      },
+      "gzram_decode_scalar": {
+        "address": 8752,
+        "size": 852,
+        "sha256": "9be998776cc42421b7fe830247a4d6cc63935ac815864d884a930660bae2d020"
+      }
+    },
+    "bitdirectpipe2": {
+      "gzram_ctz_decode": {
+        "address": 26304,
+        "size": 2352,
+        "sha256": "b58916d836409274ed24419e9fd114f2160ab362f732f3c344b7ca1196ba0385"
+      },
+      "gzram_ctz_decode_avx2": {
+        "address": 25232,
+        "size": 1058,
+        "sha256": "55ae0161668149ee0ade7b7802bac13022e238c8d60b428b0ea9c69c36ba599b"
+      },
+      "gzram_ctz_decode_scalar": {
+        "address": 23760,
+        "size": 1458,
+        "sha256": "c3bf041522f5067eef405231fd50de778dd50b69dd35a4034c122672e4db18bb"
+      },
+      "gzram_decode_avx2": {
+        "address": 9616,
+        "size": 865,
+        "sha256": "65e1919288054bb9e39b25cce853352545d54f6c94ae92bfbf737f7b7ff91f6f"
+      },
+      "gzram_decode_scalar": {
+        "address": 8752,
+        "size": 852,
+        "sha256": "1bd6fcc1c33c63682119ac4e5291b6cb8e84dfbac6d812fbcf31451f9b67bbc2"
+      }
+    },
+    "bitdirectpipe4": {
+      "gzram_ctz_decode": {
+        "address": 26432,
+        "size": 2352,
+        "sha256": "860d7c1f26d495da0e1c8958a85df5e3c499cf3b95c85b6712510301820ab844"
+      },
+      "gzram_ctz_decode_avx2": {
+        "address": 25360,
+        "size": 1058,
+        "sha256": "de967e26c8dea4e923cf0f5cdb82fb404b2cc893b0662d89921efa7aa8615c07"
+      },
+      "gzram_ctz_decode_scalar": {
+        "address": 23888,
+        "size": 1458,
+        "sha256": "3be62b9c886a869c70691cd63b18c6f0415e7ff74f65aac23aaf25dfb3367706"
+      },
+      "gzram_decode_avx2": {
+        "address": 9616,
+        "size": 865,
+        "sha256": "0995586f1ad945422afdea457e608aad98e0ce0cad1a0aa8a70dd176d609f40b"
+      },
+      "gzram_decode_scalar": {
+        "address": 8752,
+        "size": 852,
+        "sha256": "f653c16da16e7d493f9518ff8c9626910a303a851d43039f48ffdbdadc275ec3"
+      }
+    },
+    "bitdirectavxbits2": {
+      "gzram_ctz_decode": {
+        "address": 26240,
+        "size": 2352,
+        "sha256": "f8eed670fc45ab2b3497eea231d653279802d302c772034e3bddf45b9b45d460"
+      },
+      "gzram_ctz_decode_avx2": {
+        "address": 25168,
+        "size": 1058,
+        "sha256": "3214285b374cf9369cf64fe19d1617afb592e35ce0ddc10589b57a8fde8dd25e"
+      },
+      "gzram_ctz_decode_scalar": {
+        "address": 23696,
+        "size": 1458,
+        "sha256": "ad882a70399544729085938ce21d2a30ff0aeaa9c6b162d447ffe6939a958f54"
+      },
+      "gzram_decode_avx2": {
+        "address": 9616,
+        "size": 865,
+        "sha256": "34706184265ab63454837c757231d73dbd87bd5e1d247455f149a977a4b6fda2"
+      },
+      "gzram_decode_scalar": {
+        "address": 8752,
+        "size": 852,
+        "sha256": "446f9539ecdafa5633b9b771ea0ce2eca75ba5bbaef4a1f578992abd81a39f80"
+      }
+    },
+    "bitdirectavxbits4": {
+      "gzram_ctz_decode": {
+        "address": 26432,
+        "size": 2352,
+        "sha256": "860d7c1f26d495da0e1c8958a85df5e3c499cf3b95c85b6712510301820ab844"
+      },
+      "gzram_ctz_decode_avx2": {
+        "address": 25360,
+        "size": 1058,
+        "sha256": "de967e26c8dea4e923cf0f5cdb82fb404b2cc893b0662d89921efa7aa8615c07"
+      },
+      "gzram_ctz_decode_scalar": {
+        "address": 23888,
+        "size": 1458,
+        "sha256": "3be62b9c886a869c70691cd63b18c6f0415e7ff74f65aac23aaf25dfb3367706"
+      },
+      "gzram_decode_avx2": {
+        "address": 9616,
+        "size": 865,
+        "sha256": "0995586f1ad945422afdea457e608aad98e0ce0cad1a0aa8a70dd176d609f40b"
+      },
+      "gzram_decode_scalar": {
+        "address": 8752,
+        "size": 852,
+        "sha256": "f653c16da16e7d493f9518ff8c9626910a303a851d43039f48ffdbdadc275ec3"
+      }
+    }
+  },
+  "four_group_integer_and_avx_bitwise_decoders_identical": true
+}

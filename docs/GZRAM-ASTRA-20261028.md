@@ -1,13 +1,17 @@
 # GZRAM continuation: local N100 word-path experiments
 
 Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
-Latest: the third physical energy cohort confirms sparse scalar time and package
-energy reductions, while retaining clustered-data and LZ4-relative regressions.
-The fourth timing cohort now identifies a combined sparse/repeat candidate with
-strong repeat-decode and size gains, retained regressions, and energy still unmeasured.
-The fifth timing cohort improves direct block packing across several sparse/clustered
-distributions, but those encoder variants still need composition with the better decoder.
-These prototypes do not establish kernel, battery or production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
+Latest: two seventh-cohort runs reproduce roughly 10% lower compression time on
+repeat16/32, 3% on sparse words and 4–5% on clustered data from independent scan
+grouping with mixed AVX/AVX2 bitwise operations. The ISA substitution alone adds
+about 1.1–1.3% on repeat16/32. Size is unchanged. Decoder regressions and LZ4/scalar
+losses remain; native ZRAM and energy gains are unproven. The current policy is
+700–3400 MHz powersave on AC, with stock zstd ZRAM, so these absolute timings
+must not be compared directly to earlier 800 MHz battery cohorts.
+
+Earlier checkpoints retain measured scalar package-energy gains, repeat decoding
+and size improvements, faster direct packing, and the failed sampled-selector
+tradeoffs. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
 
 Update: the user confirmed that this workspace is on the same Lenovo 14e that
 SOL previously accessed over SSH. Local execution has resumed; a changed
@@ -969,3 +973,39 @@ build and direct scanner checks that bypass hybrid selection. All 40 earlier
 library text sections and 479,232 earlier size/mode records match; all 66,560
 new records match bitdirect. Timing is the next gate; no speed, energy or kernel
 claim is made from the scheduling change alone.
+
+## Seventh completed timing and repeatability cohorts
+
+The [joint findings](../benchmarks/results/native-gzram-astra-local-007-timing/findings.md)
+cover two complete cohorts, each 14,040 rows and 2,964 direct policy comparisons,
+plus 936 LZ4/scalar contrasts. Same frozen sources, corpora and order seeds;
+fresh processes, three sessions per cohort, all 26 corpora and ten variants.
+Both audits passed. All PMU groups ran fully, CPU/ZRAM settings stayed unchanged,
+and no experimental module was loaded. Package and comparative laptop energy
+were unavailable. The repeat's low-occupancy batch is retained.
+
+Four-group avxbits4 versus bitdirect AVX2 reduces compression time by
+9.81%/9.64% on repeat16, 10.93%/9.76% on repeat32, 2.95%/2.90% on sparse words,
+5.02%/5.07% on clusters25 and 4.28%/4.05% on clusters50 in the two cohorts.
+Those effects have the same sign in all six sessions, with corresponding CPU
+and cycle reductions and identical bytes. Compared with the same-width integer
+path, explicit AVX bitwise operations add only 1.30%/1.25% on repeat16 and
+1.24%/1.12% on repeat32. Grouping, fewer instructions/branches, scheduling and
+layout change together; a distinct AVX hardware engine or causal overlap is not
+established. No general instruction-choice rule follows from these workloads.
+
+Executable/mixed-page gains are small or inconsistent; decoding retains losses.
+Integer pipe4 repeat16 decode loses 16.17%/15.60%, including a sign reversal in
+one repeat session. The pipe4 and avxbits4 decoder bytes/offsets match exactly;
+this anomaly is retained without claiming a cause. Scalar bitdirect still beats
+avxbits4 sparse/words50/clusters50 decoding by roughly 7–9% in the first cohort.
+Against LZ4, avxbits4 still loses Bash compression 6.01%, random 51.85%, period127
+65.09%, and clusters50 decoding 21.33%. The direct block encoder also remains
+faster on several sparse/clustered inputs. No default promotion is justified.
+
+The next experiment is to compose grouped scanning with direct block packing,
+preserving bitdirect's repeat format and decoder, and to isolate decoder timing
+with a shared entry and randomized operation order. Native FPU/queueing costs,
+current recovery validation and stock zstd/lzo-rle memory-pressure comparisons
+remain open. These userspace results do not demonstrate an improvement over the
+laptop's actual ZRAM behavior or production readiness.
