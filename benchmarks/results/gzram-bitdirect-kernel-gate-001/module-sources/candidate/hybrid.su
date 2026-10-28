@@ -1,0 +1,8 @@
+candidate/hybrid.c:99:42:lz4_encode	8	static
+candidate/hybrid.c:94:13:header	8	static
+candidate/hybrid.c:239:12:direct_repeat	56	static
+candidate/hybrid.c:62:42:merge_repeats	8	static
+candidate/hybrid.c:271:8:candidate_workspace_size	8	static
+candidate/hybrid.c:272:8:candidate_workspace_alignment	8	static
+candidate/hybrid.c:273:5:candidate_encode_scalar	80	static
+candidate/hybrid.c:280:5:candidate_decode_scalar	48	static

@@ -24,7 +24,7 @@ a.output.mkdir(parents=True)
 sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 record = {'scope': 'Unexecuted scalar GHY1 kernel ' + a.kind + '; no SIMD, ZRAM registration or performance claim', 'inputs': {}, 'kernel_attribute_normalization': {}}
 if a.kind == 'probe':
-    record['scope'] = 'Unexecuted scalar GHY1 probe with separate empty kernel FPU begin/end control; no ZRAM or performance claim'
+    record['scope'] = 'Unexecuted scalar GHY1 probe with empty and full-codec FPU controls; no ZRAM or performance claim'
 for label in ['control', 'candidate']:
     directory = getattr(a, label).resolve()
     manifest = json.loads((directory / 'manifest.json').read_text())

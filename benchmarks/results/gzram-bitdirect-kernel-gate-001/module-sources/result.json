@@ -1,0 +1,313 @@
+{
+  "scope": "Unexecuted scalar GHY1 kernel selftest; no SIMD, ZRAM registration or performance claim",
+  "inputs": {
+    "control": {
+      "scope": "Unbuilt scalar GHY1 workspace prototype; no performance or kernel execution claim",
+      "core_inputs": {
+        "encoder": {
+          "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+          "source_sha256": {
+            "gzram/src/gzram.c": "2cdace562b5b201f4a427a50e2acf0441506fdfa66368a0f593d4b1d214ef74c",
+            "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+            "gzram/tools/prepare-scalar-port.py": "08d1fb1369ab1269b7d3b95e01e9c4b0e6011fb5bd4b18c120a87fcfb47c1a09"
+          },
+          "prefix": "gzram",
+          "flags": [
+            "GZRAM_SCALAR_FAST",
+            "GZRAM_CTZ_PACK"
+          ],
+          "removed_vector_helpers": [
+            "scan_avx2",
+            "pack_avx2",
+            "pack_block_avx2",
+            "unpack_avx2",
+            "unpack_block_avx2",
+            "repeat_avx2",
+            "variable_period_avx2"
+          ],
+          "generated_sha256": {
+            "core.c": "f6459cede91a9543b659d25f87f8e012d16943d07bc6430d1c41cce5eaeff975",
+            "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+            "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+          }
+        },
+        "decoder": {
+          "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+          "source_sha256": {
+            "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+            "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+            "gzram/tools/prepare-scalar-port.py": "e707fa2627b0764943d33390532bb2db22cded62a19669341d02cf7d9f52c04c"
+          },
+          "prefix": "gzram",
+          "flags": [
+            "GZRAM_SCALAR_FAST",
+            "GZRAM_CTZ_UNPACK"
+          ],
+          "removed_vector_helpers": [
+            "scan_avx2",
+            "pack_avx2",
+            "unpack_avx2",
+            "unpack_block_avx2",
+            "repeat_avx2",
+            "variable_period_avx2"
+          ],
+          "generated_sha256": {
+            "core.c": "f41aa8e940feb23c54a4954e21c7c39f3fe6d5df8ccde8e0053d93ef1bdae270",
+            "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+            "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+          }
+        }
+      },
+      "source_sha256": {
+        "gzram/src/hybrid.c": "27f128dd10aed5e8cf1e91886db1e21b66fd29550301652814cafad285ba59a6",
+        "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+        "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+        "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+        "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57",
+        "gzram/tools/prepare-scalar-hybrid.py": "5ebadd2ef7a1f7358d2c480d61cb31cbb9d65a18816a0be7373056752250b313"
+      },
+      "generated_sha256": {
+        "decoder/core.c": "e27608e99c1ea84cf019b452c02fcdd074da97aa61c36c18d7bf7380c827b2b8",
+        "decoder/gzram.h": "fb9faf24946ca4b068e814fed7ccd2933c6ac469045b2d6a605ecf02dbd6e698",
+        "decoder/tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3",
+        "encoder/core.c": "92523559f31b31035eeacb4aabfe11302b3993a422bda7bc0c6f3c4cc7df77cc",
+        "encoder/gzram.h": "0e837a8cd5a901ca3a1d3541cefbb10a6ca0c8314d47e45e077c267da3e77909",
+        "encoder/tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3",
+        "ghy_scalar.h": "913206d1d73cb27907bb936d86aa79e6d10e30c8a20fd81c82de32e725df95e6",
+        "hybrid.c": "85045071e1332e2ed382df394a1c97bb609efd6226bc3d24cef120667047919e",
+        "lz4_compress.c": "1fa098882911c30cfb7d4b1cd96c5ebbb159724644d0c87b2e5114451f07d137",
+        "lz4_decompress.c": "5e2d4f9da29410eb84cb6200391c24c775bf939c2d0ca6c6e52098553ffae950",
+        "lz4defs.h": "bf2402dbe3a43dd4f967e96c5682dd7a5cf9b79d73085573c116a0e8b7bb4baf",
+        "private-lz4.h": "39dfc23de68f1f3365b20782d926dac133ad22056f03a144c2c02228a1cf5040",
+        "userspace-adapter.c": "799cdf5d68584d7b1fc5864fbc14f3bfd8e1670e8d95ef4d5d37b6a87f9c14ea"
+      },
+      "policy": "bitmerge scalar guard; separate encoder/decoder objects; explicit private LZ4 workspace"
+    },
+    "candidate": {
+      "scope": "Unbuilt scalar GHY1 workspace prototype; no performance or kernel execution claim",
+      "core_inputs": {
+        "encoder": {
+          "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+          "source_sha256": {
+            "gzram/src/gzram.c": "2cdace562b5b201f4a427a50e2acf0441506fdfa66368a0f593d4b1d214ef74c",
+            "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+            "gzram/tools/prepare-scalar-port.py": "08d1fb1369ab1269b7d3b95e01e9c4b0e6011fb5bd4b18c120a87fcfb47c1a09"
+          },
+          "prefix": "gzram",
+          "flags": [
+            "GZRAM_SCALAR_FAST",
+            "GZRAM_CTZ_PACK"
+          ],
+          "removed_vector_helpers": [
+            "scan_avx2",
+            "pack_avx2",
+            "pack_block_avx2",
+            "unpack_avx2",
+            "unpack_block_avx2",
+            "repeat_avx2",
+            "variable_period_avx2"
+          ],
+          "generated_sha256": {
+            "core.c": "f6459cede91a9543b659d25f87f8e012d16943d07bc6430d1c41cce5eaeff975",
+            "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+            "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+          }
+        },
+        "decoder": {
+          "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+          "source_sha256": {
+            "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+            "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+            "gzram/tools/prepare-scalar-port.py": "e707fa2627b0764943d33390532bb2db22cded62a19669341d02cf7d9f52c04c"
+          },
+          "prefix": "gzram",
+          "flags": [
+            "GZRAM_SCALAR_FAST",
+            "GZRAM_CTZ_UNPACK"
+          ],
+          "removed_vector_helpers": [
+            "scan_avx2",
+            "pack_avx2",
+            "unpack_avx2",
+            "unpack_block_avx2",
+            "repeat_avx2",
+            "variable_period_avx2"
+          ],
+          "generated_sha256": {
+            "core.c": "f41aa8e940feb23c54a4954e21c7c39f3fe6d5df8ccde8e0053d93ef1bdae270",
+            "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+            "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+          }
+        }
+      },
+      "source_sha256": {
+        "gzram/src/hybrid.c": "27f128dd10aed5e8cf1e91886db1e21b66fd29550301652814cafad285ba59a6",
+        "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+        "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+        "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+        "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57",
+        "gzram/tools/prepare-scalar-hybrid.py": "5ebadd2ef7a1f7358d2c480d61cb31cbb9d65a18816a0be7373056752250b313"
+      },
+      "generated_sha256": {
+        "decoder/core.c": "e27608e99c1ea84cf019b452c02fcdd074da97aa61c36c18d7bf7380c827b2b8",
+        "decoder/gzram.h": "fb9faf24946ca4b068e814fed7ccd2933c6ac469045b2d6a605ecf02dbd6e698",
+        "decoder/tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3",
+        "encoder/core.c": "92523559f31b31035eeacb4aabfe11302b3993a422bda7bc0c6f3c4cc7df77cc",
+        "encoder/gzram.h": "0e837a8cd5a901ca3a1d3541cefbb10a6ca0c8314d47e45e077c267da3e77909",
+        "encoder/tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3",
+        "ghy_scalar.h": "913206d1d73cb27907bb936d86aa79e6d10e30c8a20fd81c82de32e725df95e6",
+        "hybrid.c": "618763992fdfb66563b5ac335609f9a4417f7c0ace33f5a62de4c878feca7bd4",
+        "lz4_compress.c": "1fa098882911c30cfb7d4b1cd96c5ebbb159724644d0c87b2e5114451f07d137",
+        "lz4_decompress.c": "5e2d4f9da29410eb84cb6200391c24c775bf939c2d0ca6c6e52098553ffae950",
+        "lz4defs.h": "bf2402dbe3a43dd4f967e96c5682dd7a5cf9b79d73085573c116a0e8b7bb4baf",
+        "private-lz4.h": "39dfc23de68f1f3365b20782d926dac133ad22056f03a144c2c02228a1cf5040",
+        "userspace-adapter.c": "799cdf5d68584d7b1fc5864fbc14f3bfd8e1670e8d95ef4d5d37b6a87f9c14ea"
+      },
+      "policy": "bitdirect scalar guard; separate encoder/decoder objects; explicit private LZ4 workspace"
+    }
+  },
+  "kernel_attribute_normalization": {
+    "control": {
+      "occurrences": 2,
+      "before_sha256": "85045071e1332e2ed382df394a1c97bb609efd6226bc3d24cef120667047919e",
+      "after_sha256": "2ad656948a2cbc5dfc1576aa3bc10bf9879fc4d577a5b3595a893e928f0e704d",
+      "change": "noinline attribute token to equivalent reserved __noinline__ token"
+    },
+    "candidate": {
+      "occurrences": 2,
+      "before_sha256": "618763992fdfb66563b5ac335609f9a4417f7c0ace33f5a62de4c878feca7bd4",
+      "after_sha256": "2a461c075debb8db841e4f928f7e61f1ef46ad7f6b86a51c6797f7c7b39025ca",
+      "change": "noinline attribute token to equivalent reserved __noinline__ token"
+    }
+  },
+  "selftest_sha256": "366c6f9844cf49c9f2778563d9956c2952aa0b654ad1b4717e8ae099a59b18bc",
+  "command": [
+    "make",
+    "-j1",
+    "-C",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64",
+    "M=/home/dan/n100-zram/build/astra-bitdirect-kernel-001",
+    "modules"
+  ],
+  "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+  "exit_code": 0,
+  "simd_register_instructions_found": false,
+  "module_sha256": "5c396105c7a57f9975df6857c07a9ecbdd351b7a94a2f142d0b549e648be3bc3",
+  "vermagic": "7.2.11-200.fc44.x86_64 SMP preempt mod_unload",
+  "stack_usage": {
+    "candidate/decoder/core.su": [
+      "candidate/decoder/core.c:71:13:pack_scalar\t8\tstatic",
+      "candidate/decoder/core.c:130:13:header\t8\tstatic",
+      "candidate/decoder/core.c:134:12:raw_page\t32\tstatic",
+      "candidate/decoder/core.c:109:13:repeat_scalar\t56\tstatic",
+      "candidate/decoder/core.c:82:13:unpack_scalar\t8\tstatic",
+      "candidate/decoder/core.c:219:12:decode.constprop\t120\tstatic",
+      "candidate/decoder/core.c:37:13:scan_scalar\t88\tstatic",
+      "candidate/decoder/core.c:163:12:encode.constprop\t296\tstatic",
+      "candidate/decoder/core.c:129:5:candidate_decoder_avx2_available\t8\tstatic",
+      "candidate/decoder/core.c:264:5:candidate_decoder_encode_scalar\t8\tstatic",
+      "candidate/decoder/core.c:265:5:candidate_decoder_encode_avx2\t8\tstatic",
+      "candidate/decoder/core.c:267:5:candidate_decoder_decode_scalar\t8\tstatic",
+      "candidate/decoder/core.c:268:5:candidate_decoder_decode_avx2\t8\tstatic"
+    ],
+    "candidate/encoder/core.su": [
+      "candidate/encoder/core.c:71:13:pack_scalar\t8\tstatic",
+      "candidate/encoder/core.c:159:13:header\t8\tstatic",
+      "candidate/encoder/core.c:163:12:raw_page\t32\tstatic",
+      "candidate/encoder/core.c:138:13:repeat_scalar\t56\tstatic",
+      "candidate/encoder/core.c:82:13:unpack_scalar\t8\tstatic",
+      "candidate/encoder/core.c:262:12:decode.constprop\t120\tstatic",
+      "candidate/encoder/core.c:37:13:scan_scalar\t88\tstatic",
+      "candidate/encoder/core.c:192:12:encode.constprop\t296\tstatic",
+      "candidate/encoder/core.c:158:5:candidate_encoder_avx2_available\t8\tstatic",
+      "candidate/encoder/core.c:307:5:candidate_encoder_encode_scalar\t8\tstatic",
+      "candidate/encoder/core.c:308:5:candidate_encoder_encode_avx2\t8\tstatic",
+      "candidate/encoder/core.c:310:5:candidate_encoder_decode_scalar\t8\tstatic",
+      "candidate/encoder/core.c:311:5:candidate_encoder_decode_avx2\t8\tstatic"
+    ],
+    "candidate/hybrid.su": [
+      "candidate/hybrid.c:99:42:lz4_encode\t8\tstatic",
+      "candidate/hybrid.c:94:13:header\t8\tstatic",
+      "candidate/hybrid.c:239:12:direct_repeat\t56\tstatic",
+      "candidate/hybrid.c:62:42:merge_repeats\t8\tstatic",
+      "candidate/hybrid.c:271:8:candidate_workspace_size\t8\tstatic",
+      "candidate/hybrid.c:272:8:candidate_workspace_alignment\t8\tstatic",
+      "candidate/hybrid.c:273:5:candidate_encode_scalar\t80\tstatic",
+      "candidate/hybrid.c:280:5:candidate_decode_scalar\t48\tstatic"
+    ],
+    "control/decoder/core.su": [
+      "control/decoder/core.c:71:13:pack_scalar\t8\tstatic",
+      "control/decoder/core.c:130:13:header\t8\tstatic",
+      "control/decoder/core.c:134:12:raw_page\t32\tstatic",
+      "control/decoder/core.c:109:13:repeat_scalar\t56\tstatic",
+      "control/decoder/core.c:82:13:unpack_scalar\t8\tstatic",
+      "control/decoder/core.c:219:12:decode.constprop\t120\tstatic",
+      "control/decoder/core.c:37:13:scan_scalar\t88\tstatic",
+      "control/decoder/core.c:163:12:encode.constprop\t296\tstatic",
+      "control/decoder/core.c:129:5:control_decoder_avx2_available\t8\tstatic",
+      "control/decoder/core.c:264:5:control_decoder_encode_scalar\t8\tstatic",
+      "control/decoder/core.c:265:5:control_decoder_encode_avx2\t8\tstatic",
+      "control/decoder/core.c:267:5:control_decoder_decode_scalar\t8\tstatic",
+      "control/decoder/core.c:268:5:control_decoder_decode_avx2\t8\tstatic"
+    ],
+    "control/encoder/core.su": [
+      "control/encoder/core.c:71:13:pack_scalar\t8\tstatic",
+      "control/encoder/core.c:159:13:header\t8\tstatic",
+      "control/encoder/core.c:163:12:raw_page\t32\tstatic",
+      "control/encoder/core.c:138:13:repeat_scalar\t56\tstatic",
+      "control/encoder/core.c:82:13:unpack_scalar\t8\tstatic",
+      "control/encoder/core.c:262:12:decode.constprop\t120\tstatic",
+      "control/encoder/core.c:37:13:scan_scalar\t88\tstatic",
+      "control/encoder/core.c:192:12:encode.constprop\t296\tstatic",
+      "control/encoder/core.c:158:5:control_encoder_avx2_available\t8\tstatic",
+      "control/encoder/core.c:307:5:control_encoder_encode_scalar\t8\tstatic",
+      "control/encoder/core.c:308:5:control_encoder_encode_avx2\t8\tstatic",
+      "control/encoder/core.c:310:5:control_encoder_decode_scalar\t8\tstatic",
+      "control/encoder/core.c:311:5:control_encoder_decode_avx2\t8\tstatic"
+    ],
+    "control/hybrid.su": [
+      "control/hybrid.c:98:42:lz4_encode\t8\tstatic",
+      "control/hybrid.c:93:13:header\t8\tstatic",
+      "control/hybrid.c:61:42:merge_repeats\t8\tstatic",
+      "control/hybrid.c:270:8:control_workspace_size\t8\tstatic",
+      "control/hybrid.c:271:8:control_workspace_alignment\t8\tstatic",
+      "control/hybrid.c:272:5:control_encode_scalar\t80\tstatic",
+      "control/hybrid.c:279:5:control_decode_scalar\t16\tstatic"
+    ],
+    "control/lz4_compress.su": [
+      "control/lz4_compress.c:519:12:n100_private_lz4_compress_destSize_generic\t128\tstatic",
+      "control/lz4_compress.c:457:12:n100_private_lz4_compress_fast_extState\t104\tstatic",
+      "control/lz4_compress.c:502:5:n100_private_lz4_compress_fast\t8\tstatic",
+      "control/lz4_compress.c:509:5:n100_private_lz4_compress_default\t8\tstatic",
+      "control/lz4_compress.c:752:5:n100_private_lz4_compress_destSize\t40\tstatic",
+      "control/lz4_compress.c:766:6:n100_private_lz4_resetStream\t8\tstatic",
+      "control/lz4_compress.c:771:5:n100_private_lz4_loadDict\t24\tstatic",
+      "control/lz4_compress.c:831:5:n100_private_lz4_saveDict\t32\tstatic",
+      "control/lz4_compress.c:851:5:n100_private_lz4_compress_fast_continue\t168\tstatic"
+    ],
+    "control/lz4_decompress.su": [
+      "control/lz4_decompress.c:487:12:n100_private_lz4_decompress_safe_withPrefix64k\t112\tstatic",
+      "control/lz4_decompress.c:497:12:n100_private_lz4_decompress_safe_withSmallPrefix\t112\tstatic",
+      "control/lz4_decompress.c:509:12:n100_private_lz4_decompress_safe_forceExtDict\t120\tstatic",
+      "control/lz4_decompress.c:520:12:n100_private_lz4_decompress_fast_extDict\t120\tstatic",
+      "control/lz4_decompress.c:459:5:n100_private_lz4_decompress_safe\t104\tstatic",
+      "control/lz4_decompress.c:468:5:n100_private_lz4_decompress_safe_partial\t112\tstatic",
+      "control/lz4_decompress.c:477:5:n100_private_lz4_decompress_fast\t96\tstatic",
+      "control/lz4_decompress.c:563:5:n100_private_lz4_setStreamDecode\t8\tstatic",
+      "control/lz4_decompress.c:586:5:n100_private_lz4_decompress_safe_continue\t144\tstatic",
+      "control/lz4_decompress.c:639:5:n100_private_lz4_decompress_fast_continue\t144\tstatic",
+      "control/lz4_decompress.c:678:5:n100_private_lz4_decompress_safe_usingDict\t8\tstatic",
+      "control/lz4_decompress.c:696:5:n100_private_lz4_decompress_fast_usingDict\t8\tstatic"
+    ],
+    "selftest.su": [
+      "selftest.c:228:20:hybrid_selftest_exit\t8\tstatic",
+      "selftest.c:36:13:intact\t24\tstatic",
+      "selftest.c:207:19:hybrid_selftest_init\t336\tstatic",
+      "selftest.c:36:13:intact.constprop\t16\tstatic",
+      "selftest.c:36:13:intact.constprop\t16\tstatic",
+      "selftest.c:43:12:exercise\t360\tdynamic,bounded"
+    ]
+  },
+  "stack_usage_scope": "Compiler per-function frame estimates, not measured whole-call-chain peak stack",
+  "status": "built"
+}

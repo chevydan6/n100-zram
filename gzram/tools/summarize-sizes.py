@@ -27,7 +27,8 @@ def main():
     assert all(set(group) == set(range(metadata['pages_per_corpus'])) for group in groups.values())
     equivalent = [policy for policy in ('outlinetail', 'ctzunpack', 'wordrepeat', 'ctzrepeat', 'bitpack', 'mixpack',
                                        'ctzfull', 'bitctz', 'bitfull', 'select2', 'select3', 'select4',
-                                       'blockpick2', 'blockpick3', 'blockpick4')
+                                       'blockpick2', 'blockpick3', 'blockpick4',
+                                       'blockdirect2', 'blockdirect3', 'blockdirect4')
                   if f'ghy-{policy}-scalar-1024' in variants]
     for corpus in corpora:
         for policy in equivalent:

@@ -130,6 +130,27 @@ AVX static void pack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
  memcpy(dst,tmp,gz_count[mask]*4U);
 }
 #endif
+#if defined(GZRAM_BLOCK_PACK_DIRECT)
+/* One direct helper call per block. AVX2 work stays inside its target-specific
+ * helper so the scalar entry never requires vector instructions. Keep these
+ * loops separate from the preserved indirect-call block selection controls. */
+static size_t pack_block_scalar(const uint8_t *src,uint8_t *dst,const uint8_t *masks,size_t groups)
+{
+ size_t bytes=0;
+ for(size_t group=0;group<groups;group++){
+  unsigned mask=masks[group];pack_scalar(src+group*32,dst+bytes,mask);bytes+=gz_count[mask]*4U;
+ }
+ return bytes;
+}
+AVX static size_t pack_block_avx2(const uint8_t *src,uint8_t *dst,const uint8_t *masks,size_t groups)
+{
+ size_t bytes=0;
+ for(size_t group=0;group<groups;group++){
+  unsigned mask=masks[group];pack_avx2(src+group*32,dst+bytes,mask);bytes+=gz_count[mask]*4U;
+ }
+ return bytes;
+}
+#endif
 #if defined(GZRAM_SELECT_PACK)
 _Static_assert(GZRAM_SELECT_PACK>=0&&GZRAM_SELECT_PACK<=8,"Invalid packing experiment cutoff");
 static void pack_selected(const uint8_t *src,uint8_t *dst,unsigned mask)
@@ -292,8 +313,14 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
    /* Reuse the completed scan's count. Choose once per independent block,
     * leaving the inner mask loop free of a scalar/vector selection branch. */
    _Static_assert(GZRAM_BLOCK_PACK_LIMIT>=0&&GZRAM_BLOCK_PACK_LIMIT<=8,"Invalid block packing cutoff");
+#if defined(GZRAM_BLOCK_PACK_DIRECT)
+   if(pack==pack_scalar||s.nonzero<=groups*GZRAM_BLOCK_PACK_LIMIT)
+    pos+=pack_block_scalar(src+offset,dst+pos,s.masks,groups);
+   else pos+=pack_block_avx2(src+offset,dst+pos,s.masks,groups);
+#else
    pack_fn selected=(pack==pack_avx2&&s.nonzero<=groups*GZRAM_BLOCK_PACK_LIMIT)?pack_scalar:pack;
    for(size_t group=0;group<groups;group++){unsigned mask=s.masks[group];selected(src+offset+group*32,dst+pos,mask);pos+=gz_count[mask]*4U;}
+#endif
 #else
    for(size_t group=0;group<groups;group++){unsigned mask=s.masks[group];pack(src+offset+group*32,dst+pos,mask);pos+=gz_count[mask]*4U;}
 #endif

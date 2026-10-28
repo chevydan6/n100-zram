@@ -7,7 +7,7 @@ root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'tests'))
 from guard_buffers import Guard
 from wire import decode as gz_decode_wire
 p=argparse.ArgumentParser();p.add_argument('--library',type=Path,required=True);p.add_argument('--same-encoding-libraries',type=Path,nargs='*',default=[]);p.add_argument('--other-libraries',type=Path,nargs='*',default=[]);a=p.parse_args();lib=C.CDLL(str(a.library))
-guarded=any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge','ctzfull','bitctz','bitfull','select2','select3','select4','blockpick','bitmerge','bitdirect'])
+guarded=any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge','ctzfull','bitctz','bitfull','select2','select3','select4','blockpick','blockdirect','bitmerge','bitdirect'])
 encoders=[lib.gzram_encode_scalar,lib.gzram_encode_avx2];decoders=[lib.gzram_decode_scalar,lib.gzram_decode_avx2]
 for other in a.other_libraries:
  h=C.CDLL(str(other));decoders += [h.gzram_decode_scalar,h.gzram_decode_avx2]
@@ -71,7 +71,7 @@ for population in range(9):
 # Block selection must preserve the frame on both sides of every tested
 # aggregate cutoff, at every supported internal block length.
 block_selection_pages=0
-if 'blockpick' in a.library.name:
+if any(name in a.library.name for name in ['blockpick','blockdirect']):
  for block_log in range(5,13):
   block=1<<block_log;groups=block//32
   for cutoff in [2,3,4]:

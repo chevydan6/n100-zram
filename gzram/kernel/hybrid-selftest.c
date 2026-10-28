@@ -100,6 +100,52 @@ static int exercise(void *opaque)
    CHECK(intact(b->decoded[codec], 31));
   }
  }
+ /* Independent one-block repeat frames exercise the direct scalar shortcut,
+  * tails, truncations and mutations without relying on either encoder. */
+ for (mask = 0; mask < 4; mask++) {
+  const unsigned periods[] = {4, 8, 16, 32}, tags[] = {2, 3, 5, 6};
+  const unsigned lengths[] = {4, 8, 16, 32, 36, 40, 48, 64, 96, 128,
+                             1024, 1028, 1032, 1040, 1056, 2048, 4080, 4096};
+  unsigned period = periods[mask], length;
+  u8 frame[50] = {'G','H','Y','1',0,0,1,0,'G','Z','R','1',0,0,12,0};
+  size_t size = 17 + period, at;
+  frame[16] = tags[mask];
+  for (at = 0; at < period; at++) frame[17 + at] = at + 1;
+  for (length = 0; length < ARRAY_SIZE(lengths); length++) {
+   size_t n = lengths[length], cut;
+   if (n % period) continue;
+   frame[4] = frame[12] = n & 255; frame[5] = frame[13] = n >> 8;
+   for (at = 0; at < n; at++) b->source[at] = frame[17 + at % period];
+   for (codec = 0; codec < 2; codec++) {
+    for (cut = 0; cut <= size + 1; cut++) {
+     int got;
+     memset(b->decoded[codec], 0xa5, sizeof(b->decoded[codec]));
+     got = decoders[codec](frame, cut, b->decoded[codec] + GUARD, n);
+     CHECK(got == (cut == size ? (int)n : -1));
+     CHECK(intact(b->decoded[codec], n));
+     if (cut == size) CHECK(!memcmp(b->source, b->decoded[codec] + GUARD, n));
+    }
+    memset(b->decoded[codec], 0xa5, sizeof(b->decoded[codec]));
+    CHECK(decoders[codec](frame, size, b->decoded[codec] + GUARD, n - 1) == -1);
+    CHECK(intact(b->decoded[codec], n - 1));
+   }
+   for (at = 0; at < 17; at++) {
+    int got[2]; unsigned bit;
+    for (bit = 0; bit < 8; bit++) {
+     frame[at] ^= 1U << bit;
+     for (codec = 0; codec < 2; codec++) {
+      memset(b->decoded[codec], 0xa5, sizeof(b->decoded[codec]));
+      got[codec] = decoders[codec](frame, size, b->decoded[codec] + GUARD, PAGE_BYTES);
+      CHECK(intact(b->decoded[codec], PAGE_BYTES));
+     }
+     CHECK(got[0] == got[1]);
+     if (got[0] >= 0) CHECK(!memcmp(b->decoded[0] + GUARD, b->decoded[1] + GUARD, got[0]));
+     frame[at] ^= 1U << bit;
+    }
+   }
+   cond_resched();
+  }
+ }
  for (iteration = 0; iteration < 512; iteration++) {
   size_t n = iteration < 64 ? iteration : (iteration & 1 ? PAGE_BYTES : next_random(&random) % (PAGE_BYTES + 1));
   unsigned log = 5 + iteration % 8;

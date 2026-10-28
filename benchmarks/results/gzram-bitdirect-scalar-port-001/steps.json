@@ -1,0 +1,530 @@
+[
+  {
+    "label": "bitpack-prepare",
+    "command": [
+      "python3",
+      "gzram/tools/prepare-scalar-port.py",
+      "--output",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core",
+      "--pack",
+      "ctz"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.2661750316619873
+  },
+  {
+    "label": "bitpack-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core/core.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core/libscalar.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 1.2203288078308105
+  },
+  {
+    "label": "bitpack-check",
+    "command": [
+      "python3",
+      "gzram/tests/check.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core/libscalar.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 22.590302228927612
+  },
+  {
+    "label": "bitpack-build-asan",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core/core.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core/libscalar-asan.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 2.1737818717956543
+  },
+  {
+    "label": "bitpack-check-asan",
+    "command": [
+      "python3",
+      "gzram/tests/check.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core/libscalar-asan.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 26.953722953796387
+  },
+  {
+    "label": "wordmixed-prepare",
+    "command": [
+      "python3",
+      "gzram/tools/prepare-scalar-hybrid.py",
+      "--policy",
+      "wordmixed",
+      "--encoder-core",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control",
+      "--decoder-core",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control",
+      "--output",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.3164479732513428
+  },
+  {
+    "label": "wordmixed-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-Wl,-Bsymbolic-functions",
+      "-I/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed",
+      "-I/home/dan/n100-zram/include",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/encoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/decoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/hybrid.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/lz4_compress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/lz4_decompress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/userspace-adapter.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/libghy-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 9.555099248886108
+  },
+  {
+    "label": "wordmixed-hybrid",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/libghy-wordmixed.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 26.647605419158936
+  },
+  {
+    "label": "wordmixed-workspace",
+    "command": [
+      "python3",
+      "gzram/tests/workspace.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/libghy-wordmixed.so",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.46709704399108887
+  },
+  {
+    "label": "wordmixed-build-asan",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-Bsymbolic-functions",
+      "-I/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed",
+      "-I/home/dan/n100-zram/include",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/encoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/decoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/hybrid.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/lz4_compress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/lz4_decompress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/userspace-adapter.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/libghy-wordmixed-asan.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 26.97011160850525
+  },
+  {
+    "label": "wordmixed-hybrid-asan",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/libghy-wordmixed-asan.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 31.368321657180786
+  },
+  {
+    "label": "wordmixed-workspace-asan",
+    "command": [
+      "python3",
+      "gzram/tests/workspace.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/wordmixed/libghy-wordmixed-asan.so",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.6679682731628418
+  },
+  {
+    "label": "bitmerge-prepare",
+    "command": [
+      "python3",
+      "gzram/tools/prepare-scalar-hybrid.py",
+      "--policy",
+      "bitmerge",
+      "--encoder-core",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core",
+      "--decoder-core",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz",
+      "--output",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.3162708282470703
+  },
+  {
+    "label": "bitmerge-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-Wl,-Bsymbolic-functions",
+      "-I/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge",
+      "-I/home/dan/n100-zram/include",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/encoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/decoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/hybrid.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/lz4_compress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/lz4_decompress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/userspace-adapter.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/libghy-bitmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 9.551232814788818
+  },
+  {
+    "label": "bitmerge-hybrid",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/libghy-bitmerge.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitmerge.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.052130222320557
+  },
+  {
+    "label": "bitmerge-workspace",
+    "command": [
+      "python3",
+      "gzram/tests/workspace.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/libghy-bitmerge.so",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.46680760383605957
+  },
+  {
+    "label": "bitmerge-build-asan",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-Bsymbolic-functions",
+      "-I/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge",
+      "-I/home/dan/n100-zram/include",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/encoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/decoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/hybrid.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/lz4_compress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/lz4_decompress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/userspace-adapter.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/libghy-bitmerge-asan.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.07375955581665
+  },
+  {
+    "label": "bitmerge-hybrid-asan",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/libghy-bitmerge-asan.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitmerge.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 30.968096256256104
+  },
+  {
+    "label": "bitmerge-workspace-asan",
+    "command": [
+      "python3",
+      "gzram/tests/workspace.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitmerge/libghy-bitmerge-asan.so",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.6682064533233643
+  },
+  {
+    "label": "bitdirect-prepare",
+    "command": [
+      "python3",
+      "gzram/tools/prepare-scalar-hybrid.py",
+      "--policy",
+      "bitdirect",
+      "--encoder-core",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitpack-core",
+      "--decoder-core",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz",
+      "--output",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.3166487216949463
+  },
+  {
+    "label": "bitdirect-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-Wl,-Bsymbolic-functions",
+      "-I/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect",
+      "-I/home/dan/n100-zram/include",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/encoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/decoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/hybrid.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/lz4_compress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/lz4_decompress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/userspace-adapter.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 9.705865383148193
+  },
+  {
+    "label": "bitdirect-hybrid",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitdirect.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 26.695945739746094
+  },
+  {
+    "label": "bitdirect-old-decoder",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 25.900407075881958
+  },
+  {
+    "label": "bitdirect-workspace",
+    "command": [
+      "python3",
+      "gzram/tests/workspace.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect.so",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitdirect.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.46703505516052246
+  },
+  {
+    "label": "bitdirect-build-asan",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-Bsymbolic-functions",
+      "-I/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect",
+      "-I/home/dan/n100-zram/include",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/encoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/decoder/core.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/hybrid.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/lz4_compress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/lz4_decompress.c",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/userspace-adapter.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect-asan.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.32426953315735
+  },
+  {
+    "label": "bitdirect-hybrid-asan",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect-asan.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitdirect.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 31.264607906341553
+  },
+  {
+    "label": "bitdirect-old-decoder-asan",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect-asan.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 30.564691066741943
+  },
+  {
+    "label": "bitdirect-workspace-asan",
+    "command": [
+      "python3",
+      "gzram/tests/workspace.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-bitdirect-port-001/bitdirect/libghy-bitdirect-asan.so",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-v4/libgzram-hybrid-bitdirect.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.6679301261901855
+  }
+]

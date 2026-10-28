@@ -28,7 +28,7 @@ header = (root / 'gzram/src/gzram.h').read_text()
 
 
 def replace_function(text, name, replacement=''):
-    pattern = rf'^(?:AVX\s+)?(?:static\s+)?(?:int|void|unsigned)\s+{re.escape(name)}\([^)]*\)\s*\{{'
+    pattern = rf'^(?:AVX\s+)?(?:static\s+)?(?:int|void|unsigned|size_t)\s+{re.escape(name)}\([^)]*\)\s*\{{'
     matches = list(re.finditer(pattern, text, re.M))
     assert len(matches) == 1, (name, len(matches))
     begin = matches[0].start()
@@ -46,9 +46,9 @@ def replace_function(text, name, replacement=''):
     raise AssertionError('Unterminated function: ' + name)
 
 
-vector_helpers = ['scan_avx2', 'pack_avx2', 'unpack_avx2', 'unpack_block_avx2',
+vector_helpers = ['scan_avx2', 'pack_avx2', 'pack_block_avx2', 'unpack_avx2', 'unpack_block_avx2',
                   'repeat_avx2', 'variable_period_avx2']
-assert re.findall(r'^AVX static (?:void|unsigned) (\w+)\(', source, re.M) == vector_helpers
+assert re.findall(r'^AVX static (?:void|unsigned|size_t) (\w+)\(', source, re.M) == vector_helpers
 for name in vector_helpers + ['gzram_encode_hint_avx2', 'gzram_decode_mixed']:
     source = replace_function(source, name)
 source = replace_function(source, 'gzram_avx2_available', 'int gzram_avx2_available(void) { return 0; }')
@@ -78,7 +78,8 @@ if a.pack == 'ctz':
     flags.append('GZRAM_CTZ_PACK')
 unsupported = ['GZRAM_EMBED_PREFIX', 'GZRAM_VARIABLE_PERIOD', 'GZRAM_PERIOD_FILTER',
                'GZRAM_MIXED_ENCODE', 'GZRAM_MIXED_DECODE', 'GZRAM_BLOCK_UNPACK',
-               'GZRAM_SELECT_PACK', 'GZRAM_CTZ_UNPACK_FULL', 'GZRAM_BLOCK_PACK_LIMIT']
+               'GZRAM_SELECT_PACK', 'GZRAM_CTZ_UNPACK_FULL', 'GZRAM_BLOCK_PACK_LIMIT',
+               'GZRAM_BLOCK_PACK_DIRECT']
 prologue = '/* SPDX-License-Identifier: GPL-2.0-only */\n'
 prologue += '/* Generated scalar component port; no GHY1, SIMD or ZRAM registration. */\n'
 prologue += '#if ' + ' || '.join('defined(' + name + ')' for name in unsupported) + '\n#error Unsupported scalar component configuration\n#endif\n'

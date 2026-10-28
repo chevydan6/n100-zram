@@ -1,0 +1,22 @@
+{
+  "command": [
+    "gcc",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-DOPS=8192",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+    "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+    "gzram/bench.c",
+    "-ldl",
+    "-o",
+    "/home/dan/n100-zram/build/astra-v5-asan/benchmark"
+  ],
+  "source_sha256": "a811b67023711839421cfb47eb10848855cb8b960cd7da81191f103c5f4bed93",
+  "binary_sha256": "33967308296567a04cc93a61e838e3ff6a36c4ac7dbca871f9a47fa018072244",
+  "calls_per_batch": 8192
+}

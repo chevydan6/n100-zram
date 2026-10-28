@@ -827,3 +827,43 @@ The first client compilation failure and its source are preserved alongside the
 successful second build. No native host module was loaded or stock settings
 changed. This prepares matched whole-call FPU-cost measurements; it does not
 establish a kernel speedup, batch crossover, recovery coverage or ZRAM gain.
+
+## Fifth candidate set: direct scalar and AVX2 packing loops
+
+The fourth run's indirect-call observation motivated three additive
+`blockdirect2/3/4` policies. They retain the matching blockpick cutoff and
+format while using separate direct scalar/vector block loops. The previous
+implementations remain controls. This changes call placement, inlining and
+potential vector transitions together; instruction count alone cannot establish
+why any future performance difference occurs.
+
+Normal and ASan/UBSan checks passed all 569 registry variants across twenty
+corpora and 128 pages: 1,456,640 round trips per build. Each new cutoff passed
+39,424 dedicated cross-path round trips, 39,376 guarded capacities, 72 cutoff
+boundary pages, 71,680 independent mask cases, 48,576 repeat boundaries,
+80,000 malformed/mutated decodes and 4,000 threaded round trips per build.
+All 35 previous library text sections match. The new policies preserve their
+controls' bytes; no format-version change or cross-page dependency is introduced.
+The [fifth validation checkpoint](../benchmarks/results/gzram-astra-v5-validation-001/summary.md)
+and [size matrix](../benchmarks/results/gzram-astra-v5-sizes-001/summary.md)
+retain complete evidence. Timing and energy for these candidates remain pending.
+
+## Bitdirect scalar workspace and kernel correctness checkpoints
+
+The [workspace port](../benchmarks/results/gzram-bitdirect-scalar-port-001/summary.md)
+passed normal and sanitizer checks against the measured fourth-cohort codecs,
+including independent decoding, exact encoder bytes, old-decoder compatibility,
+workspace poisoning/reuse/rejection and concurrent private owners. Workspace
+remains 4,128 bytes aligned to eight bytes. The default wordmixed adapter's
+machine-code text is unchanged; bitmerge remains the same-byte control.
+
+The [exact-kernel gate](../benchmarks/results/gzram-bitdirect-kernel-gate-001/summary.md)
+then passed two isolated load/test/unload cycles, each with four concurrent
+workers and 321,855 total assertions. Independently constructed short/tail/full
+repeat frames, truncations, capacity failures and every-bit header mutations
+exercise the new shortcut against its old-decoder control. No SIMD instructions
+occur in these scalar kernel objects. This remains a prototype correctness gate,
+not native kernel timing, recovery validation, ZRAM performance or production
+readiness. Host CPU/ZRAM hashes are unchanged; no host experimental module was
+loaded. Current privileged recovery inspection and physical kernel tests remain
+open while the next userspace packing cohort proceeds.

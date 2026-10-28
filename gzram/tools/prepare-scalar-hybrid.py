@@ -15,6 +15,7 @@ from pathlib import Path
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--encoder-core', type=Path, required=True)
 p.add_argument('--decoder-core', type=Path, required=True)
+p.add_argument('--policy', choices=['wordmixed', 'bitmerge', 'bitdirect'], default='wordmixed')
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
 root = Path(__file__).resolve().parents[2]
@@ -87,13 +88,26 @@ int n100_ghy_decode(const void *src,size_t n,void *dst,size_t cap)
 '''
 source = source.replace('gzram_base_encode_scalar', 'n100_encoder_encode_scalar')
 source = source.replace('gzram_base_decode_scalar', 'n100_decoder_decode_scalar')
+if a.policy in ['bitmerge', 'bitdirect']:
+    # Direct repeat expansion must test the actual selected scalar decoder.
+    # The decoder component remains the independently validated CTZ port.
+    assert 'GZRAM_CTZ_PACK' in record['core_inputs']['encoder']['flags']
+    assert 'GZRAM_CTZ_UNPACK' in record['core_inputs']['decoder']['flags']
+    source = source.replace('gzram_ctz_decode_scalar', 'n100_decoder_decode_scalar')
 # Guard=8 chooses the exact integer prefix search used by wordmixed's scalar
 # entry. No vector classifier, CPU dispatch or alternate policy is compiled.
 policy_flags = sorted(set(re.findall(r'GZRAM_HYBRID_[A-Z_]+', source)))
+selected_policy = []
+if a.policy in ['bitmerge', 'bitdirect']:
+    selected_policy = ['GZRAM_HYBRID_CTZ_DECODE', 'GZRAM_HYBRID_MERGE_REPEAT',
+                       'GZRAM_HYBRID_MERGE_REPEAT_FAST']
+if a.policy == 'bitdirect':
+    selected_policy.append('GZRAM_HYBRID_DIRECT_REPEAT')
+extra_policy = ''.join('#define ' + flag + ' 1\n' for flag in selected_policy)
 source = ('/* SPDX-License-Identifier: GPL-2.0-only */\n'
           '#if ' + ' || '.join('defined(' + flag + ')' for flag in policy_flags) +
           '\n#error Unexpected scalar hybrid policy override\n#endif\n'
-          '#define GZRAM_HYBRID_GUARD 8\n#define GZRAM_HYBRID_WORD_SCALAR 1\n' + source)
+          '#define GZRAM_HYBRID_GUARD 8\n#define GZRAM_HYBRID_WORD_SCALAR 1\n' + extra_policy + source)
 
 # All LZ4 function/type identifiers are private; no symbol exports survive.
 # The algorithm bodies and attribution remain from the matched LZ4 control.
@@ -150,6 +164,6 @@ int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap)
 ''')
 record['generated_sha256'] = {str(path.relative_to(a.output)): sha(path)
                               for path in sorted(a.output.rglob('*')) if path.is_file()}
-record['policy'] = 'wordmixed scalar guard; separate encoder/decoder objects; explicit private LZ4 workspace'
+record['policy'] = a.policy + ' scalar guard; separate encoder/decoder objects; explicit private LZ4 workspace'
 (a.output / 'manifest.json').write_text(json.dumps(record, indent=2) + '\n')
 print(a.output)

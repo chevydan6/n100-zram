@@ -139,3 +139,30 @@ existing independent oracle, cross-decoding, all-mask cases, repeat tails,
 truncations, protected boundaries, fuzzing and concurrency remain. Build,
 sanitizer, preservation and size checks precede timing; none of these new
 policies has an accepted performance result yet.
+
+## Fifth packing experiment: direct block loops
+
+The fourth physical cohort found blockpick2/3/4 useful on sparse words but
+slower on other word populations and clustered groups. Disassembly shows an
+indirect packer call per group even after the once-per-block choice. The new
+`blockdirect2/3/4` variants make that choice outside two separate scalar/AVX2
+loops. An AVX2-targeted block helper permits inlining the vector group packer;
+the scalar helper keeps integer-only packing. The cutoff, scan, format and
+selection semantics remain unchanged. Code-size, inlining and state-transition
+changes are part of the experiment, not proof of a speedup. The prior blockpick
+variants remain compiled and measured controls. No queue, page batching or
+additional pass is introduced. Each page remains independently decodable.
+
+Normal/sanitized oracle, capacity, all-mask, cutoff-boundary, malformed-input,
+cross-decoding and concurrency checks precede physical measurements. All older
+codec text sections and per-page size records must remain identical. The scalar
+port generator explicitly removes the new vector helper and rejects attempts
+to enable this unsupported vector packing policy in a scalar port.
+
+The fifth correctness checkpoint passed normal and AddressSanitizer/UBSan builds:
+569 variants over 20 corpora and 128 pages (1,456,640 round trips per build).
+Each new cutoff also passed 39,424 cross-path round trips, 39,376 capacity cases,
+72 cutoff-boundary pages, 71,680 independent mask checks, 48,576 repeat-boundary
+checks, 80,000 malformed/mutated decode cases and 4,000 threaded round trips in
+each build. All 35 previous library text sections match the fourth build.
+Physical performance and energy validation remain pending.

@@ -1,0 +1,6 @@
+selftest.c:228:20:hybrid_selftest_exit	8	static
+selftest.c:36:13:intact	24	static
+selftest.c:207:19:hybrid_selftest_init	336	static
+selftest.c:36:13:intact.constprop	16	static
+selftest.c:36:13:intact.constprop	16	static
+selftest.c:43:12:exercise	360	dynamic,bounded

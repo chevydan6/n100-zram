@@ -63,6 +63,8 @@ core_objects={
  'repeat':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_WORD_REPEAT=1',*rename('repeat'),'-Dgzram_avx2_available=gzram_repeat_avx2_available','-Dgzram_decode_mixed=gzram_repeat_decode'],
  'ctzrepeat':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_WORD_REPEAT=1','-DGZRAM_CTZ_UNPACK=1',*rename('repeat'),'-Dgzram_avx2_available=gzram_repeat_avx2_available','-Dgzram_decode_mixed=gzram_repeat_decode'],
 }
+for cutoff in [2,3,4]:
+ core_objects[f'blockdirect{cutoff}base']=['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1',f'-DGZRAM_BLOCK_PACK_LIMIT={cutoff}','-DGZRAM_BLOCK_PACK_DIRECT=1',*rename('base')]
 for name,defines in core_objects.items():compile_files([root/'gzram/src/gzram.c'],a.output/f'hybrid-{name}.o',defines,[a.output],shared=False)
 policies={
  'trial':[],
@@ -96,8 +98,12 @@ policies={
  'bitdirect':['-DGZRAM_HYBRID_GUARD=32', '-DGZRAM_HYBRID_WORD_SCALAR=1', '-DGZRAM_HYBRID_CTZ_DECODE=1', '-DGZRAM_HYBRID_MERGE_REPEAT=1', '-DGZRAM_HYBRID_MERGE_REPEAT_FAST=1', '-DGZRAM_HYBRID_DIRECT_REPEAT=1'],
 }
 additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz','wordrepeat':'repeat','ctzrepeat':'ctzrepeat','bitpack':'mixed','mixpack':'mixed','repeatmerge':'mixed','ctzfull':'ctzfull','bitctz':'ctz','bitfull':'ctzfull','select2':'mixed','select3':'mixed','select4':'mixed','repeatmergefast':'mixed','blockpick2':'mixed','blockpick3':'mixed','blockpick4':'mixed','bitmerge':'ctz','bitdirect':'ctz'}
+for cutoff in [2,3,4]:
+ policies[f'blockdirect{cutoff}']=list(policies['blockpick'+str(cutoff)])
+ additional[f'blockdirect{cutoff}']='mixed'
 for policy,defines in policies.items():
  base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base','blockpick2':'block2base','blockpick3':'block3base','blockpick4':'block4base','bitmerge':'bitpackbase','bitdirect':'bitpackbase'}.get(policy,'base')
+ if policy.startswith('blockdirect'):base_object=policy+'base'
  sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
  compile_files([*sources,*lz4_objects],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)

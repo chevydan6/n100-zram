@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "steps": [
+    {
+      "command": [
+        "python3",
+        "gzram/tools/build-hybrid-selftest.py",
+        "--control",
+        "build/astra-bitdirect-port-001/bitmerge",
+        "--candidate",
+        "build/astra-bitdirect-port-001/bitdirect",
+        "--kernel-build",
+        "build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64",
+        "--output",
+        "build/astra-bitdirect-kernel-001"
+      ],
+      "status": 0
+    },
+    {
+      "command": [
+        "python3",
+        "gzram/tools/vm-scalar-selftest.py",
+        "--kind",
+        "hybrid",
+        "--kernel",
+        "/boot/vmlinuz-7.2.11-200.fc44.x86_64",
+        "--module",
+        "build/astra-bitdirect-kernel-001/n100_gzram_hybrid_selftest.ko",
+        "--qemu",
+        "build/astra-vm/root/usr/bin/qemu-system-x86_64",
+        "--busybox",
+        "build/astra-vm/root/usr/bin/busybox",
+        "--bios",
+        "build/astra-vm/root/usr/share/seabios/bios-256k.bin",
+        "--qemu-data",
+        "build/astra-vm/root/usr/share/qemu",
+        "--library-path",
+        "build/astra-vm/root/usr/lib64",
+        "--output",
+        "/home/dan/n100-zram/build/astra-bitdirect-kernel-vm-001"
+      ],
+      "status": 0
+    }
+  ],
+  "source_hashes": {
+    "gzram/kernel/hybrid-selftest.c": "366c6f9844cf49c9f2778563d9956c2952aa0b654ad1b4717e8ae099a59b18bc",
+    "gzram/tools/build-hybrid-selftest.py": "7ab4b6a46704a92e4dab5a6e66f4474622c857476cd10e68faf83545149baf68",
+    "gzram/tools/vm-scalar-selftest.py": "41fc92c62f5df3829209b08e5114354382e93da633b1a88553fbcdf2f84f4e77"
+  }
+}
