@@ -1,0 +1,202 @@
+{
+  "libgzram-block.so": {
+    "baseline": "24d25ae2344a900d9657f3ad1ab8500db7f17c0e029555654918c8f7949713d3",
+    "candidate_build": "24d25ae2344a900d9657f3ad1ab8500db7f17c0e029555654918c8f7949713d3",
+    "identical": true
+  },
+  "libgzram-fast.so": {
+    "baseline": "bb5886d1b0d4e5825c9a5f688d7cf93e8269a7d3f9f2fc08a62e62915efe9e40",
+    "candidate_build": "bb5886d1b0d4e5825c9a5f688d7cf93e8269a7d3f9f2fc08a62e62915efe9e40",
+    "identical": true
+  },
+  "libgzram-filter.so": {
+    "baseline": "4d05702765dc45c0eab0267cdce631338427097b070c30c79c2012a2f644ecb0",
+    "candidate_build": "4d05702765dc45c0eab0267cdce631338427097b070c30c79c2012a2f644ecb0",
+    "identical": true
+  },
+  "libgzram-hybrid-bitctz.so": {
+    "baseline": "7903b082afc3d3cb582c8f8cc513e34bd7fbf0c8adeb4f8916aa06d73262ebe8",
+    "candidate_build": "7903b082afc3d3cb582c8f8cc513e34bd7fbf0c8adeb4f8916aa06d73262ebe8",
+    "identical": true
+  },
+  "libgzram-hybrid-bitdirect.so": {
+    "baseline": "88d5af9aee528fba1f7047d4b67242c4619d1a11304ad3d9aa5b27838c1cd7cd",
+    "candidate_build": "88d5af9aee528fba1f7047d4b67242c4619d1a11304ad3d9aa5b27838c1cd7cd",
+    "identical": true
+  },
+  "libgzram-hybrid-bitdirectsample16.so": {
+    "baseline": "bece675b58eb1172779c2ac1d538ec9d5230e35b7ceb8d4d801ac3021431076f",
+    "candidate_build": "bece675b58eb1172779c2ac1d538ec9d5230e35b7ceb8d4d801ac3021431076f",
+    "identical": true
+  },
+  "libgzram-hybrid-bitdirectsample64.so": {
+    "baseline": "693ec271af5e494eadb23f82d6f2f37eca5c1f2555e6f6ee94594bd887d67d73",
+    "candidate_build": "693ec271af5e494eadb23f82d6f2f37eca5c1f2555e6f6ee94594bd887d67d73",
+    "identical": true
+  },
+  "libgzram-hybrid-bitfull.so": {
+    "baseline": "e005e1b5d1957c1cbb5660b520fd4aa5d53e67ccc303f8120eca8611eea4ecf4",
+    "candidate_build": "e005e1b5d1957c1cbb5660b520fd4aa5d53e67ccc303f8120eca8611eea4ecf4",
+    "identical": true
+  },
+  "libgzram-hybrid-bitmerge.so": {
+    "baseline": "a35230bf39e790d0c11705b4fc72112e1c7299f52fec7cacee162ea569c1d8e6",
+    "candidate_build": "a35230bf39e790d0c11705b4fc72112e1c7299f52fec7cacee162ea569c1d8e6",
+    "identical": true
+  },
+  "libgzram-hybrid-bitpack.so": {
+    "baseline": "ef4a59a001c8351ef937918fffa787dcd0b4e244309c17141a46086c50776c7c",
+    "candidate_build": "ef4a59a001c8351ef937918fffa787dcd0b4e244309c17141a46086c50776c7c",
+    "identical": true
+  },
+  "libgzram-hybrid-blockdirect2.so": {
+    "baseline": "afc376c461f527345bf1c003d610909f9136ca1965ca9db69a00b7a8a52a2c59",
+    "candidate_build": "afc376c461f527345bf1c003d610909f9136ca1965ca9db69a00b7a8a52a2c59",
+    "identical": true
+  },
+  "libgzram-hybrid-blockdirect3.so": {
+    "baseline": "c45e2f700f172cae028f429e2145c86e0caf99befd89f3d68065b70e4cf6751e",
+    "candidate_build": "c45e2f700f172cae028f429e2145c86e0caf99befd89f3d68065b70e4cf6751e",
+    "identical": true
+  },
+  "libgzram-hybrid-blockdirect4.so": {
+    "baseline": "b0037676eb77d38d98ffc638b646ef7f0db827d66fbcee491a3cfe71c292a556",
+    "candidate_build": "b0037676eb77d38d98ffc638b646ef7f0db827d66fbcee491a3cfe71c292a556",
+    "identical": true
+  },
+  "libgzram-hybrid-blockpick2.so": {
+    "baseline": "6f7700bca6a832b6a21eb0b009ccdabe13658dfd05c475c6f517a74d73dd57ef",
+    "candidate_build": "6f7700bca6a832b6a21eb0b009ccdabe13658dfd05c475c6f517a74d73dd57ef",
+    "identical": true
+  },
+  "libgzram-hybrid-blockpick3.so": {
+    "baseline": "faddfc18fb958be728672ef61f67df5f9832beccd3c533549be3155425ce087d",
+    "candidate_build": "faddfc18fb958be728672ef61f67df5f9832beccd3c533549be3155425ce087d",
+    "identical": true
+  },
+  "libgzram-hybrid-blockpick4.so": {
+    "baseline": "f5e9c3dc6c1714a3b682ff9f0358b2fa9fc2ff02988a6d6a44faa424d4fb2cf4",
+    "candidate_build": "f5e9c3dc6c1714a3b682ff9f0358b2fa9fc2ff02988a6d6a44faa424d4fb2cf4",
+    "identical": true
+  },
+  "libgzram-hybrid-ctzfull.so": {
+    "baseline": "003a0b4d7f6145013b0d44c51a59b722d3699f915111eacdee616ab9a16fa39d",
+    "candidate_build": "003a0b4d7f6145013b0d44c51a59b722d3699f915111eacdee616ab9a16fa39d",
+    "identical": true
+  },
+  "libgzram-hybrid-ctzrepeat.so": {
+    "baseline": "0f284e2c30f6f9e1d38c8bfd1fe9683a8e3cf5fffff9bc82768e5d0622cdd896",
+    "candidate_build": "0f284e2c30f6f9e1d38c8bfd1fe9683a8e3cf5fffff9bc82768e5d0622cdd896",
+    "identical": true
+  },
+  "libgzram-hybrid-ctzunpack.so": {
+    "baseline": "c07342a4d467ab54bd328d3c6f5b9df62c20016d44edc6e7edbeba59ad6e045d",
+    "candidate_build": "c07342a4d467ab54bd328d3c6f5b9df62c20016d44edc6e7edbeba59ad6e045d",
+    "identical": true
+  },
+  "libgzram-hybrid-fused.so": {
+    "baseline": "922c8062802257e547ec05b3965ef66ae27b8b80283fd855a85f0c735bdb4bb9",
+    "candidate_build": "922c8062802257e547ec05b3965ef66ae27b8b80283fd855a85f0c735bdb4bb9",
+    "identical": true
+  },
+  "libgzram-hybrid-guard16.so": {
+    "baseline": "24955f25109efe75286fabe8cc203044ad4a33075d15a303a583eb2159607622",
+    "candidate_build": "24955f25109efe75286fabe8cc203044ad4a33075d15a303a583eb2159607622",
+    "identical": true
+  },
+  "libgzram-hybrid-guard32.so": {
+    "baseline": "8b9c9528ff318220471b7aaee8412a255aa765ba6767fd443b3ad41112108301",
+    "candidate_build": "8b9c9528ff318220471b7aaee8412a255aa765ba6767fd443b3ad41112108301",
+    "identical": true
+  },
+  "libgzram-hybrid-guard32mixed.so": {
+    "baseline": "cf62d93708355c01ee10823cfec995866eb1a28b805dd01e4f363ce063bd96a5",
+    "candidate_build": "cf62d93708355c01ee10823cfec995866eb1a28b805dd01e4f363ce063bd96a5",
+    "identical": true
+  },
+  "libgzram-hybrid-mixpack.so": {
+    "baseline": "aae9b39b094c6b86bcda9e9c7a5b74f7b02c98bcdd1eb517ccf69a3806dd1dcd",
+    "candidate_build": "aae9b39b094c6b86bcda9e9c7a5b74f7b02c98bcdd1eb517ccf69a3806dd1dcd",
+    "identical": true
+  },
+  "libgzram-hybrid-outlinetail.so": {
+    "baseline": "ad03e08754f5421d1d42232a3ab3c46b30c11ada6412c3eacf7983530cbde623",
+    "candidate_build": "ad03e08754f5421d1d42232a3ab3c46b30c11ada6412c3eacf7983530cbde623",
+    "identical": true
+  },
+  "libgzram-hybrid-recurrence.so": {
+    "baseline": "1f8b34c3c6a65afb357738bbc732ac148963c08c37b5de0e870b627675d0d0f0",
+    "candidate_build": "1f8b34c3c6a65afb357738bbc732ac148963c08c37b5de0e870b627675d0d0f0",
+    "identical": true
+  },
+  "libgzram-hybrid-repeatmerge.so": {
+    "baseline": "23b39da3c2d3d5da610e03226bb87dadc9c41403d6f08aca7b2dcfd301e776f4",
+    "candidate_build": "23b39da3c2d3d5da610e03226bb87dadc9c41403d6f08aca7b2dcfd301e776f4",
+    "identical": true
+  },
+  "libgzram-hybrid-repeatmergefast.so": {
+    "baseline": "7671fde05db469afcc2a3356a068ed8e0dd50558c2ba44d7852b8c25a55be1a4",
+    "candidate_build": "7671fde05db469afcc2a3356a068ed8e0dd50558c2ba44d7852b8c25a55be1a4",
+    "identical": true
+  },
+  "libgzram-hybrid-sample.so": {
+    "baseline": "99d8d09294b96c95eb816303136a046d7b922084a5e907d9e49bd62ff4248645",
+    "candidate_build": "99d8d09294b96c95eb816303136a046d7b922084a5e907d9e49bd62ff4248645",
+    "identical": true
+  },
+  "libgzram-hybrid-select2.so": {
+    "baseline": "fbc0127b2f61fab71d33f8e8e546ee4e564b08e46a19660de954973287c6181f",
+    "candidate_build": "fbc0127b2f61fab71d33f8e8e546ee4e564b08e46a19660de954973287c6181f",
+    "identical": true
+  },
+  "libgzram-hybrid-select3.so": {
+    "baseline": "534d88911634d8a79e3e634b6543227b9c3009c7b79a28b1cc4ef04dccc84981",
+    "candidate_build": "534d88911634d8a79e3e634b6543227b9c3009c7b79a28b1cc4ef04dccc84981",
+    "identical": true
+  },
+  "libgzram-hybrid-select4.so": {
+    "baseline": "860b7e82848e0ad48aa7996def9677d2bd7f5f8970c27b17aaa555a03ed17ba1",
+    "candidate_build": "860b7e82848e0ad48aa7996def9677d2bd7f5f8970c27b17aaa555a03ed17ba1",
+    "identical": true
+  },
+  "libgzram-hybrid-splittail.so": {
+    "baseline": "de2fe417f6350cde09004a7a5519f76980b7a67d22570887687545669afa6390",
+    "candidate_build": "de2fe417f6350cde09004a7a5519f76980b7a67d22570887687545669afa6390",
+    "identical": true
+  },
+  "libgzram-hybrid-trial.so": {
+    "baseline": "7c4c5f6149bc04869b74d86abaa73d4154a28013876380a460f378c6baccb93c",
+    "candidate_build": "7c4c5f6149bc04869b74d86abaa73d4154a28013876380a460f378c6baccb93c",
+    "identical": true
+  },
+  "libgzram-hybrid-wordguard.so": {
+    "baseline": "ed64e948ea4b0d5c0ed3d00d2488458f3f68bdffccd2c0891d7620b11656af95",
+    "candidate_build": "ed64e948ea4b0d5c0ed3d00d2488458f3f68bdffccd2c0891d7620b11656af95",
+    "identical": true
+  },
+  "libgzram-hybrid-wordmixed.so": {
+    "baseline": "559c81465bcc8a102bb11f06a964e2bb44a653f876674304494aed88f07db4a3",
+    "candidate_build": "559c81465bcc8a102bb11f06a964e2bb44a653f876674304494aed88f07db4a3",
+    "identical": true
+  },
+  "libgzram-hybrid-wordrepeat.so": {
+    "baseline": "13f98cb517ccf012f40d76e9ac6ad3faebaed9cdc1563cccfb627bfd60dd347c",
+    "candidate_build": "13f98cb517ccf012f40d76e9ac6ad3faebaed9cdc1563cccfb627bfd60dd347c",
+    "identical": true
+  },
+  "libgzram-period.so": {
+    "baseline": "21379686f9c5c52fcd711a8e340885f738e3aa7266fb97ab265f5c8383ff584f",
+    "candidate_build": "21379686f9c5c52fcd711a8e340885f738e3aa7266fb97ab265f5c8383ff584f",
+    "identical": true
+  },
+  "libgzram.so": {
+    "baseline": "71933055274e8a48c723fc57bdf2add9c46659877d40fcf8ffbd1e38a26fdac0",
+    "candidate_build": "71933055274e8a48c723fc57bdf2add9c46659877d40fcf8ffbd1e38a26fdac0",
+    "identical": true
+  },
+  "lz4-small.so": {
+    "baseline": "22bed67fd8c0b2a0ea2ebe320bcf84c9c85a02a4f86c9e7bdb97d3f8921627b6",
+    "candidate_build": "22bed67fd8c0b2a0ea2ebe320bcf84c9c85a02a4f86c9e7bdb97d3f8921627b6",
+    "identical": true
+  }
+}

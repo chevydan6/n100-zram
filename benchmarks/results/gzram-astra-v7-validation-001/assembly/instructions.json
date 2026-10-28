@@ -1,0 +1,62 @@
+{
+  "bitpack": {
+    "vxorps": 0,
+    "vorps": 0,
+    "vpxor": 5,
+    "vpor": 4,
+    "vpcmpeqd": 1,
+    "vmovmskps": 1,
+    "vzeroupper": 1,
+    "vector_stack_references": 0
+  },
+  "pipe1": {
+    "vxorps": 0,
+    "vorps": 0,
+    "vpxor": 5,
+    "vpor": 4,
+    "vpcmpeqd": 1,
+    "vmovmskps": 1,
+    "vzeroupper": 1,
+    "vector_stack_references": 0
+  },
+  "pipe2": {
+    "vxorps": 0,
+    "vorps": 0,
+    "vpxor": 13,
+    "vpor": 12,
+    "vpcmpeqd": 3,
+    "vmovmskps": 3,
+    "vzeroupper": 1,
+    "vector_stack_references": 0
+  },
+  "pipe4": {
+    "vxorps": 0,
+    "vorps": 0,
+    "vpxor": 21,
+    "vpor": 20,
+    "vpcmpeqd": 5,
+    "vmovmskps": 5,
+    "vzeroupper": 1,
+    "vector_stack_references": 0
+  },
+  "avxbits2": {
+    "vxorps": 12,
+    "vorps": 12,
+    "vpxor": 1,
+    "vpor": 0,
+    "vpcmpeqd": 3,
+    "vmovmskps": 3,
+    "vzeroupper": 1,
+    "vector_stack_references": 0
+  },
+  "avxbits4": {
+    "vxorps": 20,
+    "vorps": 20,
+    "vpxor": 1,
+    "vpor": 0,
+    "vpcmpeqd": 5,
+    "vmovmskps": 5,
+    "vzeroupper": 1,
+    "vector_stack_references": 0
+  }
+}

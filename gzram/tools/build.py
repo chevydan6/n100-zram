@@ -65,6 +65,10 @@ core_objects={
 }
 for cutoff in [2,3,4]:
  core_objects[f'blockdirect{cutoff}base']=['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1',f'-DGZRAM_BLOCK_PACK_LIMIT={cutoff}','-DGZRAM_BLOCK_PACK_DIRECT=1',*rename('base')]
+for width in [1,2,4]:
+ core_objects[f'pipe{width}base']=[*core_objects['bitpackbase'],f'-DGZRAM_SCAN_PIPE={width}']
+for width in [2,4]:
+ core_objects[f'avxbits{width}base']=[*core_objects[f'pipe{width}base'],'-DGZRAM_SCAN_AVX_BITS=1']
 for name,defines in core_objects.items():compile_files([root/'gzram/src/gzram.c'],a.output/f'hybrid-{name}.o',defines,[a.output],shared=False)
 policies={
  'trial':[],
@@ -104,10 +108,15 @@ for cutoff in [2,3,4]:
 for samples in [16,64]:
  policies[f'bitdirectsample{samples}']=[*policies['bitdirect'],'-DGZRAM_HYBRID_SAMPLE=1','-DGZRAM_HYBRID_SAMPLE_REPEAT=1',f'-DGZRAM_HYBRID_SAMPLE_WORDS={samples}']
  additional[f'bitdirectsample{samples}']='ctz'
+for scan in ['pipe1','pipe2','pipe4','avxbits2','avxbits4']:
+ policies['bitdirect'+scan]=list(policies['bitdirect'])
+ additional['bitdirect'+scan]='ctz'
 for policy,defines in policies.items():
  base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base','blockpick2':'block2base','blockpick3':'block3base','blockpick4':'block4base','bitmerge':'bitpackbase','bitdirect':'bitpackbase'}.get(policy,'base')
  if policy.startswith('blockdirect'):base_object=policy+'base'
  if policy.startswith('bitdirectsample'):base_object='bitpackbase'
+ for scan in ['pipe1','pipe2','pipe4','avxbits2','avxbits4']:
+  if policy=='bitdirect'+scan:base_object=scan+'base'
  sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
  compile_files([*sources,*lz4_objects],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)

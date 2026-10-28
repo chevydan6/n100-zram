@@ -1,0 +1,26 @@
+{
+  "bitpack": {
+    "scan_bytes": 266,
+    "object_size_output": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  25362\t      0\t      0\t  25362\t   6312\tbuild/astra-v7/hybrid-bitpackbase.o\n"
+  },
+  "pipe1": {
+    "scan_bytes": 264,
+    "object_size_output": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  25362\t      0\t      0\t  25362\t   6312\tbuild/astra-v7/hybrid-pipe1base.o\n"
+  },
+  "pipe2": {
+    "scan_bytes": 495,
+    "object_size_output": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  25642\t      0\t      0\t  25642\t   642a\tbuild/astra-v7/hybrid-pipe2base.o\n"
+  },
+  "pipe4": {
+    "scan_bytes": 665,
+    "object_size_output": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  25778\t      0\t      0\t  25778\t   64b2\tbuild/astra-v7/hybrid-pipe4base.o\n"
+  },
+  "avxbits2": {
+    "scan_bytes": 478,
+    "object_size_output": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  25578\t      0\t      0\t  25578\t   63ea\tbuild/astra-v7/hybrid-avxbits2base.o\n"
+  },
+  "avxbits4": {
+    "scan_bytes": 650,
+    "object_size_output": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  25778\t      0\t      0\t  25778\t   64b2\tbuild/astra-v7/hybrid-avxbits4base.o\n"
+  }
+}

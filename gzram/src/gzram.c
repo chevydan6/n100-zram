@@ -55,6 +55,63 @@ static void scan_scalar(const uint8_t *src,size_t n,struct scan *s)
  }
 }
 #endif
+#if defined(GZRAM_SCAN_PIPE)
+_Static_assert(GZRAM_SCAN_PIPE==1||GZRAM_SCAN_PIPE==2||GZRAM_SCAN_PIPE==4,"Invalid scan width");
+/* Independent 32-byte groups expose work to the instruction scheduler, without
+ * batching pages or changing masks/repeat detection. Float casts reinterpret
+ * bits: the AVX experiment performs no floating-point arithmetic. Inspect the
+ * emitted instructions; intrinsics alone do not prove distinct machine code. */
+AVX static inline __m256i scan_xor(__m256i a,__m256i b)
+{
+#if defined(GZRAM_SCAN_AVX_BITS)
+ return _mm256_castps_si256(_mm256_xor_ps(_mm256_castsi256_ps(a),_mm256_castsi256_ps(b)));
+#else
+ return _mm256_xor_si256(a,b);
+#endif
+}
+AVX static inline __m256i scan_or(__m256i a,__m256i b)
+{
+#if defined(GZRAM_SCAN_AVX_BITS)
+ return _mm256_castps_si256(_mm256_or_ps(_mm256_castsi256_ps(a),_mm256_castsi256_ps(b)));
+#else
+ return _mm256_or_si256(a,b);
+#endif
+}
+AVX static void scan_avx2(const uint8_t *src,size_t n,struct scan *s)
+{
+ const __m256i zero=_mm256_setzero_si256();
+ const __m256i p4=_mm256_set1_epi32((int)load32(src));
+ const __m256i p8=_mm256_set1_epi64x((long long)load64(src));
+ const __m256i p16=_mm256_broadcastsi128_si256(_mm_loadu_si128((const __m128i *)src));
+ const __m256i p32=_mm256_loadu_si256((const __m256i *)src);
+ __m256i d4=zero,d8=zero,d16=zero,d32=zero;
+ size_t group=0,groups=n/32;s->nonzero=0;
+ for(;groups-group>=GZRAM_SCAN_PIPE;group+=GZRAM_SCAN_PIPE){
+  __m256i v[GZRAM_SCAN_PIPE];unsigned masks[GZRAM_SCAN_PIPE];
+#pragma GCC unroll 4
+  for(unsigned j=0;j<GZRAM_SCAN_PIPE;j++){
+   v[j]=_mm256_loadu_si256((const __m256i *)(src+(group+j)*32));
+   masks[j]=(unsigned)_mm256_movemask_ps(_mm256_castsi256_ps(_mm256_cmpeq_epi32(v[j],zero)))^255U;
+  }
+  /* Scalar bookkeeping is independent of the vector repeat reductions. */
+#pragma GCC unroll 4
+  for(unsigned j=0;j<GZRAM_SCAN_PIPE;j++){
+   s->masks[group+j]=(uint8_t)masks[j];s->nonzero+=gz_count[masks[j]];
+   d4=scan_or(d4,scan_xor(v[j],p4));d8=scan_or(d8,scan_xor(v[j],p8));
+   d16=scan_or(d16,scan_xor(v[j],p16));d32=scan_or(d32,scan_xor(v[j],p32));
+  }
+ }
+ /* Small blocks and short tails retain bounded loads. */
+ for(;group<groups;group++){
+  __m256i v=_mm256_loadu_si256((const __m256i *)(src+group*32));
+  unsigned mask=(unsigned)_mm256_movemask_ps(_mm256_castsi256_ps(_mm256_cmpeq_epi32(v,zero)))^255U;
+  s->masks[group]=(uint8_t)mask;s->nonzero+=gz_count[mask];
+  d4=scan_or(d4,scan_xor(v,p4));d8=scan_or(d8,scan_xor(v,p8));
+  d16=scan_or(d16,scan_xor(v,p16));d32=scan_or(d32,scan_xor(v,p32));
+ }
+ s->repeated=(unsigned)_mm256_testz_si256(d4,d4)|((unsigned)_mm256_testz_si256(d8,d8)<<1)|((unsigned)_mm256_testz_si256(d16,d16)<<2)|((unsigned)_mm256_testz_si256(d32,d32)<<3);
+}
+#else
 AVX static void scan_avx2(const uint8_t *src,size_t n,struct scan *s)
 {
  __m256i zero=_mm256_setzero_si256();
@@ -85,6 +142,7 @@ AVX static void scan_avx2(const uint8_t *src,size_t n,struct scan *s)
  }
  s->repeated=(unsigned)_mm256_testz_si256(d4,d4)|((unsigned)_mm256_testz_si256(d8,d8)<<1)|((unsigned)_mm256_testz_si256(d16,d16)<<2)|((unsigned)_mm256_testz_si256(d32,d32)<<3);
 }
+#endif
 static void pack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
 #if defined(GZRAM_CTZ_PACK)

@@ -921,8 +921,51 @@ from 212 to 143.453125 bytes (-32.33%) and enlarges one clusters75 page by 47
 bytes. These are retained tradeoffs, not a size-neutral selection change.
 The two ELF inputs are file bytes, not captured resident application workloads.
 
-Timing and energy remain unmeasured for these selectors. The next matched run
-retains all 26 corpora, including the known sampling losses. Rotating which word
+The sixth timing run has now completed across all 26 corpora, including the
+known sampling losses; package energy remains unavailable. See the checkpoint below. Rotating which word
 is sampled inside each stride is a credible follow-up to investigate alignment
 bias; it must retain adversarial tests and the static-position controls. No
 sample budget or selection policy is accepted as a new default.
+
+## Sixth completed physical timing cohort
+
+The [sixth report](../benchmarks/results/native-gzram-astra-local-006-timing/summary.md)
+retains 21,060 audited rows and every direct comparison. At the then-current
+800 MHz cap, scalar sample16 reduced compression time versus matched bitdirect
+by 6.82% on Bash, 5.77% on Git, 6.89% on libc file pages and 33.09% on random
+pages. It increased sparse-word time by 1.25% and clusters50 by 2.70%.
+On the deliberately misleading sample64 sparse fixture it increased time by
+107.48% and size by 29.18% (404 to 521.875 bytes/page). All those effects kept
+the same sign in all three sessions. Raw scalar/AVX2 compression and decoding,
+thread CPU and LZ4 controls remain in the report; no overall/default gain is
+accepted. No package energy was available. Whole-run battery integration is
+not a codec energy comparison. Sampling remains a workload-dependent tradeoff.
+
+## Seventh experiment: independent instruction scheduling
+
+The user's parallel-execution proposal is tested by grouping one, two or four
+32-byte scan groups inside a page. `bitdirectpipe1/2/4` retain AVX2 integer
+bitwise operations; `bitdirectavxbits2/4` use AVX bitwise operations alongside
+AVX2 integer comparisons and scalar mask bookkeeping. Generated instructions
+confirm distinct AVX versus AVX2 bitwise paths. These variants preserve the
+bitdirect format, selection, packing and decoder; no page queue or format
+change is introduced. This tests whether useful independent work can overlap,
+not a claim that AVX and AVX2 own separate hardware or that overlap is proven
+by the source order. CPU-port occupancy has not been measured.
+
+The original scanner is 266 bytes; pipe1/2/4 are 264/495/665 bytes and the two
+AVX-bitwise variants are 478/650 bytes. No vector stack references appear in
+these scanner disassemblies. Wider scheduling also increases code size and
+register demand; timing must decide whether it helps. Correctness and timing
+results will be recorded before any promotion. The local CPU is now configured
+for 700–3400 MHz, powersave, on AC; use fresh matched controls and do not compare
+absolute times against earlier 800 MHz battery cohorts. Stock zstd ZRAM remains
+untouched. Historical lzo-rle results belong to the older kernel configuration.
+
+
+The [seventh validation checkpoint](../benchmarks/results/gzram-astra-v7-validation-001/summary.md)
+passed normal and ASan/UBSan tests, including 2,266,368 registry round trips per
+build and direct scanner checks that bypass hybrid selection. All 40 earlier
+library text sections and 479,232 earlier size/mode records match; all 66,560
+new records match bitdirect. Timing is the next gate; no speed, energy or kernel
+claim is made from the scheduling change alone.

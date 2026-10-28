@@ -98,6 +98,17 @@ if 'bitdirectsample' in a.library.name:
       at=index*stride;data[at:at+4]=bytes(4) if index<zeros else struct.pack('<I',0x10203040+index)
      inputs.append(bytes(data));sampling_boundary_pages+=1
 
+# Every group can be the lone repeat-breaking word. Vary mask positions across
+# pipeline lanes, supported block lengths, and the final partial pipeline.
+scan_pipeline_pages=0
+if any(name in a.library.name for name in ['bitdirectpipe','bitdirectavxbits']):
+ for length in [32,64,96,128,160,224,256,288,992,1024,1056,4064,4096]:
+  for group in range(length//32):
+   data=bytearray((b'ABCDEFGH'*(length//8)))
+   data[group*32+(group%8)*4]^=0x80
+   inputs.append(bytes(data));scan_pipeline_pages+=1
+
+print(json.dumps(dict(scan_pipeline_pages=scan_pipeline_pages)),flush=True)
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))

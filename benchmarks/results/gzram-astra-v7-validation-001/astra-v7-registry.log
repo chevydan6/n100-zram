@@ -1,0 +1,28 @@
+CPU 0; AVX2 verified; RAPL unavailable; userspace codec screening, kernel SIMD overhead excluded
+Validated random: 128 pages, 681 variants
+Validated sparse-words: 128 pages, 681 variants
+Validated zero: 128 pages, 681 variants
+Validated repeat8: 128 pages, 681 variants
+Validated period127: 128 pages, 681 variants
+Validated halfzero: 128 pages, 681 variants
+Validated word-tail64: 128 pages, 681 variants
+Validated repeat32: 128 pages, 681 variants
+Validated bash-elf: 128 pages, 681 variants
+Validated period127-zero-tail: 128 pages, 681 variants
+Validated period509-zero-tail: 128 pages, 681 variants
+Validated zerohead-random: 128 pages, 681 variants
+Validated words25: 128 pages, 681 variants
+Validated words50: 128 pages, 681 variants
+Validated words75: 128 pages, 681 variants
+Validated mixed-pages: 128 pages, 681 variants
+Validated repeat16: 128 pages, 681 variants
+Validated clusters25: 128 pages, 681 variants
+Validated clusters50: 128 pages, 681 variants
+Validated clusters75: 128 pages, 681 variants
+Validated sample16-sparse-miss: 128 pages, 681 variants
+Validated sample16-dense-hit: 128 pages, 681 variants
+Validated sample64-sparse-miss: 128 pages, 681 variants
+Validated sample64-dense-hit: 128 pages, 681 variants
+Validated git-elf: 128 pages, 681 variants
+Validated libc-elf: 128 pages, 681 variants
+corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent
