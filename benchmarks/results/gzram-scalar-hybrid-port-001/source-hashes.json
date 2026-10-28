@@ -1,0 +1,9 @@
+{
+  "gzram/tools/prepare-scalar-hybrid.py": "c4022e410a36ef6c1bf89c6bdc7515543b48c5e8ac640e30e5273dffb41f62cb",
+  "gzram/tools/prepare-scalar-port.py": "9668b9dc5899d90adcff4cb52bb086e96c1b5691b7dc9abb03eafaef558ed6ab",
+  "gzram/tests/workspace.py": "854838bfaf89962394b97e87dd51b0c81a97a4cc3263ad017e61a55be4b559c4",
+  "gzram/tests/hybrid.py": "dc1b7628a5e962f4c4aa1ee2ef1b456bd2992691aaf8b658b9352e14ae5dd725",
+  "gzram/src/gzram.c": "75967c1bc43f0d7650daffb5d8b6a42f1165764e0d96c9dc60a3b149148f8cdf",
+  "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+  "gzram/src/hybrid.c": "e4c8904de750dbf2b0f68be900865194a9c97c26a182d110de8c7d71f18220e3"
+}

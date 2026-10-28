@@ -473,3 +473,12 @@ application improvement is inferred. See the [dated analysis](docs/GZRAM-ASTRA-2
 [Clustered-mask validation](benchmarks/results/gzram-astra-v3-validation-001/summary.md)
 and [all per-page sizes](benchmarks/results/gzram-astra-v3-sizes-001/summary.md)
 cover seven additive candidates and 20 corpora. Native timing remains pending.
+
+## Third completed Astra timing cohort
+
+[All 23,760 timing rows](benchmarks/results/native-gzram-astra-local-003-timing/summary.md)
+and [4,920 matched contrasts](benchmarks/results/native-gzram-astra-local-003-timing/paired.md)
+cover 22 variants and 20 corpora. Separate scalar encoder/decoder composition
+improves sparse data in both directions but exposes clustered decode losses.
+Per-mask selection has substantial regressions. No package energy is available
+in this cohort; the separate energy run remains pending completion.

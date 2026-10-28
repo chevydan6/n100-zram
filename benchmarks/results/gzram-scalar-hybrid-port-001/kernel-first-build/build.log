@@ -1,0 +1,29 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/astra-kernel-hybrid-001'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  selftest.o
+  CC [M]  control/lz4_compress.o
+  CC [M]  control/lz4_decompress.o
+  CC [M]  control/encoder/core.o
+  CC [M]  control/decoder/core.o
+  CC [M]  control/hybrid.o
+control/hybrid.c:95:16: error: expected ‘)’ before ‘__attribute__’
+   95 | __attribute__((noinline)) static int lz4_encode(const void *src,void *dst,int n,int cap,void *work)
+      |                ^
+      |                )
+control/hybrid.c:95:25: error: expected identifier or ‘(’ before ‘)’ token
+   95 | __attribute__((noinline)) static int lz4_encode(const void *src,void *dst,int n,int cap,void *work)
+      |                         ^
+control/hybrid.c: In function ‘encode’:
+control/hybrid.c:223:13: error: implicit declaration of function ‘lz4_encode’; did you mean ‘encode’? [-Wimplicit-function-declaration]
+  223 |  int packed=lz4_encode(src,dst+HEADER,(int)n,(int)room,work);
+      |             ^~~~~~~~~~
+      |             encode
+make[3]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/scripts/Makefile.build:289: control/hybrid.o] Error 1
+make[2]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/Makefile:2228: .] Error 2
+make[1]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/home/dan/n100-zram/build/astra-kernel-hybrid-001'
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'

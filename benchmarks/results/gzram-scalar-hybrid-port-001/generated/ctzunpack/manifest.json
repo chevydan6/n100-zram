@@ -1,0 +1,80 @@
+{
+  "scope": "Unbuilt scalar GHY1 workspace prototype; no performance or kernel execution claim",
+  "core_inputs": {
+    "encoder": {
+      "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+      "source_sha256": {
+        "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+        "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+        "gzram/tools/prepare-scalar-port.py": "e707fa2627b0764943d33390532bb2db22cded62a19669341d02cf7d9f52c04c"
+      },
+      "prefix": "gzram",
+      "flags": [
+        "GZRAM_SCALAR_FAST"
+      ],
+      "removed_vector_helpers": [
+        "scan_avx2",
+        "pack_avx2",
+        "unpack_avx2",
+        "unpack_block_avx2",
+        "repeat_avx2",
+        "variable_period_avx2"
+      ],
+      "generated_sha256": {
+        "core.c": "4398b142c5cd5d6d2aa10d5933b668c3aab5232708214f52892a346814206441",
+        "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+        "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+      }
+    },
+    "decoder": {
+      "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+      "source_sha256": {
+        "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+        "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+        "gzram/tools/prepare-scalar-port.py": "e707fa2627b0764943d33390532bb2db22cded62a19669341d02cf7d9f52c04c"
+      },
+      "prefix": "gzram",
+      "flags": [
+        "GZRAM_SCALAR_FAST",
+        "GZRAM_CTZ_UNPACK"
+      ],
+      "removed_vector_helpers": [
+        "scan_avx2",
+        "pack_avx2",
+        "unpack_avx2",
+        "unpack_block_avx2",
+        "repeat_avx2",
+        "variable_period_avx2"
+      ],
+      "generated_sha256": {
+        "core.c": "f41aa8e940feb23c54a4954e21c7c39f3fe6d5df8ccde8e0053d93ef1bdae270",
+        "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+        "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+      }
+    }
+  },
+  "source_sha256": {
+    "gzram/src/hybrid.c": "e4c8904de750dbf2b0f68be900865194a9c97c26a182d110de8c7d71f18220e3",
+    "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+    "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+    "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+    "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57",
+    "gzram/tools/prepare-scalar-hybrid.py": "c4022e410a36ef6c1bf89c6bdc7515543b48c5e8ac640e30e5273dffb41f62cb"
+  },
+  "generated_sha256": {
+    "decoder/core.c": "e27608e99c1ea84cf019b452c02fcdd074da97aa61c36c18d7bf7380c827b2b8",
+    "decoder/gzram.h": "fb9faf24946ca4b068e814fed7ccd2933c6ac469045b2d6a605ecf02dbd6e698",
+    "decoder/tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3",
+    "encoder/core.c": "85f325309693962d0161025ac394bc40330b07095f82e71b2b1339fe1c7ee397",
+    "encoder/gzram.h": "0e837a8cd5a901ca3a1d3541cefbb10a6ca0c8314d47e45e077c267da3e77909",
+    "encoder/tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3",
+    "ghy_scalar.h": "913206d1d73cb27907bb936d86aa79e6d10e30c8a20fd81c82de32e725df95e6",
+    "hybrid.c": "3a451908e01116c4772c05e7fe3fad4f07e16e9e2bff31d3c1b521a4b59d43bf",
+    "lz4_compress.c": "1fa098882911c30cfb7d4b1cd96c5ebbb159724644d0c87b2e5114451f07d137",
+    "lz4_decompress.c": "5e2d4f9da29410eb84cb6200391c24c775bf939c2d0ca6c6e52098553ffae950",
+    "lz4defs.h": "bf2402dbe3a43dd4f967e96c5682dd7a5cf9b79d73085573c116a0e8b7bb4baf",
+    "private-lz4.h": "39dfc23de68f1f3365b20782d926dac133ad22056f03a144c2c02228a1cf5040",
+    "userspace-adapter.c": "799cdf5d68584d7b1fc5864fbc14f3bfd8e1670e8d95ef4d5d37b6a87f9c14ea"
+  },
+  "policy": "wordmixed scalar guard; separate encoder/decoder objects; explicit private LZ4 workspace"
+}

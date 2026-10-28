@@ -1,18 +1,24 @@
 # Current status
 
-The [Astra continuation](docs/GZRAM-ASTRA-20261028.md) has completed two physical
-N100 cohorts: 12,960 timing rows plus 19,278 rows with package energy. Sparse
+The [Astra continuation](docs/GZRAM-ASTRA-20261028.md) has completed three physical
+N100 cohorts: 12,960 timing rows, 19,278 rows with package energy, and a further
+23,760 timing-only rows. Sparse
 decoding improves 36–62% in the first matched cohort; scalar bit-scan packing
 improves sparse/density compression 27–52% with lower package energy in all three
 sessions of the second. Repeat consolidation fixes the measured short-repeat
 size loss, but has scalar speed regressions. Mixed scalar/vector packing and
 combined decoders also retain important losses. No overall kernel or production
 gain is accepted. Current zstd ZRAM, boot settings and the 800 MHz cap remain.
-Seven further candidates now pass normal/sanitizer checks across 20 corpora,
-including clustered masks. A 22-variant, 20-corpus native timing run is active;
-its energy values are unavailable. A separate energy run awaits OS counter
-authentication and the same exclusive lock. No third-cohort gain is accepted. The isolated scalar GZR1 component now passes an exact-kernel diskless VM
-correctness gate. No native GZRAM kernel loading or ZRAM integration has occurred.
+The third physical timing cohort is complete: 23,760 rows across 22 variants
+and 20 corpora. Separate scalar bitpack/CTZ composition improves both directions
+on sparse data, while clustered pages expose decoder losses. The full-mask
+shortcut helps clusters but regresses other cases; per-mask packing cutoffs are
+not accepted. All raw results and 4,920 direct contrasts are retained. Energy is
+unavailable in this cohort; a separate energy run is active. The explicit-workspace
+scalar GHY1 ports pass userspace normal/sanitizer checks. Their first kernel
+build failed on attribute macro spelling; repair and further VM checks are pending.
+The earlier scalar GZR1 component passed its isolated VM gate. Current native
+recovery remains unverified; stock ZRAM is unchanged.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction
 commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).

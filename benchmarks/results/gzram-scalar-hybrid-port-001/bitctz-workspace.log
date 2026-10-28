@@ -1,0 +1,1 @@
+{"status": "passed", "workspace_bytes": 4128, "workspace_alignment": 8, "identity_reuse_and_rejection_cases": 1176, "four_thread_roundtrips": 1000, "scope": "Explicit userspace workspace API; kernel code generation and performance not tested"}

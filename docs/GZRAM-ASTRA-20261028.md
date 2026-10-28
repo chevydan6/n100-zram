@@ -387,13 +387,11 @@ The [raw validation record](../benchmarks/results/gzram-astra-v3-validation-001/
 preserves the host-shutdown interruption and successful hash-checked resumption.
 All 23 preceding library text sections, 17 corpus hashes and 165,376 preceding
 size records are unchanged. The expanded size screen has 266,240 records.
-No third-cohort speed, energy, cutoff or overall improvement is accepted yet.
-A 22-variant, 20-corpus timing run is now collecting three matched sessions from
-frozen commit `1ee0e34`, after the restart and a fresh native preflight. Output
-is `build/astra-local-003-timing`; package energy is unavailable. A separately
-recorded energy run is waiting for desktop authentication and the same exclusive
-lock. Partial rows are not accepted results. The earlier 001/002 measurements
-remain the latest completed performance evidence.
+This correctness checkpoint was followed by the completed 22-variant,
+20-corpus timing cohort reported below, from frozen commit `1ee0e34` after a fresh
+native preflight. Its package energy is unavailable. A separate energy cohort
+has now obtained read-only counter access and is collecting matched sessions.
+No overall, kernel or production improvement is accepted.
 
 ## Next experiments and kernel decision
 
@@ -457,3 +455,82 @@ its successful exit does not establish the current boot default. The
 [exact observed state](validation/astra-recovery-review-20261028.json) and
 [historical scope](../RECOVERY.md) are retained. Native kernel execution remains
 gated; this does not prevent userspace experiments or isolated VM correctness.
+
+## Third completed physical timing cohort
+
+The [complete timing cohort](../benchmarks/results/native-gzram-astra-local-003-timing/summary.md)
+contains 23,760 rows: 22 variants, 20 corpora, three sessions, nine recorded
+rounds after two warm-ups, 8,192 calls per batch and 128 independent pages per
+corpus. It uses frozen source `1ee0e34`, GCC 16.2.1, the physical N100's stock
+7.2.11 kernel and unchanged powersave/700–800 MHz limits. It ran after the host
+restart, with matched controls inside every session. Cross-cohort absolute
+changes are not attributed to a codec. Package energy is unavailable in every
+row; this is a timing/CPU/size checkpoint, not an energy confirmation.
+
+The audit verified every expected row, artifact hashes and unchanged ZRAM/CPU
+settings. All PMU groups ran fully scheduled. Maximum telemetry gap was 0.544 s;
+thread occupancy ranged 82.112–100.009%, median 99.262%. The slight upper excess
+reflects separately bracketed clock intervals. All rows remain, including
+preemption. The approximately 4.50 kJ / 1.25 Wh battery integral spans the entire
+1618.6-second experiment and background activity. It is neither per-codec energy
+nor a comparable battery-efficiency result.
+
+### Separate scalar encoder/decoder composition
+
+Bitctz retains the bitpack encoder and original ctzunpack decoder in separate
+objects. Against the matched scalar wordmixed control at 1024-byte blocks:
+
+| Corpus | Compress ns/page, control → bitctz | Paired change | Decode ns/page, control → bitctz | Paired change |
+|---|---:|---:|---:|---:|
+| Sparse words | 8130.2 → 5930.1 | -26.75% | 5943.1 → 3917.4 | -34.34% |
+| Words25 | 11465.9 → 6894.2 | -39.95% | 9596.6 → 4714.5 | -50.86% |
+| Words50 | 16422.4 → 7781.6 | -52.61% | 14423.3 → 5454.6 | -62.01% |
+| Mixed pages | 15984.6 → 15316.4 | -4.22% | 4088.8 → 3529.6 | -13.86% |
+| Clusters50 | 7011.4 → 5394.8 | -23.21% | 4279.6 → 4354.1 | +1.81% |
+| Clusters75 | 18257.5 → 16831.8 | -7.80% | 2902.7 → 3065.4 | +6.04% |
+
+These paired changes are medians of three session changes, not ratios of the
+pooled absolute medians. Thread CPU changes corroborate the listed gains/losses;
+for sparse words they are -27.07% compression and -34.32% decoding. Bytes are
+identical to wordmixed. The new clustered cases expose a real CTZ-decoder loss
+that the earlier independent random-word densities did not reveal.
+
+Against matched scalar LZ4, bitctz's sparse-word compression is 5930.1 versus
+17037.3 ns (-65.25%), decoding 3917.4 versus 8034.2 ns (-51.26%), and output
+660.844 versus 1081.359 bytes. Mixed pages improve 7.53% compression and 24.25%
+decoding, with 2049.070 versus 2157.406 bytes. These wins do not generalize:
+executable compression is 42738.2 versus 39507.8 ns (+8.00%), period127 is
+5937.4 versus 3066.9 ns (+91.42%), and random compression regresses 67.78%.
+Clusters75 regresses 4.99% compression and 9.94% decoding versus LZ4. Repeat16
+and repeat32 still occupy 84/148 bytes versus LZ4's 42/58. All remaining absolute
+results and [4,920 direct contrasts](../benchmarks/results/native-gzram-astra-local-003-timing/paired.md)
+are retained. No workload-weighted overall improvement is established.
+
+### Full masks and packing cutoffs
+
+Bitfull adds the full-mask shortcut to bitctz's decoder. Clustered decoding
+improves 17.59%, 26.83% and 11.75% for clusters25/50/75; clusters50 falls from
+4354.1 to 3186.3 ns. The same change regresses ordinary sparse decoding 2.57%
+(3917.4 → 4026.7 ns), words50 2.15%, and repeat16 8.21%. These losses occur in all
+three sessions. The separately controlled ctzfull policy shows the same tradeoff.
+The shortcut is useful for clustered masks, not a universally free fast path.
+
+Per-mask scalar/vector selection is not accepted. Select2 improves sparse
+compression 16.93% but regresses words25 10.27%; select3 improves sparse 18.23%
+and words25 6.11% but regresses words50 5.41%. Select4 regresses words50 19.88%
+(5788.4 → 6963.0 ns). All three regress clusters50 compression by 14.83–15.49%,
+whereas unconditional mixed packing improves it 5.80%. This supports testing a
+less frequent selection decision; it does not prove branch prediction is the
+cause or establish a cutoff. A block-level decision using the scan's existing
+population count is the next credible encoding experiment.
+
+Repeatmergefast preserves repeatmerge's exact bytes and reduces its scalar
+half-zero compression overhead by 3.68% (2846.5 → 2746.4 ns). Repeat16/32 scalar
+compression improves only 1.21%/1.34%. It does not solve the scalar repeat decoder
+or bitctz's short-repeat size loss. A separately controlled combination of the
+bit-scan encoder, consolidated frames and a directly validated repeat decoder
+is worth testing; no such combined policy is accepted by these measurements.
+
+A separate matched energy cohort is now running from the same frozen sources.
+Its result must pass its own audit; it will not retroactively supply energy
+values to this timing-only cohort.

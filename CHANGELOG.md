@@ -193,3 +193,11 @@ no upstream code or generated shuffle tables were copied into the new codec.
 - Pass two four-worker load/test/unload cycles in an exact-kernel diskless guest.
 - Preserve source hashes, build/guest logs, canary limitations and host postflight.
 - Leave native recovery, GHY1/LZ4, SIMD and ZRAM integration unproven.
+
+## Third physical timing cohort, 2026-10-28
+
+- Complete and audit 23,760 rows across 22 variants and 20 corpora.
+- Measure separate scalar bitpack/CTZ composition gains and clustered losses.
+- Retain full-mask tradeoffs, failed per-mask cutoffs and consolidation overhead.
+- Preserve every row and 4,920 direct contrasts; package energy is unavailable.
+- Keep the separately running energy cohort and kernel gates distinct.
