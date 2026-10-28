@@ -388,6 +388,12 @@ preserves the host-shutdown interruption and successful hash-checked resumption.
 All 23 preceding library text sections, 17 corpus hashes and 165,376 preceding
 size records are unchanged. The expanded size screen has 266,240 records.
 No third-cohort speed, energy, cutoff or overall improvement is accepted yet.
+A 22-variant, 20-corpus timing run is now collecting three matched sessions from
+frozen commit `1ee0e34`, after the restart and a fresh native preflight. Output
+is `build/astra-local-003-timing`; package energy is unavailable. A separately
+recorded energy run is waiting for desktop authentication and the same exclusive
+lock. Partial rows are not accepted results. The earlier 001/002 measurements
+remain the latest completed performance evidence.
 
 ## Next experiments and kernel decision
 

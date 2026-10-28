@@ -9,7 +9,9 @@ size loss, but has scalar speed regressions. Mixed scalar/vector packing and
 combined decoders also retain important losses. No overall kernel or production
 gain is accepted. Current zstd ZRAM, boot settings and the 800 MHz cap remain.
 Seven further candidates now pass normal/sanitizer checks across 20 corpora,
-including clustered masks; their matched timing/energy run is next. The isolated scalar GZR1 component now passes an exact-kernel diskless VM
+including clustered masks. A 22-variant, 20-corpus native timing run is active;
+its energy values are unavailable. A separate energy run awaits OS counter
+authentication and the same exclusive lock. No third-cohort gain is accepted. The isolated scalar GZR1 component now passes an exact-kernel diskless VM
 correctness gate. No native GZRAM kernel loading or ZRAM integration has occurred.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction
