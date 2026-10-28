@@ -103,3 +103,11 @@ measured overheads remain available as controls.
 The appended clustered corpora retain all preceding corpus hashes. Normal and
 sanitizer results and all size records are in the third validation checkpoint.
 Native timing and energy remain separate acceptance gates.
+
+For targeted energy confirmation, `run-native.py --corpora repeat16 repeat32`
+selects explicitly named corpora and records them. Omitting the option clears
+inherited corpus filters and retains the full set. A separate benchmark build
+with `-DOPS=131072` lengthens the fast repeat batches; all controls in that run
+must use the same binary and batch count. This is measurement amortization, not
+kernel batching, queueing, or an accepted SIMD crossover. The full 20-corpus
+cohort remains necessary to retain regressions outside those repeat cases.

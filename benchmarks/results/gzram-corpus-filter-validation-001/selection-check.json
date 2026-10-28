@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "all_corpora_preserved": 20,
+  "selected_corpora": [
+    "repeat16",
+    "repeat32"
+  ],
+  "selected_variants": 2,
+  "selected_roundtrips": 512,
+  "unknown_selection_rejected": true,
+  "binary_sha256": "940acd5d5a0fd97e7dfe346e1ba1a10feaf16f6b9393be3538f084c74bd1347c",
+  "source_sha256": "96cc89cbe3b1793d5210644b569f1cd00881fd7c4eb641eb5f447666a7266dbb",
+  "calls_per_batch": 131072
+}

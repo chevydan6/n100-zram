@@ -179,7 +179,11 @@ int main(int argc,char **argv){
   fprintf(stderr,"Unknown corpus\n");return 2;
  }
  if(list_variants){for(int i=0;i<n;i++)puts(variants[i].name);return 0;}
- if(list_corpora){for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)puts(corpora[i]);return 0;}
+ const char *corpus_selection=getenv("GZRAM_CORPUS_LIST");
+ unsigned selected_corpora=0;
+ for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)if(!corpus_selection||selected_name(corpus_selection,corpora[i]))selected_corpora++;
+ if(!selected_corpora){fprintf(stderr,"No selected corpora\n");return 2;}
+ if(list_corpora){for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)if(!corpus_selection||selected_name(corpus_selection,corpora[i]))puts(corpora[i]);return 0;}
  if(list_calls){printf("%d\n",OPS);return 0;}
  const char *inherited_energy=getenv("GZRAM_ENERGY_FD");
  if(inherited_energy){char *end;errno=0;long fd=strtol(inherited_energy,&end,10);if(errno||!inherited_energy[0]||*end||fd<3||fd>2147483647){fprintf(stderr,"Invalid inherited energy descriptor\n");return 16;}energy_fd=(int)fd;}
@@ -188,6 +192,7 @@ int main(int argc,char **argv){
  fprintf(stderr,"CPU %d; AVX2 verified; RAPL %s; userspace codec screening, kernel SIMD overhead excluded\n",cpu,energy_range?"available":"unavailable");
  puts("corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent");
  for(unsigned kind=0;kind<sizeof(corpora)/sizeof(corpora[0]);kind++){
+  if(corpus_selection&&!selected_name(corpus_selection,corpora[kind]))continue;
   fill(kind);
   for(int round=-2;round<9;round++){
    int order[CODEC_CAPACITY];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=order_random()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}

@@ -3,7 +3,7 @@
 """Bounded/resumable N100 userspace screening; never changes swap or kernel modules."""
 import argparse,csv,fcntl,hashlib,json,os,platform,subprocess,threading,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--variants',nargs='+');p.add_argument('--screen',action='store_true');p.add_argument('--directory',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--resume',action='store_true');p.add_argument('--lock',type=Path,default=Path.home()/'.cache/n100-zram/native-validation.lock');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--variants',nargs='+');p.add_argument('--corpora',nargs='+');p.add_argument('--screen',action='store_true');p.add_argument('--directory',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--resume',action='store_true');p.add_argument('--lock',type=Path,default=Path.home()/'.cache/n100-zram/native-validation.lock');a=p.parse_args()
 # Also serialize on the physical target when there is no remote supervisor.
 # An outer controller may retain its original lock; all local runs share this
 # inode. Never unlink it, including on failure, because waiters may hold it open.
@@ -21,6 +21,10 @@ if a.variants:
  assert len(a.variants)==len(set(a.variants)) and all(name and ',' not in name for name in a.variants)
  env['GZRAM_VARIANT_LIST']=','.join(a.variants)
 else:env.pop('GZRAM_VARIANT_LIST',None)
+if a.corpora:
+ assert len(a.corpora)==len(set(a.corpora)) and all(name and ',' not in name for name in a.corpora)
+ env['GZRAM_CORPUS_LIST']=','.join(a.corpora)
+else:env.pop('GZRAM_CORPUS_LIST',None)
 energy_fds=()
 if 'GZRAM_ENERGY_FD' in env:
  fd=int(env['GZRAM_ENERGY_FD']);assert fd>=3
@@ -33,11 +37,12 @@ assert 'N100' in model,'Performance runs must use the physical N100'
 variant_names=subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--list-variants'],env=env,text=True).splitlines()
 corpora=subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--list-corpora'],env=env,text=True).splitlines()
 calls_per_batch=int(subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--calls-per-batch'],env=env,text=True))
+if a.corpora:assert set(corpora)==set(a.corpora),'Unknown or missing requested corpora'
 assert calls_per_batch>0 and calls_per_batch%128==0
 if a.variants:assert set(variant_names)==set(a.variants),'Unknown or missing requested variants'
 assert variant_names and corpora and len(set(variant_names))==len(variant_names) and len(set(corpora))==len(corpora)
 corpus_hashes={name:hashlib.sha256(subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--dump-corpus='+name],env=env)).hexdigest() for name in corpora}
-inputs={'corpus_sha256':corpus_hashes,'order_seeds':[100,101,102],'selected_variants':a.variants,'variant_names':variant_names,'corpora':corpora,'screen':a.screen,'cpu_model':model,'runner_sha256':sha(Path(__file__)),'kernel':platform.release(),'binary_sha256':sha(a.directory/'benchmark'),'manifest':json.loads((a.directory/'manifest.json').read_text()),'libraries':{f.name:sha(f) for f in a.directory.glob('*.so')},'bash_sha256':sha(Path('/usr/bin/bash')),'scope':'Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work'}
+inputs={'corpus_sha256':corpus_hashes,'order_seeds':[100,101,102],'selected_variants':a.variants,'selected_corpora':a.corpora,'variant_names':variant_names,'corpora':corpora,'screen':a.screen,'cpu_model':model,'runner_sha256':sha(Path(__file__)),'kernel':platform.release(),'binary_sha256':sha(a.directory/'benchmark'),'manifest':json.loads((a.directory/'manifest.json').read_text()),'libraries':{f.name:sha(f) for f in a.directory.glob('*.so')},'bash_sha256':sha(Path('/usr/bin/bash')),'scope':'Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work'}
 inputs['execution']={'serialization':'exclusive target-local flock for runner lifetime','nice':os.getpriority(os.PRIO_PROCESS,0),'runner_cpu':1,'codec_cpu':0,'thread_cpu_scope':'Thread CPU clocks bracket wall-clock loop; CPU time includes clock boundaries; not machine utilization'}
 inputs['calls_per_batch']=calls_per_batch
 inputs['energy_access']='inherited read-only RAPL descriptor' if energy_fds else 'direct sysfs read if permitted'
