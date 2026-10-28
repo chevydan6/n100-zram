@@ -1,9 +1,10 @@
 # GZRAM continuation: local N100 word-path experiments
 
 Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
-This prototype now has a completed local userspace cohort with repeatable sparse
-decode gains and retained regressions. It does not establish kernel, battery or
-production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
+Latest: the third physical energy cohort confirms sparse scalar time and package
+energy reductions, while retaining clustered-data and LZ4-relative regressions.
+Five follow-up candidates are undergoing correctness validation. This prototype
+does not establish kernel, battery or production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
 
 Update: the user confirmed that this workspace is on the same Lenovo 14e that
 SOL previously accessed over SSH. Local execution has resumed; a changed
@@ -534,8 +535,8 @@ is worth testing; no such combined policy is accepted by these measurements.
 The first separate energy attempt completed two sessions before its outer
 launcher deadline expired. Its standby resume was then rejected for mismatched
 variant ordering. [All partial data and failure evidence](../benchmarks/results/native-gzram-astra-local-003-energy-interrupted/summary.md)
-are retained. A fresh corrected cohort awaits authentication; it must pass its
-own audit and will not retroactively supply energy to this timing-only cohort.
+are retained. The fresh corrected cohort completed and passed its own audit (below). It does
+not retroactively supply energy to this timing-only cohort.
 
 ## Full scalar hybrid kernel gate
 
@@ -545,3 +546,89 @@ cycle. The [complete source, build/guest logs and limits](../benchmarks/results/
 include the initial attribute-macro failure and explicit normalization repair.
 The unchanged scalar GZR1 gate also passes again. No host GZRAM module was loaded.
 Native performance, energy, ZRAM integration and current recovery remain unproven.
+
+
+## Completed third physical energy cohort
+
+The [fresh energy cohort](../benchmarks/results/native-gzram-astra-local-003-energy/summary.md)
+completed independently: 22 variants, 20 corpora, three sessions, nine recorded
+rounds after two warm-ups, 128 pages/corpus and 8,192 calls/batch. Source remains
+`1ee0e34`; hardware, compiler, CPU affinity and frequency limits match the
+preceding timing cohort. Its own matched controls determine every comparison.
+All 23,760 rows have RAPL package measurements, all PMU groups were fully
+scheduled, and the artifact and unchanged CPU/ZRAM audit passed. No experimental
+module was loaded and stock zstd ZRAM remains active.
+
+The 1619.54-second run has a maximum telemetry gap of 0.555 seconds. Median
+thread occupancy is 99.309%; the minimum is 30.124%, a preempted halfzero
+repeatmergefast scalar decode in session 1, round 7. That row and every other
+outlier remain in the data. The whole-experiment battery integral is about
+6.81 kJ / 1.89 Wh, including desktop activity, validation and warm-ups. It is
+not assigned to codecs or used to claim battery savings. RAPL likewise includes
+background package activity during each batch; it is not isolated core energy.
+
+### Sparse scalar gains confirmed, with the same limitations
+
+Against matched scalar wordmixed at 1024-byte internal blocks, bitctz gives:
+
+| Corpus / operation | Time ns/page, control → bitctz | Paired time change | Package µJ/page, control → bitctz | Paired energy change |
+|---|---:|---:|---:|---:|
+| Sparse / compress | 8134.1 → 5917.3 | -27.13% | 17.524 → 13.582 | -26.92% |
+| Sparse / decode | 5938.6 → 3926.5 | -33.79% | 13.374 → 9.052 | -33.48% |
+| Words25 / compress | 11457.8 → 6872.5 | -39.92% | 23.343 → 13.500 | -40.87% |
+| Words25 / decode | 9606.3 → 4723.6 | -50.82% | 19.431 → 8.970 | -51.39% |
+| Words50 / compress | 16417.5 → 7808.8 | -52.47% | 34.995 → 18.507 | -48.59% |
+| Words50 / decode | 14412.9 → 5443.7 | -62.20% | 30.018 → 12.085 | -62.97% |
+
+All six time and package-energy reductions have the same sign in all three
+sessions. Thread CPU changes corroborate them: sparse compression/decode
+-27.00%/-33.83%, words25 -39.95%/-50.83%, words50 -52.52%/-62.19%.
+Output bytes remain identical to wordmixed. Absolute values are pooled medians;
+percentage changes are medians of paired session effects, so they need not
+equal ratios of those absolute medians. Session ranges and every contrast are
+retained in [paired.json](../benchmarks/results/native-gzram-astra-local-003-energy/paired.json).
+
+Mixed-page compression/decode improves 3.83%/14.03%, with package energy
+-1.80%/-13.45%; the small compression-energy effect is not treated as a robust
+standalone energy win. Clustered decoding still regresses: clusters50 1.87%
+(4276.8 → 4353.7 ns), clusters75 5.72% (2901.3 → 3069.4 ns), all sessions.
+Their energy changes have mixed signs, so no reliable energy direction is
+established for those losses.
+
+Matched LZ4 remains essential. On sparse words, bitctz uses 660.844 versus
+1081.359 bytes (-38.89%), compresses in 5917.3 versus 17034.9 ns (-65.22%),
+and decodes in 3926.5 versus 8026.2 ns (-50.77%). Package energy is 13.582
+versus 37.759 µJ for compression (-64.50%) and 9.052 versus 18.016 µJ for
+decoding (-49.02%). But executable compression regresses 8.00% and package
+energy 4.90%, with 3250.602 versus 3242.602 bytes. Random compression regresses
+67.15% and energy 58.99%; its 4104 versus 4114 bytes is still an expanded page.
+Period127 compression regresses 92.32% and energy 88.50%, with 161 versus 153
+bytes. These results do not establish an overall compressor or ZRAM improvement.
+
+### Selection and repeat decisions
+
+Bitfull's full-mask decoder shortcut again helps clusters25/50/75 decoding
+17.15%/27.23%/12.32% versus bitctz, with package reductions
+17.34%/31.27%/12.17%, all sessions. It still regresses words50 decoding 2.38%
+and repeat16 decoding 6.96%; it is not a free general replacement.
+
+Per-mask selection remains rejected as a default. Select2/3/4 regress
+clusters50 compression 16.14%/15.20%/15.24%; select4 also regresses words50
+19.98% and package energy 20.34%. Sparse benefits do not justify those losses.
+The next block-level selection candidates use the already computed population
+count once per independent block. Cutoffs two, three and four remain separate
+experiments; none is assumed optimal.
+
+Repeatmergefast's scalar repeat16/32 compression changes shrink to
+-0.41%/-0.46% versus repeatmerge. Energy effects have mixed signs across sessions.
+The earlier small speed differences remain provisional and no energy gain is
+accepted. Longer repeat batches are still needed to assess measurement noise;
+this means amortizing userspace measurement overhead, not a kernel batching
+recommendation. New bitmerge and bitdirect candidates separately test composing
+the sparse codec with consolidated repeat frames, then adding validated scalar
+repeat expansion. Their correctness checks are running; performance is unproven.
+
+No queue, background compression worker or kernel SIMD path is introduced by
+these candidates. Queue wait, scheduler overhead, kernel FPU state costs, cold
+page access, memory-pressure responsiveness and actual ZRAM energy remain
+unmeasured. The completed scalar kernel VM gate is correctness evidence only.
