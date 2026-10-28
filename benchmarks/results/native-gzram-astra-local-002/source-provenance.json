@@ -14,5 +14,6 @@
     "gzram/tests/hybrid.py": "4f41c918f3122f13d51517da72eb4bee3160cd1ad71727a52528aa2c4be724ed"
   },
   "base_commit": "48585b8",
-  "note": "Validated pending additive changes; final committed source hash must match these frozen files."
+  "note": "All twelve frozen source hashes were verified against this committed source after collection; no running binary or library was replaced.",
+  "source_commit": "4fb8181a5c090426ab8bf3561d42739a8d61d098"
 }

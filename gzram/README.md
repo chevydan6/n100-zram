@@ -1,12 +1,14 @@
 # GZRAM-AVX2
 
-Additive continuation: [outlined classifier and sparse bit-scan decoder](../docs/GZRAM-ASTRA-20261028.md).
-These prototypes preserve the format and controls; native performance is pending.
+Latest continuation: [measured scalar/SIMD word paths, repeat consolidation and
+package energy](../docs/GZRAM-ASTRA-20261028.md). Two physical-N100 cohorts retain
+all gains and regressions; no kernel or production improvement is accepted.
+The full registry has 329 variants and seventeen corpora. Original formats,
+controls, failed experiments and SOL's results remain available.
 
-Latest results: [2026-10-28 measured status](../docs/GZRAM-20261028.md), including
-the clean wordmixed replication and the vector-tail scalar/AVX2 tradeoff. The
-chronological notes below retain earlier experiment states; their pending native
-measurements have been superseded where the latest report records completion.
+[SOL's 2026-10-28 checkpoint](../docs/GZRAM-20261028.md) records the preceding
+wordmixed and vector-tail experiments. The chronological notes below retain
+earlier states; the linked continuation supersedes their pending-work notes.
 
 An independent userspace research codec in the N100 ZRAM project. It explores
 vector-friendly sparse words and short repeated patterns, separate control/data,
