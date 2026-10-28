@@ -4,8 +4,10 @@ Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
 Latest: the third physical energy cohort confirms sparse scalar time and package
 energy reductions, while retaining clustered-data and LZ4-relative regressions.
 The fourth timing cohort now identifies a combined sparse/repeat candidate with
-strong repeat-decode and size gains, retained regressions, and energy still unmeasured. This prototype
-does not establish kernel, battery or production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
+strong repeat-decode and size gains, retained regressions, and energy still unmeasured.
+The fifth timing cohort improves direct block packing across several sparse/clustered
+distributions, but those encoder variants still need composition with the better decoder.
+These prototypes do not establish kernel, battery or production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
 
 Update: the user confirmed that this workspace is on the same Lenovo 14e that
 SOL previously accessed over SSH. Local execution has resumed; a changed
@@ -867,3 +869,36 @@ not native kernel timing, recovery validation, ZRAM performance or production
 readiness. Host CPU/ZRAM hashes are unchanged; no host experimental module was
 loaded. Current privileged recovery inspection and physical kernel tests remain
 open while the next userspace packing cohort proceeds.
+
+## Fifth completed physical timing cohort
+
+The [complete findings](../benchmarks/results/native-gzram-astra-local-005-timing/findings.md)
+retain 22,680 audited rows and 5,480 direct comparisons. All three sessions
+completed on the physical N100 at unchanged settings, with fully scheduled PMU
+groups. No package energy is available. The approximately 4,986.84 J integrated
+battery reading covers the whole experiment and cannot establish codec savings.
+
+AVX2 blockdirect2 compresses sparse words, words25, words50, clusters25 and
+clusters50 18.95%, 5.45%, 7.76%, 7.86% and 14.94% faster than matched wordmixed,
+respectively, with identical bytes and corresponding CPU reductions. All these
+effects have the same sign in all sessions. Relative to its matching indirect
+blockpick2 control, improvements are 8.12%, 7.39%, 10.01%, 15.70% and 19.70%.
+Cutoff 3 is also promising, but cutoff 4 still loses 3.40% on words50 versus
+wordmixed. Unconditional mixpack beats cutoff 2 by 1.65% on sparse words and
+1.58% on words25; cutoff 2 instead wins 18.29% on words50 and 9.52% on clusters50.
+
+These are encoder gains, not a better combined replacement for bitdirect.
+Blockdirect2 still has the older decoder: scalar sparse/words25/words50 decoding
+loses 52.16%/103.46%/164.82% against bitdirect. Repeat16/32 frames grow from 33/49
+to 84/148 bytes and scalar decoding loses 460.25%/105.68%. Smaller but consistent
+decode regressions versus wordmixed also remain in the report. Against LZ4,
+AVX2 blockdirect2 still loses 5.9% compression time on bash ELF, 52.1% on random
+and 65.9% on period127. No default promotion follows from the sparse gains.
+
+Each direct-loop object adds 256 bytes of .text (7,826 → 8,082). Inlining, direct
+calls and layout change together; the measurement does not prove a single cause.
+The next composition should preserve bitdirect's CTZ/direct-repeat decoder while
+measuring the promising direct block encoder separately. In parallel, sampled
+selection targets rejected dense-page work, with deliberate misclassification
+fixtures and additional ELF inputs planned. Kernel FPU, queueing, energy and
+actual ZRAM behavior remain unproven for the new packing paths.
