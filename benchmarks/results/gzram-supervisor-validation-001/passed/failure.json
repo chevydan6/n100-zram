@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "raise SystemExit(7)"
+  ],
+  "uid": 1000,
+  "started": 1793162592.6108294,
+  "timeout_seconds": 2.0,
+  "lock_wait_seconds": 0.1,
+  "status": "failed",
+  "energy_descriptor_inherited": false,
+  "measurement_started": 1793162592.6121533,
+  "finished": 1793162592.678088,
+  "error": "RuntimeError('Experiment exited 7')"
+}

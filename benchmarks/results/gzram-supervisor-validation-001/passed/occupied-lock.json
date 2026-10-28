@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "raise Exception(\"must not execute\")"
+  ],
+  "uid": 1000,
+  "started": 1793162593.5480676,
+  "timeout_seconds": 2.0,
+  "lock_wait_seconds": 0.1,
+  "status": "failed",
+  "energy_descriptor_inherited": false,
+  "finished": 1793162593.6513002,
+  "error": "TimeoutError('Native lock remained occupied; no child launched')"
+}

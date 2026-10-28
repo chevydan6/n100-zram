@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 246, in _get_main_module_details
+  File "<frozen runpy>", line 145, in _get_module_details
+ImportError: No module named __main__
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pathlib,runpy,sys; pathlib.Path.home=classmethod(lambda cls:pathlib.Path(sys.argv.pop(1))); runpy.run_path(sys.argv.pop(1),run_name="__main__")
+                                                                                                       ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 307, in run_path
+  File "<frozen runpy>", line 249, in _get_main_module_details
+ImportError: can't find '__main__' module in '/tmp/tmpimrs73pe'

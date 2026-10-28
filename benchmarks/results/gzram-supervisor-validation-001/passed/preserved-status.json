@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "pass"
+  ],
+  "uid": 1000,
+  "started": 1793162596.9535406,
+  "timeout_seconds": 2.0,
+  "lock_wait_seconds": 0.1,
+  "status": "complete",
+  "energy_descriptor_inherited": false,
+  "measurement_started": 1793162596.9553497,
+  "finished": 1793162597.0260427,
+  "returncode": 0
+}

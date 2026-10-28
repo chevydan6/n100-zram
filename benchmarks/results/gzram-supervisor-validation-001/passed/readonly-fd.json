@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "import os; assert os.pread(int(os.environ[\"GZRAM_ENERGY_FD\"]),64,0)==b\"12345\\n\""
+  ],
+  "uid": 1000,
+  "started": 1793162593.0216682,
+  "timeout_seconds": 2.0,
+  "lock_wait_seconds": 0.1,
+  "status": "complete",
+  "energy_descriptor_inherited": true,
+  "measurement_started": 1793162593.0233152,
+  "finished": 1793162593.1397762,
+  "returncode": 0
+}

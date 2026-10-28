@@ -1,0 +1,148 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "case": "success",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "pass"
+        ],
+        "uid": 1000,
+        "started": 1793162592.2689874,
+        "timeout_seconds": 2.0,
+        "lock_wait_seconds": 0.1,
+        "status": "complete",
+        "energy_descriptor_inherited": false,
+        "measurement_started": 1793162592.2706118,
+        "finished": 1793162592.3368204,
+        "returncode": 0
+      }
+    },
+    {
+      "case": "failure",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "raise SystemExit(7)"
+        ],
+        "uid": 1000,
+        "started": 1793162592.6108294,
+        "timeout_seconds": 2.0,
+        "lock_wait_seconds": 0.1,
+        "status": "failed",
+        "energy_descriptor_inherited": false,
+        "measurement_started": 1793162592.6121533,
+        "finished": 1793162592.678088,
+        "error": "RuntimeError('Experiment exited 7')"
+      }
+    },
+    {
+      "case": "readonly-fd",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "import os; assert os.pread(int(os.environ[\"GZRAM_ENERGY_FD\"]),64,0)==b\"12345\\n\""
+        ],
+        "uid": 1000,
+        "started": 1793162593.0216682,
+        "timeout_seconds": 2.0,
+        "lock_wait_seconds": 0.1,
+        "status": "complete",
+        "energy_descriptor_inherited": true,
+        "measurement_started": 1793162593.0233152,
+        "finished": 1793162593.1397762,
+        "returncode": 0
+      }
+    },
+    {
+      "case": "occupied-lock",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "raise Exception(\"must not execute\")"
+        ],
+        "uid": 1000,
+        "started": 1793162593.5480676,
+        "timeout_seconds": 2.0,
+        "lock_wait_seconds": 0.1,
+        "status": "failed",
+        "energy_descriptor_inherited": false,
+        "finished": 1793162593.6513002,
+        "error": "TimeoutError('Native lock remained occupied; no child launched')"
+      }
+    },
+    {
+      "case": "timeout-group",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "import subprocess,sys,time; subprocess.Popen([sys.executable,\"-c\",\"import os,signal,time,pathlib; signal.signal(signal.SIGTERM,signal.SIG_IGN); pathlib.Path('/tmp/tmpz9cn564a/timeout-group.pid').write_text(str(os.getpid())); time.sleep(60)\"]); time.sleep(60)"
+        ],
+        "uid": 1000,
+        "started": 1793162594.004388,
+        "timeout_seconds": 2.0,
+        "lock_wait_seconds": 0.1,
+        "status": "failed",
+        "energy_descriptor_inherited": false,
+        "measurement_started": 1793162594.006183,
+        "finished": 1793162596.012077,
+        "error": "TimeoutExpired(['/usr/bin/python3', '-c', 'import subprocess,sys,time; subprocess.Popen([sys.executable,\"-c\",\"import os,signal,time,pathlib; signal.signal(signal.SIGTERM,signal.SIG_IGN); pathlib.Path(\\'/tmp/tmpz9cn564a/timeout-group.pid\\').write_text(str(os.getpid())); time.sleep(60)\"]); time.sleep(60)'], 2.0)"
+      }
+    },
+    {
+      "case": "signal-group",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "import subprocess,sys,time; subprocess.Popen([sys.executable,\"-c\",\"import os,signal,time,pathlib; signal.signal(signal.SIGTERM,signal.SIG_IGN); pathlib.Path('/tmp/tmpz9cn564a/signal-group.pid').write_text(str(os.getpid())); time.sleep(60)\"]); time.sleep(60)"
+        ],
+        "uid": 1000,
+        "started": 1793162596.3318357,
+        "timeout_seconds": 10.0,
+        "lock_wait_seconds": 0.1,
+        "status": "failed",
+        "energy_descriptor_inherited": false,
+        "measurement_started": 1793162596.3331993,
+        "finished": 1793162596.5507293,
+        "error": "InterruptedError('Supervisor signal 15')"
+      }
+    },
+    {
+      "case": "preserved-status",
+      "status": "passed",
+      "supervisor": {
+        "command": [
+          "/usr/bin/python3",
+          "-c",
+          "pass"
+        ],
+        "uid": 1000,
+        "started": 1793162596.9535406,
+        "timeout_seconds": 2.0,
+        "lock_wait_seconds": 0.1,
+        "status": "complete",
+        "energy_descriptor_inherited": false,
+        "measurement_started": 1793162596.9553497,
+        "finished": 1793162597.0260427,
+        "returncode": 0
+      }
+    },
+    {
+      "case": "status-reuse-rejected",
+      "status": "passed"
+    }
+  ]
+}

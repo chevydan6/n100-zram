@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pathlib,runpy,sys; fixture=pathlib.Path(sys.argv.pop(1)); pathlib.Path.home=classmethod(lambda cls:fixture); runpy.run_path(sys.argv.pop(1),run_name="__main__")
+                                                                                                                        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 108, in <module>
+    main()
+    ~~~~^^
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 93, in main
+    code = child.wait(timeout=args.timeout)
+  File "/usr/lib64/python3.14/subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/subprocess.py", line 2076, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['/usr/bin/python3', '-c', 'import subprocess,sys,time; subprocess.Popen([sys.executable,"-c","import os,signal,time,pathlib; signal.signal(signal.SIGTERM,signal.SIG_IGN); pathlib.Path(\'/tmp/tmpz9cn564a/timeout-group.pid\').write_text(str(os.getpid())); time.sleep(60)"]); time.sleep(60)']' timed out after 2.0 seconds

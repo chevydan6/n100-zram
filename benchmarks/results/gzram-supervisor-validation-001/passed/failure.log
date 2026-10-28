@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pathlib,runpy,sys; fixture=pathlib.Path(sys.argv.pop(1)); pathlib.Path.home=classmethod(lambda cls:fixture); runpy.run_path(sys.argv.pop(1),run_name="__main__")
+                                                                                                                        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 108, in <module>
+    main()
+    ~~~~^^
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 95, in main
+    raise RuntimeError('Experiment exited ' + str(code))
+RuntimeError: Experiment exited 7

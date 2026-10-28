@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "import subprocess,sys,time; subprocess.Popen([sys.executable,\"-c\",\"import os,signal,time,pathlib; signal.signal(signal.SIGTERM,signal.SIG_IGN); pathlib.Path('/tmp/tmpz9cn564a/timeout-group.pid').write_text(str(os.getpid())); time.sleep(60)\"]); time.sleep(60)"
+  ],
+  "uid": 1000,
+  "started": 1793162594.004388,
+  "timeout_seconds": 2.0,
+  "lock_wait_seconds": 0.1,
+  "status": "failed",
+  "energy_descriptor_inherited": false,
+  "measurement_started": 1793162594.006183,
+  "finished": 1793162596.012077,
+  "error": "TimeoutExpired(['/usr/bin/python3', '-c', 'import subprocess,sys,time; subprocess.Popen([sys.executable,\"-c\",\"import os,signal,time,pathlib; signal.signal(signal.SIGTERM,signal.SIG_IGN); pathlib.Path(\\'/tmp/tmpz9cn564a/timeout-group.pid\\').write_text(str(os.getpid())); time.sleep(60)\"]); time.sleep(60)'], 2.0)"
+}

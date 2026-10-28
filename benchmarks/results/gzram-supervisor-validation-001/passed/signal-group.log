@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pathlib,runpy,sys; fixture=pathlib.Path(sys.argv.pop(1)); pathlib.Path.home=classmethod(lambda cls:fixture); runpy.run_path(sys.argv.pop(1),run_name="__main__")
+                                                                                                                        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 108, in <module>
+    main()
+    ~~~~^^
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 93, in main
+    code = child.wait(timeout=args.timeout)
+  File "/usr/lib64/python3.14/subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/subprocess.py", line 2078, in _wait
+    time.sleep(delay)
+    ~~~~~~~~~~^^^^^^^
+  File "/home/dan/n100-zram/gzram/tools/supervise.py", line 49, in interrupted
+    raise InterruptedError('Supervisor signal ' + str(number))
+InterruptedError: Supervisor signal 15
