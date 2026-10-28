@@ -19,9 +19,13 @@ p = argparse.ArgumentParser(description=__doc__)
 for name in ['kernel', 'module', 'qemu', 'busybox', 'bios', 'qemu-data', 'output']:
     p.add_argument('--' + name, type=Path, required=True)
 p.add_argument('--library-path', type=Path)
-p.add_argument('--kind', choices=['scalar','hybrid'], default='scalar')
+p.add_argument('--kind', choices=['scalar','hybrid','probe'], default='scalar')
+p.add_argument('--probe-client', type=Path)
+p.add_argument('--corpora-directory', type=Path)
 p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
 a = p.parse_args()
+if a.kind == 'probe' and (not a.probe_client or not a.corpora_directory):
+    p.error('Probe validation requires --probe-client and --corpora-directory')
 a.lock.parent.mkdir(parents=True, exist_ok=True)
 lock = a.lock.open('a+')
 try:
@@ -34,7 +38,7 @@ if int(meminfo['MemAvailable'].split()[0]) < 2 * 1024**2:
 assert not a.output.exists()
 a.output.mkdir(parents=True)
 sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-module_name = 'n100_gzram_' + a.kind + '_selftest'
+module_name = 'n100_gzram_hybrid_probe' if a.kind == 'probe' else 'n100_gzram_' + a.kind + '_selftest'
 assert a.module.name == module_name + '.ko'
 marker = 'GZRAM_' + a.kind.upper()
 release = subprocess.check_output(['modinfo', '-F', 'vermagic', str(a.module)], text=True).split()[0]
@@ -58,6 +62,17 @@ for name in ['bin', 'dev', 'proc', 'sys']:
 add('dev/console', mode=stat.S_IFCHR | 0o600, rmaj=5, rmin=1)
 add('bin/busybox', a.busybox.read_bytes(), mode=stat.S_IFREG | 0o755)
 add('selftest.ko', a.module.read_bytes())
+probe_hashes = {}
+if a.kind == 'probe':
+    add('probe-client', a.probe_client.read_bytes(), mode=stat.S_IFREG | 0o755)
+    add('corpora', mode=stat.S_IFDIR | 0o755)
+    for corpus in sorted(a.corpora_directory.glob('*.bin')):
+        assert re.fullmatch(r'[A-Za-z0-9_-]+\.bin', corpus.name)
+        data = corpus.read_bytes()
+        assert len(data) == 128 * 4096
+        add('corpora/' + corpus.name, data)
+        probe_hashes[corpus.name] = sha(corpus)
+    assert probe_hashes
 init = '''#!/bin/busybox sh
 export PATH=/bin
 /bin/busybox --install -s /bin
@@ -74,6 +89,9 @@ done
 echo GZRAM_SCALAR_VM_PASS
 poweroff -f
 '''.replace('RELEASE', release).replace('n100_gzram_scalar_selftest', module_name).replace('GZRAM_SCALAR', marker)
+if a.kind == 'probe':
+    init = init.replace(' insmod /selftest.ko || fail',
+                        ' insmod /selftest.ko || fail\n /probe-client /corpora/*.bin || fail')
 add('init', init.encode(), mode=stat.S_IFREG | 0o755)
 add('TRAILER!!!')
 initramfs = a.output / 'initramfs.cpio'
@@ -92,6 +110,10 @@ record = dict(scope='Diskless VM ' + ('scalar GZR1' if a.kind == 'scalar' else '
               disks_attached=False, network_attached=False, guest_memory_mib=256, guest_cpus=2,
               hashes={name: sha(getattr(a, name)) for name in ['kernel', 'module', 'qemu', 'busybox', 'bios']},
               initramfs_sha256=sha(initramfs))
+if a.kind == 'probe':
+    record['scope'] = 'Diskless scalar GHY1 syscall-interface correctness only; no native timing, SIMD state, recovery or ZRAM result'
+    record['probe_client_sha256'] = sha(a.probe_client)
+    record['corpus_sha256'] = probe_hashes
 with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').open('w') as error:
     try:
         result = subprocess.run(command, env=env, stdout=serial, stderr=error, timeout=180)
@@ -101,8 +123,12 @@ with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').op
         record['error'] = 'Guest exceeded 180-second correctness deadline and was killed'
 text = (a.output / 'serial.log').read_text()
 record['worker_results'] = re.findall(marker + r'_SELFTEST_PASS workers=(\d+) checks=(\d+)', text)
+checks_passed = len(record['worker_results']) == 2 and all(int(w) == 4 and int(c) > 0 for w, c in record['worker_results'])
+if a.kind == 'probe':
+    record['client_results'] = re.findall(r'GHY_PROBE_CLIENT_PASS corpora=(\d+) checks=(\d+)', text)
+    checks_passed = len(record['client_results']) == 2 and all(int(n) == len(probe_hashes) and int(c) > 0 for n, c in record['client_results'])
 record['status'] = 'passed' if (record['exit_code'] == 0 and marker + '_VM_PASS' in text
-    and len(record['worker_results']) == 2 and all(int(w) == 4 and int(c) > 0 for w, c in record['worker_results'])
+    and checks_passed
     and not any(word in text for word in [marker + '_VM_FAIL', 'Kernel panic', 'Oops:', 'BUG:', 'WARNING:'])) else 'failed'
 (a.output / 'result.json').write_text(json.dumps(record, indent=2) + '\n')
 print(json.dumps(record))

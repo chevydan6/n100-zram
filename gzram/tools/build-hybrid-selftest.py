@@ -16,12 +16,13 @@ from pathlib import Path
 p = argparse.ArgumentParser(description=__doc__)
 for name in ['control', 'candidate', 'kernel-build', 'output']:
     p.add_argument('--' + name, type=Path, required=True)
+p.add_argument('--kind', choices=['selftest', 'probe'], default='selftest')
 a = p.parse_args()
 a.output = a.output.resolve()
 assert not a.output.exists()
 a.output.mkdir(parents=True)
 sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-record = {'scope': 'Unexecuted scalar GHY1 kernel correctness module; no SIMD, ZRAM registration or performance claim', 'inputs': {}, 'kernel_attribute_normalization': {}}
+record = {'scope': 'Unexecuted scalar GHY1 kernel ' + a.kind + '; no SIMD, ZRAM registration or performance claim', 'inputs': {}, 'kernel_attribute_normalization': {}}
 for label in ['control', 'candidate']:
     directory = getattr(a, label).resolve()
     manifest = json.loads((directory / 'manifest.json').read_text())
@@ -46,14 +47,19 @@ for label in ['control', 'candidate']:
 for name in ['lz4_compress.c', 'lz4_decompress.c', 'lz4defs.h', 'private-lz4.h']:
     assert (a.output / 'control' / name).read_bytes() == (a.output / 'candidate' / name).read_bytes(), name
 root = Path(__file__).resolve().parents[2]
-selftest = root / 'gzram/kernel/hybrid-selftest.c'
+selftest = root / ('gzram/kernel/hybrid-' + a.kind + '.c')
 shutil.copy2(selftest, a.output / 'selftest.c')
 record['selftest_sha256'] = sha(selftest)
+if a.kind == 'probe':
+    header = root / 'gzram/kernel/hybrid-probe.h'
+    shutil.copy2(header, a.output / header.name)
+    record['probe_header_sha256'] = sha(header)
 objects = ['selftest.o', 'control/lz4_compress.o', 'control/lz4_decompress.o']
 for label in ['control', 'candidate']:
     objects += [label + '/' + name + '.o' for name in ['encoder/core', 'decoder/core', 'hybrid']]
-makefile = ['obj-m += n100_gzram_hybrid_selftest.o',
-            'n100_gzram_hybrid_selftest-y := ' + ' '.join(objects),
+module_name = 'n100_gzram_hybrid_' + a.kind
+makefile = ['obj-m += ' + module_name + '.o',
+            module_name + '-y := ' + ' '.join(objects),
             'ccflags-y += -O3 -fno-tree-vectorize -fno-strict-aliasing -mno-sse -mno-mmx -mno-avx -Werror -Wframe-larger-than=1024 -fstack-usage']
 for label in ['control', 'candidate']:
     definitions = []
@@ -73,7 +79,7 @@ with (a.output / 'build.log').open('w') as log:
     result = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
 record['exit_code'] = result.returncode
 if result.returncode == 0:
-    module = a.output / 'n100_gzram_hybrid_selftest.ko'
+    module = a.output / (module_name + '.ko')
     disassembly = subprocess.check_output(['objdump', '-d', str(module)], text=True)
     (a.output / 'module.asm').write_text(disassembly)
     record['simd_register_instructions_found'] = bool(re.search(r'%(?:xmm|ymm|zmm|mm)[0-9]+', disassembly))

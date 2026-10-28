@@ -1,0 +1,12 @@
+control/lz4_decompress.c:487:12:n100_private_lz4_decompress_safe_withPrefix64k	112	static
+control/lz4_decompress.c:497:12:n100_private_lz4_decompress_safe_withSmallPrefix	112	static
+control/lz4_decompress.c:509:12:n100_private_lz4_decompress_safe_forceExtDict	120	static
+control/lz4_decompress.c:520:12:n100_private_lz4_decompress_fast_extDict	120	static
+control/lz4_decompress.c:459:5:n100_private_lz4_decompress_safe	104	static
+control/lz4_decompress.c:468:5:n100_private_lz4_decompress_safe_partial	112	static
+control/lz4_decompress.c:477:5:n100_private_lz4_decompress_fast	96	static
+control/lz4_decompress.c:563:5:n100_private_lz4_setStreamDecode	8	static
+control/lz4_decompress.c:586:5:n100_private_lz4_decompress_safe_continue	144	static
+control/lz4_decompress.c:639:5:n100_private_lz4_decompress_fast_continue	144	static
+control/lz4_decompress.c:678:5:n100_private_lz4_decompress_safe_usingDict	8	static
+control/lz4_decompress.c:696:5:n100_private_lz4_decompress_fast_usingDict	8	static

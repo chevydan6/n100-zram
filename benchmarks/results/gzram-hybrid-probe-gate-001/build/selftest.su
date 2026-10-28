@@ -1,0 +1,7 @@
+selftest.c:165:19:probe_init	8	static
+selftest.c:106:16:probe_read	32	static
+selftest.c:173:20:probe_exit	8	static
+selftest.c:60:12:probe_open	64	static
+selftest.c:81:12:probe_release	24	static
+selftest.c:86:16:probe_write	56	dynamic,bounded
+selftest.c:135:13:probe_ioctl	120	dynamic,bounded

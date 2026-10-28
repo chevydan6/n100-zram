@@ -1,0 +1,23 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/astra-hybrid-probe-002'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  selftest.o
+  CC [M]  control/lz4_compress.o
+  CC [M]  control/lz4_decompress.o
+  CC [M]  control/encoder/core.o
+  CC [M]  control/decoder/core.o
+  CC [M]  control/hybrid.o
+  CC [M]  candidate/encoder/core.o
+  CC [M]  candidate/decoder/core.o
+  CC [M]  candidate/hybrid.o
+  LD [M]  n100_gzram_hybrid_probe.o
+  MODPOST Module.symvers
+  CC [M]  n100_gzram_hybrid_probe.mod.o
+  CC [M]  .module-common.o
+  LD [M]  n100_gzram_hybrid_probe.ko
+  BTF [M] n100_gzram_hybrid_probe.ko
+Skipping BTF generation for n100_gzram_hybrid_probe.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/dan/n100-zram/build/astra-hybrid-probe-002'
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'

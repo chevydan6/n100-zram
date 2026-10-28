@@ -658,3 +658,21 @@ repeat consolidation, mixpack, select3, bitfull and wordrepeat controls. All 20
 corpora, three sessions and separate compression/decompression measurements
 remain. This first matched comparison does not select a universal block size.
 Current stock zstd ZRAM, CPU limits and boot configuration remain unchanged.
+
+## Scalar syscall probe engineering checkpoint
+
+The [isolated probe gate](../benchmarks/results/gzram-hybrid-probe-gate-001/summary.md)
+now passes two exact-kernel VM cycles across all 20 preserved corpora, each with
+101,071 client assertions and concurrent shared/private file contexts. The
+original full scalar hybrid gate also passes again. The initial no_llseek build
+failure and corrected source are retained. No host module was loaded.
+
+The probe exposes one resident page per ioctl for matched private scalar LZ4,
+wordmixed and bitpack/CTZ workspace ports, plus a mutex-protected no-op control.
+It retains separate compressed buffers and validates cross-decoding outside
+measurement. The fixture requests about 2.21 MB of payload/workspace per open,
+plus context and allocator overhead; that is not a proposed ZRAM per-stream cost.
+No queue, background worker, SIMD or FPU state management is introduced.
+Native timing and energy have not been collected from this interface. A native
+measurement client and current recovery verification remain required; the
+userspace codec gains cannot be assigned to the adapted kernel implementation.

@@ -1,0 +1,16 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/astra-hybrid-probe-001'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  selftest.o
+selftest.c:161:12: error: ‘no_llseek’ undeclared here (not in a function); did you mean ‘noop_llseek’?
+  161 |  .llseek = no_llseek,
+      |            ^~~~~~~~~
+      |            noop_llseek
+make[3]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/scripts/Makefile.build:289: selftest.o] Error 1
+make[2]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/Makefile:2228: .] Error 2
+make[1]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/home/dan/n100-zram/build/astra-hybrid-probe-001'
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
