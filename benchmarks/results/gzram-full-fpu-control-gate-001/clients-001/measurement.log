@@ -1,0 +1,8 @@
+gzram/benchmarks/hybrid-call.c: In function ‘main’:
+gzram/benchmarks/hybrid-call.c:183:4: error: this ‘for’ clause does not guard... [-Werror=misleading-indentation]
+  183 |    for(unsigned i=0;i<operation_count*3;i++)order[i]=i;shuffle(order,operation_count*3);
+      |    ^~~
+gzram/benchmarks/hybrid-call.c:183:56: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+  183 |    for(unsigned i=0;i<operation_count*3;i++)order[i]=i;shuffle(order,operation_count*3);
+      |                                                        ^~~~~~~
+cc1: all warnings being treated as errors

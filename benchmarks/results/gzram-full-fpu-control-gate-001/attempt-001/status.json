@@ -1,0 +1,34 @@
+{
+  "status": "failed",
+  "steps": [
+    {
+      "label": "module",
+      "command": [
+        "python3",
+        "gzram/tools/build-hybrid-selftest.py",
+        "--kind",
+        "probe",
+        "--control",
+        "build/astra-hybrid-port-001/wordmixed",
+        "--candidate",
+        "build/astra-hybrid-port-001/bitctz",
+        "--kernel-build",
+        "build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64",
+        "--output",
+        "build/astra-fpu-full-probe-001"
+      ],
+      "status": 0,
+      "elapsed_seconds": 23.415563106536865
+    },
+    {
+      "label": "clients",
+      "command": [
+        "python3",
+        "build/astra-audit/build-fpu-full-clients.py"
+      ],
+      "status": 1,
+      "elapsed_seconds": 2.4247937202453613
+    }
+  ],
+  "error": "AssertionError('clients')"
+}

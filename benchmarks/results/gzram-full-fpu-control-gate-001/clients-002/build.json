@@ -1,0 +1,52 @@
+[
+  {
+    "name": "interface",
+    "command": [
+      "gcc",
+      "-O2",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-static",
+      "-fno-tree-vectorize",
+      "-pthread",
+      "-B/home/dan/n100-zram/build/astra-vm/root/usr/lib64",
+      "-L/home/dan/n100-zram/build/astra-vm/root/usr/lib64",
+      "gzram/tests/hybrid-probe.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-fpu-full-clients-002/interface"
+    ],
+    "status": 0,
+    "source_sha256": {
+      "gzram/tests/hybrid-probe.c": "ceefa413877da395dc3e6906040e8c62734e9415daff61249730151e3ac8b056",
+      "gzram/kernel/hybrid-probe.h": "8b6ae547d62cc115abd1de45a8bdbaf403469ec6bea141e6bff4faf8780f5545"
+    },
+    "binary_sha256": "a646cd9b3623f60b30a7fad7fb40dd57c5597aa921e7726a9c826096bb6587b4"
+  },
+  {
+    "name": "measurement",
+    "command": [
+      "gcc",
+      "-O2",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-static",
+      "-fno-tree-vectorize",
+      "-pthread",
+      "-B/home/dan/n100-zram/build/astra-vm/root/usr/lib64",
+      "-L/home/dan/n100-zram/build/astra-vm/root/usr/lib64",
+      "gzram/benchmarks/hybrid-call.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-fpu-full-clients-002/measurement"
+    ],
+    "status": 0,
+    "source_sha256": {
+      "gzram/benchmarks/hybrid-call.c": "a02c15065e27c19c0c151b5a3fab9989cf1226c5277ccb9dd39d6d0fe531c1e4",
+      "gzram/kernel/hybrid-probe.h": "8b6ae547d62cc115abd1de45a8bdbaf403469ec6bea141e6bff4faf8780f5545"
+    },
+    "binary_sha256": "1bf7c67c13ba22658bda9dfb389ef8348ef926c5c34c8fb69caff1d7f1263e3e"
+  }
+]

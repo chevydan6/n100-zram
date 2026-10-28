@@ -28,6 +28,10 @@ static void *concurrent(void *opaque)
       ioctl(t->fd, GHY_PROBE_FPU_NOP, 0UL) != 0) {
    t->result = 1; break;
   }
+  packed = ioctl(t->fd, GHY_PROBE_COMP_FPU(codec), 0UL);
+  if (packed <= 0 || packed > 4352 || ioctl(t->fd, GHY_PROBE_DEC_FPU(codec), 0UL) != GHY_PROBE_PAGE_BYTES) {
+   t->result = 1; break;
+  }
  }
  return NULL;
 }
@@ -77,6 +81,10 @@ int main(int argc, char **argv)
     CHECK(ioctl(fd, GHY_PROBE_COMP(codec), 0UL) == (int)sizes[codec][i % GHY_PROBE_PAGES]);
     CHECK(ioctl(fd, GHY_PROBE_DEC(codec), 0UL) == GHY_PROBE_PAGE_BYTES);
     CHECK(ioctl(fd, GHY_PROBE_NOP, 0UL) == 0);
+   }
+   for (i = 0; i < 512; i++) {
+    CHECK(ioctl(fd, GHY_PROBE_COMP_FPU(codec), 0UL) == (int)sizes[codec][i % GHY_PROBE_PAGES]);
+    CHECK(ioctl(fd, GHY_PROBE_DEC_FPU(codec), 0UL) == GHY_PROBE_PAGE_BYTES);
    }
   }
   CHECK(ioctl(fd, GHY_PROBE_VALIDATE, 0UL) == 0);

@@ -813,3 +813,17 @@ decode and 9.52% on words50 decode. These are userspace differences. The kernel
 FPU controls are intended to measure relevant costs, not to add a fixed historical
 constant to these numbers. Bitdirect is a promising userspace candidate awaiting
 energy confirmation and its own kernel-port validation; it is not a new default.
+
+## Full scalar work inside kernel FPU handling: isolated gate
+
+The [new correctness checkpoint](../benchmarks/results/gzram-full-fpu-control-gate-001/summary.md)
+extends the empty FPU control to the same scalar LZ4, wordmixed and bitctz
+operations inside a bounded one-page FPU section. All eight codec object text
+sections are unchanged. Two load/test/unload cycles passed per client: 162,513
+interface assertions and 44,924 measurement-client assertions per cycle across
+all twenty corpora. Shared/private file concurrency, frame integrity and the
+listed YMM/MXCSR/x87 preservation checks passed; VM timing remained prohibited.
+The first client compilation failure and its source are preserved alongside the
+successful second build. No native host module was loaded or stock settings
+changed. This prepares matched whole-call FPU-cost measurements; it does not
+establish a kernel speedup, batch crossover, recovery coverage or ZRAM gain.

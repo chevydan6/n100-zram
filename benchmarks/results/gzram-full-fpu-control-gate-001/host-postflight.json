@@ -1,0 +1,29 @@
+{
+  "preserved_settings": {
+    "/sys/block/zram0/comp_algorithm": {
+      "previous_checkpoint": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c",
+      "current": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c"
+    },
+    "/sys/block/zram0/disksize": {
+      "previous_checkpoint": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e",
+      "current": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e"
+    },
+    "/sys/module/zram/notes/.note.gnu.build-id": {
+      "previous_checkpoint": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63",
+      "current": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63"
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": {
+      "previous_checkpoint": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+      "current": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c"
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": {
+      "previous_checkpoint": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+      "current": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed"
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": {
+      "previous_checkpoint": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+      "current": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199"
+    }
+  },
+  "experimental_host_module_loaded": false
+}

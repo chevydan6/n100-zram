@@ -138,9 +138,10 @@ static long probe_ioctl(struct file *file, unsigned int command, unsigned long a
  struct probe_context *ctx = file->private_data;
  long result = -EINVAL;
  unsigned codec, operation, page;
+ bool bracket = command >= GHY_PROBE_COMP_FPU(0) && command <= GHY_PROBE_DEC_FPU(CODECS - 1);
  if (argument) return -EINVAL;
  if (command != GHY_PROBE_NOP && command != GHY_PROBE_FPU_NOP && command != GHY_PROBE_VALIDATE &&
-     (command < GHY_PROBE_COMP(0) || command > GHY_PROBE_DEC(CODECS - 1))) return -ENOTTY;
+     !bracket && (command < GHY_PROBE_COMP(0) || command > GHY_PROBE_DEC(CODECS - 1))) return -ENOTTY;
  if (mutex_lock_interruptible(&ctx->lock)) return -ERESTARTSYS;
  if (command == GHY_PROBE_NOP) { result = 0; goto out; }
  if (command == GHY_PROBE_FPU_NOP) {
@@ -152,12 +153,17 @@ static long probe_ioctl(struct file *file, unsigned int command, unsigned long a
  }
  if (!ctx->ready) goto out;
  if (command == GHY_PROBE_VALIDATE) { result = validate(ctx); goto out; }
- codec = (command - GHY_PROBE_COMP(0)) / 2;
- operation = (command - GHY_PROBE_COMP(0)) & 1;
+ codec = (command - (bracket ? GHY_PROBE_COMP_FPU(0) : GHY_PROBE_COMP(0))) / 2;
+ operation = (command - (bracket ? GHY_PROBE_COMP_FPU(0) : GHY_PROBE_COMP(0))) & 1;
+ if (bracket && !irq_fpu_usable()) { result = -EOPNOTSUPP; goto out; }
  page = ctx->cursor[codec][operation];
  ctx->cursor[codec][operation] = (page + 1) % PAGES;
+ /* Resident buffers/private workspace are allocated before this bounded
+  * one-page section. Neither codec allocates, locks, sleeps or uses SIMD. */
+ if (bracket) kernel_fpu_begin();
  if (operation) result = decode(ctx, codec, ctx->packed[codec] + page * ROOM, ctx->sizes[codec][page]);
  else result = encode(ctx, codec, page, ctx->packed[codec] + page * ROOM);
+ if (bracket) kernel_fpu_end();
  if (result <= 0 || result != (operation ? BLOCK : ctx->sizes[codec][page])) result = -EIO;
 out:
  mutex_unlock(&ctx->lock); return result;

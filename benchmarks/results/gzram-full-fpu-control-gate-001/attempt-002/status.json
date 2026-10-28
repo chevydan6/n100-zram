@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "steps": [
+    {
+      "label": "clients",
+      "command": [
+        "python3",
+        "build/astra-audit/build-fpu-full-clients-002.py"
+      ],
+      "status": 0,
+      "elapsed_seconds": 2.8263890743255615
+    },
+    {
+      "label": "interface-vm",
+      "command": [
+        "python3",
+        "gzram/tools/vm-scalar-selftest.py",
+        "--kind",
+        "probe",
+        "--guest-avx2",
+        "--kernel",
+        "/boot/vmlinuz-7.2.11-200.fc44.x86_64",
+        "--module",
+        "build/astra-fpu-full-probe-001/n100_gzram_hybrid_probe.ko",
+        "--qemu",
+        "build/astra-vm/root/usr/bin/qemu-system-x86_64",
+        "--busybox",
+        "build/astra-vm/root/usr/bin/busybox",
+        "--bios",
+        "build/astra-vm/root/usr/share/seabios/bios-256k.bin",
+        "--qemu-data",
+        "build/astra-vm/root/usr/share/qemu",
+        "--library-path",
+        "build/astra-vm/root/usr/lib64",
+        "--corpora-directory",
+        "build/astra-probe-client-001/corpora",
+        "--probe-client",
+        "build/astra-fpu-full-clients-002/interface",
+        "--output",
+        "/home/dan/n100-zram/build/astra-fpu-full-interface-vm-002"
+      ],
+      "status": 0
+    },
+    {
+      "label": "measurement-vm",
+      "command": [
+        "python3",
+        "gzram/tools/vm-scalar-selftest.py",
+        "--kind",
+        "probe",
+        "--guest-avx2",
+        "--kernel",
+        "/boot/vmlinuz-7.2.11-200.fc44.x86_64",
+        "--module",
+        "build/astra-fpu-full-probe-001/n100_gzram_hybrid_probe.ko",
+        "--qemu",
+        "build/astra-vm/root/usr/bin/qemu-system-x86_64",
+        "--busybox",
+        "build/astra-vm/root/usr/bin/busybox",
+        "--bios",
+        "build/astra-vm/root/usr/share/seabios/bios-256k.bin",
+        "--qemu-data",
+        "build/astra-vm/root/usr/share/qemu",
+        "--library-path",
+        "build/astra-vm/root/usr/lib64",
+        "--corpora-directory",
+        "build/astra-probe-client-001/corpora",
+        "--probe-client",
+        "build/astra-fpu-full-clients-002/measurement",
+        "--output",
+        "/home/dan/n100-zram/build/astra-fpu-full-measurement-vm-002",
+        "--probe-measurement-client",
+        "--probe-fpu-control"
+      ],
+      "status": 0
+    }
+  ],
+  "source_hashes_unchanged": true
+}

@@ -114,6 +114,21 @@ static void shuffle(unsigned *order,unsigned count)
 {
  for(unsigned i=count-1;i>0;i--){unsigned j=order_random()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}
 }
+struct operation { unsigned long command;const char *variant,*name;int codec,compress; };
+#define PAIR(c,label,comp,dec) {comp(c),label,"compress",c,1},{dec(c),label,"decompress",c,0}
+static const struct operation operations[]={
+ PAIR(0,"lz4-private-scalar",GHY_PROBE_COMP,GHY_PROBE_DEC),
+ PAIR(1,"ghy-wordmixed-port",GHY_PROBE_COMP,GHY_PROBE_DEC),
+ PAIR(2,"ghy-bitctz-port",GHY_PROBE_COMP,GHY_PROBE_DEC),
+ {GHY_PROBE_NOP,"interface","noop",-1,0},
+ {GHY_PROBE_FPU_NOP,"interface-fpu","noop",-1,0},
+ PAIR(0,"lz4-private-scalar-fpu",GHY_PROBE_COMP_FPU,GHY_PROBE_DEC_FPU),
+ PAIR(1,"ghy-wordmixed-port-fpu",GHY_PROBE_COMP_FPU,GHY_PROBE_DEC_FPU),
+ PAIR(2,"ghy-bitctz-port-fpu",GHY_PROBE_COMP_FPU,GHY_PROBE_DEC_FPU),
+};
+#undef PAIR
+static long expected_result(const struct operation *op,const uint32_t sizes[3][PAGES],unsigned page)
+{ return op->codec<0?0:op->compress?sizes[op->codec][page]:SIZE; }
 int main(int argc,char **argv)
 {
  int measure=0,fpu_control=0,first=1;
@@ -133,9 +148,7 @@ int main(int argc,char **argv)
  }
  int fd=open("/dev/n100-ghy-probe",O_RDWR|O_CLOEXEC);CHECK(fd>=0);
  unsigned char *input=malloc(PAGES*SIZE);CHECK(input);
- const unsigned long commands[]={GHY_PROBE_COMP(0),GHY_PROBE_DEC(0),GHY_PROBE_COMP(1),GHY_PROBE_DEC(1),GHY_PROBE_COMP(2),GHY_PROBE_DEC(2),GHY_PROBE_NOP,GHY_PROBE_FPU_NOP};
- unsigned operations=fpu_control?8:7;
- const char *variants[]={"lz4-private-scalar","ghy-wordmixed-port","ghy-bitctz-port","interface"};
+ unsigned operation_count=fpu_control?sizeof(operations)/sizeof(operations[0]):7;
  const char *states[]={"vectors-cleared-before-loop","sse-dirty","ymm-dirty"};
  if(measure){
   const char *inherited=getenv("GZRAM_ENERGY_FD");
@@ -156,32 +169,34 @@ int main(int argc,char **argv)
   uint32_t sizes[3][PAGES];CHECK(read(fd,sizes,sizeof(sizes))==sizeof(sizes));
   for(unsigned codec=0;codec<3;codec++)for(unsigned page=0;page<PAGES;page++)CHECK(sizes[codec][page]>0 && sizes[codec][page]<=4352);
   integrity(fd,sizes);
-  for(unsigned op=0;op<operations;op++){
-   if(vectors){CHECK(!check_state(fd,commands[op]));integrity(fd,sizes);}
+  for(unsigned index=0;index<operation_count;index++){
+   const struct operation *op=&operations[index];
+   if(vectors){CHECK(!check_state(fd,op->command));integrity(fd,sizes);}
    for(unsigned i=0;i<PAGES;i++){
-    long expected=op>=6?0:(op&1)?SIZE:sizes[op/2][i];
-    CHECK(ioctl(fd,commands[op],0UL)==expected);
+    CHECK(ioctl(fd,op->command,0UL)==expected_result(op,sizes,i));
    }
   }
   integrity(fd,sizes);
   if(!measure)continue;
   for(int round=-2;round<9;round++){
-   unsigned order[24];for(unsigned i=0;i<operations*3;i++)order[i]=i;shuffle(order,operations*3);
-   for(unsigned index=0;index<operations*3;index++){
-    unsigned op=order[index]%operations,state=order[index]/operations;
-    CHECK(!check_state(fd,commands[op]));integrity(fd,sizes);
+   unsigned order[3*sizeof(operations)/sizeof(operations[0])];
+   for(unsigned i=0;i<operation_count*3;i++)order[i]=i;
+   shuffle(order,operation_count*3);
+   for(unsigned index=0;index<operation_count*3;index++){
+    const struct operation *op=&operations[order[index]%operation_count];
+    unsigned state=order[index]/operation_count;
+    CHECK(!check_state(fd,op->command));integrity(fd,sizes);
     uint64_t before=0,after=0;int rapl=energy(&before);
     begin();clear_vectors();uint64_t cpu_start=cpu_now(),start=now();
     for(unsigned i=0;i<ops;i++){
-     long expected=op>=6?0:(op&1)?SIZE:sizes[op/2][i%PAGES];
-     if(invoke(fd,commands[op],state)!=expected){fprintf(stderr,"Timed ioctl failed corpus=%s op=%u call=%u\n",name,op,i);return 4;}
+     if(invoke(fd,op->command,state)!=expected_result(op,sizes,i%PAGES)){fprintf(stderr,"Timed ioctl failed corpus=%s variant=%s operation=%s call=%u\n",name,op->variant,op->name,i);return 4;}
     }
     uint64_t elapsed=now()-start,cpu_elapsed=cpu_now()-cpu_start;
     double counts[4],fraction;end(counts,&fraction);rapl=rapl&&energy(&after);
     double uj=rapl?(double)((after+energy_range-before)%energy_range)/ops:-1,bytes=0;
-    if(op<6)for(unsigned page=0;page<PAGES;page++)bytes+=(double)sizes[op/2][page]/PAGES;
+    if(op->codec>=0)for(unsigned page=0;page<PAGES;page++)bytes+=(double)sizes[op->codec][page]/PAGES;
     integrity(fd,sizes);
-    if(round>=0)printf("%s,%d,%s,%s,%s,%u,%.3f,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",name,round,states[state],op==7?"interface-fpu":variants[op/2],op>=6?"noop":(op&1)?"decompress":"compress",ops,(double)elapsed/ops,(double)cpu_elapsed/ops,100.0*cpu_elapsed/elapsed,bytes,counts[0],counts[1],counts[2],counts[3],fraction,uj);
+    if(round>=0)printf("%s,%d,%s,%s,%s,%u,%.3f,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",name,round,states[state],op->variant,op->name,ops,(double)elapsed/ops,(double)cpu_elapsed/ops,100.0*cpu_elapsed/elapsed,bytes,counts[0],counts[1],counts[2],counts[3],fraction,uj);
    }
    fflush(stdout);
   }
