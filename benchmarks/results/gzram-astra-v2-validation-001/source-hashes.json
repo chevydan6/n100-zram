@@ -1,0 +1,9 @@
+{
+  "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+  "gzram/src/hybrid.c": "65154c6443b3d2d8995510ab81a7d0b14df60df55c310deba945f17facf4fb40",
+  "gzram/tools/build.py": "de997725fade423aef8f79dd4a64c4f6bf41ba012e8ecd8c3bb4902c5197d0f7",
+  "gzram/bench.c": "8eac3241b9388501038758136a1a62210927262a6ce304e9300aeb0b38aaea7e",
+  "gzram/tests/hybrid.py": "4f41c918f3122f13d51517da72eb4bee3160cd1ad71727a52528aa2c4be724ed",
+  "gzram/tools/run-native.py": "95d070245858d75ff702842e137c3dc7e23f196092202e319513618183c9b855",
+  "gzram/tools/with-rapl.py": "958cf5eb4b8a4990a9fd22a3c0eeeac17a025445a787bb7d6fd05903f53000a9"
+}

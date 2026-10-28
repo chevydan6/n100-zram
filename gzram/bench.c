@@ -15,20 +15,29 @@
 #define PAGES 128
 #define SIZE 4096
 #define BOUND 4352
+#ifndef OPS
 #define OPS 32768
+#endif
+_Static_assert(OPS>0&&OPS%PAGES==0,"Batch calls must be positive and a multiple of the corpus page count");
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
-static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages"};
-static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack"};
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16"};
+static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge"};
 /* 57 base entries plus two ISAs at eight block sizes per hybrid policy.
  * Keep the shuffled indices and codec registry at the same capacity. */
 enum { CODEC_CAPACITY=57+16*(sizeof(policies)/sizeof(policies[0])) };
-static int sizes[PAGES],fds[4]={-1,-1,-1,-1};static uint64_t seed=100,order_seed=100,energy_range;
+static int sizes[PAGES],fds[4]={-1,-1,-1,-1},energy_fd=-1;static uint64_t seed=100,order_seed=100,energy_range;
 static uint32_t rnd(void){seed^=seed<<13;seed^=seed>>7;seed^=seed<<17;return (uint32_t)seed;}
 static uint32_t order_random(void){order_seed^=order_seed<<13;order_seed^=order_seed>>7;order_seed^=order_seed<<17;return (uint32_t)order_seed;}
 static uint64_t now(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC_RAW,&t);return (uint64_t)t.tv_sec*1000000000+t.tv_nsec;}
 static uint64_t cpu_now(void){struct timespec t;if(clock_gettime(CLOCK_THREAD_CPUTIME_ID,&t)){perror("thread CPU clock");exit(15);}return (uint64_t)t.tv_sec*1000000000+t.tv_nsec;}
 static int read_counter(const char *path,uint64_t *value){FILE *f=fopen(path,"r");if(!f)return 0;int ok=fscanf(f,"%lu",value)==1;fclose(f);return ok;}
-static int energy(uint64_t *value){return energy_range&&read_counter("/sys/class/powercap/intel-rapl:0/energy_uj",value);}
+static int energy(uint64_t *value){
+ if(!energy_range)return 0;
+ if(energy_fd<0)return read_counter("/sys/class/powercap/intel-rapl:0/energy_uj",value);
+ char buffer[64];ssize_t size=pread(energy_fd,buffer,sizeof(buffer)-1,0);
+ if(size<=0)return 0;
+ buffer[size]=0;return sscanf(buffer,"%lu",value)==1;
+}
 static void setup_perf(void){
  const uint64_t configs[]={PERF_COUNT_HW_CPU_CYCLES,PERF_COUNT_HW_INSTRUCTIONS,PERF_COUNT_HW_BRANCH_MISSES,PERF_COUNT_HW_CACHE_MISSES};
  for(int i=0;i<4;i++){
@@ -54,6 +63,7 @@ static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_e
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
 static void fill(int kind){
  seed=100+(unsigned)kind;
+ if(kind==16){for(unsigned p=0;p<PAGES;p++)for(unsigned i=0;i<SIZE;i++)input[p][i]=(unsigned char)(i%16+p*37);return;}
  if(kind>=12&&kind<=14){
   unsigned present=(unsigned)kind-11;
   for(unsigned p=0;p<PAGES;p++)for(unsigned i=0;i<SIZE;i+=4){
@@ -107,7 +117,7 @@ static int selected_name(const char *list,const char *name)
 }
 int main(int argc,char **argv){
  if(argc!=2&&argc!=3)return 2;
- int validate=argc==3&&!strcmp(argv[2],"--validate-only");int list_variants=argc==3&&!strcmp(argv[2],"--list-variants"),list_corpora=argc==3&&!strcmp(argv[2],"--list-corpora");int dump=argc==3&&!strncmp(argv[2],"--dump-corpus=",14);if(argc==3&&!validate&&!list_variants&&!list_corpora&&!dump)return 2;
+ int validate=argc==3&&!strcmp(argv[2],"--validate-only");int list_variants=argc==3&&!strcmp(argv[2],"--list-variants"),list_corpora=argc==3&&!strcmp(argv[2],"--list-corpora"),list_calls=argc==3&&!strcmp(argv[2],"--calls-per-batch");int dump=argc==3&&!strncmp(argv[2],"--dump-corpus=",14);if(argc==3&&!validate&&!list_variants&&!list_corpora&&!list_calls&&!dump)return 2;
  const char *shuffle=getenv("GZRAM_ORDER_SEED");if(shuffle){char *end;errno=0;order_seed=strtoull(shuffle,&end,10);if(!*shuffle||*end||errno||!order_seed)return 2;}
  cpu_set_t allowed,chosen;if(sched_getaffinity(0,sizeof(allowed),&allowed))return 3;CPU_ZERO(&chosen);int cpu=0;for(;cpu<CPU_SETSIZE;cpu++)if(CPU_ISSET(cpu,&allowed))break;if(cpu==CPU_SETSIZE)return 3;CPU_SET(cpu,&chosen);if(sched_setaffinity(0,sizeof(chosen),&chosen))return 3;
  char path[4096];snprintf(path,sizeof(path),"%s/libgzram.so",argv[1]);void *gz=dlopen(path,RTLD_NOW|RTLD_LOCAL);snprintf(path,sizeof(path),"%s/lz4-small.so",argv[1]);void *lz=dlopen(path,RTLD_NOW|RTLD_LOCAL);if(!gz||!lz){fprintf(stderr,"%s\n",dlerror());return 4;}
@@ -162,6 +172,9 @@ int main(int argc,char **argv){
  }
  if(list_variants){for(int i=0;i<n;i++)puts(variants[i].name);return 0;}
  if(list_corpora){for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)puts(corpora[i]);return 0;}
+ if(list_calls){printf("%d\n",OPS);return 0;}
+ const char *inherited_energy=getenv("GZRAM_ENERGY_FD");
+ if(inherited_energy){char *end;errno=0;long fd=strtol(inherited_energy,&end,10);if(errno||!inherited_energy[0]||*end||fd<3||fd>2147483647){fprintf(stderr,"Invalid inherited energy descriptor\n");return 16;}energy_fd=(int)fd;}
  setup_perf();if(!read_counter("/sys/class/powercap/intel-rapl:0/max_energy_range_uj",&energy_range))energy_range=0;
  uint64_t initial_energy;if(!energy(&initial_energy))energy_range=0;
  fprintf(stderr,"CPU %d; AVX2 verified; RAPL %s; userspace codec screening, kernel SIMD overhead excluded\n",cpu,energy_range?"available":"unavailable");

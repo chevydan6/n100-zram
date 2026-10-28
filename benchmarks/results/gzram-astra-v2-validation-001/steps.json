@@ -1,0 +1,305 @@
+[
+  {
+    "label": "astra-v2-build",
+    "command": [
+      "python3",
+      "gzram/tools/build.py",
+      "--output",
+      "/home/dan/n100-zram/build/astra-v2"
+    ],
+    "status": 0,
+    "elapsed_seconds": 216.72491765022278
+  },
+  {
+    "label": "astra-v2-bench-build",
+    "command": [
+      "gcc",
+      "-O2",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-DOPS=8192",
+      "gzram/bench.c",
+      "-ldl",
+      "-o",
+      "/home/dan/n100-zram/build/astra-v2/benchmark"
+    ],
+    "status": 0,
+    "elapsed_seconds": 2.0745294094085693
+  },
+  {
+    "label": "astra-v2-wordrepeat",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordrepeat.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.687087059020996
+  },
+  {
+    "label": "astra-v2-ctzrepeat",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-ctzrepeat.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.562093257904053
+  },
+  {
+    "label": "astra-v2-bitpack",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-bitpack.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 29.14916753768921
+  },
+  {
+    "label": "astra-v2-mixpack",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-mixpack.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.524742126464844
+  },
+  {
+    "label": "astra-v2-repeatmerge",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-repeatmerge.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 27.32322335243225
+  },
+  {
+    "label": "astra-v2-wordmixed",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-wordmixed.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2/libgzram-hybrid-repeatmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 26.717939138412476
+  },
+  {
+    "label": "astra-v2-registry",
+    "command": [
+      "/home/dan/n100-zram/build/astra-v2/benchmark",
+      "/home/dan/n100-zram/build/astra-v2",
+      "--validate-only"
+    ],
+    "status": 0,
+    "elapsed_seconds": 11.013011693954468
+  },
+  {
+    "label": "astra-v2-asan-build",
+    "command": [
+      "python3",
+      "gzram/tools/build.py",
+      "--output",
+      "/home/dan/n100-zram/build/astra-v2-asan"
+    ],
+    "status": 0,
+    "elapsed_seconds": 521.4689571857452
+  },
+  {
+    "label": "astra-v2-asan-bench-build",
+    "command": [
+      "gcc",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-DOPS=8192",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "gzram/bench.c",
+      "-ldl",
+      "-o",
+      "/home/dan/n100-zram/build/astra-v2-asan/benchmark"
+    ],
+    "status": 0,
+    "elapsed_seconds": 3.434201240539551
+  },
+  {
+    "label": "astra-v2-asan-wordrepeat",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordrepeat.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 33.09748888015747
+  },
+  {
+    "label": "astra-v2-asan-ctzrepeat",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-ctzrepeat.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 32.73817849159241
+  },
+  {
+    "label": "astra-v2-asan-bitpack",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-bitpack.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 34.098143100738525
+  },
+  {
+    "label": "astra-v2-asan-mixpack",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-mixpack.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordmixed.so",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-ctzunpack.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-guard32mixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 32.88483190536499
+  },
+  {
+    "label": "astra-v2-asan-repeatmerge",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-repeatmerge.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 32.316179275512695
+  },
+  {
+    "label": "astra-v2-asan-wordmixed",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-wordmixed.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v2-asan/libgzram-hybrid-repeatmerge.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 35.40015459060669
+  },
+  {
+    "label": "astra-v2-asan-registry",
+    "command": [
+      "/home/dan/n100-zram/build/astra-v2-asan/benchmark",
+      "/home/dan/n100-zram/build/astra-v2-asan",
+      "--validate-only"
+    ],
+    "status": 0,
+    "elapsed_seconds": 40.352182388305664
+  },
+  {
+    "label": "codegen",
+    "command": [
+      "python3",
+      "gzram/tools/audit-codegen.py",
+      "--baseline",
+      "build/astra-v1",
+      "--candidate",
+      "build/astra-v2",
+      "--output",
+      "/home/dan/n100-zram/build/astra-v2-validation/codegen.json"
+    ],
+    "status": 0,
+    "elapsed_seconds": 0.8186061382293701
+  },
+  {
+    "label": "sizes",
+    "command": [
+      "python3",
+      "gzram/tools/measure-sizes.py",
+      "--directory",
+      "build/astra-v2",
+      "--benchmark",
+      "build/astra-v2/benchmark",
+      "--output",
+      "build/astra-v2-sizes"
+    ],
+    "status": 0,
+    "elapsed_seconds": 36.410144090652466
+  },
+  {
+    "label": "size-summary",
+    "command": [
+      "python3",
+      "gzram/tools/summarize-sizes.py",
+      "--input",
+      "build/astra-v2-sizes"
+    ],
+    "status": 0,
+    "elapsed_seconds": 2.4757015705108643
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "scope": "Unbuilt isolated scalar GZR1 component; no kernel integration or performance claim",
+  "source_sha256": {
+    "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+    "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+    "gzram/tools/prepare-scalar-port.py": "e707fa2627b0764943d33390532bb2db22cded62a19669341d02cf7d9f52c04c"
+  },
+  "prefix": "gzram",
+  "flags": [
+    "GZRAM_SCALAR_FAST",
+    "GZRAM_CTZ_UNPACK"
+  ],
+  "removed_vector_helpers": [
+    "scan_avx2",
+    "pack_avx2",
+    "unpack_avx2",
+    "unpack_block_avx2",
+    "repeat_avx2",
+    "variable_period_avx2"
+  ],
+  "generated_sha256": {
+    "core.c": "f41aa8e940feb23c54a4954e21c7c39f3fe6d5df8ccde8e0053d93ef1bdae270",
+    "gzram.h": "8a5fa8ca70850bc1944a7b331b1a40229455f5364b594d67c82da38cf474d948",
+    "tables.h": "a2b53ddca12f1176bbaed02a50b635f6cee346652890754b38b36e8de8720dd3"
+  }
+}

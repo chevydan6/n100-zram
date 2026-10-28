@@ -1,0 +1,6 @@
+{
+  "status": 0,
+  "stdout": "fd-preserved\n",
+  "stderr": "",
+  "scope": "Synthetic descriptor propagation through nice, taskset and nested Python; not energy data"
+}

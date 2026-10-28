@@ -1,0 +1,5 @@
+{
+  "status": "passed",
+  "scope": "Userspace validation of generated scalar GZR1 component; no kernel compile, module load, VM run, or performance claim",
+  "steps": 10
+}

@@ -87,7 +87,14 @@ AVX static void scan_avx2(const uint8_t *src,size_t n,struct scan *s)
 }
 static void pack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
+#if defined(GZRAM_CTZ_PACK)
+ /* A full mask is already contiguous. Otherwise visit only present words;
+  * the caller has validated the exact popcount-derived output capacity. */
+ if(mask==255){memcpy(dst,src,32);return;}
+ while(mask){unsigned lane=(unsigned)__builtin_ctz(mask);mask&=mask-1;memcpy(dst,src+lane*4,4);dst+=4;}
+#else
  for(unsigned lane=0;lane<8;lane++)if(mask&(1U<<lane)){memcpy(dst,src+lane*4,4);dst+=4;}
+#endif
 }
 static void unpack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
@@ -107,6 +114,7 @@ static void unpack_scalar(const uint8_t *src,uint8_t *dst,unsigned mask)
  }
 #endif
 }
+#if !defined(GZRAM_MIXED_ENCODE) || defined(GZRAM_EMBED_PREFIX)
 AVX static void pack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
  if(!mask)return;
@@ -116,6 +124,7 @@ AVX static void pack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
  uint32_t tmp[8];_mm256_storeu_si256((__m256i *)tmp,_mm256_permutevar8x32_epi32(v,indices));
  memcpy(dst,tmp,gz_count[mask]*4U);
 }
+#endif
 AVX static void unpack_avx2(const uint8_t *src,uint8_t *dst,unsigned mask)
 {
  uint32_t tmp[8]={0};memcpy(tmp,src,gz_count[mask]*4U);
@@ -138,7 +147,22 @@ AVX static void unpack_block_avx2(const uint8_t *src,uint8_t *dst,const uint8_t 
 #endif
 static void repeat_scalar(uint8_t *dst,const uint8_t *pattern,size_t n,unsigned period)
 {
+#if defined(GZRAM_WORD_REPEAT)
+ /* The decoder has checked period in {4,8,16,32}, n >= period and n%period=0.
+  * Expand the bounded pattern once, then use integer stores. Legal short
+  * decoder-only blocks (including four-byte tails) must remain bounded. */
+ uint64_t words[4];
+ if(period==4){uint64_t word=load32(pattern);word|=word<<32;for(unsigned i=0;i<4;i++)words[i]=word;}
+ else if(period==8){uint64_t word=load64(pattern);for(unsigned i=0;i<4;i++)words[i]=word;}
+ else if(period==16){words[0]=words[2]=load64(pattern);words[1]=words[3]=load64(pattern+8);}
+ else for(unsigned i=0;i<4;i++)words[i]=load64(pattern+i*8);
+ size_t at=0;
+ for(;n-at>=32;at+=32)for(unsigned i=0;i<4;i++)memcpy(dst+at+i*8,&words[i],8);
+ for(;n-at>=8;at+=8)memcpy(dst+at,&words[(at&31)/8],8);
+ if(at<n)memcpy(dst+at,pattern,4);
+#else
  for(size_t at=0;at<n;at+=period)memcpy(dst+at,pattern,period);
+#endif
 }
 AVX static void repeat_avx2(uint8_t *dst,const uint8_t *pattern,size_t n,unsigned period)
 {
@@ -301,7 +325,13 @@ static int decode(const void *input,size_t size,void *output,size_t cap,pack_fn 
  return pos==size?(int)n:-1;
 }
 int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,scan_scalar,pack_scalar PREFIX_NONE);}
-int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_avx2 PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);}
+int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){
+#if defined(GZRAM_MIXED_ENCODE)
+ return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_scalar PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);
+#else
+ return gzram_avx2_available()?encode(s,n,d,cap,log,scan_avx2,pack_avx2 PREFIX_NONE):gzram_encode_scalar(s,n,d,cap,log);
+#endif
+}
 int gzram_decode_scalar(const void *s,size_t n,void *d,size_t cap){return decode(s,n,d,cap,unpack_scalar,repeat_scalar);}
 int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap){return gzram_avx2_available()?decode(s,n,d,cap,unpack_avx2,repeat_avx2):gzram_decode_scalar(s,n,d,cap);}
 

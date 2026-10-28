@@ -21,16 +21,28 @@ if a.variants:
  assert len(a.variants)==len(set(a.variants)) and all(name and ',' not in name for name in a.variants)
  env['GZRAM_VARIANT_LIST']=','.join(a.variants)
 else:env.pop('GZRAM_VARIANT_LIST',None)
+energy_fds=()
+if 'GZRAM_ENERGY_FD' in env:
+ fd=int(env['GZRAM_ENERGY_FD']);assert fd>=3
+ assert os.readlink(f'/proc/self/fd/{fd}')==os.path.realpath('/sys/class/powercap/intel-rapl:0/energy_uj')
+ assert fcntl.fcntl(fd,fcntl.F_GETFL)&os.O_ACCMODE==os.O_RDONLY
+ energy_fds=(fd,)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 model=next(line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name'))
 assert 'N100' in model,'Performance runs must use the physical N100'
 variant_names=subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--list-variants'],env=env,text=True).splitlines()
 corpora=subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--list-corpora'],env=env,text=True).splitlines()
+calls_per_batch=int(subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--calls-per-batch'],env=env,text=True))
+assert calls_per_batch>0 and calls_per_batch%128==0
 if a.variants:assert set(variant_names)==set(a.variants),'Unknown or missing requested variants'
 assert variant_names and corpora and len(set(variant_names))==len(variant_names) and len(set(corpora))==len(corpora)
 corpus_hashes={name:hashlib.sha256(subprocess.check_output([str(a.directory/'benchmark'),str(a.directory),'--dump-corpus='+name],env=env)).hexdigest() for name in corpora}
 inputs={'corpus_sha256':corpus_hashes,'order_seeds':[100,101,102],'selected_variants':a.variants,'variant_names':variant_names,'corpora':corpora,'screen':a.screen,'cpu_model':model,'runner_sha256':sha(Path(__file__)),'kernel':platform.release(),'binary_sha256':sha(a.directory/'benchmark'),'manifest':json.loads((a.directory/'manifest.json').read_text()),'libraries':{f.name:sha(f) for f in a.directory.glob('*.so')},'bash_sha256':sha(Path('/usr/bin/bash')),'scope':'Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work'}
 inputs['execution']={'serialization':'exclusive target-local flock for runner lifetime','nice':os.getpriority(os.PRIO_PROCESS,0),'runner_cpu':1,'codec_cpu':0,'thread_cpu_scope':'Thread CPU clocks bracket wall-clock loop; CPU time includes clock boundaries; not machine utilization'}
+inputs['calls_per_batch']=calls_per_batch
+inputs['energy_access']='inherited read-only RAPL descriptor' if energy_fds else 'direct sysfs read if permitted'
+inputs['execution']['uid']=os.getuid()
+inputs['execution']['effective_capabilities']=next(line.split()[1] for line in Path('/proc/self/status').read_text().splitlines() if line.startswith('CapEff:'))
 if a.output.exists():
  assert a.resume;state=json.loads((a.output/'checkpoint.json').read_text());assert state['inputs']==inputs,'Sources or environment changed; preserve old output and start fresh'
 else:a.output.mkdir(parents=True);state={'inputs':inputs,'completed':[],'attempts':{},'started':time.time()}
@@ -51,14 +63,14 @@ def sample():
 try:
  save(status='running',before=snapshot());thread=threading.Thread(target=sample,daemon=True);thread.start()
  if 'validation' not in state['completed']:
-  with (a.output/'validation.log').open('w') as out:subprocess.run(['taskset','-c','0',str(a.directory/'benchmark'),str(a.directory),'--validate-only'],stdout=out,stderr=subprocess.STDOUT,env=env,check=True)
+  with (a.output/'validation.log').open('w') as out:subprocess.run(['taskset','-c','0',str(a.directory/'benchmark'),str(a.directory),'--validate-only'],stdout=out,stderr=subprocess.STDOUT,env=env,pass_fds=energy_fds,check=True)
   state['completed'].append('validation');save()
  for session in range(3):
   label=f'session-{session}'
   if label in state['completed']:continue
   attempt=state['attempts'].get(label,0);state['attempts'][label]=attempt+1;temporary=a.output/f'{label}.attempt-{attempt}.csv.tmp';save(current=label)
   session_env=dict(env,GZRAM_ORDER_SEED=str(100+session))
-  with temporary.open('w') as out,(a.output/f'{label}.attempt-{attempt}.stderr').open('w') as err:subprocess.run(['taskset','-c','0',str(a.directory/'benchmark'),str(a.directory)],stdout=out,stderr=err,env=session_env,check=True)
+  with temporary.open('w') as out,(a.output/f'{label}.attempt-{attempt}.stderr').open('w') as err:subprocess.run(['taskset','-c','0',str(a.directory/'benchmark'),str(a.directory)],stdout=out,stderr=err,env=session_env,pass_fds=energy_fds,check=True)
   rows=list(csv.DictReader(temporary.open()));expected_variants=len(variant_names);expected_rows=expected_variants*len(corpora)*18
   assert len(rows)==expected_rows and len({(r['corpus'],r['round'],r['variant'],r['operation']) for r in rows})==expected_rows
   assert {r['variant'] for r in rows}==set(variant_names) and {r['corpus'] for r in rows}==set(corpora)

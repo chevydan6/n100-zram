@@ -41,9 +41,13 @@ public_names=['encode_scalar','encode_avx2','decode_scalar','decode_avx2']
 def rename(prefix):return [f'-Dgzram_{name}=gzram_{prefix}_{name}' for name in public_names]
 core_objects={
  'base':['-DGZRAM_SCALAR_FAST=1',*rename('base')],
+ 'bitpackbase':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1',*rename('base')],
+ 'mixpackbase':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_MIXED_ENCODE=1',*rename('base')],
  'fused':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_EMBED_PREFIX=1',*rename('fused'),'-Dgzram_avx2_available=gzram_fused_avx2_available','-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2'],
  'mixed':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1',*rename('mixed'),'-Dgzram_avx2_available=gzram_mixed_avx2_available','-Dgzram_decode_mixed=gzram_mixed_decode'],
  'ctz':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_CTZ_UNPACK=1',*rename('ctz'),'-Dgzram_avx2_available=gzram_ctz_avx2_available','-Dgzram_decode_mixed=gzram_ctz_decode'],
+ 'repeat':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_WORD_REPEAT=1',*rename('repeat'),'-Dgzram_avx2_available=gzram_repeat_avx2_available','-Dgzram_decode_mixed=gzram_repeat_decode'],
+ 'ctzrepeat':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_WORD_REPEAT=1','-DGZRAM_CTZ_UNPACK=1',*rename('repeat'),'-Dgzram_avx2_available=gzram_repeat_avx2_available','-Dgzram_decode_mixed=gzram_repeat_decode'],
 }
 for name,defines in core_objects.items():compile_files([root/'gzram/src/gzram.c'],a.output/f'hybrid-{name}.o',defines,[a.output],shared=False)
 policies={
@@ -59,10 +63,16 @@ policies={
  'splittail':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_SPLIT_TAIL=1'],
  'outlinetail':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_SPLIT_TAIL=1','-DGZRAM_HYBRID_OUTLINE_WORD=1'],
  'ctzunpack':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_CTZ_DECODE=1'],
+ 'wordrepeat':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_REPEAT_DECODE=1'],
+ 'ctzrepeat':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_REPEAT_DECODE=1'],
+ 'bitpack':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'mixpack':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'repeatmerge':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_MERGE_REPEAT=1'],
 }
-additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz'}
+additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz','wordrepeat':'repeat','ctzrepeat':'ctzrepeat','bitpack':'mixed','mixpack':'mixed','repeatmerge':'mixed'}
 for policy,defines in policies.items():
- sources=[root/'gzram/src/hybrid.c',a.output/'hybrid-base.o']
+ base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase'}.get(policy,'base')
+ sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
  compile_files([*sources,*lz4_sources],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()

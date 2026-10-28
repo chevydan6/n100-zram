@@ -1,0 +1,354 @@
+{
+  "scope": "Size and independent correctness only; no timing, CPU or energy measurements",
+  "pages_per_corpus": 128,
+  "variant_names": [
+    "lz4-small-scalar",
+    "gz-avx2-1024",
+    "gz-avx2-4096",
+    "gz-period-avx2-4096",
+    "gz-filter-avx2-1024",
+    "gz-filter-avx2-4096",
+    "gz-fast-scalar-1024",
+    "gz-fast-scalar-4096",
+    "ghy-trial-scalar-1024",
+    "ghy-trial-scalar-4096",
+    "ghy-trial-avx2-1024",
+    "ghy-trial-avx2-4096",
+    "ghy-sample-scalar-1024",
+    "ghy-sample-scalar-4096",
+    "ghy-sample-avx2-1024",
+    "ghy-sample-avx2-4096",
+    "ghy-recurrence-scalar-1024",
+    "ghy-recurrence-scalar-4096",
+    "ghy-recurrence-avx2-1024",
+    "ghy-recurrence-avx2-4096",
+    "ghy-guard16-scalar-1024",
+    "ghy-guard16-scalar-4096",
+    "ghy-guard16-avx2-1024",
+    "ghy-guard16-avx2-4096",
+    "ghy-guard32-scalar-1024",
+    "ghy-guard32-scalar-4096",
+    "ghy-guard32-avx2-1024",
+    "ghy-guard32-avx2-4096",
+    "ghy-fused-scalar-1024",
+    "ghy-fused-scalar-4096",
+    "ghy-fused-avx2-1024",
+    "ghy-fused-avx2-4096",
+    "ghy-guard32mixed-scalar-1024",
+    "ghy-guard32mixed-scalar-4096",
+    "ghy-guard32mixed-avx2-1024",
+    "ghy-guard32mixed-avx2-4096",
+    "ghy-wordguard-scalar-1024",
+    "ghy-wordguard-scalar-4096",
+    "ghy-wordguard-avx2-1024",
+    "ghy-wordguard-avx2-4096",
+    "ghy-wordmixed-scalar-1024",
+    "ghy-wordmixed-scalar-4096",
+    "ghy-wordmixed-avx2-1024",
+    "ghy-wordmixed-avx2-4096",
+    "ghy-splittail-scalar-1024",
+    "ghy-splittail-scalar-4096",
+    "ghy-splittail-avx2-1024",
+    "ghy-splittail-avx2-4096",
+    "ghy-outlinetail-scalar-1024",
+    "ghy-outlinetail-scalar-4096",
+    "ghy-outlinetail-avx2-1024",
+    "ghy-outlinetail-avx2-4096",
+    "ghy-ctzunpack-scalar-1024",
+    "ghy-ctzunpack-scalar-4096",
+    "ghy-ctzunpack-avx2-1024",
+    "ghy-ctzunpack-avx2-4096",
+    "ghy-wordrepeat-scalar-1024",
+    "ghy-wordrepeat-scalar-4096",
+    "ghy-wordrepeat-avx2-1024",
+    "ghy-wordrepeat-avx2-4096",
+    "ghy-ctzrepeat-scalar-1024",
+    "ghy-ctzrepeat-scalar-4096",
+    "ghy-ctzrepeat-avx2-1024",
+    "ghy-ctzrepeat-avx2-4096",
+    "ghy-bitpack-scalar-1024",
+    "ghy-bitpack-scalar-4096",
+    "ghy-bitpack-avx2-1024",
+    "ghy-bitpack-avx2-4096",
+    "ghy-mixpack-scalar-1024",
+    "ghy-mixpack-scalar-4096",
+    "ghy-mixpack-avx2-1024",
+    "ghy-mixpack-avx2-4096",
+    "ghy-repeatmerge-scalar-1024",
+    "ghy-repeatmerge-scalar-4096",
+    "ghy-repeatmerge-avx2-1024",
+    "ghy-repeatmerge-avx2-4096"
+  ],
+  "corpus_sha256": {
+    "random": "afe347bc9bb4211d9017c8da16c8abd205760d60cf6249f33fb522dad1de19bf",
+    "sparse-words": "5ae927d019eef21f56b2d41449b12b29af78f802887651f537416750cae669b6",
+    "zero": "07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541",
+    "repeat8": "2f261c5524a407c2ac9b23c6a0f8b6f905e4487a8285866cfb8eb4b6941db29e",
+    "period127": "e8e6d1c5c1a86cc08099e73a555badb0941ec01f06ceed8dadc01c567ed78578",
+    "halfzero": "d82200466a866f32e7c0271bbfcc8053499061ba20434c4a12ba7c49bf4aa407",
+    "word-tail64": "07a5e37eb8ae87bb9c90bb2b075076ec0392b9136d62e54126bf514ac1da2ddb",
+    "repeat32": "e0e16303bc5f4dcc87756a049307c3d5275681791efbd7381f7fe5a8358482cf",
+    "bash-elf": "87f31251262577584a4209d6a1ceaf1ee78ee059ffe2228061a560d61ce74732",
+    "period127-zero-tail": "f5cb4365c0387637a838889be61aac971a3507a3ee77b63f96c1c11f6b13a9dc",
+    "period509-zero-tail": "d274c3d2e08d369f877f22623291911f6b20a7f119bd20ecbb0ad17db3dab3cd",
+    "zerohead-random": "ffe6eda91dd16714952d5426d23c30769dc0fba3379c04a9e8e41833fdb915e4",
+    "words25": "8a13128231fc908286f71a85f52d1f813f90f840b244623cf4c032762bca74a7",
+    "words50": "3f649f595f98cd50bac51af35181d6fea7b98568f581c98a922dff6b5be8bda4",
+    "words75": "34bcd133d487d1b81c22fea41c637576a9a3372a58d93efbbd11b044e0092f3f",
+    "mixed-pages": "7a3cc8f6b86964bcaac88f89fc9b2586b8b0baa78c3646b89f0536c651e3345c",
+    "repeat16": "2233991a60a4686e39edf86ce6fe86e7a368b7854fe864cbf18507f35da8199f"
+  },
+  "manifest": {
+    "hybrid_candidates": [
+      "trial",
+      "sample",
+      "recurrence",
+      "guard16",
+      "guard32",
+      "fused",
+      "guard32mixed",
+      "wordguard",
+      "wordmixed",
+      "splittail",
+      "outlinetail",
+      "ctzunpack",
+      "wordrepeat",
+      "ctzrepeat",
+      "bitpack",
+      "mixpack",
+      "repeatmerge"
+    ],
+    "period_filter_candidate": true,
+    "variable_period_candidate": true,
+    "block_unpack_candidate": true,
+    "fast_scalar_candidate": true,
+    "candidate_extra_flags": {
+      "base_variants": {
+        "libgzram.so": [],
+        "libgzram-fast.so": [
+          "-DGZRAM_SCALAR_FAST=1"
+        ],
+        "libgzram-block.so": [
+          "-DGZRAM_BLOCK_UNPACK=1"
+        ],
+        "libgzram-period.so": [
+          "-DGZRAM_VARIABLE_PERIOD=1",
+          "-DGZRAM_SCALAR_FAST=1"
+        ],
+        "libgzram-filter.so": [
+          "-DGZRAM_VARIABLE_PERIOD=1",
+          "-DGZRAM_PERIOD_FILTER=1",
+          "-DGZRAM_SCALAR_FAST=1"
+        ]
+      },
+      "core_objects": {
+        "base": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-Dgzram_encode_scalar=gzram_base_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_base_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_base_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_base_decode_avx2"
+        ],
+        "bitpackbase": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_CTZ_PACK=1",
+          "-Dgzram_encode_scalar=gzram_base_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_base_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_base_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_base_decode_avx2"
+        ],
+        "mixpackbase": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_CTZ_PACK=1",
+          "-DGZRAM_MIXED_ENCODE=1",
+          "-Dgzram_encode_scalar=gzram_base_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_base_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_base_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_base_decode_avx2"
+        ],
+        "fused": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_EMBED_PREFIX=1",
+          "-Dgzram_encode_scalar=gzram_fused_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_fused_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_fused_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_fused_decode_avx2",
+          "-Dgzram_avx2_available=gzram_fused_avx2_available",
+          "-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2"
+        ],
+        "mixed": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_MIXED_DECODE=1",
+          "-Dgzram_encode_scalar=gzram_mixed_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_mixed_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_mixed_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_mixed_decode_avx2",
+          "-Dgzram_avx2_available=gzram_mixed_avx2_available",
+          "-Dgzram_decode_mixed=gzram_mixed_decode"
+        ],
+        "ctz": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_MIXED_DECODE=1",
+          "-DGZRAM_CTZ_UNPACK=1",
+          "-Dgzram_encode_scalar=gzram_ctz_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_ctz_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_ctz_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_ctz_decode_avx2",
+          "-Dgzram_avx2_available=gzram_ctz_avx2_available",
+          "-Dgzram_decode_mixed=gzram_ctz_decode"
+        ],
+        "repeat": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_MIXED_DECODE=1",
+          "-DGZRAM_WORD_REPEAT=1",
+          "-Dgzram_encode_scalar=gzram_repeat_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_repeat_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_repeat_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_repeat_decode_avx2",
+          "-Dgzram_avx2_available=gzram_repeat_avx2_available",
+          "-Dgzram_decode_mixed=gzram_repeat_decode"
+        ],
+        "ctzrepeat": [
+          "-DGZRAM_SCALAR_FAST=1",
+          "-DGZRAM_MIXED_DECODE=1",
+          "-DGZRAM_WORD_REPEAT=1",
+          "-DGZRAM_CTZ_UNPACK=1",
+          "-Dgzram_encode_scalar=gzram_repeat_encode_scalar",
+          "-Dgzram_encode_avx2=gzram_repeat_encode_avx2",
+          "-Dgzram_decode_scalar=gzram_repeat_decode_scalar",
+          "-Dgzram_decode_avx2=gzram_repeat_decode_avx2",
+          "-Dgzram_avx2_available=gzram_repeat_avx2_available",
+          "-Dgzram_decode_mixed=gzram_repeat_decode"
+        ]
+      },
+      "hybrid_policies": {
+        "trial": [],
+        "sample": [
+          "-DGZRAM_HYBRID_SAMPLE=1"
+        ],
+        "recurrence": [
+          "-DGZRAM_HYBRID_SAMPLE=1",
+          "-DGZRAM_HYBRID_RECURRENCE=1"
+        ],
+        "guard16": [
+          "-DGZRAM_HYBRID_GUARD=16"
+        ],
+        "guard32": [
+          "-DGZRAM_HYBRID_GUARD=32"
+        ],
+        "fused": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_FUSED_HINT=1"
+        ],
+        "guard32mixed": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1"
+        ],
+        "wordguard": [
+          "-DGZRAM_HYBRID_GUARD=8"
+        ],
+        "wordmixed": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1"
+        ],
+        "splittail": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1",
+          "-DGZRAM_HYBRID_SPLIT_TAIL=1"
+        ],
+        "outlinetail": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1",
+          "-DGZRAM_HYBRID_SPLIT_TAIL=1",
+          "-DGZRAM_HYBRID_OUTLINE_WORD=1"
+        ],
+        "ctzunpack": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_CTZ_DECODE=1"
+        ],
+        "wordrepeat": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_REPEAT_DECODE=1"
+        ],
+        "ctzrepeat": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_REPEAT_DECODE=1"
+        ],
+        "bitpack": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1"
+        ],
+        "mixpack": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1"
+        ],
+        "repeatmerge": [
+          "-DGZRAM_HYBRID_GUARD=32",
+          "-DGZRAM_HYBRID_WORD_SCALAR=1",
+          "-DGZRAM_HYBRID_MIXED_DECODE=1",
+          "-DGZRAM_HYBRID_MERGE_REPEAT=1"
+        ]
+      }
+    },
+    "compiler": "gcc (GCC) 16.2.1 20260819 (Red Hat 16.2.1-2)",
+    "flags": [
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx"
+    ],
+    "source_sha256": {
+      "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+      "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+      "gzram/src/hybrid.c": "65154c6443b3d2d8995510ab81a7d0b14df60df55c310deba945f17facf4fb40",
+      "gzram/tools/build.py": "de997725fade423aef8f79dd4a64c4f6bf41ba012e8ecd8c3bb4902c5197d0f7",
+      "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+      "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+      "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+      "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57"
+    },
+    "generated_tables_sha256": "5c79f271f5475e08ff661ecb154f0a3f3be5c93829862488e05a284e0742880c",
+    "artifacts": {
+      "libgzram.so": "725bbacf6147273a1c9fe9e226689db6ad88d891ae6d460f342bc91f38ecb918",
+      "libgzram-fast.so": "e3d02c60f8bbfc72f61e8a48aa4f7a173bf8859cf1fe897abed57f1a1b2d93f4",
+      "libgzram-block.so": "b1ef0f60fc1375f92a7d52cd9c7cf9825813d38d02b2374c16ab3247eecd4e69",
+      "libgzram-period.so": "6ef54a82ad05378e77bffba0b68b398d38dc0c7f43ee7007aded3ed75f073899",
+      "libgzram-filter.so": "772142069cf0f2f21de954aa0466da0921b3369cc9145129020762d5c58d2963",
+      "lz4-small.so": "9557334407797963df5bfa944cdfd75ab710c90ae07bbce32991d0f4b2837b5d",
+      "libgzram-hybrid-trial.so": "8b9dfe967d83f17917aa58b5694939fd7a52f54c06a80187f803593e4b9280f4",
+      "libgzram-hybrid-sample.so": "194fcb46cd6a14082298a2d1b31ec3c5f011fb71a60f768412f362a96b9dc9a8",
+      "libgzram-hybrid-recurrence.so": "fc76db2ef8b0f5436712086f4c80adbd8feddbfbbffce935e2d4129ff6de28ae",
+      "libgzram-hybrid-guard16.so": "dafcc4dca163d28e169ceeb174313351603d330dc6c512371badf2066bc7c7fa",
+      "libgzram-hybrid-guard32.so": "3856c8eb1872d6d1007768acf059d2cf8b7dcd61b0666edf5782105a8f232fa8",
+      "libgzram-hybrid-fused.so": "ccdd67f8cd199768e64b6bd66d7d93af08a4410e8a444569a69ad2fc5b2feced",
+      "libgzram-hybrid-guard32mixed.so": "13c6c6c8201787041ab2a4f8f25cee1d2bd02ddbd8ba7d973e1706cb7ecfb133",
+      "libgzram-hybrid-wordguard.so": "1bfc817dcbfbe7b0925f69c1e2b51ee645d44e68f2f6dc56988d4a5c85d5890f",
+      "libgzram-hybrid-wordmixed.so": "dfe4542ac05cd8ff4a6e4431d988826c178156350f5d2e8cb68db378a64e84ef",
+      "libgzram-hybrid-splittail.so": "6acb0fe8596c3468ffb2f2134880baa79559937e18e6d3107bf931e55c598b56",
+      "libgzram-hybrid-outlinetail.so": "ab6a16358d5695d5cdad8c6dc1c2c9824be8fafbf045547f96ac80f876c4f6da",
+      "libgzram-hybrid-ctzunpack.so": "f649d315a93e31ab866d224cd1eba9ca9227072f2f3f3d90ef0716c5f3997428",
+      "libgzram-hybrid-wordrepeat.so": "60e5d1489a61aca14c76ec99e2ba4dd266d36f13d94cb6b39a6e270b43ee3199",
+      "libgzram-hybrid-ctzrepeat.so": "28552d637c9b81166662a1d8ec4aaa8f8d43381af5e7890a4a772a1aaf5eef8c",
+      "libgzram-hybrid-bitpack.so": "6f889b9128a3f2b514b496603b14c29ba547aa2133e32821d5cb99872aa3447c",
+      "libgzram-hybrid-mixpack.so": "983f8cba87a4d1bd0381ab337496ced75f1a13ca0b4d5bc9379590a2bc6e264a",
+      "libgzram-hybrid-repeatmerge.so": "4ebe6cd9abe710196201d152d121f15454a1ee7145ef082e6146523f4b852230"
+    }
+  },
+  "benchmark_sha256": "523f74e568a04c836b50ed4601c943bfc7df827b4c5d425b5e715221f37c113f",
+  "script_sha256": "63dede071f3f0c0ca171f69ec8ae5c3f8f297f5a7a0854ad4310fc2a130b14a2"
+}

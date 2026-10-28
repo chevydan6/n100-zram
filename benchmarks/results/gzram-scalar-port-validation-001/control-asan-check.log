@@ -1,0 +1,1 @@
+{"status": "passed", "roundtrips": 31296, "guarded_output_capacity_cases": 62528, "malformed_or_mutated_decode_cases": 40000, "four_thread_roundtrips": 4000, "avx2_available": false}

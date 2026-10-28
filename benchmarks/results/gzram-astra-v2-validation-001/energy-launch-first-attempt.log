@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/dan/n100-zram/gzram/tools/run-native.py", line 27, in <module>
+    assert os.readlink(f'/proc/self/fd/{fd}')==os.path.realpath('/sys/class/powercap/intel-rapl:0/energy_uj')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+/usr/bin/nice failed with exit status 1.

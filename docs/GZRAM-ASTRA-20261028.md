@@ -274,25 +274,115 @@ ID, active zstd algorithm, disk size and CPU policy match preflight; no swap,
 module, boot or power-policy restoration operation was needed. No application
 responsiveness or memory-pressure result is implied by codec timing.
 
-## Follow-up candidates and kernel decision
+## Completed word-path cohort 002
 
-[Five isolated word-path candidates](../gzram/docs/WORD-PATHS.md) investigate
-integer repeat expansion, sparse packing, mixed AVX2-scan/scalar-pack encoding,
-and consolidation of identical repeated blocks. Consolidation reuses GZR1's
-existing 4096-byte block representation; old decoders remain applicable. New
-normal/sanitizer tests and an independent per-page size audit are queued before
-any timing. A fresh 21-variant, seventeen-corpus cohort includes repeat16,
-matched wordmixed/ctzunpack/LZ4 controls and 1024/4096-byte repeat contrasts.
-Its 8192-call measurement batches are explicitly recorded, not assumed equivalent
-to historical absolute timing. Small effects and short-batch energy need longer
-matched confirmation.
+The [five word-path candidates](../gzram/docs/WORD-PATHS.md) passed
+[normal and sanitizer validation](../benchmarks/results/gzram-astra-v2-validation-001/summary.md).
+Each policy/build passed 34,240 cross-decoder round trips, 34,192 guarded
+capacities, 71,680 exhaustive mask checks, 48,576 repeat-boundary checks, 80,000
+malformed/mutated decodes and 4,000 concurrent round trips. Repeat consolidation
+passed 62 additional direct checks and old/new decoding in both directions.
+The complete 329-variant registry passed 715,904 round trips in each build.
+All eighteen preceding library .text sections are identical. The
+[size audit](../benchmarks/results/gzram-astra-v2-sizes-001/summary.md) independently
+decoded 165,376 frames, preserving all 114,688 earlier records and all sixteen
+old corpus hashes. Repeat16 was appended as the seventeenth corpus.
 
-A read-only RAPL descriptor handoff passed a live access check: real/effective/
-saved UID and GID were all 1000, effective capabilities were zero, and the child
-read the counter successfully after privilege was dropped. It changes no sysfs
-permissions. The next codec run can measure package energy as the normal user;
-authentication and validation are outside its timing. This is access evidence,
-not yet a candidate energy measurement.
+[Native cohort 002](../benchmarks/results/native-gzram-astra-local-002/summary.md)
+contains 21 variants, seventeen corpora, three sessions and 19,278 rows, with
+8192 calls per batch. All rows have RAPL readings and fully scheduled user PMUs.
+The maximum telemetry gap was 0.758 s; median thread occupancy was 99.296%, with
+102 rows below 95% and 35 below 90% (minimum 38.521%). All rows remain. Hardware,
+kernel, compiler, 700–800 MHz limits, battery operation and zstd ZRAM match the
+preceding setting. Fresh matched controls are used; absolute times/energy are
+not compared across the different batch sizes or variant sets.
+
+Scalar bitpack preserves wordmixed's encoded bytes and improves compression:
+
+| Corpus | Wordmixed → bitpack ns/page | Paired wall change | Thread CPU change | Package uJ/page, control → candidate | Paired energy change (session range) |
+|---|---:|---:|---:|---:|---:|
+| Sparse words | 8131.7 → 5913.0 | -27.32% | -27.40% | 17.390 → 12.532 | -28.00% (-28.88..-21.49%) |
+| 25% nonzero words | 11464.6 → 6902.4 | -39.87% | -39.85% | 23.015 → 14.149 | -37.94% (-42.18..-36.05%) |
+| 50% nonzero words | 16454.4 → 7816.7 | -52.49% | -52.46% | 32.827 → 15.818 | -48.98% (-52.12..-44.33%) |
+
+These are whole userspace codec calls and batch-scope package energy, including
+bookkeeping and background activity. Bitpack also reduced words75 compression
+7.88% and mixed-page compression 3.93%, but regressed scalar half-zero compression
+2.37%. Its mixed-page energy result changed sign between sessions. No broad
+energy or application gain is inferred. Its decoder retains the prior wordmixed
+implementation; this is an encoding improvement, not the sparse-decoder fix.
+
+Mixpack uses scalar bit-scan packing after an AVX2 scan. Its AVX2 entry improved
+sparse compression 20.70% (5979.0 → 4754.1 ns; 12.480 → 9.514 uJ, -23.86% paired)
+and words25 compression 7.03%, but regressed words50 by **13.21%** (5842.5 →
+6586.2 ns; 12.398 → 14.074 uJ, +12.19% paired), and words75 by 4.68%. All three
+sessions agree on those directions. Unconditionally replacing vector packing
+with scalar packing is rejected. A measured per-group selection experiment may
+be worthwhile, but no word-count cutoff has been selected.
+
+Scalar wordrepeat improved repeat16 decoding 75.84% (2334.6 → 564.5 ns,
+4.679 → 1.065 uJ, -78.56% paired energy) and repeat32 decoding 37.23%
+(825.3 → 517.8 ns, 1.714 → 1.051 uJ, -36.00% paired energy). Repeat8 improved
+86.50%, but same-filled ZRAM bypass prevents treating that as a swap gain.
+Other paths remain in the report, including a 0.99% words50 decode regression.
+
+Combining wordrepeat with the sparse decoder is not free: scalar ctzrepeat
+regressed sparse-word decoding 5.02% (3881.1 → 4075.7 ns), words25 4.40%
+(4709.1 → 4928.7 ns), and words50 5.57% (5489.1 → 5823.8 ns) versus ctzunpack.
+CPU time corroborates the loss. The sparse algorithm is unchanged, but the
+compiled decoder changes: ctzunpack's scalar decode is 1458 bytes with its old
+repeat loop inlined; ctzrepeat has a 1026-byte scalar decode and a separate
+378-byte repeat helper. This is a code-generation observation, not a proven
+cause. Preserve the separate decoder control and investigate composition rather
+than accepting the combination automatically.
+
+Repeatmerge stores the same page-wide pattern once using existing GZR1 framing:
+
+| Corpus | Wordmixed bytes at 1024 | Repeatmerge bytes | LZ4 bytes | Change vs wordmixed / LZ4 |
+|---|---:|---:|---:|---:|
+| Repeat16 | 84 | 33 | 42 | -60.71% / -21.43% |
+| Repeat32 | 148 | 49 | 58 | -66.89% / -15.52% |
+
+These are framed byte counts, not allocator-rounded ZRAM memory. Scalar
+repeatmerge compression regressed 4.18% on repeat32 and 5.04% on half-zero.
+Scalar repeat16 decoding regressed 11.25% (2334.6 → 2613.5 ns), and repeat32
+6.65% (825.3 → 880.6 ns). Its AVX2 decoder improved repeat16 by 24.17%
+(337.1 → 256.9 ns) and repeat32 by 28.44% (334.5 → 238.1 ns). Thus fixing the
+ratio alone does not establish a better complete codec. Both 1024 and 4096
+controls, both ISAs, all operations and every other corpus remain in the
+[3434 direct comparisons](../benchmarks/results/native-gzram-astra-local-002/paired.md).
+
+Short-batch energy remains a limitation. For example, unchanged AVX2 repeat
+handling in ctzrepeat has roughly -1% repeat16 time but +38% paired package
+energy versus ctzunpack; that is not evidence of an intrinsic 38% energy penalty.
+Tiny decode batches need longer matched confirmation. Large scalar packing
+energy reductions have the same sign in all three sessions, but remain scoped
+to these userspace workloads. Whole-experiment battery integration was about
+6.06 kJ (1.68 Wh) over 1304.6 s; gauge precision/lag is uncalibrated. Different
+cohort durations and contents make this unsuitable for comparison with 001.
+
+The read-only RAPL handoff ran the codec with UID 1000 and zero effective
+capabilities. A first launch was rejected before any timing output because
+systemd-inhibit closed/reused the descriptor; that failure is retained. The
+successful run used a separate bounded sleep/idle inhibitor. The runner verified
+the descriptor's exact sysfs target and read-only mode. No permissions, power
+settings, swap, modules or boot configuration were changed. Postflight hashes
+match the original ZRAM module, algorithm, size and CPU policy.
+
+## Next experiments and kernel decision
+
+Next, test clustered full/zero mask groups, measured scalar/vector packing
+selection, composition with the preserved sparse decoder, and the cost of repeat
+consolidation. No density threshold or combined policy is accepted yet. The
+current random-density corpora do not cover every clustered-memory layout.
+
+A separate generated scalar GZR1 component passed userspace oracle, guard,
+malformed-input, concurrency and sanitizer checks after this timing run ended.
+It removes userspace SIMD dispatch without changing the scalar algorithm bodies.
+It is not the GHY1/LZ4 container, a compiled kernel module, a VM result or a ZRAM
+backend. Matching signed kernel development files and private VM tools are
+prepared; no VM or native GZRAM kernel execution has occurred. Scalar integration
+can isolate the measured decoder gain before adding kernel SIMD state handling.
 
 Kernel integration is conditional on whole-codec profitability. It requires
 bounded per-stream workspace, kernel-safe copies, explicit scalar fallback,

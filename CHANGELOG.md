@@ -163,3 +163,16 @@ no upstream code or generated shuffle tables were copied into the new codec.
 - Preserved missing package energy and whole-experiment battery scope explicitly.
 - Added known-ratio analysis fixtures and local cohort auditing; no kernel
   deployment, application responsiveness or production acceptance is claimed.
+
+## 2026-10-28 — Word paths, repeat consolidation and package-energy screening
+
+- Added five independently selectable candidates, preserving all eighteen prior
+  library code sections and all preceding size records/corpus hashes.
+- Passed normal and sanitizer boundary, independent-decoder, malformed, concurrent
+  and complete-registry tests; published 165,376 independently decoded size rows.
+- Published 19,278 native timing/CPU/RAPL rows and 3434 direct comparisons, with
+  scalar packing/repeat wins and mixed-packing/composition/consolidation losses.
+- Added a privilege-dropping read-only RAPL descriptor helper; retained the
+  rejected launch caused by an inhibitor closing that descriptor.
+- Prepared and userspace-validated an isolated scalar GZR1 component adapter;
+  no kernel build, VM execution, native module load or ZRAM replacement is claimed.

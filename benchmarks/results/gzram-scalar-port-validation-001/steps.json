@@ -1,0 +1,162 @@
+[
+  {
+    "label": "control-prepare",
+    "command": [
+      "python3",
+      "gzram/tools/prepare-scalar-port.py",
+      "--output",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control",
+      "--unpack",
+      "reference"
+    ],
+    "status": 0
+  },
+  {
+    "label": "control-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control/core.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control/libscalar.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "control-check",
+    "command": [
+      "python3",
+      "gzram/tests/check.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control/libscalar.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "control-asan-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control/core.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control/libscalar-asan.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "control-asan-check",
+    "command": [
+      "python3",
+      "gzram/tests/check.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/control/libscalar-asan.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "ctz-prepare",
+    "command": [
+      "python3",
+      "gzram/tools/prepare-scalar-port.py",
+      "--output",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz",
+      "--unpack",
+      "ctz"
+    ],
+    "status": 0
+  },
+  {
+    "label": "ctz-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz/core.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz/libscalar.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "ctz-check",
+    "command": [
+      "python3",
+      "gzram/tests/check.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz/libscalar.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "ctz-asan-build",
+    "command": [
+      "gcc",
+      "-O3",
+      "-g",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fno-tree-vectorize",
+      "-fno-strict-aliasing",
+      "-mno-sse",
+      "-mno-mmx",
+      "-mno-avx",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz/core.c",
+      "-o",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz/libscalar-asan.so"
+    ],
+    "status": 0
+  },
+  {
+    "label": "ctz-asan-check",
+    "command": [
+      "python3",
+      "gzram/tests/check.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-scalar-port-001/ctz/libscalar-asan.so"
+    ],
+    "status": 0
+  }
+]

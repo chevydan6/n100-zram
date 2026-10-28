@@ -62,7 +62,7 @@ regression, and check sensitivity before treating small effects as stable.
 `tools/with-rapl.py` opens only the package energy counter read-only. When started
 through pkexec it restores the authenticating user's supplementary groups,
 permanently drops real/effective/saved UIDs and GIDs, verifies zero effective
-capabilities, and then executes the requested user command. The follow-up runner support is under validation; cohort 001 did not use it.
+capabilities, and then executes the requested user command. Cohort 002 used this access path; cohort 001 did not.
 The updated runner preserves only that explicitly verified descriptor into
 benchmark children. Sysfs access
 modes and the laptop's power settings remain unchanged. The codec never needs
@@ -73,3 +73,9 @@ bookkeeping and background work. It is not codec-only energy or laptop battery
 energy. The battery telemetry is system context and cannot be assigned to short,
 interleaved codec batches. Authentication and descriptor checks occur outside
 timing. The original direct-sysfs path remains available for existing runners.
+
+A launch wrapper must preserve the descriptor. `systemd-inhibit` closes unrelated
+inherited descriptors, so place it outside `pkexec ... with-rapl.py`, before the
+counter is opened, or use a separate bounded inhibitor. The first attempted
+cohort-002 launch caught this mismatch and produced no timing data. The corrected
+nice/taskset/subprocess chain was checked before the successful run.

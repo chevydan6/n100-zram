@@ -1,0 +1,18 @@
+{
+  "source_hashes": {
+    "gzram/src/gzram.c": "8cb917be86b0414a382687fb61aa62722bd4b0ae3b83dad01b1ea7ac17d348ee",
+    "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+    "gzram/src/hybrid.c": "65154c6443b3d2d8995510ab81a7d0b14df60df55c310deba945f17facf4fb40",
+    "gzram/tools/build.py": "de997725fade423aef8f79dd4a64c4f6bf41ba012e8ecd8c3bb4902c5197d0f7",
+    "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+    "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+    "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+    "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57",
+    "gzram/bench.c": "8eac3241b9388501038758136a1a62210927262a6ce304e9300aeb0b38aaea7e",
+    "gzram/tools/run-native.py": "95d070245858d75ff702842e137c3dc7e23f196092202e319513618183c9b855",
+    "gzram/tools/with-rapl.py": "958cf5eb4b8a4990a9fd22a3c0eeeac17a025445a787bb7d6fd05903f53000a9",
+    "gzram/tests/hybrid.py": "4f41c918f3122f13d51517da72eb4bee3160cd1ad71727a52528aa2c4be724ed"
+  },
+  "base_commit": "48585b8",
+  "note": "Validated pending additive changes; final committed source hash must match these frozen files."
+}

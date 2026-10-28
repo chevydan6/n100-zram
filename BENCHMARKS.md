@@ -453,3 +453,17 @@ replacement or kernel gain is accepted. Package energy is missing in this cohort
 Battery integration covers the whole experiment and is not a codec comparison.
 The [dated report](docs/GZRAM-ASTRA-20261028.md) gives absolute values, controls,
 scheduling outliers, recovery limitations and the next experiments.
+
+## Astra word-path cohort 002 with package energy
+
+[All 19,278 rows](benchmarks/results/native-gzram-astra-local-002/summary.md) and
+[3434 direct contrasts](benchmarks/results/native-gzram-astra-local-002/paired.md)
+compare 21 variants over seventeen corpora in three native N100 sessions.
+Scalar bit-scan packing improves sparse/density compression 27–52%, with 28–49%
+lower paired batch package energy in the highlighted cases. Mixed AVX2 scan /
+scalar packing improves sparse encoding but regresses words50 by 13.21%.
+Scalar repeat stores help repeats; combining them with ctzunpack regresses
+sparse decoding 4–6%. Repeat consolidation reduces repeat32 from 148 to 49 bytes
+versus LZ4's 58, but can slow scalar encoding/decoding. All regressions remain.
+Short-batch energy needs longer confirmation; no battery, kernel, allocator or
+application improvement is inferred. See the [dated analysis](docs/GZRAM-ASTRA-20261028.md).

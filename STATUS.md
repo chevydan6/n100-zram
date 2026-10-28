@@ -1,13 +1,15 @@
 # Current status
 
-The [Astra continuation](docs/GZRAM-ASTRA-20261028.md) completed three matched
-sessions on this physical Lenovo 14e: 12,960 rows across sixteen corpora. Scalar
-bit-scan sparse decoding improved 36–62% on the sparse/density fixtures and
-13.82% on mixed pages versus wordmixed, with unchanged bytes. Classifier outlining
-remained 5.69% slower on scalar half-zero encoding. LZ4 still wins several other
-cases; no overall kernel or energy improvement is accepted. Current zstd ZRAM,
-boot settings and the 800 MHz cap were preserved. Five further candidates are
-under correctness/size validation before a matched energy-capable cohort.
+The [Astra continuation](docs/GZRAM-ASTRA-20261028.md) has completed two physical
+N100 cohorts: 12,960 timing rows plus 19,278 rows with package energy. Sparse
+decoding improves 36–62% in the first matched cohort; scalar bit-scan packing
+improves sparse/density compression 27–52% with lower package energy in all three
+sessions of the second. Repeat consolidation fixes the measured short-repeat
+size loss, but has scalar speed regressions. Mixed scalar/vector packing and
+combined decoders also retain important losses. No overall kernel or production
+gain is accepted. Current zstd ZRAM, boot settings and the 800 MHz cap remain.
+Next: clustered-data coverage, measured packing selection and scalar kernel-port
+engineering. No VM or GZRAM kernel execution has occurred.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction
 commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).

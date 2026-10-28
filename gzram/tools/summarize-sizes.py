@@ -25,8 +25,10 @@ def main():
         group[page] = int(row['compressed_bytes'])
     assert len(groups) == len(corpora) * len(variants)
     assert all(set(group) == set(range(metadata['pages_per_corpus'])) for group in groups.values())
+    equivalent = [policy for policy in ('outlinetail', 'ctzunpack', 'wordrepeat', 'ctzrepeat', 'bitpack', 'mixpack')
+                  if f'ghy-{policy}-scalar-1024' in variants]
     for corpus in corpora:
-        for policy in ('outlinetail', 'ctzunpack'):
+        for policy in equivalent:
             for isa in ('scalar', 'avx2'):
                 for block in (1024, 4096):
                     assert groups[corpus, f'ghy-{policy}-{isa}-{block}'] == groups[corpus, f'ghy-wordmixed-{isa}-{block}']
@@ -34,8 +36,9 @@ def main():
              f'{len(variants)} variants, {len(corpora)} corpora, 128 pages per corpus. '
              'One deterministic encoding per page; these are not repeated timing samples.',
              'Every frame was decoded by the independent Python wire decoder or system liblz4.',
-             'Both additions have exactly the same per-page sizes as wordmixed at both screened',
-             'block sizes and ISAs. No size improvement or performance improvement is claimed.', '',
+             'These variants have exactly the same per-page sizes as wordmixed at both screened',
+             'block sizes and ISAs: ' + ', '.join(equivalent) + '.',
+             'Other policies may change sizes; every result is retained. No speed or energy claim follows.', '',
              'The existing twelve inputs are preserved; words25/50/75 vary nonzero-word density',
              'and mixed-pages interleaves executable, sparse, random and periodic-prefix pages.',
              'All bytes include the codec framing. ZRAM zero/same-page bypass, allocator rounding',

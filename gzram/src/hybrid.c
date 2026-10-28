@@ -15,7 +15,10 @@ int gzram_base_decode_avx2(const void *,size_t,void *,size_t);
 #if defined(GZRAM_HYBRID_FUSED_HINT)
 int gzram_fused_encode_hint_avx2(const void *,size_t,void *,size_t,unsigned,unsigned *);
 #endif
-#if defined(GZRAM_HYBRID_CTZ_DECODE)
+#if defined(GZRAM_HYBRID_REPEAT_DECODE)
+int gzram_repeat_decode_scalar(const void *,size_t,void *,size_t);
+int gzram_repeat_decode(const void *,size_t,void *,size_t);
+#elif defined(GZRAM_HYBRID_CTZ_DECODE)
 int gzram_ctz_decode_scalar(const void *,size_t,void *,size_t);
 int gzram_ctz_decode(const void *,size_t,void *,size_t);
 #elif defined(GZRAM_HYBRID_MIXED_DECODE)
@@ -23,6 +26,25 @@ int gzram_mixed_decode(const void *,size_t,void *,size_t);
 #endif
 typedef int (*encode_fn)(const void *,size_t,void *,size_t,unsigned);
 typedef int (*decode_fn)(const void *,size_t,void *,size_t);
+#if defined(GZRAM_HYBRID_MERGE_REPEAT)
+/* Consume only a successful frame produced by our preserved GZR1 encoder.
+ * Reuse its per-block repetition proofs; do not rescan the full input page.
+ * Keeping this outside the base object preserves that control's codegen. */
+__attribute__((noinline)) static int merge_repeats(const uint8_t *src,size_t n,uint8_t *frame,int packed,unsigned log)
+{
+ size_t block=(size_t)1<<log,chunks=(n+block-1)/block;
+ if(chunks<2||frame[7])return packed;
+ unsigned first=frame[HEADER];
+ unsigned period=first==2?4:first==3?8:first==5?16:first==6?32:0;
+ if(!period)return packed;
+ for(size_t chunk=1;chunk<chunks;chunk++)
+  if(frame[HEADER+chunk]!=first||memcmp(src+chunk*block,src,period))return packed;
+ /* Every block was independently proved to repeat the same bounded pattern.
+  * The replacement is smaller than the successful frame, so it fits too. */
+ frame[6]=12;memcpy(frame+HEADER+1,src,period);
+ return HEADER+1+(int)period;
+}
+#endif
 static void header(uint8_t *dst,size_t n,unsigned mode)
 {
  memcpy(dst,"GHY1",4);dst[4]=(uint8_t)n;dst[5]=(uint8_t)(n>>8);dst[6]=(uint8_t)mode;dst[7]=0;
@@ -143,6 +165,9 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
 #else
   int packed=gz(src,n,dst+HEADER,cap-HEADER,log);
 #endif
+#if defined(GZRAM_HYBRID_MERGE_REPEAT)
+  if(packed>0&&log<12)packed=merge_repeats(src,n,dst+HEADER,packed,log);
+#endif
   /* Threshold includes nested GZRAM framing. Exact decoding is still mandatory. */
   int accept=packed>0&&(size_t)packed<=n*3/4;
 #if defined(GZRAM_HYBRID_GUARD)
@@ -177,14 +202,18 @@ static int decode(const void *input,size_t size,void *output,size_t cap,decode_f
 int gzram_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,gzram_base_encode_scalar);}
 int gzram_encode_avx2(const void *s,size_t n,void *d,size_t cap,unsigned log){return encode(s,n,d,cap,log,gzram_base_encode_avx2);}
 int gzram_decode_scalar(const void *s,size_t n,void *d,size_t cap){
-#if defined(GZRAM_HYBRID_CTZ_DECODE)
+#if defined(GZRAM_HYBRID_REPEAT_DECODE)
+ return decode(s,n,d,cap,gzram_repeat_decode_scalar);
+#elif defined(GZRAM_HYBRID_CTZ_DECODE)
  return decode(s,n,d,cap,gzram_ctz_decode_scalar);
 #else
  return decode(s,n,d,cap,gzram_base_decode_scalar);
 #endif
 }
 int gzram_decode_avx2(const void *s,size_t n,void *d,size_t cap){
-#if defined(GZRAM_HYBRID_CTZ_DECODE)
+#if defined(GZRAM_HYBRID_REPEAT_DECODE)
+ return decode(s,n,d,cap,gzram_repeat_decode);
+#elif defined(GZRAM_HYBRID_CTZ_DECODE)
  return decode(s,n,d,cap,gzram_ctz_decode);
 #elif defined(GZRAM_HYBRID_MIXED_DECODE)
  return decode(s,n,d,cap,gzram_mixed_decode);

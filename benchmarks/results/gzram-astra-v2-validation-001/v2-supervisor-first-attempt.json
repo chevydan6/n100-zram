@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "exit_code": 1,
+  "finished": 1793146580.2816157,
+  "uid": 1000,
+  "energy_counter_read_only": true,
+  "reason": "systemd-inhibit closed/reused the energy descriptor; runner rejected it before creating experiment output"
+}
