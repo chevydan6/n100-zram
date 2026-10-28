@@ -40,11 +40,14 @@ jobs:
         run: python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-splittail.so --same-encoding-libraries build/gzram/libgzram-hybrid-wordmixed.so build/gzram/libgzram-hybrid-guard32.so --other-libraries build/gzram/libgzram-hybrid-guard32mixed.so
       - name: Outlined scanner and sparse bit-scan decoder
         run: |
-          for policy in outlinetail ctzunpack wordrepeat ctzrepeat bitpack mixpack ctzfull bitctz bitfull select2 select3 select4; do
+          for policy in outlinetail ctzunpack wordrepeat ctzrepeat bitpack mixpack ctzfull bitctz bitfull select2 select3 select4 blockpick2 blockpick3 blockpick4; do
             python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-$policy.so --same-encoding-libraries build/gzram/libgzram-hybrid-wordmixed.so build/gzram/libgzram-hybrid-splittail.so --other-libraries build/gzram/libgzram-hybrid-guard32mixed.so
           done
           python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-repeatmerge.so --other-libraries build/gzram/libgzram-hybrid-wordmixed.so
           python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-repeatmergefast.so --same-encoding-libraries build/gzram/libgzram-hybrid-repeatmerge.so --other-libraries build/gzram/libgzram-hybrid-wordmixed.so
+          for policy in bitmerge bitdirect; do
+            python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-$policy.so --same-encoding-libraries build/gzram/libgzram-hybrid-repeatmerge.so --other-libraries build/gzram/libgzram-hybrid-wordmixed.so
+          done
           python3 gzram/tests/hybrid.py --library build/gzram/libgzram-hybrid-wordmixed.so --other-libraries build/gzram/libgzram-hybrid-repeatmerge.so
       - name: Address and undefined-behavior sanitizers
         run: |
@@ -67,11 +70,14 @@ jobs:
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-wordguard.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-guard32.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-wordmixed.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-guard32.so build/gzram-asan/libgzram-hybrid-wordguard.so --other-libraries build/gzram-asan/libgzram-hybrid-guard32mixed.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-splittail.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so build/gzram-asan/libgzram-hybrid-guard32.so --other-libraries build/gzram-asan/libgzram-hybrid-guard32mixed.so
-          for policy in outlinetail ctzunpack wordrepeat ctzrepeat bitpack mixpack ctzfull bitctz bitfull select2 select3 select4; do
+          for policy in outlinetail ctzunpack wordrepeat ctzrepeat bitpack mixpack ctzfull bitctz bitfull select2 select3 select4 blockpick2 blockpick3 blockpick4; do
             python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-$policy.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so build/gzram-asan/libgzram-hybrid-splittail.so --other-libraries build/gzram-asan/libgzram-hybrid-guard32mixed.so
           done
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-repeatmerge.so --other-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-repeatmergefast.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-repeatmerge.so --other-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so
+          for policy in bitmerge bitdirect; do
+            python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-$policy.so --same-encoding-libraries build/gzram-asan/libgzram-hybrid-repeatmerge.so --other-libraries build/gzram-asan/libgzram-hybrid-wordmixed.so
+          done
           python3 gzram/tests/hybrid.py --library build/gzram-asan/libgzram-hybrid-wordmixed.so --other-libraries build/gzram-asan/libgzram-hybrid-repeatmerge.so
       - name: Analysis schemas and missing measurements
         run: python3 gzram/tests/analysis.py

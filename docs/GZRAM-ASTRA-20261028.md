@@ -3,7 +3,7 @@
 Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
 Latest: the third physical energy cohort confirms sparse scalar time and package
 energy reductions, while retaining clustered-data and LZ4-relative regressions.
-Five follow-up candidates are undergoing correctness validation. This prototype
+Five follow-up candidates have passed normal and sanitizer correctness/size validation. This prototype
 does not establish kernel, battery or production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
 
 Update: the user confirmed that this workspace is on the same Lenovo 14e that
@@ -626,9 +626,35 @@ accepted. Longer repeat batches are still needed to assess measurement noise;
 this means amortizing userspace measurement overhead, not a kernel batching
 recommendation. New bitmerge and bitdirect candidates separately test composing
 the sparse codec with consolidated repeat frames, then adding validated scalar
-repeat expansion. Their correctness checks are running; performance is unproven.
+repeat expansion. Their correctness and size checks have passed (below); performance is unproven.
 
 No queue, background compression worker or kernel SIMD path is introduced by
 these candidates. Queue wait, scheduler overhead, kernel FPU state costs, cold
 page access, memory-pressure responsiveness and actual ZRAM energy remain
 unmeasured. The completed scalar kernel VM gate is correctness evidence only.
+
+
+## Fourth candidate correctness checkpoint
+
+All five follow-up policies passed [normal and ASan/UBSan validation](../benchmarks/results/gzram-astra-v4-validation-001/summary.md),
+including independent decoding, guarded capacities, malformed/truncated input,
+all masks, repeat tails and four-thread round trips. The full 521-variant
+registry passed 1,333,760 round trips per build across all 20 corpora. Source
+hashes remained unchanged during testing. All 30 preceding library text
+sections and all 266,240 preceding per-page size records remain identical;
+the [expanded size screen](../benchmarks/results/gzram-astra-v4-sizes-001/summary.md)
+retains 317,440 records.
+
+Blockpick2/3/4 preserve wordmixed's bytes and move scalar/vector packing selection
+out of the per-mask loop. Bitmerge and bitdirect preserve repeatmergefast's bytes,
+including 33-byte repeat16 and 49-byte repeat32 frames, while composing the
+bitpack encoder and preserved CTZ decoder. Bitdirect alone adds validated scalar
+repeat expansion. Those size reductions do not yet establish time or energy
+gains, and nonrepeat decoding may regress.
+
+The next physical cohort selects 21 variants at 1024-byte internal blocks,
+including both entries of every new policy, LZ4, wordmixed, bitctz, the prior
+repeat consolidation, mixpack, select3, bitfull and wordrepeat controls. All 20
+corpora, three sessions and separate compression/decompression measurements
+remain. This first matched comparison does not select a universal block size.
+Current stock zstd ZRAM, CPU limits and boot configuration remain unchanged.

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "gcc",
+    "-O2",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-DOPS=8192",
+    "gzram/bench.c",
+    "-ldl",
+    "-o",
+    "/home/dan/n100-zram/build/astra-v4/benchmark"
+  ],
+  "source_sha256": "1172b8ddf52697b14e41883d4fafe808900e7ef6158309523f88464ece46b9da",
+  "binary_sha256": "e02e738d607fe8a9adee446058eacde7d843b5181dece2c3de8d9b9a495f75be",
+  "calls_per_batch": 8192
+}

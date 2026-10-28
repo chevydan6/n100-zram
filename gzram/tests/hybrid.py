@@ -7,7 +7,7 @@ root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'tests'))
 from guard_buffers import Guard
 from wire import decode as gz_decode_wire
 p=argparse.ArgumentParser();p.add_argument('--library',type=Path,required=True);p.add_argument('--same-encoding-libraries',type=Path,nargs='*',default=[]);p.add_argument('--other-libraries',type=Path,nargs='*',default=[]);a=p.parse_args();lib=C.CDLL(str(a.library))
-guarded=any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge','ctzfull','bitctz','bitfull','select2','select3','select4'])
+guarded=any(name in a.library.name for name in ['recurrence','guard','fused','wordmixed','splittail','outlinetail','ctzunpack','wordrepeat','ctzrepeat','bitpack','mixpack','repeatmerge','ctzfull','bitctz','bitfull','select2','select3','select4','blockpick','bitmerge','bitdirect'])
 encoders=[lib.gzram_encode_scalar,lib.gzram_encode_avx2];decoders=[lib.gzram_decode_scalar,lib.gzram_decode_avx2]
 for other in a.other_libraries:
  h=C.CDLL(str(other));decoders += [h.gzram_decode_scalar,h.gzram_decode_avx2]
@@ -68,6 +68,21 @@ for population in range(9):
   for lane in range(8):
    if mask&(1<<lane):data[group*32+lane*4:group*32+lane*4+4]=struct.pack('<I',0x10203040+group*97+lane)
  inputs.append(bytes(data))
+# Block selection must preserve the frame on both sides of every tested
+# aggregate cutoff, at every supported internal block length.
+block_selection_pages=0
+if 'blockpick' in a.library.name:
+ for block_log in range(5,13):
+  block=1<<block_log;groups=block//32
+  for cutoff in [2,3,4]:
+   for delta in [-1,0,1]:
+    data=bytearray(4096);present=groups*cutoff+delta
+    for offset in range(0,4096,block):
+     for word in range(present):
+      # Spread values across groups, with a distinct value at every position.
+      lane=word//groups;group=word%groups;at=offset+group*32+lane*4
+      data[at:at+4]=struct.pack('<I',0x10203040+at+block_log)
+    inputs.append(bytes(data));block_selection_pages+=1
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))
@@ -101,7 +116,7 @@ if guarded:
  out=C.create_string_buffer(len(partial_edge)+8);n=encoders[1](partial_edge,len(partial_edge),out,len(out),10)
  assert n>0 and out.raw[6]==2,'Partial-block prefix-search candidate was missed'
 merge_checks=0
-if 'repeatmerge' in a.library.name:
+if any(name in a.library.name for name in ['repeatmerge','bitmerge','bitdirect']):
  for period in [4,8,16,32]:
   data=bytes(range(1,period+1))*(4096//period)
   for log in range(5,13):
@@ -154,6 +169,27 @@ for period,mode in [(4,2),(8,3),(16,5),(32,6)]:
      else:assert got==-1
      out.close();repeat_checks+=1
    src.close()
+# The direct-repeat shortcut must validate the entire nested header before
+# using the fast stores. Check each header field and reject trailing payload.
+direct_header_checks=0
+if 'bitdirect' in a.library.name:
+ for period,mode in [(4,2),(8,3),(16,5),(32,6)]:
+  pattern=bytes(range(1,period+1))
+  frame=b'GHY1'+struct.pack('<HBB',4096,1,0)+b'GZR1'+struct.pack('<HBB',4096,12,0)+bytes([mode])+pattern
+  cases=[frame+b'\0']
+  for index in range(17):
+   for value in [0,255]:
+    changed=bytearray(frame);changed[index]=value;cases.append(bytes(changed))
+  for changed in cases:
+   try:expected=oracle(changed)
+   except ValueError:expected=None
+   src=Guard(len(changed));C.memmove(src.ptr,changed,len(changed))
+   for decode in decoders:
+    out=Guard(4096);got=decode(src.ptr,len(changed),out.ptr,4096)
+    if expected is None:assert got==-1
+    else:assert got==len(expected) and C.string_at(out.ptr,got)==expected
+    out.close();direct_header_checks+=1
+   src.close()
 # Outer/nested length disagreement, reserved modes, short LZ4 and empty-frame cases.
 frames += [b'GHY1'+struct.pack('<HBB',32,1,0)+b'GZR1'+struct.pack('<HBB',64,6,0)+bytes([1]),b'GHY1'+struct.pack('<HBB',4096,2,0)+b'\0',b'GHY1'+struct.pack('<HBB',0,1,0)+b'GZR1'+bytes(4)]
 malformed=0
@@ -181,4 +217,4 @@ def worker(seed):
   assert randomizer.choice(decoders)(packed,n,out,len(data))==len(data) and out.raw[:len(data)]==data
  return 1000
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:concurrent=sum(pool.map(worker,range(4)))
-print(json.dumps({'status':'passed','roundtrips':roundtrips,'guarded_capacity_cases':capacity,'repeat_merge_checks':merge_checks,'repeat_decode_boundary_checks':repeat_checks,'exhaustive_mask_decode_checks':mask_checks,'malformed_or_mutated_decode_cases':malformed,'four_thread_roundtrips':concurrent,'modes_checked':sorted(modes)}))
+print(json.dumps({'status':'passed','roundtrips':roundtrips,'block_selection_boundary_pages':block_selection_pages,'direct_repeat_header_checks':direct_header_checks,'guarded_capacity_cases':capacity,'repeat_merge_checks':merge_checks,'repeat_decode_boundary_checks':repeat_checks,'exhaustive_mask_decode_checks':mask_checks,'malformed_or_mutated_decode_cases':malformed,'four_thread_roundtrips':concurrent,'modes_checked':sorted(modes)}))

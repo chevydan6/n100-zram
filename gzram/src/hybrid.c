@@ -217,6 +217,29 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
  if(n>cap-HEADER)return 0;
  memcpy(dst+HEADER,src,n);header(dst,n,0);return (int)(n+HEADER);
 }
+#if defined(GZRAM_HYBRID_DIRECT_REPEAT)
+#if !defined(GZRAM_HYBRID_CTZ_DECODE)
+#error Direct repeat experiment requires the preserved CTZ decoder control
+#endif
+/* The outer GHY1 header, length and output capacity have already been checked.
+ * Accept only a complete one-block GZR1 repeat frame; every other frame uses
+ * the preserved decoder object, including malformed inputs and older layouts. */
+static int direct_repeat(const uint8_t *frame,size_t size,uint8_t *dst,size_t n)
+{
+ if(size<HEADER+1||memcmp(frame,"GZR1",4)||frame[6]!=12||frame[7]||
+    (size_t)frame[4]+((size_t)frame[5]<<8)!=n)return 0;
+ unsigned mode=frame[HEADER],period=mode==2?4:mode==3?8:mode==5?16:mode==6?32:0;
+ if(!period||n<period||(n&(period-1))||size!=HEADER+1+period)return 0;
+ const uint8_t *pattern=frame+HEADER+1;uint64_t words[4];
+ if(period==4){uint32_t word;memcpy(&word,pattern,4);uint64_t value=word|((uint64_t)word<<32);for(unsigned i=0;i<4;i++)words[i]=value;}
+ else for(unsigned i=0;i<4;i++)memcpy(&words[i],pattern+((i*8)&(period-1)),8);
+ size_t at=0;
+ for(;n-at>=32;at+=32)for(unsigned i=0;i<4;i++)memcpy(dst+at+i*8,&words[i],8);
+ for(;n-at>=8;at+=8)memcpy(dst+at,&words[(at/8)&3],8);
+ if(n-at)memcpy(dst+at,pattern,4); /* Only a period-four frame can have this tail. */
+ return (int)n;
+}
+#endif
 static int decode(const void *input,size_t size,void *output,size_t cap,decode_fn gz)
 {
  if(!input||size<HEADER||size>MAX_FRAME)return -1;
@@ -227,6 +250,9 @@ static int decode(const void *input,size_t size,void *output,size_t cap,decode_f
  unsigned mode=src[6];
  if(mode==0){if(size!=n+HEADER)return -1;if(n)memcpy(dst,src+HEADER,n);return (int)n;}
  if(!n)return -1; /* Empty frames use the canonical raw representation. */
+#if defined(GZRAM_HYBRID_DIRECT_REPEAT)
+ if(mode==1&&gz==gzram_ctz_decode_scalar){int got=direct_repeat(src+HEADER,size-HEADER,dst,n);if(got)return got;}
+#endif
  int got=mode==1?gz(src+HEADER,size-HEADER,dst,n):LZ4_decompress_safe((const char *)src+HEADER,(char *)dst,(int)(size-HEADER),(int)n);
  return got==(int)n?got:-1;
 }

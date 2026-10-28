@@ -1,0 +1,1 @@
+{"status": "passed", "roundtrips": 34816, "block_selection_boundary_pages": 0, "direct_repeat_header_checks": 0, "guarded_capacity_cases": 34768, "repeat_merge_checks": 0, "repeat_decode_boundary_checks": 48576, "exhaustive_mask_decode_checks": 71680, "malformed_or_mutated_decode_cases": 80000, "four_thread_roundtrips": 4000, "modes_checked": [0, 1, 2]}

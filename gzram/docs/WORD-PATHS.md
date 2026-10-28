@@ -111,3 +111,31 @@ with `-DOPS=131072` lengthens the fast repeat batches; all controls in that run
 must use the same binary and batch count. This is measurement amortization, not
 kernel batching, queueing, or an accepted SIMD crossover. The full 20-corpus
 cohort remains necessary to retain regressions outside those repeat cases.
+
+## Fourth candidate set: block selection and combined repeat handling
+
+The third timing cohort rejects per-mask packing cutoffs as general choices:
+all three lose roughly 15% on clusters50, and some lose on ordinary word
+populations too. `blockpick2/3/4` therefore reuse the completed scan's nonzero
+word count to choose a packer once per independent internal block. The thresholds
+are experimental averages of two, three or four present words per 32-byte group.
+No extra scan or queue is introduced. Full/mixed masks at the same average can
+still prefer different packers, so this does not assume that density alone is a
+sufficient classifier. Whole-codec measurements must decide.
+
+`bitmerge` composes the bitpack encoder, preserved CTZ decoder and the faster
+repeat-consolidation helper. `bitdirect` adds an integer word-store shortcut only
+to scalar decoding of a fully validated, one-block GZR1 repeat frame. It checks
+nested magic, reserved field, block length, inner/outer decoded lengths, repeat
+mode, divisibility and exact payload size before writing. Other frames use the
+preserved decoder object; the AVX2 entry retains its existing repeat path.
+The extra checks can penalize nonrepeat pages, which is why bitmerge remains a
+separate control. Both candidates keep the existing GHY1/GZR1 format and match
+repeatmerge's encoded bytes, now confirmed by the fourth correctness/size checkpoint.
+
+Tests add both sides of every aggregate cutoff at all eight internal block
+lengths, plus explicit nested-header mutations for the direct shortcut. The
+existing independent oracle, cross-decoding, all-mask cases, repeat tails,
+truncations, protected boundaries, fuzzing and concurrency remain. Build,
+sanitizer, preservation and size checks precede timing; none of these new
+policies has an accepted performance result yet.

@@ -7,6 +7,11 @@ plus independently written SSE2/AVX2 comparisons and bounded copies.
 Native experimental backends have been tested and restored to stock afterward.
 No broad end-to-end performance improvement has been established; see BENCHMARKS.md.
 
+Experimental GZRAM development is in [`gzram/`](gzram/). The
+[latest local N100 checkpoint](docs/GZRAM-ASTRA-20261028.md) records measured
+scalar/SIMD tradeoffs, raw results and correctness gates; [SOL's baseline](docs/GZRAM-20261028.md)
+remains intact. GZRAM is a prototype and is not the laptop's active ZRAM codec.
+
 Requirements: x86-64 Linux, Python 3, GCC, glibc development headers. AVX2 and OS
 YMM state support are required for the full suite. No external Python packages.
 

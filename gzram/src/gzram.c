@@ -288,7 +288,15 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
 #endif
   else if(mode==MASK32) {
    size_t groups=len/32;memcpy(dst+pos,s.masks,groups);pos+=groups;
+#if defined(GZRAM_BLOCK_PACK_LIMIT)
+   /* Reuse the completed scan's count. Choose once per independent block,
+    * leaving the inner mask loop free of a scalar/vector selection branch. */
+   _Static_assert(GZRAM_BLOCK_PACK_LIMIT>=0&&GZRAM_BLOCK_PACK_LIMIT<=8,"Invalid block packing cutoff");
+   pack_fn selected=(pack==pack_avx2&&s.nonzero<=groups*GZRAM_BLOCK_PACK_LIMIT)?pack_scalar:pack;
+   for(size_t group=0;group<groups;group++){unsigned mask=s.masks[group];selected(src+offset+group*32,dst+pos,mask);pos+=gz_count[mask]*4U;}
+#else
    for(size_t group=0;group<groups;group++){unsigned mask=s.masks[group];pack(src+offset+group*32,dst+pos,mask);pos+=gz_count[mask]*4U;}
+#endif
   } else if(mode!=ZERO){memcpy(dst+pos,src+offset,period);pos+=period;}
  }
  if(pos>=n+HEADER)return raw_page(src,n,dst,cap,log);

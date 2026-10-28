@@ -53,6 +53,9 @@ core_objects={
  'select2base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_SELECT_PACK=2',*rename('base')],
  'select3base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_SELECT_PACK=3',*rename('base')],
  'select4base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_SELECT_PACK=4',*rename('base')],
+ 'block2base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_BLOCK_PACK_LIMIT=2',*rename('base')],
+ 'block3base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_BLOCK_PACK_LIMIT=3',*rename('base')],
+ 'block4base':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_CTZ_PACK=1','-DGZRAM_BLOCK_PACK_LIMIT=4',*rename('base')],
  'fused':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_EMBED_PREFIX=1',*rename('fused'),'-Dgzram_avx2_available=gzram_fused_avx2_available','-Dgzram_encode_hint_avx2=gzram_fused_encode_hint_avx2'],
  'mixed':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1',*rename('mixed'),'-Dgzram_avx2_available=gzram_mixed_avx2_available','-Dgzram_decode_mixed=gzram_mixed_decode'],
  'ctz':['-DGZRAM_SCALAR_FAST=1','-DGZRAM_MIXED_DECODE=1','-DGZRAM_CTZ_UNPACK=1',*rename('ctz'),'-Dgzram_avx2_available=gzram_ctz_avx2_available','-Dgzram_decode_mixed=gzram_ctz_decode'],
@@ -86,10 +89,15 @@ policies={
  'select3':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
  'select4':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
  'repeatmergefast':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1','-DGZRAM_HYBRID_MERGE_REPEAT=1','-DGZRAM_HYBRID_MERGE_REPEAT_FAST=1'],
+ 'blockpick2':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'blockpick3':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'blockpick4':['-DGZRAM_HYBRID_GUARD=32','-DGZRAM_HYBRID_WORD_SCALAR=1','-DGZRAM_HYBRID_MIXED_DECODE=1'],
+ 'bitmerge':['-DGZRAM_HYBRID_GUARD=32', '-DGZRAM_HYBRID_WORD_SCALAR=1', '-DGZRAM_HYBRID_CTZ_DECODE=1', '-DGZRAM_HYBRID_MERGE_REPEAT=1', '-DGZRAM_HYBRID_MERGE_REPEAT_FAST=1'],
+ 'bitdirect':['-DGZRAM_HYBRID_GUARD=32', '-DGZRAM_HYBRID_WORD_SCALAR=1', '-DGZRAM_HYBRID_CTZ_DECODE=1', '-DGZRAM_HYBRID_MERGE_REPEAT=1', '-DGZRAM_HYBRID_MERGE_REPEAT_FAST=1', '-DGZRAM_HYBRID_DIRECT_REPEAT=1'],
 }
-additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz','wordrepeat':'repeat','ctzrepeat':'ctzrepeat','bitpack':'mixed','mixpack':'mixed','repeatmerge':'mixed','ctzfull':'ctzfull','bitctz':'ctz','bitfull':'ctzfull','select2':'mixed','select3':'mixed','select4':'mixed','repeatmergefast':'mixed'}
+additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittail':'mixed','outlinetail':'mixed','ctzunpack':'ctz','wordrepeat':'repeat','ctzrepeat':'ctzrepeat','bitpack':'mixed','mixpack':'mixed','repeatmerge':'mixed','ctzfull':'ctzfull','bitctz':'ctz','bitfull':'ctzfull','select2':'mixed','select3':'mixed','select4':'mixed','repeatmergefast':'mixed','blockpick2':'mixed','blockpick3':'mixed','blockpick4':'mixed','bitmerge':'ctz','bitdirect':'ctz'}
 for policy,defines in policies.items():
- base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base'}.get(policy,'base')
+ base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base','blockpick2':'block2base','blockpick3':'block3base','blockpick4':'block4base','bitmerge':'bitpackbase','bitdirect':'bitpackbase'}.get(policy,'base')
  sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
  compile_files([*sources,*lz4_objects],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)

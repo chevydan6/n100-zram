@@ -78,7 +78,7 @@ if a.pack == 'ctz':
     flags.append('GZRAM_CTZ_PACK')
 unsupported = ['GZRAM_EMBED_PREFIX', 'GZRAM_VARIABLE_PERIOD', 'GZRAM_PERIOD_FILTER',
                'GZRAM_MIXED_ENCODE', 'GZRAM_MIXED_DECODE', 'GZRAM_BLOCK_UNPACK',
-               'GZRAM_SELECT_PACK', 'GZRAM_CTZ_UNPACK_FULL']
+               'GZRAM_SELECT_PACK', 'GZRAM_CTZ_UNPACK_FULL', 'GZRAM_BLOCK_PACK_LIMIT']
 prologue = '/* SPDX-License-Identifier: GPL-2.0-only */\n'
 prologue += '/* Generated scalar component port; no GHY1, SIMD or ZRAM registration. */\n'
 prologue += '#if ' + ' || '.join('defined(' + name + ')' for name in unsupported) + '\n#error Unsupported scalar component configuration\n#endif\n'

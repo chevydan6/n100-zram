@@ -21,7 +21,7 @@
 _Static_assert(OPS>0&&OPS%PAGES==0,"Batch calls must be positive and a multiple of the corpus page count");
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
 static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75"};
-static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast"};
+static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast","blockpick2","blockpick3","blockpick4","bitmerge","bitdirect"};
 /* 57 base entries plus two ISAs at eight block sizes per hybrid policy.
  * Keep the shuffled indices and codec registry at the same capacity. */
 enum { CODEC_CAPACITY=57+16*(sizeof(policies)/sizeof(policies[0])) };

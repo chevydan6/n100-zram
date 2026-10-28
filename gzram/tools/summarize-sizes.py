@@ -26,17 +26,19 @@ def main():
     assert len(groups) == len(corpora) * len(variants)
     assert all(set(group) == set(range(metadata['pages_per_corpus'])) for group in groups.values())
     equivalent = [policy for policy in ('outlinetail', 'ctzunpack', 'wordrepeat', 'ctzrepeat', 'bitpack', 'mixpack',
-                                       'ctzfull', 'bitctz', 'bitfull', 'select2', 'select3', 'select4')
+                                       'ctzfull', 'bitctz', 'bitfull', 'select2', 'select3', 'select4',
+                                       'blockpick2', 'blockpick3', 'blockpick4')
                   if f'ghy-{policy}-scalar-1024' in variants]
     for corpus in corpora:
         for policy in equivalent:
             for isa in ('scalar', 'avx2'):
                 for block in (1024, 4096):
                     assert groups[corpus, f'ghy-{policy}-{isa}-{block}'] == groups[corpus, f'ghy-wordmixed-{isa}-{block}']
-        if 'ghy-repeatmergefast-scalar-1024' in variants:
+        for merged_policy in ['repeatmergefast', 'bitmerge', 'bitdirect']:
+            if f'ghy-{merged_policy}-scalar-1024' not in variants:continue
             for isa in ('scalar', 'avx2'):
                 for block in (1024, 4096):
-                    assert groups[corpus, f'ghy-repeatmergefast-{isa}-{block}'] == groups[corpus, f'ghy-repeatmerge-{isa}-{block}']
+                    assert groups[corpus, f'ghy-{merged_policy}-{isa}-{block}'] == groups[corpus, f'ghy-repeatmerge-{isa}-{block}']
     lines = ['# GZRAM candidate size-only checkpoint', '', metadata['scope'] + '.', '',
              f'{len(variants)} variants, {len(corpora)} corpora, 128 pages per corpus. '
              'One deterministic encoding per page; these are not repeated timing samples.',
