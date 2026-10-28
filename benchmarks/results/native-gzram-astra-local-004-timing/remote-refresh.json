@@ -1,0 +1,23 @@
+{
+  "started": 1793167026.8713615,
+  "before": [
+    "refs/remotes/origin/HEAD a8981772c761c44f12550bc316c4c986feac9e65",
+    "refs/remotes/origin/feature/n100-adaptive-simd-zram 6772e95a5b9504bddb756b12ed334621718fa4a4",
+    "refs/remotes/origin/feature/n100-avx2-zram fe94b16ea1a6492978bbd1e0bb4223557079c065",
+    "refs/remotes/origin/feature/n100-gzram-astra-paths 4fee8b365c5de303e142e659e2db33e440339dc1",
+    "refs/remotes/origin/feature/n100-gzram-avx2 c108398711e49d594d47be3ba926d5f41537e51c",
+    "refs/remotes/origin/feature/n100-gzram-guarded-trial e119f82c5cfdb145a231f6c69234955e0092b4b3",
+    "refs/remotes/origin/main a8981772c761c44f12550bc316c4c986feac9e65"
+  ],
+  "finished": 1793167027.4466856,
+  "status": 0,
+  "after": [
+    "refs/remotes/origin/HEAD a8981772c761c44f12550bc316c4c986feac9e65",
+    "refs/remotes/origin/feature/n100-adaptive-simd-zram 6772e95a5b9504bddb756b12ed334621718fa4a4",
+    "refs/remotes/origin/feature/n100-avx2-zram fe94b16ea1a6492978bbd1e0bb4223557079c065",
+    "refs/remotes/origin/feature/n100-gzram-astra-paths 4fee8b365c5de303e142e659e2db33e440339dc1",
+    "refs/remotes/origin/feature/n100-gzram-avx2 c108398711e49d594d47be3ba926d5f41537e51c",
+    "refs/remotes/origin/feature/n100-gzram-guarded-trial e119f82c5cfdb145a231f6c69234955e0092b4b3",
+    "refs/remotes/origin/main a8981772c761c44f12550bc316c4c986feac9e65"
+  ]
+}

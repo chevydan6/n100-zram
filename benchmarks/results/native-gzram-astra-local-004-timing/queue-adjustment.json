@@ -1,0 +1,10 @@
+{
+  "time": 1793165481.971564,
+  "reason": "Permit a separate unprivileged timing cohort while energy authentication remains pending; serialize all runs on the same native lock",
+  "old_launcher_sha256": "c8b4a83b1c3d862996234c10ea94432ea0d3fe4ee703e178abf5b46e208258a7",
+  "new_launcher_sha256": "0d980b50a88a443e824fd246e74712daae5eab6c8f4b26e6037bc4bfb8069d23",
+  "lock_wait_seconds_before": 600,
+  "lock_wait_seconds_after": 3600,
+  "measurement_deadline_seconds_unchanged": 2100,
+  "benchmark_sources_and_variants_unchanged": true
+}

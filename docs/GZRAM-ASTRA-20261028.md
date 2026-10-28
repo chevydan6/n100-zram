@@ -3,7 +3,8 @@
 Branch: `feature/n100-gzram-astra-paths`, based on SOL's `e119f82`.
 Latest: the third physical energy cohort confirms sparse scalar time and package
 energy reductions, while retaining clustered-data and LZ4-relative regressions.
-Five follow-up candidates have passed normal and sanitizer correctness/size validation. This prototype
+The fourth timing cohort now identifies a combined sparse/repeat candidate with
+strong repeat-decode and size gains, retained regressions, and energy still unmeasured. This prototype
 does not establish kernel, battery or production gains. [SOL's report](GZRAM-20261028.md) remains the historical baseline.
 
 Update: the user confirmed that this workspace is on the same Lenovo 14e that
@@ -699,3 +700,116 @@ The opt-in control will allow matched native measurement of kernel FPU entry/
 exit under cleared-before-loop, SSE-dirty and YMM-dirty userspace conditions.
 No state-management latency, energy gain, batching benefit or SIMD crossover
 has yet been measured. This adds no page queue and does not alter ZRAM.
+
+
+## Fourth completed physical timing cohort
+
+The [complete fourth timing cohort](../benchmarks/results/native-gzram-astra-local-004-timing/summary.md)
+contains 22,680 rows: 21 variants, all 20 corpora, three sessions, two warm-ups
+and nine recorded shuffled rounds, 128 pages/corpus and 8,192 calls/batch.
+It uses frozen source `16803f6`, GCC 16.2.1, the physical N100's unchanged
+7.2.11 kernel, powersave policy and 700–800 MHz limits. Codecs run on CPU0,
+telemetry on CPU1, at nice 5 with UID 1000 and zero effective capabilities.
+The artifact, complete-row and unchanged CPU/ZRAM audits passed. All PMU groups
+were fully scheduled. No experimental host module was loaded.
+
+The run lasted 1543.43 seconds, with maximum telemetry gap 0.545 seconds and
+thread occupancy 91.984–100.406%, median 99.281%. Every row remains, including
+preemption. The separately bracketed clocks can yield slightly over 100%.
+Package energy is unavailable in every row. The approximate whole-experiment
+battery integral is 4.07 kJ / 1.13 Wh, including desktop activity and setup;
+it is neither per-codec energy nor a battery-efficiency comparison.
+
+This separate unprivileged run proceeded while Fedora authentication for the
+energy cohort remained pending. Both supervisors use the same exclusive lock.
+The energy launcher's lock-wait limit was extended from 600 to 3600 seconds to
+allow that serialization; its 2100-second measurement deadline still starts
+after authentication and lock waiting. The change and original launcher are
+retained privately, and the completed timing cohort records the queue decision.
+The remote refresh after timing found no changed branch heads or newer SOL work.
+
+### Combined scalar repeat handling is promising
+
+Bitdirect retains bitpack encoding and the preserved CTZ decoder, consolidates
+repeat frames, and directly expands fully validated scalar repeats. Against
+matched bitctz at 1024-byte internal blocks:
+
+| Corpus | Compress ns/page, bitctz → bitdirect | Paired change | Decode ns/page, bitctz → bitdirect | Paired change | Bytes/page |
+|---|---:|---:|---:|---:|---:|
+| Repeat16 | 1827.2 → 1844.4 | -0.38% (mixed signs) | 1866.8 → 410.6 | -78.02% | 84 → 33 |
+| Repeat32 | 1810.1 → 1841.0 | +2.01% | 833.0 → 397.0 | -51.77% | 148 → 49 |
+| Sparse words | 5926.0 → 5940.3 | +0.37% (mixed signs) | 3904.9 → 3945.8 | +0.30% | unchanged |
+| Clusters50 | 5346.4 → 5288.4 | -1.10% | 4354.5 → 4398.2 | +1.10% | unchanged |
+| Mixed pages | 15338.0 → 15344.1 | +0.10% (mixed signs) | 3517.0 → 3523.1 | +0.67% | unchanged |
+
+Percentage changes are medians of paired session effects; absolute values are
+pooled medians, so their ratios need not equal the percentages. Repeat16 decode
+changes span -78.03..-78.01% across sessions, repeat32 -52.43..-51.67%.
+Thread CPU changes corroborate those gains (-78.00%/-51.91%). Repeat32
+compression CPU time regresses 1.79%; repeat16 compression has no accepted gain.
+The small nonrepeat decode losses are retained, including all-session losses on
+clusters50, mixed pages and sparse words. Energy for this candidate is unproven.
+
+Bitmerge is the exact-byte control without direct expansion. Its repeat16/32
+decoding regresses 14.13%/6.40% versus bitctz, despite the smaller frames.
+Bitdirect improves decoding 80.76%/54.22% against that control, with identical
+bytes. Against the earlier wordrepeat scalar decoder, bitdirect improves
+repeat16/32 decoding 25.85%/21.87% (557.0 → 410.6 and 517.0 → 397.0 ns), but
+compression regresses 0.97%/2.62%. This is a measured composition benefit with
+tradeoffs, not a universally faster encoder.
+
+Matched LZ4 comparisons remain mixed:
+
+| Corpus / operation | LZ4 ns/page → bitdirect | Paired time change | LZ4 bytes → bitdirect |
+|---|---:|---:|---:|
+| Repeat16 / compress | 2581.1 → 1844.4 | -28.51% | 42 → 33 |
+| Repeat16 / decode | 1990.8 → 410.6 | -79.39% | 42 → 33 |
+| Repeat32 / compress | 2678.7 → 1841.0 | -31.06% | 58 → 49 |
+| Repeat32 / decode | 1110.1 → 397.0 | -64.09% | 58 → 49 |
+| Sparse / compress | 17129.7 → 5940.3 | -65.28% | 1081.359 → 660.844 |
+| Sparse / decode | 8034.4 → 3945.8 | -51.02% | 1081.359 → 660.844 |
+| Executable / compress | 39578.9 → 42793.5 | +8.06% | 3242.602 → 3250.602 |
+| Random / compress | 4591.9 → 7764.1 | +68.97% | 4114 → 4104 |
+| Period127 / compress | 3086.6 → 5881.3 | +94.02% | 153 → 161 |
+| Clusters50 / decode | 3891.1 → 4398.2 | +13.11% | 2273.391 → 2205 |
+
+Both random outputs exceed a page. Clusters75 also loses 4.76% compression and
+10.41% decoding against LZ4. Smaller framed bytes do not establish smaller
+zsmalloc allocation classes. Repeat8's large decoder gain is not a native swap
+claim because ZRAM's same-filled-page bypass can avoid that codec operation.
+No workload-weighted overall, native ZRAM or production improvement is accepted.
+
+### Block-level population cutoffs remain a tradeoff
+
+AVX2 compression changes against matched wordmixed, with identical bytes:
+
+| Corpus | Blockpick2 | Blockpick3 | Blockpick4 |
+|---|---:|---:|---:|
+| Sparse words | -12.09% | -11.82% | -11.44% |
+| Words25 | +2.94% | +2.38% | +2.84% |
+| Words50 | +2.76% | +2.94% | +11.27% |
+| Clusters25 | +9.46% | +7.27% | +7.19% |
+| Clusters50 | +7.87% | +6.25% | +3.56% |
+
+All listed effects have the same sign in all three sessions and corresponding
+CPU-time changes. Blockpick3 reduces the earlier select3 clustered penalty by
+7.17% on clusters50, but loses 8.37% on sparse words and 9.32% on words25 versus
+select3. Against unconditional mixpack it loses 12.17% on sparse words and
+13.87% on clusters50, while improving words50 9.21%. No cutoff is accepted as
+a default. All [4,640 direct contrasts](../benchmarks/results/native-gzram-astra-local-004-timing/paired.md)
+remain available, including unchanged paths and losses.
+
+Disassembly confirms an indirect `call *%rbx` inside blockpick3's AVX2 packing
+loop (object offset 0x11e5), despite selecting its target only once per block.
+The mask read, call, popcount-derived byte advance and loop branch are retained
+in the [object disassembly](../benchmarks/results/native-gzram-astra-local-004-timing/blockpick3-encoder.asm).
+This does not prove the cause of the regressions. Direct scalar/vector loops
+selected outside the group loop are the next credible encoding experiment;
+code size, inlining and branch changes must be measured rather than assumed.
+
+Bitdirect's AVX2 entry still beats its scalar entry on repeat16/32 decode by
+37.70%/40.81% (410.6 → 263.3 and 397.0 → 235.0 ns), but loses 8.72% on sparse
+decode and 9.52% on words50 decode. These are userspace differences. The kernel
+FPU controls are intended to measure relevant costs, not to add a fixed historical
+constant to these numbers. Bitdirect is a promising userspace candidate awaiting
+energy confirmation and its own kernel-port validation; it is not a new default.
