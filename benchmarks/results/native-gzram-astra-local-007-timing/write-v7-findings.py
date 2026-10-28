@@ -151,7 +151,7 @@ and randomized operation order before interpreting the repeat anomaly. Any
 kernel SIMD candidate still needs bounded FPU handling and controlled native
 recovery checks; no batch size, queue threshold or ZRAM benefit is assumed.
 ''']
-(reports[0]/'findings.md').write_text('\n'.join(lines)+'\n')
+(reports[0]/'findings.md').write_text('\n'.join(lines).rstrip()+'\n')
 (reports[1]/'findings.md').write_text('# Repeatability cohort\n\nSee the [joint findings](../native-gzram-astra-local-007-timing/findings.md).\nThis directory preserves the complete second cohort, including every regression,\nlow-occupancy batch and control. Same sources/corpora/order seeds; fresh processes.\n')
 shutil.copytree(root/'build/astra-v7-decoder-layout',reports[0]/'decoder-layout')
 for dest in reports:

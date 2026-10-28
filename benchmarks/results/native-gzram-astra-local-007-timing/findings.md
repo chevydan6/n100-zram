@@ -152,4 +152,3 @@ component separately. Isolate decoder measurement with a shared decoder entry
 and randomized operation order before interpreting the repeat anomaly. Any
 kernel SIMD candidate still needs bounded FPU handling and controlled native
 recovery checks; no batch size, queue threshold or ZRAM benefit is assumed.
-
