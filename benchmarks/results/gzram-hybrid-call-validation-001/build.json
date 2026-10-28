@@ -1,0 +1,25 @@
+{
+  "scope": "Static scalar kernel measurement client; compiled only, native timing not run",
+  "compiler": "gcc 16.2.1",
+  "command": [
+    "gcc",
+    "-O2",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-static",
+    "-fno-tree-vectorize",
+    "-pthread",
+    "-B/home/dan/n100-zram/build/astra-vm/root/usr/lib64",
+    "-L/home/dan/n100-zram/build/astra-vm/root/usr/lib64",
+    "gzram/benchmarks/hybrid-call.c",
+    "-o",
+    "build/astra-hybrid-call-001/client"
+  ],
+  "source_sha256": {
+    "gzram/benchmarks/hybrid-call.c": "e7463e3b7ecbe80bc5fe469dcfe6b36a0b7115b1a90203e2391dbc6d49117bad",
+    "gzram/kernel/hybrid-probe.h": "cb2a05cb3fd1d770355f8b31b2873279765b2eca47edfb829a575bfcc7f7691a"
+  },
+  "binary_sha256": "3fc584e95f82ece03a9bf7bed36a591c4838c3abbcbf8efd8542f4516e3229b3"
+}

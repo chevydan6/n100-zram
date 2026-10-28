@@ -676,3 +676,11 @@ No queue, background worker, SIMD or FPU state management is introduced.
 Native timing and energy have not been collected from this interface. A native
 measurement client and current recovery verification remain required; the
 userspace codec gains cannot be assigned to the adapted kernel implementation.
+
+The [kernel measurement client](../benchmarks/results/gzram-hybrid-call-validation-001/summary.md)
+now builds and passes two isolated cycles with all 20 corpus hashes and 26,444
+assertions/cycle, including all-YMM preservation checks. Explicit VM timing is
+rejected. Its native mode records separate compression/decompression, no-op
+interface costs, thread CPU time, kernel-inclusive counters and package RAPL
+under shuffled userspace vector conditions. No native measurements have yet
+been collected; kernel FPU begin/end cost and real ZRAM remain outside this gate.

@@ -22,10 +22,14 @@ p.add_argument('--library-path', type=Path)
 p.add_argument('--kind', choices=['scalar','hybrid','probe'], default='scalar')
 p.add_argument('--probe-client', type=Path)
 p.add_argument('--corpora-directory', type=Path)
+p.add_argument('--guest-avx2', action='store_true')
+p.add_argument('--probe-measurement-client', action='store_true')
 p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
 a = p.parse_args()
 if a.kind == 'probe' and (not a.probe_client or not a.corpora_directory):
     p.error('Probe validation requires --probe-client and --corpora-directory')
+if a.kind != 'probe' and (a.guest_avx2 or a.probe_measurement_client):
+    p.error('Probe client options require --kind probe')
 a.lock.parent.mkdir(parents=True, exist_ok=True)
 lock = a.lock.open('a+')
 try:
@@ -92,12 +96,18 @@ poweroff -f
 if a.kind == 'probe':
     init = init.replace(' insmod /selftest.ko || fail',
                         ' insmod /selftest.ko || fail\n /probe-client /corpora/*.bin || fail')
+    if a.probe_measurement_client:
+        init = init.replace(' /probe-client /corpora/*.bin || fail',
+                            ' /probe-client /corpora/*.bin || fail\n'
+                            ' /probe-client --measure /corpora/*.bin\n'
+                            ' [ "$?" -eq 3 ] || fail\n'
+                            ' echo GHY_NATIVE_TIMING_REFUSED')
 add('init', init.encode(), mode=stat.S_IFREG | 0o755)
 add('TRAILER!!!')
 initramfs = a.output / 'initramfs.cpio'
 initramfs.write_bytes(archive)
 command = [str(a.qemu.resolve()), '-no-user-config', '-nodefaults',
-           '-machine', 'q35,accel=kvm', '-cpu', 'host,-avx2', '-smp', '2', '-m', '256',
+           '-machine', 'q35,accel=kvm', '-cpu', 'host' if a.guest_avx2 else 'host,-avx2', '-smp', '2', '-m', '256',
            '-display', 'none', '-monitor', 'none', '-serial', 'stdio', '-nic', 'none',
            '-no-reboot', '-bios', str(a.bios.resolve()), '-L', str(a.qemu_data.resolve()),
            '-kernel', str(a.kernel.resolve()), '-initrd', str(initramfs.resolve()),
@@ -114,6 +124,8 @@ if a.kind == 'probe':
     record['scope'] = 'Diskless scalar GHY1 syscall-interface correctness only; no native timing, SIMD state, recovery or ZRAM result'
     record['probe_client_sha256'] = sha(a.probe_client)
     record['corpus_sha256'] = probe_hashes
+    record['guest_avx2_exposed'] = a.guest_avx2
+    record['measurement_refusal_required'] = a.probe_measurement_client
 with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').open('w') as error:
     try:
         result = subprocess.run(command, env=env, stdout=serial, stderr=error, timeout=180)
@@ -127,6 +139,10 @@ checks_passed = len(record['worker_results']) == 2 and all(int(w) == 4 and int(c
 if a.kind == 'probe':
     record['client_results'] = re.findall(r'GHY_PROBE_CLIENT_PASS corpora=(\d+) checks=(\d+)', text)
     checks_passed = len(record['client_results']) == 2 and all(int(n) == len(probe_hashes) and int(c) > 0 for n, c in record['client_results'])
+    if a.probe_measurement_client:
+        checks_passed = checks_passed and text.count('GHY_NATIVE_TIMING_REFUSED') == 2
+        if a.guest_avx2:
+            checks_passed = checks_passed and text.count('vector_state_checked=1') == 2
 record['status'] = 'passed' if (record['exit_code'] == 0 and marker + '_VM_PASS' in text
     and checks_passed
     and not any(word in text for word in [marker + '_VM_FAIL', 'Kernel panic', 'Oops:', 'BUG:', 'WARNING:'])) else 'failed'
