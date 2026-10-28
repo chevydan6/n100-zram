@@ -1,0 +1,66 @@
+{
+  "uid": 1000,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "scope": "Read-only inventory, not proof of recovery; no setting or device mutation",
+  "default_kernel_read": {
+    "command": [
+      "grubby",
+      "--default-kernel"
+    ],
+    "status": 0,
+    "stdout": "/boot",
+    "stderr": "grep: /boot/grub2/grubenv: Permission denied"
+  },
+  "valid_default_kernel_image": false,
+  "boot_entries": {
+    "error": "PermissionError(13, 'Permission denied')"
+  },
+  "runtime_recovery": {
+    "panic": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "value": "0"
+    },
+    "panic_on_oops": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "value": "0"
+    },
+    "nmi_watchdog": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "value": "0"
+    },
+    "hardlockup_panic": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "value": "0"
+    },
+    "softlockup_panic": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "value": "0"
+    }
+  },
+  "reboot": {
+    "type": {
+      "sha256": "76cecdfd862e02107bc7d8688e6d14fcaf3afb5471f1cc0b73339223434fa330",
+      "bytes": 5,
+      "value": "acpi"
+    },
+    "mode": {
+      "sha256": "fb9467d222b8555309d95853ef656e5fdd18e64ac6c68fc2be832014ce0569e8",
+      "bytes": 5,
+      "value": "cold"
+    },
+    "force": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "value": "0"
+    }
+  },
+  "watchdogs": {},
+  "experimental_modules": [],
+  "observed_at": "2026-10-28T14:15:37.112145+09:00",
+  "interpretation": "Boot metadata permission errors prevent default-kernel verification. No experimental host module; runtime recovery remains unarmed. This is not evidence of a broken boot configuration."
+}

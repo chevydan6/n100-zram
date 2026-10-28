@@ -10,6 +10,15 @@ not present at its documented location. Unprivileged `grubby --default-kernel`
 returned `/boot` with status zero; that is not a kernel image and does not verify
 the boot default. No settings were changed by this review.
 
+A [fresh unprivileged inventory](docs/validation/astra-native-inventory-unprivileged-20261028.json)
+captures the explicit permission errors for `/boot/grub2/grubenv` and the BLS
+directory. The `/boot` return is therefore not accepted as a boot default and
+does not indicate a broken boot configuration. `gzram/tools/inspect-native.py`
+can repeat this read-only inventory with privileged visibility; it prints JSON,
+never arms recovery or opens watchdog devices, and retains failures explicitly.
+Its full output includes identifying boot/process information and should be
+reviewed before publication.
+
 The historical PCI/panic tests below remain useful evidence for their recorded
 kernels and configurations. They do not satisfy the current native kernel gate.
 The scalar GZR1 component has passed an isolated exact-kernel VM correctness
