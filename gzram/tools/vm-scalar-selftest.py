@@ -24,12 +24,15 @@ p.add_argument('--probe-client', type=Path)
 p.add_argument('--corpora-directory', type=Path)
 p.add_argument('--guest-avx2', action='store_true')
 p.add_argument('--probe-measurement-client', action='store_true')
+p.add_argument('--probe-fpu-control', action='store_true')
 p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
 a = p.parse_args()
 if a.kind == 'probe' and (not a.probe_client or not a.corpora_directory):
     p.error('Probe validation requires --probe-client and --corpora-directory')
 if a.kind != 'probe' and (a.guest_avx2 or a.probe_measurement_client):
     p.error('Probe client options require --kind probe')
+if a.probe_fpu_control and not a.probe_measurement_client:
+    p.error('FPU measurement control requires --probe-measurement-client')
 a.lock.parent.mkdir(parents=True, exist_ok=True)
 lock = a.lock.open('a+')
 try:
@@ -102,6 +105,8 @@ if a.kind == 'probe':
                             ' /probe-client --measure /corpora/*.bin\n'
                             ' [ "$?" -eq 3 ] || fail\n'
                             ' echo GHY_NATIVE_TIMING_REFUSED')
+        if a.probe_fpu_control:
+            init = init.replace('/probe-client ', '/probe-client --fpu-control ')
 add('init', init.encode(), mode=stat.S_IFREG | 0o755)
 add('TRAILER!!!')
 initramfs = a.output / 'initramfs.cpio'
@@ -126,6 +131,7 @@ if a.kind == 'probe':
     record['corpus_sha256'] = probe_hashes
     record['guest_avx2_exposed'] = a.guest_avx2
     record['measurement_refusal_required'] = a.probe_measurement_client
+    record['fpu_control_required'] = a.probe_fpu_control
 with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').open('w') as error:
     try:
         result = subprocess.run(command, env=env, stdout=serial, stderr=error, timeout=180)
@@ -143,6 +149,8 @@ if a.kind == 'probe':
         checks_passed = checks_passed and text.count('GHY_NATIVE_TIMING_REFUSED') == 2
         if a.guest_avx2:
             checks_passed = checks_passed and text.count('vector_state_checked=1') == 2
+        if a.probe_fpu_control:
+            checks_passed = checks_passed and text.count('fpu_control=1') == 2
 record['status'] = 'passed' if (record['exit_code'] == 0 and marker + '_VM_PASS' in text
     and checks_passed
     and not any(word in text for word in [marker + '_VM_FAIL', 'Kernel panic', 'Oops:', 'BUG:', 'WARNING:'])) else 'failed'

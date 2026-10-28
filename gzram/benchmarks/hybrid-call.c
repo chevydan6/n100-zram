@@ -71,12 +71,20 @@ __attribute__((target("avx2"),noinline))
 static int check_state(int fd,unsigned long command)
 {
  unsigned char expected[512],actual[512];long result;
+ uint32_t old_mxcsr,test_mxcsr,actual_mxcsr;
+ uint16_t old_cw,test_cw,actual_cw;
  for(int i=0;i<512;i++)expected[i]=(unsigned char)(i*37+(i/32)*17);
+ __asm__ volatile("stmxcsr %0\n\tfnstcw %1":"=m"(old_mxcsr),"=m"(old_cw));
+ test_mxcsr=(old_mxcsr&~0x6000U)|0x2000U;
+ test_cw=(old_cw&~0x0c00U)|0x0400U;
+ __asm__ volatile("ldmxcsr %0\n\tfldcw %1"::"m"(test_mxcsr),"m"(test_cw):"memory");
  __asm__ volatile(ALL_YMM(LOAD_YMM) "syscall\n\t" ALL_YMM(SAVE_YMM)
  : "=a"(result)
  : "0"((long)SYS_ioctl),"D"((long)fd),"S"(command),"d"(0L),[expected]"r"(expected),[actual]"r"(actual)
  : "rcx","r11","memory","ymm0","ymm1","ymm2","ymm3","ymm4","ymm5","ymm6","ymm7","ymm8","ymm9","ymm10","ymm11","ymm12","ymm13","ymm14","ymm15");
- return result>=0 && !memcmp(expected,actual,sizeof(expected))?0:-1;
+ __asm__ volatile("stmxcsr %0\n\tfnstcw %1\n\tldmxcsr %2\n\tfldcw %3"
+ :"=m"(actual_mxcsr),"=m"(actual_cw):"m"(old_mxcsr),"m"(old_cw):"memory");
+ return result>=0 && actual_mxcsr==test_mxcsr && actual_cw==test_cw && !memcmp(expected,actual,sizeof(expected))?0:-1;
 }
 static unsigned number(const char *text,unsigned limit)
 {
@@ -108,12 +116,13 @@ static void shuffle(unsigned *order,unsigned count)
 }
 int main(int argc,char **argv)
 {
- int measure=0,first=1;
+ int measure=0,fpu_control=0,first=1;
  while(first<argc && argv[first][0]=='-'){
   if(!strcmp(argv[first],"--measure"))measure=1;
+  else if(!strcmp(argv[first],"--fpu-control"))fpu_control=1;
   else if(!strncmp(argv[first],"--ops=",6))ops=number(argv[first]+6,1048576);
   else if(!strncmp(argv[first],"--seed=",7))order_seed=number(argv[first]+7,2147483647);
-  else {fprintf(stderr,"usage: hybrid-call [--measure] [--ops=N] [--seed=N] CORPUS.bin ...\n");return 2;}
+  else {fprintf(stderr,"usage: hybrid-call [--measure] [--fpu-control] [--ops=N] [--seed=N] CORPUS.bin ...\n");return 2;}
   first++;
  }
  CHECK(first<argc && ops%PAGES==0);
@@ -124,7 +133,8 @@ int main(int argc,char **argv)
  }
  int fd=open("/dev/n100-ghy-probe",O_RDWR|O_CLOEXEC);CHECK(fd>=0);
  unsigned char *input=malloc(PAGES*SIZE);CHECK(input);
- const unsigned long commands[]={GHY_PROBE_COMP(0),GHY_PROBE_DEC(0),GHY_PROBE_COMP(1),GHY_PROBE_DEC(1),GHY_PROBE_COMP(2),GHY_PROBE_DEC(2),GHY_PROBE_NOP};
+ const unsigned long commands[]={GHY_PROBE_COMP(0),GHY_PROBE_DEC(0),GHY_PROBE_COMP(1),GHY_PROBE_DEC(1),GHY_PROBE_COMP(2),GHY_PROBE_DEC(2),GHY_PROBE_NOP,GHY_PROBE_FPU_NOP};
+ unsigned operations=fpu_control?8:7;
  const char *variants[]={"lz4-private-scalar","ghy-wordmixed-port","ghy-bitctz-port","interface"};
  const char *states[]={"vectors-cleared-before-loop","sse-dirty","ymm-dirty"};
  if(measure){
@@ -132,7 +142,7 @@ int main(int argc,char **argv)
   if(inherited){energy_fd=(int)number(inherited,2147483647);CHECK(energy_fd>=3);CHECK((fcntl(energy_fd,F_GETFL)&O_ACCMODE)==O_RDONLY);}
   setup_perf();if(!read_counter("/sys/class/powercap/intel-rapl:0/max_energy_range_uj",&energy_range))energy_range=0;
   uint64_t initial;if(!energy(&initial))energy_range=0;
-  fprintf(stderr,"CPU0; calls/batch=%u; seed=%lu; RAPL=%s range_uj=%lu; PMU includes user+kernel, excludes hypervisor; one resident page/syscall; no kernel SIMD\n",ops,order_seed,energy_range?"available":"unavailable",energy_range);
+  fprintf(stderr,"CPU0; calls/batch=%u; seed=%lu; RAPL=%s range_uj=%lu; PMU includes user+kernel, excludes hypervisor; one resident page/syscall; scalar codecs; FPU entry control=%d\n",ops,order_seed,energy_range?"available":"unavailable",energy_range,fpu_control);
   puts("corpus,round,state,variant,operation,calls,ns_per_call,cpu_ns_per_call,cpu_utilization_percent,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_call");
  }
  for(int fixture=first;fixture<argc;fixture++){
@@ -146,24 +156,24 @@ int main(int argc,char **argv)
   uint32_t sizes[3][PAGES];CHECK(read(fd,sizes,sizeof(sizes))==sizeof(sizes));
   for(unsigned codec=0;codec<3;codec++)for(unsigned page=0;page<PAGES;page++)CHECK(sizes[codec][page]>0 && sizes[codec][page]<=4352);
   integrity(fd,sizes);
-  for(unsigned op=0;op<7;op++){
+  for(unsigned op=0;op<operations;op++){
    if(vectors){CHECK(!check_state(fd,commands[op]));integrity(fd,sizes);}
    for(unsigned i=0;i<PAGES;i++){
-    long expected=op==6?0:(op&1)?SIZE:sizes[op/2][i];
+    long expected=op>=6?0:(op&1)?SIZE:sizes[op/2][i];
     CHECK(ioctl(fd,commands[op],0UL)==expected);
    }
   }
   integrity(fd,sizes);
   if(!measure)continue;
   for(int round=-2;round<9;round++){
-   unsigned order[21];for(unsigned i=0;i<21;i++)order[i]=i;shuffle(order,21);
-   for(unsigned index=0;index<21;index++){
-    unsigned op=order[index]%7,state=order[index]/7;
+   unsigned order[24];for(unsigned i=0;i<operations*3;i++)order[i]=i;shuffle(order,operations*3);
+   for(unsigned index=0;index<operations*3;index++){
+    unsigned op=order[index]%operations,state=order[index]/operations;
     CHECK(!check_state(fd,commands[op]));integrity(fd,sizes);
     uint64_t before=0,after=0;int rapl=energy(&before);
     begin();clear_vectors();uint64_t cpu_start=cpu_now(),start=now();
     for(unsigned i=0;i<ops;i++){
-     long expected=op==6?0:(op&1)?SIZE:sizes[op/2][i%PAGES];
+     long expected=op>=6?0:(op&1)?SIZE:sizes[op/2][i%PAGES];
      if(invoke(fd,commands[op],state)!=expected){fprintf(stderr,"Timed ioctl failed corpus=%s op=%u call=%u\n",name,op,i);return 4;}
     }
     uint64_t elapsed=now()-start,cpu_elapsed=cpu_now()-cpu_start;
@@ -171,13 +181,13 @@ int main(int argc,char **argv)
     double uj=rapl?(double)((after+energy_range-before)%energy_range)/ops:-1,bytes=0;
     if(op<6)for(unsigned page=0;page<PAGES;page++)bytes+=(double)sizes[op/2][page]/PAGES;
     integrity(fd,sizes);
-    if(round>=0)printf("%s,%d,%s,%s,%s,%u,%.3f,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",name,round,states[state],variants[op/2],op==6?"noop":(op&1)?"decompress":"compress",ops,(double)elapsed/ops,(double)cpu_elapsed/ops,100.0*cpu_elapsed/elapsed,bytes,counts[0],counts[1],counts[2],counts[3],fraction,uj);
+    if(round>=0)printf("%s,%d,%s,%s,%s,%u,%.3f,%.3f,%.3f,%.3f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",name,round,states[state],op==7?"interface-fpu":variants[op/2],op>=6?"noop":(op&1)?"decompress":"compress",ops,(double)elapsed/ops,(double)cpu_elapsed/ops,100.0*cpu_elapsed/elapsed,bytes,counts[0],counts[1],counts[2],counts[3],fraction,uj);
    }
    fflush(stdout);
   }
  }
  if(fds[0]>=0)for(unsigned i=0;i<4;i++)close(fds[i]);
  CHECK(!close(fd));free(input);
- if(!measure)printf("GHY_PROBE_CLIENT_PASS corpora=%d checks=%u vector_state_checked=%d\n",argc-first,checks,vectors);
+ if(!measure)printf("GHY_PROBE_CLIENT_PASS corpora=%d checks=%u vector_state_checked=%d fpu_control=%d\n",argc-first,checks,vectors,fpu_control);
  return 0;
 }

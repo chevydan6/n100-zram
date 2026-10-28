@@ -1,0 +1,49 @@
+{
+  "codec_text": {
+    "control/lz4_compress.o": {
+      "before": "8b6d612fe656115df0a7a19bbf6dc36a2958c4266e893fcd8edfed8e1c2727bb",
+      "after": "8b6d612fe656115df0a7a19bbf6dc36a2958c4266e893fcd8edfed8e1c2727bb",
+      "identical": true
+    },
+    "control/lz4_decompress.o": {
+      "before": "2b4b4211445c647775403ce7087f41c91335f9dcf7beb3ebf5b9d484494f0d08",
+      "after": "2b4b4211445c647775403ce7087f41c91335f9dcf7beb3ebf5b9d484494f0d08",
+      "identical": true
+    },
+    "control/encoder/core.o": {
+      "before": "47a9f29e4df0f9f1b5c5f4e446316e4ad3926896bc105fd1c4ff9962e8b21e15",
+      "after": "47a9f29e4df0f9f1b5c5f4e446316e4ad3926896bc105fd1c4ff9962e8b21e15",
+      "identical": true
+    },
+    "control/decoder/core.o": {
+      "before": "47a9f29e4df0f9f1b5c5f4e446316e4ad3926896bc105fd1c4ff9962e8b21e15",
+      "after": "47a9f29e4df0f9f1b5c5f4e446316e4ad3926896bc105fd1c4ff9962e8b21e15",
+      "identical": true
+    },
+    "control/hybrid.o": {
+      "before": "cee3f6c458e16aafeef6e62fcebe6f58a4a48e25eaf3b70d305600b464bb7f81",
+      "after": "cee3f6c458e16aafeef6e62fcebe6f58a4a48e25eaf3b70d305600b464bb7f81",
+      "identical": true
+    },
+    "candidate/encoder/core.o": {
+      "before": "db3d1aac9660158a0c0fcfc90941ea3e3ad34cf7f324ff5b7ae6ee8872203720",
+      "after": "db3d1aac9660158a0c0fcfc90941ea3e3ad34cf7f324ff5b7ae6ee8872203720",
+      "identical": true
+    },
+    "candidate/decoder/core.o": {
+      "before": "3377054907698a235fff690ac0e20e97047cea34c09abc3776168fb9b7b478e3",
+      "after": "3377054907698a235fff690ac0e20e97047cea34c09abc3776168fb9b7b478e3",
+      "identical": true
+    },
+    "candidate/hybrid.o": {
+      "before": "cee3f6c458e16aafeef6e62fcebe6f58a4a48e25eaf3b70d305600b464bb7f81",
+      "after": "cee3f6c458e16aafeef6e62fcebe6f58a4a48e25eaf3b70d305600b464bb7f81",
+      "identical": true
+    }
+  },
+  "required_kernel_api_references": [
+    "irq_fpu_usable",
+    "kernel_fpu_begin_mask",
+    "kernel_fpu_end"
+  ]
+}

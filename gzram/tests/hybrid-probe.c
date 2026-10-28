@@ -24,7 +24,8 @@ static void *concurrent(void *opaque)
  for (i = 0; i < 512; i++) {
   unsigned codec = (i + t->seed) % GHY_PROBE_CODECS;
   int packed = ioctl(t->fd, GHY_PROBE_COMP(codec), 0UL);
-  if (packed <= 0 || packed > 4352 || ioctl(t->fd, GHY_PROBE_DEC(codec), 0UL) != GHY_PROBE_PAGE_BYTES) {
+  if (packed <= 0 || packed > 4352 || ioctl(t->fd, GHY_PROBE_DEC(codec), 0UL) != GHY_PROBE_PAGE_BYTES ||
+      ioctl(t->fd, GHY_PROBE_FPU_NOP, 0UL) != 0) {
    t->result = 1; break;
   }
  }
@@ -54,6 +55,8 @@ int main(int argc, char **argv)
  CHECK(argc > 1 && input && fd >= 0);
  CHECK(lseek(fd, 0, SEEK_SET) == -1 && errno == ESPIPE);
  CHECK(ioctl(fd, GHY_PROBE_NOP, 0UL) == 0);
+ CHECK(ioctl(fd, GHY_PROBE_FPU_NOP, 0UL) == 0);
+ CHECK(ioctl(fd, GHY_PROBE_FPU_NOP, 1UL) == -1 && errno == EINVAL);
  CHECK(ioctl(fd, GHY_PROBE_VALIDATE, 0UL) == -1 && errno == EINVAL);
  CHECK(ioctl(fd, GHY_PROBE_COMP(0), 0UL) == -1 && errno == EINVAL);
  CHECK(ioctl(fd, _IO('G', 255), 0UL) == -1 && errno == ENOTTY);

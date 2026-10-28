@@ -1,0 +1,9 @@
+control/lz4_compress.c:519:12:n100_private_lz4_compress_destSize_generic	128	static
+control/lz4_compress.c:457:12:n100_private_lz4_compress_fast_extState	104	static
+control/lz4_compress.c:502:5:n100_private_lz4_compress_fast	8	static
+control/lz4_compress.c:509:5:n100_private_lz4_compress_default	8	static
+control/lz4_compress.c:752:5:n100_private_lz4_compress_destSize	40	static
+control/lz4_compress.c:766:6:n100_private_lz4_resetStream	8	static
+control/lz4_compress.c:771:5:n100_private_lz4_loadDict	24	static
+control/lz4_compress.c:831:5:n100_private_lz4_saveDict	32	static
+control/lz4_compress.c:851:5:n100_private_lz4_compress_fast_continue	168	static

@@ -7,6 +7,7 @@
 #include <linux/vmalloc.h>
 #include <linux/uaccess.h>
 #include <linux/mutex.h>
+#include <asm/fpu/api.h>
 #include "hybrid-probe.h"
 #include "control/private-lz4.h"
 
@@ -138,10 +139,17 @@ static long probe_ioctl(struct file *file, unsigned int command, unsigned long a
  long result = -EINVAL;
  unsigned codec, operation, page;
  if (argument) return -EINVAL;
- if (command != GHY_PROBE_NOP && command != GHY_PROBE_VALIDATE &&
+ if (command != GHY_PROBE_NOP && command != GHY_PROBE_FPU_NOP && command != GHY_PROBE_VALIDATE &&
      (command < GHY_PROBE_COMP(0) || command > GHY_PROBE_DEC(CODECS - 1))) return -ENOTTY;
  if (mutex_lock_interruptible(&ctx->lock)) return -ERESTARTSYS;
  if (command == GHY_PROBE_NOP) { result = 0; goto out; }
+ if (command == GHY_PROBE_FPU_NOP) {
+  if (!irq_fpu_usable()) { result = -EOPNOTSUPP; goto out; }
+  /* Empty matched state-management control, with no codec or vector work. */
+  kernel_fpu_begin();
+  kernel_fpu_end();
+  result = 0; goto out;
+ }
  if (!ctx->ready) goto out;
  if (command == GHY_PROBE_VALIDATE) { result = validate(ctx); goto out; }
  codec = (command - GHY_PROBE_COMP(0)) / 2;

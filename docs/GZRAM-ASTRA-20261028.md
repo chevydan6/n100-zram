@@ -684,3 +684,18 @@ rejected. Its native mode records separate compression/decompression, no-op
 interface costs, thread CPU time, kernel-inclusive counters and package RAPL
 under shuffled userspace vector conditions. No native measurements have yet
 been collected; kernel FPU begin/end cost and real ZRAM remain outside this gate.
+
+## Kernel FPU-state control gate
+
+A separate [empty FPU-section control](../benchmarks/results/gzram-fpu-control-gate-001/summary.md)
+now passes isolated interface/concurrency and register-state gates. Scalar codec
+calls remain outside that section. Each of two interface cycles passes 101,073
+assertions; each of two measurement-client cycles passes 29,084, covering all
+20 corpus hashes, YMM registers, nondefault MXCSR and x87 control values. VM
+timing is explicitly refused. All eight preceding codec object text sections
+remain identical; only the probe interface/state-control code changes.
+
+The opt-in control will allow matched native measurement of kernel FPU entry/
+exit under cleared-before-loop, SSE-dirty and YMM-dirty userspace conditions.
+No state-management latency, energy gain, batching benefit or SIMD crossover
+has yet been measured. This adds no page queue and does not alter ZRAM.

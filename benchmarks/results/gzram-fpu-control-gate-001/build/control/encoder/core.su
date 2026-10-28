@@ -1,0 +1,13 @@
+control/encoder/core.c:70:13:pack_scalar	8	static
+control/encoder/core.c:129:13:header	8	static
+control/encoder/core.c:133:12:raw_page	32	static
+control/encoder/core.c:108:13:repeat_scalar	56	static
+control/encoder/core.c:81:13:unpack_scalar	8	static
+control/encoder/core.c:218:12:decode.constprop	120	static
+control/encoder/core.c:36:13:scan_scalar	88	static
+control/encoder/core.c:162:12:encode.constprop	296	static
+control/encoder/core.c:128:5:control_encoder_avx2_available	8	static
+control/encoder/core.c:263:5:control_encoder_encode_scalar	8	static
+control/encoder/core.c:264:5:control_encoder_encode_avx2	8	static
+control/encoder/core.c:266:5:control_encoder_decode_scalar	8	static
+control/encoder/core.c:267:5:control_encoder_decode_avx2	8	static
