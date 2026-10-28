@@ -1,0 +1,17 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/astra-kernel-scalar-001'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  selftest.o
+  CC [M]  control/core.o
+  CC [M]  candidate/core.o
+  LD [M]  n100_gzram_scalar_selftest.o
+  MODPOST Module.symvers
+  CC [M]  n100_gzram_scalar_selftest.mod.o
+  CC [M]  .module-common.o
+  LD [M]  n100_gzram_scalar_selftest.ko
+  BTF [M] n100_gzram_scalar_selftest.ko
+Skipping BTF generation for n100_gzram_scalar_selftest.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/dan/n100-zram/build/astra-kernel-scalar-001'
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
