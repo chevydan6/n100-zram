@@ -446,3 +446,14 @@ load/test/unload cycles, each with four workers and 161,410 assertions. The
 are retained. This is component correctness evidence, not physical N100 timing,
 GHY1/LZ4 integration, ZRAM behavior, SIMD validation or native recovery evidence.
 No experimental module was loaded on the host; stock ZRAM and CPU hashes match.
+
+## Current recovery review
+
+The post-restart read-only review confirms ACPI restart, no recovery boot
+arguments, all five panic/lockup runtime settings at zero and no exposed hardware
+watchdog. The historical backup directory is absent at its documented location.
+`grubby --default-kernel` returned `/boot` rather than a valid kernel image, so
+its successful exit does not establish the current boot default. The
+[exact observed state](validation/astra-recovery-review-20261028.json) and
+[historical scope](../RECOVERY.md) are retained. Native kernel execution remains
+gated; this does not prevent userspace experiments or isolated VM correctness.

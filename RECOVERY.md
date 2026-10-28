@@ -1,6 +1,23 @@
 # Recovery state and procedures
 
-## Current physical test result
+## Current Astra environment, 2026-10-28
+
+The local N100 now runs stock `7.2.11-200.fc44.x86_64` with zstd ZRAM. A
+[read-only review](docs/validation/astra-recovery-review-20261028.json) found all
+five panic/lockup runtime settings at zero, ACPI restart, no recovery boot
+arguments and no exposed hardware watchdog. The historical backup directory is
+not present at its documented location. Unprivileged `grubby --default-kernel`
+returned `/boot` with status zero; that is not a kernel image and does not verify
+the boot default. No settings were changed by this review.
+
+The historical PCI/panic tests below remain useful evidence for their recorded
+kernels and configurations. They do not satisfy the current native kernel gate.
+The scalar GZR1 component has passed an isolated exact-kernel VM correctness
+test; no experimental GZRAM module has been loaded on this current host. Inspect
+and verify current boot/recovery/restoration before progressing to native kernel
+trials. Userspace codec development and measurements continue independently.
+
+## Historical physical test result
 
 Authenticated administrator access was verified. The running and default kernel
 were both stock Fedora `7.0.10-201.fc44.x86_64`. No experimental module was loaded

@@ -1,0 +1,31 @@
+{
+  "observed_at": "2026-10-28T12:04:50.584605+09:00",
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "scope": "Read-only current recovery review; no recovery mechanism armed, no reboot/panic test, no native experimental module loaded",
+  "runtime_policy": {
+    "panic": "0",
+    "panic_on_oops": "0",
+    "nmi_watchdog": "0",
+    "hardlockup_panic": "0",
+    "softlockup_panic": "0"
+  },
+  "exposed_hardware_watchdogs": [],
+  "reboot_settings": {
+    "mode": "cold",
+    "cpu": "0",
+    "type": "acpi",
+    "hw_protection": "shutdown",
+    "force": "0"
+  },
+  "recovery_boot_arguments": [],
+  "zram_algorithm": "lzo-rle lzo lz4 lz4hc [zstd] deflate 842",
+  "zram_bytes": 3924819968,
+  "historical_recovery_backup_directory_visible": false,
+  "default_kernel_read": {
+    "status": 0,
+    "value": "/boot",
+    "limitation": "grubby returned /boot with status 0; this is not a kernel image and does not verify the boot default",
+    "valid_kernel_image": false
+  },
+  "acceptance": "Native kernel gate not satisfied: historical recovery tests concern other kernel/configuration; current zero runtime policy and absent watchdog do not establish recovery"
+}
