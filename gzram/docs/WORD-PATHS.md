@@ -166,3 +166,45 @@ Each new cutoff also passed 39,424 cross-path round trips, 39,376 capacity cases
 checks, 80,000 malformed/mutated decode cases and 4,000 threaded round trips in
 each build. All 35 previous library text sections match the fourth build.
 Physical performance and energy validation remain pending.
+
+## Sixth selection experiment: sampling before the guarded trial
+
+The fourth physical cohort retains large bitdirect compression losses on random,
+executable and period127 pages because it first tries GZRAM and then LZ4.
+`bitdirectsample16/64` compose the measured bitdirect codec with two bounded
+sampling budgets. Like SOL's recurrence policy, a matching first/second 32-byte
+prefix first routes potential fixed repeats to GZRAM; it is not a repetition
+proof. Otherwise at least one eighth of sampled words must be zero to try GZRAM.
+The existing guarded ratio/prefix decision still applies after encoding. These
+policies omit SOL's upfront memmem recurrence search; SOL sample/recurrence
+remain controls. Exact full-page encoding/decoding always determines integrity.
+
+Sampling may lose ratio or add overhead on otherwise fast data. No cutoff is
+accepted from intuition. Four appended fixtures deliberately put nonzero words
+at every sample position on sparse pages, or put zeros only at sampled positions
+on dense pages, for both budgets. Git/libc ELF fixtures append the first 512 KiB
+of each local file, including any headers/data; these are not captured resident
+application pages. All twenty old corpora remain unchanged. Corpus hashes and
+separate codec-mode counts must accompany every measurement and size comparison.
+
+Each page remains independent and the wire format remains GHY1/GZR1. No batch,
+queue or kernel SIMD change is introduced. On this host the cache line is 64
+bytes: sampling 64 evenly spaced words in a 4 KiB page can touch every cache
+line even though it reads only 256 logical bytes. Smaller sampling is therefore
+not automatically a proportional memory/energy saving. The existing repeated
+userspace batches also do not establish cold-page or native ZRAM behavior.
+
+New correctness cases cover sample thresholds, shortened inputs and dense/sparse
+contents between the sampled positions. Normal/sanitizer, old-code preservation,
+size and physical measurement gates remain pending for these two candidates.
+
+The sixth normal/sanitized gate now passes 2,000,128 registry round trips per
+build (601 variants, 26 corpora, 128 pages). Both samplers pass their dedicated
+312 sampling-boundary pages and complete oracle/guard/fuzz/concurrency suites.
+All 38 previous library text sections and 348,160 previous size records match.
+The 479,232-record size sweep retains a 29.18% loss on the 64-position aligned
+sparse fixture for both samplers, a 32.33% gain on the 16-position sparse fixture
+for sample16, and one 47-byte clusters75 expansion for sample16. Sampling is
+therefore not size-preserving even before timing. A future experiment should
+vary the sampled word position within each stride, with new hostile cases for
+that pattern too; the present static samplers remain controls.

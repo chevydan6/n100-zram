@@ -163,10 +163,15 @@ static int prefix_recurrence(const uint8_t *src,size_t n,encode_fn gz)
 static int select_gzram(const uint8_t *src,size_t n)
 {
 #if defined(GZRAM_HYBRID_SAMPLE)
-#if defined(GZRAM_HYBRID_RECURRENCE)
+#if defined(GZRAM_HYBRID_RECURRENCE) || defined(GZRAM_HYBRID_SAMPLE_REPEAT)
  if(n>=64&&!memcmp(src,src+32,32))return 1;
 #endif
+#if defined(GZRAM_HYBRID_SAMPLE_WORDS)
+ _Static_assert(GZRAM_HYBRID_SAMPLE_WORDS>=1&&GZRAM_HYBRID_SAMPLE_WORDS<=64,"Invalid sampling budget");
+ unsigned samples=n/4<GZRAM_HYBRID_SAMPLE_WORDS?(unsigned)(n/4):GZRAM_HYBRID_SAMPLE_WORDS;
+#else
  unsigned samples=n/4<64?(unsigned)(n/4):64;
+#endif
  if(!samples)return 0;
  size_t stride=n/samples;unsigned zero=0;
  for(unsigned i=0;i<samples;i++){uint32_t word;memcpy(&word,src+i*stride,4);zero+=word==0;}

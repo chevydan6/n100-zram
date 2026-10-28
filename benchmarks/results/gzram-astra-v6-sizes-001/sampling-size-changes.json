@@ -1,0 +1,470 @@
+[
+  {
+    "corpus": "random",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 4104,
+    "candidate_mean": 4104,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "random",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 4104,
+    "candidate_mean": 4104,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sparse-words",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 660.84375,
+    "candidate_mean": 660.84375,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sparse-words",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 660.84375,
+    "candidate_mean": 660.84375,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "zero",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 20,
+    "candidate_mean": 20,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "zero",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 20,
+    "candidate_mean": 20,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "repeat8",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 25,
+    "candidate_mean": 25,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "repeat8",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 25,
+    "candidate_mean": 25,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "period127",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 161,
+    "candidate_mean": 161,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "period127",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 161,
+    "candidate_mean": 161,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "halfzero",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 2068,
+    "candidate_mean": 2068,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "halfzero",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 2068,
+    "candidate_mean": 2068,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "word-tail64",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 2146,
+    "candidate_mean": 2146,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "word-tail64",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 2146,
+    "candidate_mean": 2146,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "repeat32",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 49,
+    "candidate_mean": 49,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "repeat32",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 49,
+    "candidate_mean": 49,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "bash-elf",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 3250.6015625,
+    "candidate_mean": 3250.6015625,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "bash-elf",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 3250.6015625,
+    "candidate_mean": 3250.6015625,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "period127-zero-tail",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 165,
+    "candidate_mean": 165,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "period127-zero-tail",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 165,
+    "candidate_mean": 165,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "period509-zero-tail",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 545.9921875,
+    "candidate_mean": 545.9921875,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "period509-zero-tail",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 545.9921875,
+    "candidate_mean": 545.9921875,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "zerohead-random",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 4061.984375,
+    "candidate_mean": 4061.984375,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "zerohead-random",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 4061.984375,
+    "candidate_mean": 4061.984375,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "words25",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 1174.53125,
+    "candidate_mean": 1174.53125,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "words25",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 1174.53125,
+    "candidate_mean": 1174.53125,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "words50",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 2205.25,
+    "candidate_mean": 2205.25,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "words50",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 2205.25,
+    "candidate_mean": 2205.25,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "words75",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 3831.609375,
+    "candidate_mean": 3831.609375,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "words75",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 3831.609375,
+    "candidate_mean": 3831.609375,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "mixed-pages",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 2049.0703125,
+    "candidate_mean": 2049.0703125,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "mixed-pages",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 2049.0703125,
+    "candidate_mean": 2049.0703125,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "repeat16",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 33,
+    "candidate_mean": 33,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "repeat16",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 33,
+    "candidate_mean": 33,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "clusters25",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 1172,
+    "candidate_mean": 1172,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "clusters25",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 1172,
+    "candidate_mean": 1172,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "clusters50",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 2205,
+    "candidate_mean": 2205,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "clusters50",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 2205,
+    "candidate_mean": 2205,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "clusters75",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 3237.2421875,
+    "candidate_mean": 3237.609375,
+    "mean_change_percent": 0.011342602089459142,
+    "larger_pages": 1,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "clusters75",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 3237.2421875,
+    "candidate_mean": 3237.2421875,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample16-sparse-miss",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 212,
+    "candidate_mean": 143.453125,
+    "mean_change_percent": -32.33343160377359,
+    "larger_pages": 0,
+    "smaller_pages": 128
+  },
+  {
+    "corpus": "sample16-sparse-miss",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 212,
+    "candidate_mean": 212,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample16-dense-hit",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 4104,
+    "candidate_mean": 4104,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample16-dense-hit",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 4104,
+    "candidate_mean": 4104,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample64-sparse-miss",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 404,
+    "candidate_mean": 521.875,
+    "mean_change_percent": 29.1769801980198,
+    "larger_pages": 128,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample64-sparse-miss",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 404,
+    "candidate_mean": 521.875,
+    "mean_change_percent": 29.1769801980198,
+    "larger_pages": 128,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample64-dense-hit",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 4101.578125,
+    "candidate_mean": 4101.578125,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "sample64-dense-hit",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 4101.578125,
+    "candidate_mean": 4101.578125,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "git-elf",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 3198.4921875,
+    "candidate_mean": 3198.4921875,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "git-elf",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 3198.4921875,
+    "candidate_mean": 3198.4921875,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "libc-elf",
+    "candidate": "ghy-bitdirectsample16-scalar-1024",
+    "baseline_mean": 3113.1015625,
+    "candidate_mean": 3113.1015625,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  },
+  {
+    "corpus": "libc-elf",
+    "candidate": "ghy-bitdirectsample64-scalar-1024",
+    "baseline_mean": 3113.1015625,
+    "candidate_mean": 3113.1015625,
+    "mean_change_percent": 0.0,
+    "larger_pages": 0,
+    "smaller_pages": 0
+  }
+]

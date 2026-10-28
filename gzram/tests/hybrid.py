@@ -83,6 +83,21 @@ if any(name in a.library.name for name in ['blockpick','blockdirect']):
       lane=word//groups;group=word%groups;at=offset+group*32+lane*4
       data[at:at+4]=struct.pack('<I',0x10203040+at+block_log)
     inputs.append(bytes(data));block_selection_pages+=1
+# Stress sampling as a heuristic: all offsets, partial source lengths, threshold
+# neighbors and data hidden between sample positions. Correctness must not rely
+# on any sampled prefix being representative of the remaining page.
+sampling_boundary_pages=0
+if 'bitdirectsample' in a.library.name:
+ for length in [4,7,8,15,16,31,32,63,64,65,127,128,129,1023,1024,1025,4095,4096]:
+  for budget in [16,64]:
+   samples=min(length//4,budget);stride=length//samples
+   for zeros in sorted(set([0,max(0,(samples+7)//8-1),(samples+7)//8,min(samples,(samples+7)//8+1),samples])):
+    for dense in [False,True]:
+     data=bytearray(rng.randbytes(length) if dense else bytes(length))
+     for index in range(samples):
+      at=index*stride;data[at:at+4]=bytes(4) if index<zeros else struct.pack('<I',0x10203040+index)
+     inputs.append(bytes(data));sampling_boundary_pages+=1
+
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))
@@ -217,4 +232,4 @@ def worker(seed):
   assert randomizer.choice(decoders)(packed,n,out,len(data))==len(data) and out.raw[:len(data)]==data
  return 1000
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:concurrent=sum(pool.map(worker,range(4)))
-print(json.dumps({'status':'passed','roundtrips':roundtrips,'block_selection_boundary_pages':block_selection_pages,'direct_repeat_header_checks':direct_header_checks,'guarded_capacity_cases':capacity,'repeat_merge_checks':merge_checks,'repeat_decode_boundary_checks':repeat_checks,'exhaustive_mask_decode_checks':mask_checks,'malformed_or_mutated_decode_cases':malformed,'four_thread_roundtrips':concurrent,'modes_checked':sorted(modes)}))
+print(json.dumps({'status':'passed','roundtrips':roundtrips,'block_selection_boundary_pages':block_selection_pages,'sampling_boundary_pages':sampling_boundary_pages,'direct_repeat_header_checks':direct_header_checks,'guarded_capacity_cases':capacity,'repeat_merge_checks':merge_checks,'repeat_decode_boundary_checks':repeat_checks,'exhaustive_mask_decode_checks':mask_checks,'malformed_or_mutated_decode_cases':malformed,'four_thread_roundtrips':concurrent,'modes_checked':sorted(modes)}))

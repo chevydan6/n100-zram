@@ -20,8 +20,8 @@
 #endif
 _Static_assert(OPS>0&&OPS%PAGES==0,"Batch calls must be positive and a multiple of the corpus page count");
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
-static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75"};
-static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast","blockpick2","blockpick3","blockpick4","bitmerge","bitdirect","blockdirect2","blockdirect3","blockdirect4"};
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75","sample16-sparse-miss","sample16-dense-hit","sample64-sparse-miss","sample64-dense-hit","git-elf","libc-elf"};
+static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast","blockpick2","blockpick3","blockpick4","bitmerge","bitdirect","blockdirect2","blockdirect3","blockdirect4","bitdirectsample16","bitdirectsample64"};
 /* 57 base entries plus two ISAs at eight block sizes per hybrid policy.
  * Keep the shuffled indices and codec registry at the same capacity. */
 enum { CODEC_CAPACITY=57+16*(sizeof(policies)/sizeof(policies[0])) };
@@ -63,6 +63,24 @@ static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_e
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
 static void fill(int kind){
  seed=100+(unsigned)kind;
+ if(kind>=20&&kind<=23){
+  /* Deliberate sampling false negatives/positives. Preserve these regressions:
+   * sparse pages with every sampled word nonzero, and dense pages with only
+   * sampled words zero. No sample may be treated as a full-page proof. */
+  unsigned samples=kind<22?16:64,stride=(SIZE/4)/samples;int dense=kind&1;
+  for(unsigned p=0;p<PAGES;p++)for(unsigned word=0;word<SIZE/4;word++){
+   uint32_t value=dense?(rnd()|1U):0;
+   if(word%stride==0)value=dense?0:(rnd()|1U);
+   memcpy(input[p]+word*4,&value,4);
+  }
+  return;
+ }
+ if(kind==24||kind==25){
+  const char *path=kind==24?"/usr/bin/git":"/usr/lib64/libc.so.6";
+  FILE *f=fopen(path,"rb");
+  if(!f||fread(input,1,sizeof(input),f)!=sizeof(input)){fprintf(stderr,"ELF fixture unavailable: %s\n",path);exit(4);}
+  fclose(f);return;
+ }
  if(kind>=17&&kind<=19){
   unsigned present=(unsigned)kind-16;
   for(unsigned p=0;p<PAGES;p++)for(unsigned at=0;at<SIZE;at+=32){

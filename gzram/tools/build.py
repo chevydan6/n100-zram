@@ -101,9 +101,13 @@ additional={'fused':'fused','guard32mixed':'mixed','wordmixed':'mixed','splittai
 for cutoff in [2,3,4]:
  policies[f'blockdirect{cutoff}']=list(policies['blockpick'+str(cutoff)])
  additional[f'blockdirect{cutoff}']='mixed'
+for samples in [16,64]:
+ policies[f'bitdirectsample{samples}']=[*policies['bitdirect'],'-DGZRAM_HYBRID_SAMPLE=1','-DGZRAM_HYBRID_SAMPLE_REPEAT=1',f'-DGZRAM_HYBRID_SAMPLE_WORDS={samples}']
+ additional[f'bitdirectsample{samples}']='ctz'
 for policy,defines in policies.items():
  base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base','blockpick2':'block2base','blockpick3':'block3base','blockpick4':'block4base','bitmerge':'bitpackbase','bitdirect':'bitpackbase'}.get(policy,'base')
  if policy.startswith('blockdirect'):base_object=policy+'base'
+ if policy.startswith('bitdirectsample'):base_object='bitpackbase'
  sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')
  compile_files([*sources,*lz4_objects],a.output/f'libgzram-hybrid-{policy}.so',defines,[*lz4_includes,root/'gzram/src'],bind=True)

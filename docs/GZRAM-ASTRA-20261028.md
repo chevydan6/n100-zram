@@ -902,3 +902,27 @@ measuring the promising direct block encoder separately. In parallel, sampled
 selection targets rejected dense-page work, with deliberate misclassification
 fixtures and additional ELF inputs planned. Kernel FPU, queueing, energy and
 actual ZRAM behavior remain unproven for the new packing paths.
+
+## Sixth selection candidates: validated with explicit size regressions
+
+The [sixth correctness checkpoint](../benchmarks/results/gzram-astra-v6-validation-001/summary.md)
+adds `bitdirectsample16/64`: a bounded upfront sample plus the existing guarded
+bitdirect trial, retaining SOL sample/recurrence as controls. Normal and sanitizer
+builds each passed 2,000,128 registry round trips over 601 variants and 26 corpora.
+Dedicated sampling-boundary, independent decode, malformed/truncated input,
+protected-capacity and concurrency tests passed. All 38 preceding library text
+sections, twenty old corpus hashes and 348,160 old size/mode records are intact.
+
+The [479,232-record size sweep](../benchmarks/results/gzram-astra-v6-sizes-001/summary.md)
+includes four deliberately misleading sample patterns and Git/libc file pages.
+Both samplers enlarge every 64-position aligned sparse page from 404 to a mean
+521.875 bytes (+29.18%). Sample16 instead improves the 16-position sparse fixture
+from 212 to 143.453125 bytes (-32.33%) and enlarges one clusters75 page by 47
+bytes. These are retained tradeoffs, not a size-neutral selection change.
+The two ELF inputs are file bytes, not captured resident application workloads.
+
+Timing and energy remain unmeasured for these selectors. The next matched run
+retains all 26 corpora, including the known sampling losses. Rotating which word
+is sampled inside each stride is a credible follow-up to investigate alignment
+bias; it must retain adversarial tests and the static-position controls. No
+sample budget or selection policy is accepted as a new default.
