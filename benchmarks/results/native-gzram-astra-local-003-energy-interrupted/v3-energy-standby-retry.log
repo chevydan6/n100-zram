@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/dan/n100-zram/build/astra-v3/source-checkpoint/gzram/tools/run-native.py", line 47, in <module>
+    assert a.resume;state=json.loads((a.output/'checkpoint.json').read_text());assert state['inputs']==inputs,'Sources or environment changed; preserve old output and start fresh'
+                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Sources or environment changed; preserve old output and start fresh
+Traceback (most recent call last):
+  File "/home/dan/n100-zram/build/astra-audit/standby-v3-energy.py", line 23, in <module>
+    subprocess.run(command,pass_fds=(fd,),check=True,timeout=2100)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/usr/bin/nice', '-n', '5', '/usr/bin/python3', '/home/dan/n100-zram/build/astra-v3/source-checkpoint/gzram/tools/run-native.py', '--directory', '/home/dan/n100-zram/build/astra-v3', '--output', '/home/dan/n100-zram/build/astra-local-003', '--resume', '--variants', 'lz4-small-scalar', 'ghy-wordmixed-scalar-1024', 'ghy-wordmixed-avx2-1024', 'ghy-ctzunpack-scalar-1024', 'ghy-ctzunpack-avx2-1024', 'ghy-bitpack-scalar-1024', 'ghy-bitpack-avx2-1024', 'ghy-mixpack-scalar-1024', 'ghy-mixpack-avx2-1024', 'ghy-repeatmerge-scalar-1024', 'ghy-repeatmerge-avx2-1024', 'ghy-ctzfull-scalar-1024', 'ghy-ctzfull-avx2-1024', 'ghy-bitctz-scalar-1024', 'ghy-bitctz-avx2-1024', 'ghy-bitfull-scalar-1024', 'ghy-bitfull-avx2-1024', 'ghy-select2-avx2-1024', 'ghy-select3-avx2-1024', 'ghy-select4-avx2-1024', 'ghy-repeatmergefast-scalar-1024', 'ghy-repeatmergefast-avx2-1024']' returned non-zero exit status 1.
+pkexec failed with exit status 1.

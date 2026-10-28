@@ -1,0 +1,6 @@
+candidate/hybrid.c:95:42:lz4_encode	8	static
+candidate/hybrid.c:90:13:header	8	static
+candidate/hybrid.c:241:8:candidate_workspace_size	8	static
+candidate/hybrid.c:242:8:candidate_workspace_alignment	8	static
+candidate/hybrid.c:243:5:candidate_encode_scalar	80	static
+candidate/hybrid.c:250:5:candidate_decode_scalar	16	static

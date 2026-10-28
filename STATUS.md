@@ -14,10 +14,12 @@ and 20 corpora. Separate scalar bitpack/CTZ composition improves both directions
 on sparse data, while clustered pages expose decoder losses. The full-mask
 shortcut helps clusters but regresses other cases; per-mask packing cutoffs are
 not accepted. All raw results and 4,920 direct contrasts are retained. Energy is
-unavailable in this cohort; a separate energy run is active. The explicit-workspace
-scalar GHY1 ports pass userspace normal/sanitizer checks. Their first kernel
-build failed on attribute macro spelling; repair and further VM checks are pending.
-The earlier scalar GZR1 component passed its isolated VM gate. Current native
+unavailable in this cohort. The separate energy run was interrupted by its
+launcher deadline; a resume-ordering error was retained, and a fresh corrected
+run awaits authentication. The explicit-workspace scalar GHY1 ports now pass
+userspace normal/sanitizer checks and two full-container VM cycles. The initial
+kernel attribute-macro failure and repair are preserved. The scalar GZR1 gate
+also passes again. Current native
 recovery remains unverified; stock ZRAM is unchanged.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction

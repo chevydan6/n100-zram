@@ -19,6 +19,7 @@ p = argparse.ArgumentParser(description=__doc__)
 for name in ['kernel', 'module', 'qemu', 'busybox', 'bios', 'qemu-data', 'output']:
     p.add_argument('--' + name, type=Path, required=True)
 p.add_argument('--library-path', type=Path)
+p.add_argument('--kind', choices=['scalar','hybrid'], default='scalar')
 p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
 a = p.parse_args()
 a.lock.parent.mkdir(parents=True, exist_ok=True)
@@ -33,6 +34,9 @@ if int(meminfo['MemAvailable'].split()[0]) < 2 * 1024**2:
 assert not a.output.exists()
 a.output.mkdir(parents=True)
 sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+module_name = 'n100_gzram_' + a.kind + '_selftest'
+assert a.module.name == module_name + '.ko'
+marker = 'GZRAM_' + a.kind.upper()
 release = subprocess.check_output(['modinfo', '-F', 'vermagic', str(a.module)], text=True).split()[0]
 assert re.fullmatch(r'[A-Za-z0-9_.+-]+', release)
 archive = bytearray()
@@ -69,7 +73,7 @@ for pass in 1 2; do
 done
 echo GZRAM_SCALAR_VM_PASS
 poweroff -f
-'''.replace('RELEASE', release)
+'''.replace('RELEASE', release).replace('n100_gzram_scalar_selftest', module_name).replace('GZRAM_SCALAR', marker)
 add('init', init.encode(), mode=stat.S_IFREG | 0o755)
 add('TRAILER!!!')
 initramfs = a.output / 'initramfs.cpio'
@@ -83,7 +87,7 @@ command = [str(a.qemu.resolve()), '-no-user-config', '-nodefaults',
 env = dict(os.environ)
 if a.library_path:
     env['LD_LIBRARY_PATH'] = str(a.library_path.resolve())
-record = dict(scope='Diskless VM scalar GZR1 correctness only; no native performance, recovery or ZRAM result',
+record = dict(scope='Diskless VM ' + ('scalar GZR1' if a.kind == 'scalar' else 'scalar GHY1 workspace') + ' correctness only; no native performance, recovery or ZRAM result',
               command=command, kernel_release=release, host_mem_available_kib=int(meminfo['MemAvailable'].split()[0]),
               disks_attached=False, network_attached=False, guest_memory_mib=256, guest_cpus=2,
               hashes={name: sha(getattr(a, name)) for name in ['kernel', 'module', 'qemu', 'busybox', 'bios']},
@@ -96,10 +100,10 @@ with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').op
         record['exit_code'] = None
         record['error'] = 'Guest exceeded 180-second correctness deadline and was killed'
 text = (a.output / 'serial.log').read_text()
-record['worker_results'] = re.findall(r'GZRAM_SCALAR_SELFTEST_PASS workers=(\d+) checks=(\d+)', text)
-record['status'] = 'passed' if (record['exit_code'] == 0 and 'GZRAM_SCALAR_VM_PASS' in text
+record['worker_results'] = re.findall(marker + r'_SELFTEST_PASS workers=(\d+) checks=(\d+)', text)
+record['status'] = 'passed' if (record['exit_code'] == 0 and marker + '_VM_PASS' in text
     and len(record['worker_results']) == 2 and all(int(w) == 4 and int(c) > 0 for w, c in record['worker_results'])
-    and not any(word in text for word in ['GZRAM_SCALAR_VM_FAIL', 'Kernel panic', 'Oops:', 'BUG:', 'WARNING:'])) else 'failed'
+    and not any(word in text for word in [marker + '_VM_FAIL', 'Kernel panic', 'Oops:', 'BUG:', 'WARNING:'])) else 'failed'
 (a.output / 'result.json').write_text(json.dumps(record, indent=2) + '\n')
 print(json.dumps(record))
 raise SystemExit(0 if record['status'] == 'passed' else 1)

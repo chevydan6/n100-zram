@@ -1,0 +1,11 @@
+{
+  "preserved_setting_hashes": {
+    "/sys/block/zram0/comp_algorithm": true,
+    "/sys/block/zram0/disksize": true,
+    "/sys/module/zram/notes/.note.gnu.build-id": true,
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": true,
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": true,
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": true
+  },
+  "experimental_gzram_module_loaded_on_host": false
+}

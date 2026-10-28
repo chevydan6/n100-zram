@@ -1,0 +1,13 @@
+candidate/encoder/core.c:71:13:pack_scalar	8	static
+candidate/encoder/core.c:145:13:header	8	static
+candidate/encoder/core.c:149:12:raw_page	32	static
+candidate/encoder/core.c:124:13:repeat_scalar	56	static
+candidate/encoder/core.c:82:13:unpack_scalar	8	static
+candidate/encoder/core.c:234:12:decode.constprop	120	static
+candidate/encoder/core.c:37:13:scan_scalar	88	static
+candidate/encoder/core.c:178:12:encode.constprop	296	static
+candidate/encoder/core.c:144:5:candidate_encoder_avx2_available	8	static
+candidate/encoder/core.c:279:5:candidate_encoder_encode_scalar	8	static
+candidate/encoder/core.c:280:5:candidate_encoder_encode_avx2	8	static
+candidate/encoder/core.c:282:5:candidate_encoder_decode_scalar	8	static
+candidate/encoder/core.c:283:5:candidate_encoder_decode_avx2	8	static

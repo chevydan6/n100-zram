@@ -32,3 +32,25 @@ The scripts never load a module into the host. Passing this gate would establish
 bounded component correctness coverage in that guest, not native recovery,
 whole-codec speed, ZRAM behavior or production readiness. Native recovery and
 stock configuration checks remain required before any later host kernel trial.
+
+## Full scalar GHY1 workspace gate
+
+`prepare-scalar-hybrid.py` composes independently checked scalar GZR1 encoder and
+decoder objects with the existing guarded GHY1 container and a private matched
+LZ4 ABI. Its explicit API requires a 4,128-byte, eight-byte-aligned workspace per
+concurrent encode. The userspace compatibility adapter uses thread-local state;
+kernel builds omit that adapter and pass caller-owned workspace directly.
+
+`build-hybrid-selftest.py` namespaces control/candidate cores, shares only the
+identical private LZ4 implementation and records the kernel attribute-token
+normalization needed to avoid Linux's noinline macro. It emits stack-usage
+reports, which describe individual compiler frames, not call-chain peaks.
+`vm-scalar-selftest.py --kind hybrid` runs two full-container load/test/unload
+cycles. Raw, GZR1 and LZ4 frames, workspace rejection and canaries, malformed
+input and four-worker ownership are checked. The completed first gate passes
+207,818 assertions per cycle; the original scalar mode also passes again.
+
+No kernel crypto or ZRAM backend is registered. The adapted codec still needs
+matched native/kernel-inclusive measurements, current recovery verification and
+representative pressure/responsiveness tests before any promotion. Per-stream
+allocation rounding and SIMD entry/exit remain outside this scalar VM gate.

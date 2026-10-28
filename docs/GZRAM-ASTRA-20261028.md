@@ -531,6 +531,17 @@ or bitctz's short-repeat size loss. A separately controlled combination of the
 bit-scan encoder, consolidated frames and a directly validated repeat decoder
 is worth testing; no such combined policy is accepted by these measurements.
 
-A separate matched energy cohort is now running from the same frozen sources.
-Its result must pass its own audit; it will not retroactively supply energy
-values to this timing-only cohort.
+The first separate energy attempt completed two sessions before its outer
+launcher deadline expired. Its standby resume was then rejected for mismatched
+variant ordering. [All partial data and failure evidence](../benchmarks/results/native-gzram-astra-local-003-energy-interrupted/summary.md)
+are retained. A fresh corrected cohort awaits authentication; it must pass its
+own audit and will not retroactively supply energy to this timing-only cohort.
+
+## Full scalar hybrid kernel gate
+
+The reference and bitpack/CTZ workspace ports now pass a full GHY1 exact-kernel
+VM gate: two load/test/unload cycles, four workers and 207,818 assertions per
+cycle. The [complete source, build/guest logs and limits](../benchmarks/results/gzram-hybrid-kernel-gate-001/summary.md)
+include the initial attribute-macro failure and explicit normalization repair.
+The unchanged scalar GZR1 gate also passes again. No host GZRAM module was loaded.
+Native performance, energy, ZRAM integration and current recovery remain unproven.

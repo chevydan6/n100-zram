@@ -1,0 +1,4 @@
+Error executing command as another user: Not authorized
+
+This incident has been reported.
+pkexec failed with exit status 127.

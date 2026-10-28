@@ -201,3 +201,11 @@ no upstream code or generated shuffle tables were copied into the new codec.
 - Retain full-mask tradeoffs, failed per-mask cutoffs and consolidation overhead.
 - Preserve every row and 4,920 direct contrasts; package energy is unavailable.
 - Keep the separately running energy cohort and kernel gates distinct.
+
+## Full scalar hybrid kernel gate and retained energy interruption
+
+- Pass two 207,818-assertion GHY1 VM cycles with explicit private workspace.
+- Preserve the first kernel build failure and the attribute-token repair.
+- Recheck the original scalar VM gate; keep host ZRAM unchanged.
+- Preserve two complete energy sessions, a partial third and controller errors;
+  no accepted energy claim is derived from this interrupted cohort.

@@ -1,0 +1,5 @@
+{
+  "gzram/kernel/hybrid-selftest.c": "ed95cc8930d7636751a38d01b5f714db7fda082fb52bcfe17b73b6cec699562c",
+  "gzram/tools/build-hybrid-selftest.py": "5f6638d7db2ff0e6a90f2726501af639be4abeab9678551df9dc7f035aee7518",
+  "gzram/tools/vm-scalar-selftest.py": "94ca2f1845d3a05e1d765865fc3672ff3606777d613948598a03ad1737f31072"
+}

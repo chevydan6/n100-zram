@@ -1,0 +1,17 @@
+{
+  "source_commit": "1ee0e341140cdc02fef5e4fbbb28721a0a678203",
+  "source_hashes": {
+    "gzram/src/gzram.c": "75967c1bc43f0d7650daffb5d8b6a42f1165764e0d96c9dc60a3b149148f8cdf",
+    "gzram/src/hybrid.c": "e4c8904de750dbf2b0f68be900865194a9c97c26a182d110de8c7d71f18220e3",
+    "gzram/tools/build.py": "168c77039aa8a3d0150cdbe1f25bfc89f2fee0bbc7dedfd81815a51cef44f637",
+    "gzram/bench.c": "71adeecbe19d310b2b27d21e2cb3b8fd39725616619904ca11d363ccca59efe6",
+    "gzram/tests/hybrid.py": "dc1b7628a5e962f4c4aa1ee2ef1b456bd2992691aaf8b658b9352e14ae5dd725",
+    "gzram/tools/run-native.py": "95d070245858d75ff702842e137c3dc7e23f196092202e319513618183c9b855",
+    "gzram/tools/with-rapl.py": "958cf5eb4b8a4990a9fd22a3c0eeeac17a025445a787bb7d6fd05903f53000a9",
+    "gzram/src/gzram.h": "ac4983ce552b595ad2c4dd4ed3bb5b1c2af76c44d938ff7d3de7fc825d5ca395",
+    "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+    "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+    "src/kernel-lz4/lz4defs.h": "38dc425247b3dd4d9b91a634407f973921f0d9bb67892c48e810e1cf323e1456",
+    "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57"
+  }
+}
