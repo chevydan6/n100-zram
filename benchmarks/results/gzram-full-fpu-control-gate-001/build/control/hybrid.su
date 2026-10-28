@@ -1,0 +1,6 @@
+control/hybrid.c:95:42:lz4_encode	8	static
+control/hybrid.c:90:13:header	8	static
+control/hybrid.c:241:8:control_workspace_size	8	static
+control/hybrid.c:242:8:control_workspace_alignment	8	static
+control/hybrid.c:243:5:control_encode_scalar	80	static
+control/hybrid.c:250:5:control_decode_scalar	16	static
