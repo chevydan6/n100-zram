@@ -401,7 +401,7 @@ malformed-input, concurrency and sanitizer checks after this timing run ended.
 It removes userspace SIMD dispatch without changing the scalar algorithm bodies.
 It is not the GHY1/LZ4 container, a compiled kernel module, a VM result or a ZRAM
 backend. Matching signed kernel development files and private VM tools are
-prepared; no VM or native GZRAM kernel execution has occurred. Scalar integration
+prepared. A subsequent isolated component gate is recorded below. Scalar integration
 can isolate the measured decoder gain before adding kernel SIMD state handling.
 
 Kernel integration is conditional on whole-codec profitability. It requires
@@ -430,3 +430,13 @@ memory saved after allocator rounding, foreground interference and cancellation
 on page reuse. Idle status alone does not prove a net energy benefit. Package
 RAPL, whole-system wall energy and laptop battery energy remain separate scopes;
 this checkpoint supplies no new measurements for any of them.
+
+## Scalar kernel component gate
+
+The checked reference/CTZ GZR1 ports now compile as a correctness-only module
+against the current 7.2.11 headers. An exact-kernel diskless KVM guest passed two
+load/test/unload cycles, each with four workers and 161,410 assertions. The
+[source, commands, raw serial log and limitations](../benchmarks/results/gzram-scalar-kernel-gate-001/summary.md)
+are retained. This is component correctness evidence, not physical N100 timing,
+GHY1/LZ4 integration, ZRAM behavior, SIMD validation or native recovery evidence.
+No experimental module was loaded on the host; stock ZRAM and CPU hashes match.

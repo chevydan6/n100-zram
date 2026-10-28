@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-2.0-only
+"""Run the scalar component self-test in a bounded, diskless KVM guest.
+
+Correctness only. No native module loading, ZRAM changes, disk/network devices,
+or performance conclusions. Serialize with native measurements on the N100.
+"""
+import argparse
+import fcntl
+import hashlib
+import json
+import os
+import re
+import stat
+import subprocess
+from pathlib import Path
+
+p = argparse.ArgumentParser(description=__doc__)
+for name in ['kernel', 'module', 'qemu', 'busybox', 'bios', 'qemu-data', 'output']:
+    p.add_argument('--' + name, type=Path, required=True)
+p.add_argument('--library-path', type=Path)
+p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
+a = p.parse_args()
+a.lock.parent.mkdir(parents=True, exist_ok=True)
+lock = a.lock.open('a+')
+try:
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except BlockingIOError:
+    raise SystemExit('Native validation lock is held; no VM started')
+meminfo = dict(line.split(':', 1) for line in Path('/proc/meminfo').read_text().splitlines())
+if int(meminfo['MemAvailable'].split()[0]) < 2 * 1024**2:
+    raise SystemExit('Less than 2 GiB available memory; defer the 256 MiB guest')
+assert not a.output.exists()
+a.output.mkdir(parents=True)
+sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+release = subprocess.check_output(['modinfo', '-F', 'vermagic', str(a.module)], text=True).split()[0]
+assert re.fullmatch(r'[A-Za-z0-9_.+-]+', release)
+archive = bytearray()
+ino = 0
+
+def add(name, data=b'', mode=stat.S_IFREG | 0o644, rmaj=0, rmin=0):
+    global ino
+    ino += 1
+    encoded = name.encode() + b'\0'
+    values = [ino, mode, 0, 0, 1, 0, len(data), 0, 0, rmaj, rmin, len(encoded), 0]
+    archive.extend(('070701' + ''.join(f'{v:08x}' for v in values)).encode())
+    archive.extend(encoded)
+    archive.extend(b'\0' * (-len(archive) % 4))
+    archive.extend(data)
+    archive.extend(b'\0' * (-len(archive) % 4))
+
+for name in ['bin', 'dev', 'proc', 'sys']:
+    add(name, mode=stat.S_IFDIR | 0o755)
+add('dev/console', mode=stat.S_IFCHR | 0o600, rmaj=5, rmin=1)
+add('bin/busybox', a.busybox.read_bytes(), mode=stat.S_IFREG | 0o755)
+add('selftest.ko', a.module.read_bytes())
+init = '''#!/bin/busybox sh
+export PATH=/bin
+/bin/busybox --install -s /bin
+fail() { echo GZRAM_SCALAR_VM_FAIL; poweroff -f; while :; do sleep 1; done; }
+mount -t proc proc /proc || fail
+mount -t sysfs sysfs /sys || fail
+mount -t devtmpfs devtmpfs /dev || fail
+[ "$(uname -r)" = "RELEASE" ] || fail
+echo GUEST_KERNEL=$(uname -r)
+for pass in 1 2; do
+ insmod /selftest.ko || fail
+ rmmod n100_gzram_scalar_selftest || fail
+done
+echo GZRAM_SCALAR_VM_PASS
+poweroff -f
+'''.replace('RELEASE', release)
+add('init', init.encode(), mode=stat.S_IFREG | 0o755)
+add('TRAILER!!!')
+initramfs = a.output / 'initramfs.cpio'
+initramfs.write_bytes(archive)
+command = [str(a.qemu.resolve()), '-no-user-config', '-nodefaults',
+           '-machine', 'q35,accel=kvm', '-cpu', 'host,-avx2', '-smp', '2', '-m', '256',
+           '-display', 'none', '-monitor', 'none', '-serial', 'stdio', '-nic', 'none',
+           '-no-reboot', '-bios', str(a.bios.resolve()), '-L', str(a.qemu_data.resolve()),
+           '-kernel', str(a.kernel.resolve()), '-initrd', str(initramfs.resolve()),
+           '-append', 'console=ttyS0 rdinit=/init panic=1']
+env = dict(os.environ)
+if a.library_path:
+    env['LD_LIBRARY_PATH'] = str(a.library_path.resolve())
+record = dict(scope='Diskless VM scalar GZR1 correctness only; no native performance, recovery or ZRAM result',
+              command=command, kernel_release=release, host_mem_available_kib=int(meminfo['MemAvailable'].split()[0]),
+              disks_attached=False, network_attached=False, guest_memory_mib=256, guest_cpus=2,
+              hashes={name: sha(getattr(a, name)) for name in ['kernel', 'module', 'qemu', 'busybox', 'bios']},
+              initramfs_sha256=sha(initramfs))
+with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').open('w') as error:
+    try:
+        result = subprocess.run(command, env=env, stdout=serial, stderr=error, timeout=180)
+        record['exit_code'] = result.returncode
+    except subprocess.TimeoutExpired:
+        record['exit_code'] = None
+        record['error'] = 'Guest exceeded 180-second correctness deadline and was killed'
+text = (a.output / 'serial.log').read_text()
+record['worker_results'] = re.findall(r'GZRAM_SCALAR_SELFTEST_PASS workers=(\d+) checks=(\d+)', text)
+record['status'] = 'passed' if (record['exit_code'] == 0 and 'GZRAM_SCALAR_VM_PASS' in text
+    and len(record['worker_results']) == 2 and all(int(w) == 4 and int(c) > 0 for w, c in record['worker_results'])
+    and not any(word in text for word in ['GZRAM_SCALAR_VM_FAIL', 'Kernel panic', 'Oops:', 'BUG:', 'WARNING:'])) else 'failed'
+(a.output / 'result.json').write_text(json.dumps(record, indent=2) + '\n')
+print(json.dumps(record))
+raise SystemExit(0 if record['status'] == 'passed' else 1)

@@ -9,9 +9,8 @@ size loss, but has scalar speed regressions. Mixed scalar/vector packing and
 combined decoders also retain important losses. No overall kernel or production
 gain is accepted. Current zstd ZRAM, boot settings and the 800 MHz cap remain.
 Seven further candidates now pass normal/sanitizer checks across 20 corpora,
-including clustered masks; their matched timing/energy run is next. A scalar
-kernel correctness component is being prepared. No VM or GZRAM kernel execution
-has occurred.
+including clustered masks; their matched timing/energy run is next. The isolated scalar GZR1 component now passes an exact-kernel diskless VM
+correctness gate. No native GZRAM kernel loading or ZRAM integration has occurred.
 
 For the latest GZRAM experiments, measured gains, regressions and reproduction
 commands, see [the 2026-10-28 GZRAM report](docs/GZRAM-20261028.md).

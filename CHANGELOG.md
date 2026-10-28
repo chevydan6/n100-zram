@@ -186,3 +186,10 @@ no upstream code or generated shuffle tables were copied into the new codec.
   checks; retain the interrupted validation and its verified resumption.
 - Record the measured half-zero regression from globally increasing block size.
 - Keep performance acceptance pending the next matched physical N100 cohort.
+
+## Scalar kernel component gate, 2026-10-28
+
+- Compile separately namespaced, matched reference/CTZ GZR1 scalar components.
+- Pass two four-worker load/test/unload cycles in an exact-kernel diskless guest.
+- Preserve source hashes, build/guest logs, canary limitations and host postflight.
+- Leave native recovery, GHY1/LZ4, SIMD and ZRAM integration unproven.

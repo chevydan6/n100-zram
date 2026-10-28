@@ -1,0 +1,5 @@
+{
+  "gzram/kernel/scalar-selftest.c": "659681ecb150fd9dddd84bdbce20b7ac98d62d65bf240a7e713c1390c33602f4",
+  "gzram/tools/build-scalar-selftest.py": "27e11e6a661a01d01e9bdd4227bdbd9e55a5e08a7d4a26763a5888384b36ca2c",
+  "gzram/tools/vm-scalar-selftest.py": "7f6e8cb9bf08907025aa5d066f24b4f8599150cc97a1f4c52acbd820aacada61"
+}
