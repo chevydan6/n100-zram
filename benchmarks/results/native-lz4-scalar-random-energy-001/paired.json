@@ -1,0 +1,2858 @@
+[
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39168.59,
+        "candidate": 38400.525,
+        "change_percent": -1.9532259765401516,
+        "sessions": [
+          -1.8825089582235277,
+          -1.9532259765401516,
+          -2.0442916636018937
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 38968.842,
+        "candidate": 38201.396,
+        "change_percent": -1.957204562043402,
+        "sessions": [
+          -1.86426244736686,
+          -1.957204562043402,
+          -2.002711159135706
+        ]
+      },
+      "cycles": {
+        "control": 31051.93,
+        "candidate": 30447.505,
+        "change_percent": -1.9538205396103847,
+        "sessions": [
+          -1.8584842150156544,
+          -1.9538205396103847,
+          -1.9798216890279718
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.0860000000002,
+        "candidate": 3247.1949999999997,
+        "change_percent": 0.2503484007525314,
+        "sessions": [
+          0.2503484007525314,
+          0.2503484007525314,
+          0.2503484007525314
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 83.647461,
+        "candidate": 82.25415,
+        "change_percent": -2.155520402211153,
+        "sessions": [
+          -2.155520402211153,
+          -0.9113633324398185,
+          -2.956630166694185
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 10736.789,
+        "candidate": 10747.445,
+        "change_percent": 0.09924754970969119,
+        "sessions": [
+          0.09924754970969119,
+          0.09924754970969119,
+          0.09924754970969119
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39168.59,
+        "candidate": 37799.797,
+        "change_percent": -3.5522297820138826,
+        "sessions": [
+          -3.386181790902709,
+          -3.5522297820138826,
+          -3.582645103128035
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 38968.842,
+        "candidate": 37603.737,
+        "change_percent": -3.5426754408102945,
+        "sessions": [
+          -3.4487333418888877,
+          -3.5426754408102945,
+          -3.5689487514152907
+        ]
+      },
+      "cycles": {
+        "control": 31051.93,
+        "candidate": 29967.517,
+        "change_percent": -3.536745447645584,
+        "sessions": [
+          -3.4559778515182105,
+          -3.536745447645584,
+          -3.5769227599595
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.0860000000002,
+        "candidate": 3266.3199999999997,
+        "change_percent": 0.840792742150076,
+        "sessions": [
+          0.840792742150076,
+          0.840792742150076,
+          0.840792742150076
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 83.647461,
+        "candidate": 80.927979,
+        "change_percent": -3.086852652369354,
+        "sessions": [
+          -3.086852652369354,
+          -2.68065457611405,
+          -3.68926115327618
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 10736.789,
+        "candidate": 10772.086,
+        "change_percent": 0.3287481946417925,
+        "sessions": [
+          0.3287481946417925,
+          0.3287481946417925,
+          0.3287481946417925
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39168.59,
+        "candidate": 37134.815,
+        "change_percent": -5.193862924896919,
+        "sessions": [
+          -5.193862924896919,
+          -5.117554043996575,
+          -5.264499784777755
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 38968.842,
+        "candidate": 36940.13,
+        "change_percent": -5.2008664219125205,
+        "sessions": [
+          -5.2008664219125205,
+          -5.1173042846869965,
+          -5.223876328387234
+        ]
+      },
+      "cycles": {
+        "control": 31051.93,
+        "candidate": 29437.472,
+        "change_percent": -5.203678609446483,
+        "sessions": [
+          -5.203678609446483,
+          -5.115164023558904,
+          -5.222715522013743
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.0860000000002,
+        "candidate": 3301.2739999999994,
+        "change_percent": 1.9199243243309683,
+        "sessions": [
+          1.9199243243309683,
+          1.9199243243309683,
+          1.9199243243309683
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 83.647461,
+        "candidate": 79.281372,
+        "change_percent": -5.629044588503229,
+        "sessions": [
+          -8.40919723153959,
+          -5.629044588503229,
+          -4.845834154410422
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 10736.789,
+        "candidate": 10818.344,
+        "change_percent": 0.7595846393181338,
+        "sessions": [
+          0.7595846393181338,
+          0.7595846393181338,
+          0.7595846393181338
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6938.125,
+        "candidate": 6987.041,
+        "change_percent": 0.728198240107214,
+        "sessions": [
+          0.7264824018694993,
+          0.7562157075634124,
+          0.728198240107214
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6902.864,
+        "candidate": 6948.787,
+        "change_percent": 0.7811707665569045,
+        "sessions": [
+          0.8928005161788155,
+          0.7552431788822034,
+          0.7811707665569045
+        ]
+      },
+      "cycles": {
+        "control": 5502.154,
+        "candidate": 5538.101,
+        "change_percent": 0.8106937198109732,
+        "sessions": [
+          0.8528329155575998,
+          0.7590696972894273,
+          0.8106937198109732
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.0860000000002,
+        "candidate": 3247.1949999999997,
+        "change_percent": 0.2503484007525314,
+        "sessions": [
+          0.2503484007525314,
+          0.2503484007525314,
+          0.2503484007525314
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.819092,
+        "candidate": 14.744629,
+        "change_percent": -0.9984301438132115,
+        "sessions": [
+          -1.8097532561374141,
+          -0.9984301438132115,
+          -0.8068132156575758
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 10736.789,
+        "candidate": 10747.445,
+        "change_percent": 0.09924754970969119,
+        "sessions": [
+          0.09924754970969119,
+          0.09924754970969119,
+          0.09924754970969119
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6938.125,
+        "candidate": 7016.335,
+        "change_percent": 1.3231636487281984,
+        "sessions": [
+          1.1272497973155549,
+          1.3231636487281984,
+          1.6341678055676434
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6902.864,
+        "candidate": 6982.823,
+        "change_percent": 1.1910487187148489,
+        "sessions": [
+          1.1379738649727855,
+          1.1910487187148489,
+          1.3518717991727547
+        ]
+      },
+      "cycles": {
+        "control": 5502.154,
+        "candidate": 5564.193,
+        "change_percent": 1.1480851162611883,
+        "sessions": [
+          1.1343433460848873,
+          1.1480851162611883,
+          1.3096536384640256
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.0860000000002,
+        "candidate": 3266.3199999999997,
+        "change_percent": 0.840792742150076,
+        "sessions": [
+          0.840792742150076,
+          0.840792742150076,
+          0.840792742150076
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.819092,
+        "candidate": 14.796875,
+        "change_percent": 1.0724506339187867,
+        "sessions": [
+          2.0458486652095598,
+          -0.9906085199151149,
+          1.0724506339187867
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 10736.789,
+        "candidate": 10772.086,
+        "change_percent": 0.3287481946417925,
+        "sessions": [
+          0.3287481946417925,
+          0.3287481946417925,
+          0.3287481946417925
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6938.125,
+        "candidate": 7170.49,
+        "change_percent": 3.259795827457901,
+        "sessions": [
+          3.191924701356763,
+          3.259795827457901,
+          3.9172907250807354
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6902.864,
+        "candidate": 7131.025,
+        "change_percent": 3.180121730293517,
+        "sessions": [
+          3.180121730293517,
+          3.02422366691526,
+          3.9002724212978235
+        ]
+      },
+      "cycles": {
+        "control": 5502.154,
+        "candidate": 5683.225,
+        "change_percent": 3.1795280706844897,
+        "sessions": [
+          3.1795280706844897,
+          2.981952593977044,
+          3.8989887904303133
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.0860000000002,
+        "candidate": 3301.2739999999994,
+        "change_percent": 1.9199243243309683,
+        "sessions": [
+          1.9199243243309683,
+          1.9199243243309683,
+          1.9199243243309683
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.819092,
+        "candidate": 15.288452,
+        "change_percent": 1.4544493086208865,
+        "sessions": [
+          0.49006442824433005,
+          1.4544493086208865,
+          2.420453177069737
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 10736.789,
+        "candidate": 10818.344,
+        "change_percent": 0.7595846393181338,
+        "sessions": [
+          0.7595846393181338,
+          0.7595846393181338,
+          0.7595846393181338
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39814.568,
+        "candidate": 39009.954,
+        "change_percent": -2.0251151803476586,
+        "sessions": [
+          -1.9488837143476379,
+          -2.0418141073865637,
+          -2.0251151803476586
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 39602.466,
+        "candidate": 38809.994,
+        "change_percent": -1.9610010282432588,
+        "sessions": [
+          -1.9008617133328354,
+          -2.0248697882773614,
+          -1.9610010282432588
+        ]
+      },
+      "cycles": {
+        "control": 31556.44,
+        "candidate": 30931.728,
+        "change_percent": -1.9457030200244918,
+        "sessions": [
+          -1.9086530517990807,
+          -2.0156611350749087,
+          -1.9457030200244918
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.4529999999995,
+        "candidate": 3216.2659999999996,
+        "change_percent": 0.27476630210949704,
+        "sessions": [
+          0.27476630210949704,
+          0.27476630210949704,
+          0.27476630210949704
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 85.085449,
+        "candidate": 82.924805,
+        "change_percent": -2.6160851289967257,
+        "sessions": [
+          -2.366522239134361,
+          -2.6160851289967257,
+          -3.1330744773548247
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 13944.242,
+        "candidate": 13963.711,
+        "change_percent": 0.13962035369150527,
+        "sessions": [
+          0.13962035369150527,
+          0.13962035369150527,
+          0.13962035369150527
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39814.568,
+        "candidate": 38520.656,
+        "change_percent": -3.287778636509764,
+        "sessions": [
+          -3.287778636509764,
+          -3.292720978961128,
+          -3.162899251410667
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 39602.466,
+        "candidate": 38318.063,
+        "change_percent": -3.2511193342094735,
+        "sessions": [
+          -3.2932257196639503,
+          -3.2511193342094735,
+          -3.1510547839466496
+        ]
+      },
+      "cycles": {
+        "control": 31556.44,
+        "candidate": 30533.7,
+        "change_percent": -3.2283748146565205,
+        "sessions": [
+          -3.291289682535914,
+          -3.2283748146565205,
+          -3.1475722370257864
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.4529999999995,
+        "candidate": 3234.094000000001,
+        "change_percent": 0.8305967382842949,
+        "sessions": [
+          0.8305967382842949,
+          0.8305967382842949,
+          0.8305967382842949
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 85.085449,
+        "candidate": 82.082764,
+        "change_percent": -3.828361404263725,
+        "sessions": [
+          -3.2749418763718285,
+          -5.45013127458962,
+          -3.828361404263725
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 13944.242,
+        "candidate": 14006.18,
+        "change_percent": 0.4441833410521623,
+        "sessions": [
+          0.4441833410521623,
+          0.4441833410521623,
+          0.4441833410521623
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39814.568,
+        "candidate": 37820.705,
+        "change_percent": -5.046971605766748,
+        "sessions": [
+          -5.154408006024802,
+          -4.8370993271818925,
+          -5.046971605766748
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 39602.466,
+        "candidate": 37634.373,
+        "change_percent": -4.975826217402157,
+        "sessions": [
+          -5.06014344154464,
+          -4.84838440997054,
+          -4.975826217402157
+        ]
+      },
+      "cycles": {
+        "control": 31556.44,
+        "candidate": 29994.463,
+        "change_percent": -4.965250674141364,
+        "sessions": [
+          -5.01911179273371,
+          -4.850099556972898,
+          -4.965250674141364
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.4529999999995,
+        "candidate": 3271.8590000000004,
+        "change_percent": 2.0080107175382,
+        "sessions": [
+          2.0080107175382,
+          2.0080107175382,
+          2.0080107175382
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 85.085449,
+        "candidate": 80.585327,
+        "change_percent": -5.700051309361265,
+        "sessions": [
+          -5.700051309361265,
+          -4.9806028564980735,
+          -5.865888153405874
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 13944.242,
+        "candidate": 14090.203,
+        "change_percent": 1.0467474675210031,
+        "sessions": [
+          1.0467474675210031,
+          1.0467474675210031,
+          1.0467474675210031
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6942.968,
+        "candidate": 6959.824,
+        "change_percent": 0.628823292862668,
+        "sessions": [
+          0.628823292862668,
+          1.0132195017275913,
+          0.10957671853777384
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6911.015,
+        "candidate": 6929.646,
+        "change_percent": 0.5063066533959493,
+        "sessions": [
+          0.5063066533959493,
+          0.9915282756602473,
+          0.16605064523071977
+        ]
+      },
+      "cycles": {
+        "control": 5508.535,
+        "candidate": 5523.792,
+        "change_percent": 0.46061729399324847,
+        "sessions": [
+          0.46061729399324847,
+          0.9853596159552502,
+          0.19929599197030523
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.4529999999995,
+        "candidate": 3216.2659999999996,
+        "change_percent": 0.27476630210949704,
+        "sessions": [
+          0.27476630210949704,
+          0.27476630210949704,
+          0.27476630210949704
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.699951,
+        "candidate": 14.804321,
+        "change_percent": 0.3515559134693813,
+        "sessions": [
+          2.7041975672507323,
+          0.3515559134693813,
+          -0.20078729382141391
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 13944.242,
+        "candidate": 13963.711,
+        "change_percent": 0.13962035369150527,
+        "sessions": [
+          0.13962035369150527,
+          0.13962035369150527,
+          0.13962035369150527
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6942.968,
+        "candidate": 7021.002,
+        "change_percent": 0.9363015370514205,
+        "sessions": [
+          1.2369085767601096,
+          0.8645821043084201,
+          0.9363015370514205
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6911.015,
+        "candidate": 6988.982,
+        "change_percent": 0.9613336219961077,
+        "sessions": [
+          1.1738506199450383,
+          0.91267682852052,
+          0.9613336219961077
+        ]
+      },
+      "cycles": {
+        "control": 5508.535,
+        "candidate": 5570.765,
+        "change_percent": 0.9923181156153316,
+        "sessions": [
+          1.1437927443416207,
+          0.9572020581836149,
+          0.9923181156153316
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.4529999999995,
+        "candidate": 3234.094000000001,
+        "change_percent": 0.8305967382842949,
+        "sessions": [
+          0.8305967382842949,
+          0.8305967382842949,
+          0.8305967382842949
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.699951,
+        "candidate": 14.699951,
+        "change_percent": 0.17295649018529424,
+        "sessions": [
+          0.17295649018529424,
+          1.7139615615494597,
+          -0.254562446053086
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 13944.242,
+        "candidate": 14006.18,
+        "change_percent": 0.4441833410521623,
+        "sessions": [
+          0.4441833410521623,
+          0.4441833410521623,
+          0.4441833410521623
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6942.968,
+        "candidate": 7127.0,
+        "change_percent": 2.8209117484050195,
+        "sessions": [
+          2.8209117484050195,
+          2.6153906994301757,
+          2.8370170813206252
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6911.015,
+        "candidate": 7095.305,
+        "change_percent": 2.84388221157843,
+        "sessions": [
+          2.8829361067720605,
+          2.6819425476235503,
+          2.84388221157843
+        ]
+      },
+      "cycles": {
+        "control": 5508.535,
+        "candidate": 5655.891,
+        "change_percent": 2.8470572866108768,
+        "sessions": [
+          2.88690182213287,
+          2.72907330378378,
+          2.8470572866108768
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.4529999999995,
+        "candidate": 3271.8590000000004,
+        "change_percent": 2.0080107175382,
+        "sessions": [
+          2.0080107175382,
+          2.0080107175382,
+          2.0080107175382
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.699951,
+        "candidate": 15.243774,
+        "change_percent": 2.907324988603488,
+        "sessions": [
+          2.907324988603488,
+          5.026950576357514,
+          2.2206045297567867
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 13944.242,
+        "candidate": 14090.203,
+        "change_percent": 1.0467474675210031,
+        "sessions": [
+          1.0467474675210031,
+          1.0467474675210031,
+          1.0467474675210031
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 37853.578,
+        "candidate": 37165.138,
+        "change_percent": -1.7628761382869618,
+        "sessions": [
+          -1.7628761382869618,
+          -1.807427200220968,
+          -1.746739645642481
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 37657.712,
+        "candidate": 36973.804,
+        "change_percent": -1.7723651496819648,
+        "sessions": [
+          -1.7723651496819648,
+          -1.8196505498030535,
+          -1.7678010885029627
+        ]
+      },
+      "cycles": {
+        "control": 30004.97,
+        "candidate": 29466.11,
+        "change_percent": -1.7950834926004244,
+        "sessions": [
+          -1.7950834926004244,
+          -1.8367310335465348,
+          -1.7694462777303244
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.8200000000015,
+        "candidate": 2989.1409999999996,
+        "change_percent": 0.21191355831051695,
+        "sessions": [
+          0.21191355831051695,
+          0.21191355831051695,
+          0.21191355831051695
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 81.255859,
+        "candidate": 79.676392,
+        "change_percent": -2.3349638849903154,
+        "sessions": [
+          -2.738026584335951,
+          -2.3349638849903154,
+          -1.1447089587016235
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 16927.062,
+        "candidate": 16952.852,
+        "change_percent": 0.15235957663530808,
+        "sessions": [
+          0.15235957663530808,
+          0.15235957663530808,
+          0.15235957663530808
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 37853.578,
+        "candidate": 36792.104,
+        "change_percent": -2.8131851237857664,
+        "sessions": [
+          -2.8131851237857664,
+          -2.846980263653953,
+          -2.729317167080747
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 37657.712,
+        "candidate": 36604.277,
+        "change_percent": -2.792582402254673,
+        "sessions": [
+          -2.792582402254673,
+          -2.850304886448529,
+          -2.7405832006025643
+        ]
+      },
+      "cycles": {
+        "control": 30004.97,
+        "candidate": 29169.816,
+        "change_percent": -2.798258679046828,
+        "sessions": [
+          -2.798258679046828,
+          -2.8416692636647145,
+          -2.7394424901124315
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.8200000000015,
+        "candidate": 3004.2259999999987,
+        "change_percent": 0.7176430357848318,
+        "sessions": [
+          0.7176430357848318,
+          0.7176430357848318,
+          0.7176430357848318
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 81.255859,
+        "candidate": 78.841919,
+        "change_percent": -3.150851651366049,
+        "sessions": [
+          -3.25121675803115,
+          -3.150851651366049,
+          -2.8980135539379503
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 16927.062,
+        "candidate": 17010.406,
+        "change_percent": 0.4923713282316555,
+        "sessions": [
+          0.4923713282316555,
+          0.4923713282316555,
+          0.4923713282316555
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 37853.578,
+        "candidate": 36346.635,
+        "change_percent": -3.927599797275072,
+        "sessions": [
+          -3.968047731363611,
+          -3.8933122781682705,
+          -3.927599797275072
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 37657.712,
+        "candidate": 36160.489,
+        "change_percent": -3.940798110144683,
+        "sessions": [
+          -3.992142253656661,
+          -3.940798110144683,
+          -3.930773319244951
+        ]
+      },
+      "cycles": {
+        "control": 30004.97,
+        "candidate": 28821.788,
+        "change_percent": -3.9715267668154364,
+        "sessions": [
+          -4.010132385151321,
+          -3.9715267668154364,
+          -3.926069581139391
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.8200000000015,
+        "candidate": 3038.1950000000015,
+        "change_percent": 1.8564646877786695,
+        "sessions": [
+          1.8564646877786695,
+          1.8564646877786695,
+          1.8564646877786695
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 81.255859,
+        "candidate": 78.037109,
+        "change_percent": -4.067014486410658,
+        "sessions": [
+          -3.361649814922052,
+          -4.561629911437559,
+          -4.067014486410658
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 16927.062,
+        "candidate": 17128.398,
+        "change_percent": 1.189432637512633,
+        "sessions": [
+          1.189432637512633,
+          1.189432637512633,
+          1.189432637512633
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6997.24,
+        "candidate": 7010.605,
+        "change_percent": 0.702777094968865,
+        "sessions": [
+          0.702777094968865,
+          -1.4645975265861755,
+          1.3287336041624354
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6956.509,
+        "candidate": 6975.333,
+        "change_percent": 0.7050333742886883,
+        "sessions": [
+          0.7050333742886883,
+          -1.4183261839233685,
+          1.2763674714181938
+        ]
+      },
+      "cycles": {
+        "control": 5542.905,
+        "candidate": 5554.912,
+        "change_percent": 0.7064768029398261,
+        "sessions": [
+          0.7064768029398261,
+          -1.3839915611586595,
+          1.265039837052484
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.8200000000015,
+        "candidate": 2989.1409999999996,
+        "change_percent": 0.21191355831051695,
+        "sessions": [
+          0.21191355831051695,
+          0.21191355831051695,
+          0.21191355831051695
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.871338,
+        "candidate": 15.012939,
+        "change_percent": 1.9092701930171652,
+        "sessions": [
+          1.9092701930171652,
+          -2.0499169048111665,
+          2.762796809994894
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 16927.062,
+        "candidate": 16952.852,
+        "change_percent": 0.15235957663530808,
+        "sessions": [
+          0.15235957663530808,
+          0.15235957663530808,
+          0.15235957663530808
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6997.24,
+        "candidate": 7028.985,
+        "change_percent": 0.9665014523702276,
+        "sessions": [
+          1.1444798234732545,
+          0.13589001754841235,
+          0.9665014523702276
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6956.509,
+        "candidate": 6996.708,
+        "change_percent": 0.9722632094449679,
+        "sessions": [
+          1.0389413845343753,
+          0.12715385286634628,
+          0.9722632094449679
+        ]
+      },
+      "cycles": {
+        "control": 5542.905,
+        "candidate": 5575.765,
+        "change_percent": 0.9703717630658248,
+        "sessions": [
+          1.028776784025509,
+          0.1311764806340765,
+          0.9703717630658248
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.8200000000015,
+        "candidate": 3004.2259999999987,
+        "change_percent": 0.7176430357848318,
+        "sessions": [
+          0.7176430357848318,
+          0.7176430357848318,
+          0.7176430357848318
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.871338,
+        "candidate": 15.020386,
+        "change_percent": 1.603141465274227,
+        "sessions": [
+          1.603141465274227,
+          -5.2803725859072,
+          2.3653655602283274
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 16927.062,
+        "candidate": 17010.406,
+        "change_percent": 0.4923713282316555,
+        "sessions": [
+          0.4923713282316555,
+          0.4923713282316555,
+          0.4923713282316555
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6997.24,
+        "candidate": 7117.662,
+        "change_percent": 1.964247403443098,
+        "sessions": [
+          1.9320414957238574,
+          1.964247403443098,
+          2.0356561675870966
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6956.509,
+        "candidate": 7081.269,
+        "change_percent": 1.9381275417595267,
+        "sessions": [
+          1.9918603438335625,
+          1.9298863349721973,
+          1.9381275417595267
+        ]
+      },
+      "cycles": {
+        "control": 5542.905,
+        "candidate": 5642.186,
+        "change_percent": 1.917681179061237,
+        "sessions": [
+          2.023709584648059,
+          1.8959119584027961,
+          1.917681179061237
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.8200000000015,
+        "candidate": 3038.1950000000015,
+        "change_percent": 1.8564646877786695,
+        "sessions": [
+          1.8564646877786695,
+          1.8564646877786695,
+          1.8564646877786695
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 14.871338,
+        "candidate": 15.258667,
+        "change_percent": 2.7758711199211694,
+        "sessions": [
+          3.5674319098164986,
+          -1.8542850683643919,
+          2.7758711199211694
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 16927.062,
+        "candidate": 17128.398,
+        "change_percent": 1.189432637512633,
+        "sessions": [
+          1.189432637512633,
+          1.189432637512633,
+          1.189432637512633
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17047.006,
+        "candidate": 16321.132,
+        "change_percent": -4.298179685880344,
+        "sessions": [
+          -4.07516505016563,
+          -4.392201172188381,
+          -4.298179685880344
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 16963.526,
+        "candidate": 16236.111,
+        "change_percent": -4.308958134635377,
+        "sessions": [
+          -4.105997734252032,
+          -4.394131396270695,
+          -4.308958134635377
+        ]
+      },
+      "cycles": {
+        "control": 13519.288,
+        "candidate": 12941.827,
+        "change_percent": -4.3077790118843495,
+        "sessions": [
+          -4.108589460610002,
+          -4.376199397483072,
+          -4.3077790118843495
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062000000001,
+        "candidate": 2152.883,
+        "change_percent": 0.08465585836201495,
+        "sessions": [
+          0.08465585836201495,
+          0.08465585836201495,
+          0.08465585836201495
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 36.559937,
+        "candidate": 35.099609,
+        "change_percent": -4.4194689391446,
+        "sessions": [
+          -4.406755103906768,
+          -4.4194689391446,
+          -4.518694351107088
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 7497.703,
+        "candidate": 7500.25,
+        "change_percent": 0.033970404002392485,
+        "sessions": [
+          0.033970404002392485,
+          0.033970404002392485,
+          0.033970404002392485
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17047.006,
+        "candidate": 15929.634,
+        "change_percent": -6.58357136917912,
+        "sessions": [
+          -6.529911987933701,
+          -6.58357136917912,
+          -6.687750235363499
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 16963.526,
+        "candidate": 15852.556,
+        "change_percent": -6.5389817988459225,
+        "sessions": [
+          -6.478753415260064,
+          -6.5389817988459225,
+          -6.641275224289767
+        ]
+      },
+      "cycles": {
+        "control": 13519.288,
+        "candidate": 12634.394,
+        "change_percent": -6.535434148036822,
+        "sessions": [
+          -6.484748141022278,
+          -6.535434148036822,
+          -6.629949962097436
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062000000001,
+        "candidate": 2157.4069999999992,
+        "change_percent": 0.29497057732406073,
+        "sessions": [
+          0.29497057732406073,
+          0.29497057732406073,
+          0.29497057732406073
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 36.559937,
+        "candidate": 34.369385,
+        "change_percent": -5.278698193182763,
+        "sessions": [
+          -5.278698193182763,
+          -4.844922076514302,
+          -7.5410335982302845
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 7497.703,
+        "candidate": 7505.766,
+        "change_percent": 0.1075396024622366,
+        "sessions": [
+          0.1075396024622366,
+          0.1075396024622366,
+          0.1075396024622366
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17047.006,
+        "candidate": 15642.415,
+        "change_percent": -8.301735276306976,
+        "sessions": [
+          -8.259465155932466,
+          -8.339144695265176,
+          -8.301735276306976
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 16963.526,
+        "candidate": 15566.315,
+        "change_percent": -8.2663555124593,
+        "sessions": [
+          -8.240940522875274,
+          -8.2663555124593,
+          -8.297282836417674
+        ]
+      },
+      "cycles": {
+        "control": 13519.288,
+        "candidate": 12404.293,
+        "change_percent": -8.237204977326218,
+        "sessions": [
+          -8.231448125586194,
+          -8.237204977326218,
+          -8.293446306443187
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062000000001,
+        "candidate": 2166.906,
+        "change_percent": 0.7365664030139163,
+        "sessions": [
+          0.7365664030139163,
+          0.7365664030139163,
+          0.7365664030139163
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 36.559937,
+        "candidate": 33.497681,
+        "change_percent": -7.535586808340156,
+        "sessions": [
+          -7.535586808340156,
+          -6.240814341027323,
+          -9.136218410783192
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 7497.703,
+        "candidate": 7517.07,
+        "change_percent": 0.2583057771159858,
+        "sessions": [
+          0.2583057771159858,
+          0.2583057771159858,
+          0.2583057771159858
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 4486.155,
+        "candidate": 4495.208,
+        "change_percent": 0.3565817974307217,
+        "sessions": [
+          0.3565817974307217,
+          1.7348385130075972,
+          0.23583881230493375
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 4463.761,
+        "candidate": 4474.06,
+        "change_percent": 0.2430962100942624,
+        "sessions": [
+          0.23072471846050657,
+          1.788382487684892,
+          0.2430962100942624
+        ]
+      },
+      "cycles": {
+        "control": 3556.424,
+        "candidate": 3566.189,
+        "change_percent": 0.27457356040787584,
+        "sessions": [
+          0.27457356040787584,
+          1.7822979817014195,
+          0.24418837804067728
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062000000001,
+        "candidate": 2152.883,
+        "change_percent": 0.08465585836201495,
+        "sessions": [
+          0.08465585836201495,
+          0.08465585836201495,
+          0.08465585836201495
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 9.566406,
+        "candidate": 9.596313,
+        "change_percent": 0.9115836530388499,
+        "sessions": [
+          3.1938651096824255,
+          0.9115836530388499,
+          -0.2481195781492196
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 7497.703,
+        "candidate": 7500.25,
+        "change_percent": 0.033970404002392485,
+        "sessions": [
+          0.033970404002392485,
+          0.033970404002392485,
+          0.033970404002392485
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 4486.155,
+        "candidate": 4502.426,
+        "change_percent": 0.26436019469886496,
+        "sessions": [
+          -0.525444458947355,
+          3.492248196248182,
+          0.26436019469886496
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 4463.761,
+        "candidate": 4482.095,
+        "change_percent": 0.14829291746616402,
+        "sessions": [
+          -0.5318636612260841,
+          3.474219308601345,
+          0.14829291746616402
+        ]
+      },
+      "cycles": {
+        "control": 3556.424,
+        "candidate": 3572.257,
+        "change_percent": 0.10137280561388629,
+        "sessions": [
+          -0.5747800228880884,
+          3.4723729025540218,
+          0.10137280561388629
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062000000001,
+        "candidate": 2157.4069999999992,
+        "change_percent": 0.29497057732406073,
+        "sessions": [
+          0.29497057732406073,
+          0.29497057732406073,
+          0.29497057732406073
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 9.566406,
+        "candidate": 9.559082,
+        "change_percent": 0.4675715637586286,
+        "sessions": [
+          -0.31062063953958274,
+          2.3586393612795797,
+          0.4675715637586286
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 7497.703,
+        "candidate": 7505.766,
+        "change_percent": 0.1075396024622366,
+        "sessions": [
+          0.1075396024622366,
+          0.1075396024622366,
+          0.1075396024622366
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 4486.155,
+        "candidate": 4527.851,
+        "change_percent": 0.7179071726211683,
+        "sessions": [
+          -0.3005176656308173,
+          0.7179071726211683,
+          1.282113679177721
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 4463.761,
+        "candidate": 4505.153,
+        "change_percent": 0.8996684880780759,
+        "sessions": [
+          -0.2500041972958833,
+          0.8996684880780759,
+          1.084963565866337
+        ]
+      },
+      "cycles": {
+        "control": 3556.424,
+        "candidate": 3588.946,
+        "change_percent": 0.9829041350747358,
+        "sessions": [
+          -0.24861494865977551,
+          0.9829041350747358,
+          1.0159207999046904
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062000000001,
+        "candidate": 2166.906,
+        "change_percent": 0.7365664030139163,
+        "sessions": [
+          0.7365664030139163,
+          0.7365664030139163,
+          0.7365664030139163
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 9.566406,
+        "candidate": 9.588867,
+        "change_percent": 0.0,
+        "sessions": [
+          -0.23351209550633856,
+          0.0,
+          3.2160417355465265
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 7497.703,
+        "candidate": 7517.07,
+        "change_percent": 0.2583057771159858,
+        "sessions": [
+          0.2583057771159858,
+          0.2583057771159858,
+          0.2583057771159858
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 3959.574,
+        "candidate": 3304.578,
+        "change_percent": -16.605176936876063,
+        "sessions": [
+          -16.569849779980782,
+          -16.679488386854224,
+          -16.605176936876063
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 3941.79,
+        "candidate": 3289.959,
+        "change_percent": -16.600044138798776,
+        "sessions": [
+          -16.600044138798776,
+          -16.61146042915702,
+          -16.56891213289482
+        ]
+      },
+      "cycles": {
+        "control": 3142.075,
+        "candidate": 2622.175,
+        "change_percent": -16.588394225469237,
+        "sessions": [
+          -16.679110201343395,
+          -16.588394225469237,
+          -16.566440638963176
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 8.523438,
+        "candidate": 7.130249,
+        "change_percent": -15.05879135076389,
+        "sessions": [
+          -15.05879135076389,
+          -14.977815489926838,
+          -18.450287004438557
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5346.641,
+        "candidate": 5347.367,
+        "change_percent": 0.013578618800114128,
+        "sessions": [
+          0.013578618800114128,
+          0.013578618800114128,
+          0.013578618800114128
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 3959.574,
+        "candidate": 2996.653,
+        "change_percent": -24.305134879826383,
+        "sessions": [
+          -24.683149062545628,
+          -24.305134879826383,
+          -24.23605640281268
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 3941.79,
+        "candidate": 2982.717,
+        "change_percent": -24.337687040324628,
+        "sessions": [
+          -24.75972379930349,
+          -24.337687040324628,
+          -24.242746600144926
+        ]
+      },
+      "cycles": {
+        "control": 3142.075,
+        "candidate": 2377.332,
+        "change_percent": -24.33812468023041,
+        "sessions": [
+          -24.81032149347704,
+          -24.33812468023041,
+          -24.24534375236331
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 8.523438,
+        "candidate": 6.42981,
+        "change_percent": -24.887715206721307,
+        "sessions": [
+          -24.887715206721307,
+          -24.52723959918647,
+          -25.225835019345123
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5346.641,
+        "candidate": 5348.359,
+        "change_percent": 0.032132323827260834,
+        "sessions": [
+          0.032132323827260834,
+          0.032132323827260834,
+          0.032132323827260834
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 3959.574,
+        "candidate": 2821.651,
+        "change_percent": -28.70879704358168,
+        "sessions": [
+          -28.76779168668144,
+          -28.70879704358168,
+          -28.573451316693387
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 3941.79,
+        "candidate": 2809.225,
+        "change_percent": -28.711421814208784,
+        "sessions": [
+          -28.738036229328966,
+          -28.711421814208784,
+          -28.62057170655573
+        ]
+      },
+      "cycles": {
+        "control": 3142.075,
+        "candidate": 2239.266,
+        "change_percent": -28.6952504452608,
+        "sessions": [
+          -28.73559048231904,
+          -28.6952504452608,
+          -28.65943393649839
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 8.523438,
+        "candidate": 5.990234,
+        "change_percent": -29.65598171326329,
+        "sessions": [
+          -29.895166715590584,
+          -25.76021836049074,
+          -29.65598171326329
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5346.641,
+        "candidate": 5350.164,
+        "change_percent": 0.06589183751068983,
+        "sessions": [
+          0.06589183751068983,
+          0.06589183751068983,
+          0.06589183751068983
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 959.069,
+        "candidate": 958.28,
+        "change_percent": -0.044673611256074164,
+        "sessions": [
+          -0.044673611256074164,
+          0.055971805247345685,
+          -0.06955867154374573
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 954.178,
+        "candidate": 953.73,
+        "change_percent": 0.022843849712628206,
+        "sessions": [
+          -0.0793139552694444,
+          0.022843849712628206,
+          0.03410751481383034
+        ]
+      },
+      "cycles": {
+        "control": 760.072,
+        "candidate": 760.125,
+        "change_percent": 0.022774425241967045,
+        "sessions": [
+          -0.008416855278747803,
+          0.022774425241967045,
+          0.0322526713768756
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 2.168091,
+        "candidate": 2.160645,
+        "change_percent": -0.6869176616664086,
+        "sessions": [
+          -0.6869176616664086,
+          -1.3652723149233492,
+          -0.3422603246922451
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5346.641,
+        "candidate": 5347.367,
+        "change_percent": 0.013578618800114128,
+        "sessions": [
+          0.013578618800114128,
+          0.013578618800114128,
+          0.013578618800114128
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 959.069,
+        "candidate": 958.54,
+        "change_percent": -0.017326681001184063,
+        "sessions": [
+          -0.017326681001184063,
+          0.006581909777692019,
+          -0.1375999701140329
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 954.178,
+        "candidate": 953.989,
+        "change_percent": 0.007025409964134255,
+        "sessions": [
+          0.010167597648247373,
+          0.007025409964134255,
+          -0.080997066592714
+        ]
+      },
+      "cycles": {
+        "control": 760.072,
+        "candidate": 760.08,
+        "change_percent": -0.0014479094819552785,
+        "sessions": [
+          0.02605708871254997,
+          -0.0014479094819552785,
+          -0.02135042065568582
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 2.168091,
+        "candidate": 2.160645,
+        "change_percent": 0.6845666150472329,
+        "sessions": [
+          -1.3832912718663049,
+          2.0677621728696582,
+          0.6845666150472329
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5346.641,
+        "candidate": 5348.359,
+        "change_percent": 0.032132323827260834,
+        "sessions": [
+          0.032132323827260834,
+          0.032132323827260834,
+          0.032132323827260834
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 959.069,
+        "candidate": 957.925,
+        "change_percent": -0.045593241814501084,
+        "sessions": [
+          -0.0025096385806722132,
+          -0.08295295815053949,
+          -0.045593241814501084
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 954.178,
+        "candidate": 953.639,
+        "change_percent": -0.010013058697388999,
+        "sessions": [
+          -0.005555491498521192,
+          -0.034821826572617454,
+          -0.010013058697388999
+        ]
+      },
+      "cycles": {
+        "control": 760.072,
+        "candidate": 759.988,
+        "change_percent": -0.008245350211433244,
+        "sessions": [
+          0.015528972061007451,
+          -0.031585056583294246,
+          -0.008245350211433244
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 2.168091,
+        "candidate": 2.160645,
+        "change_percent": -0.005569372468661182,
+        "sessions": [
+          -0.34826633793292316,
+          -0.005569372468661182,
+          1.041080236672287
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5346.641,
+        "candidate": 5350.164,
+        "change_percent": 0.06589183751068983,
+        "sessions": [
+          0.06589183751068983,
+          0.06589183751068983,
+          0.06589183751068983
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 5083.657,
+        "candidate": 4413.045,
+        "change_percent": -13.143222932540056,
+        "sessions": [
+          -13.599836479091076,
+          -13.085551177619227,
+          -13.143222932540056
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 5047.622,
+        "candidate": 4384.438,
+        "change_percent": -13.166225917631557,
+        "sessions": [
+          -13.499695316796224,
+          -13.166225917631557,
+          -13.141141195779715
+        ]
+      },
+      "cycles": {
+        "control": 4022.324,
+        "candidate": 3493.513,
+        "change_percent": -13.171770298102947,
+        "sessions": [
+          -13.519273932184483,
+          -13.171770298102947,
+          -13.160384120670921
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 10.952271,
+        "candidate": 9.633545,
+        "change_percent": -12.26355747485467,
+        "sessions": [
+          -12.719353648495302,
+          -10.646816522533541,
+          -12.26355747485467
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 5083.657,
+        "candidate": 4137.957,
+        "change_percent": -18.327668935390285,
+        "sessions": [
+          -18.778417994363494,
+          -18.327668935390285,
+          -18.16482437712289
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 5047.622,
+        "candidate": 4113.648,
+        "change_percent": -18.36258464070092,
+        "sessions": [
+          -18.583332821508215,
+          -18.36258464070092,
+          -18.241871304532054
+        ]
+      },
+      "cycles": {
+        "control": 4022.324,
+        "candidate": 3277.403,
+        "change_percent": -18.377701711296567,
+        "sessions": [
+          -18.53603608085358,
+          -18.377701711296567,
+          -18.248510540333495
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 10.952271,
+        "candidate": 9.141846,
+        "change_percent": -15.495972218024068,
+        "sessions": [
+          -17.77750843788557,
+          -15.495972218024068,
+          -15.374221644622278
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 5083.657,
+        "candidate": 3953.016,
+        "change_percent": -21.967699500740355,
+        "sessions": [
+          -22.43343951762108,
+          -21.955131718584,
+          -21.967699500740355
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 5047.622,
+        "candidate": 3930.58,
+        "change_percent": -22.026363948244953,
+        "sessions": [
+          -22.26385726855383,
+          -21.993676666566074,
+          -22.026363948244953
+        ]
+      },
+      "cycles": {
+        "control": 4022.324,
+        "candidate": 3131.718,
+        "change_percent": -22.038761285331365,
+        "sessions": [
+          -22.25380153364075,
+          -22.002889729256637,
+          -22.038761285331365
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 10.952271,
+        "candidate": 8.732056,
+        "change_percent": -20.6212335161008,
+        "sessions": [
+          -21.08173130365172,
+          -20.45405365033138,
+          -20.6212335161008
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 525.797,
+        "candidate": 525.421,
+        "change_percent": 0.018832678311220263,
+        "sessions": [
+          0.12999261871564638,
+          0.018832678311220263,
+          -0.28144336438421513
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 523.667,
+        "candidate": 523.313,
+        "change_percent": -0.0362893213897042,
+        "sessions": [
+          0.0037059226820845836,
+          -0.0362893213897042,
+          -0.10530697744263184
+        ]
+      },
+      "cycles": {
+        "control": 417.153,
+        "candidate": 416.908,
+        "change_percent": -0.04793794911867044,
+        "sessions": [
+          -0.012145738525504157,
+          -0.04793794911867044,
+          -0.0989645860141275
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 1.110107,
+        "candidate": 1.110107,
+        "change_percent": -0.561465631908975,
+        "sessions": [
+          1.4076785732852093,
+          -0.561465631908975,
+          -2.2939455202136028
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 525.797,
+        "candidate": 525.362,
+        "change_percent": -0.04650400508060537,
+        "sessions": [
+          -0.04650400508060537,
+          -0.08217895990352275,
+          -0.046279700092377585
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 523.667,
+        "candidate": 523.469,
+        "change_percent": -0.030471609930449173,
+        "sessions": [
+          -0.030471609930449173,
+          -0.04125522852722607,
+          -0.0053429200584709235
+        ]
+      },
+      "cycles": {
+        "control": 417.153,
+        "candidate": 417.174,
+        "change_percent": -0.028426196549047322,
+        "sessions": [
+          -0.028426196549047322,
+          -0.06223356256028767,
+          -0.003594355424252349
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 1.110107,
+        "candidate": 1.110107,
+        "change_percent": 0.0,
+        "sessions": [
+          1.3784147998415541,
+          -0.6510222222222306,
+          0.0
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 525.797,
+        "candidate": 525.566,
+        "change_percent": 0.06836515178496594,
+        "sessions": [
+          -0.042237349298779314,
+          0.13097215938684403,
+          0.06836515178496594
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 523.667,
+        "candidate": 523.578,
+        "change_percent": 0.005558117321569078,
+        "sessions": [
+          0.005558117321569078,
+          0.030941421395414004,
+          -0.019286624057868185
+        ]
+      },
+      "cycles": {
+        "control": 417.153,
+        "candidate": 417.187,
+        "change_percent": -0.0019161125907718457,
+        "sessions": [
+          0.0025837256290017763,
+          -0.0019161125907718457,
+          -0.024681240579793595
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 1.110107,
+        "candidate": 1.125,
+        "change_percent": 0.7688129965121693,
+        "sessions": [
+          2.795584881221669,
+          0.6988727556010099,
+          0.7688129965121693
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17463.732,
+        "candidate": 16768.959,
+        "change_percent": -3.9215802718751247,
+        "sessions": [
+          -3.7901062613649783,
+          -4.161781536521758,
+          -3.9215802718751247
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 17380.819,
+        "candidate": 16686.908,
+        "change_percent": -3.9532844995878613,
+        "sessions": [
+          -3.8245378425493137,
+          -4.141245616996736,
+          -3.9532844995878613
+        ]
+      },
+      "cycles": {
+        "control": 13852.664,
+        "candidate": 13300.832,
+        "change_percent": -3.9654191310244835,
+        "sessions": [
+          -3.825561151755408,
+          -4.127391372264899,
+          -3.9654191310244835
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.6409999999996,
+        "candidate": 1080.3670000000002,
+        "change_percent": 0.06724457481706025,
+        "sessions": [
+          0.06724457481706025,
+          0.06724457481706025,
+          0.06724457481706025
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 37.483765,
+        "candidate": 35.889404,
+        "change_percent": -3.686829974623995,
+        "sessions": [
+          -3.686829974623995,
+          -3.0003314638312073,
+          -4.361248244484795
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5193.641,
+        "candidate": 5194.367,
+        "change_percent": 0.013978632716438177,
+        "sessions": [
+          0.013978632716438177,
+          0.013978632716438177,
+          0.013978632716438177
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17463.732,
+        "candidate": 16409.179,
+        "change_percent": -6.054809790668136,
+        "sessions": [
+          -5.992221563227085,
+          -6.054809790668136,
+          -6.325074254811103
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 17380.819,
+        "candidate": 16329.256,
+        "change_percent": -6.066943442014283,
+        "sessions": [
+          -5.992446658052486,
+          -6.066943442014283,
+          -6.393568410713623
+        ]
+      },
+      "cycles": {
+        "control": 13852.664,
+        "candidate": 13013.088,
+        "change_percent": -6.0687506851844315,
+        "sessions": [
+          -5.985172954237372,
+          -6.0687506851844315,
+          -6.401794860216226
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.6409999999996,
+        "candidate": 1081.3590000000004,
+        "change_percent": 0.1591269690573771,
+        "sessions": [
+          0.1591269690573771,
+          0.1591269690573771,
+          0.1591269690573771
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 37.483765,
+        "candidate": 35.367798,
+        "change_percent": -6.166484481206824,
+        "sessions": [
+          -6.1933346230738096,
+          -5.588555164525443,
+          -6.166484481206824
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5193.641,
+        "candidate": 5195.359,
+        "change_percent": 0.033078913232564844,
+        "sessions": [
+          0.033078913232564844,
+          0.033078913232564844,
+          0.033078913232564844
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17463.732,
+        "candidate": 16134.955,
+        "change_percent": -7.676290140898912,
+        "sessions": [
+          -7.60506821040382,
+          -7.676290140898912,
+          -7.721433104235542
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 17380.819,
+        "candidate": 16056.809,
+        "change_percent": -7.646185675063599,
+        "sessions": [
+          -7.550846311820491,
+          -7.659599918682902,
+          -7.646185675063599
+        ]
+      },
+      "cycles": {
+        "control": 13852.664,
+        "candidate": 12796.631,
+        "change_percent": -7.625534269097322,
+        "sessions": [
+          -7.532407404728936,
+          -7.648210115277154,
+          -7.625534269097322
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.6409999999996,
+        "candidate": 1083.1639999999998,
+        "change_percent": 0.32631217228691334,
+        "sessions": [
+          0.32631217228691334,
+          0.32631217228691334,
+          0.32631217228691334
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 37.483765,
+        "candidate": 34.145996,
+        "change_percent": -7.813262510056895,
+        "sessions": [
+          -7.565335079582369,
+          -7.813262510056895,
+          -9.980428939012242
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5193.641,
+        "candidate": 5197.164,
+        "change_percent": 0.0678329518732701,
+        "sessions": [
+          0.0678329518732701,
+          0.0678329518732701,
+          0.0678329518732701
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 7766.238,
+        "candidate": 7765.841,
+        "change_percent": 0.025992349387671254,
+        "sessions": [
+          -0.23030882634899053,
+          0.27283413083993846,
+          0.025992349387671254
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 7731.02,
+        "candidate": 7727.715,
+        "change_percent": -0.17910531377031136,
+        "sessions": [
+          -0.17910531377031136,
+          0.1935314004986921,
+          -0.20453790204124633
+        ]
+      },
+      "cycles": {
+        "control": 6160.419,
+        "candidate": 6157.909,
+        "change_percent": -0.21655915011575821,
+        "sessions": [
+          -0.21655915011575821,
+          0.15664165964284216,
+          -0.2518743554093428
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.6409999999996,
+        "candidate": 1080.3670000000002,
+        "change_percent": 0.06724457481706025,
+        "sessions": [
+          0.06724457481706025,
+          0.06724457481706025,
+          0.06724457481706025
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 16.50293,
+        "candidate": 16.488159,
+        "change_percent": -0.045780614817803045,
+        "sessions": [
+          0.0007372667238270125,
+          -1.5742913207547171,
+          -0.045780614817803045
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5193.641,
+        "candidate": 5194.367,
+        "change_percent": 0.013978632716438177,
+        "sessions": [
+          0.013978632716438177,
+          0.013978632716438177,
+          0.013978632716438177
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 7766.238,
+        "candidate": 7764.693,
+        "change_percent": 0.21812851730143024,
+        "sessions": [
+          0.21812851730143024,
+          -0.3470076495212471,
+          0.4823912137100317
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 7731.02,
+        "candidate": 7730.536,
+        "change_percent": 0.2772079234046654,
+        "sessions": [
+          0.2772079234046654,
+          -0.32264219070060607,
+          0.43149971161826617
+        ]
+      },
+      "cycles": {
+        "control": 6160.419,
+        "candidate": 6161.341,
+        "change_percent": 0.3009131386677799,
+        "sessions": [
+          0.3009131386677799,
+          -0.3220179706489579,
+          0.4426675394058499
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.6409999999996,
+        "candidate": 1081.3590000000004,
+        "change_percent": 0.1591269690573771,
+        "sessions": [
+          0.1591269690573771,
+          0.1591269690573771,
+          0.1591269690573771
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 16.50293,
+        "candidate": 16.562622,
+        "change_percent": 1.3914341923859652,
+        "sessions": [
+          6.349316852883935,
+          1.3914341923859652,
+          -0.7305893164015975
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5193.641,
+        "candidate": 5195.359,
+        "change_percent": 0.033078913232564844,
+        "sessions": [
+          0.033078913232564844,
+          0.033078913232564844,
+          0.033078913232564844
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 7766.238,
+        "candidate": 7752.337,
+        "change_percent": -0.26967803718341843,
+        "sessions": [
+          -0.5658348806782398,
+          -0.26967803718341843,
+          0.10393588904800133
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 7731.02,
+        "candidate": 7710.198,
+        "change_percent": -0.27182904491795945,
+        "sessions": [
+          -0.6120958438702417,
+          -0.27182904491795945,
+          0.14363704550419687
+        ]
+      },
+      "cycles": {
+        "control": 6160.419,
+        "candidate": 6142.099,
+        "change_percent": -0.26736621773769675,
+        "sessions": [
+          -0.6330001191438228,
+          -0.26736621773769675,
+          0.1475512775528598
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.6409999999996,
+        "candidate": 1083.1639999999998,
+        "change_percent": 0.32631217228691334,
+        "sessions": [
+          0.32631217228691334,
+          0.32631217228691334,
+          0.32631217228691334
+        ],
+        "method": "subtract prior corpus cumulative total per variant and paired round; totals constant across rounds"
+      },
+      "package_uj_per_page": {
+        "control": 16.50293,
+        "candidate": 16.495483,
+        "change_percent": 0.09000092883522104,
+        "sessions": [
+          0.09000092883522104,
+          0.8099842582628636,
+          0.044627364854310514
+        ]
+      },
+      "compressed_bytes_cumulative_raw": {
+        "control": 5193.641,
+        "candidate": 5197.164,
+        "change_percent": 0.0678329518732701,
+        "sessions": [
+          0.0678329518732701,
+          0.0678329518732701,
+          0.0678329518732701
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,168 @@
+{
+  "inputs": {
+    "corpus_sha256": {
+      "random": "afe347bc9bb4211d9017c8da16c8abd205760d60cf6249f33fb522dad1de19bf",
+      "sparse-words": "5ae927d019eef21f56b2d41449b12b29af78f802887651f537416750cae669b6",
+      "period127": "e8e6d1c5c1a86cc08099e73a555badb0941ec01f06ceed8dadc01c567ed78578",
+      "mixed-pages": "7a3cc8f6b86964bcaac88f89fc9b2586b8b0baa78c3646b89f0536c651e3345c",
+      "bash-exec": "89f57bcdc48a691e357574ede8770d15d5917b462055d39e2555be4d0b01ec83",
+      "git-exec": "e9f7bdec46f53618acf4f001e3adeaf9269edfbe16ecb9ae684cf6dbfde4ecc0",
+      "libc-exec": "a20d00dcd870a07e482850f0a83d90a5d519055792e43dd8481fc0616e8f2b08"
+    },
+    "order_seeds": [
+      100,
+      101,
+      102
+    ],
+    "selected_variants": [
+      "table14-scalar",
+      "table13-scalar",
+      "table12-scalar",
+      "table11-scalar"
+    ],
+    "selected_corpora": [
+      "bash-exec",
+      "git-exec",
+      "libc-exec",
+      "random",
+      "period127",
+      "mixed-pages",
+      "sparse-words"
+    ],
+    "variant_names": [
+      "table14-scalar",
+      "table13-scalar",
+      "table12-scalar",
+      "table11-scalar"
+    ],
+    "corpora": [
+      "random",
+      "sparse-words",
+      "period127",
+      "mixed-pages",
+      "bash-exec",
+      "git-exec",
+      "libc-exec"
+    ],
+    "screen": false,
+    "cpu_model": "Intel(R) N100",
+    "runner_sha256": "aeb44683675f0817dbc427258cca1ab3894cf31395ed5842874986ad841a7347",
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "binary_sha256": "ee4b48792e31502448d26d6a55f14970aaca4225d2dcd05806c76c0f3222166c",
+    "manifest": {
+      "artifacts": {
+        "table11-scalar.so": "2f98303ea77ac9e9c401f8f9b5a3ac0b9558991c6128128f801f9e2c2b89b6a4",
+        "table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+        "table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+        "table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152"
+      },
+      "benchmark_sha256": "ee4b48792e31502448d26d6a55f14970aaca4225d2dcd05806c76c0f3222166c",
+      "sources": {
+        "benchmarks/lz4-isolated.c": "b5351fb07dc69c902a5661b9747e3f95399406a141fa92170dbfade2907a4ede",
+        "gzram/bench.c": "8c51e7111e67c2f6fc516057d195e4142b7a8f80b7cccaf8be5230ff17838ed9"
+      }
+    },
+    "libraries": {
+      "table11-scalar.so": "2f98303ea77ac9e9c401f8f9b5a3ac0b9558991c6128128f801f9e2c2b89b6a4",
+      "table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+      "table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+      "table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152"
+    },
+    "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+    "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+    "execution": {
+      "serialization": "exclusive target-local flock for runner lifetime",
+      "nice": 5,
+      "runner_cpu": 1,
+      "codec_cpu": 0,
+      "thread_cpu_scope": "Thread CPU clocks bracket wall-clock loop; CPU time includes clock boundaries; not machine utilization",
+      "uid": 1000,
+      "effective_capabilities": "0000000000000000"
+    },
+    "calls_per_batch": 8192,
+    "energy_access": "inherited read-only RAPL descriptor"
+  },
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "attempts": {
+    "session-0": 1,
+    "session-1": 1,
+    "session-2": 1
+  },
+  "started": 1793313598.3110695,
+  "status": "complete",
+  "before": {
+    "time": 1793313598.3111293,
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "800033",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "800000",
+    "/sys/class/thermal/thermal_zone2/temp": "26850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "34000",
+    "/sys/class/thermal/thermal_zone3/temp": "28850",
+    "/sys/class/thermal/thermal_zone1/temp": "28850",
+    "/sys/class/thermal/thermal_zone6/temp": "32000",
+    "/sys/class/thermal/thermal_zone4/temp": "28000",
+    "/sys/class/power_supply/BAT0/current_now": "485000",
+    "/sys/class/power_supply/BAT0/voltage_now": "12669000",
+    "/sys/class/power_supply/BAT0/charge_now": "4474000",
+    "/sys/class/power_supply/BAT0/status": "Discharging",
+    "/sys/class/power_supply/AC/online": "0",
+    "/proc/pressure/cpu": "some avg10=0.00 avg60=0.18 avg300=0.40 total=1422424715\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+    "/proc/pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=39462610\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=34290307",
+    "/proc/loadavg": "0.28 0.44 0.35 1/597 80369"
+  },
+  "current": null,
+  "after": {
+    "time": 1793313804.1640909,
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "803521",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "800006",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "800040",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "799002",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "800000",
+    "/sys/class/thermal/thermal_zone2/temp": "26850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "36000",
+    "/sys/class/thermal/thermal_zone3/temp": "29850",
+    "/sys/class/thermal/thermal_zone1/temp": "29850",
+    "/sys/class/thermal/thermal_zone6/temp": "31000",
+    "/sys/class/thermal/thermal_zone4/temp": "30000",
+    "/sys/class/power_supply/BAT0/current_now": "367000",
+    "/sys/class/power_supply/BAT0/voltage_now": "12682000",
+    "/sys/class/power_supply/BAT0/charge_now": "4451000",
+    "/sys/class/power_supply/BAT0/status": "Discharging",
+    "/sys/class/power_supply/AC/online": "0",
+    "/proc/pressure/cpu": "some avg10=0.00 avg60=0.00 avg300=0.18 total=1422638019\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+    "/proc/pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=39462635\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=34290331",
+    "/proc/loadavg": "1.29 0.83 0.53 1/598 80450"
+  },
+  "finished": 1793313804.1728437
+}

@@ -36,6 +36,7 @@ int main(int argc,char **argv)
  for(unsigned c=0;c<sizeof(corpora)/sizeof(*corpora);c++){
   if(!corpus_visible(c)||(selected&&!selected_name(selected,corpora[c])))continue;
   seen++;fill(c);
+  memset(banks,0,4*sizeof(*banks));
   for(int j=0;j<4;j++)for(unsigned p=0;p<PAGES;p++){
    int n=v[j].enc((const char *)input[p],(char *)banks[j].frame[p],SIZE,BOUND,v[j].work);if(n<=0||n>BOUND)return 6;
    banks[j].length[p]=n;banks[j].total+=n;

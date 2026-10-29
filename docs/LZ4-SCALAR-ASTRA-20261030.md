@@ -30,3 +30,12 @@ The 4 KiB table improves tested compression times but adds 0.81% to Bash output;
 the 8 KiB table adds 0.24% with a smaller speed gain. The fixed-order screen has
 no package-energy or native-pressure evidence. Retain both candidates and assess
 order-randomized diverse workloads before selecting a kernel experiment.
+
+The [randomized package-energy screen](../benchmarks/results/native-lz4-scalar-random-energy-001/findings.md)
+found the 4 KiB scalar table reduced compression time and CPU package energy
+versus the matched 16 KiB table on all seven tested fixtures. Distributed Bash,
+Git and libc pages were 2.81–3.55% faster and used 3.09–3.83% less package energy,
+but their compressed output increased by 0.72–0.84%. The initial benchmark's
+reported size totals accumulated across corpora; the raw CSVs and recovery method
+are preserved, and the harness is corrected. These remain userspace results, not
+whole-laptop energy or native ZRAM acceptance.
