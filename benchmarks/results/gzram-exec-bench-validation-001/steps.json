@@ -1,0 +1,29 @@
+[
+  {
+    "label": "build",
+    "command": [
+      "gcc",
+      "-O2",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-DOPS=8192",
+      "-DSHARED_DECODE=2",
+      "gzram/bench-isolated.c",
+      "-ldl",
+      "-o",
+      "/home/dan/n100-zram/build/astra-exec-bench-001/benchmark"
+    ],
+    "status": 0
+  },
+  {
+    "label": "validate",
+    "command": [
+      "/home/dan/n100-zram/build/astra-exec-bench-001/benchmark",
+      "build/astra-v9-isolated-aliases",
+      "--validate-only"
+    ],
+    "status": 0
+  }
+]

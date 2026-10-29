@@ -20,7 +20,7 @@
 #endif
 _Static_assert(OPS>0&&OPS%PAGES==0,"Batch calls must be positive and a multiple of the corpus page count");
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
-static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75","sample16-sparse-miss","sample16-dense-hit","sample64-sparse-miss","sample64-dense-hit","git-elf","libc-elf"};
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75","sample16-sparse-miss","sample16-dense-hit","sample64-sparse-miss","sample64-dense-hit","git-elf","libc-elf","bash-exec","git-exec","libc-exec"};
 static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast","blockpick2","blockpick3","blockpick4","bitmerge","bitdirect","blockdirect2","blockdirect3","blockdirect4","bitdirectsample16","bitdirectsample64","bitdirectpipe1","bitdirectpipe2","bitdirectpipe4","bitdirectavxbits2","bitdirectavxbits4","bitdirectblock2","bitdirectblock2pipe4","bitdirectblock2avxbits4","bitdirectblock3","bitdirectblock3pipe4","bitdirectblock3avxbits4","bitdirectbounded","bitdirectblock2avxbits4bounded","bitdirectblock3avxbits4bounded"};
 /* 57 base entries plus two ISAs at eight block sizes per hybrid policy.
  * Keep the shuffled indices and codec registry at the same capacity. */
@@ -61,8 +61,22 @@ struct codec{char name[64];unsigned log;int lz4;gz_enc comp;gz_dec dec;};
 static lz_enc baseline_enc;static lz_dec baseline_dec;static _Alignas(8) unsigned char workspace[32768];
 static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_enc(input[p],dst,SIZE,BOUND,workspace):v->comp(input[p],SIZE,dst,BOUND,v->log);}
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
+/* Existing 26 fixtures remain the default and retain their generation seeds.
+ * Extra file-page fixtures are explicit, immutable inputs with their own manifest. */
+static int corpus_visible(unsigned kind){const char *path=getenv("GZRAM_EXEC_CORPUS_DIR");return kind<26||(path&&*path);}
 static void fill(int kind){
  seed=100+(unsigned)kind;
+ if(kind>=26){
+  const char *directory=getenv("GZRAM_EXEC_CORPUS_DIR");char path[4096];
+  int length=directory?snprintf(path,sizeof(path),"%s/%s.bin",directory,corpora[kind]):-1;
+  if(length<0||(size_t)length>=sizeof(path)){fprintf(stderr,"Missing/invalid extra corpus directory\n");exit(4);}
+  FILE *file=fopen(path,"rb");
+  if(!file||fread(input,1,sizeof(input),file)!=sizeof(input)||fgetc(file)!=EOF||ferror(file)){
+   fprintf(stderr,"Extra corpus must contain exactly 128 pages: %s\n",path);exit(4);
+  }
+  fclose(file);return;
+ }
+
  if(kind>=20&&kind<=23){
   /* Deliberate sampling false negatives/positives. Preserve these regressions:
    * sparse pages with every sampled word nonzero, and dense pages with only
@@ -193,15 +207,15 @@ int main(int argc,char **argv){
  const char *selection=getenv("GZRAM_VARIANT_LIST");
  if(selection){int kept=0;for(int i=0;i<n;i++)if(selected_name(selection,variants[i].name))variants[kept++]=variants[i];n=kept;}
  if(dump){
-  for(unsigned kind=0;kind<sizeof(corpora)/sizeof(corpora[0]);kind++)if(!strcmp(argv[2]+14,corpora[kind])){fill((int)kind);return fwrite(input,1,sizeof(input),stdout)==sizeof(input)?0:14;}
+  for(unsigned kind=0;kind<sizeof(corpora)/sizeof(corpora[0]);kind++)if(corpus_visible(kind)&&!strcmp(argv[2]+14,corpora[kind])){fill((int)kind);return fwrite(input,1,sizeof(input),stdout)==sizeof(input)?0:14;}
   fprintf(stderr,"Unknown corpus\n");return 2;
  }
  if(list_variants){for(int i=0;i<n;i++)puts(variants[i].name);return 0;}
  const char *corpus_selection=getenv("GZRAM_CORPUS_LIST");
  unsigned selected_corpora=0;
- for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)if(!corpus_selection||selected_name(corpus_selection,corpora[i]))selected_corpora++;
+ for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)if(corpus_visible(i)&&(!corpus_selection||selected_name(corpus_selection,corpora[i])))selected_corpora++;
  if(!selected_corpora){fprintf(stderr,"No selected corpora\n");return 2;}
- if(list_corpora){for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)if(!corpus_selection||selected_name(corpus_selection,corpora[i]))puts(corpora[i]);return 0;}
+ if(list_corpora){for(unsigned i=0;i<sizeof(corpora)/sizeof(corpora[0]);i++)if(corpus_visible(i)&&(!corpus_selection||selected_name(corpus_selection,corpora[i])))puts(corpora[i]);return 0;}
  if(list_calls){printf("%d\n",OPS);return 0;}
  const char *inherited_energy=getenv("GZRAM_ENERGY_FD");
  if(inherited_energy){char *end;errno=0;long fd=strtol(inherited_energy,&end,10);if(errno||!inherited_energy[0]||*end||fd<3||fd>2147483647){fprintf(stderr,"Invalid inherited energy descriptor\n");return 16;}energy_fd=(int)fd;}
@@ -210,7 +224,7 @@ int main(int argc,char **argv){
  fprintf(stderr,"CPU %d; AVX2 verified; RAPL %s; userspace codec screening, kernel SIMD overhead excluded\n",cpu,energy_range?"available":"unavailable");
  puts("corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent");
  for(unsigned kind=0;kind<sizeof(corpora)/sizeof(corpora[0]);kind++){
-  if(corpus_selection&&!selected_name(corpus_selection,corpora[kind]))continue;
+  if(!corpus_visible(kind)||(corpus_selection&&!selected_name(corpus_selection,corpora[kind])))continue;
   fill(kind);
   for(int round=-2;round<9;round++){
    int order[CODEC_CAPACITY];for(int i=0;i<n;i++)order[i]=i;for(int i=n-1;i>0;i--){int j=order_random()%(i+1),t=order[i];order[i]=order[j];order[j]=t;}

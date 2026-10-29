@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "original_corpora_identical": 26,
+  "extra_corpora": 3,
+  "variants": 16,
+  "scope": "Userspace executable fixture and codec correctness; no performance measurement"
+}

@@ -24,8 +24,8 @@ int main(int argc,char **argv)
  const char *selection=getenv("GZRAM_VARIANT_LIST"),*corpus_selection=getenv("GZRAM_CORPUS_LIST"),*order=getenv("GZRAM_ORDER_SEED");
  if(order){char *end;errno=0;order_seed=strtoull(order,&end,10);if(errno||!*order||*end||!order_seed)return 2;}
  if(getenv("GZRAM_HYBRID_SCREEN")){fprintf(stderr,"Supply an explicit isolated variant list\n");return 2;}
- if(dump){for(unsigned c=0;c<sizeof(corpora)/sizeof(*corpora);c++)if(!strcmp(argv[2]+14,corpora[c])){fill(c);return fwrite(input,1,sizeof(input),stdout)==sizeof(input)?0:14;}return 2;}
- if(list_corpora){for(unsigned c=0;c<sizeof(corpora)/sizeof(*corpora);c++)if(!corpus_selection||selected_name(corpus_selection,corpora[c]))puts(corpora[c]);return 0;}
+ if(dump){for(unsigned c=0;c<sizeof(corpora)/sizeof(*corpora);c++)if(corpus_visible(c)&&!strcmp(argv[2]+14,corpora[c])){fill(c);return fwrite(input,1,sizeof(input),stdout)==sizeof(input)?0:14;}return 2;}
+ if(list_corpora){for(unsigned c=0;c<sizeof(corpora)/sizeof(*corpora);c++)if(corpus_visible(c)&&(!corpus_selection||selected_name(corpus_selection,corpora[c])))puts(corpora[c]);return 0;}
  if(calls){printf("%d\n",OPS);return 0;}
  void *baseline=load_library(argv[1],"lz4-small.so"),*shared=load_library(argv[1],"libgzram-hybrid-bitdirect.so");
  baseline_enc=(lz_enc)dlsym(baseline,"LZ4_compress_default");baseline_dec=(lz_dec)dlsym(baseline,"LZ4_decompress_safe");
@@ -77,7 +77,7 @@ int main(int argc,char **argv)
  puts("corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent");
  unsigned seen=0;
  for(unsigned corpus=0;corpus<sizeof(corpora)/sizeof(*corpora);corpus++){
-  if(corpus_selection&&!selected_name(corpus_selection,corpora[corpus]))continue;
+  if(!corpus_visible(corpus)||(corpus_selection&&!selected_name(corpus_selection,corpora[corpus])))continue;
   seen++;fill(corpus);
   /* Setup is outside every timed task. The whole-codec tests independently
    * validate these frames first. Here each selected library must also decode
