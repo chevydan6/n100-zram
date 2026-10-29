@@ -1,0 +1,2396 @@
+[
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39123.09,
+        "candidate": 38336.397,
+        "change_percent": -2.049493491316856,
+        "sessions": [
+          -2.049493491316856,
+          -2.029255300721755,
+          -2.080694546366346
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 38935.142,
+        "candidate": 38141.455,
+        "change_percent": -2.055375099598522,
+        "sessions": [
+          -2.0586815096358513,
+          -2.000985935946953,
+          -2.055375099598522
+        ]
+      },
+      "cycles": {
+        "control": 31028.855,
+        "candidate": 30401.679,
+        "change_percent": -2.052483083890788,
+        "sessions": [
+          -2.058483865216476,
+          -1.9913735891649686,
+          -2.052483083890788
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.086,
+        "candidate": 3247.195,
+        "change_percent": 0.2503484007525758,
+        "sessions": [
+          0.2503484007525758,
+          0.2503484007525758,
+          0.2503484007525758
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 81.427246,
+        "candidate": 78.327759,
+        "change_percent": -2.2040219228124935,
+        "sessions": [
+          0.5090388650099031,
+          -4.487431978449541,
+          -2.2040219228124935
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39123.09,
+        "candidate": 37772.247,
+        "change_percent": -3.442955401931058,
+        "sessions": [
+          -3.604965318230202,
+          -3.4273304557735695,
+          -3.442955401931058
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 38935.142,
+        "candidate": 37581.577,
+        "change_percent": -3.456159168395656,
+        "sessions": [
+          -3.610151149778096,
+          -3.4489738231730405,
+          -3.456159168395656
+        ]
+      },
+      "cycles": {
+        "control": 31028.855,
+        "candidate": 29949.28,
+        "change_percent": -3.471036216180279,
+        "sessions": [
+          -3.5986176112029145,
+          -3.471036216180279,
+          -3.466512057889337
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.086,
+        "candidate": 3266.32,
+        "change_percent": 0.8407927421501205,
+        "sessions": [
+          0.8407927421501205,
+          0.8407927421501205,
+          0.8407927421501205
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 81.427246,
+        "candidate": 79.013184,
+        "change_percent": -3.3298731889600197,
+        "sessions": [
+          -2.810646647718784,
+          -3.3298731889600197,
+          -3.345989426385221
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39123.09,
+        "candidate": 37079.587,
+        "change_percent": -5.242831734053876,
+        "sessions": [
+          -5.126151769236998,
+          -5.286704713408541,
+          -5.242831734053876
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 38935.142,
+        "candidate": 36890.099,
+        "change_percent": -5.245519604847459,
+        "sessions": [
+          -5.156513148976883,
+          -5.281933692441632,
+          -5.245519604847459
+        ]
+      },
+      "cycles": {
+        "control": 31028.855,
+        "candidate": 29400.029,
+        "change_percent": -5.221918924823821,
+        "sessions": [
+          -5.154957637128366,
+          -5.272814232336643,
+          -5.221918924823821
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.086,
+        "candidate": 3301.273,
+        "change_percent": 1.9198934514242705,
+        "sessions": [
+          1.9198934514242705,
+          1.9198934514242705,
+          1.9198934514242705
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 81.427246,
+        "candidate": 77.977539,
+        "change_percent": -5.556037578401063,
+        "sessions": [
+          -4.12072002780458,
+          -5.772131700108996,
+          -5.556037578401063
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6945.054,
+        "candidate": 6983.798,
+        "change_percent": 0.8579662015153477,
+        "sessions": [
+          0.7650863600416224,
+          0.8673924493862062,
+          0.8579662015153477
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6913.453,
+        "candidate": 6951.441,
+        "change_percent": 0.6975717312085017,
+        "sessions": [
+          0.541145496718265,
+          0.6975717312085017,
+          0.8095905340183673
+        ]
+      },
+      "cycles": {
+        "control": 5509.077,
+        "candidate": 5539.599,
+        "change_percent": 0.6299655764614442,
+        "sessions": [
+          0.4746970227759384,
+          0.6299655764614442,
+          0.7896585365494202
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.086,
+        "candidate": 3247.195,
+        "change_percent": 0.2503484007525758,
+        "sessions": [
+          0.2503484007525758,
+          0.2503484007525758,
+          0.2503484007525758
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.580688,
+        "candidate": 14.550903,
+        "change_percent": 1.2778029707944727,
+        "sessions": [
+          3.0247988837009965,
+          1.2778029707944727,
+          1.0551976643295546
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6945.054,
+        "candidate": 7022.477,
+        "change_percent": 1.650652629668925,
+        "sessions": [
+          1.9877976062728342,
+          1.1673979776014587,
+          1.650652629668925
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6913.453,
+        "candidate": 6986.858,
+        "change_percent": 1.1558104526270263,
+        "sessions": [
+          0.92808904609607,
+          1.1558104526270263,
+          1.6085448245987566
+        ]
+      },
+      "cycles": {
+        "control": 5509.077,
+        "candidate": 5569.318,
+        "change_percent": 1.1612148165910385,
+        "sessions": [
+          0.9582548946039493,
+          1.1612148165910385,
+          1.6047846652622377
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.086,
+        "candidate": 3266.32,
+        "change_percent": 0.8407927421501205,
+        "sessions": [
+          0.8407927421501205,
+          0.8407927421501205,
+          0.8407927421501205
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.580688,
+        "candidate": 14.834106,
+        "change_percent": 2.2139414566868743,
+        "sessions": [
+          2.747871042606964,
+          2.2139414566868743,
+          1.5568315606451
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6945.054,
+        "candidate": 7151.02,
+        "change_percent": 3.235075515760233,
+        "sessions": [
+          3.2307011860877033,
+          3.235075515760233,
+          3.6458346273615216
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6913.453,
+        "candidate": 7118.468,
+        "change_percent": 3.2108089740364942,
+        "sessions": [
+          3.015989425057408,
+          3.2108089740364942,
+          3.6563029678131853
+        ]
+      },
+      "cycles": {
+        "control": 5509.077,
+        "candidate": 5673.715,
+        "change_percent": 3.1878312119664187,
+        "sessions": [
+          2.9559009413820503,
+          3.1878312119664187,
+          3.652276714842073
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3239.086,
+        "candidate": 3301.273,
+        "change_percent": 1.9198934514242705,
+        "sessions": [
+          1.9198934514242705,
+          1.9198934514242705,
+          1.9198934514242705
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.580688,
+        "candidate": 14.625366,
+        "change_percent": 4.904301962353119,
+        "sessions": [
+          6.09563807052218,
+          4.904301962353119,
+          3.5189720588419737
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39755.682,
+        "candidate": 38973.884,
+        "change_percent": -2.0378603880662927,
+        "sessions": [
+          -2.0378603880662927,
+          -2.065090907427647,
+          -1.882582139299993
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 39559.295,
+        "candidate": 38782.695,
+        "change_percent": -2.029451838969154,
+        "sessions": [
+          -2.034786660475796,
+          -2.029451838969154,
+          -1.8832254212359012
+        ]
+      },
+      "cycles": {
+        "control": 31527.142,
+        "candidate": 30908.157,
+        "change_percent": -2.007792272013753,
+        "sessions": [
+          -2.035784382564465,
+          -2.007792272013753,
+          -1.8787358383144492
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.453,
+        "candidate": 3216.266,
+        "change_percent": 0.27476630210949704,
+        "sessions": [
+          0.27476630210949704,
+          0.27476630210949704,
+          0.27476630210949704
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 84.683105,
+        "candidate": 82.887451,
+        "change_percent": -1.434338709832872,
+        "sessions": [
+          -1.434338709832872,
+          -3.0049750149064414,
+          -0.2941419480853802
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39755.682,
+        "candidate": 38458.137,
+        "change_percent": -3.2301915804326953,
+        "sessions": [
+          -3.2796389519989755,
+          -3.1220145703705016,
+          -3.2301915804326953
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 39559.295,
+        "candidate": 38275.451,
+        "change_percent": -3.1973205943828686,
+        "sessions": [
+          -3.261287529273482,
+          -3.1217226132220444,
+          -3.1973205943828686
+        ]
+      },
+      "cycles": {
+        "control": 31527.142,
+        "candidate": 30506.657,
+        "change_percent": -3.187664477546015,
+        "sessions": [
+          -3.274829520041034,
+          -3.117915711931407,
+          -3.187664477546015
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.453,
+        "candidate": 3234.094,
+        "change_percent": 0.8305967382842505,
+        "sessions": [
+          0.8305967382842505,
+          0.8305967382842505,
+          0.8305967382842505
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 84.683105,
+        "candidate": 81.94873,
+        "change_percent": -3.5069713501602484,
+        "sessions": [
+          -4.6243472095556015,
+          -3.5069713501602484,
+          -3.094194587074217
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 39755.682,
+        "candidate": 37792.613,
+        "change_percent": -4.954252684139671,
+        "sessions": [
+          -5.107838435259026,
+          -4.925783942028716,
+          -4.954252684139671
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 39559.295,
+        "candidate": 37602.039,
+        "change_percent": -4.930426068592853,
+        "sessions": [
+          -5.106205442340361,
+          -4.91793232758374,
+          -4.930426068592853
+        ]
+      },
+      "cycles": {
+        "control": 31527.142,
+        "candidate": 29965.365,
+        "change_percent": -4.927863091222806,
+        "sessions": [
+          -5.111012133924209,
+          -4.908001082118229,
+          -4.927863091222806
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.453,
+        "candidate": 3271.859,
+        "change_percent": 2.008010717538178,
+        "sessions": [
+          2.008010717538178,
+          2.008010717538178,
+          2.008010717538178
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 84.683105,
+        "candidate": 79.765747,
+        "change_percent": -5.847245989522731,
+        "sessions": [
+          -5.847245989522731,
+          -5.679272262587021,
+          -6.757766777418805
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6943.026,
+        "candidate": 6975.565,
+        "change_percent": 0.940915387613428,
+        "sessions": [
+          0.4849103049014758,
+          0.940915387613428,
+          0.9548696925566036
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6909.541,
+        "candidate": 6942.78,
+        "change_percent": 0.9712702724291589,
+        "sessions": [
+          0.489476501064412,
+          0.9791388458364914,
+          0.9712702724291589
+        ]
+      },
+      "cycles": {
+        "control": 5506.705,
+        "candidate": 5534.299,
+        "change_percent": 0.9676021864077455,
+        "sessions": [
+          0.47765490118500953,
+          0.982182932161213,
+          0.9676021864077455
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.453,
+        "candidate": 3216.266,
+        "change_percent": 0.27476630210949704,
+        "sessions": [
+          0.27476630210949704,
+          0.27476630210949704,
+          0.27476630210949704
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.677612,
+        "candidate": 14.82666,
+        "change_percent": 0.9315374159926115,
+        "sessions": [
+          -0.20028460115694147,
+          2.491792330705911,
+          0.9315374159926115
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6943.026,
+        "candidate": 7028.982,
+        "change_percent": 1.2846169913188765,
+        "sessions": [
+          1.2846169913188765,
+          1.1485352391755521,
+          1.4147138239860357
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6909.541,
+        "candidate": 6993.174,
+        "change_percent": 1.1766608832458836,
+        "sessions": [
+          1.0706508284503036,
+          1.1766608832458836,
+          1.3546803548508013
+        ]
+      },
+      "cycles": {
+        "control": 5506.705,
+        "candidate": 5570.866,
+        "change_percent": 1.1748788563151091,
+        "sessions": [
+          1.0593104315807622,
+          1.1748788563151091,
+          1.3219230589962327
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.453,
+        "candidate": 3234.094,
+        "change_percent": 0.8305967382842505,
+        "sessions": [
+          0.8305967382842505,
+          0.8305967382842505,
+          0.8305967382842505
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.677612,
+        "candidate": 14.930908,
+        "change_percent": 0.6071513124319639,
+        "sessions": [
+          8.375243183609937,
+          -0.3559570862072148,
+          0.6071513124319639
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6943.026,
+        "candidate": 7140.073,
+        "change_percent": 2.8984248873284324,
+        "sessions": [
+          2.8984248873284324,
+          2.509284143519852,
+          3.126169831000314
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6909.541,
+        "candidate": 7104.381,
+        "change_percent": 2.8152996980684186,
+        "sessions": [
+          2.8152996980684186,
+          2.479148088824834,
+          3.0987210840218493
+        ]
+      },
+      "cycles": {
+        "control": 5506.705,
+        "candidate": 5660.904,
+        "change_percent": 2.842608363452559,
+        "sessions": [
+          2.842608363452559,
+          2.519237541423247,
+          3.0977204539613945
+        ]
+      },
+      "compressed_bytes": {
+        "control": 3207.453,
+        "candidate": 3271.859,
+        "change_percent": 2.008010717538178,
+        "sessions": [
+          2.008010717538178,
+          2.008010717538178,
+          2.008010717538178
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.677612,
+        "candidate": 15.251343,
+        "change_percent": 3.4888621522851437,
+        "sessions": [
+          5.262962192440979,
+          2.9550253393976877,
+          3.4888621522851437
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 37816.593,
+        "candidate": 37146.489,
+        "change_percent": -1.8198366283747602,
+        "sessions": [
+          -1.8198366283747602,
+          -1.744706910941718,
+          -1.8594781268672866
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 37627.426,
+        "candidate": 36959.945,
+        "change_percent": -1.816378463251067,
+        "sessions": [
+          -1.816378463251067,
+          -1.7574842922311151,
+          -1.8406749757557406
+        ]
+      },
+      "cycles": {
+        "control": 29988.687,
+        "candidate": 29457.206,
+        "change_percent": -1.7708109674747452,
+        "sessions": [
+          -1.7708109674747452,
+          -1.757605619823599,
+          -1.8338810407048878
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.82,
+        "candidate": 2989.141,
+        "change_percent": 0.21191355831058356,
+        "sessions": [
+          0.21191355831058356,
+          0.21191355831058356,
+          0.21191355831058356
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 77.090942,
+        "candidate": 75.340088,
+        "change_percent": -1.3388175348114095,
+        "sessions": [
+          -1.3388175348114095,
+          -0.5996050692611776,
+          -3.778549826584654
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 37816.593,
+        "candidate": 36782.714,
+        "change_percent": -2.741624373302798,
+        "sessions": [
+          -2.801052578748353,
+          -2.741624373302798,
+          -2.7017095738382513
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 37627.426,
+        "candidate": 36602.176,
+        "change_percent": -2.7640905212684808,
+        "sessions": [
+          -2.8024227462156936,
+          -2.7274388820572426,
+          -2.7640905212684808
+        ]
+      },
+      "cycles": {
+        "control": 29988.687,
+        "candidate": 29170.82,
+        "change_percent": -2.7673387736156685,
+        "sessions": [
+          -2.801043535635972,
+          -2.731005148134924,
+          -2.7673387736156685
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.82,
+        "candidate": 3004.227,
+        "change_percent": 0.717676561106595,
+        "sessions": [
+          0.717676561106595,
+          0.717676561106595,
+          0.717676561106595
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 77.090942,
+        "candidate": 74.736572,
+        "change_percent": -2.0816209665535212,
+        "sessions": [
+          -2.0816209665535212,
+          1.3631379472384575,
+          -4.612480522086604
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 37816.593,
+        "candidate": 36304.985,
+        "change_percent": -3.9473433593256058,
+        "sessions": [
+          -4.238303181666614,
+          -3.9349307016387947,
+          -3.9473433593256058
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 37627.426,
+        "candidate": 36127.421,
+        "change_percent": -3.9733764941036864,
+        "sessions": [
+          -4.2090858471605985,
+          -3.954571681252683,
+          -3.9733764941036864
+        ]
+      },
+      "cycles": {
+        "control": 29988.687,
+        "candidate": 28793.653,
+        "change_percent": -3.9691865447743058,
+        "sessions": [
+          -4.191517666202127,
+          -3.954265573439053,
+          -3.9691865447743058
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.82,
+        "candidate": 3038.195,
+        "change_percent": 1.8564646877786695,
+        "sessions": [
+          1.8564646877786695,
+          1.8564646877786695,
+          1.8564646877786695
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 77.090942,
+        "candidate": 76.606689,
+        "change_percent": -4.391954250126995,
+        "sessions": [
+          -5.722167151744861,
+          -3.810422120921131,
+          -4.391954250126995
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6996.74,
+        "candidate": 6992.923,
+        "change_percent": 0.9027048789301606,
+        "sessions": [
+          0.9027048789301606,
+          -1.2281462092810003,
+          1.8008682980545254
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6958.924,
+        "candidate": 6960.446,
+        "change_percent": 0.8142372573593182,
+        "sessions": [
+          0.8142372573593182,
+          -1.2297881607261973,
+          1.5841014715932689
+        ]
+      },
+      "cycles": {
+        "control": 5543.772,
+        "candidate": 5548.011,
+        "change_percent": 0.8621762151296952,
+        "sessions": [
+          0.8621762151296952,
+          -1.259689556730692,
+          1.5254805522483483
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.82,
+        "candidate": 2989.141,
+        "change_percent": 0.21191355831058356,
+        "sessions": [
+          0.21191355831058356,
+          0.21191355831058356,
+          0.21191355831058356
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.454102,
+        "candidate": 14.647705,
+        "change_percent": 3.548731726176224,
+        "sessions": [
+          -1.945656127843809,
+          3.548731726176224,
+          3.7989600132991352
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6996.74,
+        "candidate": 7028.63,
+        "change_percent": 0.771287800533571,
+        "sessions": [
+          0.771287800533571,
+          0.1869267515515194,
+          0.7892448889450066
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6958.924,
+        "candidate": 6993.283,
+        "change_percent": 0.7886235482931214,
+        "sessions": [
+          0.7886235482931214,
+          0.2355979420749721,
+          0.8750838431920593
+        ]
+      },
+      "cycles": {
+        "control": 5543.772,
+        "candidate": 5573.501,
+        "change_percent": 0.7967259733604903,
+        "sessions": [
+          0.7967259733604903,
+          0.24150766677588642,
+          0.9119474289560836
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.82,
+        "candidate": 3004.227,
+        "change_percent": 0.717676561106595,
+        "sessions": [
+          0.717676561106595,
+          0.717676561106595,
+          0.717676561106595
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.454102,
+        "candidate": 14.737183,
+        "change_percent": 0.9550498898605486,
+        "sessions": [
+          0.9550498898605486,
+          0.16647964814435756,
+          1.4208493279668666
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 6996.74,
+        "candidate": 7116.189,
+        "change_percent": 1.9467584514621716,
+        "sessions": [
+          2.2202244835898055,
+          1.837802776507802,
+          1.9467584514621716
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 6958.924,
+        "candidate": 7083.189,
+        "change_percent": 1.9580603719045353,
+        "sessions": [
+          2.1184005420234353,
+          1.8533588863339334,
+          1.9580603719045353
+        ]
+      },
+      "cycles": {
+        "control": 5543.772,
+        "candidate": 5643.952,
+        "change_percent": 1.9590727360633942,
+        "sessions": [
+          2.075428065944984,
+          1.8642735351357853,
+          1.9590727360633942
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2982.82,
+        "candidate": 3038.195,
+        "change_percent": 1.8564646877786695,
+        "sessions": [
+          1.8564646877786695,
+          1.8564646877786695,
+          1.8564646877786695
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 14.454102,
+        "candidate": 15.012939,
+        "change_percent": 3.2249077735794662,
+        "sessions": [
+          3.2249077735794662,
+          4.937070199411897,
+          2.6117237746510202
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17045.75,
+        "candidate": 16349.419,
+        "change_percent": -4.109958332660635,
+        "sessions": [
+          -4.383242606676641,
+          -4.109958332660635,
+          -4.026733366805713
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 16956.992,
+        "candidate": 16260.291,
+        "change_percent": -4.1256223614797305,
+        "sessions": [
+          -4.379612927657828,
+          -4.1256223614797305,
+          -4.050848939977348
+        ]
+      },
+      "cycles": {
+        "control": 13510.588,
+        "candidate": 12958.017,
+        "change_percent": -4.122270910636383,
+        "sessions": [
+          -4.3813197484572575,
+          -4.122270910636383,
+          -4.054818194371457
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062,
+        "candidate": 2152.883,
+        "change_percent": 0.08465585836205936,
+        "sessions": [
+          0.08465585836205936,
+          0.08465585836205936,
+          0.08465585836205936
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 36.686523,
+        "candidate": 35.971313,
+        "change_percent": -2.627171026679498,
+        "sessions": [
+          -4.142914277585463,
+          -2.627171026679498,
+          -1.2308930762844894
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17045.75,
+        "candidate": 15961.387,
+        "change_percent": -6.498130032412774,
+        "sessions": [
+          -6.5999033920249754,
+          -6.498130032412774,
+          -6.198590103251833
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 16956.992,
+        "candidate": 15877.337,
+        "change_percent": -6.469472887644212,
+        "sessions": [
+          -6.698742455968709,
+          -6.469472887644212,
+          -6.230777137064914
+        ]
+      },
+      "cycles": {
+        "control": 13510.588,
+        "candidate": 12651.791,
+        "change_percent": -6.471761258651365,
+        "sessions": [
+          -6.683713287217808,
+          -6.471761258651365,
+          -6.28411248231211
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062,
+        "candidate": 2157.406,
+        "change_percent": 0.29492408865945396,
+        "sessions": [
+          0.29492408865945396,
+          0.29492408865945396,
+          0.29492408865945396
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 36.686523,
+        "candidate": 34.116089,
+        "change_percent": -6.596722962829748,
+        "sessions": [
+          -3.885132596743124,
+          -6.596722962829748,
+          -6.942242941342391
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17045.75,
+        "candidate": 15665.702,
+        "change_percent": -8.078935234045936,
+        "sessions": [
+          -8.361126330773793,
+          -8.078935234045936,
+          -8.073818081282836
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 16956.992,
+        "candidate": 15585.346,
+        "change_percent": -8.100310123605547,
+        "sessions": [
+          -8.32640343977593,
+          -8.07148262248434,
+          -8.100310123605547
+        ]
+      },
+      "cycles": {
+        "control": 13510.588,
+        "candidate": 12419.248,
+        "change_percent": -8.11355352649431,
+        "sessions": [
+          -8.309025597607533,
+          -8.079308174399745,
+          -8.11355352649431
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062,
+        "candidate": 2166.906,
+        "change_percent": 0.7365664030139607,
+        "sessions": [
+          0.7365664030139607,
+          0.7365664030139607,
+          0.7365664030139607
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 36.686523,
+        "candidate": 33.8479,
+        "change_percent": -9.039638647466653,
+        "sessions": [
+          -10.107655218602163,
+          -8.884728881467364,
+          -9.039638647466653
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 4475.763,
+        "candidate": 4505.741,
+        "change_percent": 1.4056374298639263,
+        "sessions": [
+          -1.4563186717298837,
+          1.417212546478619,
+          1.4056374298639263
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 4457.315,
+        "candidate": 4477.617,
+        "change_percent": 1.302757377479491,
+        "sessions": [
+          -1.508784084941528,
+          1.5770448070393073,
+          1.302757377479491
+        ]
+      },
+      "cycles": {
+        "control": 3553.048,
+        "candidate": 3568.074,
+        "change_percent": 1.2399776192159484,
+        "sessions": [
+          -1.5553449722591983,
+          1.5798632731558238,
+          1.2399776192159484
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062,
+        "candidate": 2152.883,
+        "change_percent": 0.08465585836205936,
+        "sessions": [
+          0.08465585836205936,
+          0.08465585836205936,
+          0.08465585836205936
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 9.231201,
+        "candidate": 9.685791,
+        "change_percent": 2.6212082170431916,
+        "sessions": [
+          10.947779833854865,
+          1.8616536466141032,
+          2.6212082170431916
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 4475.763,
+        "candidate": 4512.443,
+        "change_percent": 0.2759900651582159,
+        "sessions": [
+          -1.1131232521218282,
+          4.0680326649364495,
+          0.2759900651582159
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 4457.315,
+        "candidate": 4490.496,
+        "change_percent": 0.3265864133348506,
+        "sessions": [
+          -0.9197913394446422,
+          3.977166770371543,
+          0.3265864133348506
+        ]
+      },
+      "cycles": {
+        "control": 3553.048,
+        "candidate": 3579.269,
+        "change_percent": 0.3751085441951574,
+        "sessions": [
+          -0.8900352020616009,
+          3.9231500150640697,
+          0.3751085441951574
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062,
+        "candidate": 2157.406,
+        "change_percent": 0.29492408865945396,
+        "sessions": [
+          0.29492408865945396,
+          0.29492408865945396,
+          0.29492408865945396
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 9.231201,
+        "candidate": 9.64856,
+        "change_percent": 3.730128815077749,
+        "sessions": [
+          3.730128815077749,
+          5.401959823788083,
+          1.8108558242757145
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "mixed-pages",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 4475.763,
+        "candidate": 4532.052,
+        "change_percent": 0.8723014409654839,
+        "sessions": [
+          0.185269053655035,
+          0.8723014409654839,
+          0.8776264780457232
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 4457.315,
+        "candidate": 4505.197,
+        "change_percent": 0.7804176875596758,
+        "sessions": [
+          0.12036141314433202,
+          0.7804176875596758,
+          0.9574244782817987
+        ]
+      },
+      "cycles": {
+        "control": 3553.048,
+        "candidate": 3588.762,
+        "change_percent": 0.8357088229159482,
+        "sessions": [
+          0.058243391577672554,
+          0.8357088229159482,
+          0.9191199995346455
+        ]
+      },
+      "compressed_bytes": {
+        "control": 2151.062,
+        "candidate": 2166.906,
+        "change_percent": 0.7365664030139607,
+        "sessions": [
+          0.7365664030139607,
+          0.7365664030139607,
+          0.7365664030139607
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 9.231201,
+        "candidate": 9.343018,
+        "change_percent": 0.0,
+        "sessions": [
+          1.4486081316591903,
+          0.0,
+          -0.9028222424808163
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 3964.185,
+        "candidate": 3320.207,
+        "change_percent": -16.194263249287054,
+        "sessions": [
+          -16.712963055084085,
+          -16.00034562962238,
+          -16.194263249287054
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 3944.387,
+        "candidate": 3304.621,
+        "change_percent": -16.210191657260243,
+        "sessions": [
+          -16.654000469254438,
+          -16.161694436307084,
+          -16.210191657260243
+        ]
+      },
+      "cycles": {
+        "control": 3144.062,
+        "candidate": 2632.354,
+        "change_percent": -16.20273519989015,
+        "sessions": [
+          -16.62781493504135,
+          -16.179955814420556,
+          -16.20273519989015
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 8.627808,
+        "candidate": 7.107788,
+        "change_percent": -18.79869565798442,
+        "sessions": [
+          -18.82253832552324,
+          -15.230503597324008,
+          -18.79869565798442
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 3964.185,
+        "candidate": 2999.226,
+        "change_percent": -24.295328608785482,
+        "sessions": [
+          -24.264906035405154,
+          -24.295328608785482,
+          -24.54250554490709
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 3944.387,
+        "candidate": 2983.98,
+        "change_percent": -24.286026068289967,
+        "sessions": [
+          -24.19165585621438,
+          -24.286026068289967,
+          -24.550059394401234
+        ]
+      },
+      "cycles": {
+        "control": 3144.062,
+        "candidate": 2376.678,
+        "change_percent": -24.2837681309091,
+        "sessions": [
+          -24.146584321725506,
+          -24.2837681309091,
+          -24.554493219861307
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 8.627808,
+        "candidate": 6.53418,
+        "change_percent": -24.549506978486747,
+        "sessions": [
+          -25.50892603403051,
+          -24.549506978486747,
+          -22.639784556419606
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 3964.185,
+        "candidate": 2823.789,
+        "change_percent": -28.571281240417868,
+        "sessions": [
+          -28.571281240417868,
+          -28.5449924364385,
+          -28.815210884209343
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 3944.387,
+        "candidate": 2808.2,
+        "change_percent": -28.679499424361275,
+        "sessions": [
+          -28.679499424361275,
+          -28.529726080615468,
+          -28.786392560632358
+        ]
+      },
+      "cycles": {
+        "control": 3144.062,
+        "candidate": 2236.6,
+        "change_percent": -28.750752583526463,
+        "sessions": [
+          -28.750752583526463,
+          -28.535106084892835,
+          -28.81301228496218
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 8.627808,
+        "candidate": 6.005127,
+        "change_percent": -28.237385628109667,
+        "sessions": [
+          -22.399033806011246,
+          -28.237385628109667,
+          -30.069896677842912
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 964.761,
+        "candidate": 963.52,
+        "change_percent": -0.13266242563100272,
+        "sessions": [
+          0.06412647107574276,
+          -0.13266242563100272,
+          -0.15134761791332219
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 959.578,
+        "candidate": 958.47,
+        "change_percent": -0.0859997074128982,
+        "sessions": [
+          -0.042244221668463755,
+          -0.0859997074128982,
+          -0.09066485475907049
+        ]
+      },
+      "cycles": {
+        "control": 764.351,
+        "candidate": 763.754,
+        "change_percent": -0.0703865109092594,
+        "sessions": [
+          -0.11824233937116624,
+          -0.017448549736898133,
+          -0.0703865109092594
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 2.19043,
+        "candidate": 2.160645,
+        "change_percent": -0.3668044938057946,
+        "sessions": [
+          -0.3668044938057946,
+          0.3494834712198136,
+          -1.0163903696113974
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 964.761,
+        "candidate": 961.398,
+        "change_percent": -0.03709929375866894,
+        "sessions": [
+          0.6616272757035802,
+          -0.03709929375866894,
+          -0.2739322349757489
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 959.578,
+        "candidate": 956.997,
+        "change_percent": -0.13745316236418725,
+        "sessions": [
+          0.2643316846899113,
+          -0.13745316236418725,
+          -0.26953756484380254
+        ]
+      },
+      "cycles": {
+        "control": 764.351,
+        "candidate": 762.86,
+        "change_percent": -0.02533041093013555,
+        "sessions": [
+          0.11680672597926822,
+          -0.02533041093013555,
+          -0.06062815472200889
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 2.19043,
+        "candidate": 2.220337,
+        "change_percent": 1.3929250537574989,
+        "sessions": [
+          15.710901541667987,
+          -0.34581120732976034,
+          1.3929250537574989
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "period127",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 964.761,
+        "candidate": 961.138,
+        "change_percent": -0.11965630547110528,
+        "sessions": [
+          0.14664865899789437,
+          -0.11965630547110528,
+          -0.4076379793424678
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 959.578,
+        "candidate": 957.144,
+        "change_percent": -0.08641570237052365,
+        "sessions": [
+          0.054585772409310174,
+          -0.08641570237052365,
+          -0.2726648767166773
+        ]
+      },
+      "cycles": {
+        "control": 764.351,
+        "candidate": 762.802,
+        "change_percent": -0.04788511769899806,
+        "sessions": [
+          0.09148014880770994,
+          -0.04788511769899806,
+          -0.054157613078609224
+        ]
+      },
+      "compressed_bytes": {
+        "control": 153.0,
+        "candidate": 153.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 2.19043,
+        "candidate": 2.153198,
+        "change_percent": -4.321801276689097,
+        "sessions": [
+          19.366559119305737,
+          -5.002440465831448,
+          -4.321801276689097
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 5092.985,
+        "candidate": 4410.03,
+        "change_percent": -13.465475163308426,
+        "sessions": [
+          -13.465475163308426,
+          -13.142169267259495,
+          -13.53817879885224
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 5054.023,
+        "candidate": 4380.623,
+        "change_percent": -13.408373097597037,
+        "sessions": [
+          -13.408373097597037,
+          -13.138374973120627,
+          -13.455429110967543
+        ]
+      },
+      "cycles": {
+        "control": 4023.139,
+        "candidate": 3488.923,
+        "change_percent": -13.403737728176935,
+        "sessions": [
+          -13.403737728176935,
+          -13.091899240983395,
+          -13.446221548692883
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 11.064087,
+        "candidate": 10.095459,
+        "change_percent": -16.1816716815227,
+        "sessions": [
+          -16.205485039499212,
+          -10.67922713803463,
+          -16.1816716815227
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 5092.985,
+        "candidate": 4149.787,
+        "change_percent": -18.36543043980687,
+        "sessions": [
+          -19.841672416470736,
+          -18.36543043980687,
+          -17.689999086979434
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 5054.023,
+        "candidate": 4122.942,
+        "change_percent": -18.33678451111411,
+        "sessions": [
+          -19.739417104913514,
+          -18.33678451111411,
+          -17.67257330649
+        ]
+      },
+      "cycles": {
+        "control": 4023.139,
+        "candidate": 3284.742,
+        "change_percent": -18.30404237032498,
+        "sessions": [
+          -19.75484508369042,
+          -18.30404237032498,
+          -17.694845985390582
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 11.064087,
+        "candidate": 9.320557,
+        "change_percent": -17.398641186048568,
+        "sessions": [
+          -16.205485039499212,
+          -17.398641186048568,
+          -18.00342564271832
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 5092.985,
+        "candidate": 3951.86,
+        "change_percent": -22.147177145759688,
+        "sessions": [
+          -22.184103094265197,
+          -22.147177145759688,
+          -22.135073646246862
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 5054.023,
+        "candidate": 3926.273,
+        "change_percent": -22.076162184117678,
+        "sessions": [
+          -22.087688312247277,
+          -22.076162184117678,
+          -22.0610808330718
+        ]
+      },
+      "cycles": {
+        "control": 4023.139,
+        "candidate": 3127.307,
+        "change_percent": -22.02421757777876,
+        "sessions": [
+          -22.02421757777876,
+          -22.039114511528236,
+          -22.010498916008668
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 11.064087,
+        "candidate": 8.605347,
+        "change_percent": -22.011482331315367,
+        "sessions": [
+          -23.34116537105316,
+          -20.906772026022978,
+          -22.011482331315367
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 489.058,
+        "candidate": 488.347,
+        "change_percent": 0.035909737284356424,
+        "sessions": [
+          -0.06305686582809278,
+          0.15892995377890795,
+          0.035909737284356424
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 486.569,
+        "candidate": 485.989,
+        "change_percent": 0.020810410974703153,
+        "sessions": [
+          -0.17330951438470077,
+          0.0640204865557159,
+          0.020810410974703153
+        ]
+      },
+      "cycles": {
+        "control": 387.632,
+        "candidate": 387.221,
+        "change_percent": 0.026892703285574804,
+        "sessions": [
+          -0.10073814523295921,
+          0.04495578056411542,
+          0.026892703285574804
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 1.140015,
+        "candidate": 1.139893,
+        "change_percent": -6.43654292866106,
+        "sessions": [
+          -6.43654292866106,
+          4.135618824757814,
+          -9.034553045894311
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 489.058,
+        "candidate": 488.054,
+        "change_percent": 0.053999560611939224,
+        "sessions": [
+          -0.30136268343815553,
+          0.053999560611939224,
+          0.08084754492272417
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 486.569,
+        "candidate": 485.592,
+        "change_percent": -0.05763902326557657,
+        "sessions": [
+          -0.209007051930854,
+          -0.05763902326557657,
+          -0.01009530794811031
+        ]
+      },
+      "cycles": {
+        "control": 387.632,
+        "candidate": 386.892,
+        "change_percent": -0.08059558067565753,
+        "sessions": [
+          -0.21451472175040287,
+          -0.08059558067565753,
+          -0.011118465961978963
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 1.140015,
+        "candidate": 1.102783,
+        "change_percent": -3.005650036782259,
+        "sessions": [
+          -5.440300750124738,
+          -0.010701613575259117,
+          -3.005650036782259
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "random",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 489.058,
+        "candidate": 488.115,
+        "change_percent": -0.005951867860320981,
+        "sessions": [
+          -0.8564573441723344,
+          -0.005951867860320981,
+          0.19473337533062463
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 486.569,
+        "candidate": 485.675,
+        "change_percent": -0.03007878168573841,
+        "sessions": [
+          -0.6319601777400874,
+          -0.03007878168573841,
+          0.10384601120054793
+        ]
+      },
+      "cycles": {
+        "control": 387.632,
+        "candidate": 386.94,
+        "change_percent": -0.02585342144177938,
+        "sessions": [
+          -0.6264175673392547,
+          -0.02585342144177938,
+          0.17853559649925188
+        ]
+      },
+      "compressed_bytes": {
+        "control": 4114.0,
+        "candidate": 4114.0,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 1.140015,
+        "candidate": 1.102661,
+        "change_percent": -0.7087803666125048,
+        "sessions": [
+          -8.566462561751564,
+          2.067809412378896,
+          -0.7087803666125048
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "compress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17551.584,
+        "candidate": 16818.888,
+        "change_percent": -4.059798336538368,
+        "sessions": [
+          -4.411417179655597,
+          -3.917640889856111,
+          -4.059798336538368
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 17457.846,
+        "candidate": 16733.012,
+        "change_percent": -4.04704019532014,
+        "sessions": [
+          -4.353886889779812,
+          -3.9218744776692294,
+          -4.04704019532014
+        ]
+      },
+      "cycles": {
+        "control": 13912.708,
+        "candidate": 13335.273,
+        "change_percent": -3.9877460689797584,
+        "sessions": [
+          -4.346966936151874,
+          -3.909787823463051,
+          -3.9877460689797584
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.641,
+        "candidate": 1080.367,
+        "change_percent": 0.06724457481699364,
+        "sessions": [
+          0.06724457481699364,
+          0.06724457481699364,
+          0.06724457481699364
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 37.520996,
+        "candidate": 36.515259,
+        "change_percent": -4.771756436481933,
+        "sessions": [
+          -8.314189503255298,
+          -4.771756436481933,
+          -3.4325645653515258
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "compress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17551.584,
+        "candidate": 16435.841,
+        "change_percent": -6.447929093394588,
+        "sessions": [
+          -6.447929093394588,
+          -6.038175952328972,
+          -6.686131016178864
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 17457.846,
+        "candidate": 16352.391,
+        "change_percent": -6.3321385696723524,
+        "sessions": [
+          -6.41610488866754,
+          -6.018326434515564,
+          -6.3321385696723524
+        ]
+      },
+      "cycles": {
+        "control": 13912.708,
+        "candidate": 13030.336,
+        "change_percent": -6.3422016763379325,
+        "sessions": [
+          -6.380356425702449,
+          -6.004116136151916,
+          -6.3422016763379325
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.641,
+        "candidate": 1081.359,
+        "change_percent": 0.1591269690572883,
+        "sessions": [
+          0.1591269690572883,
+          0.1591269690572883,
+          0.1591269690572883
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 37.520996,
+        "candidate": 35.375244,
+        "change_percent": -6.033416249454071,
+        "sessions": [
+          -11.930690537310484,
+          -4.8578930280108406,
+          -6.033416249454071
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "compress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 17551.584,
+        "candidate": 16185.869,
+        "change_percent": -7.9530583998174915,
+        "sessions": [
+          -8.048592722887404,
+          -7.818665229038069,
+          -7.9530583998174915
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 17457.846,
+        "candidate": 16100.23,
+        "change_percent": -7.858623657334651,
+        "sessions": [
+          -8.074139317450413,
+          -7.811885181763167,
+          -7.858623657334651
+        ]
+      },
+      "cycles": {
+        "control": 13912.708,
+        "candidate": 12832.272,
+        "change_percent": -7.820035525497326,
+        "sessions": [
+          -8.05264383897386,
+          -7.81559548773253,
+          -7.820035525497326
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.641,
+        "candidate": 1083.164,
+        "change_percent": 0.32631217228689113,
+        "sessions": [
+          0.32631217228689113,
+          0.32631217228689113,
+          0.32631217228689113
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 37.520996,
+        "candidate": 34.794067,
+        "change_percent": -8.213017328929995,
+        "sessions": [
+          -10.455663474364362,
+          -5.817941541871363,
+          -8.213017328929995
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "decompress",
+    "candidate": "table13-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 7791.722,
+        "candidate": 7769.24,
+        "change_percent": -0.24030999454083268,
+        "sessions": [
+          -0.7666880455331704,
+          0.329846275387613,
+          -0.24030999454083268
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 7744.668,
+        "candidate": 7735.573,
+        "change_percent": -0.3036140547388877,
+        "sessions": [
+          -0.6471598327550176,
+          0.33835498279477516,
+          -0.3036140547388877
+        ]
+      },
+      "cycles": {
+        "control": 6170.052,
+        "candidate": 6165.215,
+        "change_percent": -0.33265566487465925,
+        "sessions": [
+          -0.6404472182849674,
+          0.33200549546503755,
+          -0.33265566487465925
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.641,
+        "candidate": 1080.367,
+        "change_percent": 0.06724457481699364,
+        "sessions": [
+          0.06724457481699364,
+          0.06724457481699364,
+          0.06724457481699364
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 16.525391,
+        "candidate": 16.25708,
+        "change_percent": -1.7314887234600063,
+        "sessions": [
+          -8.348059426387389,
+          -1.3532690391410362,
+          -1.7314887234600063
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "decompress",
+    "candidate": "table12-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 7791.722,
+        "candidate": 7775.135,
+        "change_percent": -0.1900297656449168,
+        "sessions": [
+          -0.21635975260440032,
+          -0.1900297656449168,
+          0.4640084670050948
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 7744.668,
+        "candidate": 7741.278,
+        "change_percent": -0.21503075550788342,
+        "sessions": [
+          -0.24442814494544107,
+          -0.21503075550788342,
+          0.3775283573131283
+        ]
+      },
+      "cycles": {
+        "control": 6170.052,
+        "candidate": 6165.985,
+        "change_percent": -0.2476254359685237,
+        "sessions": [
+          -0.2476254359685237,
+          -0.25523463128560575,
+          0.3702264090618801
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.641,
+        "candidate": 1081.359,
+        "change_percent": 0.1591269690572883,
+        "sessions": [
+          0.1591269690572883,
+          0.1591269690572883,
+          0.1591269690572883
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 16.525391,
+        "candidate": 16.815918,
+        "change_percent": 2.59219136496025,
+        "sessions": [
+          4.107120273941667,
+          -2.020966578266814,
+          2.59219136496025
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "sparse-words",
+    "operation": "decompress",
+    "candidate": "table11-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "control": 7791.722,
+        "candidate": 7752.529,
+        "change_percent": -0.4046427334860825,
+        "sessions": [
+          -0.9356765005953172,
+          -0.4046427334860825,
+          0.6541508773587834
+        ]
+      },
+      "cpu_ns_per_page": {
+        "control": 7744.668,
+        "candidate": 7713.315,
+        "change_percent": -0.2372083606424491,
+        "sessions": [
+          -0.8605615707518499,
+          -0.2372083606424491,
+          0.5370568995986869
+        ]
+      },
+      "cycles": {
+        "control": 6170.052,
+        "candidate": 6146.221,
+        "change_percent": -0.18255923937108287,
+        "sessions": [
+          -0.8791419720964422,
+          -0.18255923937108287,
+          0.5276081123029241
+        ]
+      },
+      "compressed_bytes": {
+        "control": 1079.641,
+        "candidate": 1083.164,
+        "change_percent": 0.32631217228689113,
+        "sessions": [
+          0.32631217228689113,
+          0.32631217228689113,
+          0.32631217228689113
+        ]
+      },
+      "package_uj_per_page": {
+        "control": 16.525391,
+        "candidate": 16.473145,
+        "change_percent": -0.315417650329719,
+        "sessions": [
+          -4.143505685858006,
+          -0.315417650329719,
+          1.9976429353919745
+        ]
+      }
+    }
+  }
+]

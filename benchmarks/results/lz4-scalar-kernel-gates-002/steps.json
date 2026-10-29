@@ -1,0 +1,104 @@
+[
+  {
+    "label": "prepare-small12",
+    "command": [
+      "python3",
+      "tools/prepare-small-table-backend.py",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-zram-reference-001/zram",
+      "--lz4-header",
+      "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/include/linux/lz4.h",
+      "--bits",
+      "12",
+      "--output",
+      "/home/dan/n100-zram/build/lz4-kernel-small12-002"
+    ],
+    "status": 0,
+    "seconds": 0.3169715404510498
+  },
+  {
+    "label": "prepare-control12",
+    "command": [
+      "python3",
+      "tools/prepare-small-table-backend.py",
+      "--reference",
+      "/home/dan/n100-zram/build/lz4-kernel-small12-002",
+      "--lz4-header",
+      "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/include/linux/lz4.h",
+      "--bits",
+      "14",
+      "--control",
+      "--output",
+      "/home/dan/n100-zram/build/lz4-kernel-matched12-002"
+    ],
+    "status": 0,
+    "seconds": 0.31636619567871094
+  },
+  {
+    "label": "build12",
+    "command": [
+      "make",
+      "-j1",
+      "-C",
+      "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64",
+      "M=/home/dan/n100-zram/build/lz4-kernel-matched12-002",
+      "CONFIG_ZRAM_BACKEND_LZ4_SMALL=y",
+      "CONFIG_ZRAM_BACKEND_LZ4_CONTROL=y",
+      "KCFLAGS=-DCONFIG_ZRAM_BACKEND_LZ4_SMALL=1 -DCONFIG_ZRAM_BACKEND_LZ4_CONTROL=1",
+      "modules"
+    ],
+    "status": 0,
+    "seconds": 34.4649760723114
+  },
+  {
+    "label": "prepare-small13",
+    "command": [
+      "python3",
+      "tools/prepare-small-table-backend.py",
+      "--reference",
+      "/home/dan/n100-zram/build/astra-zram-reference-001/zram",
+      "--lz4-header",
+      "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/include/linux/lz4.h",
+      "--bits",
+      "13",
+      "--output",
+      "/home/dan/n100-zram/build/lz4-kernel-small13-002"
+    ],
+    "status": 0,
+    "seconds": 0.31617093086242676
+  },
+  {
+    "label": "prepare-control13",
+    "command": [
+      "python3",
+      "tools/prepare-small-table-backend.py",
+      "--reference",
+      "/home/dan/n100-zram/build/lz4-kernel-small13-002",
+      "--lz4-header",
+      "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/include/linux/lz4.h",
+      "--bits",
+      "14",
+      "--control",
+      "--output",
+      "/home/dan/n100-zram/build/lz4-kernel-matched13-002"
+    ],
+    "status": 0,
+    "seconds": 0.31662702560424805
+  },
+  {
+    "label": "build13",
+    "command": [
+      "make",
+      "-j1",
+      "-C",
+      "/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64",
+      "M=/home/dan/n100-zram/build/lz4-kernel-matched13-002",
+      "CONFIG_ZRAM_BACKEND_LZ4_SMALL=y",
+      "CONFIG_ZRAM_BACKEND_LZ4_CONTROL=y",
+      "KCFLAGS=-DCONFIG_ZRAM_BACKEND_LZ4_SMALL=1 -DCONFIG_ZRAM_BACKEND_LZ4_CONTROL=1",
+      "modules"
+    ],
+    "status": 0,
+    "seconds": 33.258947134017944
+  }
+]

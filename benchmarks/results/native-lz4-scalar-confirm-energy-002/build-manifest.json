@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "table11-scalar.so": "2f98303ea77ac9e9c401f8f9b5a3ac0b9558991c6128128f801f9e2c2b89b6a4",
+    "table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+    "table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152"
+  },
+  "benchmark_sha256": "2727f69ede782a3460e4dbab0d510dc5bc59d6522e5f20b36cb821e46de37a43",
+  "sources": {
+    "benchmarks/lz4-isolated.c": "e804d01b1a57b588621e8c18bc4c79dbe4670d61a5d53a8aa037aa2a59f13f6b",
+    "gzram/bench.c": "8c51e7111e67c2f6fc516057d195e4142b7a8f80b7cccaf8be5230ff17838ed9"
+  }
+}

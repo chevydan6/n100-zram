@@ -1,0 +1,16 @@
+{
+  "status": "passed; native performance and recovery pending",
+  "time": 1793318240.496056,
+  "results": {
+    "12": {
+      "status": "passed",
+      "output": "/home/dan/n100-zram/build/lz4-kernel-vm-12-002",
+      "module_sha256": "9622a6b49bfb3abceb4e8674eed0e4a7b91e77c94318871f3ff834b9861ddd09"
+    },
+    "13": {
+      "status": "passed",
+      "output": "/home/dan/n100-zram/build/lz4-kernel-vm-13-002",
+      "module_sha256": "cc68d9829447223f183e989903df56637abd0b7f2b19b6875ea3814d2f4da02e"
+    }
+  }
+}

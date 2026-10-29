@@ -39,3 +39,5 @@ but their compressed output increased by 0.72–0.84%. The initial benchmark's
 reported size totals accumulated across corpora; the raw CSVs and recovery method
 are preserved, and the harness is corrected. These remain userspace results, not
 whole-laptop energy or native ZRAM acceptance.
+
+The [corrected-harness energy confirmation](../benchmarks/results/native-lz4-scalar-confirm-energy-002/findings.md) passed its audit and confirmed lower compression time and CPU package energy for 4 KiB and 8 KiB tables, with executable size penalties. The [exact-kernel build and guest gate](../benchmarks/results/lz4-scalar-kernel-gates-002/summary.md) records its actual outcome. Native recovery, pressure and responsiveness remain unproven.

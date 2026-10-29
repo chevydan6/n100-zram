@@ -1,0 +1,11 @@
+{
+  "module_sha256": "9622a6b49bfb3abceb4e8674eed0e4a7b91e77c94318871f3ff834b9861ddd09",
+  "vermagic": "7.2.11-200.fc44.x86_64 SMP preempt mod_unload",
+  "scalar_objects": {
+    "n100s_lz4_compress.o": "9acd66f0d436ff493b37476fc605fb7517dd7edff154f9dcba00792d465c32b2",
+    "n100c_lz4_compress.o": "548d46f888988cf939a6a8a0dee35f03c96c97776ed0d14b29f00754f984105b",
+    "backend_lz4_small.o": "4acc0d233cffba333ef0255090f61cc5c597c39c0818c97f3c32034400d4d1d7",
+    "backend_lz4_control.o": "e285d12819e5b16b33b64750172d627a41842835c5e9525a99586936b06c94b6"
+  },
+  "scope": "Built only; guest/native tests pending"
+}

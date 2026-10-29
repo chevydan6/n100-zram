@@ -1,0 +1,27 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/lz4-kernel-matched13-002'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  zcomp.o
+  CC [M]  zram_drv.o
+  CC [M]  backend_lzorle.o
+  CC [M]  backend_lzo.o
+  CC [M]  backend_lz4.o
+  CC [M]  backend_lz4hc.o
+  CC [M]  backend_zstd.o
+  CC [M]  backend_deflate.o
+  CC [M]  backend_842.o
+  CC [M]  backend_lz4_small.o
+  CC [M]  n100s_lz4_compress.o
+  CC [M]  backend_lz4_control.o
+  CC [M]  n100c_lz4_compress.o
+  LD [M]  zram.o
+  MODPOST Module.symvers
+  CC [M]  zram.mod.o
+  CC [M]  .module-common.o
+  LD [M]  zram.ko
+  BTF [M] zram.ko
+Skipping BTF generation for zram.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/dan/n100-zram/build/lz4-kernel-matched13-002'
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'

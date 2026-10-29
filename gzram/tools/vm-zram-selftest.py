@@ -22,7 +22,8 @@ p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/nati
 a = p.parse_args()
 if os.geteuid() == 0: p.error('Run this isolated guest launcher unprivileged')
 assert 2 <= len(a.algorithms) <= 5 and len(a.algorithms) == len(set(a.algorithms))
-assert {'ghy-bitdirect', 'lz4-ghy'} <= set(a.algorithms)
+assert ({'ghy-bitdirect', 'lz4-ghy'} <= set(a.algorithms) or
+        {'lz4-small', 'lz4-control', 'lz4'} <= set(a.algorithms))
 assert all(re.fullmatch(r'[a-z0-9-]+', name) for name in a.algorithms)
 lock = a.lock.open('r+')
 try: fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
