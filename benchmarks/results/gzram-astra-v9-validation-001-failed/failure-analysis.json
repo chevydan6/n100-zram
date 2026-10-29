@@ -1,0 +1,7 @@
+{
+  "cause": "New fixture loop reused period, replacing a bytes corpus with an integer; TypeError in a subsequent pre-existing ratio test",
+  "scope": "Test-harness failure after initial roundtrip/capacity loop; no complete candidate-validation claim",
+  "codec_sources_changed": false,
+  "old_test_sha256": "e45a521257a4f86bd1de2732cc23da4dd05d178404f53d682a90edade3b0fe80",
+  "corrected_test_sha256": "3d1c4e113f356578b72506004f2ed1b8719202113793dd9fc24ad8cb7514aeb1"
+}

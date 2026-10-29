@@ -1,0 +1,178 @@
+{
+  "status": "passed",
+  "timing_rows": 32292,
+  "sessions": 3,
+  "telemetry_samples": 4871,
+  "maximum_telemetry_gap_seconds": 0.8599793910980225,
+  "elapsed_seconds": 2503.8020734786987,
+  "artifacts_match": true,
+  "preserved_settings_and_zram": {
+    "/sys/block/zram0/comp_algorithm": {
+      "before_sha256": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c",
+      "after_sha256": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c"
+    },
+    "/sys/block/zram0/disksize": {
+      "before_sha256": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e",
+      "after_sha256": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e"
+    },
+    "/sys/module/zram/notes/.note.gnu.build-id": {
+      "before_sha256": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63",
+      "after_sha256": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63"
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": {
+      "before_sha256": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+      "after_sha256": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c"
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": {
+      "before_sha256": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+      "after_sha256": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed"
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": {
+      "before_sha256": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+      "after_sha256": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199"
+    }
+  },
+  "observed_settings": {
+    "/sys/class/power_supply/AC/online": [
+      "0"
+    ],
+    "/sys/class/power_supply/BAT0/status": [
+      "Discharging"
+    ],
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": [
+      "powersave"
+    ],
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": [
+      "800000"
+    ],
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": [
+      "700000"
+    ],
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": [
+      "powersave"
+    ],
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": [
+      "800000"
+    ],
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": [
+      "700000"
+    ],
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": [
+      "powersave"
+    ],
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": [
+      "800000"
+    ],
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": [
+      "700000"
+    ],
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": [
+      "powersave"
+    ],
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": [
+      "800000"
+    ],
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": [
+      "700000"
+    ]
+  },
+  "observed_ranges": {
+    "/sys/class/power_supply/BAT0/charge_now": {
+      "min": 3963000,
+      "median": 4090000,
+      "max": 4234000,
+      "samples": 4871
+    },
+    "/sys/class/power_supply/BAT0/current_now": {
+      "min": 260000,
+      "median": 381000,
+      "max": 536000,
+      "samples": 4871
+    },
+    "/sys/class/power_supply/BAT0/voltage_now": {
+      "min": 12351000,
+      "median": 12448000,
+      "max": 12558000,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone0/temp": {
+      "min": 20000,
+      "median": 20000,
+      "max": 20000,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone1/temp": {
+      "min": 28850,
+      "median": 32850,
+      "max": 34850,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone2/temp": {
+      "min": 25850,
+      "median": 28850,
+      "max": 29850,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone3/temp": {
+      "min": 27850,
+      "median": 32850,
+      "max": 33850,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone4/temp": {
+      "min": 27000,
+      "median": 31000,
+      "max": 35000,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone5/temp": {
+      "min": 33000,
+      "median": 38000,
+      "max": 40000,
+      "samples": 4871
+    },
+    "/sys/class/thermal/thermal_zone6/temp": {
+      "min": 30000,
+      "median": 34000,
+      "max": 38000,
+      "samples": 4871
+    },
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": {
+      "min": 799789,
+      "median": 800000,
+      "max": 800842,
+      "samples": 4871
+    },
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": {
+      "min": 799660,
+      "median": 799995,
+      "max": 800350,
+      "samples": 4871
+    },
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": {
+      "min": 700000,
+      "median": 799995,
+      "max": 806064,
+      "samples": 4871
+    },
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": {
+      "min": 700000,
+      "median": 799996,
+      "max": 805263,
+      "samples": 4871
+    }
+  },
+  "pmu_running_fraction_range": [
+    1.0,
+    1.0
+  ],
+  "package_energy_available_rows": 0,
+  "thread_occupancy_percent_range": [
+    15.925,
+    99.984
+  ],
+  "thread_occupancy_percent_median": 99.109,
+  "approximate_battery_energy_joules": 12022.649496391967,
+  "battery_scope": "Trapezoidal integration of sampled battery current times voltage across the entire experiment, including validation, warmups, telemetry and other laptop activity. Battery gauge precision/lag not calibrated. Not assignable to individual codecs; not RAPL or a comparative energy result.",
+  "kernel_scope": "Userspace only. Observed unchanged ZRAM module/algorithm/size and CPU policy; no claim of current-kernel recovery validation or application responsiveness."
+}

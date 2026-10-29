@@ -1,0 +1,19 @@
+/home/dan/n100-zram/build/astra-simd-port-003/fallback.c: In function ‘n100_lz4_fallback’:
+/home/dan/n100-zram/build/astra-simd-port-003/fallback.c:20:47: error: pointer targets in passing argument 1 of ‘n100_private_lz4_compress_default’ differ in signedness [-Werror=pointer-sign]
+   20 |  int packed=n100_private_lz4_compress_default(src,dst+HEADER,(int)n,(int)room,work);
+      |                                               ^~~
+      |                                               |
+      |                                               const uint8_t * {aka const unsigned char *}
+In file included from /home/dan/n100-zram/build/astra-simd-port-003/fallback.c:2:
+/home/dan/n100-zram/build/astra-simd-port-003/scalar/private-lz4.h:197:51: note: expected ‘const char *’ but argument is of type ‘const uint8_t *’ {aka ‘const unsigned char *’}
+  197 | int n100_private_lz4_compress_default(const char *source, char *dest, int inputSize,
+      |                                       ~~~~~~~~~~~~^~~~~~
+/home/dan/n100-zram/build/astra-simd-port-003/fallback.c:20:54: error: pointer targets in passing argument 2 of ‘n100_private_lz4_compress_default’ differ in signedness [-Werror=pointer-sign]
+   20 |  int packed=n100_private_lz4_compress_default(src,dst+HEADER,(int)n,(int)room,work);
+      |                                                      ^
+      |                                                      |
+      |                                                      uint8_t * {aka unsigned char *}
+/home/dan/n100-zram/build/astra-simd-port-003/scalar/private-lz4.h:197:65: note: expected ‘char *’ but argument is of type ‘uint8_t *’ {aka ‘unsigned char *’}
+  197 | int n100_private_lz4_compress_default(const char *source, char *dest, int inputSize,
+      |                                                           ~~~~~~^~~~
+cc1: all warnings being treated as errors

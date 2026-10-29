@@ -1,0 +1,6 @@
+{
+  "status": "deferred; existing 2 GiB available-memory gate not met",
+  "time": 1793241658.7396467,
+  "mem_available_kib": 2078960,
+  "host_unchanged": true
+}

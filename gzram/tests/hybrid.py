@@ -109,6 +109,15 @@ if any(name in a.library.name for name in ['bitdirectpipe','bitdirectavxbits','b
    inputs.append(bytes(data));scan_pipeline_pages+=1
 
 print(json.dumps(dict(scan_pipeline_pages=scan_pipeline_pages)),flush=True)
+# Acceptance-cap boundaries: dense leading blocks and compressible tails,
+# short repeat-merging limits, and every partial block remainder.
+if 'bounded' in a.library.name:
+ for length in range(1,161):
+  for trial_period in [4,8,16,32]:
+   pattern=bytes(range(1,trial_period+1));inputs.append((pattern*((length+trial_period-1)//trial_period))[:length])
+ for boundary in [1024,2048,3072]:
+  for delta in range(-33,34):
+   dense=boundary+delta;inputs.append(rng.randbytes(dense)+bytes(4096-dense))
 roundtrips=capacity=0;frames=[];modes=set()
 for index,data in enumerate(inputs):
  src=Guard(len(data));C.memmove(src.ptr,data,len(data))
@@ -127,6 +136,11 @@ for index,data in enumerate(inputs):
    for cap in set([0,7,max(0,n-1),n]):
     out=Guard(cap);got=encode(src.ptr,len(data),out.ptr,cap,log);assert got==0 or 0<got<=cap
     if got:assert oracle(C.string_at(out.ptr,got))==data
+    if 'bounded' in a.library.name:
+     for compare in comparison_encoders:
+      match=Guard(cap);m=compare(src.ptr,len(data),match.ptr,cap,log)
+      assert m==got and (not m or C.string_at(match.ptr,m)==C.string_at(out.ptr,got)), 'Bounded trial capacity behavior changed'
+      match.close()
     out.close();capacity+=1
    packed.close()
  src.close()

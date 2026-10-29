@@ -1,0 +1,50 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/astra-simd-kernel-001'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  selftest.o
+  CC [M]  adapters.o
+adapters.c:6:11: error: no previous prototype for ‘control_workspace_size’ [-Werror=missing-prototypes]
+    6 | WORKSPACE(control)
+      |           ^~~~~~~
+adapters.c:4:9: note: in definition of macro ‘WORKSPACE’
+    4 |  size_t prefix##_workspace_size(void) { return n100_ghy_workspace_size(); } \
+      |         ^~~~~~
+adapters.c:6:11: error: no previous prototype for ‘control_workspace_alignment’ [-Werror=missing-prototypes]
+    6 | WORKSPACE(control)
+      |           ^~~~~~~
+adapters.c:5:9: note: in definition of macro ‘WORKSPACE’
+    5 |  size_t prefix##_workspace_alignment(void) { return n100_ghy_workspace_alignment(); }
+      |         ^~~~~~
+adapters.c:7:11: error: no previous prototype for ‘candidate_workspace_size’ [-Werror=missing-prototypes]
+    7 | WORKSPACE(candidate)
+      |           ^~~~~~~~~
+adapters.c:4:9: note: in definition of macro ‘WORKSPACE’
+    4 |  size_t prefix##_workspace_size(void) { return n100_ghy_workspace_size(); } \
+      |         ^~~~~~
+adapters.c:7:11: error: no previous prototype for ‘candidate_workspace_alignment’ [-Werror=missing-prototypes]
+    7 | WORKSPACE(candidate)
+      |           ^~~~~~~~~
+adapters.c:5:9: note: in definition of macro ‘WORKSPACE’
+    5 |  size_t prefix##_workspace_alignment(void) { return n100_ghy_workspace_alignment(); }
+      |         ^~~~~~
+adapters.c:8:5: error: no previous prototype for ‘control_encode_scalar’ [-Werror=missing-prototypes]
+    8 | int control_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log,void *w,size_t ws)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+adapters.c:10:5: error: no previous prototype for ‘candidate_encode_scalar’ [-Werror=missing-prototypes]
+   10 | int candidate_encode_scalar(const void *s,size_t n,void *d,size_t cap,unsigned log,void *w,size_t ws)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+adapters.c:12:5: error: no previous prototype for ‘control_decode_scalar’ [-Werror=missing-prototypes]
+   12 | int control_decode_scalar(const void *s,size_t n,void *d,size_t cap)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+adapters.c:14:5: error: no previous prototype for ‘candidate_decode_scalar’ [-Werror=missing-prototypes]
+   14 | int candidate_decode_scalar(const void *s,size_t n,void *d,size_t cap)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[3]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/scripts/Makefile.build:289: adapters.o] Error 1
+make[2]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/Makefile:2228: .] Error 2
+make[1]: *** [/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/home/dan/n100-zram/build/astra-simd-kernel-001'
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'

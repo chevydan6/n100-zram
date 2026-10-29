@@ -1,0 +1,57 @@
+{
+  "scalar/encoder/core.c": {
+    "vector_registers": false,
+    "object_sha256": "7c418eebcbe87c04f00beea87d1f6ec4e2dcfeb18cf46773029058fb4271e905",
+    "disassembly_sha256": "3f73057bea40a306e5e347e2885cb708a934977aa38a2438e3fd0844ba38630f"
+  },
+  "scalar/decoder/core.c": {
+    "vector_registers": false,
+    "object_sha256": "9cfdcec251be4a84615e53026fb986c5357997ef6a506c2e27700dc7889a41cb",
+    "disassembly_sha256": "8fd150a8b4c38241b9ab992bab08c46b6a22211c39fa3b81e797c9e992dc2bd8"
+  },
+  "scalar/hybrid.c": {
+    "vector_registers": false,
+    "object_sha256": "5e7db138d29df21c01cf7df8fb3666416d2f9041a83317d13824da15ee321505",
+    "disassembly_sha256": "594a60cd011a08b0a8275d4bdef7df3ac39380d1cd82a7c1a299751528df4149"
+  },
+  "scalar/lz4_compress.c": {
+    "vector_registers": false,
+    "object_sha256": "4684ba5e8d47ee6d633a7545908da360a5836660cef69b83f8839aa0b50a6d52",
+    "disassembly_sha256": "bb61a437eed356fcb771755f20e94b224778f128ca103d63b31b27639d51b95f"
+  },
+  "scalar/lz4_decompress.c": {
+    "vector_registers": false,
+    "object_sha256": "caeeb339c8de01f6d1a39c40b0fe0c49bfa5bb4692d42853c77c1ff2a38e2d71",
+    "disassembly_sha256": "c53f45b4d984a4f5a7b3eccf945ec48728c30d705e393bc4d1a7e21f54eba6f9"
+  },
+  "fallback.c": {
+    "vector_registers": false,
+    "object_sha256": "4dd46ea6618784528186909d7494b5260c80bd9a31824804e2caf76c4f371a42",
+    "disassembly_sha256": "1241be24e750eede5893bd6b48e7f7d4107ca6a27b4537ced71bf1257443557a"
+  },
+  "dispatch.c": {
+    "vector_registers": false,
+    "object_sha256": "aef80a15d2d33a244820ae2611e7bccf578a90b6dd907e7fe8fae62c3940a602",
+    "disassembly_sha256": "34792c68660cb0e040638f226d5c0d49c09c6b2ece6f7bb8b71d3057246ac809"
+  },
+  "userspace-adapter.c": {
+    "vector_registers": false,
+    "object_sha256": "16ce8e3b0c9de63e3e35cb5f29c686d02cb63530f91af2cb755ba4ae988eea2d",
+    "disassembly_sha256": "028cb0cf5355d86b0f61b23802aa5ea6a322a4e1de5bcb369d5b84b9cf0658c0"
+  },
+  "vector-encoder/core.c": {
+    "vector_registers": true,
+    "object_sha256": "962ca069004bebaa9d4d82365ef7f7698bfcfa93a6c3d3beb044038afc7cc54b",
+    "disassembly_sha256": "db98ee64b08ff1e475b9e909e5a4039785f03ed4bbb9a212e2e79045e41d3a2e"
+  },
+  "vector-decoder/core.c": {
+    "vector_registers": true,
+    "object_sha256": "71322ce10e247373b519db53f6639904d8e5d4b9fe5bbd8b23224c97c6b1a308",
+    "disassembly_sha256": "91b41aeb3616fd884eb15b9198075d5946bbecbc6f97345c968b24a6ad6e7c50"
+  },
+  "vector-trial.c": {
+    "vector_registers": true,
+    "object_sha256": "11ad5a161f9c65f6591352223b1cc0cc2234ee31776bda25432c9fca116245ec",
+    "disassembly_sha256": "e1ae282c4a1cb87277a409649cca0d0db50c3cf1babb9d4b9faee065cde0eb78"
+  }
+}

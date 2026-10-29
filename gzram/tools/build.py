@@ -118,14 +118,16 @@ for cutoff in [2,3]:
  for scan in ['', 'pipe4','avxbits4']:
   policy=f'bitdirectblock{cutoff}{scan}'
   policies[policy]=list(policies['bitdirect']);additional[policy]='ctz'
+for parent in ['bitdirect', 'bitdirectblock2avxbits4', 'bitdirectblock3avxbits4']:
+ policies[parent+'bounded']=[*policies[parent],'-DGZRAM_HYBRID_BOUNDED_TRIAL=1'];additional[parent+'bounded']='ctz'
 for policy,defines in policies.items():
  base_object={'bitpack':'bitpackbase','mixpack':'mixpackbase','bitctz':'bitpackbase','bitfull':'bitpackbase','select2':'select2base','select3':'select3base','select4':'select4base','blockpick2':'block2base','blockpick3':'block3base','blockpick4':'block4base','bitmerge':'bitpackbase','bitdirect':'bitpackbase'}.get(policy,'base')
  if policy.startswith('blockdirect'):base_object=policy+'base'
- if policy.startswith('bitdirectsample'):base_object='bitpackbase'
+ if policy.startswith('bitdirectsample') or policy=='bitdirectbounded':base_object='bitpackbase'
  for scan in ['pipe1','pipe2','pipe4','avxbits2','avxbits4']:
   if policy=='bitdirect'+scan:base_object=scan+'base'
  if policy.startswith('bitdirectblock'):
-  suffix=policy[len('bitdirectblock'):];cutoff,scan=suffix[0],suffix[1:]
+  suffix=policy.removesuffix('bounded')[len('bitdirectblock'):];cutoff,scan=suffix[0],suffix[1:]
   base_object=f'block{cutoff}{scan}base' if scan else f'blockdirect{cutoff}base'
  sources=[root/'gzram/src/hybrid.c',a.output/f'hybrid-{base_object}.o']
  if policy in additional:sources.append(a.output/f'hybrid-{additional[policy]}.o')

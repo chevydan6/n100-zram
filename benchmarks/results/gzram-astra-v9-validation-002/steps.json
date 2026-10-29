@@ -1,0 +1,202 @@
+[
+  {
+    "label": "normal-build-reuse",
+    "status": 0,
+    "reason": "Only Python fixture loop variable renamed after harness TypeError; all codec/benchmark source and artifact hashes verified",
+    "previous_result": "/home/dan/n100-zram/build/astra-v9-validation/result.json",
+    "previous_result_sha256": "ddbc21051bd07a70b2fe10f9db21e557c86059fac7de4e670dda4a6ed7229ae0",
+    "manifest_sha256": "f1307263190e780133c351b160c30c09175c6b01020ec51ed3d9be211724c8a8",
+    "benchmark": {
+      "command": [
+        "gcc",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DOPS=8192",
+        "gzram/bench.c",
+        "-ldl",
+        "-o",
+        "/home/dan/n100-zram/build/astra-v9/benchmark"
+      ],
+      "source_sha256": "4f132640c1efce7bc13bf6ed7fbc9cf147df0637e29ed1413d0fdc283e08aca5",
+      "binary_sha256": "26602a5341afe7cd6c763df9e29653ad0fa3a0927987221c5df8706b159c7be4",
+      "calls_per_batch": 8192
+    },
+    "old_text_sections_preserved": 51
+  },
+  {
+    "label": "astra-v9-bitdirectbounded",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirectbounded.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 53.671313762664795
+  },
+  {
+    "label": "astra-v9-bitdirectblock2avxbits4bounded",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4.so",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 88.138836145401
+  },
+  {
+    "label": "astra-v9-bitdirectblock3avxbits4bounded",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirectblock3avxbits4bounded.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirectblock3avxbits4.so",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v9/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 104.3071026802063
+  },
+  {
+    "label": "astra-v9-registry",
+    "command": [
+      "/home/dan/n100-zram/build/astra-v9/benchmark",
+      "/home/dan/n100-zram/build/astra-v9",
+      "--validate-only"
+    ],
+    "status": 0,
+    "elapsed_seconds": 48.217615365982056
+  },
+  {
+    "label": "astra-v9-asan-build",
+    "command": [
+      "python3",
+      "gzram/tools/build.py",
+      "--output",
+      "/home/dan/n100-zram/build/astra-v9-asan"
+    ],
+    "status": 0,
+    "elapsed_seconds": 389.3200087547302
+  },
+  {
+    "label": "astra-v9-asan-bench-build",
+    "command": [
+      "gcc",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-DOPS=8192",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-B/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "-Wl,-rpath,/home/dan/n100-zram/build/astra-toolchain/root/usr/lib64",
+      "gzram/bench.c",
+      "-ldl",
+      "-o",
+      "/home/dan/n100-zram/build/astra-v9-asan/benchmark"
+    ],
+    "status": 0,
+    "elapsed_seconds": 4.920996189117432
+  },
+  {
+    "label": "astra-v9-asan-bitdirectbounded",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirectbounded.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 71.14782691001892
+  },
+  {
+    "label": "astra-v9-asan-bitdirectblock2avxbits4bounded",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirectblock2avxbits4bounded.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirectblock2avxbits4.so",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 123.06046938896179
+  },
+  {
+    "label": "astra-v9-asan-bitdirectblock3avxbits4bounded",
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirectblock3avxbits4bounded.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirectblock3avxbits4.so",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-bitdirect.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v9-asan/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "elapsed_seconds": 116.58674430847168
+  },
+  {
+    "label": "astra-v9-asan-registry",
+    "command": [
+      "/home/dan/n100-zram/build/astra-v9-asan/benchmark",
+      "/home/dan/n100-zram/build/astra-v9-asan",
+      "--validate-only"
+    ],
+    "status": 0,
+    "elapsed_seconds": 202.54093313217163
+  },
+  {
+    "label": "sizes",
+    "command": [
+      "python3",
+      "gzram/tools/measure-sizes.py",
+      "--directory",
+      "build/astra-v9",
+      "--benchmark",
+      "build/astra-v9/benchmark",
+      "--output",
+      "build/astra-v9-sizes"
+    ],
+    "status": 0,
+    "elapsed_seconds": 185.36728715896606
+  },
+  {
+    "label": "size-summary",
+    "command": [
+      "python3",
+      "gzram/tools/summarize-sizes.py",
+      "--input",
+      "build/astra-v9-sizes"
+    ],
+    "status": 0,
+    "elapsed_seconds": 11.067811250686646
+  }
+]

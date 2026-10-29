@@ -24,7 +24,15 @@ malformed/truncated inputs, guarded capacities and concurrency. The direct scann
 All 545,792 old size/mode records remain unchanged; 79,872 new records match
 bitdirect. All 45 audited old library text sections are unchanged. See the
 [validation checkpoint](../benchmarks/results/gzram-astra-v8-validation-001/summary.md).
-Physical composition timings remain pending; these are correctness results.
+The [eighth physical cohort](../benchmarks/results/native-gzram-astra-local-008-retry-timing/findings.md)
+now measures the combinations: cutoff 2 reduces compression time by 18.12% on
+sparse words and 20.98% on clusters50 versus matched bitdirect AVX2, with
+identical bytes. Repeat16/32 improve 10.54%/11.19%. Against the matching plain
+combined packer, sparse words are tied and words25 regresses 1.04%; gains are
+not uniformly additive. Period127-zero-tail regresses 3.56% versus bitdirect.
+Against matched private LZ4, random and period127 compression still take
+49.63% and 65.21% more time, and clusters50 decoding takes 21.48% more time.
+These are userspace results, not a native ZRAM or energy improvement.
 
 ## Decoder measurement isolation
 
@@ -39,8 +47,11 @@ An alias uses the same encoder and frame bytes but exactly one common decoder
 address; the baseline's alias is an identical-entry negative control. All task
 orders and resolved addresses are recorded. Frame-bank memory and restore costs
 are harness overhead outside codec time, not proposed ZRAM memory/queue costs.
-This design can test algorithm/entry identity without claiming that a particular
-cache, predictor or execution-port effect explains the old anomaly.
+The shared-entry experiment reduces the old large repeat decoder anomaly to
+small residual differences: pipe4 versus the common baseline changes repeat16/32
+by +0.23%/+0.38%. The baseline's exact-entry negative control itself differs by
+up to 2.11%. The large anomaly cannot be credited to a new decoder algorithm;
+layout, cache, predictor and history contributions remain unisolated.
 
 ## Live state and unresolved kernel boundary
 
@@ -62,8 +73,11 @@ The exact 7.2.11 source RPM was extracted and its spec/patches reviewed: the
 Fedora patch has no ZRAM changes. Digest checks did not verify the publisher
 signature. A default-off scalar bitdirect/private-LZ4 ZRAM adapter built against
 the exact kernel, with no SIMD in audited experimental objects. Its guest-only
-client correctly refuses to open host ZRAM. Device guest tests remain pending:
-current MemAvailable (about 1.6 GiB) is below the existing 2 GiB headroom gate.
+client correctly refuses to open host ZRAM. After available memory recovered above the unchanged 2 GiB gate, the diskless
+guest passed 241,970 checks across two load/unload cycles and five algorithms.
+An interleaved console marker caused the original parser to report failure;
+the preserved raw run passed corrected strict parsing and separate parser tests.
+See the [device gate record](../benchmarks/results/gzram-zram-device-001/summary.md).
 This is scalar integration infrastructure, not a combined SIMD kernel result.
 
 The scalar generator now explicitly excludes the unused vector scanner branch.
@@ -85,3 +99,48 @@ Final acceptance still requires current-stock zstd, matched LZ4 and supported
 lzo-rle comparisons under representative native ZRAM pressure, with allocator
 memory, CPU, energy, responsiveness, latency tails and stability. Userspace wins,
 shared decoder controls and VM correctness do not establish that result.
+
+## Physical timing interruption and retry
+
+The first eighth-cohort attempt was interrupted by host suspend for about
+41 minutes (2,470.700 seconds between telemetry samples). Its raw data is
+preserved in [the interrupted cohort](../benchmarks/results/native-gzram-astra-local-008-interrupted/summary.md)
+and excluded from controlled performance conclusions. Omitting the temporary
+sleep inhibitor was an experiment-launcher error. The fresh retry retains the
+same frozen sources/binaries and sample counts, with a temporary logind idle/sleep
+inhibitor scoped to the bounded run. No persistent power setting was changed.
+
+The fresh eighth retry completed 32,292 rows across three sessions, with a
+maximum telemetry gap of 0.860 seconds. It remained on battery at 700–800 MHz;
+these absolute timings must not be compared directly with the seventh AC run.
+Package RAPL and the package-energy perf event are both permission-denied.
+Whole-experiment battery readings do not establish per-codec energy savings.
+
+Three bounded-trial candidates now pass normal and ASan/UBSan validation,
+including 2,745,600 registry round trips per build, dedicated bounds/malformed/
+concurrency checks and the isolated measurement harness. All 625,664 prior
+size records are unchanged; 39,936 new records match their parent. They cap
+only tentative GZRAM output at the acceptance threshold, leaving LZ4 capacity
+unchanged. The first attempt's test-script failure is preserved. See the
+[corrected validation](../benchmarks/results/gzram-astra-v9-validation-002/summary.md).
+Physical timing is pending; cluster classification remains an unapplied draft.
+
+## SIMD integration and additional fixtures
+
+A generated SIMD workspace port separates the measured grouped/direct encoder
+and CTZ-plus-vector-repeat decoder from the scalar dispatcher and LZ4 fallback.
+The fallback runs after FPU exit; raw and LZ4 decoding avoid vector entry. CPU/OS
+feature checks and unusable kernel SIMD contexts select the preserved scalar
+path. Userspace normal/sanitizer tests and forced scalar fallback have passed;
+additional policy-specific fixtures passed for both SIMD and forced-fallback
+builds, normal and sanitized. The exact-kernel module builds with vector objects
+isolated from scalar dispatch/fallback. The guest gate deferred at 2,078,960 KiB
+available memory, below the unchanged 2 GiB requirement; no SIMD guest was started.
+See the [SIMD port checkpoint](../benchmarks/results/gzram-simd-port-001/summary.md).
+This is a new integration prototype, not a native performance result.
+
+An [executable-page fixture generator](../benchmarks/results/gzram-exec-corpora-001/summary.md)
+passed independent ELF header/byte checks and invalid-input tests. It selects
+128 distributed executable-segment pages each from Bash, Git and libc, preserving
+all old fixtures. These file-backed pages are not runtime anonymous memory or a
+representative reclaim distribution; no codec timing has used them yet.

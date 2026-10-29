@@ -1,0 +1,37 @@
+
+Elf file type is DYN (Position-Independent Executable file)
+Entry point 0x7160
+There are 13 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  PHDR           0x000040 0x0000000000000040 0x0000000000000040 0x0002d8 0x0002d8 R   0x8
+  INTERP         0x3c5000 0x00000000003c5000 0x00000000003c5000 0x00001c 0x00001c R   0x1
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x3c4ca1 0x3c4ca1 R E 0x1000
+  LOAD           0x3c5000 0x00000000003c5000 0x00000000003c5000 0x0d9bd0 0x0d9bd0 R   0x1000
+  LOAD           0x49f4b0 0x000000000049f4b0 0x000000000049f4b0 0x018108 0x07c950 RW  0x1000
+  DYNAMIC        0x4a6530 0x00000000004a6530 0x00000000004a6530 0x000240 0x000240 RW  0x8
+  NOTE           0x000318 0x0000000000000318 0x0000000000000318 0x000024 0x000024 R   0x4
+  NOTE           0x49ead8 0x000000000049ead8 0x000000000049ead8 0x000050 0x000050 R   0x8
+  NOTE           0x49eb28 0x000000000049eb28 0x000000000049eb28 0x0000a8 0x0000a8 R   0x4
+  GNU_PROPERTY   0x49ead8 0x000000000049ead8 0x000000000049ead8 0x000050 0x000050 R   0x8
+  GNU_EH_FRAME   0x44b034 0x000000000044b034 0x000000000044b034 0x00ba0c 0x00ba0c R   0x4
+  GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10
+  GNU_RELRO      0x49f4b0 0x000000000049f4b0 0x000000000049f4b0 0x007b50 0x007b50 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .note.gnu.build-id .init .plt .plt.sec .text .fini 
+   03     .interp .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .relr.dyn .rodata .eh_frame_hdr .eh_frame .note.gnu.property .note.ABI-tag .note.package 
+   04     .init_array .fini_array .data.rel.ro .dynamic .got .data .bss 
+   05     .dynamic 
+   06     .note.gnu.build-id 
+   07     .note.gnu.property 
+   08     .note.ABI-tag .note.package 
+   09     .note.gnu.property 
+   10     .eh_frame_hdr 
+   11     
+   12     .init_array .fini_array .data.rel.ro .dynamic .got 

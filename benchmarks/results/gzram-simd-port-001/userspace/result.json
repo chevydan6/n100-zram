@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "steps": 36,
+  "source_hashes": {
+    "gzram/tests/hybrid.py": "3d1c4e113f356578b72506004f2ed1b8719202113793dd9fc24ad8cb7514aeb1",
+    "gzram/tests/workspace.py": "ba1fef11c7d23b265b6c4685c657e13eef57d2820b74c7bd1060c49a9a4c452b",
+    "gzram/tools/prepare-simd-hybrid.py": "5ee7536be6144b5d82c85ec6b4357194654c9d6202e87175fbb3470434b920ff"
+  },
+  "scope": "Userspace SIMD port, forced scalar fallback and object isolation; kernel compilation/execution/performance pending"
+}

@@ -189,6 +189,16 @@ static int select_gzram(const uint8_t *src,size_t n)
  (void)src;(void)n;return 1;
 #endif
 }
+/* A failed trial cannot be accepted beyond the existing 75% size bound.
+ * Repeat merging cannot rescue an over-bound trial: every mergeable chunk
+ * is at least 32 bytes with pattern <= half its length, so for n>=64 its
+ * pre-merge frame is <= n/2+n/32+8 <= 3*n/4. Smaller inputs cannot contain
+ * two mergeable chunks. This relies on the preserved repeat-mode rules. */
+#if defined(GZRAM_HYBRID_BOUNDED_TRIAL)
+#define GZRAM_TRIAL_ROOM ((cap-HEADER<n*3/4)?cap-HEADER:n*3/4)
+#else
+#define GZRAM_TRIAL_ROOM (cap-HEADER)
+#endif
 static int encode(const void *input,size_t n,void *output,size_t cap,unsigned log,encode_fn gz)
 {
  if(n>PAGE||log<5||log>12||!output||(!input&&n)||cap<HEADER)return 0;
@@ -197,9 +207,9 @@ static int encode(const void *input,size_t n,void *output,size_t cap,unsigned lo
  if(select_gzram(src,n)){
 #if defined(GZRAM_HYBRID_FUSED_HINT)
   unsigned recurrence=0;int fused=gz==gzram_base_encode_avx2&&gzram_avx2_available();
-  int packed=fused?gzram_fused_encode_hint_avx2(src,n,dst+HEADER,cap-HEADER,log,&recurrence):gz(src,n,dst+HEADER,cap-HEADER,log);
+  int packed=fused?gzram_fused_encode_hint_avx2(src,n,dst+HEADER,GZRAM_TRIAL_ROOM,log,&recurrence):gz(src,n,dst+HEADER,GZRAM_TRIAL_ROOM,log);
 #else
-  int packed=gz(src,n,dst+HEADER,cap-HEADER,log);
+  int packed=gz(src,n,dst+HEADER,GZRAM_TRIAL_ROOM,log);
 #endif
 #if defined(GZRAM_HYBRID_MERGE_REPEAT)
   if(packed>0&&log<12)packed=merge_repeats(src,n,dst+HEADER,packed,log);

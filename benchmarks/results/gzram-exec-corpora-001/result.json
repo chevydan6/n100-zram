@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "source_sha256": "d068df57ada65f5a12131eb0bee2a6c7ec7c658aa37e1f8098592a57c60d4987",
+  "invalid_elf_cases": 17,
+  "real_input_checks": [
+    {
+      "name": "bash-exec",
+      "readelf_program_headers_match": true,
+      "raw_bytes_match": true,
+      "selected_unique_pages": 128
+    },
+    {
+      "name": "git-exec",
+      "readelf_program_headers_match": true,
+      "raw_bytes_match": true,
+      "selected_unique_pages": 128
+    },
+    {
+      "name": "libc-exec",
+      "readelf_program_headers_match": true,
+      "raw_bytes_match": true,
+      "selected_unique_pages": 128
+    }
+  ],
+  "existing_output_preserved": true,
+  "elapsed_seconds": 0.7242295742034912,
+  "scope": "Fixture generation correctness; no new codec measurement or anonymous runtime-memory claim"
+}

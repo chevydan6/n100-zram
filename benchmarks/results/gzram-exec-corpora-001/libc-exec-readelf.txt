@@ -1,0 +1,39 @@
+
+Elf file type is DYN (Shared object file)
+Entry point 0x38a0
+There are 14 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  PHDR           0x000040 0x0000000000000040 0x0000000000000040 0x000310 0x000310 R   0x8
+  INTERP         0x1bf060 0x00000000001bf060 0x00000000001bf060 0x00001c 0x00001c R   0x10
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x171e2d 0x171e2d R E 0x1000
+  LOAD           0x172000 0x0000000000172000 0x0000000000172000 0x078e50 0x078e50 R   0x1000
+  LOAD           0x1ebb78 0x00000000001ebb78 0x00000000001ebb78 0x004b10 0x00cff8 RW  0x1000
+  DYNAMIC        0x1ee920 0x00000000001ee920 0x00000000001ee920 0x000240 0x000240 RW  0x8
+  NOTE           0x000350 0x0000000000000350 0x0000000000000350 0x000024 0x000024 R   0x4
+  NOTE           0x1eade0 0x00000000001eade0 0x00000000001eade0 0x000050 0x000050 R   0x8
+  NOTE           0x1eae30 0x00000000001eae30 0x00000000001eae30 0x000020 0x000020 R   0x4
+  TLS            0x1ebb78 0x00000000001ebb78 0x00000000001ebb78 0x000030 0x000080 R   0x8
+  GNU_PROPERTY   0x1eade0 0x00000000001eade0 0x00000000001eade0 0x000050 0x000050 R   0x8
+  GNU_EH_FRAME   0x1bf07c 0x00000000001bf07c 0x00000000001bf07c 0x0079d4 0x0079d4 R   0x4
+  GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10
+  GNU_RELRO      0x1ebb78 0x00000000001ebb78 0x00000000001ebb78 0x003488 0x003488 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .note.gnu.build-id .plt .plt.sec .text 
+   03     .hash .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_d .gnu.version_r .rela.dyn .rela.plt .relr.dyn .rodata .stapsdt.base rodata.cst32 .interp .eh_frame_hdr .eh_frame .gcc_except_table .note.gnu.property .note.ABI-tag 
+   04     .tdata .init_array .data.rel.ro .dynamic .got .data .bss 
+   05     .dynamic 
+   06     .note.gnu.build-id 
+   07     .note.gnu.property 
+   08     .note.ABI-tag 
+   09     .tdata .tbss 
+   10     .note.gnu.property 
+   11     .eh_frame_hdr 
+   12     
+   13     .tdata .init_array .data.rel.ro .dynamic .got 

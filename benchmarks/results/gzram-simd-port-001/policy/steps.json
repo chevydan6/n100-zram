@@ -1,0 +1,62 @@
+[
+  {
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-simd-policy-004-validation/libgzram-bitdirectblock2avxbits4-simd.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-bitdirectblock2avxbits4.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "library_sha256": "518e23b912b13b7bc058d227797363b0b0e34cdb617a0e0d4ece6956190d74a3",
+    "seconds": 38.11571431159973
+  },
+  {
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-simd-policy-004-validation/libgzram-bitdirectblock2avxbits4-simd-asan.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-bitdirectblock2avxbits4.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "library_sha256": "f81e5b449cfa22bfc800433d74682f018bb82fe78b4f906e3541025a43148a03",
+    "seconds": 48.1734676361084
+  },
+  {
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-simd-policy-004-validation/libgzram-bitdirectblock2avxbits4-forced.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-bitdirectblock2avxbits4.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "library_sha256": "2799886909e9488a937160a5aa8ce0c7fc2c920f3f6f2eb4e671d703c3434da7",
+    "seconds": 37.72260546684265
+  },
+  {
+    "command": [
+      "python3",
+      "gzram/tests/hybrid.py",
+      "--library",
+      "/home/dan/n100-zram/build/astra-simd-policy-004-validation/libgzram-bitdirectblock2avxbits4-forced-asan.so",
+      "--same-encoding-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-bitdirectblock2avxbits4.so",
+      "--other-libraries",
+      "/home/dan/n100-zram/build/astra-v8/libgzram-hybrid-wordmixed.so"
+    ],
+    "status": 0,
+    "library_sha256": "59c880205307496b05e8f63220ea2fdf8350d4f4bed5c84b276dd7217f1db484",
+    "seconds": 45.76870632171631
+  }
+]

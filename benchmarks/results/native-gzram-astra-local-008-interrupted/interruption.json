@@ -1,0 +1,7 @@
+{
+  "status": "excluded from controlled performance conclusions",
+  "reason": "Host suspended between 2026-10-28 22:18:45 UTC and 22:59:56 UTC",
+  "telemetry_gap_seconds": 2470.7001988887787,
+  "action": "Stopped own producer and dependent queued workers; preserve all original rows, telemetry and supervisor failure; retry fresh cohort with temporary sleep inhibitor",
+  "time": 1793228704.1947303
+}

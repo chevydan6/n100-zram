@@ -1,0 +1,104 @@
+{
+  "status": "passed after console-protocol parser correction",
+  "scope": "Acceptance of the existing completed exact-kernel diskless guest run; no repeat VM run, host module load, timing, energy or pressure claim",
+  "time": 1793239688.0644045,
+  "original_status": "failed",
+  "original_result_sha256": "e19a9db243f27c0abf2946601e84543eb4754f5ed63472423b3af14c69665fc1",
+  "original_console_sha256": "3f996e60a6459b149642bf9966166e1f5df06a9265220f4f7788dc94092bc0a5",
+  "original_runner_sha256": "ae688a952b8d7ada7e8f0413148f4b7b4eb5261d7ffd57c84046c6d85a3639e3",
+  "parser_sha256": "ca3fe173f5751b5571fce6e8864723e9790351dd80e393edb195ab1bd106782d",
+  "parser_tests_sha256": "dff2d5a85f6a8243470d7c5d1b38662e1ebb9fcb912dd124c60fc2c614d9c7ce",
+  "console_protocol": {
+    "records": [
+      {
+        "cycle": "1",
+        "algorithm": "lzo-rle",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lz4",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "zstd",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lz4-ghy",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "ghy-bitdirect",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lzo-rle",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lz4",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "zstd",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lz4-ghy",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "ghy-bitdirect",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      }
+    ],
+    "protocol_errors": [],
+    "failure_tokens": [],
+    "pass_markers": 1
+  },
+  "checks_per_run": [
+    24197,
+    24197,
+    24197,
+    24197,
+    24197,
+    24197,
+    24197,
+    24197,
+    24197,
+    24197
+  ],
+  "total_client_checks": 241970,
+  "input_hashes_reverified": true,
+  "host_settings_preserved": true,
+  "reason": "One tty completion marker was split by a timestamped kernel capacity-change message. All ten clients completed; the new parser reconstructs records while checking the unmodified raw console for every original warning/failure token. Original false-failure artifacts remain unchanged."
+}

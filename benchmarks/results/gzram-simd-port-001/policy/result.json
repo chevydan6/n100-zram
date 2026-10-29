@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "scope": "Additional policy-specific repeat headers, cutoff and scanner fixtures, beyond the general port validation",
+  "steps": 4,
+  "test_sha256": "3d1c4e113f356578b72506004f2ed1b8719202113793dd9fc24ad8cb7514aeb1"
+}

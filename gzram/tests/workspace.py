@@ -12,17 +12,19 @@ from pathlib import Path
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--library', type=Path, required=True)
 p.add_argument('--reference', type=Path, required=True)
+p.add_argument('--api-prefix', choices=['n100_ghy', 'n100_simd'], default='n100_ghy')
+p.add_argument('--reference-isa', choices=['scalar', 'avx2'], default='scalar')
 a = p.parse_args()
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tests'))
 from guard_buffers import Guard
 lib = C.CDLL(str(a.library))
-reference = C.CDLL(str(a.reference)).gzram_encode_scalar
+reference = getattr(C.CDLL(str(a.reference)), 'gzram_encode_' + a.reference_isa)
 reference.argtypes = [C.c_void_p, C.c_size_t, C.c_void_p, C.c_size_t, C.c_uint]
 reference.restype = C.c_int
-encode = lib.n100_ghy_encode
+encode = getattr(lib, a.api_prefix + '_encode')
 encode.argtypes = reference.argtypes + [C.c_void_p, C.c_size_t]
 encode.restype = C.c_int
-decode = lib.n100_ghy_decode
+decode = getattr(lib, a.api_prefix + '_decode')
 decode.argtypes = [C.c_void_p, C.c_size_t, C.c_void_p, C.c_size_t]
 decode.restype = C.c_int
 lib.n100_ghy_workspace_size.restype = C.c_size_t
@@ -86,6 +88,7 @@ def worker(seed):
 
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
     concurrent = sum(pool.map(worker, range(100, 104)))
-print(json.dumps(dict(status='passed',workspace_bytes=size,workspace_alignment=alignment,
+print(json.dumps(dict(status='passed',api_prefix=a.api_prefix,reference_isa=a.reference_isa,
+                     workspace_bytes=size,workspace_alignment=alignment,
                      identity_reuse_and_rejection_cases=checks,four_thread_roundtrips=concurrent,
                      scope='Explicit userspace workspace API; kernel code generation and performance not tested')))

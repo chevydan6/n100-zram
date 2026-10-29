@@ -1,0 +1,9 @@
+{
+  "time": 1793228874.618659,
+  "scope": "Temporary run-scoped idle/sleep block; no persistent power configuration change",
+  "unit": "n100-gzram-astra-v8-retry-timing.service",
+  "inhibitor": [
+    "GZRAM               1000 dan  49502 systemd-inhibit sleep:idle           Bounded physical codec timing; release automatically when finished block"
+  ],
+  "invocation": "RuntimeMaxUSec=1h 31min 40s\nExecStart={ path=/usr/bin/systemd-inhibit ; argv[]=/usr/bin/systemd-inhibit --no-ask-password --what=idle:sleep --mode=block --who=GZRAM --why=Bounded physical codec timing; release automatically when finished /usr/bin/python3 /home/dan/n100-zram/build/astra-audit/launch-v8-retry-timing.py ; ignore_errors=no ; start_time=[Thu 2026-10-29 08:05:50 JST] ; stop_time=[n/a] ; pid=49502 ; code=(null) ; status=0/0 }\n"
+}

@@ -1,0 +1,153 @@
+{
+  "scope": "Read-only comparison of previously saved relocatable-object disassembly, including symbol-gap padding. Unresolved relocations are not final library addresses. This is code-identity evidence, not a measurement of execution ports or a proof of runtime causality.",
+  "rows": [
+    {
+      "function": "scan_avx2",
+      "control": "bitpackbase",
+      "candidate": "blockdirect2base",
+      "control_disassembly_bytes": 271,
+      "candidate_disassembly_bytes": 271,
+      "literal_bytes_equal": true,
+      "control_sha256": "4acb34cb47a5199bc05beefd4ab8af43f3f35f8c62108815fb7e7fe2fddc41da",
+      "candidate_sha256": "4acb34cb47a5199bc05beefd4ab8af43f3f35f8c62108815fb7e7fe2fddc41da"
+    },
+    {
+      "function": "scan_avx2",
+      "control": "bitpackbase",
+      "candidate": "blockdirect3base",
+      "control_disassembly_bytes": 271,
+      "candidate_disassembly_bytes": 271,
+      "literal_bytes_equal": true,
+      "control_sha256": "4acb34cb47a5199bc05beefd4ab8af43f3f35f8c62108815fb7e7fe2fddc41da",
+      "candidate_sha256": "4acb34cb47a5199bc05beefd4ab8af43f3f35f8c62108815fb7e7fe2fddc41da"
+    },
+    {
+      "function": "scan_avx2",
+      "control": "pipe4base",
+      "candidate": "block2pipe4base",
+      "control_disassembly_bytes": 670,
+      "candidate_disassembly_bytes": 670,
+      "literal_bytes_equal": true,
+      "control_sha256": "8961845a99be2dc19ad62a83c679411fcb241af5f4a492ff1d4e53078dbb9b5f",
+      "candidate_sha256": "8961845a99be2dc19ad62a83c679411fcb241af5f4a492ff1d4e53078dbb9b5f"
+    },
+    {
+      "function": "scan_avx2",
+      "control": "pipe4base",
+      "candidate": "block3pipe4base",
+      "control_disassembly_bytes": 670,
+      "candidate_disassembly_bytes": 670,
+      "literal_bytes_equal": true,
+      "control_sha256": "8961845a99be2dc19ad62a83c679411fcb241af5f4a492ff1d4e53078dbb9b5f",
+      "candidate_sha256": "8961845a99be2dc19ad62a83c679411fcb241af5f4a492ff1d4e53078dbb9b5f"
+    },
+    {
+      "function": "scan_avx2",
+      "control": "avxbits4base",
+      "candidate": "block2avxbits4base",
+      "control_disassembly_bytes": 654,
+      "candidate_disassembly_bytes": 654,
+      "literal_bytes_equal": true,
+      "control_sha256": "5a234b0a8331e58d6a0a29f9ccd378419bd61d412e76383aad0c1176a7f9967a",
+      "candidate_sha256": "5a234b0a8331e58d6a0a29f9ccd378419bd61d412e76383aad0c1176a7f9967a"
+    },
+    {
+      "function": "scan_avx2",
+      "control": "avxbits4base",
+      "candidate": "block3avxbits4base",
+      "control_disassembly_bytes": 654,
+      "candidate_disassembly_bytes": 654,
+      "literal_bytes_equal": true,
+      "control_sha256": "5a234b0a8331e58d6a0a29f9ccd378419bd61d412e76383aad0c1176a7f9967a",
+      "candidate_sha256": "5a234b0a8331e58d6a0a29f9ccd378419bd61d412e76383aad0c1176a7f9967a"
+    },
+    {
+      "function": "pack_block_avx2",
+      "control": "blockdirect2base",
+      "candidate": "blockdirect3base",
+      "control_disassembly_bytes": 239,
+      "candidate_disassembly_bytes": 239,
+      "literal_bytes_equal": true,
+      "control_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a",
+      "candidate_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a"
+    },
+    {
+      "function": "pack_block_avx2",
+      "control": "blockdirect2base",
+      "candidate": "block2pipe4base",
+      "control_disassembly_bytes": 239,
+      "candidate_disassembly_bytes": 239,
+      "literal_bytes_equal": true,
+      "control_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a",
+      "candidate_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a"
+    },
+    {
+      "function": "pack_block_avx2",
+      "control": "blockdirect2base",
+      "candidate": "block3pipe4base",
+      "control_disassembly_bytes": 239,
+      "candidate_disassembly_bytes": 239,
+      "literal_bytes_equal": true,
+      "control_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a",
+      "candidate_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a"
+    },
+    {
+      "function": "pack_block_avx2",
+      "control": "blockdirect2base",
+      "candidate": "block2avxbits4base",
+      "control_disassembly_bytes": 239,
+      "candidate_disassembly_bytes": 239,
+      "literal_bytes_equal": true,
+      "control_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a",
+      "candidate_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a"
+    },
+    {
+      "function": "pack_block_avx2",
+      "control": "blockdirect2base",
+      "candidate": "block3avxbits4base",
+      "control_disassembly_bytes": 239,
+      "candidate_disassembly_bytes": 239,
+      "literal_bytes_equal": true,
+      "control_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a",
+      "candidate_sha256": "d7f53f0a6d53e1246dc4adf7cb97dac23995c51cc82d3b643ec17e997a6bd87a"
+    }
+  ],
+  "scanners": {
+    "avxbits4base": {
+      "bytes": 654,
+      "vector_stack_operands": []
+    },
+    "bitpackbase": {
+      "bytes": 271,
+      "vector_stack_operands": []
+    },
+    "block2avxbits4base": {
+      "bytes": 654,
+      "vector_stack_operands": []
+    },
+    "block2pipe4base": {
+      "bytes": 670,
+      "vector_stack_operands": []
+    },
+    "block3avxbits4base": {
+      "bytes": 654,
+      "vector_stack_operands": []
+    },
+    "block3pipe4base": {
+      "bytes": 670,
+      "vector_stack_operands": []
+    },
+    "blockdirect2base": {
+      "bytes": 271,
+      "vector_stack_operands": []
+    },
+    "blockdirect3base": {
+      "bytes": 271,
+      "vector_stack_operands": []
+    },
+    "pipe4base": {
+      "bytes": 670,
+      "vector_stack_operands": []
+    }
+  }
+}

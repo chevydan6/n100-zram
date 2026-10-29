@@ -10,7 +10,11 @@ No broad end-to-end performance improvement has been established; see BENCHMARKS
 Experimental GZRAM development is in [`gzram/`](gzram/). The
 [latest local N100 checkpoint](docs/GZRAM-ASTRA-20261029.md) records measured
 scalar/SIMD tradeoffs, raw results and correctness gates; [SOL's baseline](docs/GZRAM-20261028.md)
-remains intact. GZRAM is a prototype and is not the laptop's active ZRAM codec.
+remains intact. The [combined scanner/packer measurements](benchmarks/results/native-gzram-astra-local-008-retry-timing/findings.md)
+show useful sparse and repeat gains alongside retained LZ4 losses. The
+[guarded SIMD port](benchmarks/results/gzram-simd-port-001/summary.md) has passed
+userspace correctness and exact-kernel build gates; native benefits remain unproven.
+GZRAM is a prototype and is not the laptop's active ZRAM codec.
 
 Requirements: x86-64 Linux, Python 3, GCC, glibc development headers. AVX2 and OS
 YMM state support are required for the full suite. No external Python packages.
