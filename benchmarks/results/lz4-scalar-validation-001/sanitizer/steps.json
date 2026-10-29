@@ -1,0 +1,24 @@
+[
+  {
+    "label": "build",
+    "command": [
+      "python3",
+      "tools/prepare-small-table.py",
+      "--output",
+      "/home/dan/n100-zram/build/lz4-scalar-table-asan-001"
+    ],
+    "status": 0,
+    "seconds": 198.83117723464966
+  },
+  {
+    "label": "guard-oracle-concurrency",
+    "command": [
+      "python3",
+      "tests/small-table.py",
+      "--directory",
+      "/home/dan/n100-zram/build/lz4-scalar-table-asan-001"
+    ],
+    "status": 0,
+    "seconds": 22.58838701248169
+  }
+]

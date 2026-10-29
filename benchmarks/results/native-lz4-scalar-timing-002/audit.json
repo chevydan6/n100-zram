@@ -1,0 +1,23 @@
+{
+  "status": "passed with limitations",
+  "rows": 8064,
+  "sessions": 3,
+  "max_telemetry_gap_seconds": 1.030808925628662,
+  "elapsed_seconds": 421.3237102031708,
+  "binary_and_libraries_identical": true,
+  "cpu0_frequency_khz": [
+    799872,
+    800064
+  ],
+  "governors": [
+    "powersave"
+  ],
+  "nonpositive_cycle_rows": 0,
+  "limitations": [
+    "Fixed task order; no randomized cross-session operation order",
+    "No per-batch CPU occupancy or PMU scheduling fraction",
+    "No package-energy measurement",
+    "No dedicated ZRAM preflight/restoration record",
+    "Warm-cache userspace, 8 corpora; no native pressure or responsiveness"
+  ]
+}

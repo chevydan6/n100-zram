@@ -23,3 +23,10 @@ available package energy. The independent decoder, boundaries, malformed input,
 concurrency and sanitizer gates precede any kernel integration. Actual native
 pressure acceptance must compare current stock zstd, LZ4 and lzo-rle with verified
 recovery and restoration. No boot or normal ZRAM configuration change is authorized.
+
+A [fresh matched physical userspace screen](../benchmarks/results/native-lz4-scalar-timing-002/findings.md)
+completed after [normal and sanitizer correctness gates](../benchmarks/results/lz4-scalar-validation-001/summary.md).
+The 4 KiB table improves tested compression times but adds 0.81% to Bash output;
+the 8 KiB table adds 0.24% with a smaller speed gain. The fixed-order screen has
+no package-energy or native-pressure evidence. Retain both candidates and assess
+order-randomized diverse workloads before selecting a kernel experiment.

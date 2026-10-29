@@ -1,0 +1,36 @@
+[
+  {
+    "label": "reference-build",
+    "command": [
+      "python3",
+      "tools/build.py",
+      "--variants",
+      "scalar",
+      "avx2-guard"
+    ],
+    "status": 0,
+    "seconds": 21.464508533477783
+  },
+  {
+    "label": "table-build",
+    "command": [
+      "python3",
+      "tools/prepare-small-table.py",
+      "--output",
+      "/home/dan/n100-zram/build/lz4-scalar-table-001"
+    ],
+    "status": 0,
+    "seconds": 68.0726797580719
+  },
+  {
+    "label": "table-correctness",
+    "command": [
+      "python3",
+      "tests/small-table.py",
+      "--directory",
+      "/home/dan/n100-zram/build/lz4-scalar-table-001"
+    ],
+    "status": 0,
+    "seconds": 16.86405372619629
+  }
+]

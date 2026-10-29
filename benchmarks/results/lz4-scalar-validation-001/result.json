@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "source_hashes": {
+    "src/kernel-lz4/lz4_compress.c": "0c94d03e1d1d89adf3f11c7665194b8f50eed85369395577763690b343f0515e",
+    "src/kernel-lz4/lz4_decompress.c": "bdbc6864ba7bc05bbaedbe21875758a83d8cec0d6db648b6b70147da4804e86a",
+    "include/linux/lz4.h": "e8f8201156a05f9e01a20487c731d99b4914c2380b09f3e562c7aae234029f57",
+    "tools/prepare-small-table.py": "be5542cdddacb0018c05c876944496fb46775c13962c04de8524bb104f18ede5",
+    "tests/small-table.py": "1ac1ebb9e225cd43d656e6677b7f56fdc7e18ceeedfb7c242fde6c08b958ccc9"
+  },
+  "scope": "Fresh baseline correctness; no new performance claim",
+  "steps": 3
+}

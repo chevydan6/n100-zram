@@ -1,0 +1,5 @@
+{
+  "status": "passed",
+  "scope": "ASan/UBSan small-table independent decoder and boundary checks",
+  "steps": 2
+}

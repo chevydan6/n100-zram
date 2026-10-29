@@ -1,0 +1,26 @@
+{
+  "command": [
+    "gcc",
+    "-O2",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "benchmarks/native.c",
+    "-ldl",
+    "-o",
+    "/home/dan/n100-zram/build/lz4-scalar-table-001/native"
+  ],
+  "source_sha256": "c84e777d41a7823b7df71bcde736d7a27c0ccfef715c9414e081a0bd663caffa",
+  "binary_sha256": "b3229574ed2af824ca551c3657f05a4a1b0e8eba171e89ecdfe2d5cd6f4a5ba3",
+  "machine": {
+    "sysname": "Linux",
+    "nodename": "fedora",
+    "release": "7.2.11-200.fc44.x86_64",
+    "version": "#1 SMP PREEMPT_DYNAMIC Thu Oct 15 15:58:58 UTC 2026",
+    "machine": "x86_64"
+  },
+  "battery_percent": "98",
+  "ac_online": "0",
+  "scope": "Matched table14 controls, legacy fixed task order; no package energy, thread CPU or native ZRAM claim"
+}

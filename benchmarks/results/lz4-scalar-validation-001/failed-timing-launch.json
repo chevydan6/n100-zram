@@ -1,0 +1,5 @@
+{
+  "status": "failed; preserve artifacts",
+  "time": 1793303664.6817567,
+  "error": "AttributeError(\"'posix.uname_result' object has no attribute '_asdict'\")"
+}
