@@ -1,0 +1,8 @@
+Scalar table benchmark: common decoder=0x7fca08b4bdc0, random operation order, RAPL unavailable
+Validated random: four scalar tables, 128 pages
+Validated sparse-words: four scalar tables, 128 pages
+Validated period127: four scalar tables, 128 pages
+Validated mixed-pages: four scalar tables, 128 pages
+Validated bash-exec: four scalar tables, 128 pages
+Validated git-exec: four scalar tables, 128 pages
+Validated libc-exec: four scalar tables, 128 pages
