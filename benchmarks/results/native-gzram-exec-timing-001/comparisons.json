@@ -1,0 +1,566 @@
+[
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "control": "lz4-small-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 41245.205,
+        "control": 39813.044,
+        "change_percent": 4.205900418515585,
+        "sessions": [
+          4.082488617821856,
+          9.162841638370288,
+          4.205900418515585
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 40833.933,
+        "control": 39380.629,
+        "change_percent": 4.241733853505325,
+        "sessions": [
+          3.9880693153335756,
+          6.196823003995244,
+          4.241733853505325
+        ]
+      },
+      "cycles": {
+        "candidate": 32531.748,
+        "control": 31355.338,
+        "change_percent": 4.262468657422103,
+        "sessions": [
+          3.9918109968404947,
+          5.607104043652988,
+          4.262468657422103
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3274.836,
+        "control": 3266.32,
+        "change_percent": 0.2607215459599743,
+        "sessions": [
+          0.2607215459599743,
+          0.2607215459599743,
+          0.2607215459599743
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "compress",
+    "control": "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 41245.205,
+        "control": 42364.547,
+        "change_percent": -1.564128519494945,
+        "sessions": [
+          -1.564128519494945,
+          1.899956655374191,
+          -2.900484218561339
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 40833.933,
+        "control": 41954.208,
+        "change_percent": -1.6068462978620857,
+        "sessions": [
+          -1.6068462978620857,
+          -0.12232209464158039,
+          -2.8216041066334907
+        ]
+      },
+      "cycles": {
+        "candidate": 32531.748,
+        "control": 33290.475,
+        "change_percent": -1.6166491794356364,
+        "sessions": [
+          -1.6166491794356364,
+          -0.17298992532422952,
+          -2.8146061030251857
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3274.836,
+        "control": 3274.836,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "control": "lz4-small-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 7283.945,
+        "control": 7279.95,
+        "change_percent": -0.19983151217819461,
+        "sessions": [
+          -0.04605715866262683,
+          -0.36404078119187666,
+          -0.19983151217819461
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 7212.614,
+        "control": 7209.371,
+        "change_percent": -0.13517977554228233,
+        "sessions": [
+          -0.004550906124989318,
+          -0.13517977554228233,
+          -0.22997348393922756
+        ]
+      },
+      "cycles": {
+        "candidate": 5729.425,
+        "control": 5722.947,
+        "change_percent": -0.39841361452412904,
+        "sessions": [
+          -0.002517787637745794,
+          -0.39841361452412904,
+          -0.6659103706800895
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3274.836,
+        "control": 3266.32,
+        "change_percent": 0.2607215459599743,
+        "sessions": [
+          0.2607215459599743,
+          0.2607215459599743,
+          0.2607215459599743
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "bash-exec",
+    "operation": "decompress",
+    "control": "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 7283.945,
+        "control": 7236.196,
+        "change_percent": -0.023663028544984588,
+        "sessions": [
+          -0.09569002617767497,
+          13.3331271431123,
+          -0.023663028544984588
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 7212.614,
+        "control": 7167.412,
+        "change_percent": -0.03675598096938293,
+        "sessions": [
+          -0.03675598096938293,
+          2.515484778510335,
+          -0.10490089702646088
+        ]
+      },
+      "cycles": {
+        "candidate": 5729.425,
+        "control": 5708.715,
+        "change_percent": -0.052990995076585,
+        "sessions": [
+          -0.052990995076585,
+          1.737048056894408,
+          -0.48745885138111733
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3274.836,
+        "control": 3274.836,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "control": "lz4-small-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 41345.209,
+        "control": 40147.287,
+        "change_percent": 3.0976232537438975,
+        "sessions": [
+          3.0976232537438975,
+          2.351102827944529,
+          3.366391006268321
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 40980.541,
+        "control": 39825.671,
+        "change_percent": 3.0993108067095987,
+        "sessions": [
+          3.0993108067095987,
+          2.534124524107084,
+          3.5396181870455123
+        ]
+      },
+      "cycles": {
+        "candidate": 32654.827,
+        "control": 31735.847,
+        "change_percent": 3.0991969389669194,
+        "sessions": [
+          3.0991969389669194,
+          2.5482103138028567,
+          3.7165540490770477
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3242.094,
+        "control": 3234.094,
+        "change_percent": 0.24736448600441996,
+        "sessions": [
+          0.24736448600441996,
+          0.24736448600441996,
+          0.24736448600441996
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "compress",
+    "control": "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 41345.209,
+        "control": 42544.05,
+        "change_percent": -1.8608997262729243,
+        "sessions": [
+          -1.8498529243644701,
+          -1.8608997262729243,
+          -2.249767934621627
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 40980.541,
+        "control": 42155.88,
+        "change_percent": -1.9118581732169848,
+        "sessions": [
+          -1.8036246986530613,
+          -1.9118581732169848,
+          -2.2511639797914484
+        ]
+      },
+      "cycles": {
+        "candidate": 32654.827,
+        "control": 33357.595,
+        "change_percent": -1.9131350377179168,
+        "sessions": [
+          -1.825755935706197,
+          -1.9131350377179168,
+          -2.2458747651449174
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3242.094,
+        "control": 3242.094,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "control": "lz4-small-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 7292.078,
+        "control": 7200.573,
+        "change_percent": 0.6121243230893914,
+        "sessions": [
+          0.7263114622900524,
+          0.6121243230893914,
+          0.0889277155229351
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 7219.055,
+        "control": 7139.417,
+        "change_percent": 0.44256639295252587,
+        "sessions": [
+          0.790886317716244,
+          0.44256639295252587,
+          -0.10078605687292574
+        ]
+      },
+      "cycles": {
+        "candidate": 5711.475,
+        "control": 5689.335,
+        "change_percent": 0.4700596571220794,
+        "sessions": [
+          0.785059714119507,
+          0.4700596571220794,
+          -0.14741638394715206
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3242.094,
+        "control": 3234.094,
+        "change_percent": 0.24736448600441996,
+        "sessions": [
+          0.24736448600441996,
+          0.24736448600441996,
+          0.24736448600441996
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "git-exec",
+    "operation": "decompress",
+    "control": "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 7292.078,
+        "control": 7220.537,
+        "change_percent": 0.8350293538508691,
+        "sessions": [
+          0.08742626955511312,
+          0.8350293538508691,
+          1.7774062868542329
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 7219.055,
+        "control": 7165.078,
+        "change_percent": 0.7010606487254822,
+        "sessions": [
+          0.11753035226278463,
+          0.7010606487254822,
+          0.8765531363439827
+        ]
+      },
+      "cycles": {
+        "candidate": 5711.475,
+        "control": 5711.003,
+        "change_percent": 0.12235261344439863,
+        "sessions": [
+          0.12235261344439863,
+          -0.1061993893535007,
+          0.8836297685487438
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3242.094,
+        "control": 3242.094,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "control": "lz4-small-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 40894.136,
+        "control": 38862.195,
+        "change_percent": 4.773385648563311,
+        "sessions": [
+          4.541851114893025,
+          4.852341057581433,
+          4.773385648563311
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 40166.581,
+        "control": 38395.616,
+        "change_percent": 4.754558447614277,
+        "sessions": [
+          4.754558447614277,
+          4.783843916391639,
+          4.732885324448599
+        ]
+      },
+      "cycles": {
+        "candidate": 31985.236,
+        "control": 30542.555,
+        "change_percent": 4.809138908677935,
+        "sessions": [
+          4.809138908677935,
+          4.7824496477039125,
+          5.037794954658903
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3012.227,
+        "control": 3004.227,
+        "change_percent": 0.26629146199670384,
+        "sessions": [
+          0.26629146199670384,
+          0.26629146199670384,
+          0.26629146199670384
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "compress",
+    "control": "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 40894.136,
+        "control": 41502.879,
+        "change_percent": -1.8136043725025641,
+        "sessions": [
+          -2.9123791055948423,
+          -1.8136043725025641,
+          -1.785978021632395
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 40166.581,
+        "control": 40945.542,
+        "change_percent": -1.9959806316169226,
+        "sessions": [
+          -2.8654108425283598,
+          -1.8184829159510363,
+          -1.9959806316169226
+        ]
+      },
+      "cycles": {
+        "candidate": 31985.236,
+        "control": 32615.619,
+        "change_percent": -2.0760769001352597,
+        "sessions": [
+          -3.0411138665283666,
+          -1.1589087181249846,
+          -2.0760769001352597
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3012.227,
+        "control": 3012.227,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "control": "lz4-small-scalar",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 7360.714,
+        "control": 7372.482,
+        "change_percent": -0.06821119802969955,
+        "sessions": [
+          -1.7670891927966448,
+          -0.06821119802969955,
+          -0.002757606523140499
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 7275.031,
+        "control": 7283.063,
+        "change_percent": -0.16617942631247384,
+        "sessions": [
+          -1.47117093889515,
+          -0.16617942631247384,
+          -0.06321747263907662
+        ]
+      },
+      "cycles": {
+        "candidate": 5784.82,
+        "control": 5799.533,
+        "change_percent": -0.1411607902246037,
+        "sessions": [
+          -1.4571255846294484,
+          -0.08145044185948747,
+          -0.1411607902246037
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3012.227,
+        "control": 3004.227,
+        "change_percent": 0.26629146199670384,
+        "sessions": [
+          0.26629146199670384,
+          0.26629146199670384,
+          0.26629146199670384
+        ]
+      }
+    }
+  },
+  {
+    "corpus": "libc-exec",
+    "operation": "decompress",
+    "control": "ghy-bitdirectblock2avxbits4-avx2-1024",
+    "metrics": {
+      "ns_per_page": {
+        "candidate": 7360.714,
+        "control": 7357.329,
+        "change_percent": -0.10574839597188301,
+        "sessions": [
+          -0.18911754523958102,
+          -0.10574839597188301,
+          0.561586111915946
+        ]
+      },
+      "cpu_ns_per_page": {
+        "candidate": 7275.031,
+        "control": 7235.583,
+        "change_percent": 0.11859712057609162,
+        "sessions": [
+          0.11859712057609162,
+          0.047386951070804706,
+          0.4894927476388533
+        ]
+      },
+      "cycles": {
+        "candidate": 5784.82,
+        "control": 5757.961,
+        "change_percent": 0.26834151881196533,
+        "sessions": [
+          0.19979139249837186,
+          0.407683500968159,
+          0.26834151881196533
+        ]
+      },
+      "compressed_bytes": {
+        "candidate": 3012.227,
+        "control": 3012.227,
+        "change_percent": 0.0,
+        "sessions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  }
+]

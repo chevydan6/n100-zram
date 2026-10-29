@@ -173,3 +173,9 @@ The [SIMD register-preservation guest gate](../benchmarks/results/gzram-simd-reg
 passed two cycles with all YMM registers and floating-point control state checked;
 vector-path counters confirmed encoding and decoding executed. This does not
 measure native SIMD overhead or establish preemption coverage.
+
+The [distributed executable-page test](../benchmarks/results/native-gzram-exec-timing-001/findings.md)
+found bounded cutoff-2 compression 3.10–4.77% slower than matched private LZ4,
+with roughly eight additional bytes per page. Its audit passed row, binary,
+telemetry and PMU checks, but launch omitted a dedicated preflight snapshot;
+before/after system setting restoration therefore cannot be independently audited.

@@ -1,0 +1,33 @@
+Isolated benchmark: shared_decoder=2; randomized operation tasks; immutable frames; CPU 0; frame-bank bytes=3903144; RAPL unavailable
+Entry lz4-small-scalar encoder=0x7f8757bf3c20 decoder=0x7f8757bf6690
+Entry ghy-bitdirect-avx2-1024 encoder=0x7f87579d6fa0 decoder=0x7f87579d7590
+Entry ghy-bitdirectblock2avxbits4-avx2-1024 encoder=0x7f87579bdfa0 decoder=0x7f87579be590
+Entry ghy-bitdirectbounded-avx2-1024 encoder=0x7f87579a4fd0 decoder=0x7f87579a55f0
+Entry ghy-bitdirectblock2avxbits4bounded-avx2-1024 encoder=0x7f875798bfd0 decoder=0x7f875798c5f0
+Entry ghy-bitdirectshared-avx2-1024 encoder=0x7f87579d6fa0 decoder=0x7f87579d7590
+Entry ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 encoder=0x7f875798bfd0 decoder=0x7f87579d7590
+Frames bash-exec lz4-small-scalar source=lz4-small-scalar
+Frames bash-exec ghy-bitdirect-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectblock2avxbits4-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectbounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectblock2avxbits4bounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Validated isolated bash-exec: 7 variants, 128 pages
+Frames git-exec lz4-small-scalar source=lz4-small-scalar
+Frames git-exec ghy-bitdirect-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectblock2avxbits4-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectbounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectblock2avxbits4bounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Validated isolated git-exec: 7 variants, 128 pages
+Frames libc-exec lz4-small-scalar source=lz4-small-scalar
+Frames libc-exec ghy-bitdirect-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectblock2avxbits4-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectbounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectblock2avxbits4bounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Validated isolated libc-exec: 7 variants, 128 pages
+corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent
