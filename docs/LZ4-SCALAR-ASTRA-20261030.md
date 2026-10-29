@@ -1,0 +1,25 @@
+# N100 scalar LZ4 continuation
+
+The user has ended GZRAM development and requested an optimized scalar LZ4
+compressor. This branch starts from b3463e6, preserving the GZRAM history and
+all previous LZ4 experiments. Refreshed remote branches were inspected.
+
+The existing 12-bit small-table variant and its matched 14-bit control are the
+starting candidates, not accepted defaults. A prior five-trial synthetic native
+ZRAM I/O comparison reported 231,369 versus 212,300 median write IOPS for
+small versus matched control, with +11.07% paired median throughput and −11.16%
+whole-job package energy per I/O. Results had broad intervals and older-kernel
+code/layout effects; lzo-rle was faster in that test. Earlier userspace tests
+showed Bash output 3,216.6 to 3,242.6 bytes/page (+0.81%) versus matched table14.
+A separate scalar repeated-store decoder accelerated a half-zero case but
+regressed sparse, mixed and executable cases; retain it as a tradeoff, not a
+universal improvement. Sources and reports remain unchanged.
+
+The current physical machine runs kernel 7.2.11-200.fc44.x86_64 and stock zstd
+ZRAM. These settings are not directly comparable with old kernel/AC cohorts.
+The next step is a fresh correctness rebuild of the matched table sizes and then
+controlled N100 tests with output size, compression and decoding time, CPU and
+available package energy. The independent decoder, boundaries, malformed input,
+concurrency and sanitizer gates precede any kernel integration. Actual native
+pressure acceptance must compare current stock zstd, LZ4 and lzo-rle with verified
+recovery and restoration. No boot or normal ZRAM configuration change is authorized.
