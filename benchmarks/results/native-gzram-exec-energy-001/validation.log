@@ -1,0 +1,29 @@
+Isolated benchmark: shared_decoder=2; randomized operation tasks; immutable frames; CPU 0; frame-bank bytes=3345552; RAPL available
+Entry lz4-small-scalar encoder=0x7f265c482c20 decoder=0x7f265c485690
+Entry ghy-bitdirect-avx2-1024 encoder=0x7f265c265fa0 decoder=0x7f265c266590
+Entry ghy-bitdirectblock2avxbits4-avx2-1024 encoder=0x7f265c24cfa0 decoder=0x7f265c24d590
+Entry ghy-bitdirectblock2avxbits4bounded-avx2-1024 encoder=0x7f265c233fd0 decoder=0x7f265c2345f0
+Entry ghy-bitdirectshared-avx2-1024 encoder=0x7f265c265fa0 decoder=0x7f265c266590
+Entry ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 encoder=0x7f265c233fd0 decoder=0x7f265c266590
+Frames bash-exec lz4-small-scalar source=lz4-small-scalar
+Frames bash-exec ghy-bitdirect-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectblock2avxbits4-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectblock2avxbits4bounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames bash-exec ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Validated isolated bash-exec: 6 variants, 128 pages
+Frames git-exec lz4-small-scalar source=lz4-small-scalar
+Frames git-exec ghy-bitdirect-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectblock2avxbits4-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectblock2avxbits4bounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames git-exec ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Validated isolated git-exec: 6 variants, 128 pages
+Frames libc-exec lz4-small-scalar source=lz4-small-scalar
+Frames libc-exec ghy-bitdirect-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectblock2avxbits4-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectblock2avxbits4bounded-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Frames libc-exec ghy-bitdirectblock2avxbits4boundedshared-avx2-1024 source=ghy-bitdirect-avx2-1024
+Validated isolated libc-exec: 6 variants, 128 pages
+corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent

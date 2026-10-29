@@ -179,3 +179,11 @@ found bounded cutoff-2 compression 3.10–4.77% slower than matched private LZ4,
 with roughly eight additional bytes per page. Its audit passed row, binary,
 telemetry and PMU checks, but launch omitted a dedicated preflight snapshot;
 before/after system setting restoration therefore cannot be independently audited.
+
+The [matched executable-page package-energy test](../benchmarks/results/native-gzram-exec-energy-001/findings.md)
+obtained read-only RAPL readings. Bounded GZRAM compression used 3.23%, 1.52%
+and 4.41% more CPU package energy than matched LZ4 for Bash, Git and libc pages,
+respectively, while using 2.59–3.29% less than its unbounded GZRAM parent. Decoder
+energy results varied across sessions. This is CPU package energy for a userspace
+fixture, not whole-laptop energy, battery life or native ZRAM behavior. A dedicated
+preflight snapshot was omitted, limiting independent restoration verification.

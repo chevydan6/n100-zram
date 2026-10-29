@@ -1,0 +1,15 @@
+{
+  "status": "passed with limitation",
+  "rows": 972,
+  "max_telemetry_gap_seconds": 0.5548362731933594,
+  "elapsed_seconds": 240.0948510169983,
+  "pmu_fraction_range": [
+    1.0,
+    1.0
+  ],
+  "thread_occupancy_min": 84.969,
+  "thread_occupancy_median": 99.088,
+  "package_energy_rows": 972,
+  "preflight": "Not captured at launch; before/after ZRAM and settings restoration cannot be verified by this audit",
+  "scope": "Physical N100 userspace codec only"
+}
