@@ -144,3 +144,27 @@ passed independent ELF header/byte checks and invalid-input tests. It selects
 128 distributed executable-segment pages each from Bash, Git and libc, preserving
 all old fixtures. These file-backed pages are not runtime anonymous memory or a
 representative reclaim distribution; no codec timing has used them yet.
+
+## Bounded-trial timing and independent retest
+
+Two fresh physical userspace cohorts each used three sessions and nine paired
+rounds, with 128 pages per corpus and 8,192 calls per batch. Both audits passed;
+raw results and all comparisons are in the [first cohort](../benchmarks/results/native-gzram-astra-local-009-timing/findings.md)
+and [retest](../benchmarks/results/native-gzram-astra-local-010-retest-timing/findings.md).
+They ran on battery with 700–800 MHz settings; package energy was unavailable.
+The retest analysis launcher initially named a nonexistent script; the raw data
+was preserved and the corrected analysis passed without rerunning measurements.
+
+Cutoff-2 bounded versus its unbounded parent reduced compression time 12.15% and
+12.13% for random pages and 18.23% and 17.93% for period127 in the two cohorts.
+Bash improved 1.68% and 1.77%. Repeat16 regressed 0.13% and 0.25%; sparse and
+cluster effects were small or inconsistent. Output size and format remain the
+same on the validated fixtures. These are time reductions, not throughput gains.
+
+The retest still shows important losses versus matched private scalar LZ4:
+random compression 4,495.0 → 5,993.4 ns/page (+32.76%), period127 3,024.3 →
+4,054.0 ns/page (+33.99%), Bash 39,150.3 → 40,677.4 ns/page (+3.87%), and
+clusters50 decoding 3,904.5 → 4,620.6 ns/page (+18.41%). Sparse-word compression
+improved from 16,944.4 to 4,859.9 ns/page (−71.36%). These are userspace codec
+results; shared decoder-entry controls limit attribution of small decode deltas.
+No native ZRAM, energy or overall workload improvement is established.

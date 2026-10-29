@@ -1,0 +1,14 @@
+{
+  "time": 1793230619.9932709,
+  "scope": "Read-only access check; energy event requested disabled and never enabled",
+  "uid": 1000,
+  "perf_event_paranoid": "2",
+  "pmu_type": 25,
+  "event": 2,
+  "cpu": 0,
+  "system_wide_event_opened": false,
+  "error_number": 13,
+  "error": "Permission denied",
+  "sysfs_rapl_readable": false,
+  "capabilities": "CapEff:\t0000000000000000"
+}

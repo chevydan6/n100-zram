@@ -1,0 +1,8 @@
+{
+  "time": 1793241960.7508328,
+  "service": "ActiveState=active\nSubState=running\nExecMainStatus=0\n",
+  "inhibitor": [
+    "GZRAM-V9            1000 dan  58129 systemd-inhibit sleep:idle           Bounded physical codec timing; release when finished block"
+  ],
+  "verified": true
+}

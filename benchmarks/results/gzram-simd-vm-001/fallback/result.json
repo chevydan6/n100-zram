@@ -1,0 +1,75 @@
+{
+  "scope": "Diskless guarded SIMD GHY1 correctness with path counters; no native timing, user-register preservation, recovery or ZRAM result",
+  "command": [
+    "/home/dan/n100-zram/build/astra-vm/root/usr/bin/qemu-system-x86_64",
+    "-no-user-config",
+    "-nodefaults",
+    "-machine",
+    "q35,accel=kvm",
+    "-cpu",
+    "host,-avx2",
+    "-smp",
+    "2",
+    "-m",
+    "256",
+    "-display",
+    "none",
+    "-monitor",
+    "none",
+    "-serial",
+    "stdio",
+    "-nic",
+    "none",
+    "-no-reboot",
+    "-bios",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/share/seabios/bios-256k.bin",
+    "-L",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/share/qemu",
+    "-kernel",
+    "/boot/vmlinuz-7.2.11-200.fc44.x86_64",
+    "-initrd",
+    "/home/dan/n100-zram/build/astra-simd-vm-001-fallback/initramfs.cpio",
+    "-append",
+    "console=ttyS0 rdinit=/init panic=1"
+  ],
+  "kernel_release": "7.2.11-200.fc44.x86_64",
+  "host_mem_available_kib": 2745868,
+  "disks_attached": false,
+  "network_attached": false,
+  "guest_memory_mib": 256,
+  "guest_cpus": 2,
+  "hashes": {
+    "kernel": "515dcb6e407dff32e970274670fb357187c672fdd7f68d4ed0dbf0c1d7138055",
+    "module": "41bed2a4bfe1ec31649968b0851006f3f3e3a8818325b4369cb7b44d02f075f5",
+    "qemu": "27cd395848940fc6482256d85096fc64bc4fe3f3e909824d51c202f8314cd9e9",
+    "busybox": "98d9040015eb17931e17b45e00b5f49f2451326372d5107a3a280f1cb3aaf3fc",
+    "bios": "3068c0b80988e2f2b04eaeda0b950e139b1760f5d269fc3587b819ff1f9f06c1"
+  },
+  "initramfs_sha256": "d39171a98a0ea12bce7a428319dc5625564096fe8fea8a24b78271222c7291e5",
+  "guest_avx2_exposed": false,
+  "runner_sha256": "6109e306fd8529a7d27c31b763f36af5e14cb0a818e7340d815af0d57c2e7bef",
+  "exit_code": 0,
+  "worker_results": [
+    [
+      "4",
+      "321855"
+    ],
+    [
+      "4",
+      "321855"
+    ]
+  ],
+  "vector_paths": [
+    [
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "status": "passed"
+}
