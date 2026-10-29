@@ -168,3 +168,8 @@ clusters50 decoding 3,904.5 → 4,620.6 ns/page (+18.41%). Sparse-word compressi
 improved from 16,944.4 to 4,859.9 ns/page (−71.36%). These are userspace codec
 results; shared decoder-entry controls limit attribution of small decode deltas.
 No native ZRAM, energy or overall workload improvement is established.
+
+The [SIMD register-preservation guest gate](../benchmarks/results/gzram-simd-register-001/summary.md)
+passed two cycles with all YMM registers and floating-point control state checked;
+vector-path counters confirmed encoding and decoding executed. This does not
+measure native SIMD overhead or establish preemption coverage.
