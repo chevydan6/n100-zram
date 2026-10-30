@@ -1,0 +1,1 @@
+{"ec_result": 1, "ioctl_return": 0, "kernel": "7.2.11-n100-gzram-btf", "operation": "EC_CMD_HANG_DETECT version 0 GET_STATUS", "scope": "Read-only status query; no recovery capability or timer state proof", "status": null, "watchdog_armed": false}
