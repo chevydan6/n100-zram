@@ -1,0 +1,261 @@
+{
+  "scope": "Isolated guest ZRAM device correctness; no native timing, energy, pressure, recovery or production claim",
+  "command": [
+    "/home/dan/n100-zram/build/astra-vm/root/usr/bin/qemu-system-x86_64",
+    "-no-user-config",
+    "-nodefaults",
+    "-machine",
+    "q35,accel=kvm",
+    "-cpu",
+    "host,-avx2",
+    "-smp",
+    "2",
+    "-m",
+    "256",
+    "-display",
+    "none",
+    "-monitor",
+    "none",
+    "-serial",
+    "stdio",
+    "-nic",
+    "none",
+    "-no-reboot",
+    "-bios",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/share/seabios/bios-256k.bin",
+    "-L",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/share/qemu",
+    "-kernel",
+    "/boot/vmlinuz-7.2.11-200.fc44.x86_64",
+    "-initrd",
+    "/home/dan/n100-zram/build/terra-simd-zram-vm-001-scalar-fallback/initramfs.cpio",
+    "-append",
+    "console=ttyS0 rdinit=/init panic=1"
+  ],
+  "kernel_release": "7.2.11-200.fc44.x86_64",
+  "guest_memory_mib": 256,
+  "guest_cpus": 2,
+  "host_uid": 1000,
+  "host_mem_available_kib": 2693664,
+  "disks_attached": false,
+  "network_attached": false,
+  "dependencies": {
+    "lz4hc_compress": {
+      "path": "/lib/modules/7.2.11-200.fc44.x86_64/kernel/lib/lz4/lz4hc_compress.ko.xz",
+      "sha256": "5273bc15d1a6d322fcf3f29f0ce2e9a8a944aeee70813814d69b7adcc26f2ed9",
+      "unpacked_sha256": "7f5c36481cb8ea580b489389dd9eaf7c6f0f29a912bbb99194e2263c25a20344"
+    }
+  },
+  "algorithms": [
+    "ghy-bitdirect",
+    "ghy-simd",
+    "lz4-ghy",
+    "lz4",
+    "zstd"
+  ],
+  "corpus_sha256": {
+    "bash-elf.bin": "87f31251262577584a4209d6a1ceaf1ee78ee059ffe2228061a560d61ce74732",
+    "clusters25.bin": "82125ce9d0a101c66d7570d336e2b16bc83ceacf564c78a201d265023b094302",
+    "clusters50.bin": "3844744fa2cfd5216183dacdf9ccdc6a3d62366b000111a32c2bf285e2054f69",
+    "clusters75.bin": "37bf42b64005ffd28e2517722d977c459a9d1069eabb1c2408f615fe1cb44069",
+    "git-elf.bin": "f635fb32c7bbd5a754f9ae3391dc5b0c06af8e62351c4e5d0d6b0cd0c9129e2c",
+    "halfzero.bin": "d82200466a866f32e7c0271bbfcc8053499061ba20434c4a12ba7c49bf4aa407",
+    "libc-elf.bin": "344c1e6b5dcdeae792384674988835cc69ae102554d451b97fb498a969e08650",
+    "mixed-pages.bin": "7a3cc8f6b86964bcaac88f89fc9b2586b8b0baa78c3646b89f0536c651e3345c",
+    "period127-zero-tail.bin": "f5cb4365c0387637a838889be61aac971a3507a3ee77b63f96c1c11f6b13a9dc",
+    "period127.bin": "e8e6d1c5c1a86cc08099e73a555badb0941ec01f06ceed8dadc01c567ed78578",
+    "period509-zero-tail.bin": "d274c3d2e08d369f877f22623291911f6b20a7f119bd20ecbb0ad17db3dab3cd",
+    "random.bin": "afe347bc9bb4211d9017c8da16c8abd205760d60cf6249f33fb522dad1de19bf",
+    "repeat16.bin": "2233991a60a4686e39edf86ce6fe86e7a368b7854fe864cbf18507f35da8199f",
+    "repeat32.bin": "e0e16303bc5f4dcc87756a049307c3d5275681791efbd7381f7fe5a8358482cf",
+    "repeat8.bin": "2f261c5524a407c2ac9b23c6a0f8b6f905e4487a8285866cfb8eb4b6941db29e",
+    "sample16-dense-hit.bin": "e19c0688fc96ebebe20e1fe314139d5bae54cc39038d48fa6b7d48224953477d",
+    "sample16-sparse-miss.bin": "a2bce8d11ea0ba064779fb3581a0551bd8958e7b6b2337ae732d16798572d445",
+    "sample64-dense-hit.bin": "037b25f761e3fff7f4f20b2d1bd22e2d3bb107bd90226cffa99706a9cfb6861f",
+    "sample64-sparse-miss.bin": "b924c1b6416086201bb6cc0dd1154fb0148fb4ea5a46c8e14a0902f84ee6164e",
+    "sparse-words.bin": "5ae927d019eef21f56b2d41449b12b29af78f802887651f537416750cae669b6",
+    "word-tail64.bin": "07a5e37eb8ae87bb9c90bb2b075076ec0392b9136d62e54126bf514ac1da2ddb",
+    "words25.bin": "8a13128231fc908286f71a85f52d1f813f90f840b244623cf4c032762bca74a7",
+    "words50.bin": "3f649f595f98cd50bac51af35181d6fea7b98568f581c98a922dff6b5be8bda4",
+    "words75.bin": "34bcd133d487d1b81c22fea41c637576a9a3372a58d93efbbd11b044e0092f3f",
+    "zero.bin": "07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541",
+    "zerohead-random.bin": "ffe6eda91dd16714952d5426d23c30769dc0fba3379c04a9e8e41833fdb915e4"
+  },
+  "before_settings": {
+    "/sys/block/zram0/comp_algorithm": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c",
+    "/sys/block/zram0/disksize": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e",
+    "/sys/module/zram/notes/.note.gnu.build-id": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199"
+  },
+  "hashes": {
+    "kernel": "515dcb6e407dff32e970274670fb357187c672fdd7f68d4ed0dbf0c1d7138055",
+    "module": "5837e4d1163380a9639481a4e66de3cde03f142a3d78922218c60fe9d21a576d",
+    "client": "8cb42664e562046145694f23fcf726f14256d90bca9dbc215085949034728ab9",
+    "qemu": "27cd395848940fc6482256d85096fc64bc4fe3f3e909824d51c202f8314cd9e9",
+    "busybox": "98d9040015eb17931e17b45e00b5f49f2451326372d5107a3a280f1cb3aaf3fc",
+    "bios": "3068c0b80988e2f2b04eaeda0b950e139b1760f5d269fc3587b819ff1f9f06c1"
+  },
+  "initramfs_sha256": "2b38e16f00bb91cf18d2028a4315c80a8468f84f25fa63c3e439e54fd9ddb266",
+  "exit_code": 0,
+  "console_protocol": {
+    "records": [
+      {
+        "cycle": "1",
+        "algorithm": "ghy-bitdirect",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "ghy-simd",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lz4-ghy",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lz4",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "zstd",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "ghy-bitdirect",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "ghy-simd",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lz4-ghy",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lz4",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "zstd",
+        "corpora": "26",
+        "workers": "4",
+        "checks": "24197"
+      }
+    ],
+    "protocol_errors": [],
+    "failure_tokens": [],
+    "pass_markers": 1
+  },
+  "launcher_sha256": "80963918bed5ad5ab3be1970d5c78dc42659acc827632066fe9869ee54828bb4",
+  "parser_sha256": "ca3fe173f5751b5571fce6e8864723e9790351dd80e393edb195ab1bd106782d",
+  "client_results": [
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ],
+    [
+      "26",
+      "4",
+      "24197"
+    ]
+  ],
+  "after_settings": {
+    "/sys/block/zram0/comp_algorithm": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c",
+    "/sys/block/zram0/disksize": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e",
+    "/sys/module/zram/notes/.note.gnu.build-id": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199"
+  },
+  "experimental_host_module_loaded": false,
+  "status": "passed"
+}

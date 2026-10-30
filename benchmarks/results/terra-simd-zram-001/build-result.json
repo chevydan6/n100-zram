@@ -1,0 +1,14 @@
+{
+  "status": "built",
+  "module_sha256": "5837e4d1163380a9639481a4e66de3cde03f142a3d78922218c60fe9d21a576d",
+  "vermagic": "7.2.11-200.fc44.x86_64 SMP preempt mod_unload",
+  "object_sha256": {
+    "backend_ghy_simd.o": "603b33f1a0595309ac4a2229a639852866a60c8cc667ff231c7a88c4ad3ea988",
+    "simd/dispatch.o": "04862f4c530f61dd5360f6c85f9bb79a7a18aff7c200ac0ae9deba653c89b5c1",
+    "simd/fallback.o": "eb8169ba394b86195a5922c33905577d948e6b490f99a8e2e897193d21685264",
+    "simd/vector-encoder/core.o": "67cd72114e8db303219604e20bee1156c356647e16ed0e8a7b58a2e6749fb69b",
+    "simd/vector-decoder/core.o": "8fb64ce8fac9ed6f8dfdffb301c10bdb52b24ef9afe379f3d42e9df8fc06ca3f",
+    "simd/vector-trial.o": "fb5b41cd46b9c7ea825ea31b2f50e6fcfee7e9453a41549ba016faea58ed4b69"
+  },
+  "scope": "Guest-only build; no host module load or timing claim"
+}

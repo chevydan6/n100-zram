@@ -1,0 +1,16 @@
+{
+  "scope": "Unbuilt default-off guest-test prototype; no host use",
+  "generator_sha256": "cb1877f868bc13f28db97bad21e46eef84f746367e6a544158fa02d5d3b1ef86",
+  "simd_port_manifest_sha256": "e4c21419b60410a9039503a21c720bbf5052ffd274c7b4e498eb313c3a35d9fb",
+  "scalar_port_manifest_sha256": "a33905843d739f913440d77c80dec29b07154bf8cdd6c3d8e17ddd1fb549909d",
+  "scalar_objects": [
+    "backend_ghy_simd.o",
+    "simd/dispatch.o",
+    "simd/fallback.o"
+  ],
+  "vector_objects": [
+    "simd/vector-encoder/core.o",
+    "simd/vector-decoder/core.o",
+    "simd/vector-trial.o"
+  ]
+}

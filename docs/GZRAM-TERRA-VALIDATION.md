@@ -32,3 +32,8 @@ and vector GZRAM plus scalar LZ4 controls, including actual FPU costs; retain st
 zstd/lzo-rle controls. Run isolated correctness first. If recovery and privileges
 block native work, continue independent userspace and workload methodology work,
 recording the blocker and avoiding production configuration changes.
+
+The [guarded SIMD ZRAM guest gate](../benchmarks/results/terra-simd-zram-001/summary.md)
+passed with AVX2 hidden and exposed, 241,970 client checks per guest. This is a
+new device integration correctness result, not native timing; the device gate
+has no direct SIMD-path counter. Host stock settings matched before/after.

@@ -18,6 +18,7 @@ for name in ['kernel', 'module', 'client', 'corpora-directory', 'qemu', 'busybox
     p.add_argument('--' + name, type=Path, required=True)
 p.add_argument('--library-path', type=Path)
 p.add_argument('--algorithms', nargs='+', default=['lzo-rle', 'lz4', 'zstd', 'lz4-ghy', 'ghy-bitdirect'])
+p.add_argument('--guest-avx2', action='store_true', help='Expose host AVX2 in the isolated correctness guest')
 p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
 a = p.parse_args()
 if os.geteuid() == 0: p.error('Run this isolated guest launcher unprivileged')
@@ -120,7 +121,7 @@ init = init.replace('DEPENDENCIES', '\n'.join('insmod /modules/' + name + '.ko |
 add('init', init.encode(), mode=stat.S_IFREG | 0o755); add('TRAILER!!!')
 initramfs = a.output / 'initramfs.cpio'; initramfs.write_bytes(archive)
 command = [str(a.qemu.resolve()), '-no-user-config', '-nodefaults', '-machine', 'q35,accel=kvm',
-           '-cpu', 'host,-avx2', '-smp', '2', '-m', '256', '-display', 'none', '-monitor', 'none',
+           '-cpu', 'host' if a.guest_avx2 else 'host,-avx2', '-smp', '2', '-m', '256', '-display', 'none', '-monitor', 'none',
            '-serial', 'stdio', '-nic', 'none', '-no-reboot', '-bios', str(a.bios.resolve()),
            '-L', str(a.qemu_data.resolve()), '-kernel', str(a.kernel.resolve()),
            '-initrd', str(initramfs.resolve()), '-append', 'console=ttyS0 rdinit=/init panic=1']

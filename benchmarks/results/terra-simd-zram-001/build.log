@@ -1,0 +1,36 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/terra-simd-zram-001'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  zcomp.o
+  CC [M]  zram_drv.o
+  CC [M]  backend_lzorle.o
+  CC [M]  backend_lzo.o
+  CC [M]  backend_lz4.o
+  CC [M]  backend_lz4hc.o
+  CC [M]  backend_zstd.o
+  CC [M]  backend_deflate.o
+  CC [M]  backend_842.o
+  CC [M]  backend_ghy_bitdirect.o
+  CC [M]  backend_lz4_ghy.o
+  CC [M]  ghy/encoder/core.o
+  CC [M]  ghy/decoder/core.o
+  CC [M]  ghy/hybrid.o
+  CC [M]  ghy/lz4_compress.o
+  CC [M]  ghy/lz4_decompress.o
+  CC [M]  backend_ghy_simd.o
+  CC [M]  simd/dispatch.o
+  CC [M]  simd/fallback.o
+  CC [M]  simd/vector-encoder/core.o
+  CC [M]  simd/vector-decoder/core.o
+  CC [M]  simd/vector-trial.o
+  LD [M]  zram.o
+  MODPOST Module.symvers
+  CC [M]  zram.mod.o
+  CC [M]  .module-common.o
+  LD [M]  zram.ko
+  BTF [M] zram.ko
+Skipping BTF generation for zram.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/dan/n100-zram/build/terra-simd-zram-001'
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'

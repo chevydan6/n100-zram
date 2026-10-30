@@ -1,0 +1,16 @@
+{
+  "status": "passed; kernel-inclusive native timing remains untested",
+  "time": 1793322687.936114,
+  "results": {
+    "scalar-fallback": {
+      "status": "passed",
+      "output": "/home/dan/n100-zram/build/terra-simd-zram-vm-001-scalar-fallback",
+      "scope": "Guest correctness only; no native performance or direct SIMD path counter"
+    },
+    "avx2": {
+      "status": "passed",
+      "output": "/home/dan/n100-zram/build/terra-simd-zram-vm-001-avx2",
+      "scope": "Guest correctness only; no native performance or direct SIMD path counter"
+    }
+  }
+}
