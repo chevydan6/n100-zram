@@ -14,6 +14,10 @@ try:
  shutil.copytree(source,target,symlinks=True);created.append(target)
  link=target/'build'
  if link.is_symlink():link.unlink()
+ # Copies from the user's home directory can retain user_home_t; restore the
+ # distribution's module labels before system services attempt to load them.
+ subprocess.run(['restorecon','-RF',str(target)],check=True)
+ subprocess.run(['matchpathcon','-V',str(target)],check=True,stdout=subprocess.DEVNULL)
  shutil.copyfile(image,kernel);os.chmod(kernel,0o644);created.append(kernel)
  shutil.copyfile(initrd,initout);os.chmod(initout,0o644);created.append(initout)
  subprocess.run(['depmod','-a',release],check=True)

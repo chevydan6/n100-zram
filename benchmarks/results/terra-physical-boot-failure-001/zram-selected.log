@@ -1,0 +1,5 @@
+Oct 30 21:18:17 fedora zram_generator::generator[453]: modprobe "zram" failed, ignoring: code exit status: 1
+Oct 30 21:18:43 fedora zram_generator::generator[807]: modprobe "zram" failed, ignoring: code exit status: 1
+Oct 30 21:19:02 fedora systemd[1]: Timed out waiting for device dev-zram0.device - /dev/zram0.
+Oct 30 21:19:02 fedora systemd[1]: Dependency failed for dev-zram0.swap - Compressed Swap on /dev/zram0.
+Oct 30 21:19:02 fedora systemd[1]: Dependency failed for systemd-zram-setup@zram0.service - Create swap on /dev/zram0.
