@@ -1,0 +1,7 @@
+# BTF-enabled N100 kernel rebuild
+
+The first experimental physical boot entered emergency mode after incorrectly labeled modules blocked `/boot/efi` and ZRAM; the labels were corrected and the [failure preserved](../terra-physical-boot-failure-001/findings.md). A separate systemd `bpf-restrict-fs` error was also observed. Systemd's [documented kernel requirements](https://github.com/systemd/systemd/issues/32968) include `CONFIG_DEBUG_INFO_BTF` for `RestrictFileSystems=`, which was disabled in the first experimental kernel. Restoring BTF is necessary to retain that feature; whether it eliminates the observed message must still be verified on the actual booted candidate.
+
+A separate N100-focused build tree uses `CONFIG_DEBUG_INFO_BTF=y`, with kernel release suffix `-n100-gzram-btf`, and retains the earlier GHY and common-driver configuration. Signed Fedora `dwarves`, `libdwarves1` and `zlib-ng-compat-devel` RPMs were extracted to a local toolchain without changing installed system packages. The first BTF build failed on missing `zlib.h`; its log is preserved. After adding that header, a four-worker build resumed under the exclusive lock. At this checkpoint it is running; no completed, booted or tested BTF kernel is claimed.
+
+The current stock kernel and zstd ZRAM remain active. This build is separate from the first experimental boot entry; it has not been installed or selected. A successful build still needs isolated validation and a careful physical boot check, including SELinux labels, systemd BPF behavior, physical hardware and stock swap.

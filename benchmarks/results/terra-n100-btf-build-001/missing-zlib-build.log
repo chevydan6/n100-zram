@@ -1,0 +1,106 @@
+make: Entering directory '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11'
+make[1]: Entering directory '/home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf'
+  SYNC    include/config/auto.conf
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/menu.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+  UPD     include/config/kernel.release
+  DESCEND objtool
+  UPD     include/generated/utsrelease.h
+  DESCEND bpf/resolve_btfids
+  MKDIR     /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf/
+  CC      scripts/mod/empty.o
+  MKDIR     /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids//libsubcmd
+  CC      scripts/mod/devicetable-offsets.s
+  GEN     /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf/bpf_helper_defs.h
+  MKELF   scripts/mod/elfconfig.h
+  HOSTCC  scripts/mod/sumversion.o
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/btf.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_common.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_legacy.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_helpers.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_tracing.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_endian.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_core_read.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/skel_internal.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_version.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/usdt.bpf.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_helper_defs.h
+  HOSTCC  scripts/mod/symsearch.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/exec-cmd.o
+  HOSTCC  scripts/mod/modpost.o
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/exec-cmd.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/help.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/pager.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/parse-options.h
+  INSTALL /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/run-command.h
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/exec-cmd.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/help.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf.o
+libbpf.c:48:10: fatal error: zlib.h: No such file or directory
+   48 | #include <zlib.h>
+      |          ^~~~~~~~
+compilation terminated.
+make[6]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/tools/build/Makefile.build:96: /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf.o] Error 1
+make[5]: *** [Makefile:153: /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf-in.o] Error 2
+make[4]: *** [Makefile:62: /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids//libbpf/libbpf.a] Error 2
+make[4]: *** Waiting for unfinished jobs....
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/pager.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/help.o
+  INSTALL libsubcmd_headers
+  HOSTCC  scripts/mod/file2alias.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/parse-options.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/pager.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/parse-options.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/run-command.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/run-command.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/sigchain.o
+  HOSTLD  scripts/mod/modpost
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/subcmd-config.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/sigchain.o
+  LD      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/libsubcmd-in.o
+  CC      kernel/bounds.s
+  AR      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libsubcmd/libsubcmd.a
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/subcmd-config.o
+  LD      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/libsubcmd-in.o
+  CC      arch/x86/kernel/asm-offsets.s
+  AR      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/bpf/resolve_btfids/libsubcmd/libsubcmd.a
+make[3]: *** [Makefile:77: bpf/resolve_btfids] Error 2
+make[2]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:1614: tools/bpf/resolve_btfids] Error 2
+make[2]: *** Waiting for unfinished jobs....
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/weak.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/check.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/arch/x86/decode.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/arch/x86/special.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/arch/x86/orc.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/special.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/builtin-check.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/elf.o
+  LD      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/arch/x86/objtool-in.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/klp-symid.o
+  CC      kernel/sched/rq-offsets.s
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/objtool.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/orc_gen.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/orc_dump.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libstring.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/libctype.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/str_error_r.o
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/librbtree.o
+  CALL    /home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/scripts/checksyscalls.sh 
+  CC      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/signal.o
+  LD      /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/objtool-in.o
+  LINK    /home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf/tools/objtool/objtool
+make[1]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/home/dan/n100-zram/build/terra-custom-kernel-001/out-n100-btf'
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11'
