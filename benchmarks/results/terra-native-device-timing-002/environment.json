@@ -1,0 +1,22 @@
+{
+  "kernel": "7.2.11-n100-gzram-btf",
+  "cpu": "model name\t: Intel(R) N100",
+  "captured_after": "2026-10-30T22:34:02+09:00",
+  "benchmark_sha256": "c805e193599da79fcb7c9a9f0723cc2af6c995f697392990cc3695a577bd2596",
+  "governors": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave"
+  },
+  "limits": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "3400000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "3400000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "3400000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "3400000"
+  }
+}
