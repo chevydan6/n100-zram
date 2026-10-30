@@ -1,0 +1,9 @@
+{
+  "time": 1793323003.611909,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "scope": "Authenticated read-only metadata; presence of entries does not verify recovery or reboot capability",
+  "boot_entry_categories_observed": ["current kernel", "older kernel 6.19.10", "rescue"],
+  "watchdog_devices": [],
+  "runtime_panic_settings": {"panic": "0", "panic_on_oops": "0", "nmi_watchdog": "0", "hardlockup_panic": "0", "softlockup_panic": "0"},
+  "machine_identifier_note": "Boot entry filenames contain the machine ID and are intentionally omitted."
+}

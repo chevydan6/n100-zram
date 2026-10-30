@@ -12,6 +12,8 @@ from pathlib import Path
 p = argparse.ArgumentParser(description=__doc__)
 for name in ['port', 'validation', 'kernel-build', 'output']:
     p.add_argument('--' + name, type=Path, required=True)
+p.add_argument('--native-capable', action='store_true',
+               help='Build a native-capable prototype without loading it; recovery validation remains mandatory')
 a = p.parse_args(); a.output = a.output.resolve()
 assert not a.output.exists()
 sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
@@ -31,13 +33,19 @@ for name in manifest['generated_sha256']:
 record = dict(scope='Guest-only uninstrumented SIMD measurement-probe correctness gate; no native execution or performance claim',
               port_manifest_sha256=sha(a.port / 'manifest.json'), validation_sha256=sha(a.validation),
               builder_sha256=sha(Path(__file__)), original_generated_sha256=manifest['generated_sha256'])
+if a.native_capable:
+    record['scope'] = 'Unloaded native-capable uninstrumented SIMD probe prototype; recovery and native execution unverified'
+record['native_capable'] = a.native_capable
 # Keep the validated port dispatcher byte-for-byte: no correctness counters in timing path.
 assert (a.output / 'dispatch.c').read_bytes() == (a.port / 'dispatch.c').read_bytes()
 selftest = (root / 'gzram/kernel/hybrid-probe.c').read_text()
 selftest = '#include <asm/cpufeature.h>\n' + selftest
 selftest = selftest.replace('"control/private-lz4.h"', '"scalar/private-lz4.h"')
-selftest = selftest.replace(' if (control_workspace_size()', ' if (!boot_cpu_has(X86_FEATURE_HYPERVISOR)) return -EPERM;\n if (control_workspace_size()')
-selftest = selftest.replace(' if (bracket && !irq_fpu_usable())', ' if (bracket) { result = -EOPNOTSUPP; goto out; }\n if (bracket && !irq_fpu_usable())')
+if not a.native_capable:
+    selftest = selftest.replace(' if (control_workspace_size()', ' if (!boot_cpu_has(X86_FEATURE_HYPERVISOR)) return -EPERM;\n if (control_workspace_size()')
+# Scalar controls may measure an outer FPU bracket. The SIMD codec owns its
+# own FPU section, so reject that one combination before entering either path.
+selftest = selftest.replace(' if (bracket && !irq_fpu_usable())', ' if (bracket && codec == 2) { result = -EOPNOTSUPP; goto out; }\n if (bracket && !irq_fpu_usable())')
 (a.output / 'selftest.c').write_text(selftest)
 shutil.copy2(root / 'gzram/kernel/hybrid-probe.h', a.output / 'hybrid-probe.h')
 (a.output / 'adapters.c').write_text('''/* SPDX-License-Identifier: GPL-2.0-only */

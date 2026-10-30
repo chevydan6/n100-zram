@@ -42,3 +42,10 @@ An [uninstrumented guest-only SIMD syscall probe](../benchmarks/results/terra-si
 built and passed guest correctness and register checks across 26 corpora. It
 refuses bare-metal loading and the client refuses VM timing. Native timing still
 requires a separately validated measurement build and verified recovery.
+
+A [native-capable, uninstrumented measurement prototype](../benchmarks/results/terra-native-probe-gate-002/summary.md)
+was built without loading it on the host. Exact-kernel guest checks passed with
+matched scalar/LZ4 FPU controls and explicit rejection of nested SIMD FPU sections.
+Authenticated read-only inspection found current, older and rescue boot entries,
+but no watchdog device and disabled panic/watchdog controls. Entry presence does
+not establish working recovery; native timing remains gated.
