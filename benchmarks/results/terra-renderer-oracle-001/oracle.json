@@ -1,0 +1,91 @@
+{
+  "scope": "Hypothetical zero-cost perfect selection using observed userspace logical sizes, 4096-byte cap; excludes allocation, hybrid tags, selection cost and any unmeasured algorithms",
+  "inputs_sha256": {
+    "benchmarks/results/terra-renderer-energy-audited-001/trial-001.json": "86a61e103643cd4a2d3a5caea3485202c804ce399a5d4c56a71517e074c0e565",
+    "benchmarks/results/terra-renderer-energy-audited-001/audit-full-001.json": "43c12946e0794ddd907187bf879d1424361c8520d86fad44a25c6afde64987cf",
+    "benchmarks/results/terra-renderer-energy-audited-001/trial-002.json": "ffafb66bffc828b4863e1bdefe55a974d099bad950a5f2688df725965fd3c4c9",
+    "benchmarks/results/terra-renderer-energy-audited-001/audit-full-002.json": "ba849f6d122dfdb41e2fe0661d8a000365ac9f2cf365fd041d8a1938ee14eab0",
+    "benchmarks/results/terra-renderer-energy-audited-001/trial-003.json": "2a185a9213abfebb1b04cb5b5df8e79bd91a1f89cf747bcba1ad6a8b11822b50",
+    "benchmarks/results/terra-renderer-energy-audited-001/audit-full-003.json": "8355e774c96b290d1c8f256fb074b2bfe3b503c28df1e0a96eda59ef8e6961f9"
+  },
+  "comparisons": [
+    {
+      "trial": 1,
+      "pages": 123,
+      "baseline": "table12-scalar",
+      "baseline_capped_bytes": 163660,
+      "ghy_capped_bytes": 192464,
+      "ideal_capped_bytes": 163265,
+      "ideal_saved_bytes": 395,
+      "ideal_saving_pct": 0.24135402664059635,
+      "ghy_smaller": 1,
+      "baseline_smaller": 122,
+      "tie": 0
+    },
+    {
+      "trial": 1,
+      "pages": 123,
+      "baseline": "zstd-userspace-level3",
+      "baseline_capped_bytes": 102918,
+      "ghy_capped_bytes": 192464,
+      "ideal_capped_bytes": 102917,
+      "ideal_saved_bytes": 1,
+      "ideal_saving_pct": 0.0009716473308847821,
+      "ghy_smaller": 1,
+      "baseline_smaller": 122,
+      "tie": 0
+    },
+    {
+      "trial": 2,
+      "pages": 119,
+      "baseline": "table12-scalar",
+      "baseline_capped_bytes": 159899,
+      "ghy_capped_bytes": 191539,
+      "ideal_capped_bytes": 159899,
+      "ideal_saved_bytes": 0,
+      "ideal_saving_pct": 0.0,
+      "ghy_smaller": 0,
+      "baseline_smaller": 118,
+      "tie": 1
+    },
+    {
+      "trial": 2,
+      "pages": 119,
+      "baseline": "zstd-userspace-level3",
+      "baseline_capped_bytes": 98592,
+      "ghy_capped_bytes": 191539,
+      "ideal_capped_bytes": 98592,
+      "ideal_saved_bytes": 0,
+      "ideal_saving_pct": 0.0,
+      "ghy_smaller": 0,
+      "baseline_smaller": 119,
+      "tie": 0
+    },
+    {
+      "trial": 3,
+      "pages": 124,
+      "baseline": "table12-scalar",
+      "baseline_capped_bytes": 169337,
+      "ghy_capped_bytes": 218744,
+      "ideal_capped_bytes": 169248,
+      "ideal_saved_bytes": 89,
+      "ideal_saving_pct": 0.0525579170529772,
+      "ghy_smaller": 1,
+      "baseline_smaller": 123,
+      "tie": 0
+    },
+    {
+      "trial": 3,
+      "pages": 124,
+      "baseline": "zstd-userspace-level3",
+      "baseline_capped_bytes": 104529,
+      "ghy_capped_bytes": 218744,
+      "ideal_capped_bytes": 104529,
+      "ideal_saved_bytes": 0,
+      "ideal_saving_pct": 0.0,
+      "ghy_smaller": 0,
+      "baseline_smaller": 124,
+      "tie": 0
+    }
+  ]
+}
