@@ -1,0 +1,3 @@
+build/astra-kernel-source-001/kernel-7.2.11-200.fc44.src.rpm:
+    Header SHA256 digest: OK
+    Payload SHA256 digest: OK
