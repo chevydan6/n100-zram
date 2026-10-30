@@ -1,0 +1,6 @@
+Oct 30 21:18:13 fedora systemd[1]: bpf-restrict-fs: Failed to load BPF object: No such process
+Oct 30 21:18:13 fedora systemd-modules-load[183]: Module 'msr' is built in
+Oct 30 21:18:13 fedora systemd-modules-load[183]: Inserted module 'i2c_dev'
+Oct 30 21:18:17 fedora systemd[1]: bpf-restrict-fs: Failed to load BPF object: No such process
+Oct 30 21:18:16 fedora systemd-modules-load[467]: Failed to find module 'i2c_dev'
+Oct 30 21:18:16 fedora systemd-modules-load[467]: Failed to find module 'msr'
