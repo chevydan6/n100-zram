@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "records": [
+    {
+      "mode": "normal",
+      "budget": 16,
+      "result": {
+        "status": "passed",
+        "roundtrips": 126528,
+        "block_selection_boundary_pages": 72,
+        "sampling_boundary_pages": 312,
+        "direct_repeat_header_checks": 840,
+        "guarded_capacity_cases": 84304,
+        "repeat_merge_checks": 62,
+        "repeat_decode_boundary_checks": 72864,
+        "exhaustive_mask_decode_checks": 107520,
+        "malformed_or_mutated_decode_cases": 120000,
+        "four_thread_roundtrips": 4000,
+        "modes_checked": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "mode": "normal",
+      "budget": 64,
+      "result": {
+        "status": "passed",
+        "roundtrips": 126528,
+        "block_selection_boundary_pages": 72,
+        "sampling_boundary_pages": 312,
+        "direct_repeat_header_checks": 840,
+        "guarded_capacity_cases": 84304,
+        "repeat_merge_checks": 62,
+        "repeat_decode_boundary_checks": 72864,
+        "exhaustive_mask_decode_checks": 107520,
+        "malformed_or_mutated_decode_cases": 120000,
+        "four_thread_roundtrips": 4000,
+        "modes_checked": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "mode": "asan",
+      "budget": 16,
+      "result": {
+        "status": "passed",
+        "roundtrips": 126528,
+        "block_selection_boundary_pages": 72,
+        "sampling_boundary_pages": 312,
+        "direct_repeat_header_checks": 840,
+        "guarded_capacity_cases": 84304,
+        "repeat_merge_checks": 62,
+        "repeat_decode_boundary_checks": 72864,
+        "exhaustive_mask_decode_checks": 107520,
+        "malformed_or_mutated_decode_cases": 120000,
+        "four_thread_roundtrips": 4000,
+        "modes_checked": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "mode": "asan",
+      "budget": 64,
+      "result": {
+        "status": "passed",
+        "roundtrips": 126528,
+        "block_selection_boundary_pages": 72,
+        "sampling_boundary_pages": 312,
+        "direct_repeat_header_checks": 840,
+        "guarded_capacity_cases": 84304,
+        "repeat_merge_checks": 62,
+        "repeat_decode_boundary_checks": 72864,
+        "exhaustive_mask_decode_checks": 107520,
+        "malformed_or_mutated_decode_cases": 120000,
+        "four_thread_roundtrips": 4000,
+        "modes_checked": [
+          0,
+          1,
+          2
+        ]
+      }
+    }
+  ]
+}
