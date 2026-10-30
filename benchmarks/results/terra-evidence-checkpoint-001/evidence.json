@@ -1,0 +1,248 @@
+{
+  "status": "passed",
+  "scope": "Reproducible evidence aggregation; per-page warm userspace measurement, not native ZRAM, workload frequency or acceptance outcome",
+  "inputs_sha256": {
+    "terra-renderer-energy-audited-001/trial-001.json": "86a61e103643cd4a2d3a5caea3485202c804ce399a5d4c56a71517e074c0e565",
+    "terra-renderer-energy-audited-001/audit-full-001.json": "43c12946e0794ddd907187bf879d1424361c8520d86fad44a25c6afde64987cf",
+    "terra-renderer-energy-audited-001/trial-002.json": "ffafb66bffc828b4863e1bdefe55a974d099bad950a5f2688df725965fd3c4c9",
+    "terra-renderer-energy-audited-001/audit-full-002.json": "ba849f6d122dfdb41e2fe0661d8a000365ac9f2cf365fd041d8a1938ee14eab0",
+    "terra-renderer-energy-audited-001/trial-003.json": "2a185a9213abfebb1b04cb5b5df8e79bd91a1f89cf747bcba1ad6a8b11822b50",
+    "terra-renderer-energy-audited-001/audit-full-003.json": "8355e774c96b290d1c8f256fb074b2bfe3b503c28df1e0a96eda59ef8e6961f9",
+    "terra-combined-sampling-energy-001/audit.json": "994452e7e62232a713bc0a6f50f951f4fb05ae6de9d958ff86814856828d6e71",
+    "terra-zerotwo-energy-001/audit.json": "5dfc9ac0adcc2b5671d3281767b7adf3be367c114c0a16d2fffd0feec8e4e9f6",
+    "terra-simd-device-path-001/corrected-status.json": "6ad2c0d061393bb7e3448cb894b854d4b3f77bfdaf74fdc2a2c660eea94c5c0f"
+  },
+  "renderer_trials": [
+    {
+      "trial": 1,
+      "pages": 123,
+      "failed_or_nonresident_attempts": 6694,
+      "codecs": {
+        "table12-scalar": {
+          "encoded_bytes": 163660,
+          "compress_wall_ns_median": 21242.02734375,
+          "compress_cpu_ns_median": 21119.443359375,
+          "compress_package_uj_median": 50.6640625,
+          "decompress_wall_ns_median": 10758.859375,
+          "decompress_package_uj_median": 26.166015625
+        },
+        "ghy-combined-avx2": {
+          "encoded_bytes": 192464,
+          "compress_wall_ns_median": 19794.3837890625,
+          "compress_cpu_ns_median": 19623.27734375,
+          "compress_package_uj_median": 44.703125,
+          "decompress_wall_ns_median": 10116.9599609375,
+          "decompress_package_uj_median": 24.794921875
+        },
+        "ghy-sample16-avx2": {
+          "encoded_bytes": 192464,
+          "compress_wall_ns_median": 18703.9736328125,
+          "compress_cpu_ns_median": 18542.3076171875,
+          "compress_package_uj_median": 43.8681640625,
+          "decompress_wall_ns_median": 10174.0498046875,
+          "decompress_package_uj_median": 24.736328125
+        },
+        "zstd-userspace-level3": {
+          "encoded_bytes": 102918,
+          "compress_wall_ns_median": 68320.884765625,
+          "compress_cpu_ns_median": 67831.5791015625,
+          "compress_package_uj_median": 167.1904296875,
+          "decompress_wall_ns_median": 29511.6904296875,
+          "decompress_package_uj_median": 70.6904296875
+        }
+      },
+      "parent_vs_lz4": {
+        "compress": {
+          "wall": 6.1317707468827365,
+          "cpu": 6.381497371672751,
+          "package_uj": -4.730974309258363
+        },
+        "decompress": {
+          "wall": -0.3136952100282753,
+          "cpu": -0.31388824230178525,
+          "package_uj": -2.678873049118302
+        }
+      },
+      "sampling_vs_parent": {
+        "compress": {
+          "wall": -1.8181421229862993,
+          "cpu": -1.714079380272604,
+          "package_uj": -2.3211982938200593
+        },
+        "decompress": {
+          "wall": 0.03976258023918877,
+          "cpu": 0.037216545045515304,
+          "package_uj": 0.5810630596304156
+        }
+      },
+      "parent_vs_userspace_zstd": {
+        "compress": {
+          "wall": -67.21783082716229,
+          "cpu": -67.19803270790936,
+          "package_uj": -67.78996822785015
+        },
+        "decompress": {
+          "wall": -63.02769119136481,
+          "cpu": -63.033774764015085,
+          "package_uj": -62.857142857142854
+        }
+      }
+    },
+    {
+      "trial": 2,
+      "pages": 119,
+      "failed_or_nonresident_attempts": 6623,
+      "codecs": {
+        "table12-scalar": {
+          "encoded_bytes": 159916,
+          "compress_wall_ns_median": 21532.1455078125,
+          "compress_cpu_ns_median": 21397.20703125,
+          "compress_package_uj_median": 48.3984375,
+          "decompress_wall_ns_median": 10722.208984375,
+          "decompress_package_uj_median": 25.8681640625
+        },
+        "ghy-combined-avx2": {
+          "encoded_bytes": 191547,
+          "compress_wall_ns_median": 19674.0546875,
+          "compress_cpu_ns_median": 19482.6083984375,
+          "compress_package_uj_median": 44.8828125,
+          "decompress_wall_ns_median": 10034.298828125,
+          "decompress_package_uj_median": 24.318359375
+        },
+        "ghy-sample16-avx2": {
+          "encoded_bytes": 187852,
+          "compress_wall_ns_median": 20298.2373046875,
+          "compress_cpu_ns_median": 20137.6025390625,
+          "compress_package_uj_median": 48.1015625,
+          "decompress_wall_ns_median": 10334.7744140625,
+          "decompress_package_uj_median": 24.2587890625
+        },
+        "zstd-userspace-level3": {
+          "encoded_bytes": 98592,
+          "compress_wall_ns_median": 68207.5224609375,
+          "compress_cpu_ns_median": 67636.6142578125,
+          "compress_package_uj_median": 163.79296875,
+          "decompress_wall_ns_median": 30182.490234375,
+          "decompress_package_uj_median": 70.2734375
+        }
+      },
+      "parent_vs_lz4": {
+        "compress": {
+          "wall": 8.222183671533422,
+          "cpu": 8.417422262262676,
+          "package_uj": 7.223173960442297
+        },
+        "decompress": {
+          "wall": 0.2900589173639778,
+          "cpu": 0.030062407264286328,
+          "package_uj": -4.581338164876403
+        }
+      },
+      "sampling_vs_parent": {
+        "compress": {
+          "wall": -0.7862455203821228,
+          "cpu": -0.6589239605608754,
+          "package_uj": -0.840971585701189
+        },
+        "decompress": {
+          "wall": 0.09220817967479089,
+          "cpu": 0.1748546938229678,
+          "package_uj": 1.380790960451983
+        }
+      },
+      "parent_vs_userspace_zstd": {
+        "compress": {
+          "wall": -66.98853427346931,
+          "cpu": -67.00016157482838,
+          "package_uj": -68.97138840751826
+        },
+        "decompress": {
+          "wall": -65.05966465549447,
+          "cpu": -65.03514604279815,
+          "package_uj": -64.90473696930637
+        }
+      }
+    },
+    {
+      "trial": 3,
+      "pages": 124,
+      "failed_or_nonresident_attempts": 6644,
+      "codecs": {
+        "table12-scalar": {
+          "encoded_bytes": 169337,
+          "compress_wall_ns_median": 22217.80810546875,
+          "compress_cpu_ns_median": 22043.33935546875,
+          "compress_package_uj_median": 41.455078125,
+          "decompress_wall_ns_median": 10689.7158203125,
+          "decompress_package_uj_median": 20.384765625
+        },
+        "ghy-combined-avx2": {
+          "encoded_bytes": 218744,
+          "compress_wall_ns_median": 11960.28173828125,
+          "compress_cpu_ns_median": 11897.533203125,
+          "compress_package_uj_median": 26.5537109375,
+          "decompress_wall_ns_median": 9682.12744140625,
+          "decompress_package_uj_median": 19.728515625
+        },
+        "ghy-sample16-avx2": {
+          "encoded_bytes": 214089,
+          "compress_wall_ns_median": 12250.83837890625,
+          "compress_cpu_ns_median": 12168.92431640625,
+          "compress_package_uj_median": 28.69970703125,
+          "decompress_wall_ns_median": 9873.27197265625,
+          "decompress_package_uj_median": 18.86474609375
+        },
+        "zstd-userspace-level3": {
+          "encoded_bytes": 104529,
+          "compress_wall_ns_median": 69569.98095703125,
+          "compress_cpu_ns_median": 68999.8232421875,
+          "compress_package_uj_median": 139.74267578125,
+          "decompress_wall_ns_median": 30968.8583984375,
+          "decompress_package_uj_median": 58.2041015625
+        }
+      },
+      "parent_vs_lz4": {
+        "compress": {
+          "wall": -8.384303402904203,
+          "cpu": -8.198435601071774,
+          "package_uj": -9.270267843890906
+        },
+        "decompress": {
+          "wall": 0.20442276045905539,
+          "cpu": 0.4799306200768516,
+          "package_uj": -3.6000671860559272
+        }
+      },
+      "sampling_vs_parent": {
+        "compress": {
+          "wall": 0.22709287197603123,
+          "cpu": 0.18188411582357178,
+          "package_uj": -2.540350208787223
+        },
+        "decompress": {
+          "wall": -0.0439866611585682,
+          "cpu": -0.1548926893281677,
+          "package_uj": -0.5769155107715696
+        }
+      },
+      "parent_vs_userspace_zstd": {
+        "compress": {
+          "wall": -70.61307838742331,
+          "cpu": -70.56921707475462,
+          "package_uj": -71.19371293806854
+        },
+        "decompress": {
+          "wall": -64.71749490154848,
+          "cpu": -64.63841864191686,
+          "package_uj": -64.461623788868
+        }
+      }
+    }
+  ],
+  "unresolved": [
+    "No representative native ZRAM comparison with GZRAM and current stock zstd",
+    "No verified hard-hang recovery or alternate boot selection",
+    "No native SIMD state cost, application responsiveness or whole-laptop energy measurement",
+    "No demonstrated repeatable 10 percent real-world improvement"
+  ]
+}
