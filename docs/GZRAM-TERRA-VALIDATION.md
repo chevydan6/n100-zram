@@ -49,3 +49,9 @@ matched scalar/LZ4 FPU controls and explicit rejection of nested SIMD FPU sectio
 Authenticated read-only inspection found current, older and rescue boot entries,
 but no watchdog device and disabled panic/watchdog controls. Entry presence does
 not establish working recovery; native timing remains gated.
+
+The [read-only current recovery inspection](../benchmarks/results/terra-recovery-inspection-001/summary.md)
+found ACPI reboot, disabled panic/watchdog controls, no pstore backend or watchdog
+device, and an inconclusive EC capability query. Existing native runner safeguards
+are not met. No runtime, boot or swap settings were changed; native tests remain
+deferred until recovery is independently demonstrated.
