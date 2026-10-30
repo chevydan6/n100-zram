@@ -1,0 +1,7 @@
+# Physical BTF boot check
+
+This checklist is for a one-time boot only; it does not authorize a ZRAM experiment. Keep the saved Fedora default and stock zstd ZRAM. Before setting a one-time entry, recheck lock ownership, boot default and empty next entry, hashes, labels, current swap, and that the user is present. The previous emergency boot returned to Fedora after a power cycle, but automatic recovery from a hard hang is unproven.
+
+After a boot, capture the boot ID and kernel release, `grubby --default-kernel`, GRUB environment, `findmnt / /boot/efi`, `swapon --show`, ZRAM algorithm, SELinux enforcing state, `/sys/kernel/btf/vmlinux` presence, failed units, and current journal errors including AVC denials and `bpf-restrict-fs`. Test physical display, input, Wi-Fi and audio with the user. A quiet journal alone does not prove systemd restrictions actually applied; test a representative RestrictFileSystems unit separately before claiming that. Preserve boot diagnostics and restore the saved normal kernel after the observation. Native compression and memory-pressure testing require a separate recovery and lock review.
+
+If emergency mode appears, record the displayed failure and avoid entering repair commands blindly. The verified previous recovery was a power cycle to the saved Fedora entry; a hard hang may need a long power-button hold, whose reliability for all failure modes is not established.
