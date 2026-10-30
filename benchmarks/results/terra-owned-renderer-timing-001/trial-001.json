@@ -1,0 +1,413 @@
+{
+  "status": "passed",
+  "scope": "Chromium renderer sample plus randomized userspace codec timing, generated local content; no page bytes persisted; no package energy, ZRAM, reclaim or application-performance claim",
+  "seed": 445,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "sources_and_binaries_sha256": {
+    "benchmarks/owned-browser-workload.html": "531ee7d36e80936097a7fb883aeca8b27b1f38b9d7e5a384698a7586eaa7f09b",
+    "benchmarks/sample-owned-renderer-timing.py": "47ae1418c042d258bfd245636dd485983a1abc40af4becefecd782832717d3f4",
+    "benchmarks/sample-owned-compile.py": "b5fbaea2168a834c900798a0cc96916eec90b9cab43beb6ff7cf3e1647822b40",
+    "build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+    "build/lz4-scalar-table-001/table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "build/lz4-scalar-table-001/table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "build/lz4-scalar-table-001/table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+    "build/terra-combined-sampling-validation-001/normal/combined-sample16.so": "37fcc81b6e47e0bc7d5b5c00e72d1f132bcdced8327e5394f9e01c7f1d5c2e01"
+  },
+  "classes": {
+    "anonymous_private": {
+      "pages": 128,
+      "same_word": 5,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 123,
+          "encoded_bytes": 173336,
+          "logical_stored_bytes": 173310,
+          "raw_pages": 2
+        },
+        "table13-scalar": {
+          "pages": 123,
+          "encoded_bytes": 173470,
+          "logical_stored_bytes": 173444,
+          "raw_pages": 2
+        },
+        "table12-scalar": {
+          "pages": 123,
+          "encoded_bytes": 173708,
+          "logical_stored_bytes": 173682,
+          "raw_pages": 2
+        },
+        "ghy-combined-scalar": {
+          "pages": 123,
+          "encoded_bytes": 214127,
+          "logical_stored_bytes": 214111,
+          "raw_pages": 2
+        },
+        "ghy-combined-avx2": {
+          "pages": 123,
+          "encoded_bytes": 214127,
+          "logical_stored_bytes": 214111,
+          "raw_pages": 2
+        }
+      },
+      "hybrid_mode_comparison": {
+        "1": {
+          "pages": 59,
+          "ghy_logical_bytes": 92408,
+          "lz4_logical_bytes": 52475,
+          "ghy_larger": 58,
+          "equal": 0,
+          "ghy_smaller": 1
+        },
+        "2": {
+          "pages": 62,
+          "ghy_logical_bytes": 113511,
+          "lz4_logical_bytes": 113015,
+          "ghy_larger": 62,
+          "equal": 0,
+          "ghy_smaller": 0
+        },
+        "0": {
+          "pages": 2,
+          "ghy_logical_bytes": 8192,
+          "lz4_logical_bytes": 8192,
+          "ghy_larger": 0,
+          "equal": 2,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "selected": {
+            "pages": 85,
+            "parent_bytes": 128836,
+            "lz4_framed_bytes": 91909,
+            "ghy_mode1": 56,
+            "lz4_smaller": 55,
+            "lz4_larger": 1,
+            "equal": 29
+          },
+          "rejected": {
+            "pages": 38,
+            "parent_bytes": 85275,
+            "lz4_framed_bytes": 82741,
+            "ghy_mode1": 3,
+            "lz4_smaller": 3,
+            "lz4_larger": 0,
+            "equal": 35
+          }
+        },
+        "64": {
+          "selected": {
+            "pages": 86,
+            "parent_bytes": 131288,
+            "lz4_framed_bytes": 92913,
+            "ghy_mode1": 57,
+            "lz4_smaller": 56,
+            "lz4_larger": 1,
+            "equal": 29
+          },
+          "rejected": {
+            "pages": 37,
+            "parent_bytes": 82823,
+            "lz4_framed_bytes": 81737,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 35
+          }
+        },
+        "16-offset4": {
+          "selected": {
+            "pages": 89,
+            "parent_bytes": 136837,
+            "lz4_framed_bytes": 99780,
+            "ghy_mode1": 57,
+            "lz4_smaller": 56,
+            "lz4_larger": 1,
+            "equal": 32
+          },
+          "rejected": {
+            "pages": 34,
+            "parent_bytes": 77274,
+            "lz4_framed_bytes": 74870,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 32
+          }
+        },
+        "16-union": {
+          "selected": {
+            "pages": 89,
+            "parent_bytes": 136837,
+            "lz4_framed_bytes": 99780,
+            "ghy_mode1": 57,
+            "lz4_smaller": 56,
+            "lz4_larger": 1,
+            "equal": 32
+          },
+          "rejected": {
+            "pages": 34,
+            "parent_bytes": 77274,
+            "lz4_framed_bytes": 74870,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 32
+          }
+        },
+        "16-whole50": {
+          "selected": {
+            "pages": 86,
+            "parent_bytes": 131032,
+            "lz4_framed_bytes": 93975,
+            "ghy_mode1": 57,
+            "lz4_smaller": 56,
+            "lz4_larger": 1,
+            "equal": 29
+          },
+          "rejected": {
+            "pages": 37,
+            "parent_bytes": 83079,
+            "lz4_framed_bytes": 80675,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 35
+          }
+        }
+      },
+      "zero_prefix_probe": {
+        "eligible": 37,
+        "fired": 1,
+        "smaller": 1,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 2020,
+        "hypothetical_bytes": 1346
+      },
+      "two_match_probe": {
+        "eligible": 37,
+        "fired": 1,
+        "smaller": 1,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 2020,
+        "hypothetical_bytes": 1346
+      }
+    },
+    "file_executable": {
+      "pages": 128,
+      "same_word": 0,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 128,
+          "encoded_bytes": 371724,
+          "logical_stored_bytes": 371724,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 128,
+          "encoded_bytes": 372523,
+          "logical_stored_bytes": 372523,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 128,
+          "encoded_bytes": 374171,
+          "logical_stored_bytes": 374171,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 128,
+          "encoded_bytes": 375195,
+          "logical_stored_bytes": 375195,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 128,
+          "encoded_bytes": 375195,
+          "logical_stored_bytes": 375195,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 128,
+          "ghy_logical_bytes": 375195,
+          "lz4_logical_bytes": 374171,
+          "ghy_larger": 128,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "rejected": {
+            "pages": 127,
+            "parent_bytes": 372045,
+            "lz4_framed_bytes": 372045,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 127
+          },
+          "selected": {
+            "pages": 1,
+            "parent_bytes": 3150,
+            "lz4_framed_bytes": 3150,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 1
+          }
+        },
+        "64": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 375195,
+            "lz4_framed_bytes": 375195,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-offset4": {
+          "rejected": {
+            "pages": 127,
+            "parent_bytes": 372401,
+            "lz4_framed_bytes": 372401,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 127
+          },
+          "selected": {
+            "pages": 1,
+            "parent_bytes": 2794,
+            "lz4_framed_bytes": 2794,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 1
+          }
+        },
+        "16-union": {
+          "rejected": {
+            "pages": 126,
+            "parent_bytes": 369251,
+            "lz4_framed_bytes": 369251,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 126
+          },
+          "selected": {
+            "pages": 2,
+            "parent_bytes": 5944,
+            "lz4_framed_bytes": 5944,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 2
+          }
+        },
+        "16-whole50": {
+          "rejected": {
+            "pages": 127,
+            "parent_bytes": 372045,
+            "lz4_framed_bytes": 372045,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 127
+          },
+          "selected": {
+            "pages": 1,
+            "parent_bytes": 3150,
+            "lz4_framed_bytes": 3150,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 1
+          }
+        }
+      }
+    }
+  },
+  "eligible_reads": {
+    "anonymous_private": 142,
+    "file_executable": 677
+  },
+  "failures": 6743,
+  "renderer_candidates": 473,
+  "renderer_map_denials": 0,
+  "descendants_seen": 1890,
+  "renderer_type_seen": 473,
+  "profile_matches": 473,
+  "codec_timing": {
+    "pages": 123,
+    "calls_per_batch": 32,
+    "warmups": 3,
+    "order": "randomized six operations per page",
+    "scope": "Userspace, same generated renderer pages; wall and thread CPU include Python/ctypes overhead; no RAPL, kernel, allocator or application timing",
+    "metrics": {
+      "table12-scalar": {
+        "encoded_bytes_total": 173708,
+        "compress": {
+          "wall_ns_median": 22374.59375,
+          "cpu_ns_median": 22301.65625
+        },
+        "decompress": {
+          "wall_ns_median": 10553.0,
+          "cpu_ns_median": 10662.09375
+        }
+      },
+      "ghy-combined-avx2": {
+        "encoded_bytes_total": 214127,
+        "compress": {
+          "wall_ns_median": 17634.28125,
+          "cpu_ns_median": 17558.8125
+        },
+        "decompress": {
+          "wall_ns_median": 9626.96875,
+          "cpu_ns_median": 9647.6875
+        }
+      },
+      "ghy-sample16-avx2": {
+        "encoded_bytes_total": 211593,
+        "compress": {
+          "wall_ns_median": 17554.0625,
+          "cpu_ns_median": 17675.3125
+        },
+        "decompress": {
+          "wall_ns_median": 9587.46875,
+          "cpu_ns_median": 9580.71875
+        }
+      }
+    },
+    "paired_percent": {
+      "ghy-combined-avx2": {
+        "compress": {
+          "wall": 6.467853756055053,
+          "cpu": 6.284810350510317
+        },
+        "decompress": {
+          "wall": -1.3736153647994964,
+          "cpu": -0.5567657289220262
+        }
+      },
+      "ghy-sample16-avx2": {
+        "compress": {
+          "wall": 1.7525921412851364,
+          "cpu": 1.9508015407072143
+        },
+        "decompress": {
+          "wall": -1.1261756196889183,
+          "cpu": -1.0736035764207452
+        }
+      }
+    }
+  }
+}
