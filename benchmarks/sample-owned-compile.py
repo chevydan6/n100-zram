@@ -103,6 +103,10 @@ def zero_word_selection_features(data):
     shifted = repeat or sum(data[i * (len(data)//16)+4:i * (len(data)//16)+8] == bytes(4) for i in range(16)) * 8 >= 16
     selected['16-offset4'] = shifted
     selected['16-union'] = selected['16'] or shifted
+    # Untimed whole-page confirmation after a 16-word rejection. This is
+    # exact for zero-word density, not a proof of LZ4/GZRAM relative size.
+    dense_zero = sum(data[i:i+4] == bytes(4) for i in range(0,len(data),4)) * 2 >= len(data)//4
+    selected['16-whole50'] = selected['16'] or dense_zero
     return selected
 
 

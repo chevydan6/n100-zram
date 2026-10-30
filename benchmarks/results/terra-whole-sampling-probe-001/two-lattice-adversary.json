@@ -1,0 +1,108 @@
+{
+  "scope": "Synthetic untimed two-lattice adversary; no speed or energy claim",
+  "seed": 441,
+  "pages_sha256": "277a07390c236e84ae316f0becb8e32025a943ec4d9ff4a9d89d8757f80a1576",
+  "result": {
+    "pages": 128,
+    "same_word": 0,
+    "codecs": {
+      "table14-scalar": {
+        "pages": 128,
+        "encoded_bytes": 100484,
+        "logical_stored_bytes": 100484,
+        "raw_pages": 0
+      },
+      "table13-scalar": {
+        "pages": 128,
+        "encoded_bytes": 100485,
+        "logical_stored_bytes": 100485,
+        "raw_pages": 0
+      },
+      "table12-scalar": {
+        "pages": 128,
+        "encoded_bytes": 100543,
+        "logical_stored_bytes": 100543,
+        "raw_pages": 0
+      },
+      "ghy-combined-scalar": {
+        "pages": 128,
+        "encoded_bytes": 68096,
+        "logical_stored_bytes": 68096,
+        "raw_pages": 0
+      },
+      "ghy-combined-avx2": {
+        "pages": 128,
+        "encoded_bytes": 68096,
+        "logical_stored_bytes": 68096,
+        "raw_pages": 0
+      }
+    },
+    "hybrid_mode_comparison": {
+      "1": {
+        "pages": 128,
+        "ghy_logical_bytes": 68096,
+        "lz4_logical_bytes": 100543,
+        "ghy_larger": 0,
+        "equal": 0,
+        "ghy_smaller": 128
+      }
+    },
+    "sampling_probe": {
+      "16": {
+        "rejected": {
+          "pages": 128,
+          "parent_bytes": 68096,
+          "lz4_framed_bytes": 101567,
+          "ghy_mode1": 128,
+          "lz4_smaller": 0,
+          "lz4_larger": 128,
+          "equal": 0
+        }
+      },
+      "64": {
+        "selected": {
+          "pages": 128,
+          "parent_bytes": 68096,
+          "lz4_framed_bytes": 101567,
+          "ghy_mode1": 128,
+          "lz4_smaller": 0,
+          "lz4_larger": 128,
+          "equal": 0
+        }
+      },
+      "16-offset4": {
+        "rejected": {
+          "pages": 128,
+          "parent_bytes": 68096,
+          "lz4_framed_bytes": 101567,
+          "ghy_mode1": 128,
+          "lz4_smaller": 0,
+          "lz4_larger": 128,
+          "equal": 0
+        }
+      },
+      "16-union": {
+        "rejected": {
+          "pages": 128,
+          "parent_bytes": 68096,
+          "lz4_framed_bytes": 101567,
+          "ghy_mode1": 128,
+          "lz4_smaller": 0,
+          "lz4_larger": 128,
+          "equal": 0
+        }
+      },
+      "16-whole50": {
+        "selected": {
+          "pages": 128,
+          "parent_bytes": 68096,
+          "lz4_framed_bytes": 101567,
+          "ghy_mode1": 128,
+          "lz4_smaller": 0,
+          "lz4_larger": 128,
+          "equal": 0
+        }
+      }
+    }
+  }
+}

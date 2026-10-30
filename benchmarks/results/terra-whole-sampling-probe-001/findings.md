@@ -1,0 +1,11 @@
+# Whole-page zero-density confirmation: diagnostic
+
+An untimed hypothetical policy keeps the 16-word sampling gate and, on rejection, counts every four-byte word; if at least half are zero, it permits a GZRAM trial. This removes the fixed-position blind spot for zero-density information, but a density threshold still cannot establish which compressor produces a smaller frame. The policy is not implemented in the encoder, and no compression latency, package energy, kernel SIMD cost or allocator effect was measured. The threshold is an experimental hypothesis, not an optimized crossover.
+
+The whole-page check would preserve the parent's selection on the earlier `sample64-sparse-miss` and two-lattice adversaries. It would leave random and period127 pages rejected and preserve selection on the `sparse-words` and `mixed-pages` fixtures. All 36 corpus outcomes are retained in `corpus.json`.
+
+A new deterministic threshold adversary contains 550 nonzero random words of 1,024, including all 16 original sample positions. All 128 pages fail both the initial gate and the 50% zero threshold, yet the parent produced 300,544 capped logical bytes compared with 412,333 for GHY-framed LZ4, a 37.2% size increase if those pages were diverted. The script and input hash are retained; the fixture is constructed to expose a failure and is not an estimate of how often it occurs.
+
+In a fresh generated SQLite sample, 126 anonymous pages were retained, 21 in parent GZRAM mode. The whole-page check did not change the initial gate's selection in that sample: 102 rejected and 24 selected. It does not resolve the observed cases where GZRAM produced larger frames. This small owned-process reservoir is not population-weighted, does not represent kernel reclaim, and includes no latency or energy evidence.
+
+Reject this particular threshold as a general policy. It requires a page-wide scan on rejected pages, with unknown cost, and still misses beneficial GZRAM pages; it does not solve misclassification of selected pages. A more credible next approach must justify its full computation and classify data beyond zero density, with preserved counterexamples and independently collected workloads. No native testing occurred.
