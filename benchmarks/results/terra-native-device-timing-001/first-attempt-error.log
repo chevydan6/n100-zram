@@ -1,0 +1,28 @@
+
+OSError: [Errno 16] Device or resource busy
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dan/n100-zram/benchmarks/results/terra-native-device-timing-001/benchmark.py", line 54, in <module>
+    (sys/'reset').write_text('1')
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib64/python3.14/pathlib/__init__.py", line 809, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 16] Device or resource busy
+
+During handling of the above exception, another exception occurred:
+
+OSError: [Errno 16] Device or resource busy
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dan/n100-zram/benchmarks/results/terra-native-device-timing-001/benchmark.py", line 58, in <module>
+    P('/sys/class/zram-control/hot_remove').write_text(str(idx))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib64/python3.14/pathlib/__init__.py", line 809, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 16] Device or resource busy
