@@ -1,0 +1,7 @@
+# Read-only watchdog driver inspection
+
+On the restarted Lenovo N100 running `7.2.11-200.fc44.x86_64`, `/sys/class/watchdog` was empty and no watchdog device was visible. The kernel configuration provides `CONFIG_ITCO_WDT=m`, `CONFIG_WDAT_WDT=m`, `CONFIG_MFD_INTEL_PMC_BXT=m` and `CONFIG_LPC_ICH=m`; the corresponding module files exist. None of `iTCO_wdt`, `wdat_wdt`, `intel_pmc_bxt`, or `lpc_ich` was loaded during the check. Driver files existing do not establish that hardware is present, supported, enabled, or capable of recovering from a hard hang.
+
+The machine exposes Intel Alder Lake-N eSPI controller `8086:5481`. The installed `lpc_ich` module's advertised aliases did not include this specific PCI ID. The `intel_pmc_bxt` module advertises ACPI ID `INT34D2`, which was not listed in `/sys/bus/acpi/devices`; no matching TCO, watchdog, PMC or BXT platform device was listed. An ACPI `WDAT` table was not visible in the accessible table directory. These limited read-only observations do not prove no alternate controller, firmware path, or supported configuration exists.
+
+No driver was loaded, watchdog armed, firmware setting changed, or reboot triggered. A useful hard-hang recovery test requires a supported independent recovery mechanism, a bounded test plan, and restoration verification; `softdog` or an untested module must not be treated as evidence of hardware recovery. The previously documented native-test gate remains unmet.
