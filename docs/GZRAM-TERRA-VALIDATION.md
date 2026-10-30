@@ -55,3 +55,21 @@ found ACPI reboot, disabled panic/watchdog controls, no pstore backend or watchd
 device, and an inconclusive EC capability query. Existing native runner safeguards
 are not met. No runtime, boot or swap settings were changed; native tests remain
 deferred until recovery is independently demonstrated.
+
+## Manual recovery handoff
+
+The user is physically present and agreed to a controlled boot-menu check. A
+read-only local preflight was saved at `build/terra-recovery-manual-preflight-001.json`;
+it contains machine-specific boot/swap identifiers and is intentionally not
+published. No native test owned the exclusive lock at preflight. The running
+kernel was 7.2.11-200.fc44.x86_64 and stock zstd ZRAM was active.
+
+The planned manual action is a normal restart followed by a one-time selection of
+6.19.10-300.fc44.x86_64 in the boot menu, without changing the default. When the
+user returns, verify `uname -r`, boot ID, `/proc/swaps`, ZRAM algorithm and size,
+lock ownership and live jobs; then guide a normal return to the current default
+kernel and verify restoration. If the menu or older kernel does not work, stop and
+record the observation. Do not infer automatic hard-hang recovery from a successful
+alternate boot. The established native runner's reboot/panic/pstore safeguards
+remain unmet until independently verified. No experimental host module, boot
+setting or swap setting has been changed for this handoff.
