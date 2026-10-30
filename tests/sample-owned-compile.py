@@ -31,8 +31,8 @@ try:
  bucket={'pages':0,'same_word':0,'codecs':{}};mod.add_sample(bucket,result);assert bucket['pages']==1 and all(x['pages']==1 for x in bucket['codecs'].values())
  assert sum(x['pages'] for x in bucket['hybrid_mode_comparison'].values())==1
  assert all(x['ghy_larger']+x['equal']+x['ghy_smaller']==x['pages'] for x in bucket['hybrid_mode_comparison'].values())
- assert mod.zero_word_selection_features(bytes(4096)) == {'16':True,'64':True}
- assert mod.zero_word_selection_features(bytes(range(256))*16) == {'16':False,'64':False}
+ assert mod.zero_word_selection_features(bytes(4096)) == {'16':True,'64':True,'16-offset4':True,'16-union':True}
+ assert mod.zero_word_selection_features(bytes(range(256))*16) == {'16':False,'64':False,'16-offset4':False,'16-union':False}
  assert mod.zero_prefix_recurrence(bytes(8)+b'abcdefgh'+bytes(32)+b'abcdefgh'+bytes(4040))
  assert mod.zero_prefix_recurrence_count(bytes(8)+b'abcdefgh'+bytes(32)+b'abcdefgh'+bytes(4040))==1
  assert mod.zero_prefix_recurrence_count(bytes(8)+b'abcdefgh'+bytes(8)+b'abcdefgh'+bytes(8)+b'abcdefgh'+bytes(4048))==2

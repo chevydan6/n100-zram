@@ -97,7 +97,13 @@ def zero_prefix_recurrence(data, scan_bytes=64, search_bytes=1024):
 def zero_word_selection_features(data):
     """Untimed predictions of existing 16/64-word sampling gates."""
     repeat = data[:32] == data[32:64]
-    return {str(n): repeat or sum(data[i * (len(data)//n):i * (len(data)//n)+4] == bytes(4) for i in range(n)) * 8 >= n for n in (16, 64)}
+    selected = {str(n): repeat or sum(data[i * (len(data)//n):i * (len(data)//n)+4] == bytes(4) for i in range(n)) * 8 >= n for n in (16, 64)}
+    # On a rejection, a second set shifted by one word is an untimed
+    # diagnostic, not a guarantee that either sampling lattice is unbiased.
+    shifted = repeat or sum(data[i * (len(data)//16)+4:i * (len(data)//16)+8] == bytes(4) for i in range(16)) * 8 >= 16
+    selected['16-offset4'] = shifted
+    selected['16-union'] = selected['16'] or shifted
+    return selected
 
 
 class Codecs:
