@@ -1,0 +1,304 @@
+{
+  "status": "passed",
+  "scope": "Owned Chromium renderer descendants of a fresh browser, generated local content and temporary profile; aggregate resident pages only, no reclaim/energy claim",
+  "seed": 443,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "sources_and_binaries_sha256": {
+    "benchmarks/owned-browser-workload.html": "531ee7d36e80936097a7fb883aeca8b27b1f38b9d7e5a384698a7586eaa7f09b",
+    "benchmarks/sample-owned-renderer.py": "a805f0e3da943b07cbe9a76be944fe58b2f48a3e13dff9461a799ca9108c265d",
+    "benchmarks/sample-owned-compile.py": "b5fbaea2168a834c900798a0cc96916eec90b9cab43beb6ff7cf3e1647822b40",
+    "build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+    "build/lz4-scalar-table-001/table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "build/lz4-scalar-table-001/table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "build/lz4-scalar-table-001/table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77"
+  },
+  "classes": {
+    "anonymous_private": {
+      "pages": 116,
+      "same_word": 3,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 113,
+          "encoded_bytes": 152922,
+          "logical_stored_bytes": 152922,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 113,
+          "encoded_bytes": 153118,
+          "logical_stored_bytes": 153118,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 113,
+          "encoded_bytes": 153400,
+          "logical_stored_bytes": 153400,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 113,
+          "encoded_bytes": 191498,
+          "logical_stored_bytes": 191498,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 113,
+          "encoded_bytes": 191498,
+          "logical_stored_bytes": 191498,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 50,
+          "ghy_logical_bytes": 99850,
+          "lz4_logical_bytes": 99450,
+          "ghy_larger": 50,
+          "equal": 0,
+          "ghy_smaller": 0
+        },
+        "1": {
+          "pages": 63,
+          "ghy_logical_bytes": 91648,
+          "lz4_logical_bytes": 53950,
+          "ghy_larger": 63,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "rejected": {
+            "pages": 36,
+            "parent_bytes": 82494,
+            "lz4_framed_bytes": 79786,
+            "ghy_mode1": 3,
+            "lz4_smaller": 3,
+            "lz4_larger": 0,
+            "equal": 33
+          },
+          "selected": {
+            "pages": 77,
+            "parent_bytes": 109004,
+            "lz4_framed_bytes": 74518,
+            "ghy_mode1": 60,
+            "lz4_smaller": 60,
+            "lz4_larger": 0,
+            "equal": 17
+          }
+        },
+        "64": {
+          "rejected": {
+            "pages": 36,
+            "parent_bytes": 82494,
+            "lz4_framed_bytes": 79786,
+            "ghy_mode1": 3,
+            "lz4_smaller": 3,
+            "lz4_larger": 0,
+            "equal": 33
+          },
+          "selected": {
+            "pages": 77,
+            "parent_bytes": 109004,
+            "lz4_framed_bytes": 74518,
+            "ghy_mode1": 60,
+            "lz4_smaller": 60,
+            "lz4_larger": 0,
+            "equal": 17
+          }
+        },
+        "16-offset4": {
+          "selected": {
+            "pages": 81,
+            "parent_bytes": 119312,
+            "lz4_framed_bytes": 82118,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 18
+          },
+          "rejected": {
+            "pages": 32,
+            "parent_bytes": 72186,
+            "lz4_framed_bytes": 72186,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 32
+          }
+        },
+        "16-union": {
+          "selected": {
+            "pages": 84,
+            "parent_bytes": 123886,
+            "lz4_framed_bytes": 86692,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 21
+          },
+          "rejected": {
+            "pages": 29,
+            "parent_bytes": 67612,
+            "lz4_framed_bytes": 67612,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 29
+          }
+        },
+        "16-whole50": {
+          "rejected": {
+            "pages": 35,
+            "parent_bytes": 80298,
+            "lz4_framed_bytes": 77720,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 33
+          },
+          "selected": {
+            "pages": 78,
+            "parent_bytes": 111200,
+            "lz4_framed_bytes": 76584,
+            "ghy_mode1": 61,
+            "lz4_smaller": 61,
+            "lz4_larger": 0,
+            "equal": 17
+          }
+        }
+      },
+      "zero_prefix_probe": {
+        "eligible": 38,
+        "fired": 2,
+        "smaller": 2,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 4348,
+        "hypothetical_bytes": 2357
+      },
+      "two_match_probe": {
+        "eligible": 38,
+        "fired": 2,
+        "smaller": 2,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 4348,
+        "hypothetical_bytes": 2357
+      }
+    },
+    "file_executable": {
+      "pages": 128,
+      "same_word": 0,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 128,
+          "encoded_bytes": 370267,
+          "logical_stored_bytes": 370267,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 128,
+          "encoded_bytes": 371004,
+          "logical_stored_bytes": 371004,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 128,
+          "encoded_bytes": 372597,
+          "logical_stored_bytes": 372597,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 128,
+          "encoded_bytes": 373621,
+          "logical_stored_bytes": 373621,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 128,
+          "encoded_bytes": 373621,
+          "logical_stored_bytes": 373621,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 128,
+          "ghy_logical_bytes": 373621,
+          "lz4_logical_bytes": 372597,
+          "ghy_larger": 128,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 373621,
+            "lz4_framed_bytes": 373621,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "64": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 373621,
+            "lz4_framed_bytes": 373621,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-offset4": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 373621,
+            "lz4_framed_bytes": 373621,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-union": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 373621,
+            "lz4_framed_bytes": 373621,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-whole50": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 373621,
+            "lz4_framed_bytes": 373621,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        }
+      }
+    }
+  },
+  "eligible_reads": {
+    "anonymous_private": 116,
+    "file_executable": 692
+  },
+  "failures": 6707,
+  "renderer_candidates": 470,
+  "renderer_map_denials": 0,
+  "descendants_seen": 1877,
+  "renderer_type_seen": 470,
+  "profile_matches": 470
+}

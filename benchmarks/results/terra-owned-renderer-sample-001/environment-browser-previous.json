@@ -1,0 +1,9 @@
+{
+  "cpu": "Intel(R) N100",
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "browser_version": "Chromium 155.0.8059.84 Built from source for Fedora release 44 (Forty Four)",
+  "browser_binary_sha256_after_trials": "04c67ff33d9c2dc2f9be3ce216b7c77cf771b4399626b6e28e38d6e81f85bf0f",
+  "scope": "Read-only metadata after experiments",
+  "swap": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/swap/hibernate.swap                    file\t\t6291452\t\t0\t\t10\n/dev/zram0                              partition\t3832828\t\t5708\t\t100\n",
+  "zram_compression": "lzo-rle lzo lz4 lz4hc [zstd] deflate 842"
+}

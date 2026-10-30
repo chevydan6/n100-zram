@@ -1,0 +1,38 @@
+{
+  "status": "failed",
+  "scope": "Owned Chromium renderer descendants of a fresh browser, generated local content and temporary profile; aggregate resident pages only, no reclaim/energy claim",
+  "seed": 439,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "sources_and_binaries_sha256": {
+    "benchmarks/owned-browser-workload.html": "531ee7d36e80936097a7fb883aeca8b27b1f38b9d7e5a384698a7586eaa7f09b",
+    "benchmarks/sample-owned-renderer.py": "c2b64e31415f4656827c3d28a1100d1ffe95660097b4bf4799010ddf97f79a2a",
+    "benchmarks/sample-owned-compile.py": "b5fbaea2168a834c900798a0cc96916eec90b9cab43beb6ff7cf3e1647822b40",
+    "build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+    "build/lz4-scalar-table-001/table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "build/lz4-scalar-table-001/table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "build/lz4-scalar-table-001/table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77"
+  },
+  "classes": {
+    "anonymous_private": {
+      "pages": 0,
+      "same_word": 0,
+      "codecs": {}
+    },
+    "file_executable": {
+      "pages": 0,
+      "same_word": 0,
+      "codecs": {}
+    }
+  },
+  "eligible_reads": {
+    "anonymous_private": 0,
+    "file_executable": 0
+  },
+  "failures": 0,
+  "renderer_candidates": 0,
+  "renderer_map_denials": 0,
+  "descendants_seen": 1417,
+  "renderer_type_seen": 0,
+  "profile_matches": 0,
+  "error": "RuntimeError('no anonymous pages')"
+}
