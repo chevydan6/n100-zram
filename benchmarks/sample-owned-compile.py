@@ -94,6 +94,12 @@ def zero_prefix_recurrence(data, scan_bytes=64, search_bytes=1024):
     return zero_prefix_recurrence_count(data,scan_bytes,search_bytes)>0
 
 
+def zero_word_selection_features(data):
+    """Untimed predictions of existing 16/64-word sampling gates."""
+    repeat = data[:32] == data[32:64]
+    return {str(n): repeat or sum(data[i * (len(data)//n):i * (len(data)//n)+4] == bytes(4) for i in range(n)) * 8 >= n for n in (16, 64)}
+
+
 class Codecs:
     def __init__(self, directory, hybrid, candidate=None, second_candidate=None):
         self.entries = []
@@ -149,6 +155,7 @@ class Codecs:
                     raise RuntimeError('invalid hybrid frame header: '+name)
                 output[name]['mode'] = int(header[6])
         # Only a diagnostic feature, never stored payload or an encoding decision.
+        output['selection_features'] = zero_word_selection_features(data)
         output['zero_prefix_match_count'] = zero_prefix_recurrence_count(data)
         output['zero_prefix_recurrence'] = output['zero_prefix_match_count'] > 0
         return output
@@ -160,7 +167,7 @@ def add_sample(bucket, classified):
         bucket['same_word'] += 1
         return
     for name, values in classified.items():
-        if name in ['zero_prefix_recurrence','zero_prefix_match_count']: continue
+        if name in ['zero_prefix_recurrence','zero_prefix_match_count','selection_features']: continue
         dest = bucket['codecs'].setdefault(name, {'pages':0,'encoded_bytes':0,'logical_stored_bytes':0,'raw_pages':0})
         dest['pages'] += 1
         dest['encoded_bytes'] += values['encoded_bytes']
@@ -174,6 +181,12 @@ def add_sample(bucket, classified):
     a,b=hybrid['logical_stored_bytes'],lz4['logical_stored_bytes']
     pair['pages']+=1;pair['ghy_logical_bytes']+=a;pair['lz4_logical_bytes']+=b
     pair['ghy_larger']+=int(a>b);pair['equal']+=int(a==b);pair['ghy_smaller']+=int(a<b)
+    # Counts only: the unmeasured gate would route rejected pages directly to
+    # a GHY-wrapped LZ4 frame. Existing parent and raw-size caps still apply.
+    for budget, selected in classified['selection_features'].items():
+        entry=bucket.setdefault('sampling_probe',{}).setdefault(budget,{}).setdefault('selected' if selected else 'rejected',{'pages':0,'parent_bytes':0,'lz4_framed_bytes':0,'ghy_mode1':0,'lz4_smaller':0,'lz4_larger':0,'equal':0})
+        alt=min(PAGE,lz4['encoded_bytes']+8)
+        entry['pages']+=1;entry['parent_bytes']+=a;entry['lz4_framed_bytes']+=alt;entry['ghy_mode1']+=int(mode=='1');entry['lz4_smaller']+=int(alt<a);entry['lz4_larger']+=int(alt>a);entry['equal']+=int(alt==a)
     # Existing guard only consults recurrence for accepted GZR payloads > n/4.
     # Simulate replacing such a frame with a GHY-wrapped table12 LZ4 frame.
     for candidate_name, comparison_name, minimum in [('ghy-zero-prefix-avx2','candidate_comparison',1), ('ghy-zero-prefix-two-avx2','second_candidate_comparison',2)]:

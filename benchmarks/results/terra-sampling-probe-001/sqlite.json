@@ -1,0 +1,206 @@
+{
+  "status": "passed",
+  "scope": "Owned synthetic SQLite workload, aggregate present resident pages only; not reclaim distribution, allocator use, timing or energy",
+  "seed": 432,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "sources_and_binaries_sha256": {
+    "benchmarks/owned-sqlite-workload.py": "181a7794a4a475f7599cce58d4687c8d3d5aa8a45041c06fba63f23ea8684669",
+    "benchmarks/sample-owned-sqlite.py": "e4929ef49ae3bef0a46644be901c9dbc1d54c02a6415f6709281c2b6eef31c2e",
+    "benchmarks/sample-owned-compile.py": "448f44e8c3b3210b4a118cd663c7157bd03809a876da502805dd61bb6b8ae676",
+    "build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+    "build/lz4-scalar-table-001/table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "build/lz4-scalar-table-001/table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "build/lz4-scalar-table-001/table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77"
+  },
+  "classes": {
+    "anonymous_private": {
+      "pages": 128,
+      "same_word": 0,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 128,
+          "encoded_bytes": 204133,
+          "logical_stored_bytes": 204133,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 128,
+          "encoded_bytes": 204172,
+          "logical_stored_bytes": 204172,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 128,
+          "encoded_bytes": 204216,
+          "logical_stored_bytes": 204216,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 128,
+          "encoded_bytes": 223048,
+          "logical_stored_bytes": 223048,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 128,
+          "encoded_bytes": 223048,
+          "logical_stored_bytes": 223048,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 110,
+          "ghy_logical_bytes": 178768,
+          "lz4_logical_bytes": 177888,
+          "ghy_larger": 110,
+          "equal": 0,
+          "ghy_smaller": 0
+        },
+        "1": {
+          "pages": 18,
+          "ghy_logical_bytes": 44280,
+          "lz4_logical_bytes": 26328,
+          "ghy_larger": 18,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "selected": {
+            "pages": 26,
+            "parent_bytes": 52119,
+            "lz4_framed_bytes": 37889,
+            "ghy_mode1": 15,
+            "lz4_smaller": 15,
+            "lz4_larger": 0,
+            "equal": 11
+          },
+          "rejected": {
+            "pages": 102,
+            "parent_bytes": 170929,
+            "lz4_framed_bytes": 167351,
+            "ghy_mode1": 3,
+            "lz4_smaller": 3,
+            "lz4_larger": 0,
+            "equal": 99
+          }
+        },
+        "64": {
+          "selected": {
+            "pages": 27,
+            "parent_bytes": 54767,
+            "lz4_framed_bytes": 39473,
+            "ghy_mode1": 16,
+            "lz4_smaller": 16,
+            "lz4_larger": 0,
+            "equal": 11
+          },
+          "rejected": {
+            "pages": 101,
+            "parent_bytes": 168281,
+            "lz4_framed_bytes": 165767,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 99
+          }
+        }
+      },
+      "zero_prefix_probe": {
+        "eligible": 18,
+        "fired": 1,
+        "smaller": 1,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 2908,
+        "hypothetical_bytes": 1871
+      },
+      "two_match_probe": {
+        "eligible": 18,
+        "fired": 1,
+        "smaller": 1,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 2908,
+        "hypothetical_bytes": 1871
+      }
+    },
+    "file_executable": {
+      "pages": 128,
+      "same_word": 0,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 128,
+          "encoded_bytes": 408110,
+          "logical_stored_bytes": 408110,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 128,
+          "encoded_bytes": 408916,
+          "logical_stored_bytes": 408916,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 128,
+          "encoded_bytes": 410813,
+          "logical_stored_bytes": 410813,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 128,
+          "encoded_bytes": 411837,
+          "logical_stored_bytes": 411837,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 128,
+          "encoded_bytes": 411837,
+          "logical_stored_bytes": 411837,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 128,
+          "ghy_logical_bytes": 411837,
+          "lz4_logical_bytes": 410813,
+          "ghy_larger": 128,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 411837,
+            "lz4_framed_bytes": 411837,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "64": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 411837,
+            "lz4_framed_bytes": 411837,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        }
+      }
+    }
+  },
+  "eligible_reads": {
+    "anonymous_private": 1330,
+    "file_executable": 960
+  },
+  "failures": 674
+}
