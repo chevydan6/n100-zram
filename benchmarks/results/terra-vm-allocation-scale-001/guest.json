@@ -1,0 +1,1003 @@
+{
+  "scope": "Diskless guest ZRAM allocation per synthetic corpus; no native performance, representative pressure, energy or recovery claim",
+  "command": [
+    "/home/dan/n100-zram/build/astra-vm/root/usr/bin/qemu-system-x86_64",
+    "-no-user-config",
+    "-nodefaults",
+    "-machine",
+    "q35,accel=kvm",
+    "-cpu",
+    "host",
+    "-smp",
+    "2",
+    "-m",
+    "256",
+    "-display",
+    "none",
+    "-monitor",
+    "none",
+    "-serial",
+    "stdio",
+    "-nic",
+    "none",
+    "-no-reboot",
+    "-bios",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/share/seabios/bios-256k.bin",
+    "-L",
+    "/home/dan/n100-zram/build/astra-vm/root/usr/share/qemu",
+    "-kernel",
+    "/boot/vmlinuz-7.2.11-200.fc44.x86_64",
+    "-initrd",
+    "/home/dan/n100-zram/build/terra-scaling-vm-001/initramfs.cpio",
+    "-append",
+    "console=ttyS0 rdinit=/init panic=1"
+  ],
+  "kernel_release": "7.2.11-200.fc44.x86_64",
+  "guest_memory_mib": 256,
+  "guest_cpus": 2,
+  "corpus_order_seed": 743,
+  "corpus_order": [
+    "clusters25.bin",
+    "bash-elf.bin",
+    "sparse-words.bin",
+    "random.bin"
+  ],
+  "host_uid": 1000,
+  "host_mem_available_kib": 2582948,
+  "disks_attached": false,
+  "network_attached": false,
+  "dependencies": {
+    "lz4hc_compress": {
+      "path": "/lib/modules/7.2.11-200.fc44.x86_64/kernel/lib/lz4/lz4hc_compress.ko.xz",
+      "sha256": "5273bc15d1a6d322fcf3f29f0ce2e9a8a944aeee70813814d69b7adcc26f2ed9",
+      "unpacked_sha256": "7f5c36481cb8ea580b489389dd9eaf7c6f0f29a912bbb99194e2263c25a20344"
+    }
+  },
+  "algorithms": [
+    "zstd",
+    "lz4",
+    "ghy-simd",
+    "lzo-rle",
+    "ghy-bitdirect",
+    "lz4-ghy"
+  ],
+  "corpus_sha256": {
+    "bash-elf.bin": "87f31251262577584a4209d6a1ceaf1ee78ee059ffe2228061a560d61ce74732",
+    "clusters25.bin": "82125ce9d0a101c66d7570d336e2b16bc83ceacf564c78a201d265023b094302",
+    "random.bin": "afe347bc9bb4211d9017c8da16c8abd205760d60cf6249f33fb522dad1de19bf",
+    "sparse-words.bin": "5ae927d019eef21f56b2d41449b12b29af78f802887651f537416750cae669b6"
+  },
+  "before_settings": {
+    "/sys/block/zram0/comp_algorithm": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c",
+    "/sys/block/zram0/disksize": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e",
+    "/sys/module/zram/notes/.note.gnu.build-id": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199"
+  },
+  "hashes": {
+    "kernel": "515dcb6e407dff32e970274670fb357187c672fdd7f68d4ed0dbf0c1d7138055",
+    "module": "f2160beb65ae802205259f8209219643a047ff1ac616a7ec3941b0e1b29be4d2",
+    "stock_module": "7139c6c3517c51fa51b713bac386d51fbd397c0f8230a93032a10d0ecd5e9063",
+    "client": "831e69ce9eec27ade661a3cf8890906ca7b6e55642fc50ae9ae2ad4dcd7af052",
+    "qemu": "27cd395848940fc6482256d85096fc64bc4fe3f3e909824d51c202f8314cd9e9",
+    "busybox": "98d9040015eb17931e17b45e00b5f49f2451326372d5107a3a280f1cb3aaf3fc",
+    "bios": "3068c0b80988e2f2b04eaeda0b950e139b1760f5d269fc3587b819ff1f9f06c1"
+  },
+  "initramfs_sha256": "fa713cc7c73dfc7f9eea4cc177719c495ac723ab08d6d88b169aa7681ff5da52",
+  "exit_code": 0,
+  "console_protocol": {
+    "records": [
+      {
+        "cycle": "1",
+        "algorithm": "zstd",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lz4",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "ghy-simd",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lzo-rle",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "ghy-bitdirect",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "1",
+        "algorithm": "lz4-ghy",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "zstd",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lz4",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "ghy-simd",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lzo-rle",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "ghy-bitdirect",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      },
+      {
+        "cycle": "2",
+        "algorithm": "lz4-ghy",
+        "corpora": "4",
+        "workers": "4",
+        "checks": "7213"
+      }
+    ],
+    "protocol_errors": [],
+    "failure_tokens": [],
+    "pass_markers": 1
+  },
+  "launcher_sha256": "a9c75f33e7017b1df0d7d739d4d6d9b9cfe4b919c675f519040727775645cf08",
+  "parser_sha256": "ca3fe173f5751b5571fce6e8864723e9790351dd80e393edb195ab1bd106782d",
+  "client_results": [
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ],
+    [
+      "4",
+      "4",
+      "7213"
+    ]
+  ],
+  "after_settings": {
+    "/sys/block/zram0/comp_algorithm": "2ae61289383d3e5bcd6d6369696d28b0fa2a3437bb99a507baf10e23a1bb6e4c",
+    "/sys/block/zram0/disksize": "9a0fe8f0a80e4ebf64edc17316a138365c8f4408a0846e7a65b16612ac2b277e",
+    "/sys/module/zram/notes/.note.gnu.build-id": "fbe13c8696f6f739d3dcd1e3deada833aa60d5ad299b6e14faad23ae0ca7be63",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "20906f772bf0b93e695828b6019fcd7284341cbe95ee2865a6e86b8e400551ed",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "f8c45e01199bb8ba09a68f154f3b5c3da4facb92887e1a3f034808f7f0217a5c",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "887db6466701960a231486e3ae935aacad7a4db669f16767ef3b7b1ea97bd199"
+  },
+  "experimental_host_module_loaded": false,
+  "allocation_observations": [
+    {
+      "cycle": "1",
+      "algorithm": "zstd",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 143337,
+      "mem_used_total": 757760,
+      "mem_limit": 0,
+      "mem_used_max": 757760,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "zstd",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 334180,
+      "mem_used_total": 614400,
+      "mem_limit": 0,
+      "mem_used_max": 614400,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "zstd",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 102664,
+      "mem_used_total": 438272,
+      "mem_limit": 0,
+      "mem_used_max": 438272,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "zstd",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 152194,
+      "mem_used_total": 819200,
+      "mem_limit": 0,
+      "mem_used_max": 819200,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 409221,
+      "mem_used_total": 667648,
+      "mem_limit": 0,
+      "mem_used_max": 712704,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 137076,
+      "mem_used_total": 524288,
+      "mem_limit": 0,
+      "mem_used_max": 524288,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-simd",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 148588,
+      "mem_used_total": 471040,
+      "mem_limit": 0,
+      "mem_used_max": 475136,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-simd",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 413560,
+      "mem_used_total": 679936,
+      "mem_limit": 0,
+      "mem_used_max": 720896,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-simd",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 83912,
+      "mem_used_total": 286720,
+      "mem_limit": 0,
+      "mem_used_max": 286720,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-simd",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lzo-rle",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 151906,
+      "mem_used_total": 786432,
+      "mem_limit": 0,
+      "mem_used_max": 786432,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lzo-rle",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 406987,
+      "mem_used_total": 712704,
+      "mem_limit": 0,
+      "mem_used_max": 741376,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 5,
+      "huge_pages_since": 10
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lzo-rle",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 137004,
+      "mem_used_total": 503808,
+      "mem_limit": 0,
+      "mem_used_max": 503808,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lzo-rle",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 532480,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 148588,
+      "mem_used_total": 487424,
+      "mem_limit": 0,
+      "mem_used_max": 487424,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 413560,
+      "mem_used_total": 679936,
+      "mem_limit": 0,
+      "mem_used_max": 700416,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 83912,
+      "mem_used_total": 286720,
+      "mem_limit": 0,
+      "mem_used_max": 286720,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4-ghy",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 152177,
+      "mem_used_total": 798720,
+      "mem_limit": 0,
+      "mem_used_max": 806912,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4-ghy",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 412544,
+      "mem_used_total": 712704,
+      "mem_limit": 0,
+      "mem_used_max": 733184,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4-ghy",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 137296,
+      "mem_used_total": 495616,
+      "mem_limit": 0,
+      "mem_used_max": 495616,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "1",
+      "algorithm": "lz4-ghy",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 532480,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "2",
+      "algorithm": "zstd",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 143337,
+      "mem_used_total": 741376,
+      "mem_limit": 0,
+      "mem_used_max": 741376,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "zstd",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 334180,
+      "mem_used_total": 606208,
+      "mem_limit": 0,
+      "mem_used_max": 606208,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "zstd",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 102664,
+      "mem_used_total": 438272,
+      "mem_limit": 0,
+      "mem_used_max": 438272,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "zstd",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 152194,
+      "mem_used_total": 819200,
+      "mem_limit": 0,
+      "mem_used_max": 819200,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 409221,
+      "mem_used_total": 704512,
+      "mem_limit": 0,
+      "mem_used_max": 704512,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 137076,
+      "mem_used_total": 524288,
+      "mem_limit": 0,
+      "mem_used_max": 524288,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 532480,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-simd",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 148588,
+      "mem_used_total": 491520,
+      "mem_limit": 0,
+      "mem_used_max": 491520,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-simd",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 413560,
+      "mem_used_total": 704512,
+      "mem_limit": 0,
+      "mem_used_max": 724992,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-simd",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 83912,
+      "mem_used_total": 286720,
+      "mem_limit": 0,
+      "mem_used_max": 286720,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-simd",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lzo-rle",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 151906,
+      "mem_used_total": 778240,
+      "mem_limit": 0,
+      "mem_used_max": 786432,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lzo-rle",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 406987,
+      "mem_used_total": 696320,
+      "mem_limit": 0,
+      "mem_used_max": 724992,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 5,
+      "huge_pages_since": 10
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lzo-rle",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 137004,
+      "mem_used_total": 512000,
+      "mem_limit": 0,
+      "mem_used_max": 516096,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lzo-rle",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 148588,
+      "mem_used_total": 487424,
+      "mem_limit": 0,
+      "mem_used_max": 487424,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 413560,
+      "mem_used_total": 704512,
+      "mem_limit": 0,
+      "mem_used_max": 724992,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 83912,
+      "mem_used_total": 286720,
+      "mem_limit": 0,
+      "mem_used_max": 286720,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "ghy-bitdirect",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4-ghy",
+      "corpus": "clusters25.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 152177,
+      "mem_used_total": 798720,
+      "mem_limit": 0,
+      "mem_used_max": 802816,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4-ghy",
+      "corpus": "bash-elf.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 412544,
+      "mem_used_total": 729088,
+      "mem_limit": 0,
+      "mem_used_max": 749568,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4-ghy",
+      "corpus": "sparse-words.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 137296,
+      "mem_used_total": 499712,
+      "mem_limit": 0,
+      "mem_used_max": 499712,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 0,
+      "huge_pages_since": 0
+    },
+    {
+      "cycle": "2",
+      "algorithm": "lz4-ghy",
+      "corpus": "random.bin",
+      "orig_data_size": 520192,
+      "compr_data_size": 520192,
+      "mem_used_total": 520192,
+      "mem_limit": 0,
+      "mem_used_max": 528384,
+      "same_pages": 0,
+      "pages_compacted": 0,
+      "huge_pages": 127,
+      "huge_pages_since": 256
+    }
+  ],
+  "allocation_protocol_errors": [],
+  "allocation_parser_sha256": "8a3ba44315218735bde57ddec3cb4a98c975277761851518be1b1fb9bb97ba78",
+  "coexist_markers": {
+    "completed": [
+      [
+        "1",
+        "zstd"
+      ],
+      [
+        "1",
+        "lz4"
+      ],
+      [
+        "1",
+        "ghy-simd"
+      ],
+      [
+        "1",
+        "lzo-rle"
+      ],
+      [
+        "1",
+        "ghy-bitdirect"
+      ],
+      [
+        "1",
+        "lz4-ghy"
+      ],
+      [
+        "2",
+        "zstd"
+      ],
+      [
+        "2",
+        "lz4"
+      ],
+      [
+        "2",
+        "ghy-simd"
+      ],
+      [
+        "2",
+        "lzo-rle"
+      ],
+      [
+        "2",
+        "ghy-bitdirect"
+      ],
+      [
+        "2",
+        "lz4-ghy"
+      ]
+    ],
+    "unloads": 2,
+    "errors": []
+  },
+  "coexist_parser_sha256": "582a529476476225aded6b04c8e1b225fd102731b50c4b5957adb200f7b8265b",
+  "status": "passed"
+}
