@@ -1,0 +1,5 @@
+# User-requested removal of battery boost restriction
+
+The user asked to remove the observed 800 MHz limit during the kernel build. The active TLP battery profile in `/etc/tlp.d/99-battery-saving.conf` had `CPU_BOOST_ON_SAV=0`; the machine was on battery and Intel `no_turbo` was 1. Following desktop administrator authentication, only that profile setting was changed to `CPU_BOOST_ON_SAV=1`, and the current Intel turbo flag and per-policy maximum frequencies were adjusted accordingly. The original configuration was backed up locally at `build/terra-cpu-boost-change-001/original.conf`.
+
+Afterward, `no_turbo` was 0 and all four CPU policies reported a 3,400,000 kHz maximum; the observed instantaneous frequencies were approximately 2.9 GHz. The focused kernel build remained running. The battery governor and energy-performance preference were not changed. This is an explicitly requested persistent battery-profile change; it affects future battery use, power draw and battery life. It is not part of a controlled codec benchmark.
