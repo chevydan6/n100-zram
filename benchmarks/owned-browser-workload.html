@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>Local bounded browser workload</title>
+<style>body{font-family:sans-serif} article{padding:4px;border:1px solid #ccc} .grid{display:grid;grid-template-columns:repeat(4,1fr)}</style>
+<h1>Generated local pages</h1><div id="cards" class="grid"></div>
+<script>
+'use strict'; const words=['memory','compressor','display','kernel','workload','browser','documents','energy','latency','cache'];
+const root=document.getElementById('cards'); let state=428;
+for(let i=0;i<2400;i++){const node=document.createElement('article');let s='';for(let j=0;j<22;j++){state=(Math.imul(state,1664525)+1013904223)>>>0;s+=words[state%words.length]+' ';}node.textContent=i+' '+s;root.appendChild(node);}
+setInterval(()=>{for(let i=0;i<20;i++){state=(Math.imul(state,1664525)+1013904223)>>>0;const node=root.children[state%root.children.length];node.style.backgroundColor=(state&1)?'#f5f5f5':'#fff';}},250);
+</script>

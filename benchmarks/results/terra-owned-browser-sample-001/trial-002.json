@@ -1,0 +1,307 @@
+{
+  "status": "passed",
+  "scope": "Direct owned Chromium browser process only; generated local single-tab workload and temporary profile; aggregate present resident pages, no renderer sampling or reclaim/energy claim",
+  "seed": 436,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "sources_and_binaries_sha256": {
+    "benchmarks/owned-browser-workload.html": "531ee7d36e80936097a7fb883aeca8b27b1f38b9d7e5a384698a7586eaa7f09b",
+    "benchmarks/sample-owned-browser.py": "3562826db1e61c065f326f2894ee8502af5a32dac0d12dfd8dd6e708c16edb13",
+    "benchmarks/sample-owned-compile.py": "b5fbaea2168a834c900798a0cc96916eec90b9cab43beb6ff7cf3e1647822b40",
+    "build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+    "build/lz4-scalar-table-001/table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "build/lz4-scalar-table-001/table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "build/lz4-scalar-table-001/table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77"
+  },
+  "classes": {
+    "anonymous_private": {
+      "pages": 128,
+      "same_word": 5,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 123,
+          "encoded_bytes": 154377,
+          "logical_stored_bytes": 154359,
+          "raw_pages": 1
+        },
+        "table13-scalar": {
+          "pages": 123,
+          "encoded_bytes": 154499,
+          "logical_stored_bytes": 154481,
+          "raw_pages": 1
+        },
+        "table12-scalar": {
+          "pages": 123,
+          "encoded_bytes": 154720,
+          "logical_stored_bytes": 154702,
+          "raw_pages": 1
+        },
+        "ghy-combined-scalar": {
+          "pages": 123,
+          "encoded_bytes": 196796,
+          "logical_stored_bytes": 196788,
+          "raw_pages": 1
+        },
+        "ghy-combined-avx2": {
+          "pages": 123,
+          "encoded_bytes": 196796,
+          "logical_stored_bytes": 196788,
+          "raw_pages": 1
+        }
+      },
+      "hybrid_mode_comparison": {
+        "1": {
+          "pages": 56,
+          "ghy_logical_bytes": 100880,
+          "lz4_logical_bytes": 59322,
+          "ghy_larger": 55,
+          "equal": 0,
+          "ghy_smaller": 1
+        },
+        "2": {
+          "pages": 66,
+          "ghy_logical_bytes": 91812,
+          "lz4_logical_bytes": 91284,
+          "ghy_larger": 66,
+          "equal": 0,
+          "ghy_smaller": 0
+        },
+        "0": {
+          "pages": 1,
+          "ghy_logical_bytes": 4096,
+          "lz4_logical_bytes": 4096,
+          "ghy_larger": 0,
+          "equal": 1,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "selected": {
+            "pages": 105,
+            "parent_bytes": 166856,
+            "lz4_framed_bytes": 127432,
+            "ghy_mode1": 54,
+            "lz4_smaller": 53,
+            "lz4_larger": 1,
+            "equal": 51
+          },
+          "rejected": {
+            "pages": 18,
+            "parent_bytes": 29932,
+            "lz4_framed_bytes": 28246,
+            "ghy_mode1": 2,
+            "lz4_smaller": 2,
+            "lz4_larger": 0,
+            "equal": 16
+          }
+        },
+        "64": {
+          "selected": {
+            "pages": 108,
+            "parent_bytes": 171218,
+            "lz4_framed_bytes": 131354,
+            "ghy_mode1": 55,
+            "lz4_smaller": 54,
+            "lz4_larger": 1,
+            "equal": 53
+          },
+          "rejected": {
+            "pages": 15,
+            "parent_bytes": 25570,
+            "lz4_framed_bytes": 24324,
+            "ghy_mode1": 1,
+            "lz4_smaller": 1,
+            "lz4_larger": 0,
+            "equal": 14
+          }
+        },
+        "16-offset4": {
+          "selected": {
+            "pages": 106,
+            "parent_bytes": 171066,
+            "lz4_framed_bytes": 131202,
+            "ghy_mode1": 55,
+            "lz4_smaller": 54,
+            "lz4_larger": 1,
+            "equal": 51
+          },
+          "rejected": {
+            "pages": 17,
+            "parent_bytes": 25722,
+            "lz4_framed_bytes": 24476,
+            "ghy_mode1": 1,
+            "lz4_smaller": 1,
+            "lz4_larger": 0,
+            "equal": 16
+          }
+        },
+        "16-union": {
+          "selected": {
+            "pages": 112,
+            "parent_bytes": 179805,
+            "lz4_framed_bytes": 138695,
+            "ghy_mode1": 56,
+            "lz4_smaller": 55,
+            "lz4_larger": 1,
+            "equal": 56
+          },
+          "rejected": {
+            "pages": 11,
+            "parent_bytes": 16983,
+            "lz4_framed_bytes": 16983,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 11
+          }
+        },
+        "16-whole50": {
+          "selected": {
+            "pages": 107,
+            "parent_bytes": 170288,
+            "lz4_framed_bytes": 129178,
+            "ghy_mode1": 56,
+            "lz4_smaller": 55,
+            "lz4_larger": 1,
+            "equal": 51
+          },
+          "rejected": {
+            "pages": 16,
+            "parent_bytes": 26500,
+            "lz4_framed_bytes": 26500,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 16
+          }
+        }
+      },
+      "zero_prefix_probe": {
+        "eligible": 44,
+        "fired": 6,
+        "smaller": 6,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 12628,
+        "hypothetical_bytes": 7192
+      },
+      "two_match_probe": {
+        "eligible": 44,
+        "fired": 4,
+        "smaller": 4,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 8784,
+        "hypothetical_bytes": 5607
+      }
+    },
+    "file_executable": {
+      "pages": 128,
+      "same_word": 0,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 128,
+          "encoded_bytes": 370793,
+          "logical_stored_bytes": 370793,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 128,
+          "encoded_bytes": 371634,
+          "logical_stored_bytes": 371634,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 128,
+          "encoded_bytes": 373372,
+          "logical_stored_bytes": 373372,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 128,
+          "encoded_bytes": 374396,
+          "logical_stored_bytes": 374396,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 128,
+          "encoded_bytes": 374396,
+          "logical_stored_bytes": 374396,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 128,
+          "ghy_logical_bytes": 374396,
+          "lz4_logical_bytes": 373372,
+          "ghy_larger": 128,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 374396,
+            "lz4_framed_bytes": 374396,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "64": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 374396,
+            "lz4_framed_bytes": 374396,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-offset4": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 374396,
+            "lz4_framed_bytes": 374396,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-union": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 374396,
+            "lz4_framed_bytes": 374396,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-whole50": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 374396,
+            "lz4_framed_bytes": 374396,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        }
+      }
+    }
+  },
+  "eligible_reads": {
+    "anonymous_private": 128,
+    "file_executable": 634
+  },
+  "failures": 2844
+}
