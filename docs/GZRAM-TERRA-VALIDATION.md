@@ -101,3 +101,5 @@ zero-prefix recurrence guard would improve five eligible pages, but fired on non
 of 29 retained fixtures. These are small selected samples, not a reclaim trace,
 allocator measurement, performance or overall workload result. The cost and
 adversarial size regressions of any candidate remain to be measured.
+
+The [zero-prefix fallback experiment](../benchmarks/results/terra-zerotwo-energy-001/findings.md) has completed matched N100 userspace timing and package-energy measurements. Both one- and two-recurrence policies are rejected as general defaults: adversarial sparse fixtures exposed severe time, energy and compressed-size regressions, despite size improvements on a small owned compiler-page sample. The results do not establish a native ZRAM outcome; GRUB recovery remains unverified.
