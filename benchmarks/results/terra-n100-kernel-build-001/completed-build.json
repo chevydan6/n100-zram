@@ -1,0 +1,13 @@
+{
+  "status": "build completed; not booted or installed",
+  "kernel_release": "7.2.11-n100-gzram",
+  "sha256": {
+    "image": "51715d341b68e61cbb56582c1c56cca4deef06cdbcc75ba8d2d5b32e41f573ac",
+    "zram_module": "d33ae27794a2bc0d57dfba28d46737932e7ff615c8885b583797b192b5fa561f",
+    "config": "204b69f1a9797875f2e81d08d05967337a96758ce824597943051e0c6c3b268e",
+    "module_symvers": "08a7d627ec1ef1bb68bb906745358770a988c13dcd0cfa7df2581db0c61aa29f"
+  },
+  "module_count": 335,
+  "kernel_bytes": 16667136,
+  "zram_module_bytes": 343520
+}
