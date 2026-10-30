@@ -1,0 +1,16 @@
+Oct 30 22:16:38 fedora systemd[1]: bpf-restrict-fs: LSM BPF program attached
+Oct 30 22:16:41 fedora systemd[1]: bpf-restrict-fs: LSM BPF program attached
+Oct 30 22:16:56 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:56 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:57 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:16:58 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:17:02 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
+Oct 30 22:17:03 fedora systemd[1566]: xdg-desktop-portal.service: Job xdg-desktop-portal.service/start failed with result 'dependency'.
