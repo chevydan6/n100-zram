@@ -1,0 +1,26 @@
+Oct 30 21:18:14 fedora systemd[1]: Reached target local-fs.target - Local File Systems.
+Oct 30 21:18:15 fedora systemd[1]: Stopped target local-fs.target - Local File Systems.
+Oct 30 21:18:17 fedora systemd[1]: Mounting boot-efi.mount - /boot/efi...
+Oct 30 21:18:18 fedora audit[643]: AVC avc:  denied  { module_load } for  pid=643 comm="modprobe" path="/usr/lib/modules/7.2.11-n100-gzram/kernel/fs/fat/fat.ko" dev="mmcblk0p3" ino=323022 scontext=system_u:system_r:kmod_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=system permissive=0
+Oct 30 21:18:18 fedora systemd[1]: boot-efi.mount: Mount process exited, code=exited, status=32/n/a
+Oct 30 21:18:18 fedora systemd[1]: boot-efi.mount: Failed with result 'exit-code'.
+Oct 30 21:18:18 fedora systemd[1]: Failed to mount boot-efi.mount - /boot/efi.
+Oct 30 21:18:18 fedora systemd[1]: Dependency failed for local-fs.target - Local File Systems.
+Oct 30 21:18:18 fedora systemd[1]: local-fs.target: Job local-fs.target/start failed with result 'dependency'.
+Oct 30 21:18:18 fedora systemd[1]: local-fs.target: Triggering OnFailure= dependencies.
+Oct 30 21:18:18 fedora systemd[1]: Started emergency.service - Emergency Shell.
+Oct 30 21:18:18 fedora systemd[1]: Reached target emergency.target - Emergency Mode.
+Oct 30 21:18:43 fedora systemd[1]: Reload requested from client PID 768 ('systemd-sulogin') (unit emergency.service)...
+Oct 30 21:18:44 fedora systemd[1]: emergency.service: Deactivated successfully.
+Oct 30 21:18:44 fedora systemd[1]: Stopped emergency.service - Emergency Shell.
+Oct 30 21:18:44 fedora systemd[1]: Stopped target emergency.target - Emergency Mode.
+Oct 30 21:18:44 fedora systemd[1]: Mounting boot-efi.mount - /boot/efi...
+Oct 30 21:18:44 fedora audit[814]: AVC avc:  denied  { module_load } for  pid=814 comm="modprobe" path="/usr/lib/modules/7.2.11-n100-gzram/kernel/fs/fat/fat.ko" dev="mmcblk0p3" ino=323022 scontext=system_u:system_r:kmod_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=system permissive=0
+Oct 30 21:18:44 fedora systemd[1]: boot-efi.mount: Mount process exited, code=exited, status=32/n/a
+Oct 30 21:18:44 fedora systemd[1]: boot-efi.mount: Failed with result 'exit-code'.
+Oct 30 21:18:44 fedora systemd[1]: Failed to mount boot-efi.mount - /boot/efi.
+Oct 30 21:18:44 fedora systemd[1]: Dependency failed for local-fs.target - Local File Systems.
+Oct 30 21:18:44 fedora systemd[1]: local-fs.target: Job local-fs.target/start failed with result 'dependency'.
+Oct 30 21:18:44 fedora systemd[1]: local-fs.target: Triggering OnFailure= dependencies.
+Oct 30 21:18:44 fedora systemd[1]: Started emergency.service - Emergency Shell.
+Oct 30 21:18:44 fedora systemd[1]: Reached target emergency.target - Emergency Mode.
