@@ -1,0 +1,12 @@
+Oct 31 08:38:54 fedora systemd-coredump[16722]: Process 16670 (chromium-browse) of user 1000 dumped core.
+                                                #0  0x0000560d2e6f9c64 _ZN4base12SimpleThread5StartEv (chromium-browser + 0xa018c64)
+                                                #1  0x0000560d2d17e247 _ZN7content28RunOtherNamedProcessTypeMainERKNSt4__Cr12basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEENS_18MainFunctionParamsEPNS_19ContentMainDelegateE (chromium-browser + 0x8a9d247)
+                                                #2  0x0000560d2d180ca8 _ZN7content21ContentMainRunnerImpl3RunEv (chromium-browser + 0x8a9fca8)
+                                                #3  0x0000560d2d17d641 _ZN7content11ContentMainENS_17ContentMainParamsE (chromium-browser + 0x8a9c641)
+                                                #4  0x0000560d264255ed ChromeMain (chromium-browser + 0x1d445ed)
+                                                #7  0x0000560d25f40025 _start (chromium-browser + 0x185f025)
+Oct 31 08:38:54 fedora systemd-coredump[16716]: Process 16649 (chromium-browse) of user 1000 dumped core.
+                                                #0  0x00005559e8a9900d _ZN7content6Zygote15ProcessRequestsEv (chromium-browser + 0x8ac600d)
+                                                #1  0x00005559e8a9b742 _ZN7content10ZygoteMainENSt4__Cr6vectorINS0_10unique_ptrINS_18ZygoteForkDelegateENS0_14default_deleteIS3_EEEENS0_9allocatorIS6_EEEE (chromium-browser + 0x8ac8742)
+                                                #2  0x00005559e8a70320 _ZN7content28RunOtherNamedProcessTypeMainERKNSt4__Cr12basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEENS_18MainFunctionParamsEPNS_19ContentMainDelegateE (chromium-browser + 0x8a9d320)
+                                                #3  0x00005559e8a72ca8 _ZN7content21ContentMainRunnerImpl3RunEv (chromium-browser + 0x8a9fca8)

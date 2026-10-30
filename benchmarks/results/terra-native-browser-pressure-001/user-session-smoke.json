@@ -1,0 +1,1 @@
+{"elapsed_s": 2.26394937400255, "self_cpu_ns": 176784865, "checks": 1772, "phase_ns": [775102, 41174138, 1876178, 47870906], "browser_ns": [969921841, 1020675122], "minor_faults": 98751, "major_faults": 28}
