@@ -5,8 +5,7 @@ set -eu
 [ -f /isolated-recovery-guest ] || { echo RECOVERY_GUEST_REFUSED; exit 3; }
 grep -q hypervisor /proc/cpuinfo || { echo RECOVERY_GUEST_REFUSED; exit 3; }
 [ "$#" = 1 ] || exit 2
-case "$1" in normal|inject) ;; *) exit 2;; esac
-names='panic panic_on_oops softlockup_panic'
+case "$1" in normal|inject|term) ;; *) exit 2;; esac
 old_panic=$(cat /proc/sys/kernel/panic)
 old_oops=$(cat /proc/sys/kernel/panic_on_oops)
 old_soft=$(cat /proc/sys/kernel/softlockup_panic)
@@ -28,6 +27,7 @@ trap 'exit 128' HUP INT TERM
 echo 10 > /proc/sys/kernel/panic
 [ "$(cat /proc/sys/kernel/panic)" = 10 ]
 if [ "$mode" = inject ]; then echo RECOVERY_INJECTED_FAILURE; exit 42; fi
+if [ "$mode" = term ]; then echo RECOVERY_SIGNAL_SENT; kill -TERM "$$"; exit 99; fi
 echo 1 > /proc/sys/kernel/panic_on_oops
 echo 1 > /proc/sys/kernel/softlockup_panic
 [ "$(cat /proc/sys/kernel/panic_on_oops)" = 1 ]

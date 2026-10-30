@@ -6,6 +6,7 @@ from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__)
 for x in ('kernel','busybox','qemu','bios','qemu-data','output'):p.add_argument('--'+x,type=Path,required=True)
 p.add_argument('--library-path',type=Path)
+p.add_argument('--guest-panic-test',action='store_true',help='Deliberately panic only the diskless guest after setting a bounded timeout')
 p.add_argument('--lock',type=Path,default=Path.home()/'.cache/n100-zram/native-validation.lock')
 a=p.parse_args()
 if os.geteuid()==0:p.error('Run guest launcher unprivileged')
@@ -40,9 +41,15 @@ before=$(snapshot) || fail
 code=$?
 [ "$code" = 42 ] || fail
 [ "$(snapshot)" = "$before" ] || fail
+/transaction term
+code=$?
+[ "$code" = 128 ] || fail
+[ "$(snapshot)" = "$before" ] || fail
 echo RECOVERY_VM_PASS
 poweroff -f
 '''
+if a.guest_panic_test:
+ init=init.replace('echo RECOVERY_VM_PASS\npoweroff -f','echo 2 > /proc/sys/kernel/panic || fail\n[ "$(cat /proc/sys/kernel/panic)" = 2 ] || fail\necho RECOVERY_GUEST_PANIC_TRIGGER\necho c > /proc/sysrq-trigger\necho RECOVERY_UNEXPECTED_RETURN\nfail')
 add('init',init.encode(),mode=stat.S_IFREG|0o755);add('TRAILER!!!')
 initrd=a.output/'initramfs.cpio';initrd.write_bytes(archive)
 cmd=[str(a.qemu.resolve()),'-no-user-config','-nodefaults','-machine','q35,accel=kvm','-cpu','host','-smp','2','-m','256','-display','none','-monitor','none','-serial','stdio','-nic','none','-no-reboot','-bios',str(a.bios.resolve()),'-L',str(a.qemu_data.resolve()),'-kernel',str(a.kernel.resolve()),'-initrd',str(initrd.resolve()),'-append','console=ttyS0 rdinit=/init panic=1']
@@ -53,6 +60,10 @@ with (a.output/'serial.log').open('w') as out,(a.output/'stderr.log').open('w') 
  try:run=subprocess.run(cmd,env=env,stdout=out,stderr=err,timeout=120);record['exit_code']=run.returncode
  except subprocess.TimeoutExpired:record['exit_code']=None;record['error']='guest exceeded 120 seconds'
 text=(a.output/'serial.log').read_text().replace('\r','');after={str(p):p.read_text().strip() for p in paths};record['after']=after
-markers=['RECOVERY_POLICY_APPLIED','RECOVERY_INJECTED_FAILURE','RECOVERY_RESTORED mode=normal','RECOVERY_RESTORED mode=inject','RECOVERY_VM_PASS']
-record['markers']={m:text.count(m) for m in markers};record['status']='passed' if record['exit_code']==0 and before==after and all(text.count(m)==1 for m in markers) and not any(x in text for x in ('RECOVERY_VM_FAIL','RECOVERY_RESTORE_FAILED','Kernel panic','Oops:','BUG:','WARNING:')) else 'failed'
+markers=['RECOVERY_POLICY_APPLIED','RECOVERY_INJECTED_FAILURE','RECOVERY_RESTORED mode=normal','RECOVERY_RESTORED mode=inject','RECOVERY_SIGNAL_SENT','RECOVERY_RESTORED mode=term']
+markers += ['RECOVERY_GUEST_PANIC_TRIGGER','Kernel panic - not syncing: sysrq triggered crash','Rebooting in 2 seconds'] if a.guest_panic_test else ['RECOVERY_VM_PASS']
+forbidden=['RECOVERY_VM_FAIL','RECOVERY_RESTORE_FAILED','RECOVERY_UNEXPECTED_RETURN','Oops:','BUG:','WARNING:']
+if not a.guest_panic_test: forbidden.append('Kernel panic')
+record['guest_panic_test']=a.guest_panic_test
+record['markers']={m:text.count(m) for m in markers};record['status']='passed' if record['exit_code']==0 and before==after and all(text.count(m)==1 for m in markers) and not any(x in text for x in forbidden) else 'failed'
 (a.output/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record));raise SystemExit(0 if record['status']=='passed' else 1)
