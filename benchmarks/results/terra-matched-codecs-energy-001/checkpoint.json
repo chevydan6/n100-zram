@@ -1,0 +1,175 @@
+{
+  "inputs": {
+    "corpus_sha256": {
+      "random": "afe347bc9bb4211d9017c8da16c8abd205760d60cf6249f33fb522dad1de19bf",
+      "sparse-words": "5ae927d019eef21f56b2d41449b12b29af78f802887651f537416750cae669b6",
+      "period127": "e8e6d1c5c1a86cc08099e73a555badb0941ec01f06ceed8dadc01c567ed78578",
+      "mixed-pages": "7a3cc8f6b86964bcaac88f89fc9b2586b8b0baa78c3646b89f0536c651e3345c",
+      "bash-exec": "89f57bcdc48a691e357574ede8770d15d5917b462055d39e2555be4d0b01ec83",
+      "git-exec": "e9f7bdec46f53618acf4f001e3adeaf9269edfbe16ecb9ae684cf6dbfde4ecc0",
+      "libc-exec": "a20d00dcd870a07e482850f0a83d90a5d519055792e43dd8481fc0616e8f2b08"
+    },
+    "order_seeds": [
+      100,
+      101,
+      102
+    ],
+    "selected_variants": [
+      "table14-scalar",
+      "table13-scalar",
+      "table12-scalar",
+      "table11-scalar",
+      "ghy-combined-scalar",
+      "ghy-combined-avx2"
+    ],
+    "selected_corpora": [
+      "bash-exec",
+      "git-exec",
+      "libc-exec",
+      "random",
+      "period127",
+      "mixed-pages",
+      "sparse-words"
+    ],
+    "variant_names": [
+      "table14-scalar",
+      "table13-scalar",
+      "table12-scalar",
+      "table11-scalar",
+      "ghy-combined-scalar",
+      "ghy-combined-avx2"
+    ],
+    "corpora": [
+      "random",
+      "sparse-words",
+      "period127",
+      "mixed-pages",
+      "bash-exec",
+      "git-exec",
+      "libc-exec"
+    ],
+    "screen": false,
+    "cpu_model": "Intel(R) N100",
+    "runner_sha256": "aeb44683675f0817dbc427258cca1ab3894cf31395ed5842874986ad841a7347",
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "binary_sha256": "08c4d6c7a570d801732d747d6c422a2eba989de2af4f50fb4e902d372de48112",
+    "manifest": {
+      "artifacts": {
+        "table11-scalar.so": "2f98303ea77ac9e9c401f8f9b5a3ac0b9558991c6128128f801f9e2c2b89b6a4",
+        "table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+        "table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+        "table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+        "libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d"
+      },
+      "benchmark_sha256": "08c4d6c7a570d801732d747d6c422a2eba989de2af4f50fb4e902d372de48112",
+      "sources": {
+        "benchmarks/matched-lz4-ghy.c": "bebca4644d49568e89574bd5e81426fa06b2d4c6de9d8cf0517cd83f2ee816bb",
+        "gzram/bench.c": "8c51e7111e67c2f6fc516057d195e4142b7a8f80b7cccaf8be5230ff17838ed9"
+      },
+      "scope": "Physical userspace screening; GHY framing included, actual ZRAM untested"
+    },
+    "libraries": {
+      "table11-scalar.so": "2f98303ea77ac9e9c401f8f9b5a3ac0b9558991c6128128f801f9e2c2b89b6a4",
+      "table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+      "table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+      "table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+      "libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d"
+    },
+    "bash_sha256": "379c1bfc53d08815975c647ad7da5d19d8e8a8566ce8097c50231c8b116e5e7b",
+    "scope": "Physical N100 userspace codec screening; kernel FPU/I/O costs excluded; package energy includes batch bookkeeping/background work",
+    "execution": {
+      "serialization": "exclusive target-local flock for runner lifetime",
+      "nice": 5,
+      "runner_cpu": 1,
+      "codec_cpu": 0,
+      "thread_cpu_scope": "Thread CPU clocks bracket wall-clock loop; CPU time includes clock boundaries; not machine utilization",
+      "uid": 1000,
+      "effective_capabilities": "0000000000000000"
+    },
+    "calls_per_batch": 8192,
+    "energy_access": "inherited read-only RAPL descriptor"
+  },
+  "completed": [
+    "validation",
+    "session-0",
+    "session-1",
+    "session-2"
+  ],
+  "attempts": {
+    "session-0": 1,
+    "session-1": 1,
+    "session-2": 1
+  },
+  "started": 1793327722.725712,
+  "status": "complete",
+  "before": {
+    "time": 1793327722.7257752,
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "800004",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "800023",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "799998",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "800051",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "800000",
+    "/sys/class/thermal/thermal_zone2/temp": "27850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "36000",
+    "/sys/class/thermal/thermal_zone3/temp": "29850",
+    "/sys/class/thermal/thermal_zone1/temp": "30850",
+    "/sys/class/thermal/thermal_zone6/temp": "31000",
+    "/sys/class/thermal/thermal_zone4/temp": "29000",
+    "/sys/class/power_supply/BAT0/current_now": "488000",
+    "/sys/class/power_supply/BAT0/voltage_now": "12124000",
+    "/sys/class/power_supply/BAT0/charge_now": "3672000",
+    "/sys/class/power_supply/BAT0/status": "Discharging",
+    "/sys/class/power_supply/AC/online": "0",
+    "/proc/pressure/cpu": "some avg10=0.82 avg60=0.75 avg300=1.46 total=12088535\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+    "/proc/pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=630\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=370",
+    "/proc/loadavg": "1.39 0.96 0.46 1/492 3480"
+  },
+  "current": null,
+  "after": {
+    "time": 1793328031.0516603,
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq": "799988",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq": "800008",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq": "800013",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq": "800021",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "powersave",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq": "700000",
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq": "800000",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq": "800000",
+    "/sys/class/thermal/thermal_zone2/temp": "27850",
+    "/sys/class/thermal/thermal_zone0/temp": "20000",
+    "/sys/class/thermal/thermal_zone5/temp": "37000",
+    "/sys/class/thermal/thermal_zone3/temp": "30850",
+    "/sys/class/thermal/thermal_zone1/temp": "31850",
+    "/sys/class/thermal/thermal_zone6/temp": "33000",
+    "/sys/class/thermal/thermal_zone4/temp": "30000",
+    "/sys/class/power_supply/BAT0/current_now": "406000",
+    "/sys/class/power_supply/BAT0/voltage_now": "12117000",
+    "/sys/class/power_supply/BAT0/charge_now": "3634000",
+    "/sys/class/power_supply/BAT0/status": "Discharging",
+    "/sys/class/power_supply/AC/online": "0",
+    "/proc/pressure/cpu": "some avg10=1.21 avg60=0.90 avg300=1.09 total=16792980\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+    "/proc/pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=3290\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=2356",
+    "/proc/loadavg": "2.46 1.66 0.89 2/475 4368"
+  },
+  "finished": 1793328031.0613985
+}

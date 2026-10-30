@@ -80,3 +80,5 @@ and swap devices matched preflight. Read-only grubby enumerated current, older
 and rescue entries on disk, but visibility and bootability remain unproven.
 See the [restart record](../benchmarks/results/terra-recovery-restart-001/summary.md).
 No default or boot settings were changed; native experimental testing remains gated.
+
+A [matched userspace GZRAM and scalar LZ4 cohort](../benchmarks/results/terra-matched-codecs-energy-001/findings.md) now compares both bounded GHY entries with four scalar LZ4 table sizes in randomized operation order. It retains CPU, package-energy, compressed-byte and decompression tradeoffs; it is not native ZRAM or a representative workload result. The manual boot-menu recovery check remains incomplete.
