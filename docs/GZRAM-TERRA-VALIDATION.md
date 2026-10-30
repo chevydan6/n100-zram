@@ -73,3 +73,10 @@ record the observation. Do not infer automatic hard-hang recovery from a success
 alternate boot. The established native runner's reboot/panic/pstore safeguards
 remain unmet until independently verified. No experimental host module, boot
 setting or swap setting has been changed for this handoff.
+
+The user restarted and reported no kernel entry in GRUB. A changed boot ID
+confirmed a restart into the current 7.2.11 kernel; stock zstd ZRAM, disk size
+and swap devices matched preflight. Read-only grubby enumerated current, older
+and rescue entries on disk, but visibility and bootability remain unproven.
+See the [restart record](../benchmarks/results/terra-recovery-restart-001/summary.md).
+No default or boot settings were changed; native experimental testing remains gated.
