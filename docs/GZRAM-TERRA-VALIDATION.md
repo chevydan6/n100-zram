@@ -37,3 +37,8 @@ The [guarded SIMD ZRAM guest gate](../benchmarks/results/terra-simd-zram-001/sum
 passed with AVX2 hidden and exposed, 241,970 client checks per guest. This is a
 new device integration correctness result, not native timing; the device gate
 has no direct SIMD-path counter. Host stock settings matched before/after.
+
+An [uninstrumented guest-only SIMD syscall probe](../benchmarks/results/terra-simd-measure-probe-001/summary.md)
+built and passed guest correctness and register checks across 26 corpora. It
+refuses bare-metal loading and the client refuses VM timing. Native timing still
+requires a separately validated measurement build and verified recovery.

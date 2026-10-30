@@ -1,0 +1,26 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/terra-simd-measure-probe-001'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  selftest.o
+  CC [M]  adapters.o
+  CC [M]  dispatch.o
+  CC [M]  fallback.o
+  CC [M]  scalar/encoder/core.o
+  CC [M]  scalar/decoder/core.o
+  CC [M]  scalar/hybrid.o
+  CC [M]  scalar/lz4_compress.o
+  CC [M]  scalar/lz4_decompress.o
+  CC [M]  vector-encoder/core.o
+  CC [M]  vector-decoder/core.o
+  CC [M]  vector-trial.o
+  LD [M]  n100_gzram_hybrid_probe.o
+  MODPOST Module.symvers
+  CC [M]  n100_gzram_hybrid_probe.mod.o
+  CC [M]  .module-common.o
+  LD [M]  n100_gzram_hybrid_probe.ko
+  BTF [M] n100_gzram_hybrid_probe.ko
+Skipping BTF generation for n100_gzram_hybrid_probe.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/dan/n100-zram/build/terra-simd-measure-probe-001'
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
