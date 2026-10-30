@@ -1,0 +1,203 @@
+{
+  "scope": "Retrospective aggregate of already published small owned-compiler samples; no new measurements, no population or timing inference",
+  "samples": [
+    {
+      "sample": "owned-sample-005",
+      "seed": 422,
+      "classes": {
+        "anonymous_private": {
+          "pages": 192,
+          "same_word": 33,
+          "mode": {
+            "0": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "1": {
+              "pages": 84,
+              "ghy_larger": 81,
+              "ghy_smaller": 3,
+              "equal": 0,
+              "ghy_logical_bytes": 123032,
+              "lz4_logical_bytes": 71109
+            },
+            "2": {
+              "pages": 75,
+              "ghy_larger": 75,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 82110,
+              "lz4_logical_bytes": 81510
+            }
+          }
+        },
+        "file_executable": {
+          "pages": 192,
+          "same_word": 0,
+          "mode": {
+            "0": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "1": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "2": {
+              "pages": 192,
+              "ghy_larger": 192,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 578873,
+              "lz4_logical_bytes": 577337
+            }
+          }
+        }
+      }
+    },
+    {
+      "sample": "owned-sample-006",
+      "seed": 423,
+      "classes": {
+        "anonymous_private": {
+          "pages": 192,
+          "same_word": 43,
+          "mode": {
+            "0": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "1": {
+              "pages": 78,
+              "ghy_larger": 75,
+              "ghy_smaller": 3,
+              "equal": 0,
+              "ghy_logical_bytes": 115228,
+              "lz4_logical_bytes": 71601
+            },
+            "2": {
+              "pages": 71,
+              "ghy_larger": 71,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 74552,
+              "lz4_logical_bytes": 73984
+            }
+          }
+        },
+        "file_executable": {
+          "pages": 192,
+          "same_word": 0,
+          "mode": {
+            "0": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "1": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "2": {
+              "pages": 192,
+              "ghy_larger": 192,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 598760,
+              "lz4_logical_bytes": 597224
+            }
+          }
+        }
+      }
+    },
+    {
+      "sample": "owned-sample-007",
+      "seed": 424,
+      "classes": {
+        "anonymous_private": {
+          "pages": 192,
+          "same_word": 41,
+          "mode": {
+            "0": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "1": {
+              "pages": 80,
+              "ghy_larger": 76,
+              "ghy_smaller": 4,
+              "equal": 0,
+              "ghy_logical_bytes": 95504,
+              "lz4_logical_bytes": 58930
+            },
+            "2": {
+              "pages": 71,
+              "ghy_larger": 71,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 76826,
+              "lz4_logical_bytes": 76258
+            }
+          }
+        },
+        "file_executable": {
+          "pages": 192,
+          "same_word": 0,
+          "mode": {
+            "0": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "1": {
+              "pages": 0,
+              "ghy_larger": 0,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 0,
+              "lz4_logical_bytes": 0
+            },
+            "2": {
+              "pages": 192,
+              "ghy_larger": 192,
+              "ghy_smaller": 0,
+              "equal": 0,
+              "ghy_logical_bytes": 603188,
+              "lz4_logical_bytes": 601652
+            }
+          }
+        }
+      }
+    }
+  ]
+}
