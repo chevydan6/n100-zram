@@ -20,6 +20,7 @@ p.add_argument('--library-path', type=Path)
 p.add_argument('--module-root', type=Path, required=True)
 p.add_argument('--algorithms', nargs='+', default=['lzo-rle', 'lz4', 'zstd', 'lz4-ghy', 'ghy-bitdirect'])
 p.add_argument('--guest-avx2', action='store_true', help='Expose host AVX2 in the isolated correctness guest')
+p.add_argument('--require-btf', action='store_true', help='Require runtime kernel BTF in the guest')
 p.add_argument('--lock', type=Path, default=Path.home() / '.cache/n100-zram/native-validation.lock')
 a = p.parse_args()
 if os.geteuid() == 0: p.error('Run this isolated guest launcher unprivileged')
@@ -118,6 +119,8 @@ done
 echo GZRAM_DEVICE_VM_PASS
 poweroff -f
 '''.replace('RELEASE', release).replace('ALGORITHMS', ' '.join(a.algorithms))
+if a.require_btf:
+    init = init.replace('DEPENDENCIES', '[ -s /sys/kernel/btf/vmlinux ] || fail\necho GZRAM_RUNTIME_BTF_PRESENT\nDEPENDENCIES')
 init = init.replace('DEPENDENCIES', '\n'.join('insmod /modules/' + name + '.ko || fail' for name in dependencies))
 add('init', init.encode(), mode=stat.S_IFREG | 0o755); add('TRAILER!!!')
 initramfs = a.output / 'initramfs.cpio'; initramfs.write_bytes(archive)
@@ -144,6 +147,8 @@ with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').op
 text = (a.output / 'serial.log').read_text()
 parsed = parse_device_records(text)
 results = [(r['corpora'], r['workers'], r['checks']) for r in parsed['records']]
+record['runtime_btf_required'] = a.require_btf
+record['runtime_btf_present_marker'] = 'GZRAM_RUNTIME_BTF_PRESENT' in text
 record['console_protocol'] = parsed
 record['launcher_sha256'] = sha(Path(__file__))
 record['parser_sha256'] = sha(Path(__file__).with_name('zram_vm_records.py'))
@@ -154,7 +159,7 @@ record['after_settings'] = {str(f): sha(f) for f in settings}
 record['experimental_host_module_loaded'] = any(line.startswith('n100_gzram') for line in Path('/proc/modules').read_text().splitlines())
 expected = {(str(cycle), algorithm) for cycle in [1,2] for algorithm in a.algorithms}
 ends = [(r['cycle'], r['algorithm']) for r in parsed['records']]
-passed = (record['exit_code'] == 0 and parsed['pass_markers'] == 1 and not parsed['protocol_errors'] and len(results)==len(expected)
+passed = ((not a.require_btf or record['runtime_btf_present_marker']) and record['exit_code'] == 0 and parsed['pass_markers'] == 1 and not parsed['protocol_errors'] and len(results)==len(expected)
           and len(ends)==len(expected) and set(ends)==expected
           and all(int(n)==len(corpora) and int(w)==4 and int(c)>0 for n,w,c in results)
           and before==record['after_settings'] and not record['experimental_host_module_loaded']
