@@ -1,0 +1,8 @@
+Matched codec families: common LZ4 decoder=0x7f49d5e925d0, separate GHY decoder entries, random task order, RAPL unavailable
+Validated random: four scalar tables and two hybrid entries, 128 pages
+Validated sparse-words: four scalar tables and two hybrid entries, 128 pages
+Validated period127: four scalar tables and two hybrid entries, 128 pages
+Validated mixed-pages: four scalar tables and two hybrid entries, 128 pages
+Validated bash-exec: four scalar tables and two hybrid entries, 128 pages
+Validated git-exec: four scalar tables and two hybrid entries, 128 pages
+Validated libc-exec: four scalar tables and two hybrid entries, 128 pages

@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "table11-scalar.so": "2f98303ea77ac9e9c401f8f9b5a3ac0b9558991c6128128f801f9e2c2b89b6a4",
+    "table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+    "table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d"
+  },
+  "benchmark_sha256": "08c4d6c7a570d801732d747d6c422a2eba989de2af4f50fb4e902d372de48112",
+  "sources": {
+    "benchmarks/matched-lz4-ghy.c": "bebca4644d49568e89574bd5e81426fa06b2d4c6de9d8cf0517cd83f2ee816bb",
+    "gzram/bench.c": "8c51e7111e67c2f6fc516057d195e4142b7a8f80b7cccaf8be5230ff17838ed9"
+  },
+  "scope": "Physical userspace screening; GHY framing included, actual ZRAM untested"
+}
