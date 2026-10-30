@@ -1,0 +1,266 @@
+{
+  "status": "passed after strict coexistence marker reconstruction",
+  "results": {
+    "fallback": {
+      "original_status": "passed",
+      "original_result_sha256": "c32f895062e548d54205ee667729a4804b97e41044ccccbb416e5edb4ca5efb2",
+      "serial_sha256": "460ac7c8465c4ba2ea2b465ff10f459bd49e3992f757a972eac26f1c53673ccf",
+      "console_protocol": {
+        "records": [
+          {
+            "cycle": "1",
+            "algorithm": "ghy-bitdirect",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "ghy-simd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "lz4-ghy",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "lz4",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "zstd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "ghy-bitdirect",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "ghy-simd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "lz4-ghy",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "lz4",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "zstd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          }
+        ],
+        "protocol_errors": [],
+        "failure_tokens": [],
+        "pass_markers": 1
+      },
+      "coexist_markers": {
+        "completed": [
+          [
+            "1",
+            "ghy-bitdirect"
+          ],
+          [
+            "1",
+            "ghy-simd"
+          ],
+          [
+            "1",
+            "lz4-ghy"
+          ],
+          [
+            "1",
+            "lz4"
+          ],
+          [
+            "1",
+            "zstd"
+          ],
+          [
+            "2",
+            "ghy-bitdirect"
+          ],
+          [
+            "2",
+            "ghy-simd"
+          ],
+          [
+            "2",
+            "lz4-ghy"
+          ],
+          [
+            "2",
+            "lz4"
+          ],
+          [
+            "2",
+            "zstd"
+          ]
+        ],
+        "unloads": 2,
+        "errors": []
+      },
+      "scope": "Reanalysis of preserved run; no native measurement or direct SIMD path counter"
+    },
+    "avx2": {
+      "original_status": "failed",
+      "original_result_sha256": "4b6dab3bfc7d86f04e10c34bc1a30f5323ea68b09b662c5cfc22ae0f9087f9e5",
+      "serial_sha256": "fb299bbb271bb9b7919f542d7fca3b7a6f29ed4ef0ca8d8a47fa2b269fa179bd",
+      "console_protocol": {
+        "records": [
+          {
+            "cycle": "1",
+            "algorithm": "ghy-bitdirect",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "ghy-simd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "lz4-ghy",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "lz4",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "1",
+            "algorithm": "zstd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "ghy-bitdirect",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "ghy-simd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "lz4-ghy",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "lz4",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          },
+          {
+            "cycle": "2",
+            "algorithm": "zstd",
+            "corpora": "26",
+            "workers": "4",
+            "checks": "24197"
+          }
+        ],
+        "protocol_errors": [],
+        "failure_tokens": [],
+        "pass_markers": 1
+      },
+      "coexist_markers": {
+        "completed": [
+          [
+            "1",
+            "ghy-bitdirect"
+          ],
+          [
+            "1",
+            "ghy-simd"
+          ],
+          [
+            "1",
+            "lz4-ghy"
+          ],
+          [
+            "1",
+            "lz4"
+          ],
+          [
+            "1",
+            "zstd"
+          ],
+          [
+            "2",
+            "ghy-bitdirect"
+          ],
+          [
+            "2",
+            "ghy-simd"
+          ],
+          [
+            "2",
+            "lz4-ghy"
+          ],
+          [
+            "2",
+            "lz4"
+          ],
+          [
+            "2",
+            "zstd"
+          ]
+        ],
+        "unloads": 2,
+        "errors": []
+      },
+      "scope": "Reanalysis of preserved run; no native measurement or direct SIMD path counter"
+    }
+  },
+  "parser_sha256": "582a529476476225aded6b04c8e1b225fd102731b50c4b5957adb200f7b8265b",
+  "tests_sha256": "df1328b37a127676ac97f43bc3624d1e7849c0cb51db89a998063c612ee04c29",
+  "time": 1793328221.44937
+}

@@ -12,6 +12,7 @@ import re
 import stat
 import subprocess
 from zram_vm_records import parse_device_records
+from coexist_vm_records import parse_coexist_markers
 
 p = argparse.ArgumentParser(description=__doc__)
 for name in ['kernel', 'module', 'client', 'corpora-directory', 'qemu', 'busybox', 'bios', 'qemu-data', 'output']:
@@ -172,6 +173,7 @@ with (a.output / 'serial.log').open('w') as serial, (a.output / 'stderr.log').op
 text = (a.output / 'serial.log').read_text()
 parsed = parse_device_records(text)
 results = [(r['corpora'], r['workers'], r['checks']) for r in parsed['records']]
+coexist = parse_coexist_markers(text, a.algorithms)
 record['console_protocol'] = parsed
 record['launcher_sha256'] = sha(Path(__file__))
 record['parser_sha256'] = sha(Path(__file__).with_name('zram_vm_records.py'))
@@ -187,10 +189,10 @@ passed = (record['exit_code'] == 0 and parsed['pass_markers'] == 1 and not parse
           and all(int(n)==len(corpora) and int(w)==4 and int(c)>0 for n,w,c in results)
           and before==record['after_settings'] and not record['experimental_host_module_loaded']
           and not parsed['failure_tokens']
-          and text.count('COEXIST_CPU1_PASS') == len(expected)
-          and text.count('COEXIST_STOCK_PASS') == len(expected)
-          and text.count('COEXIST_UNLOAD_PASS') == 2)
-record['coexist_markers'] = dict(cpu1=text.count('COEXIST_CPU1_PASS'), stock=text.count('COEXIST_STOCK_PASS'), unload=text.count('COEXIST_UNLOAD_PASS'))
+          and not coexist['errors'] and len(coexist['completed']) == len(expected)
+          and set(coexist['completed']) == expected and coexist['unloads'] == 2)
+record['coexist_markers'] = coexist
+record['coexist_parser_sha256'] = sha(Path(__file__).with_name('coexist_vm_records.py'))
 record['status'] = 'passed' if passed else 'failed'
 (a.output / 'result.json').write_text(json.dumps(record,indent=2)+'\n')
 print(json.dumps(record))

@@ -86,3 +86,9 @@ A [matched userspace GZRAM and scalar LZ4 cohort](../benchmarks/results/terra-ma
 A [namespaced ZRAM coexistence experiment](../benchmarks/results/terra-coexist-gate-001/summary.md) records the CPU-hotplug state collision and the actual guest-gate outcome. This is not native performance or a verified hard-hang recovery path.
 
 The [corrected coexistence guest gate](../benchmarks/results/terra-coexist-gate-002/summary.md) records the actual retry outcome; the initial missing-/tmp failure remains preserved. Native recovery and performance remain unproven.
+
+The [strict coexistence console reanalysis](../benchmarks/results/terra-coexist-review-003/summary.md)
+accepted both preserved guest runs after identifying a printk-split unload marker;
+the original reported failure remains intact. Both guests checked stock-data
+preservation and CPU1 hotplug/pinned I/O across all ten algorithm/cycle records.
+This is guest correctness only and does not verify native recovery or performance.
