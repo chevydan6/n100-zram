@@ -1,0 +1,9 @@
+# Hypothetical raw-storage threshold sensitivity
+
+The retained [audited renderer observations](../terra-renderer-energy-audited-001/findings.md) contain encoded lengths for the same sampled pages. This analysis applies three **hypothetical** thresholds: if an encoded frame is at least 2,048, 3,072 or 4,096 bytes, count a 4,096-byte raw page; otherwise count the encoded length. Same-word pages were already excluded from the original samples. It reuses recorded lengths only; no new compression, memory-pressure, kernel, energy or application test occurred.
+
+At the hypothetical 3,072-byte threshold, parent GHY payload per sampled page in trials 001/002/003 is 1,580 / 1,616 / 1,785 bytes, compared with scalar LZ4 1,345 / 1,350 / 1,379 and userspace zstd 837 / 829 / 843. Parent GHY remains 17.4–29.5% larger than LZ4 and 88.8–111.8% larger than userspace zstd across those trial totals. At the hypothetical 4,096-byte threshold, parent GHY remains 17.6–29.2% larger than LZ4. All thresholds, raw counts and sampling-candidate results are in `result.json`; `analyze.py` regenerates it from hash-identified retained records.
+
+These thresholds are **not** measurements of the running kernel's ZRAM huge-object cutoff or zsmalloc class sizes. Actual allocation has class rounding, metadata, same-filled page handling and other effects; the codecs also have different framing. The input samples are small, generated, heavily biased toward readable resident renderer pages and not representative of swap traffic. In particular, this sensitivity check cannot establish actual RAM savings, workload speed, package energy, responsiveness or a compressor ranking under pressure. The purpose is only to avoid treating unbounded encoded totals as if every oversized frame must be stored as-is.
+
+No stock ZRAM or boot settings were changed. Native experimental testing remains gated on verified recovery.

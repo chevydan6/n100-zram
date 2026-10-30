@@ -1,0 +1,254 @@
+{
+  "status": "passed",
+  "scope": "Hypothetical payload sensitivity only; not ZRAM cutoff, allocator-rounded memory, swap, energy or representative workload",
+  "inputs_sha256": {
+    "trial-001.json": "86a61e103643cd4a2d3a5caea3485202c804ce399a5d4c56a71517e074c0e565",
+    "trial-002.json": "ffafb66bffc828b4863e1bdefe55a974d099bad950a5f2688df725965fd3c4c9",
+    "trial-003.json": "2a185a9213abfebb1b04cb5b5df8e79bd91a1f89cf747bcba1ad6a8b11822b50"
+  },
+  "results": [
+    {
+      "trial": 1,
+      "pages": 123,
+      "hypothetical_cutoff_bytes": 2048,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 196342,
+          "raw_pages": 22,
+          "bytes_per_page": 1596.2764227642276
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 247406,
+          "raw_pages": 37,
+          "bytes_per_page": 2011.4308943089432
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 247406,
+          "raw_pages": 37,
+          "bytes_per_page": 2011.4308943089432
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 108494,
+          "raw_pages": 3,
+          "bytes_per_page": 882.0650406504066
+        }
+      }
+    },
+    {
+      "trial": 1,
+      "pages": 123,
+      "hypothetical_cutoff_bytes": 3072,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 165491,
+          "raw_pages": 2,
+          "bytes_per_page": 1345.4552845528456
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 194279,
+          "raw_pages": 2,
+          "bytes_per_page": 1579.5040650406504
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 194279,
+          "raw_pages": 2,
+          "bytes_per_page": 1579.5040650406504
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 102918,
+          "raw_pages": 0,
+          "bytes_per_page": 836.7317073170732
+        }
+      }
+    },
+    {
+      "trial": 1,
+      "pages": 123,
+      "hypothetical_cutoff_bytes": 4096,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 163660,
+          "raw_pages": 0,
+          "bytes_per_page": 1330.5691056910568
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 192464,
+          "raw_pages": 0,
+          "bytes_per_page": 1564.7479674796748
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 192464,
+          "raw_pages": 0,
+          "bytes_per_page": 1564.7479674796748
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 102918,
+          "raw_pages": 0,
+          "bytes_per_page": 836.7317073170732
+        }
+      }
+    },
+    {
+      "trial": 2,
+      "pages": 119,
+      "hypothetical_cutoff_bytes": 2048,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 190038,
+          "raw_pages": 20,
+          "bytes_per_page": 1596.9579831932774
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 251833,
+          "raw_pages": 40,
+          "bytes_per_page": 2116.2436974789916
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 243210,
+          "raw_pages": 37,
+          "bytes_per_page": 2043.781512605042
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 101651,
+          "raw_pages": 2,
+          "bytes_per_page": 854.2100840336135
+        }
+      }
+    },
+    {
+      "trial": 2,
+      "pages": 119,
+      "hypothetical_cutoff_bytes": 3072,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 160649,
+          "raw_pages": 2,
+          "bytes_per_page": 1349.9915966386554
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 192281,
+          "raw_pages": 2,
+          "bytes_per_page": 1615.8067226890757
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 188586,
+          "raw_pages": 2,
+          "bytes_per_page": 1584.7563025210084
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 98592,
+          "raw_pages": 0,
+          "bytes_per_page": 828.5042016806723
+        }
+      }
+    },
+    {
+      "trial": 2,
+      "pages": 119,
+      "hypothetical_cutoff_bytes": 4096,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 159899,
+          "raw_pages": 1,
+          "bytes_per_page": 1343.689075630252
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 191539,
+          "raw_pages": 1,
+          "bytes_per_page": 1609.5714285714287
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 187844,
+          "raw_pages": 1,
+          "bytes_per_page": 1578.5210084033613
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 98592,
+          "raw_pages": 0,
+          "bytes_per_page": 828.5042016806723
+        }
+      }
+    },
+    {
+      "trial": 3,
+      "pages": 124,
+      "hypothetical_cutoff_bytes": 2048,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 204274,
+          "raw_pages": 22,
+          "bytes_per_page": 1647.3709677419354
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 297710,
+          "raw_pages": 53,
+          "bytes_per_page": 2400.8870967741937
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 288899,
+          "raw_pages": 50,
+          "bytes_per_page": 2329.8306451612902
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 107993,
+          "raw_pages": 2,
+          "bytes_per_page": 870.9112903225806
+        }
+      }
+    },
+    {
+      "trial": 3,
+      "pages": 124,
+      "hypothetical_cutoff_bytes": 3072,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 170960,
+          "raw_pages": 2,
+          "bytes_per_page": 1378.7096774193549
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 221371,
+          "raw_pages": 3,
+          "bytes_per_page": 1785.25
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 216716,
+          "raw_pages": 3,
+          "bytes_per_page": 1747.7096774193549
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 104529,
+          "raw_pages": 0,
+          "bytes_per_page": 842.9758064516129
+        }
+      }
+    },
+    {
+      "trial": 3,
+      "pages": 124,
+      "hypothetical_cutoff_bytes": 4096,
+      "codecs": {
+        "table12-scalar": {
+          "payload_bytes": 169337,
+          "raw_pages": 0,
+          "bytes_per_page": 1365.6209677419354
+        },
+        "ghy-combined-avx2": {
+          "payload_bytes": 218744,
+          "raw_pages": 0,
+          "bytes_per_page": 1764.0645161290322
+        },
+        "ghy-sample16-avx2": {
+          "payload_bytes": 214089,
+          "raw_pages": 0,
+          "bytes_per_page": 1726.524193548387
+        },
+        "zstd-userspace-level3": {
+          "payload_bytes": 104529,
+          "raw_pages": 0,
+          "bytes_per_page": 842.9758064516129
+        }
+      }
+    }
+  ]
+}
