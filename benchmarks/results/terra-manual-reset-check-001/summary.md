@@ -1,0 +1,5 @@
+# User-present restart and restoration check
+
+After a request to test the manual power-button path, the user reported restarting. The boot ID changed from the saved preflight. Read-only inspection confirmed the same `7.2.11-200.fc44.x86_64` kernel, `[zstd]` ZRAM algorithm and 3,924,819,968-byte ZRAM disk size, with both `/dev/zram0` and the hibernation swap file enabled. There were no failed systemd units. The repository was clean and no experimental module was loaded during this check.
+
+The exact button action remains unconfirmed pending the user's response; a changed boot ID by itself cannot establish whether a button hold, a normal software restart, or another path was used. Even a confirmed manual power-off/restart in normal operation would not establish behavior during a hard hang or automatic watchdog recovery. `/sys/class/watchdog` remained empty and panic, panic-on-oops, NMI watchdog and softlockup-panic controls remained zero. Native experimental-module testing is still gated. No boot, swap or kernel configuration was modified by this inspection.
