@@ -1,0 +1,9 @@
+# Fedora GRUB menu: read-only research for the recovery gate
+
+The user previously restarted and reported no kernel entry in GRUB. The local [restart record](../terra-recovery-restart-001/summary.md) found on-disk boot entries but did not establish which screen appeared or whether any older kernel is bootable. No GRUB, boot, swap or runtime settings were changed in this research.
+
+Fedora's [hidden-menu design and test instructions](https://fedoraproject.org/wiki/Changes/HiddenGrubMenu) describe holding the left Shift key during boot, pressing F8, or pressing Esc to reveal a hidden GRUB menu. These are possible manual methods, not proof that this particular Lenovo's menu is hidden, that the observed screen was GRUB, or that the older kernel can boot. Esc can lead to firmware setup on some systems, according to the same Fedora document. A separate Fedora page also documents a one-time menu request through a boot environment update; that is a boot-setting write and has not been performed.
+
+A later, user-present recovery check could try holding left Shift during a normal reboot and observe whether the menu lists the installed kernels. If it does not, stop and record the exact screen rather than change boot settings or guess. If a selection is attempted, use the already documented manual handoff and verify the booted kernel, stock swap/ZRAM and subsequent return to the original default. The user has not been asked to perform another restart by this record and none was initiated.
+
+Successful access to an alternate boot entry would not demonstrate automatic recovery from a hard hang. The separate watchdog/panic/pstore deficiencies and the native-test lock, temporary configuration and restoration requirements remain. This research does not authorize loading experimental modules or changing the normal boot configuration.
