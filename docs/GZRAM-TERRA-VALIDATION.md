@@ -92,3 +92,12 @@ accepted both preserved guest runs after identifying a printk-split unload marke
 the original reported failure remains intact. Both guests checked stock-data
 preservation and CPU1 hotplug/pinned I/O across all ten algorithm/cycle records.
 This is guest correctness only and does not verify native recovery or performance.
+
+An [owned compiler resident-page pilot](../benchmarks/results/terra-owned-compile-sampling-001/summary.md)
+sampled only compiler children without persisting page contents. In one time-spread
+sample, 71 of 78 non-same-word anonymous pages encoded as GZRAM frames had larger
+logical payloads than the 4 KiB LZ4 control. A later sample found a hypothetical
+zero-prefix recurrence guard would improve five eligible pages, but fired on none
+of 29 retained fixtures. These are small selected samples, not a reclaim trace,
+allocator measurement, performance or overall workload result. The cost and
+adversarial size regressions of any candidate remain to be measured.

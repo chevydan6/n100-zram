@@ -1,0 +1,1 @@
+Initial test launch failed before sampling: tests/select.py shadowed the Python standard-library select extension while subprocess imported. This was a test import-path collision; no codec or memory sample was run.
