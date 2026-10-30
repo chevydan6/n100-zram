@@ -103,3 +103,5 @@ allocator measurement, performance or overall workload result. The cost and
 adversarial size regressions of any candidate remain to be measured.
 
 The [zero-prefix fallback experiment](../benchmarks/results/terra-zerotwo-energy-001/findings.md) has completed matched N100 userspace timing and package-energy measurements. Both one- and two-recurrence policies are rejected as general defaults: adversarial sparse fixtures exposed severe time, energy and compressed-size regressions, despite size improvements on a small owned compiler-page sample. The results do not establish a native ZRAM outcome; GRUB recovery remains unverified.
+
+The [combined sampling-gate comparison](../benchmarks/results/terra-combined-sampling-energy-001/findings.md) measured userspace compression, decompression and package energy against the current bounded parent and scalar LZ4. The 16-word gate reduced time on several controls but produced a severe adversarial sparse-page time, energy and size regression. Both gates remain research prototypes; this does not establish a native ZRAM gain.

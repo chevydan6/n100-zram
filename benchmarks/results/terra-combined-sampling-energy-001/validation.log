@@ -1,0 +1,23 @@
+Matched codec families: common LZ4 decoder=0x7fbee624adc0, separate GHY decoder entries, random task order, RAPL available
+Validated random: four scalar tables and six hybrid entries, 128 pages
+Validated sparse-words: four scalar tables and six hybrid entries, 128 pages
+Validated period127: four scalar tables and six hybrid entries, 128 pages
+Validated halfzero: four scalar tables and six hybrid entries, 128 pages
+Validated repeat32: four scalar tables and six hybrid entries, 128 pages
+Validated period127-zero-tail: four scalar tables and six hybrid entries, 128 pages
+Validated words25: four scalar tables and six hybrid entries, 128 pages
+Validated words50: four scalar tables and six hybrid entries, 128 pages
+Validated mixed-pages: four scalar tables and six hybrid entries, 128 pages
+Validated repeat16: four scalar tables and six hybrid entries, 128 pages
+Validated clusters25: four scalar tables and six hybrid entries, 128 pages
+Validated clusters50: four scalar tables and six hybrid entries, 128 pages
+Validated sample16-sparse-miss: four scalar tables and six hybrid entries, 128 pages
+Validated sample16-dense-hit: four scalar tables and six hybrid entries, 128 pages
+Validated sample64-sparse-miss: four scalar tables and six hybrid entries, 128 pages
+Validated sample64-dense-hit: four scalar tables and six hybrid entries, 128 pages
+Validated bash-exec: four scalar tables and six hybrid entries, 128 pages
+Validated git-exec: four scalar tables and six hybrid entries, 128 pages
+Validated libc-exec: four scalar tables and six hybrid entries, 128 pages
+Validated zeroguard-random: four scalar tables and six hybrid entries, 128 pages
+Validated zerotwoguard-random: four scalar tables and six hybrid entries, 128 pages
+corpus,round,variant,operation,ns_per_page,compressed_bytes,cycles,instructions,branch_misses,cache_misses,pmu_running_fraction,package_uj_per_page,hybrid_raw_pages,hybrid_gzram_pages,hybrid_lz4_pages,cpu_ns_per_page,cpu_utilization_percent
