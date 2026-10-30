@@ -1,0 +1,451 @@
+{
+  "status": "passed",
+  "scope": "Chromium renderer sample plus randomized userspace codec timing, generated local content; no page bytes persisted; no package energy, ZRAM, reclaim or application-performance claim",
+  "seed": 451,
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "sources_and_binaries_sha256": {
+    "benchmarks/owned-browser-workload.html": "531ee7d36e80936097a7fb883aeca8b27b1f38b9d7e5a384698a7586eaa7f09b",
+    "benchmarks/sample-owned-renderer-zstd.py": "a0f533d4e9587ec662ab6000506d549a1c2eb792eb9519b0c9c3bb4bb7ce6f66",
+    "benchmarks/sample-owned-compile.py": "b5fbaea2168a834c900798a0cc96916eec90b9cab43beb6ff7cf3e1647822b40",
+    "build/astra-v9/libgzram-hybrid-bitdirectblock2avxbits4bounded.so": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+    "build/lz4-scalar-table-001/table14-scalar.so": "2e4b5b03d1bff1829f72b410c8bfd33a7b0f5bf364287e7b5af7c3924d2d9152",
+    "build/lz4-scalar-table-001/table13-scalar.so": "b5343d6ee5596795ffc402c1ab0b458dc6521952a10a31395e50c2b0cb54848f",
+    "build/lz4-scalar-table-001/table12-scalar.so": "61c9cf1bfdd164ce22a4ca78037c21a9b5159085bd6807fa448090bff5455c77",
+    "build/terra-combined-sampling-validation-001/normal/combined-sample16.so": "37fcc81b6e47e0bc7d5b5c00e72d1f132bcdced8327e5394f9e01c7f1d5c2e01",
+    "/lib64/libzstd.so.1": "70ec54d150f4052f28fb1e8f8a1c6ca35e1a499e4744c6f6d9d783537618f80b"
+  },
+  "classes": {
+    "anonymous_private": {
+      "pages": 128,
+      "same_word": 2,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 126,
+          "encoded_bytes": 165051,
+          "logical_stored_bytes": 165015,
+          "raw_pages": 2
+        },
+        "table13-scalar": {
+          "pages": 126,
+          "encoded_bytes": 165132,
+          "logical_stored_bytes": 165096,
+          "raw_pages": 2
+        },
+        "table12-scalar": {
+          "pages": 126,
+          "encoded_bytes": 165305,
+          "logical_stored_bytes": 165269,
+          "raw_pages": 2
+        },
+        "ghy-combined-scalar": {
+          "pages": 126,
+          "encoded_bytes": 197449,
+          "logical_stored_bytes": 197433,
+          "raw_pages": 2
+        },
+        "ghy-combined-avx2": {
+          "pages": 126,
+          "encoded_bytes": 197449,
+          "logical_stored_bytes": 197433,
+          "raw_pages": 2
+        }
+      },
+      "hybrid_mode_comparison": {
+        "1": {
+          "pages": 63,
+          "ghy_logical_bytes": 77296,
+          "lz4_logical_bytes": 45620,
+          "ghy_larger": 63,
+          "equal": 0,
+          "ghy_smaller": 0
+        },
+        "2": {
+          "pages": 61,
+          "ghy_logical_bytes": 111945,
+          "lz4_logical_bytes": 111457,
+          "ghy_larger": 61,
+          "equal": 0,
+          "ghy_smaller": 0
+        },
+        "0": {
+          "pages": 2,
+          "ghy_logical_bytes": 8192,
+          "lz4_logical_bytes": 8192,
+          "ghy_larger": 0,
+          "equal": 2,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "selected": {
+            "pages": 85,
+            "parent_bytes": 109435,
+            "lz4_framed_bytes": 78263,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 22
+          },
+          "rejected": {
+            "pages": 41,
+            "parent_bytes": 87998,
+            "lz4_framed_bytes": 87998,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 41
+          }
+        },
+        "64": {
+          "selected": {
+            "pages": 83,
+            "parent_bytes": 105758,
+            "lz4_framed_bytes": 74586,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 20
+          },
+          "rejected": {
+            "pages": 43,
+            "parent_bytes": 91675,
+            "lz4_framed_bytes": 91675,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 43
+          }
+        },
+        "16-offset4": {
+          "selected": {
+            "pages": 81,
+            "parent_bytes": 102283,
+            "lz4_framed_bytes": 71111,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 18
+          },
+          "rejected": {
+            "pages": 45,
+            "parent_bytes": 95150,
+            "lz4_framed_bytes": 95150,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 45
+          }
+        },
+        "16-union": {
+          "selected": {
+            "pages": 87,
+            "parent_bytes": 112731,
+            "lz4_framed_bytes": 81559,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 24
+          },
+          "rejected": {
+            "pages": 39,
+            "parent_bytes": 84702,
+            "lz4_framed_bytes": 84702,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 39
+          }
+        },
+        "16-whole50": {
+          "selected": {
+            "pages": 85,
+            "parent_bytes": 109435,
+            "lz4_framed_bytes": 78263,
+            "ghy_mode1": 63,
+            "lz4_smaller": 63,
+            "lz4_larger": 0,
+            "equal": 22
+          },
+          "rejected": {
+            "pages": 41,
+            "parent_bytes": 87998,
+            "lz4_framed_bytes": 87998,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 41
+          }
+        }
+      },
+      "zero_prefix_probe": {
+        "eligible": 32,
+        "fired": 4,
+        "smaller": 4,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 7928,
+        "hypothetical_bytes": 4385
+      },
+      "two_match_probe": {
+        "eligible": 32,
+        "fired": 3,
+        "smaller": 3,
+        "equal": 0,
+        "larger": 0,
+        "existing_bytes": 5488,
+        "hypothetical_bytes": 3354
+      }
+    },
+    "file_executable": {
+      "pages": 128,
+      "same_word": 0,
+      "codecs": {
+        "table14-scalar": {
+          "pages": 128,
+          "encoded_bytes": 367322,
+          "logical_stored_bytes": 367322,
+          "raw_pages": 0
+        },
+        "table13-scalar": {
+          "pages": 128,
+          "encoded_bytes": 368023,
+          "logical_stored_bytes": 368023,
+          "raw_pages": 0
+        },
+        "table12-scalar": {
+          "pages": 128,
+          "encoded_bytes": 369738,
+          "logical_stored_bytes": 369738,
+          "raw_pages": 0
+        },
+        "ghy-combined-scalar": {
+          "pages": 128,
+          "encoded_bytes": 370762,
+          "logical_stored_bytes": 370762,
+          "raw_pages": 0
+        },
+        "ghy-combined-avx2": {
+          "pages": 128,
+          "encoded_bytes": 370762,
+          "logical_stored_bytes": 370762,
+          "raw_pages": 0
+        }
+      },
+      "hybrid_mode_comparison": {
+        "2": {
+          "pages": 128,
+          "ghy_logical_bytes": 370762,
+          "lz4_logical_bytes": 369738,
+          "ghy_larger": 128,
+          "equal": 0,
+          "ghy_smaller": 0
+        }
+      },
+      "sampling_probe": {
+        "16": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 370762,
+            "lz4_framed_bytes": 370762,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "64": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 370762,
+            "lz4_framed_bytes": 370762,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        },
+        "16-offset4": {
+          "rejected": {
+            "pages": 127,
+            "parent_bytes": 367433,
+            "lz4_framed_bytes": 367433,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 127
+          },
+          "selected": {
+            "pages": 1,
+            "parent_bytes": 3329,
+            "lz4_framed_bytes": 3329,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 1
+          }
+        },
+        "16-union": {
+          "rejected": {
+            "pages": 127,
+            "parent_bytes": 367433,
+            "lz4_framed_bytes": 367433,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 127
+          },
+          "selected": {
+            "pages": 1,
+            "parent_bytes": 3329,
+            "lz4_framed_bytes": 3329,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 1
+          }
+        },
+        "16-whole50": {
+          "rejected": {
+            "pages": 128,
+            "parent_bytes": 370762,
+            "lz4_framed_bytes": 370762,
+            "ghy_mode1": 0,
+            "lz4_smaller": 0,
+            "lz4_larger": 0,
+            "equal": 128
+          }
+        }
+      }
+    }
+  },
+  "eligible_reads": {
+    "anonymous_private": 135,
+    "file_executable": 663
+  },
+  "failures": 6652,
+  "renderer_candidates": 467,
+  "renderer_map_denials": 0,
+  "descendants_seen": 2006,
+  "renderer_type_seen": 467,
+  "profile_matches": 467,
+  "codec_timing": {
+    "pages": 126,
+    "calls_per_batch": 32,
+    "warmups": 3,
+    "order": "randomized eight operations per page",
+    "scope": "Userspace, same generated renderer pages; wall and thread CPU include Python/ctypes overhead; no RAPL, kernel, allocator or application timing",
+    "metrics": {
+      "table12-scalar": {
+        "encoded_bytes_total": 165305,
+        "compress": {
+          "wall_ns_median": 20643.03125,
+          "cpu_ns_median": 20540.03125
+        },
+        "decompress": {
+          "wall_ns_median": 10389.515625,
+          "cpu_ns_median": 10386.015625
+        }
+      },
+      "ghy-combined-avx2": {
+        "encoded_bytes_total": 197449,
+        "compress": {
+          "wall_ns_median": 13350.65625,
+          "cpu_ns_median": 13219.15625
+        },
+        "decompress": {
+          "wall_ns_median": 9866.796875,
+          "cpu_ns_median": 9907.0625
+        }
+      },
+      "ghy-sample16-avx2": {
+        "encoded_bytes_total": 197449,
+        "compress": {
+          "wall_ns_median": 12773.390625,
+          "cpu_ns_median": 12641.65625
+        },
+        "decompress": {
+          "wall_ns_median": 9869.578125,
+          "cpu_ns_median": 9861.40625
+        }
+      },
+      "zstd-userspace-level3": {
+        "encoded_bytes_total": 101864,
+        "compress": {
+          "wall_ns_median": 68349.53125,
+          "cpu_ns_median": 67863.046875
+        },
+        "decompress": {
+          "wall_ns_median": 30033.1875,
+          "cpu_ns_median": 29460.3125
+        }
+      }
+    },
+    "paired_percent": {
+      "ghy-combined-avx2": {
+        "compress": {
+          "wall": -0.916836312966679,
+          "cpu": -2.0810011645019166
+        },
+        "decompress": {
+          "wall": -0.9815817730767395,
+          "cpu": -0.9084744252693178
+        }
+      },
+      "ghy-sample16-avx2": {
+        "compress": {
+          "wall": -1.4449260620626236,
+          "cpu": -1.7002308567101332
+        },
+        "decompress": {
+          "wall": -0.5541715064515562,
+          "cpu": -0.10718372852977498
+        }
+      }
+    },
+    "zstd_version": "1.5.7",
+    "zstd_level": 3,
+    "candidate_vs_parent_percent": {
+      "compress": {
+        "wall": -0.4299526066879167,
+        "cpu": -0.29926781245674383
+      },
+      "decompress": {
+        "wall": -0.04682906807044196,
+        "cpu": 0.32839562663838917
+      }
+    },
+    "vs_zstd_percent": {
+      "table12-scalar": {
+        "compress": {
+          "wall": -69.08128072771751,
+          "cpu": -68.98367509286223
+        },
+        "decompress": {
+          "wall": -61.93926307928221,
+          "cpu": -61.64550729671773
+        }
+      },
+      "ghy-combined-avx2": {
+        "compress": {
+          "wall": -67.21674224805801,
+          "cpu": -67.12058765069582
+        },
+        "decompress": {
+          "wall": -62.0748189488845,
+          "cpu": -61.70855043270852
+        }
+      },
+      "ghy-sample16-avx2": {
+        "compress": {
+          "wall": -68.16107536892041,
+          "cpu": -68.30585195621319
+        },
+        "decompress": {
+          "wall": -61.89337307632332,
+          "cpu": -62.15516042675947
+        }
+      }
+    }
+  }
+}
