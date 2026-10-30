@@ -1,0 +1,5 @@
+# Physical ZRAM energy: first half
+
+The first run completed 432 trials (nine randomized rounds, eight corpora, six codecs) over approximately 29 minutes. Two-second repeated-write and repeated-read batches sampled package energy and per-thread CPU separately. All final readbacks passed; the dedicated device was removed and active stock zstd swap configuration was preserved. Battery decreased from 78% to 68% while discharging; this whole-experiment change is not a per-codec energy measure. Raw results and completed-trial log are retained. The initial one-hour estimate was incorrect: 432 trials times four seconds is approximately 29 minutes, plus overhead. A second independent seeded run is needed to reach about an hour and examine repeatability.
+
+This is a sustained synthetic device workload, not representative memory-pressure behavior or battery life. Package RAPL includes background activity, and time and energy must be normalized to actual completed I/O operations. Energy, throughput, allocated memory and regressions need a paired comparison across both runs before conclusions.
