@@ -1,0 +1,6 @@
+{
+  "source_module_sha256": "f2160beb65ae802205259f8209219643a047ff1ac616a7ec3941b0e1b29be4d2",
+  "instrumented_module_sha256": "f7dcbf87683a3e88f7a9c874afba62ee1a9cd18141fb23ad93e87ba1bbb9d52c",
+  "dispatch_sha256": "c843798aedf480eeabe67b98f3fe8dd34554055244f4c3c15b8a438708879709",
+  "scope": "Guest-only branch evidence; instrumentation changes timing"
+}

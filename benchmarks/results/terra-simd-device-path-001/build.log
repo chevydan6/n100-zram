@@ -1,0 +1,13 @@
+make: Entering directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'
+make[1]: Entering directory '/home/dan/n100-zram/build/terra-simd-device-path-001/module'
+warning: pahole version differs from the one used to build the kernel
+  The kernel was built with: 132
+  You are using:             0
+  CC [M]  simd/dispatch.o
+  LD [M]  n100_zram.o
+  MODPOST Module.symvers
+  LD [M]  n100_zram.ko
+  BTF [M] n100_zram.ko
+Skipping BTF generation for n100_zram.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/home/dan/n100-zram/build/terra-simd-device-path-001/module'
+make: Leaving directory '/home/dan/n100-zram/build/astra-vm/root/usr/src/kernels/7.2.11-200.fc44.x86_64'

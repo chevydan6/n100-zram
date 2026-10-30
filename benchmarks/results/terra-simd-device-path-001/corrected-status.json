@@ -1,0 +1,19 @@
+{
+  "status": "passed; instrumented guest only, no timing or native claim",
+  "time": 1793333414.0635164,
+  "fallback_markers": {
+    "N100_DEVICE_SCALAR_ENCODE": 2,
+    "N100_DEVICE_SCALAR_DECODE": 2,
+    "N100_DEVICE_VECTOR_ENCODE": 0,
+    "N100_DEVICE_VECTOR_DECODE": 0
+  },
+  "avx2_markers": {
+    "N100_DEVICE_SCALAR_ENCODE": 0,
+    "N100_DEVICE_SCALAR_DECODE": 0,
+    "N100_DEVICE_VECTOR_ENCODE": 2,
+    "N100_DEVICE_VECTOR_DECODE": 2
+  },
+  "module_sha256": "f7dcbf87683a3e88f7a9c874afba62ee1a9cd18141fb23ad93e87ba1bbb9d52c",
+  "fallback_console_sha256": "8d00b71e90ececca53d2a79f078c1b090be4781b4651c21c14d9e65eed734c15",
+  "avx2_console_sha256": "b9ef2a6294bfbbf7e331cf71777a9a11c2456f2d54fd7a6498141cc06b76c0e5"
+}
