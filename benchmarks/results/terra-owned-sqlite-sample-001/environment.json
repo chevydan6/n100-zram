@@ -1,0 +1,9 @@
+{
+  "cpu": "Intel(R) N100",
+  "kernel": "7.2.11-200.fc44.x86_64",
+  "python": "3.14.8",
+  "sqlite": "3.51.2",
+  "scope": "environment after bounded owned samples",
+  "swap": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/swap/hibernate.swap                    file\t\t6291452\t\t0\t\t10\n/dev/zram0                              partition\t3832828\t\t0\t\t100\n",
+  "zram_compression": "lzo-rle lzo lz4 lz4hc [zstd] deflate 842"
+}
