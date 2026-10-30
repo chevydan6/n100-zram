@@ -1,0 +1,5 @@
+{
+  "status": "failed or deferred; preserve artifacts",
+  "time": 1793328101.4665196,
+  "error": "AssertionError('guest-fallback')"
+}

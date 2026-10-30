@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <linux/fs.h>
 #include <pthread.h>
+#include <sched.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,6 +54,16 @@ int main(int argc,char **argv)
  }
  FILE *swaps=fopen("/proc/swaps","r");char line[4096];CHECK(swaps);
  CHECK(fgets(line,sizeof(line),swaps));CHECK(!fgets(line,sizeof(line),swaps));CHECK(feof(swaps)&&!ferror(swaps));CHECK(!fclose(swaps));
+
+ /* Guest-only CPU hotplug gate: pin the parent and inherited workers to an
+  * explicitly requested online CPU after it has been taken offline/on. */
+ const char *cpu_text = getenv("GZRAM_TEST_CPU");
+ if (cpu_text) {
+  char *end; errno = 0; long cpu = strtol(cpu_text, &end, 10);
+  CHECK(!errno && *cpu_text && !*end && cpu >= 0 && cpu < CPU_SETSIZE);
+  cpu_set_t set; CPU_ZERO(&set); CPU_SET((int)cpu, &set);
+  CHECK(!sched_setaffinity(0, sizeof(set), &set));
+ }
 
  /* Require an explicit block device. The VM launcher supplies only its own
   * diskless guest's device; no sysfs mutation or swapping is done by this client. */
