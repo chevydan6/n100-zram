@@ -1,0 +1,1 @@
+The analyzer stopped before processing a corpus: its expected total was updated to 34 but the uniqueness check incorrectly retained 29. The corpus generator and codec were not implicated. The failing source and result are preserved.

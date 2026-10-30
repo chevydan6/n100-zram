@@ -148,10 +148,64 @@ static int prefix_vector(const uint8_t *src,unsigned limit,uint64_t key,unsigned
  return prefix_vector_tail(src,at,limit,key,anchor);
 }
 #endif
+#if defined(GZRAM_HYBRID_ZERO_PREFIX_TWO_MATCH)
+/* This variant counts exact matches, retaining the same candidate-byte filter
+ * as the original guard. It is used only for a zero-prefixed page after an
+ * aligned nonzero key has been found, and never proves compressibility. */
+static int prefix_scalar_twice(const uint8_t *src,unsigned limit,uint64_t key,unsigned anchor)
+{
+ uint8_t target=(uint8_t)(key>>(anchor*8));unsigned at=1,found=0;
+ const uint64_t ones=UINT64_C(0x0101010101010101),high=UINT64_C(0x8080808080808080),repeated=ones*target;
+ for(;at<=limit&&limit-at+1>=8;at+=8){
+  uint64_t difference=hybrid_load64(src+at+anchor)^repeated;
+  uint64_t matches=(difference-ones)&~difference&high;
+  while(matches){unsigned candidate=at+(unsigned)__builtin_ctzll(matches)/8;matches&=matches-1;
+   if(hybrid_load64(src+candidate)==key&&++found==2)return 1;
+  }
+ }
+ for(;at<=limit;at++)if(src[at+anchor]==target&&hybrid_load64(src+at)==key&&++found==2)return 1;
+ return 0;
+}
+__attribute__((target("avx2")))
+static int prefix_vector_twice(const uint8_t *src,unsigned limit,uint64_t key,unsigned anchor)
+{
+ __m256i target=_mm256_set1_epi8((char)(key>>(anchor*8)));unsigned at=1,found=0;
+ for(;at<=limit&&limit-at+1>=32;at+=32){
+  unsigned mask=(unsigned)_mm256_movemask_epi8(_mm256_cmpeq_epi8(target,_mm256_loadu_si256((const __m256i *)(src+at+anchor))));
+  while(mask){unsigned candidate=at+(unsigned)__builtin_ctz(mask);mask&=mask-1;
+   if(hybrid_load64(src+candidate)==key&&++found==2)return 1;
+  }
+ }
+ uint8_t byte=(uint8_t)(key>>(anchor*8));
+ for(;at<=limit;at++)if(src[at+anchor]==byte&&hybrid_load64(src+at)==key&&++found==2)return 1;
+ return 0;
+}
+#endif
 static int prefix_recurrence(const uint8_t *src,size_t n,encode_fn gz)
 {
- uint64_t key=hybrid_load64(src);if(!key)return 0;
+ uint64_t key=hybrid_load64(src);
+#if defined(GZRAM_HYBRID_ZERO_PREFIX_TWO_MATCH)
+ int zero_prefix=!key;
+#endif
+ if(!key){
+#if defined(GZRAM_HYBRID_ZERO_PREFIX_GUARD)
+  /* Research candidate: try the first nonzero aligned word in a bounded
+   * prefix. This is only a selection hint; never a proof of compressibility. */
+  size_t offset=8;
+  for(;offset<=64&&offset<=n-8;offset+=8){key=hybrid_load64(src+offset);if(key)break;}
+  if(!key)return 0;
+  src+=offset;n-=offset;
+#else
+  return 0;
+#endif
+ }
  unsigned anchor=(unsigned)__builtin_ctzll(key)/8,limit=n-8<1024?(unsigned)(n-8):1024;
+#if defined(GZRAM_HYBRID_ZERO_PREFIX_TWO_MATCH)
+ if(zero_prefix){
+  if(gz==gzram_base_encode_avx2&&gzram_avx2_available())return prefix_vector_twice(src,limit,key,anchor);
+  return prefix_scalar_twice(src,limit,key,anchor);
+ }
+#endif
 #if GZRAM_HYBRID_GUARD != 8
  if(gz==gzram_base_encode_avx2&&gzram_avx2_available())return prefix_vector(src,limit,key,anchor);
 #else

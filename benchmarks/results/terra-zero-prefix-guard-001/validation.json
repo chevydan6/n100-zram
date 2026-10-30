@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "scope": "Normal and ASan/UBSan two-match correctness, one-match regression fixtures and preserved control codegen; no timing claim",
+  "records": {
+    "normal-parent": {
+      "old_library_sha256": "8cef9e672d74d5f80caf60f813f4ea3d035d62c953fecfed43cb6cf2f5558a9d",
+      "new_library_sha256": "2fc0dca7bc47ac36ec4a69edcad50b56800a1147dd893fa441af35c174a67cd8",
+      "old_text_sha256": "494bf267ccdc898e951f3473139586f594672b7546c4e8b75665c64b0ee0f5a2",
+      "new_text_sha256": "494bf267ccdc898e951f3473139586f594672b7546c4e8b75665c64b0ee0f5a2",
+      "identical_text": true
+    },
+    "normal-one": {
+      "old_library_sha256": "e6f24e870cb4c9b152c807194e1c7bca3d96f49c4c1c6434eb3011b9569e670e",
+      "new_library_sha256": "c1009a45ce574e898eab8fcf3c6a71849d0d6fd99d70da6605d5ef6fb1b78bf9",
+      "old_text_sha256": "a92e8bbc88d69d39520f6f7babecd3a14c1cba6de33ffcf2a4a6f3ab565fedba",
+      "new_text_sha256": "a92e8bbc88d69d39520f6f7babecd3a14c1cba6de33ffcf2a4a6f3ab565fedba",
+      "identical_text": true
+    },
+    "asan-parent": {
+      "old_library_sha256": "503a7e6557b88ee2091babc1442ef24176ffa7cc4c35225c53040466dba1f556",
+      "new_library_sha256": "63abb04ce1ed03296b63f8b0ec933a17f24f386b4a3de0be4b000d18c11add01",
+      "old_text_sha256": "506d0ba0a38b61378e3ff1ca230b1f460ead138d8b6fa52f6bf8073381291c1f",
+      "new_text_sha256": "506d0ba0a38b61378e3ff1ca230b1f460ead138d8b6fa52f6bf8073381291c1f",
+      "identical_text": true
+    },
+    "asan-one": {
+      "old_library_sha256": "043075be1fed61c77de5a5b94fd581c98875345e97c6c975ed7cca7b1b06d226",
+      "new_library_sha256": "b02d786b9c3b3fbc09f6fa98ab7290fe85bec28ec9aa3c798be83410d035db33",
+      "old_text_sha256": "6793db4bded57cd7069b9b4f2279077f918c2733f96829f50bd942e960442bdf",
+      "new_text_sha256": "6793db4bded57cd7069b9b4f2279077f918c2733f96829f50bd942e960442bdf",
+      "identical_text": true
+    }
+  },
+  "source_hashes_unchanged": true,
+  "steps": 20
+}

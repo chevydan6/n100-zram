@@ -74,23 +74,28 @@ def sample_page(pid, address, pagemap, buffer):
     return 'read' if got == PAGE else 'read_failed'
 
 
-def zero_prefix_recurrence(data, scan_bytes=64, search_bytes=1024):
-    """Hypothetical bounded guard: seek a repeated nonzero word after zero prefix.
+def zero_prefix_recurrence_count(data, scan_bytes=64, search_bytes=1024):
+    """Count at most two recurrences of the first nonzero aligned word.
 
-    This Python diagnostic is untimed and does not change codec selection.
-    It proposes only logical-size behavior; timing needs a separate C candidate.
+    Untimed diagnostic only. It never changes codec selection or stores data.
     """
-    if len(data)<16 or data[:8]!=bytes(8): return False
+    if len(data)<16 or data[:8]!=bytes(8): return 0
     for start in range(8,min(scan_bytes,len(data)-8)+1,8):
         key=data[start:start+8]
         if key != bytes(8):
             limit=min(len(data)-8,start+search_bytes)
-            return data.find(key,start+1,limit+8)>=0
-    return False
+            first=data.find(key,start+1,limit+8)
+            if first<0:return 0
+            return 2 if data.find(key,first+1,limit+8)>=0 else 1
+    return 0
+
+
+def zero_prefix_recurrence(data, scan_bytes=64, search_bytes=1024):
+    return zero_prefix_recurrence_count(data,scan_bytes,search_bytes)>0
 
 
 class Codecs:
-    def __init__(self, directory, hybrid):
+    def __init__(self, directory, hybrid, candidate=None, second_candidate=None):
         self.entries = []
         for bits in [14, 13, 12]:
             lib = C.CDLL(str(directory / f'table{bits}-scalar.so'))
@@ -112,6 +117,14 @@ class Codecs:
             dec = getattr(lib, 'gzram_decode_'+isa)
             dec.argtypes = [C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t]; dec.restype = C.c_int
             self.entries.append(('ghy-combined-'+isa,enc,None,dec))
+        for candidate_path, candidate_name in [(candidate, 'ghy-zero-prefix-avx2'), (second_candidate, 'ghy-zero-prefix-two-avx2')]:
+            if candidate_path is None: continue
+            trial = C.CDLL(str(candidate_path))
+            enc = trial.gzram_encode_avx2
+            enc.argtypes = [C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t,C.c_uint]; enc.restype = C.c_int
+            dec = trial.gzram_decode_avx2
+            dec.argtypes = [C.c_void_p,C.c_size_t,C.c_void_p,C.c_size_t]; dec.restype = C.c_int
+            self.entries.append((candidate_name,enc,None,dec))
         self.dst = C.create_string_buffer(BOUND)
         self.decoded = C.create_string_buffer(PAGE)
 
@@ -136,7 +149,8 @@ class Codecs:
                     raise RuntimeError('invalid hybrid frame header: '+name)
                 output[name]['mode'] = int(header[6])
         # Only a diagnostic feature, never stored payload or an encoding decision.
-        output['zero_prefix_recurrence'] = zero_prefix_recurrence(data)
+        output['zero_prefix_match_count'] = zero_prefix_recurrence_count(data)
+        output['zero_prefix_recurrence'] = output['zero_prefix_match_count'] > 0
         return output
 
 
@@ -146,7 +160,7 @@ def add_sample(bucket, classified):
         bucket['same_word'] += 1
         return
     for name, values in classified.items():
-        if name == 'zero_prefix_recurrence': continue
+        if name in ['zero_prefix_recurrence','zero_prefix_match_count']: continue
         dest = bucket['codecs'].setdefault(name, {'pages':0,'encoded_bytes':0,'logical_stored_bytes':0,'raw_pages':0})
         dest['pages'] += 1
         dest['encoded_bytes'] += values['encoded_bytes']
@@ -162,6 +176,17 @@ def add_sample(bucket, classified):
     pair['ghy_larger']+=int(a>b);pair['equal']+=int(a==b);pair['ghy_smaller']+=int(a<b)
     # Existing guard only consults recurrence for accepted GZR payloads > n/4.
     # Simulate replacing such a frame with a GHY-wrapped table12 LZ4 frame.
+    for candidate_name, comparison_name, minimum in [('ghy-zero-prefix-avx2','candidate_comparison',1), ('ghy-zero-prefix-two-avx2','second_candidate_comparison',2)]:
+        if candidate_name not in classified: continue
+        candidate=classified[candidate_name]
+        expected=hybrid['mode']==1 and hybrid['encoded_bytes']-8>PAGE//4 and classified['zero_prefix_match_count']>=minimum
+        if expected:
+            if candidate['mode'] not in [0,2]:raise RuntimeError('zero-prefix candidate did not fall back')
+        elif candidate['mode']!=hybrid['mode'] or candidate['encoded_bytes']!=hybrid['encoded_bytes']:
+            raise RuntimeError('unexpected zero-prefix candidate selection')
+        result=bucket.setdefault(comparison_name,{'pages':0,'changed_selection':0,'smaller':0,'equal':0,'larger':0,'parent_bytes':0,'candidate_bytes':0})
+        x,y=hybrid['logical_stored_bytes'],candidate['logical_stored_bytes']
+        result['pages']+=1;result['changed_selection']+=int(expected);result['smaller']+=int(y<x);result['equal']+=int(y==x);result['larger']+=int(y>x);result['parent_bytes']+=x;result['candidate_bytes']+=y
     if hybrid['mode']==1 and hybrid['encoded_bytes']-8 > PAGE//4:
         probe=bucket.setdefault('zero_prefix_probe',{'eligible':0,'fired':0,'smaller':0,'equal':0,'larger':0,'existing_bytes':0,'hypothetical_bytes':0})
         probe['eligible']+=1
@@ -169,6 +194,12 @@ def add_sample(bucket, classified):
             alternative=min(PAGE,lz4['encoded_bytes']+8)
             probe['fired']+=1;probe['existing_bytes']+=a;probe['hypothetical_bytes']+=alternative
             probe['smaller']+=int(alternative<a);probe['equal']+=int(alternative==a);probe['larger']+=int(alternative>a)
+        strict=bucket.setdefault('two_match_probe',{'eligible':0,'fired':0,'smaller':0,'equal':0,'larger':0,'existing_bytes':0,'hypothetical_bytes':0})
+        strict['eligible']+=1
+        if classified['zero_prefix_match_count']>=2:
+            alternative=min(PAGE,lz4['encoded_bytes']+8)
+            strict['fired']+=1;strict['existing_bytes']+=a;strict['hypothetical_bytes']+=alternative
+            strict['smaller']+=int(alternative<a);strict['equal']+=int(alternative==a);strict['larger']+=int(alternative>a)
 
 
 def run_job(source, target, codecs, rng, per_class, target_dir):
@@ -248,6 +279,8 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--lz4-directory',type=pathlib.Path,required=True)
     parser.add_argument('--hybrid',type=pathlib.Path,required=True)
+    parser.add_argument('--candidate',type=pathlib.Path)
+    parser.add_argument('--second-candidate',type=pathlib.Path)
     parser.add_argument('--output',type=pathlib.Path,required=True)
     parser.add_argument('--pages-per-class',type=int,default=64)
     parser.add_argument('--seed',type=int,default=418)
@@ -259,6 +292,8 @@ def main():
     os.umask(0o077);args.output.mkdir(parents=True)
     sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
     files=[ROOT/s for s in SOURCES]+[args.lz4_directory/f'table{x}-scalar.so' for x in [14,13,12]]+[args.hybrid,ROOT/'build/astra-v9/tables.h',pathlib.Path(__file__).resolve()]
+    if args.candidate is not None: files.append(args.candidate)
+    if args.second_candidate is not None: files.append(args.second_candidate)
     before={str(p.relative_to(ROOT) if p.is_relative_to(ROOT) else p):sha(p) for p in files}
     state={'status':'running','scope':'Only owned compiler child processes; reservoir of eligible present-page reads over lifetime, no page data persisted; no reclaim population, timing or energy claim',
            'hardware':next(line.split(':',1)[1].strip() for line in pathlib.Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name')),
@@ -267,7 +302,7 @@ def main():
     def save(): (args.output/'result.json').write_text(json.dumps(state,indent=2)+'\n')
     try:
         if 'N100' not in state['hardware']:raise RuntimeError('Physical N100 required')
-        codecs=Codecs(args.lz4_directory,args.hybrid);rng=random.Random(args.seed);save()
+        codecs=Codecs(args.lz4_directory,args.hybrid,args.candidate,args.second_candidate);rng=random.Random(args.seed);save()
         with tempfile.TemporaryDirectory(prefix='n100-owned-compile-') as tmp:
             for index,source in enumerate(SOURCES):
                 state['jobs'].append(run_job(source,pathlib.Path(tmp)/f'{index}.o',codecs,rng,args.pages_per_class,pathlib.Path(tmp)));save()

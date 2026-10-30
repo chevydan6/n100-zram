@@ -89,7 +89,7 @@ int main(int argc,char **argv)
     if(!v->lz4){if(b->data[p][6]>2)return 13;b->modes[b->data[p][6]]++;}
     memcpy(packed[p],b->data[p],(size_t)got);sizes[p]=got;
     if(decode(v,p)!=SIZE||memcmp(output,input[p],SIZE))return 7;
-    if(!strncmp(v->name,"ghy-bitdirect",13)&&!strstr(v->name,"sample")){
+    if(!strncmp(v->name,"ghy-bitdirect",13)&&!strstr(v->name,"sample")&&!strstr(v->name,"zeroguard")&&!strstr(v->name,"zerotwoguard")){
      int canonical=canonical_encoder(input[p],SIZE,expected[p],BOUND,v->log);
      if(canonical!=got||memcmp(expected[p],b->data[p],(size_t)got)){fprintf(stderr,"Byte identity failed: %s\n",v->name);return 18;}
     }

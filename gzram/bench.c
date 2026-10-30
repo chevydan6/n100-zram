@@ -20,8 +20,8 @@
 #endif
 _Static_assert(OPS>0&&OPS%PAGES==0,"Batch calls must be positive and a multiple of the corpus page count");
 static unsigned char input[PAGES][SIZE],packed[PAGES][BOUND],expected[PAGES][BOUND],output[SIZE];
-static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75","sample16-sparse-miss","sample16-dense-hit","sample64-sparse-miss","sample64-dense-hit","git-elf","libc-elf","bash-exec","git-exec","libc-exec"};
-static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast","blockpick2","blockpick3","blockpick4","bitmerge","bitdirect","blockdirect2","blockdirect3","blockdirect4","bitdirectsample16","bitdirectsample64","bitdirectpipe1","bitdirectpipe2","bitdirectpipe4","bitdirectavxbits2","bitdirectavxbits4","bitdirectblock2","bitdirectblock2pipe4","bitdirectblock2avxbits4","bitdirectblock3","bitdirectblock3pipe4","bitdirectblock3avxbits4","bitdirectbounded","bitdirectblock2avxbits4bounded","bitdirectblock3avxbits4bounded"};
+static const char *corpora[]={"random","sparse-words","zero","repeat8","period127","halfzero","word-tail64","repeat32","bash-elf","period127-zero-tail","period509-zero-tail","zerohead-random","words25","words50","words75","mixed-pages","repeat16","clusters25","clusters50","clusters75","sample16-sparse-miss","sample16-dense-hit","sample64-sparse-miss","sample64-dense-hit","git-elf","libc-elf","bash-exec","git-exec","libc-exec","zeroguard-repeat","zeroguard-random","zeroguard-late-prefix","zeroguard-distance1025","zeroguard-distance1024","zerotwoguard-repeat","zerotwoguard-random"};
+static const char *policies[]={"trial","sample","recurrence","guard16","guard32","fused","guard32mixed","wordguard","wordmixed","splittail","outlinetail","ctzunpack","wordrepeat","ctzrepeat","bitpack","mixpack","repeatmerge","ctzfull","bitctz","bitfull","select2","select3","select4","repeatmergefast","blockpick2","blockpick3","blockpick4","bitmerge","bitdirect","blockdirect2","blockdirect3","blockdirect4","bitdirectsample16","bitdirectsample64","bitdirectpipe1","bitdirectpipe2","bitdirectpipe4","bitdirectavxbits2","bitdirectavxbits4","bitdirectblock2","bitdirectblock2pipe4","bitdirectblock2avxbits4","bitdirectblock3","bitdirectblock3pipe4","bitdirectblock3avxbits4","bitdirectbounded","bitdirectblock2avxbits4bounded","bitdirectblock3avxbits4bounded","bitdirectblock2avxbits4zeroguardbounded","bitdirectblock2avxbits4zerotwoguardbounded"};
 /* 57 base entries plus two ISAs at eight block sizes per hybrid policy.
  * Keep the shuffled indices and codec registry at the same capacity. */
 enum { CODEC_CAPACITY=57+16*(sizeof(policies)/sizeof(policies[0])) };
@@ -63,9 +63,30 @@ static int encode(struct codec *v,unsigned p,void *dst){return v->lz4?baseline_e
 static int decode(struct codec *v,unsigned p){return v->lz4?baseline_dec(packed[p],output,sizes[p],SIZE):v->dec(packed[p],(size_t)sizes[p],output,SIZE);}
 /* Existing 26 fixtures remain the default and retain their generation seeds.
  * Extra file-page fixtures are explicit, immutable inputs with their own manifest. */
-static int corpus_visible(unsigned kind){const char *path=getenv("GZRAM_EXEC_CORPUS_DIR");return kind<26||(path&&*path);}
+static int corpus_visible(unsigned kind){
+ if(kind<26)return 1;
+ const char *path=getenv(kind<29?"GZRAM_EXEC_CORPUS_DIR":"GZRAM_ZERO_GUARD_FIXTURES");
+ return path&&*path;
+}
 static void fill(int kind){
  seed=100+(unsigned)kind;
+ if(kind>=29){
+  /* Construct both favorable and adversarial selection cases. This fixture is
+   * explicitly opt-in; earlier corpus seeds and bytes remain unchanged. */
+  for(unsigned p=0;p<PAGES;p++){
+   uint32_t values[8];for(unsigned j=0;j<8;j++)values[j]=rnd()|1U;
+   for(unsigned word=0;word<SIZE/4;word++){
+    uint32_t value=rnd()%4?0:((kind==30||kind==35)?(rnd()|1U):values[rnd()%8]);
+    memcpy(input[p]+word*4,&value,4);
+   }
+   memset(input[p],0,kind==31?72:8);
+   unsigned anchor=kind==31?72:8;
+   unsigned next=kind==32?anchor+1025:kind==33?anchor+1024:anchor+248;
+   memcpy(input[p]+anchor,"ABCDWXYZ",8);memcpy(input[p]+next,"ABCDWXYZ",8);
+   if(kind>=34)memcpy(input[p]+anchor+504,"ABCDWXYZ",8);
+  }
+  return;
+ }
  if(kind>=26){
   const char *directory=getenv("GZRAM_EXEC_CORPUS_DIR");char path[4096];
   int length=directory?snprintf(path,sizeof(path),"%s/%s.bin",directory,corpora[kind]):-1;
