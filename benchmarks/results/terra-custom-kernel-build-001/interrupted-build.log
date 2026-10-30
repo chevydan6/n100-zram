@@ -1,0 +1,24 @@
+make: Entering directory '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11'
+make[1]: Entering directory '/home/dan/n100-zram/build/terra-custom-kernel-001/out'
+/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:1457: /home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile.rhelver: No such file or directory
+make[2]: *** No rule to make target '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile.rhelver'.  Stop.
+make[2]: *** Waiting for unfinished jobs....
+  SYNC    include/config/auto.conf
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/menu.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+make[2]: *** [include/config/auto.conf] Deleting file 'include/generated/rustc_cfg'
+make[2]: *** [include/config/auto.conf] Deleting file 'include/generated/autoconf.h'
+make[4]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/scripts/kconfig/Makefile:85: syncconfig] Terminated
+make[3]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:777: syncconfig] Terminated
+make[2]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:917: include/config/auto.conf] Terminated
+make[1]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:248: __sub-make] Terminated
+make: *** [Makefile:248: __sub-make] Terminated

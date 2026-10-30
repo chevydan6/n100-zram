@@ -1,0 +1,10 @@
+make: Entering directory '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11'
+make[1]: Entering directory '/home/dan/n100-zram/build/terra-custom-kernel-001/out'
+/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:1457: /home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile.rhelver: No such file or directory
+make[2]: *** No rule to make target '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile.rhelver'.  Stop.
+make[2]: *** Waiting for unfinished jobs....
+  SYNC    include/config/auto.conf
+make[1]: *** [/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/home/dan/n100-zram/build/terra-custom-kernel-001/out'
+make: *** [Makefile:248: __sub-make] Error 2
+make: Leaving directory '/home/dan/n100-zram/build/terra-custom-kernel-001/source/linux-7.2.11'
