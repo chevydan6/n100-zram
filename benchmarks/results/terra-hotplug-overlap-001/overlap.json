@@ -1,0 +1,72 @@
+[
+  {
+    "cycle": "1",
+    "algorithm": "ghy-bitdirect",
+    "before": 133,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "1",
+    "algorithm": "ghy-simd",
+    "before": 152,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "1",
+    "algorithm": "lz4",
+    "before": 16,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "1",
+    "algorithm": "lz4-ghy",
+    "before": 142,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "1",
+    "algorithm": "zstd",
+    "before": 592,
+    "after": 9908,
+    "cycles": 10
+  },
+  {
+    "cycle": "2",
+    "algorithm": "ghy-bitdirect",
+    "before": 417,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "2",
+    "algorithm": "ghy-simd",
+    "before": 376,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "2",
+    "algorithm": "lz4",
+    "before": 611,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "2",
+    "algorithm": "lz4-ghy",
+    "before": 467,
+    "after": 13312,
+    "cycles": 10
+  },
+  {
+    "cycle": "2",
+    "algorithm": "zstd",
+    "before": 326,
+    "after": 9862,
+    "cycles": 10
+  }
+]
