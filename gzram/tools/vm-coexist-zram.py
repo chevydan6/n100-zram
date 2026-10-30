@@ -101,6 +101,7 @@ fail() { echo GZRAM_DEVICE_VM_FAIL; poweroff -f; while :; do sleep 1; done; }
 mount -t proc proc /proc || fail
 mount -t sysfs sysfs /sys || fail
 mount -t devtmpfs devtmpfs /dev || fail
+mkdir /tmp || fail
 [ "$(uname -r)" = "RELEASE" ] || fail
 DEPENDENCIES
 insmod /stock-zram.ko num_devices=1 || fail

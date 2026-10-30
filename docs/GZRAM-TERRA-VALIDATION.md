@@ -84,3 +84,5 @@ No default or boot settings were changed; native experimental testing remains ga
 A [matched userspace GZRAM and scalar LZ4 cohort](../benchmarks/results/terra-matched-codecs-energy-001/findings.md) now compares both bounded GHY entries with four scalar LZ4 table sizes in randomized operation order. It retains CPU, package-energy, compressed-byte and decompression tradeoffs; it is not native ZRAM or a representative workload result. The manual boot-menu recovery check remains incomplete.
 
 A [namespaced ZRAM coexistence experiment](../benchmarks/results/terra-coexist-gate-001/summary.md) records the CPU-hotplug state collision and the actual guest-gate outcome. This is not native performance or a verified hard-hang recovery path.
+
+The [corrected coexistence guest gate](../benchmarks/results/terra-coexist-gate-002/summary.md) records the actual retry outcome; the initial missing-/tmp failure remains preserved. Native recovery and performance remain unproven.
