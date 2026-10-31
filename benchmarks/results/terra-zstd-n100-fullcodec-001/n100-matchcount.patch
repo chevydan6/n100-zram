@@ -1,0 +1,24 @@
+--- a/lib/compress/zstd_compress_internal.h
++++ b/lib/compress/zstd_compress_internal.h
+@@ -860,6 +860,21 @@
+         { size_t const diff = MEM_readST(pMatch) ^ MEM_readST(pIn);
+           if (diff) return ZSTD_NbCommonBytes(diff); }
+         pIn+=sizeof(size_t); pMatch+=sizeof(size_t);
++#if defined(N100_ZSTD_MATCHCOUNT) && defined(__x86_64__)
++        /* Candidate: only read a complete 32-byte group; keep the first-word
++         * fast exit above and preserve the exact first mismatch position. */
++        while ((size_t)(pInLimit - pIn) >= 32) {
++            size_t d0 = MEM_readST(pMatch) ^ MEM_readST(pIn);
++            size_t d1 = MEM_readST(pMatch+8) ^ MEM_readST(pIn+8);
++            size_t d2 = MEM_readST(pMatch+16) ^ MEM_readST(pIn+16);
++            size_t d3 = MEM_readST(pMatch+24) ^ MEM_readST(pIn+24);
++            if (d0) return (size_t)(pIn-pStart) + ZSTD_NbCommonBytes(d0);
++            if (d1) return (size_t)(pIn-pStart) + 8 + ZSTD_NbCommonBytes(d1);
++            if (d2) return (size_t)(pIn-pStart) + 16 + ZSTD_NbCommonBytes(d2);
++            if (d3) return (size_t)(pIn-pStart) + 24 + ZSTD_NbCommonBytes(d3);
++            pIn += 32; pMatch += 32;
++        }
++#endif
+         while (pIn < pInLoopLimit) {
+             size_t const diff = MEM_readST(pMatch) ^ MEM_readST(pIn);
+             if (!diff) { pIn+=sizeof(size_t); pMatch+=sizeof(size_t); continue; }

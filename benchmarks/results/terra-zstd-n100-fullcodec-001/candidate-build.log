@@ -1,0 +1,38 @@
+make: Entering directory '/home/dan/n100-zram/build/terra-zstd-n100-lib'
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/debug.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/entropy_common.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/error_private.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/fse_decompress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/pool.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/threading.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/xxhash.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_common.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_v05.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_v06.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_v07.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/fse_compress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/hist.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/huf_compress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_compress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_compress_literals.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_compress_sequences.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_compress_superblock.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_double_fast.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_fast.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_lazy.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_ldm.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_opt.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_preSplit.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstdmt_compress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/huf_decompress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_ddict.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_decompress.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zstd_decompress_block.o
+AS obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/huf_decompress_amd64.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/cover.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/divsufsort.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/fastcover.o
+CC obj/conf_796975944cef00e317d90aa4aba085e0/dynamic/zdict.o
+compiling multi-threaded dynamic library 1.5.7
+creating versioned links
+make: Leaving directory '/home/dan/n100-zram/build/terra-zstd-n100-lib'
