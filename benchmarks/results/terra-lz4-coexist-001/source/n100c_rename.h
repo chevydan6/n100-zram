@@ -1,0 +1,7 @@
+#define LZ4_compress_default n100c_LZ4_compress_default
+#define LZ4_compress_destSize n100c_LZ4_compress_destSize
+#define LZ4_compress_fast n100c_LZ4_compress_fast
+#define LZ4_compress_fast_continue n100c_LZ4_compress_fast_continue
+#define LZ4_loadDict n100c_LZ4_loadDict
+#define LZ4_resetStream n100c_LZ4_resetStream
+#define LZ4_saveDict n100c_LZ4_saveDict
