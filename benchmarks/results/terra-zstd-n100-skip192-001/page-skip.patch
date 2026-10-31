@@ -1,0 +1,15 @@
+--- a/lib/compress/zstd_double_fast.c
++++ b/lib/compress/zstd_double_fast.c
+@@ -128,7 +128,12 @@
+     U32 curr;
+ 
+     /* how many positions to search before increasing step size */
++#if defined(N100_ZSTD_PAGE_SKIP) && defined(__x86_64__)
++    /* Mild page-only skip candidate; preserve the normal path otherwise. */
++    const size_t kStepIncr = (srcSize <= 4096) ? 192 : (1 << kSearchStrength);
++#else
+     const size_t kStepIncr = 1 << kSearchStrength;
++#endif
+     /* the position at which to increment the step size if no match is found */
+     const BYTE* nextStep;
+     size_t step; /* the current step size */

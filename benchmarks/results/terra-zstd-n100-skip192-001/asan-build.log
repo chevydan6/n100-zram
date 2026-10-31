@@ -1,0 +1,37 @@
+make: Entering directory '/home/dan/n100-zram/build/terra-zstd-n100-skip192-lib'
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/debug.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/entropy_common.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/error_private.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/fse_decompress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/pool.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/threading.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/xxhash.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_common.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_v05.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_v06.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_v07.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/fse_compress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/hist.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/huf_compress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_compress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_compress_literals.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_compress_sequences.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_compress_superblock.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_double_fast.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_fast.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_lazy.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_ldm.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_opt.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_preSplit.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstdmt_compress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/huf_decompress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_ddict.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_decompress.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zstd_decompress_block.o
+AS obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/huf_decompress_amd64.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/cover.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/divsufsort.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/fastcover.o
+CC obj/conf_cc3c1a00a9695ba0aa39231f294508e1/static/zdict.o
+compiling single-threaded static library 1.5.7
+make: Leaving directory '/home/dan/n100-zram/build/terra-zstd-n100-skip192-lib'

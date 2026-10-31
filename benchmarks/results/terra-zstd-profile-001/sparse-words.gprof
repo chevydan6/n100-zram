@@ -1,0 +1,264 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 49.46      0.91     0.91   128000     7.11     7.11  ZSTD_compressBlock_doubleFast
+ 19.02      1.26     0.35   127000     2.76     2.76  HUF_buildCTable_wksp
+  9.24      1.43     0.17   128000     1.33     1.33  ZSTD_encodeSequences
+  3.26      1.49     0.06   511000     0.12     0.12  FSE_buildCTable_wksp
+  3.26      1.55     0.06   128000     0.47     0.47  HIST_count_wksp
+  3.26      1.61     0.06   127000     0.47     0.47  FSE_compress_usingCTable_generic
+  2.72      1.66     0.05   511000     0.10     0.10  FSE_writeNCount_generic
+  2.72      1.71     0.05   384000     0.13     0.13  HIST_countFast_wksp
+  2.72      1.76     0.05   128000     0.39     0.39  ZSTD_seqToCodes
+  1.63      1.79     0.03   127000     0.24     0.24  HUF_simpleQuickSort
+  1.09      1.81     0.02   511000     0.04     0.04  FSE_normalizeCount
+  0.54      1.82     0.01   128000     0.08    14.30  ZSTD_compressBlock_internal
+  0.54      1.83     0.01   128000     0.08    14.38  ZSTD_compressContinue_internal
+  0.54      1.84     0.01   127000     0.08     0.81  HUF_writeCTable_wksp
+  0.00      1.84     0.00   511000     0.00     0.00  FSE_optimalTableLog
+  0.00      1.84     0.00   511000     0.00     0.00  FSE_writeNCount
+  0.00      1.84     0.00   384000     0.00     0.25  ZSTD_buildCTable
+  0.00      1.84     0.00   384000     0.00     0.00  ZSTD_selectEncodingType
+  0.00      1.84     0.00   256000     0.00     0.00  ZSTD_ldm_getMaxNbSeq
+  0.00      1.84     0.00   128001     0.00     0.00  ZSTD_compressBound
+  0.00      1.84     0.00   128000     0.00     4.24  HUF_compress4X_repeat
+  0.00      1.84     0.00   128000     0.00     4.24  HUF_compress_internal
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_XXH64_reset
+  0.00      1.84     0.00   128000     0.00     7.11  ZSTD_buildSeqStore
+  0.00      1.84     0.00   128000     0.00     1.54  ZSTD_buildSequencesStatistics
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_compressCCtx
+  0.00      1.84     0.00   128000     0.00    14.38  ZSTD_compressEnd_public
+  0.00      1.84     0.00   128000     0.00     4.24  ZSTD_compressLiterals
+  0.00      1.84     0.00   128000     0.00    14.30  ZSTD_compress_frameChunk
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_estimateCCtxSize_usingCCtxParams_internal
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_getCParams_internal
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_isError
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_ldm_getTableSize
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_overflowCorrectIfNeeded
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_resetCCtx_internal
+  0.00      1.84     0.00   128000     0.00     0.00  ZSTD_writeFrameHeader
+  0.00      1.84     0.00   127000     0.00     0.00  FSE_compress_usingCTable
+  0.00      1.84     0.00   127000     0.00     0.00  FSE_optimalTableLog_internal
+  0.00      1.84     0.00   127000     0.00     0.00  HIST_count_simple
+  0.00      1.84     0.00   127000     0.00     0.00  HUF_optimalTableLog
+  0.00      1.84     0.00        2     0.00     0.00  ZSTD_freeCDict
+  0.00      1.84     0.00        1     0.00     0.00  ZSTD_createCCtx
+  0.00      1.84     0.00        1     0.00     0.00  ZSTD_freeCCtx
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 0.54% of 1.84 seconds
+
+index % time    self  children    called     name
+                0.01    1.83  128000/128000      ZSTD_compressEnd_public [2]
+[1]    100.0    0.01    1.83  128000         ZSTD_compressContinue_internal [1]
+                0.00    1.83  128000/128000      ZSTD_compress_frameChunk [5]
+                0.00    0.00  128000/128000      ZSTD_writeFrameHeader [37]
+-----------------------------------------------
+                0.00    1.84  128000/128000      main [3]
+[2]    100.0    0.00    1.84  128000         ZSTD_compressEnd_public [2]
+                0.01    1.83  128000/128000      ZSTD_compressContinue_internal [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]    100.0    0.00    1.84                 main [3]
+                0.00    1.84  128000/128000      ZSTD_compressEnd_public [2]
+                0.00    0.00  128001/128001      ZSTD_compressBound [28]
+                0.00    0.00  128000/128000      ZSTD_compressCCtx [30]
+                0.00    0.00  128000/128000      ZSTD_isError [33]
+                0.00    0.00       1/1           ZSTD_createCCtx [43]
+                0.00    0.00       1/1           ZSTD_freeCCtx [44]
+-----------------------------------------------
+                0.01    1.82  128000/128000      ZSTD_compress_frameChunk [5]
+[4]     99.5    0.01    1.82  128000         ZSTD_compressBlock_internal [4]
+                0.00    0.91  128000/128000      ZSTD_buildSeqStore [6]
+                0.00    0.54  128000/128000      ZSTD_compressLiterals [10]
+                0.00    0.20  128000/128000      ZSTD_buildSequencesStatistics [12]
+                0.17    0.00  128000/128000      ZSTD_encodeSequences [13]
+-----------------------------------------------
+                0.00    1.83  128000/128000      ZSTD_compressContinue_internal [1]
+[5]     99.5    0.00    1.83  128000         ZSTD_compress_frameChunk [5]
+                0.01    1.82  128000/128000      ZSTD_compressBlock_internal [4]
+                0.00    0.00  128000/128000      ZSTD_overflowCorrectIfNeeded [35]
+-----------------------------------------------
+                0.00    0.91  128000/128000      ZSTD_compressBlock_internal [4]
+[6]     49.5    0.00    0.91  128000         ZSTD_buildSeqStore [6]
+                0.91    0.00  128000/128000      ZSTD_compressBlock_doubleFast [7]
+-----------------------------------------------
+                0.91    0.00  128000/128000      ZSTD_buildSeqStore [6]
+[7]     49.5    0.91    0.00  128000         ZSTD_compressBlock_doubleFast [7]
+-----------------------------------------------
+                0.00    0.54  128000/128000      ZSTD_compressLiterals [10]
+[8]     29.5    0.00    0.54  128000         HUF_compress4X_repeat [8]
+                0.00    0.54  128000/128000      HUF_compress_internal [9]
+-----------------------------------------------
+                0.00    0.54  128000/128000      HUF_compress4X_repeat [8]
+[9]     29.5    0.00    0.54  128000         HUF_compress_internal [9]
+                0.35    0.00  127000/127000      HUF_buildCTable_wksp [11]
+                0.01    0.09  127000/127000      HUF_writeCTable_wksp [14]
+                0.06    0.00  128000/128000      HIST_count_wksp [17]
+                0.03    0.00  127000/127000      HUF_simpleQuickSort [22]
+                0.00    0.00  127000/127000      FSE_optimalTableLog_internal [39]
+                0.00    0.00  127000/127000      HUF_optimalTableLog [41]
+-----------------------------------------------
+                0.00    0.54  128000/128000      ZSTD_compressBlock_internal [4]
+[10]    29.5    0.00    0.54  128000         ZSTD_compressLiterals [10]
+                0.00    0.54  128000/128000      HUF_compress4X_repeat [8]
+-----------------------------------------------
+                0.35    0.00  127000/127000      HUF_compress_internal [9]
+[11]    19.0    0.35    0.00  127000         HUF_buildCTable_wksp [11]
+-----------------------------------------------
+                0.00    0.20  128000/128000      ZSTD_compressBlock_internal [4]
+[12]    10.7    0.00    0.20  128000         ZSTD_buildSequencesStatistics [12]
+                0.00    0.10  384000/384000      ZSTD_buildCTable [15]
+                0.05    0.00  384000/384000      HIST_countFast_wksp [20]
+                0.05    0.00  128000/128000      ZSTD_seqToCodes [21]
+                0.00    0.00  384000/384000      ZSTD_selectEncodingType [26]
+-----------------------------------------------
+                0.17    0.00  128000/128000      ZSTD_compressBlock_internal [4]
+[13]     9.2    0.17    0.00  128000         ZSTD_encodeSequences [13]
+-----------------------------------------------
+                0.01    0.09  127000/127000      HUF_compress_internal [9]
+[14]     5.6    0.01    0.09  127000         HUF_writeCTable_wksp [14]
+                0.06    0.00  127000/127000      FSE_compress_usingCTable_generic [18]
+                0.01    0.00  127000/511000      FSE_buildCTable_wksp [16]
+                0.01    0.00  127000/511000      FSE_writeNCount_generic [19]
+                0.00    0.00  127000/511000      FSE_normalizeCount [23]
+                0.00    0.00  127000/127000      HIST_count_simple [40]
+                0.00    0.00  127000/511000      FSE_optimalTableLog [24]
+                0.00    0.00  127000/511000      FSE_writeNCount [25]
+                0.00    0.00  127000/127000      FSE_compress_usingCTable [38]
+-----------------------------------------------
+                0.00    0.10  384000/384000      ZSTD_buildSequencesStatistics [12]
+[15]     5.3    0.00    0.10  384000         ZSTD_buildCTable [15]
+                0.05    0.00  384000/511000      FSE_buildCTable_wksp [16]
+                0.04    0.00  384000/511000      FSE_writeNCount_generic [19]
+                0.02    0.00  384000/511000      FSE_normalizeCount [23]
+                0.00    0.00  384000/511000      FSE_optimalTableLog [24]
+                0.00    0.00  384000/511000      FSE_writeNCount [25]
+-----------------------------------------------
+                0.01    0.00  127000/511000      HUF_writeCTable_wksp [14]
+                0.05    0.00  384000/511000      ZSTD_buildCTable [15]
+[16]     3.3    0.06    0.00  511000         FSE_buildCTable_wksp [16]
+-----------------------------------------------
+                0.06    0.00  128000/128000      HUF_compress_internal [9]
+[17]     3.3    0.06    0.00  128000         HIST_count_wksp [17]
+-----------------------------------------------
+                0.06    0.00  127000/127000      HUF_writeCTable_wksp [14]
+[18]     3.3    0.06    0.00  127000         FSE_compress_usingCTable_generic [18]
+-----------------------------------------------
+                0.01    0.00  127000/511000      HUF_writeCTable_wksp [14]
+                0.04    0.00  384000/511000      ZSTD_buildCTable [15]
+[19]     2.7    0.05    0.00  511000         FSE_writeNCount_generic [19]
+-----------------------------------------------
+                0.05    0.00  384000/384000      ZSTD_buildSequencesStatistics [12]
+[20]     2.7    0.05    0.00  384000         HIST_countFast_wksp [20]
+-----------------------------------------------
+                0.05    0.00  128000/128000      ZSTD_buildSequencesStatistics [12]
+[21]     2.7    0.05    0.00  128000         ZSTD_seqToCodes [21]
+-----------------------------------------------
+                              508000             HUF_simpleQuickSort [22]
+                0.03    0.00  127000/127000      HUF_compress_internal [9]
+[22]     1.6    0.03    0.00  127000+508000  HUF_simpleQuickSort [22]
+                              508000             HUF_simpleQuickSort [22]
+-----------------------------------------------
+                0.00    0.00  127000/511000      HUF_writeCTable_wksp [14]
+                0.02    0.00  384000/511000      ZSTD_buildCTable [15]
+[23]     1.1    0.02    0.00  511000         FSE_normalizeCount [23]
+-----------------------------------------------
+                0.00    0.00  127000/511000      HUF_writeCTable_wksp [14]
+                0.00    0.00  384000/511000      ZSTD_buildCTable [15]
+[24]     0.0    0.00    0.00  511000         FSE_optimalTableLog [24]
+-----------------------------------------------
+                0.00    0.00  127000/511000      HUF_writeCTable_wksp [14]
+                0.00    0.00  384000/511000      ZSTD_buildCTable [15]
+[25]     0.0    0.00    0.00  511000         FSE_writeNCount [25]
+-----------------------------------------------
+                0.00    0.00  384000/384000      ZSTD_buildSequencesStatistics [12]
+[26]     0.0    0.00    0.00  384000         ZSTD_selectEncodingType [26]
+-----------------------------------------------
+                0.00    0.00  128000/256000      ZSTD_estimateCCtxSize_usingCCtxParams_internal [31]
+                0.00    0.00  128000/256000      ZSTD_resetCCtx_internal [36]
+[27]     0.0    0.00    0.00  256000         ZSTD_ldm_getMaxNbSeq [27]
+-----------------------------------------------
+                0.00    0.00  128001/128001      main [3]
+[28]     0.0    0.00    0.00  128001         ZSTD_compressBound [28]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_resetCCtx_internal [36]
+[29]     0.0    0.00    0.00  128000         ZSTD_XXH64_reset [29]
+-----------------------------------------------
+                0.00    0.00  128000/128000      main [3]
+[30]     0.0    0.00    0.00  128000         ZSTD_compressCCtx [30]
+                0.00    0.00  128000/128000      ZSTD_getCParams_internal [32]
+                0.00    0.00  128000/128000      ZSTD_resetCCtx_internal [36]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_resetCCtx_internal [36]
+[31]     0.0    0.00    0.00  128000         ZSTD_estimateCCtxSize_usingCCtxParams_internal [31]
+                0.00    0.00  128000/128000      ZSTD_ldm_getTableSize [34]
+                0.00    0.00  128000/256000      ZSTD_ldm_getMaxNbSeq [27]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_compressCCtx [30]
+[32]     0.0    0.00    0.00  128000         ZSTD_getCParams_internal [32]
+-----------------------------------------------
+                0.00    0.00  128000/128000      main [3]
+[33]     0.0    0.00    0.00  128000         ZSTD_isError [33]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_estimateCCtxSize_usingCCtxParams_internal [31]
+[34]     0.0    0.00    0.00  128000         ZSTD_ldm_getTableSize [34]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_compress_frameChunk [5]
+[35]     0.0    0.00    0.00  128000         ZSTD_overflowCorrectIfNeeded [35]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_compressCCtx [30]
+[36]     0.0    0.00    0.00  128000         ZSTD_resetCCtx_internal [36]
+                0.00    0.00  128000/256000      ZSTD_ldm_getMaxNbSeq [27]
+                0.00    0.00  128000/128000      ZSTD_estimateCCtxSize_usingCCtxParams_internal [31]
+                0.00    0.00  128000/128000      ZSTD_XXH64_reset [29]
+-----------------------------------------------
+                0.00    0.00  128000/128000      ZSTD_compressContinue_internal [1]
+[37]     0.0    0.00    0.00  128000         ZSTD_writeFrameHeader [37]
+-----------------------------------------------
+                0.00    0.00  127000/127000      HUF_writeCTable_wksp [14]
+[38]     0.0    0.00    0.00  127000         FSE_compress_usingCTable [38]
+-----------------------------------------------
+                0.00    0.00  127000/127000      HUF_compress_internal [9]
+[39]     0.0    0.00    0.00  127000         FSE_optimalTableLog_internal [39]
+-----------------------------------------------
+                0.00    0.00  127000/127000      HUF_writeCTable_wksp [14]
+[40]     0.0    0.00    0.00  127000         HIST_count_simple [40]
+-----------------------------------------------
+                0.00    0.00  127000/127000      HUF_compress_internal [9]
+[41]     0.0    0.00    0.00  127000         HUF_optimalTableLog [41]
+-----------------------------------------------
+                0.00    0.00       1/2           ZSTD_createCCtx [43]
+                0.00    0.00       1/2           ZSTD_freeCCtx [44]
+[42]     0.0    0.00    0.00       2         ZSTD_freeCDict [42]
+-----------------------------------------------
+                0.00    0.00       1/1           main [3]
+[43]     0.0    0.00    0.00       1         ZSTD_createCCtx [43]
+                0.00    0.00       1/2           ZSTD_freeCDict [42]
+-----------------------------------------------
+                0.00    0.00       1/1           main [3]
+[44]     0.0    0.00    0.00       1         ZSTD_freeCCtx [44]
+                0.00    0.00       1/2           ZSTD_freeCDict [42]
+-----------------------------------------------
+
+Index by function name
+
+  [16] FSE_buildCTable_wksp   [22] HUF_simpleQuickSort    [13] ZSTD_encodeSequences
+  [38] FSE_compress_usingCTable [14] HUF_writeCTable_wksp [31] ZSTD_estimateCCtxSize_usingCCtxParams_internal
+  [18] FSE_compress_usingCTable_generic [29] ZSTD_XXH64_reset [44] ZSTD_freeCCtx
+  [23] FSE_normalizeCount     [15] ZSTD_buildCTable       [42] ZSTD_freeCDict
+  [24] FSE_optimalTableLog     [6] ZSTD_buildSeqStore     [32] ZSTD_getCParams_internal
+  [39] FSE_optimalTableLog_internal [12] ZSTD_buildSequencesStatistics [33] ZSTD_isError
+  [25] FSE_writeNCount         [7] ZSTD_compressBlock_doubleFast [27] ZSTD_ldm_getMaxNbSeq
+  [19] FSE_writeNCount_generic [4] ZSTD_compressBlock_internal [34] ZSTD_ldm_getTableSize
+  [20] HIST_countFast_wksp    [28] ZSTD_compressBound     [35] ZSTD_overflowCorrectIfNeeded
+  [40] HIST_count_simple      [30] ZSTD_compressCCtx      [36] ZSTD_resetCCtx_internal
+  [17] HIST_count_wksp         [1] ZSTD_compressContinue_internal [26] ZSTD_selectEncodingType
+  [11] HUF_buildCTable_wksp    [2] ZSTD_compressEnd_public [21] ZSTD_seqToCodes
+   [8] HUF_compress4X_repeat  [10] ZSTD_compressLiterals  [37] ZSTD_writeFrameHeader
+   [9] HUF_compress_internal   [5] ZSTD_compress_frameChunk
+  [41] HUF_optimalTableLog    [43] ZSTD_createCCtx
