@@ -1,0 +1,5 @@
+# Zstd match-finder explicit branch candidate
+
+An opt-in x86-64 candidate replaces one safe-address conditional-selection check with an explicit bounds branch in the no-dictionary double-fast match finder, preserving match decisions. Fresh userspace zstd 1.5.7 builds used matched GCC `-O3 -fPIC -march=x86-64-v3 -fno-tree-vectorize` settings. Nine randomized same-round observations covered 26 corpora. Candidate and control frames were identical on all 3,328 checked pages and decoded by three library builds; truncation, undersized output and canaries were checked. This is finite userspace validation, not a full sanitizer or kernel gate.
+
+The [table](tables.md) shows this approach regressed paired median compression time by approximately 9.9% on bash, 10.4% on git, 10.6% on libc and 16.3% on clusters75. It is rejected; no energy, native ZRAM or application improvement is claimed. Generated code, branch prediction and library layout may contribute, but their individual causes were not isolated.

@@ -1,0 +1,14 @@
+--- a/lib/compress/zstd_double_fast.c
++++ b/lib/compress/zstd_double_fast.c
+@@ -203,7 +203,11 @@
+             {   const BYTE*  const matchl0_safe = ZSTD_selectAddr(idxl0, prefixLowestIndex, matchl0, &dummy[0]);
+ 
+                 /* check prefix long match */
++                #if defined(N100_ZSTD_BRANCH) && defined(__x86_64__)
++                if (idxl0 > prefixLowestIndex && MEM_read64(matchl0) == MEM_read64(ip)) {
++#else
+                 if (MEM_read64(matchl0_safe) == MEM_read64(ip) && matchl0_safe == matchl0) {
++#endif
+                     mLength = ZSTD_count(ip+8, matchl0+8, iend) + 8;
+                     offset = (U32)(ip-matchl0);
+                     while (((ip>anchor) & (matchl0>prefixLowest)) && (ip[-1] == matchl0[-1])) { ip--; matchl0--; mLength++; } /* catch up */

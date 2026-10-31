@@ -1,0 +1,12 @@
+--- a/lib/compress/zstd_double_fast.c
++++ b/lib/compress/zstd_double_fast.c
+@@ -195,6 +195,9 @@
+             }
+ 
+             hl1 = ZSTD_hashPtr(ip1, hBitsL, 8);
++#if defined(N100_ZSTD_PREFETCH) && defined(__x86_64__)
++            PREFETCH_L1(&hashLong[hl1]);
++#endif
+ 
+             /* idxl0 > prefixLowestIndex is a (somewhat) unpredictable branch.
+              * However expression below complies into conditional move. Since

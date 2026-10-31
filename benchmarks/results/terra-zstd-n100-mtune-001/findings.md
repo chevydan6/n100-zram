@@ -1,0 +1,5 @@
+# Gracemont compiler tuning experiment
+
+Unmodified userspace Zstandard 1.5.7 was built with GCC `-O3 -fPIC -march=x86-64-v3 -mtune=gracemont -fno-tree-vectorize` and compared with the same source and flags without the explicit tuning option. This tunes generated code for the N100 core family but is not a kernel build or a source-code optimization. Nine randomized same-round observations covered 26 corpora. Frames were identical on all 3,328 checked pages and decoded by candidate, control and independently loaded system zstd; truncation, undersized output and canaries were checked. This is finite userspace validation, not a full sanitizer or kernel gate.
+
+The [table](tables.md) shows mixed paired median compression changes: -3.6% on bash executable, +6.1% on git executable, +3.1% on libc executable and -0.4% on mixed pages. These short measurements include Python/ctypes overhead and can be affected by dynamic frequency and code layout. They do not justify changing the kernel toolchain, boot configuration or normal compressor. No package energy, actual ZRAM or application performance claim is made.
