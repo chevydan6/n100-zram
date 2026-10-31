@@ -1,0 +1,15 @@
+--- a/lib/compress/hist.c
++++ b/lib/compress/hist.c
+@@ -151,7 +151,11 @@
+                           const void* source, size_t sourceSize,
+                           void* workSpace, size_t workSpaceSize)
+ {
+-    if (sourceSize < 1500) /* heuristic threshold */
++#if defined(N100_ZSTD_HIST_THRESHOLD) && defined(__x86_64__)
++    if (sourceSize < 3072) /* experimental N100 threshold */
++#else
++    if (sourceSize < 1500) /* upstream heuristic threshold */
++#endif
+         return HIST_count_simple(count, maxSymbolValuePtr, source, sourceSize);
+     if ((size_t)workSpace & 3) return ERROR(GENERIC);  /* must be aligned on 4-bytes boundaries */
+     if (workSpaceSize < HIST_WKSP_SIZE) return ERROR(workSpace_tooSmall);
